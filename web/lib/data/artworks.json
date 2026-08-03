@@ -1566,7 +1566,7 @@
     "accent": "#618E59",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Self-portrait",
       "fr": "Portrait de l'artiste",
@@ -1578,23 +1578,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 55,
+      "high": 80,
+      "logic": "FACT: Self-Portrait Without a Beard, painted September 1889 -- the exact same month as this work, and independently believed to be Van Gogh's very last self-portrait, the same claim made about this Musee d'Orsay painting -- sold for $71.5M (~EUR65.8M) at Christie's, 1998. EDITORIAL JUDGMENT: an exceptionally close match (same month, same genre, same 'last self-portrait' claim) -- range centered closely around this comparable, kept from the very top of a plausible range since the sale itself is now over two decades old with no attempt made here to model market growth since.",
+      "comparableSales": [
+        "Self-Portrait Without a Beard, Vincent van Gogh — $71.5M (~€65.8M), Christie's, 1998 — painted the same month (September 1889) and, like this work, believed to be Van Gogh's last self-portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted in September 1889 at the Saint-Rémy asylum, this may be Van Gogh's very last self-portrait — he shows himself with a steady, direct gaze against a background of swirling turquoise brushwork, his stillness contrasting sharply with the restless energy surrounding him.",
+      "fr": "Peint en septembre 1889 à l'asile de Saint-Rémy, il s'agit peut-être du tout dernier autoportrait de Van Gogh — il se représente avec un regard calme et direct, sur un fond de touches tourbillonnantes turquoise, son immobilité contrastant nettement avec l'énergie agitée qui l'entoure.",
+      "zh-Hans": "这幅画创作于1889年9月，梵高当时正在圣雷米的疗养院中——这或许是他一生中最后一幅自画像。画中的他目光平静而坚定，背景则是一片翻涌旋转的青绿色笔触，他的静止姿态，与周围那股躁动不安的能量形成了鲜明对比。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Compare the calm, carefully controlled lines of his face with the wild, arabesque patterns of the background — Van Gogh keeps himself still while letting the space around him seem to churn and breathe.",
+      "fr": "Comparez les lignes calmes et maîtrisées de son visage avec les motifs sauvages et sinueux de l'arrière-plan — Van Gogh se maintient immobile tout en laissant l'espace qui l'entoure sembler s'agiter et respirer.",
+      "zh-Hans": "比较一下他脸部那平静、精心控制的线条，与背景中那狂野、蜿蜒的花纹——梵高让自己保持静止，却让周围的空间仿佛在翻腾、呼吸。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh painted around 35 self-portraits over his career, largely because he was too poor to pay models — this is thought to be the final one he ever made.",
+      "fr": "Van Gogh peignit environ 35 autoportraits au cours de sa carrière, en grande partie parce qu'il était trop pauvre pour payer des modèles — celui-ci est considéré comme le tout dernier qu'il ait jamais réalisé.",
+      "zh-Hans": "在梵高的创作生涯中，他一共画了约35幅自画像，很大程度上是因为他付不起模特的费用——而这幅，被认为是他一生中所画的最后一幅自画像。"
+    },
+    "whySimple": {
+      "en": "Van Gogh painted this self-portrait in September 1889 — it may be the very last one he ever painted. He shows himself looking calmly straight ahead, with a swirling blue-green background behind him.",
+      "fr": "Van Gogh peint cet autoportrait en septembre 1889 — il s'agit peut-être du tout dernier qu'il ait jamais peint. Il se représente regardant calmement droit devant lui, avec un arrière-plan tourbillonnant bleu-vert.",
+      "zh-Hans": "梵高在1889年9月画下了这幅自画像——这可能是他一生中所画的最后一幅。画中的他平静地直视前方，身后是一片翻涌的蓝绿色背景。"
+    },
+    "whereSimple": {
+      "en": "Compare his calm, steady face with the wild, swirling patterns behind him — his face stays still while the background seems to move.",
+      "fr": "Comparez son visage calme et posé avec les motifs sauvages et tourbillonnants derrière lui — son visage reste immobile tandis que l'arrière-plan semble bouger.",
+      "zh-Hans": "比较一下他平静、沉稳的面容和身后那狂野旋转的花纹——他的脸保持静止，而背景却仿佛在流动。"
+    },
+    "raritySimple": {
+      "en": "Van Gogh painted around 35 self-portraits during his life, often because he couldn't afford to pay models. This is believed to be his very last one.",
+      "fr": "Van Gogh peignit environ 35 autoportraits durant sa vie, souvent parce qu'il n'avait pas les moyens de payer des modèles. Celui-ci est considéré comme son tout dernier.",
+      "zh-Hans": "梵高一生中画了约35幅自画像，常常是因为他请不起模特。人们相信，这一幅正是他的最后一幅自画像。"
+    },
+    "whyKids": {
+      "en": "Van Gogh painted himself looking calm and steady, but look at the background — it's swirling and wiggling like it's alive!",
+      "fr": "Van Gogh s'est peint lui-même, l'air calme et posé, mais regarde l'arrière-plan — il tourbillonne et ondule comme s'il était vivant !",
+      "zh-Hans": "梵高把自己画得平静又沉稳，可是快看背景——它翻卷扭动，好像活了一样！"
+    },
+    "whereKids": {
+      "en": "See how still and calm his face looks, but the space around him seems to swirl and dance — like he's standing in the middle of a whirlpool of color!",
+      "fr": "Regarde comme son visage a l'air calme et immobile, mais l'espace autour de lui semble tourbillonner et danser — comme s'il se tenait au milieu d'un tourbillon de couleurs !",
+      "zh-Hans": "看他的脸有多平静、多安静，可是他周围的空间却好像在旋转、跳舞——就像他站在一个五颜六色的漩涡正中间一样！"
+    },
+    "rarityKids": {
+      "en": "Van Gogh painted about 35 pictures of his own face during his life — mostly because he was too poor to pay other people to sit still for him! This might be the very last one he ever painted.",
+      "fr": "Van Gogh a peint environ 35 tableaux de son propre visage au cours de sa vie — surtout parce qu'il était trop pauvre pour payer d'autres personnes pour poser pour lui ! Celui-ci pourrait être le tout dernier qu'il ait jamais peint.",
+      "zh-Hans": "梵高一生中画了大约35幅自己的脸——主要是因为他太穷了，付不起钱请别人当模特！这幅可能是他画的最后一幅呢。"
     }
   },
   {
@@ -2910,7 +2947,7 @@
     "accent": "#618E59",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The siesta (after Millet)",
       "fr": "La Méridienne",
@@ -2922,23 +2959,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 20,
+      "high": 38,
+      "logic": "FACT: Irises, painted in May 1889 within Van Gogh's first week at the Saint-Remy asylum, sold for $53.9M (~EUR49.6M) at Sotheby's, 1987 (an old, non-inflation-adjusted sale). EDITORIAL JUDGMENT: same broad Saint-Remy hospital-stay period as this work, but a different genre (a flower still life vs. this figure/genre scene copied after Millet) and painted roughly seven months later in the stay -- positioned moderately below the comparable to reflect the weaker genre match rather than transferring the number directly.",
+      "comparableSales": [
+        "Irises, Vincent van Gogh — $53.9M (~€49.6M), Sotheby's, 1987 — same broad Saint-Remy asylum period, but an earlier month and a different genre (flower still life vs. this genre scene)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh painted this quiet scene of two farm workers resting at midday as his own colorful \"translation\" of a black-and-white print by the artist he admired most, Jean-François Millet — using color, he said, the way Millet had used light and shadow.",
+      "fr": "Van Gogh peint cette scène paisible de deux travailleurs agricoles se reposant à midi comme sa propre « traduction » en couleurs d'une estampe en noir et blanc de l'artiste qu'il admirait le plus, Jean-François Millet — utilisant la couleur, disait-il, comme Millet avait utilisé la lumière et l'ombre.",
+      "zh-Hans": "梵高把这幅描绘两位农民在正午小憩的宁静场景，当作是他对自己最崇敬的画家让-弗朗索瓦·米勒一幅黑白版画的「彩色翻译」——他说，他用色彩来表达，正如米勒曾用光影来表达一样。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the intense heat suggested by the golden haystacks and the deep blue shade the couple rests in — Van Gogh turns a simple nap into a study of how color itself can feel like temperature.",
+      "fr": "Remarquez la chaleur intense suggérée par les meules de foin dorées et l'ombre bleu profond où le couple se repose — Van Gogh transforme une simple sieste en une étude de la manière dont la couleur elle-même peut évoquer une température.",
+      "zh-Hans": "留意那金黄色的干草垛所暗示出的炙热感，以及这对夫妇歇息处那片深蓝色的阴影——梵高把一个简单的午睡场景，变成了一场关于色彩本身如何传达「温度感」的研究。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh made this and several other paintings as direct \"translations\" of Millet's prints, treating another artist's black-and-white composition as a script to reinterpret entirely in his own vivid palette.",
+      "fr": "Van Gogh réalisa ce tableau et plusieurs autres comme des « traductions » directes des estampes de Millet, traitant la composition en noir et blanc d'un autre artiste comme un scénario à réinterpréter entièrement dans sa propre palette éclatante.",
+      "zh-Hans": "梵高创作了这幅画以及其他几幅作品，都是对米勒版画的直接「翻译」——他把另一位艺术家的黑白构图，当作一份可以完全用自己鲜明色彩重新演绎的「剧本」。"
+    },
+    "whySimple": {
+      "en": "Van Gogh painted this peaceful scene of two farm workers napping at midday. He based it on a black-and-white print by an artist he admired, Jean-François Millet, but reimagined it in his own bright colors.",
+      "fr": "Van Gogh peint cette scène paisible de deux travailleurs agricoles faisant la sieste à midi. Il s'est inspiré d'une estampe en noir et blanc d'un artiste qu'il admirait, Jean-François Millet, mais l'a réimaginée dans ses propres couleurs éclatantes.",
+      "zh-Hans": "梵高画下了这幅描绘两位农民在正午小憩的宁静场景。灵感来自他所崇敬的画家让-弗朗索瓦·米勒的一幅黑白版画，但梵高用自己鲜艳的色彩重新演绎了它。"
+    },
+    "whereSimple": {
+      "en": "Notice the golden haystacks in bright sun and the deep blue shade where the couple rests — Van Gogh uses color to show heat and coolness.",
+      "fr": "Remarquez les meules de foin dorées en plein soleil et l'ombre bleu profond où le couple se repose — Van Gogh utilise la couleur pour montrer la chaleur et la fraîcheur.",
+      "zh-Hans": "留意阳光下金黄色的干草垛，以及这对夫妇歇息处那片深蓝色的阴影——梵高用色彩来表现炙热与清凉。"
+    },
+    "raritySimple": {
+      "en": "Van Gogh made several paintings like this one, taking another artist's black-and-white print and completely repainting it in his own vivid colors.",
+      "fr": "Van Gogh réalisa plusieurs tableaux comme celui-ci, reprenant l'estampe en noir et blanc d'un autre artiste et la repeignant entièrement dans ses propres couleurs éclatantes.",
+      "zh-Hans": "梵高创作了好几幅像这样的画，把另一位艺术家的黑白版画，完全用自己鲜艳的色彩重新画了一遍。"
+    },
+    "whyKids": {
+      "en": "Van Gogh painted two tired farm workers taking a nap in the middle of the day. He copied the idea from another artist's black-and-white picture, but painted it all in his own bright colors instead!",
+      "fr": "Van Gogh a peint deux travailleurs agricoles fatigués en train de faire la sieste au milieu de la journée. Il a repris l'idée d'un tableau en noir et blanc d'un autre artiste, mais l'a peinte avec ses propres couleurs éclatantes !",
+      "zh-Hans": "梵高画了两位疲惫的农民，正在大中午打盹儿。他借用了另一位画家一幅黑白画的想法，但却用自己明亮的色彩重新画了一遍！"
+    },
+    "whereKids": {
+      "en": "Look at the golden, sunny haystacks and the cool blue shadow where the two workers are sleeping — can you feel how hot and how cool those two parts feel, just from the colors?",
+      "fr": "Regarde les meules de foin dorées et ensoleillées et l'ombre bleue et fraîche où les deux travailleurs dorment — arrives-tu à sentir la chaleur et la fraîcheur de ces deux parties, rien qu'avec les couleurs ?",
+      "zh-Hans": "看看那阳光下金灿灿的干草垛，还有两位工人睡觉的地方那片凉凉的蓝色阴影——光看颜色，你能感觉到哪里热、哪里凉吗？"
+    },
+    "rarityKids": {
+      "en": "Van Gogh loved this other artist's black-and-white pictures so much that he repainted several of them in his own colorful style — like adding color to a coloring book, but with paint!",
+      "fr": "Van Gogh aimait tellement les tableaux en noir et blanc de cet autre artiste qu'il en a repeint plusieurs dans son propre style coloré — un peu comme colorier un livre de coloriage, mais avec de la peinture !",
+      "zh-Hans": "梵高特别喜欢另一位画家的黑白画，所以他把好几幅都用自己色彩缤纷的风格重新画了一遍——就像给一本涂色书上色一样，只不过用的是颜料！"
     }
   },
   {
@@ -3761,7 +3835,7 @@
     "accent": "#618E59",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "L'Italienne",
       "fr": "L'Italienne",
@@ -3773,23 +3847,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 25,
+      "high": 42,
+      "logic": "FACT: two real sales from the same months are confirmed: Parisian Novels (Nov-Dec 1887) sold for $62.7M (~EUR57.7M) at Sotheby's, November 2025 -- the auction record for a Van Gogh Paris-period work, though a still life -- and Corner of a Garden with Butterflies (May-July 1887) sold for $33.2M (~EUR30.5M) at Christie's. EDITORIAL JUDGMENT: this is a well-documented single-figure portrait of a named, real sitter (Agostina Segatori) rather than a still life or garden view -- positioned between the two real Paris-period records to reflect genuine uncertainty about how a portrait specifically would compare, rather than defaulting to either extreme.",
+      "comparableSales": [
+        "Parisian Novels, Vincent van Gogh — $62.7M (~€57.7M), Sotheby's, November 2025 — same months (Nov-Dec 1887), the auction record for a Van Gogh Paris-period work, but a still life not a portrait.",
+        "Corner of a Garden with Butterflies, Vincent van Gogh — $33.2M (~€30.5M), Christie's — same year (May-July 1887), a garden view not a portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh painted Agostina Segatori, an Italian former artist's model who ran a Paris café he frequented, in a striking pose against a flat yellow background — a personal blend of Japanese print style and the latest color theory he was absorbing in Paris.",
+      "fr": "Van Gogh peint Agostina Segatori, une ancienne modèle italienne qui tenait un café parisien qu'il fréquentait, dans une pose saisissante sur un fond jaune uni — un mélange personnel du style de l'estampe japonaise et des toutes dernières théories de la couleur qu'il assimilait à Paris.",
+      "zh-Hans": "梵高描绘了阿戈斯蒂娜·塞加托里的这幅肖像——她曾是一名意大利模特，后来在巴黎经营着一家梵高常去的咖啡馆。画中她姿态醒目，背景是一片平涂的黄色——这是梵高个人风格的融合：日本版画的样式，与他当时在巴黎正在吸收的最新色彩理论。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the flat, unshaded yellow background and the confident dark outline around her figure — borrowed directly from the Japanese woodblock prints Van Gogh collected and admired.",
+      "fr": "Remarquez le fond jaune plat et sans ombre et le contour sombre et assuré autour de sa silhouette — emprunté directement aux estampes japonaises sur bois que Van Gogh collectionnait et admirait.",
+      "zh-Hans": "留意这平涂、没有明暗变化的黄色背景，以及她身形周围那果断有力的深色轮廓线——这直接借鉴自梵高所收藏、钟爱的日本浮世绘版画。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Segatori and Van Gogh are believed to have had a brief romantic relationship not long before this portrait was painted, in the café she ran, where Van Gogh also displayed his own paintings on the walls.",
+      "fr": "On pense que Segatori et Van Gogh eurent une brève relation amoureuse peu avant que ce portrait ne soit peint, dans le café qu'elle tenait, où Van Gogh exposait également ses propres tableaux sur les murs.",
+      "zh-Hans": "人们相信，在这幅肖像画完成前不久，塞加托里和梵高之间曾有过一段短暂的恋情——地点就在她所经营的那家咖啡馆里，梵高还曾把自己的画作挂在那里的墙上展示。"
+    },
+    "whySimple": {
+      "en": "Van Gogh painted Agostina Segatori, who ran a Paris café he liked to visit, sitting against a bright yellow background. The style mixes Japanese prints with the newest color ideas Van Gogh was learning in Paris.",
+      "fr": "Van Gogh peint Agostina Segatori, qui tenait un café parisien qu'il aimait fréquenter, assise devant un fond jaune vif. Le style mêle les estampes japonaises aux idées de couleur les plus récentes que Van Gogh apprenait à Paris.",
+      "zh-Hans": "梵高画了阿戈斯蒂娜·塞加托里坐在一片明黄色背景前的样子——她经营着一家梵高喜欢光顾的巴黎咖啡馆。这幅画的风格融合了日本版画，以及梵高当时在巴黎学到的最新色彩理念。"
+    },
+    "whereSimple": {
+      "en": "Notice the flat yellow background and the bold dark outline around her — Van Gogh borrowed this from Japanese prints he loved collecting.",
+      "fr": "Remarquez le fond jaune plat et le contour sombre et marqué autour d'elle — Van Gogh a emprunté cela aux estampes japonaises qu'il adorait collectionner.",
+      "zh-Hans": "留意这平涂的黄色背景，以及她身周那粗重的深色轮廓线——梵高把这种手法借鉴自他钟爱收藏的日本版画。"
+    },
+    "raritySimple": {
+      "en": "Van Gogh and Segatori are thought to have briefly dated shortly before he painted this — and he even displayed his own paintings on the walls of her café.",
+      "fr": "On pense que Van Gogh et Segatori sortirent brièvement ensemble peu avant qu'il ne peigne ce tableau — il exposait même ses propres tableaux sur les murs de son café.",
+      "zh-Hans": "人们认为，在梵高画下这幅画之前不久，他和塞加托里曾有过一段短暂的交往——梵高甚至把自己的画作挂在了她咖啡馆的墙上。"
+    },
+    "whyKids": {
+      "en": "Van Gogh painted a woman named Agostina, who ran a café he liked to visit, sitting in front of a bright yellow background — almost like a spotlight!",
+      "fr": "Van Gogh a peint une femme nommée Agostina, qui tenait un café qu'il aimait fréquenter, assise devant un fond jaune vif — presque comme sous un projecteur !",
+      "zh-Hans": "梵高画了一位叫阿戈斯蒂娜的女士，她经营着一家梵高喜欢去的咖啡馆。她坐在一片明黄色的背景前，看起来几乎像被聚光灯照着一样！"
+    },
+    "whereKids": {
+      "en": "Look at the flat, bright yellow background and the bold dark line around her — Van Gogh copied this style from Japanese picture prints he loved collecting.",
+      "fr": "Regarde le fond jaune vif et plat et la ligne sombre et marquée qui l'entoure — Van Gogh a copié ce style à partir d'estampes japonaises qu'il adorait collectionner.",
+      "zh-Hans": "看这明亮平涂的黄色背景，还有围绕着她的那道粗重的深色线条——梵高是从他喜欢收藏的日本版画里学来的这种画法。"
+    },
+    "rarityKids": {
+      "en": "Van Gogh actually used to hang his own paintings on the walls of the café this woman ran — kind of like his own tiny art gallery!",
+      "fr": "Van Gogh avait pour habitude d'accrocher ses propres tableaux sur les murs du café que tenait cette femme — un peu comme sa propre petite galerie d'art !",
+      "zh-Hans": "梵高其实曾经把自己的画挂在这位女士经营的咖啡馆墙上——就像他自己的一间小小美术馆一样！"
     }
   },
   {
@@ -4986,7 +5098,7 @@
     "accent": "#618E59",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Restaurant de la Sirène à Asnières",
       "fr": "Restaurant de la Sirène à Asnières",
@@ -4998,23 +5110,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: Street Scene at Montmartre, an urban exterior view from the same 1887 Paris period, sold for $16.47M (~EUR15.2M) in 2021 -- the closest genre match found (exterior architecture/street view, like this work, rather than a portrait or still life). Corner of a Garden with Butterflies (May-July 1887) sold for $33.2M (~EUR30.5M). EDITORIAL JUDGMENT: positioned near the lower, better genre-matched Street Scene comparable rather than the higher-value garden or still-life records from the same year, since this is a quieter, less iconic exterior view rather than one of Van Gogh's best-known Paris compositions.",
+      "comparableSales": [
+        "Street Scene at Montmartre, Vincent van Gogh — $16.47M (~€15.2M), 2021 — same 1887 Paris period, closest genre match (an exterior urban/architectural view).",
+        "Corner of a Garden with Butterflies, Vincent van Gogh — $33.2M (~€30.5M), Christie's — same year (May-July 1887), a garden view, used here only as an upper reference point."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh painted the outside of a riverside restaurant in Asnières, just outside Paris, choosing to show its sun-bleached facade rather than the lively crowds eating and drinking inside.",
+      "fr": "Van Gogh peint l'extérieur d'un restaurant en bord de Seine à Asnières, juste à côté de Paris, choisissant de montrer sa façade délavée par le soleil plutôt que la foule animée qui mange et boit à l'intérieur.",
+      "zh-Hans": "梵高描绘了巴黎近郊阿尼埃尔一家河畔餐厅的外观，他选择呈现的是被阳光晒得发白的外立面，而不是餐厅内那些热闹用餐、饮酒的人群。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the thick white brushstrokes Van Gogh uses for the sunlit walls — he pushes his palette brighter and whiter here than in most of his other paintings from this time.",
+      "fr": "Regardez les épaisses touches de blanc que Van Gogh utilise pour les murs ensoleillés — il pousse ici sa palette vers des tons plus clairs et plus blancs que dans la plupart de ses autres tableaux de cette époque.",
+      "zh-Hans": "看看梵高在描绘阳光下的墙面时所用的那些厚重白色笔触——他在这里把自己的调色板推向了比同期大多数其他作品更明亮、更白皙的方向。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Unlike most Impressionists, who left Paris for the countryside in summer, Van Gogh simply walked to nearby riverside towns like Asnières — this quiet restaurant scene was practically in his own neighborhood.",
+      "fr": "Contrairement à la plupart des impressionnistes, qui quittaient Paris pour la campagne l'été venu, Van Gogh se contentait de marcher jusqu'aux villes voisines au bord de la Seine, comme Asnières — cette scène paisible de restaurant se trouvait pratiquement dans son propre quartier.",
+      "zh-Hans": "与大多数印象派画家夏天离开巴黎前往乡间不同，梵高只是步行前往阿尼埃尔这样临近的河畔小镇——这幅安静的餐厅场景，几乎就画在他自家附近。"
+    },
+    "whySimple": {
+      "en": "Van Gogh painted the outside of a restaurant by the river in Asnières, near Paris. Instead of showing the lively crowd inside, he focused on the sunny, sun-bleached building itself.",
+      "fr": "Van Gogh peint l'extérieur d'un restaurant au bord de la Seine à Asnières, près de Paris. Au lieu de montrer la foule animée à l'intérieur, il s'est concentré sur le bâtiment ensoleillé et délavé par le soleil lui-même.",
+      "zh-Hans": "梵高画了巴黎附近阿尼埃尔一家河边餐厅的外观。他没有描绘里面热闹的人群，而是把注意力放在了那被阳光晒得发白的建筑本身。"
+    },
+    "whereSimple": {
+      "en": "Look at the thick white brushstrokes on the sunlit walls — Van Gogh used brighter, whiter paint here than in a lot of his other paintings from this time.",
+      "fr": "Regardez les épaisses touches de blanc sur les murs ensoleillés — Van Gogh a utilisé ici une peinture plus claire et plus blanche que dans beaucoup de ses autres tableaux de cette époque.",
+      "zh-Hans": "看阳光下墙面上那些厚重的白色笔触——梵高在这里用的颜色比他同期很多其他画作都要更亮、更白。"
+    },
+    "raritySimple": {
+      "en": "While other painters traveled far for their summer painting trips, Van Gogh just walked to nearby river towns like Asnières — this restaurant was practically in his own backyard.",
+      "fr": "Alors que d'autres peintres voyageaient loin pour leurs excursions de peinture estivales, Van Gogh se contentait de marcher jusqu'à des villes voisines au bord de la Seine, comme Asnières — ce restaurant se trouvait pratiquement dans son propre jardin.",
+      "zh-Hans": "别的画家夏天出门写生要跑很远，梵高却只是步行到阿尼埃尔这样附近的河边小镇——这家餐厅几乎就在他自家「后院」。"
+    },
+    "whyKids": {
+      "en": "Van Gogh painted the outside of a restaurant by the river, all lit up by summer sunshine — but he skipped painting the people eating inside!",
+      "fr": "Van Gogh a peint l'extérieur d'un restaurant au bord de l'eau, tout illuminé par le soleil d'été — mais il n'a pas peint les gens qui mangeaient à l'intérieur !",
+      "zh-Hans": "梵高画了河边一家餐厅的外面，被夏日阳光照得亮堂堂的——不过他没有画里面正在吃饭的人哦！"
+    },
+    "whereKids": {
+      "en": "Look how thick and white the paint is on the sunny walls — Van Gogh really wanted you to feel how bright and hot the sun was that day.",
+      "fr": "Regarde comme la peinture est épaisse et blanche sur les murs ensoleillés — Van Gogh voulait vraiment que tu ressentes à quel point le soleil était éclatant et chaud ce jour-là.",
+      "zh-Hans": "看阳光照到的墙面上，颜料涂得又厚又白——梵高真的很想让你感受到那天阳光有多耀眼、多炙热。"
+    },
+    "rarityKids": {
+      "en": "Van Gogh didn't have to travel far to paint this — he just walked from his home in Paris to this little riverside town nearby!",
+      "fr": "Van Gogh n'a pas eu besoin de voyager loin pour peindre ce tableau — il a simplement marché depuis sa maison à Paris jusqu'à cette petite ville voisine au bord de l'eau !",
+      "zh-Hans": "梵高画这幅画根本不用跑远——他只是从巴黎的家走到了附近这个小小的河边小镇！"
     }
   },
   {
@@ -5028,7 +5178,7 @@
     "accent": "#618E59",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Eugène Boch",
       "fr": "Portrait d'Eugène Boch",
@@ -5040,23 +5190,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 35,
+      "high": 60,
+      "logic": "FACT: Orchard with Cypresses, painted in the same Arles period (1888) as this work, sold for $117.18M (~EUR107.8M) at Christie's New York, November 2022 -- the same comparable used for Starry Night Over the Rhone elsewhere in this catalog. EDITORIAL JUDGMENT: that record is a landscape, not a portrait, and no defensible same-period Arles portrait sale could be found -- positioned well below the landscape record to reflect that real genre gap, while still well above a generic Van Gogh floor to reflect this specific portrait's exceptional fame (nicknamed 'The Poet' by the artist himself).",
+      "comparableSales": [
+        "Orchard with Cypresses, Vincent van Gogh — $117.18M (~€107.8M), Christie's New York, November 2022 — same Arles period (1888), but a landscape, not a portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh painted his friend, the Belgian painter Eugène Boch, against a deep blue background full of tiny points of light — he wanted it to feel like \"the infinite,\" turning an ordinary portrait into something closer to a man standing under the night sky.",
+      "fr": "Van Gogh peint son ami, le peintre belge Eugène Boch, sur un fond bleu profond parsemé de minuscules points de lumière — il voulait que cela évoque « l'infini », transformant un portrait ordinaire en quelque chose de plus proche d'un homme se tenant sous le ciel nocturne.",
+      "zh-Hans": "梵高描绘了他的朋友、比利时画家欧仁·博赫的肖像，背景是一片深蓝色，点缀着无数细小的光点——他希望这幅画能唤起「无限」之感，让一幅普通的肖像画，变得更像是一个人站在满天繁星之下。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at how the blue behind Boch's head seems to shimmer, almost like starlight — Van Gogh called this his attempt to paint \"a star in the depths of an azure sky.\"",
+      "fr": "Regardez comme le bleu derrière la tête de Boch semble scintiller, presque comme la lumière des étoiles — Van Gogh qualifiait cela de sa tentative de peindre « une étoile dans les profondeurs d'un ciel d'azur ».",
+      "zh-Hans": "看博赫头部背后那片蓝色，是不是仿佛在闪烁，宛如星光一般——梵高称这是他试图画出「湛蓝夜空深处的一颗星星」的一次尝试。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh nicknamed this painting \"The Poet,\" even though he considered it just a quick study — he liked it enough to give it its own frame anyway.",
+      "fr": "Van Gogh surnomma ce tableau « Le Poète », même s'il le considérait comme une simple étude rapide — il l'aimait néanmoins suffisamment pour lui donner son propre cadre.",
+      "zh-Hans": "梵高给这幅画起了个昵称，叫「诗人」——尽管他本人认为这不过是一幅速写练习之作，但他依然很喜欢它，还特意为它配上了画框。"
+    },
+    "whySimple": {
+      "en": "Van Gogh painted his friend, the Belgian painter Eugène Boch, in front of a deep blue background full of tiny sparkling points. He wanted it to feel like the night sky, turning a simple portrait into something more dreamlike.",
+      "fr": "Van Gogh peint son ami, le peintre belge Eugène Boch, devant un fond bleu profond parsemé de petits points scintillants. Il voulait que cela évoque le ciel nocturne, transformant un simple portrait en quelque chose de plus onirique.",
+      "zh-Hans": "梵高画了他的朋友、比利时画家欧仁·博赫，背景是一片深蓝色，点缀着许多闪闪发光的小点。他想让这幅画有种夜空般的感觉，把一幅普通的肖像画变得更加梦幻。"
+    },
+    "whereSimple": {
+      "en": "Look at how the blue background seems to shimmer like starlight around Boch's head — Van Gogh wanted it to feel like \"a star in the depths of the sky.\"",
+      "fr": "Regarde comme le fond bleu semble scintiller comme la lumière des étoiles autour de la tête de Boch — Van Gogh voulait que cela évoque « une étoile dans les profondeurs du ciel ».",
+      "zh-Hans": "看博赫头部周围那片蓝色背景，是不是像星光一样在闪烁——梵高希望它能带来一种「夜空深处一颗星星」的感觉。"
+    },
+    "raritySimple": {
+      "en": "Van Gogh called this painting \"The Poet,\" even though he thought of it as just a quick study.",
+      "fr": "Van Gogh appelait ce tableau « Le Poète », même s'il le considérait comme une simple étude rapide.",
+      "zh-Hans": "梵高把这幅画称作「诗人」，尽管他自己认为这只是一幅速写练习。"
+    },
+    "whyKids": {
+      "en": "Van Gogh painted his friend Eugène with a deep blue, sparkly background — he wanted it to look like his friend was standing under a starry night sky!",
+      "fr": "Van Gogh a peint son ami Eugène avec un fond bleu profond et scintillant — il voulait que ça ait l'air que son ami se tenait sous un ciel étoilé !",
+      "zh-Hans": "梵高画了他的朋友欧仁，背景是一片深蓝色、闪闪发光——他想让画面看起来，就像朋友正站在满天繁星的夜空下一样！"
+    },
+    "whereKids": {
+      "en": "Look closely at the blue behind his head — can you see how it seems to twinkle, almost like real stars?",
+      "fr": "Regarde bien le bleu derrière sa tête — arrives-tu à voir comme il semble scintiller, presque comme de vraies étoiles ?",
+      "zh-Hans": "仔细看看他头后面那片蓝色——你能看出它是不是在闪烁，好像真的星星一样吗？"
+    },
+    "rarityKids": {
+      "en": "Van Gogh gave this painting a nickname — he called it \"The Poet\"!",
+      "fr": "Van Gogh a donné un surnom à ce tableau — il l'appelait « Le Poète » !",
+      "zh-Hans": "梵高还给这幅画取了个小名——他叫它「诗人」！"
     }
   },
   {
@@ -5112,7 +5299,7 @@
     "accent": "#618E59",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Hôpital Saint-Paul à Saint-Rémy-de-Provence",
       "fr": "Hôpital Saint-Paul à Saint-Rémy-de-Provence",
@@ -5124,24 +5311,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 14,
+      "high": 26,
+      "logic": "FACT: Irises, painted in May 1889 during the same Saint-Remy hospital stay as this work, sold for $53.9M (~EUR49.6M) at Sotheby's, 1987 (an old, non-inflation-adjusted sale). EDITORIAL JUDGMENT: same broad hospital-stay period, but five months earlier and a different genre (a flower still life vs. this garden/institutional-grounds view) -- positioned well below the comparable, both for the weaker genre match and because this is one of several similar views Van Gogh painted of the same grounds rather than a unique subject.",
+      "comparableSales": [
+        "Irises, Vincent van Gogh — $53.9M (~€49.6M), Sotheby's, 1987 — same Saint-Remy hospital-stay period, but an earlier month and a different genre."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Van Gogh painted the grounds of the hospital in Saint-Rémy-de-Provence where he was living at the time, choosing to focus on a tall pine tree and the surrounding garden rather than the building itself.",
+      "fr": "Van Gogh peint les jardins de l'hôpital de Saint-Rémy-de-Provence où il vivait alors, choisissant de se concentrer sur un grand pin et le jardin environnant plutôt que sur le bâtiment lui-même.",
+      "zh-Hans": "梵高描绘了他当时所居住的圣雷米医院的庭院，他选择把注意力集中在一棵高大的松树和周围的花园上，而不是那座建筑本身。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the pine's dark, twisting branches dominate the composition — Van Gogh often turned to trees and plants in the hospital garden as subjects during this period, painting the same grounds again and again.",
+      "fr": "Remarquez comme les branches sombres et torsadées du pin dominent la composition — Van Gogh se tournait souvent vers les arbres et les plantes du jardin de l'hôpital comme sujets durant cette période, peignant les mêmes lieux encore et encore.",
+      "zh-Hans": "留意松树那深色、扭曲的枝干是如何主导整个画面构图的——在这段时期，梵高常常以医院花园里的树木和植物为题材，一遍又一遍地描绘着同一片庭院。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "This is one of a series of views Van Gogh painted of the hospital grounds, which were nearly the only outdoor scenery available to him during this period.",
+      "fr": "Ce tableau fait partie d'une série de vues que Van Gogh peignit des jardins de l'hôpital, qui constituaient presque le seul paysage extérieur dont il disposait durant cette période.",
+      "zh-Hans": "这幅画是梵高描绘医院庭院系列作品中的一幅——在这段时期，这片庭院几乎是他所能接触到的唯一户外景致。"
+    },
+    "whySimple": {
+      "en": "Van Gogh painted the grounds of the hospital in Saint-Rémy-de-Provence, where he was staying at the time. He focused on a tall pine tree and the garden rather than the building itself.",
+      "fr": "Van Gogh peint les jardins de l'hôpital de Saint-Rémy-de-Provence, où il séjournait alors. Il s'est concentré sur un grand pin et le jardin plutôt que sur le bâtiment lui-même.",
+      "zh-Hans": "梵高画了他当时所住的圣雷米医院的庭院。他把重点放在了一棵高大的松树和花园上，而不是建筑本身。"
+    },
+    "whereSimple": {
+      "en": "Notice how the dark, twisting branches of the pine tree take up most of the painting — Van Gogh painted this garden many times during this period.",
+      "fr": "Remarquez comme les branches sombres et torsadées du pin occupent la majeure partie du tableau — Van Gogh a peint ce jardin de nombreuses fois durant cette période.",
+      "zh-Hans": "留意松树那深色、扭曲的枝干几乎占满了整幅画——在这段时期，梵高多次描绘过这座花园。"
+    },
+    "raritySimple": {
+      "en": "This is one of several paintings Van Gogh made of the same hospital grounds, which were almost the only scenery available to him at the time.",
+      "fr": "Ce tableau fait partie de plusieurs œuvres que Van Gogh réalisa des mêmes jardins de l'hôpital, qui constituaient presque le seul paysage dont il disposait à l'époque.",
+      "zh-Hans": "这是梵高为同一座医院庭院所作的几幅画作之一——在当时，这几乎是他唯一能看到的景致。"
+    },
+    "whyKids": {
+      "en": "Van Gogh loved this garden so much he painted it again and again! Look at that huge, twisty pine tree taking over the whole picture.",
+      "fr": "Van Gogh aimait tellement ce jardin qu'il l'a peint encore et encore ! Regarde ce gigantesque pin tout tordu qui envahit toute l'image.",
+      "zh-Hans": "梵高实在太喜欢这座花园了，一遍又一遍地画它！看那棵巨大、扭曲的松树，几乎占满了整幅画。"
+    },
+    "whereKids": {
+      "en": "Follow the dark, curvy branches of the pine tree — they twist and turn almost like they're dancing.",
+      "fr": "Suis les branches sombres et sinueuses du pin — elles se tordent et s'enroulent presque comme si elles dansaient.",
+      "zh-Hans": "顺着松树那深色、弯曲的枝干看过去——它们扭来扭去，几乎像是在跳舞一样。"
+    },
+    "rarityKids": {
+      "en": "This is just one of several paintings Van Gogh made of this exact same garden — he really loved this spot!",
+      "fr": "Ce n'est qu'un des nombreux tableaux que Van Gogh a peints de ce même jardin — il adorait vraiment cet endroit !",
+      "zh-Hans": "这只是梵高为这同一座花园所画的好几幅画中的一幅——他真的非常喜欢这个地方！"
+    },
+    "contentFlag": "Depicts the grounds (a pine tree and garden) of the hospital in Saint-Remy where Van Gogh was voluntarily a patient -- a heavy-but-not-explicit theme (mental illness/hospitalization), reviewed with the user per-case following the same standing rule established for Camille Monet on her deathbed (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus entirely on the pine tree and Van Gogh's habit of repainting this same garden, without naming or explaining the hospital's nature."
   },
   {
     "id": "orsay_rf_1955_20",
