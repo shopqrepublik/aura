@@ -12,6 +12,10 @@ import RecapScreen from "@/components/screens/RecapScreen";
 // (frontend/index.html data-nav attributes): Camera <-> Progress/Home,
 // Card -> Camera, Progress -> Camera/Recap, Recap -> new visit.
 //
+// Lives at "/" (root) so an installed icon or a bare domain visit lands
+// visitors straight in the working app, not the developer-facing design
+// system — that one moved to /design (app/design/page.tsx).
+//
 // Rendered edge-to-edge on a phone; centered in a fixed mobile frame on
 // wider viewports so it's testable from a desktop browser during `npm run
 // dev` without a physical device.

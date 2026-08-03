@@ -14,7 +14,10 @@ import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
 
 // Desktop landing / design-system reference page, per the end of
-// ELYIO-FINAL-PROMPT.md. Structure and copy ported from the real markup
+// ELYIO-FINAL-PROMPT.md. Lives at /design, not "/" — the root route is the
+// real working app (app/page.tsx), so an installed icon or a bare domain
+// visit never lands here; this stays reachable for internal/dev use only.
+// Structure and copy ported from the real markup
 // embedded in ELYIO-iPhone-WoW-Design-System.html (extracted from its
 // minified React bundle: nav ids/labels, hero copy, Principles/Palette
 // sections, the 5 screens' id/label/note triples, dev-handoff block, and

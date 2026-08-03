@@ -1,9 +1,8 @@
 // Minimal cache-first-with-network-fallback service worker, same shape as
-// the old frontend/sw.js. Only precaches the app shell for /app (the real
-// installed experience) — not the / landing page, which isn't part of what
-// gets installed to a home screen.
+// the old frontend/sw.js. Precaches the app shell for "/" (the real,
+// installed experience now lives at the root route) and manifest.json.
 const CACHE = "elyio-v1";
-const ASSETS = ["/app", "/manifest.json"];
+const ASSETS = ["/", "/manifest.json"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)));
