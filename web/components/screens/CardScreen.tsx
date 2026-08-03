@@ -101,7 +101,16 @@ export default function CardScreen({
 
         {excluded ? (
           <p className="mt-5 text-[16px] leading-[24px] tracking-[-0.011em] text-[#1D1D1F] font-[450]">
-            {tt("kids_mode_excluded", state.locale)}
+            {/* Per-artwork override: most exclusions (eg L'Origine du monde)
+                use the generic "switch to Normal mode" string below, but a
+                work can supply its own neutral message when the exclusion
+                reason isn't "content can't be shown" (eg a difficult
+                personal/biographical subject) -- see kidsExclusionMessage
+                on Artwork and Camille Monet on her deathbed for the first
+                case. */}
+            {artwork.kidsExclusionMessage
+              ? artwork.kidsExclusionMessage[state.locale] || artwork.kidsExclusionMessage.en
+              : tt("kids_mode_excluded", state.locale)}
           </p>
         ) : (
           <>

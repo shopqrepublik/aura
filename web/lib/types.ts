@@ -51,6 +51,16 @@ export interface Artwork {
   whereKids?: LocalizedText;
   rarityKids?: LocalizedText;
   kidsModeExcluded?: boolean;
+  // Per-artwork override for the neutral Kids-exclusion message. Absence
+  // means the generic "kids_mode_excluded" UI string is used (e.g.
+  // L'Origine du monde — excluded because the content itself literally
+  // can't be shown). Set this when the exclusion reason is different and
+  // the generic message would be misleading or too blunt for the actual
+  // reason (e.g. a difficult personal/biographical subject rather than
+  // explicit content) — see Camille Monet on her deathbed for the first
+  // and, as of writing, only case. Each new case like this is a deliberate
+  // per-artwork decision, not something to infer by analogy to this one.
+  kidsExclusionMessage?: LocalizedText;
   contentFlag?: string;
   // Simple mode — shorter, plainer language, same meaning as Normal.
   // Absence means Simple mode falls back to Normal (same rule as Kids).

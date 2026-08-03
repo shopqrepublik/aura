@@ -5050,6 +5050,13 @@
     "priority": "top100",
     "needsEditorialReview": true,
     "editorialStatus": "draft",
+    "kidsModeExcluded": true,
+    "kidsExclusionMessage": {
+      "en": "This artwork tells a difficult, personal story. Ask a grown-up to explore this one with you in Normal mode.",
+      "fr": "Cette œuvre raconte une histoire personnelle et difficile. Demande à un adulte de la découvrir avec toi en mode Normal.",
+      "zh-Hans": "这件作品讲述了一段沉重而私密的故事。可以请大人陪你一起在普通模式下了解它。"
+    },
+    "contentFlag": "Deathbed portrait of the artist's own wife -- a difficult personal/biographical subject, not explicit content. Product decision (resolved): excluded from Kids mode with a custom kidsExclusionMessage, distinct from L'Origine du monde's generic exclusion message (that one is about content that literally can't be shown; this one is about subject matter better explored with an adult). Not to be applied by analogy to other heavy-but-non-explicit subjects (death, illness, loss) without asking first -- each such case is a separate editorial decision.",
     "title": {
       "en": "Camille Monet on her deathbed",
       "fr": "Camille sur son lit de mort",
