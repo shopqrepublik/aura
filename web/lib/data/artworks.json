@@ -23,8 +23,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 14,
+      "high": 22,
+      "logic": "FACT: Courbet's auction record is $15,285,000 (~EUR14.1M) for Femme nue couchee (Reclining Nude Woman), a real nude-subject genre match, Christie's New York, Nov 2015. EDITORIAL JUDGMENT: L'Origine du monde is Courbet's single most famous and historically significant work, with no real transaction ever recorded at that tier (it has been in a French national collection since 1995 and could never legally be sold). The range uses the real record as its floor and applies a deliberately modest, explicitly speculative premium for the work's unmatched notoriety -- not a large multiple. This is one of the two estimates in this batch needing the most expert scrutiny (with Whistler's Mother), given how far its fame outpaces any real Courbet transaction.",
+      "comparableSales": [
+        "Femme nue couchée (Reclining Nude Woman), Gustave Courbet — sold for $15,285,000 (~€14.1M) at Christie's New York, November 2015 — Courbet's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Courbet paints the body with the same unidealized realism he gave landscapes and labourers, refusing centuries of mythological softening.",
@@ -41,7 +48,22 @@
       "fr": "Resté caché du public pendant plus d'un siècle, c'est aujourd'hui l'un des tableaux les plus commentés de l'histoire de l'art.",
       "zh-Hans": "这幅画曾长期被隐藏、不对公众展出达一个多世纪，如今是艺术史上被讨论最多的画作之一。"
     },
-    "contentFlag": "Explicit nude close-up. Product decision (resolved): fully excluded from Kids mode — see kidsModeExcluded."
+    "contentFlag": "Explicit nude close-up. Product decision (resolved): fully excluded from Kids mode — see kidsModeExcluded.",
+    "whySimple": {
+      "en": "Courbet painted the body exactly as he saw it, with no myth or story to soften it — the same honest style he used for landscapes and workers.",
+      "fr": "Courbet a peint le corps tel qu'il le voyait, sans mythe ni récit pour l'adoucir — le même style honnête qu'il utilisait pour les paysages et les travailleurs.",
+      "zh-Hans": "库尔贝如实描绘身体，没有用神话或故事来美化它——这与他描绘风景和劳动者时一样真实。"
+    },
+    "whereSimple": {
+      "en": "The canvas is cropped very close. There is no background, no face — nothing else to look at.",
+      "fr": "Le cadrage est très serré. Il n'y a ni décor ni visage — rien d'autre à regarder.",
+      "zh-Hans": "画面取景非常紧凑。没有背景，没有面容——没有其他可看的内容。"
+    },
+    "raritySimple": {
+      "en": "This painting stayed hidden from the public for more than 100 years. Today it is one of the most talked-about paintings in art history.",
+      "fr": "Ce tableau est resté caché du public pendant plus de 100 ans. Aujourd'hui, c'est l'une des œuvres les plus commentées de l'histoire de l'art.",
+      "zh-Hans": "这幅画曾被隐藏、不对公众展出超过100年。如今，它是艺术史上被讨论最多的画作之一。"
+    }
   },
   {
     "id": "orsay_rf_1668",
@@ -66,8 +88,16 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 55,
+      "high": 85,
+      "logic": "FACT: Manet's auction record is $65.1M (~EUR59.9M) for Le Printemps, a single-figure society portrait, Christie's New York, May 2014. EDITORIAL JUDGMENT: Luncheon on the Grass is a larger, multi-figure composition and is widely regarded as Manet's single most historically pivotal painting (the 1863 Salon des Refuses scandal often cited as the starting point of modern painting) -- the range is positioned around and moderately above the record rather than strictly at it, to reflect that significance. This is a judgment call, not a fact drawn from a comparable sale at this specific tier. NOTE: this range is identical to Olympia's, on purpose -- see that entry's note.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — sold for $65.1M (~€59.9M) at Christie's New York, May 2014 — Manet's auction record.",
+        "Self-Portrait with a Palette, Edouard Manet — sold for $33.4M (~€30.7M) at Sotheby's London, June 2010 — Manet's previous auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Manet placed a nude woman among clothed men in a contemporary park, not a myth, and scandalized Paris by making the present day worthy of grand painting.",
@@ -83,6 +113,36 @@
       "en": "Rejected by the official Salon in 1863, it became the founding scandal of modern painting.",
       "fr": "Refusé par le Salon officiel en 1863, il devient le scandale fondateur de la peinture moderne.",
       "zh-Hans": "1863年被官方沙龙拒绝展出，此后却成为现代绘画开端的标志性丑闻。"
+    },
+    "whySimple": {
+      "en": "Manet painted a nude woman sitting with dressed men in a real park, not in a myth. This shocked Paris — art was only supposed to look like this for gods and heroes, not ordinary life.",
+      "fr": "Manet peint une femme nue assise parmi des hommes habillés, dans un vrai parc et non dans un mythe. Cela choqua Paris — on pensait que l'art ne devait montrer cela que pour des dieux ou des héros, pas pour la vie ordinaire.",
+      "zh-Hans": "马奈描绘了一位裸体女子与几位穿着整齐的男子坐在一起，场景是真实的公园，而非神话故事。这让巴黎大为震惊——人们认为只有描绘神明或英雄时才能这样画，普通生活不该如此。"
+    },
+    "whereSimple": {
+      "en": "Look at the light on the woman — it's flat, almost like a cutout, next to a very dark shadow. Manet broke the old painting rules on purpose.",
+      "fr": "Regardez la lumière sur la femme — elle est plate, presque découpée, à côté d'une ombre très sombre. Manet enfreint volontairement les règles de la peinture classique.",
+      "zh-Hans": "看女子身上的光线——几乎像剪影一样平坦，旁边却是很深的阴影。马奈是故意打破传统绘画规则的。"
+    },
+    "raritySimple": {
+      "en": "The official art show rejected this painting in 1863. It went on to start a whole new kind of modern art.",
+      "fr": "Le Salon officiel refusa ce tableau en 1863. Il donna pourtant naissance à tout un nouveau courant de l'art moderne.",
+      "zh-Hans": "1863年，官方美术展拒绝展出这幅画。但它后来开启了整个现代艺术的新篇章。"
+    },
+    "whyKids": {
+      "en": "Manet paints a picnic in the park, but in a way people had never seen before — one of the friends isn't wearing clothes, just like in old myths, except this is an ordinary day, not a legend.",
+      "fr": "Manet peint un pique-nique dans le parc, mais d'une façon que personne n'avait jamais vue — l'un des amis n'est pas habillé, comme dans les mythes anciens, sauf qu'ici c'est un jour ordinaire, pas une légende.",
+      "zh-Hans": "马奈画了一场公园里的野餐，但用了一种前所未见的方式——其中一位朋友没有穿衣服，就像古老神话里那样，只不过这只是普通的一天，不是传说故事。"
+    },
+    "whereKids": {
+      "en": "Look at the still-life of bread and fruit spilling out of the basket in the corner — Manet was just as careful painting the picnic snacks as he was painting the people.",
+      "fr": "Regardez la nature morte dans le coin — le pain et les fruits qui débordent du panier. Manet a peint le pique-nique avec autant de soin que les personnages.",
+      "zh-Hans": "看角落里那幅静物——面包和水果从篮子里溢出来。马奈画这些野餐食物时，和画人物一样细致用心。"
+    },
+    "rarityKids": {
+      "en": "This painting was turned away from the biggest official art show in Paris — but people loved it anyway, and it helped start a brand new kind of art.",
+      "fr": "Ce tableau fut refusé par le plus grand salon officiel de Paris — mais le public l'a adoré quand même, et il a aidé à faire naître un tout nouveau genre d'art.",
+      "zh-Hans": "这幅画曾被巴黎最大的官方美术展拒绝展出——但人们依然非常喜爱它，它还帮助开创了一种全新的艺术风格。"
     }
   },
   {
@@ -108,8 +168,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 70,
+      "high": 90,
+      "logic": "FACT: a second, smaller version of this exact composition -- painted by Renoir, but a physically different canvas from the Musee d'Orsay's original -- sold for $78.1M (~EUR71.9M) at Sotheby's New York, May 1990. This is Renoir's auction record and the single strongest same-composition comparable found for any work in this batch. EDITORIAL JUDGMENT: the Musee d'Orsay's version is the larger, primary, and more celebrated of the two known versions, so the range is centered slightly above the EUR71.9M comparable rather than exactly on it -- a modest, stated adjustment, not a large speculative multiple. IMPORTANT: this comparable sale was of a DIFFERENT physical painting -- the museum's own work has never been, and could never legally be, sold.",
+      "comparableSales": [
+        "Bal du moulin de la Galette (the smaller, second version of this exact composition -- a physically different painting from the Musee d'Orsay's original) — sold for $78.1M (~€71.9M) at Sotheby's New York, May 1990, to Ryoei Saito — Renoir's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Renoir paints ordinary Parisians dancing in dappled outdoor light, treating everyday joy as a subject as serious as any historical scene.",
@@ -125,6 +192,36 @@
       "en": "One of Impressionism's largest and most ambitious figure paintings, showing over 30 people in a single scene.",
       "fr": "L'une des plus grandes et ambitieuses compositions figuratives de l'impressionnisme, réunissant plus de 30 personnages.",
       "zh-Hans": "这是印象派规模最大、最具野心的人物画之一，画面中出现了三十多个人物。"
+    },
+    "whySimple": {
+      "en": "Renoir paints ordinary people dancing outside in dappled sunlight. He treats everyday happiness as an important subject, just like a big historical scene.",
+      "fr": "Renoir peint des gens ordinaires qui dansent en plein air, sous une lumière tachetée. Il traite la joie quotidienne comme un sujet aussi important qu'une grande scène historique.",
+      "zh-Hans": "雷诺阿描绘了普通人在斑驳的户外阳光下跳舞。他把日常的快乐当作和历史场景一样重要的主题来描绘。"
+    },
+    "whereSimple": {
+      "en": "Follow the spots of sunlight scattered over the crowd. Renoir built the whole mood from light, not from outlines.",
+      "fr": "Suivez les taches de soleil dispersées sur la foule. Renoir construit toute l'ambiance à partir de la lumière, pas des contours.",
+      "zh-Hans": "顺着洒落在人群上的阳光斑点看去。雷诺阿用光线而非轮廓线营造出整个氛围。"
+    },
+    "raritySimple": {
+      "en": "This is one of the largest and most ambitious Impressionist paintings of people — it shows more than 30 people in one scene.",
+      "fr": "C'est l'une des plus grandes et des plus ambitieuses peintures de personnages de l'impressionnisme — elle montre plus de 30 personnes dans une seule scène.",
+      "zh-Hans": "这是印象派规模最大、最具野心的人物画之一——画面中有超过30个人物。"
+    },
+    "whyKids": {
+      "en": "Renoir paints a big, happy dance party outdoors, with sunlight falling through the trees and landing in little golden spots on everyone below.",
+      "fr": "Renoir peint une grande fête de danse en plein air, où la lumière du soleil traverse les arbres et retombe en petites taches dorées sur tout le monde.",
+      "zh-Hans": "雷诺阿描绘了一场热闹快乐的户外舞会，阳光穿过树叶，洒下点点金色光斑，落在下面每个人身上。"
+    },
+    "whereKids": {
+      "en": "Try to count the spots of sunlight dancing across the people's clothes and faces — Renoir painted hundreds of them to make the whole scene sparkle.",
+      "fr": "Essayez de compter les taches de soleil qui dansent sur les vêtements et les visages — Renoir en a peint des centaines pour faire scintiller toute la scène.",
+      "zh-Hans": "试着数一数跳跃在人们衣服和脸上的光斑——雷诺阿画了成百上千个光斑，让整个画面闪闪发光。"
+    },
+    "rarityKids": {
+      "en": "This is one of the biggest crowd scenes in Impressionist art — more than 30 people are dancing, talking and laughing in a single painting.",
+      "fr": "C'est l'une des plus grandes scènes de foule de l'art impressionniste — plus de 30 personnes dansent, parlent et rient dans un seul tableau.",
+      "zh-Hans": "这是印象派艺术中规模最大的群像场景之一——一幅画里有30多个人在跳舞、聊天、欢笑。"
     }
   },
   {
@@ -150,8 +247,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 55,
+      "high": 85,
+      "logic": "FACT: Manet's auction record is $65.1M (~EUR59.9M) for Le Printemps, Christie's New York, May 2014 -- the same record used for Luncheon on the Grass. EDITORIAL JUDGMENT: Olympia is, alongside Luncheon on the Grass, one of Manet's two defining works (the 1865 Salon scandal). The range is kept identical to Luncheon on the Grass's on purpose, not by mechanical copy-paste: both works were reconsidered individually (checking scale, singular-image fame, reproduction frequency), and no principled, fact-based reason was found to rank one above the other -- art history generally treats them as twin pillars of Manet's most important work. Inventing an artificial few-million-euro gap between them just to look individually considered would itself be a form of fake precision.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — sold for $65.1M (~€59.9M) at Christie's New York, May 2014 — Manet's auction record (same record used for Luncheon on the Grass)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Manet paints a reclining nude who stares directly back at the viewer instead of looking away, turning a classical pose into an uncomfortably modern confrontation.",
@@ -168,7 +272,37 @@
       "fr": "Sa présentation au Salon de 1865 provoqua l'un des plus grands scandales publics de l'histoire de la peinture française.",
       "zh-Hans": "1865年在沙龙展出时引发了法国绘画史上最大的公众丑闻之一。"
     },
-    "contentFlag": "Reclining nude. Product decision (resolved): no Kids-mode restriction — not one of the 4 works the content policy singles out."
+    "contentFlag": "Reclining nude. Product decision (resolved): no Kids-mode restriction — not one of the 4 works the content policy singles out.",
+    "whySimple": {
+      "en": "Manet paints a reclining woman who looks straight back at the viewer instead of looking away. This turned a traditional pose into something that felt shockingly modern.",
+      "fr": "Manet peint une femme allongée qui regarde le spectateur droit dans les yeux au lieu de détourner le regard. Cela transforme une pose traditionnelle en quelque chose de choquant pour l'époque, presque moderne.",
+      "zh-Hans": "马奈笔下这位斜倚的女子直视观者，而不是移开目光。这让一个传统的姿势变成了在当时看来极具冲击力、几乎现代的画面。"
+    },
+    "whereSimple": {
+      "en": "Look at her eyes, not just her pose — Manet composed the painting so you can't avoid meeting her gaze.",
+      "fr": "Regardez ses yeux, pas seulement sa pose — Manet a composé le tableau pour que vous ne puissiez pas éviter son regard.",
+      "zh-Hans": "看她的眼神，而不仅仅是她的姿态——马奈的构图让你无法回避她的目光。"
+    },
+    "raritySimple": {
+      "en": "When it was first shown in 1865, this painting caused one of the biggest public scandals in the history of French art.",
+      "fr": "Lors de sa première exposition en 1865, ce tableau provoqua l'un des plus grands scandales publics de l'histoire de l'art français.",
+      "zh-Hans": "1865年首次展出时，这幅画引发了法国艺术史上最大的公众丑闻之一。"
+    },
+    "whyKids": {
+      "en": "Manet paints a woman resting on a bed who looks straight out at us, calm and unafraid — a very direct, modern way to paint a portrait for its time.",
+      "fr": "Manet peint une femme allongée qui nous regarde droit dans les yeux, calme et sans crainte — une façon très directe et moderne de peindre un portrait pour l'époque.",
+      "zh-Hans": "马奈画了一位躺着休息的女子，她平静而不畏惧地直视着我们——在当时，这是一种非常直接、非常现代的肖像画法。"
+    },
+    "whereKids": {
+      "en": "Look at how simply the room is painted — just a few big, flat shapes and colours, with almost no small details to distract from her steady gaze.",
+      "fr": "Regardez comme la pièce est peinte simplement — juste quelques grandes formes plates et colorées, avec presque aucun petit détail pour distraire de son regard si assuré.",
+      "zh-Hans": "看这个房间画得多么简洁——只有几大块平涂的色彩与形状，几乎没有任何细节会分散你对她那沉稳目光的注意力。"
+    },
+    "rarityKids": {
+      "en": "When people first saw this painting in 1865, it caused one of the biggest arguments about art in French history — today it's seen as one of the most important paintings ever made.",
+      "fr": "Quand ce tableau fut montré pour la première fois en 1865, il provoqua l'une des plus grandes disputes sur l'art de l'histoire de France — aujourd'hui, il est considéré comme l'un des tableaux les plus importants jamais peints.",
+      "zh-Hans": "1865年这幅画首次展出时，引发了法国艺术史上最大的争议之一——如今，它被视为有史以来最重要的画作之一。"
+    }
   },
   {
     "id": "orsay_rf_1975_19",
@@ -193,8 +327,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 95,
+      "high": 130,
+      "logic": "FACT: Orchard with Cypresses, painted in the same Arles period (1888) as this work, sold for $117.18M (~EUR107.8M) at Christie's New York, November 2022. EDITORIAL JUDGMENT: this is a strong period match -- same year, same months of Van Gogh's life -- so the range is centered closely around this comparable with only a modest spread (roughly +/-15%) rather than a large adjustment.",
+      "comparableSales": [
+        "Orchard with Cypresses, Vincent van Gogh — sold for $117.18M (~€107.8M) at Christie's New York, November 2022 (Paul Allen collection) — same Arles period (1888) as this work."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Van Gogh paints gaslight and starlight as equally alive, turning an ordinary riverside evening into something that seems to move and glow.",
@@ -210,6 +351,36 @@
       "en": "Painted from life at night on the Rhône, months before his more famous Starry Night in Saint-Rémy.",
       "fr": "Peint sur le motif, de nuit, au bord du Rhône, plusieurs mois avant sa Nuit étoilée plus célèbre de Saint-Rémy.",
       "zh-Hans": "这幅画是梵高在罗讷河畔夜晚对景写生所作，比他更著名的圣雷米《星夜》早了几个月。"
+    },
+    "whySimple": {
+      "en": "Van Gogh paints gas lamps and stars as if they were both alive. An ordinary evening by the river becomes something that seems to glow and move.",
+      "fr": "Van Gogh peint la lumière des lampadaires et celle des étoiles comme si elles étaient toutes deux vivantes. Une soirée ordinaire au bord du fleuve devient quelque chose qui semble briller et bouger.",
+      "zh-Hans": "梵高把煤气灯光和星光都画得仿佛充满生命。一个普通的河畔夜晚，变成了一幅仿佛在发光、在流动的画面。"
+    },
+    "whereSimple": {
+      "en": "Follow the lamp lights reflected in the rippling water — that broken light is the real subject, more than the sky.",
+      "fr": "Suivez le reflet des lampadaires qui ondule dans l'eau — cette lumière brisée est le vrai sujet, plus que le ciel.",
+      "zh-Hans": "顺着灯光在水面上摇曳的倒影看去——那破碎的光才是真正的主题，比天空更重要。"
+    },
+    "raritySimple": {
+      "en": "Van Gogh painted this at night, looking at the real river. It came months before his even more famous Starry Night.",
+      "fr": "Van Gogh a peint ce tableau la nuit, en regardant le vrai fleuve. Il l'a peint plusieurs mois avant sa Nuit étoilée encore plus célèbre.",
+      "zh-Hans": "梵高是在夜晚对着真实的河流写生完成此画的，比他那幅更著名的《星夜》早了几个月。"
+    },
+    "whyKids": {
+      "en": "Van Gogh paints the night sky and the town lights as if they were both dancing — every star and every lamp gets its own little swirl of paint.",
+      "fr": "Van Gogh peint le ciel nocturne et les lumières de la ville comme si elles dansaient toutes les deux — chaque étoile et chaque lampadaire reçoit son propre petit tourbillon de peinture.",
+      "zh-Hans": "梵高把夜空和城镇的灯光都画得仿佛在跳舞——每一颗星星、每一盏灯，都被画上了属于自己的小小漩涡笔触。"
+    },
+    "whereKids": {
+      "en": "Look at the reflections stretching down into the water like glowing stripes — Van Gogh turned lamp light into a whole pattern of brushstrokes.",
+      "fr": "Regardez les reflets qui s'étirent dans l'eau comme des rayures lumineuses — Van Gogh a transformé la lumière des lampadaires en un motif de coups de pinceau.",
+      "zh-Hans": "看那些倒影像发光的条纹一样延伸进水中——梵高把灯光变成了一整片笔触的图案。"
+    },
+    "rarityKids": {
+      "en": "Van Gogh painted this picture at night, sitting right by the river to see the real stars — before he painted his other, even more famous starry sky.",
+      "fr": "Van Gogh a peint ce tableau de nuit, assis au bord du fleuve pour voir les vraies étoiles — avant de peindre son autre ciel étoilé, encore plus célèbre.",
+      "zh-Hans": "梵高是在夜晚坐在河边，看着真实的星星画下这幅画的——比他后来那幅更著名的星夜画作还要早。"
     }
   },
   {
@@ -235,8 +406,17 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 45,
+      "high": 80,
+      "logic": "FACT: three real sales are confirmed from the exact same seven-week period (June 1890, Auvers-sur-Oise, the final weeks of Van Gogh's life): Portrait of Dr. Gachet $82.5M/EUR75.9M (1990), Poppies and Daisies $62M/EUR57M (2014), Young Man with a Cornflower $46.7M/EUR43M. This is the best-supported period-matched cluster in the whole batch. EDITORIAL JUDGMENT: The Church at Auvers is a landscape/architecture subject rather than a portrait or still life, unlike the same-period record-holders -- positioned toward the middle-to-lower half of this real cluster rather than at its top, since portrait subjects from this exact period have generally commanded the highest prices.",
+      "comparableSales": [
+        "Portrait of Dr. Gachet, Vincent van Gogh — sold for $82.5M (~€75.9M), Christie's New York, May 1990 — painted June 1890, Auvers-sur-Oise.",
+        "Poppies and Daisies, Vincent van Gogh — sold for $62M (~€57M), Sotheby's New York, November 2014 — painted June 1890, Auvers-sur-Oise.",
+        "Young Man with a Cornflower, Vincent van Gogh — sold for $46.7M (~€43M) — painted June 1890, Auvers-sur-Oise."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Van Gogh bends the church's stone walls as if they were breathing, showing feeling rather than architecture.",
@@ -252,6 +432,36 @@
       "en": "Painted weeks before his death, using a village church he had sketched from life.",
       "fr": "Peint quelques semaines avant sa mort, d'après une église de village qu'il avait dessinée sur le motif.",
       "zh-Hans": "这幅画作于梵高去世前几周，取材于他曾对景写生的一座乡村教堂。"
+    },
+    "whySimple": {
+      "en": "Van Gogh bends the stone walls of the church as if they were breathing. He paints feeling, not an exact copy of the building.",
+      "fr": "Van Gogh courbe les murs de pierre de l'église comme s'ils respiraient. Il peint un sentiment, pas une copie exacte du bâtiment.",
+      "zh-Hans": "梵高把教堂的石墙画得仿佛在呼吸弯曲。他画的是情绪感受，而非对建筑的精确描摹。"
+    },
+    "whereSimple": {
+      "en": "Notice the sky is deep blue, not grey. Van Gogh painted the light from a mood, not from the real sun.",
+      "fr": "Remarquez le ciel bleu profond, pas gris. Van Gogh a peint la lumière d'après une humeur, pas d'après le vrai soleil.",
+      "zh-Hans": "留意天空是深蓝色而非灰色。梵高是根据情绪而非真实阳光来描绘光线的。"
+    },
+    "raritySimple": {
+      "en": "Van Gogh painted this village church from life, just weeks before he died.",
+      "fr": "Van Gogh a peint cette église de village sur le motif, quelques semaines seulement avant sa mort.",
+      "zh-Hans": "梵高对着这座真实的乡村教堂写生完成此画，就在他去世前几周。"
+    },
+    "whyKids": {
+      "en": "Van Gogh paints a village church with walls that curve and wiggle, almost like they're alive — he wanted you to feel the building, not just see it.",
+      "fr": "Van Gogh peint une église de village dont les murs se courbent et ondulent, presque comme s'ils étaient vivants — il voulait que vous ressentiez le bâtiment, pas seulement que vous le voyiez.",
+      "zh-Hans": "梵高画了一座乡村教堂，墙壁弯曲摇曳，仿佛有生命一般——他希望你去感受这座建筑，而不仅仅是看到它。"
+    },
+    "whereKids": {
+      "en": "Look at the bright blue sky behind the church — Van Gogh chose that colour to match a feeling, not because the sky really looked that way.",
+      "fr": "Regardez le ciel bleu vif derrière l'église — Van Gogh a choisi cette couleur pour exprimer un sentiment, pas parce que le ciel avait vraiment cette couleur.",
+      "zh-Hans": "看教堂后面那明亮的蓝色天空——梵高选择这种颜色是为了表达一种情绪，而不是因为天空真的是这个颜色。"
+    },
+    "rarityKids": {
+      "en": "Van Gogh sat outside this real village church and drew what he saw, not long before the end of his life.",
+      "fr": "Van Gogh s'est assis devant cette véritable église de village pour dessiner ce qu'il voyait, peu de temps avant la fin de sa vie.",
+      "zh-Hans": "梵高坐在这座真实的乡村教堂外面，画下了他所看到的景象，那时距离他生命的尽头已经不远了。"
     }
   },
   {
@@ -277,8 +487,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 14,
+      "high": 25,
+      "logic": "FACT: Courbet's auction record is $15,285,000 (~EUR14.1M) for Femme nue couchee (Reclining Nude Woman), Christie's New York, Nov 2015 -- a nude subject, not a genre/history-painting match. EDITORIAL JUDGMENT: A Burial at Ornans is a monumental (~6 metres wide), historically pivotal multi-figure history painting -- a fundamentally different scale and category from the record-holder -- and real Courbet market data doesn't include anything at this scale or significance. The range uses the record as an anchor with a modest upward adjustment for scale/significance; this is a judgment call given the genre mismatch, flagged for expert review.",
+      "comparableSales": [
+        "Femme nue couchée (Reclining Nude Woman), Gustave Courbet — sold for $15,285,000 (~€14.1M) at Christie's New York, November 2015 — Courbet's auction record (a nude subject, not a genre/history-painting match)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Courbet paints an ordinary provincial funeral at the huge scale usually reserved for kings and battles, insisting that regular people's lives matter just as much.",
@@ -294,6 +511,36 @@
       "en": "Its unheroic honesty made it one of the most controversial paintings shown in Paris in the 1850s.",
       "fr": "Son honnêteté sans grandeur en fit l'un des tableaux les plus controversés exposés à Paris dans les années 1850.",
       "zh-Hans": "这种毫不英雄化的诚实笔触，使它成为1850年代巴黎展出中最具争议的画作之一。"
+    },
+    "whySimple": {
+      "en": "Courbet paints an ordinary funeral in a small town, but on the huge scale usually kept for kings and battles. He wanted to show that regular people's lives matter too.",
+      "fr": "Courbet peint un enterrement ordinaire dans une petite ville, mais à l'échelle immense habituellement réservée aux rois et aux batailles. Il voulait montrer que la vie des gens ordinaires compte aussi.",
+      "zh-Hans": "库尔贝以往常只用来描绘帝王和战争的巨大画幅，描绘了一场小镇上普通人的葬礼。他想表明，普通人的生活同样重要。"
+    },
+    "whereSimple": {
+      "en": "Count the different faces in the crowd — each one is based on a real person from Courbet's hometown.",
+      "fr": "Comptez les différents visages dans la foule — chacun est basé sur une personne réelle de la ville natale de Courbet.",
+      "zh-Hans": "数一数人群中不同的面孔——每一张都取材于库尔贝家乡的真实人物。"
+    },
+    "raritySimple": {
+      "en": "This honest, unglamorous painting became one of the most argued-about paintings in Paris in the 1850s.",
+      "fr": "Ce tableau honnête et sans grandeur devint l'un des plus discutés à Paris dans les années 1850.",
+      "zh-Hans": "这幅诚实、毫不美化的画作，成为1850年代巴黎最具争议的画作之一。"
+    },
+    "whyKids": {
+      "en": "Courbet paints a whole village coming together for a funeral, using a giant canvas that was usually only used for kings and famous battles.",
+      "fr": "Courbet peint tout un village réuni pour un enterrement, sur une toile géante habituellement réservée aux rois et aux grandes batailles.",
+      "zh-Hans": "库尔贝画了整个村庄的人聚在一起参加葬礼，用的是一块通常只用来描绘帝王和著名战役的巨大画布。"
+    },
+    "whereKids": {
+      "en": "Count how many different people you can find in the crowd — Courbet painted each face to look like a real person he actually knew from his town.",
+      "fr": "Comptez combien de personnes différentes vous trouvez dans la foule — Courbet a peint chaque visage pour qu'il ressemble à une vraie personne qu'il connaissait dans sa ville.",
+      "zh-Hans": "数一数你能在人群中找到多少不同的人——库尔贝把每一张脸都画得像他真正认识的家乡人。"
+    },
+    "rarityKids": {
+      "en": "This is one of Courbet's biggest paintings, and people argued about it a lot when it was first shown, because it painted ordinary villagers as important as kings.",
+      "fr": "C'est l'un des plus grands tableaux de Courbet, et les gens en ont beaucoup discuté à sa première exposition, car il montrait des villageois ordinaires aussi importants que des rois.",
+      "zh-Hans": "这是库尔贝最大的画作之一，首次展出时人们对它议论纷纷，因为它把普通村民画得和帝王一样重要。"
     }
   },
   {
@@ -319,8 +566,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 3.5,
+      "high": 8,
+      "logic": "FACT: Bouguereau's auction record is $3,615,000 (~EUR3.3M) for Chansons de printemps, Christie's New York, 2019. EDITORIAL JUDGMENT: The Birth of Venus is widely considered Bouguereau's single most famous and iconic painting, more recognized than the actual record-holder -- the range applies a moderate premium over the record to reflect that, not a large speculative multiple.",
+      "comparableSales": [
+        "Chansons de printemps, William-Adolphe Bouguereau — sold for $3,615,000 (~€3.3M), Christie's New York, 2019 — Bouguereau's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Bouguereau paints myth with flawless, almost photographic finish, showing what official 19th-century taste prized just as Impressionism was starting to reject it.",
@@ -336,6 +590,36 @@
       "en": "A prime example of the polished academic style that dominated official Salons before Impressionism overturned it.",
       "fr": "Un exemple emblématique du style académique lisse qui dominait les Salons officiels avant que l'impressionnisme ne le renverse.",
       "zh-Hans": "这是印象派颠覆官方沙龙之前，那种精致学院派风格的典型代表。"
+    },
+    "whySimple": {
+      "en": "Bouguereau paints a myth with a perfectly smooth, almost photo-like finish. This was exactly the style official art judges loved in the 1800s — just as Impressionism was starting to reject it.",
+      "fr": "Bouguereau peint un mythe avec une finition parfaitement lisse, presque comme une photo. C'était exactement le style que les juges officiels de l'art adoraient au XIXe siècle — juste au moment où l'impressionnisme commençait à le rejeter.",
+      "zh-Hans": "布格罗以近乎照片般完美光滑的笔法描绘神话题材。这正是19世纪官方艺术评审所推崇的风格——而当时印象派已经开始反对这种风格。"
+    },
+    "whereSimple": {
+      "en": "Look closely at the skin — you can't see any brushstrokes at all. That's the opposite choice from the Impressionist paintings nearby.",
+      "fr": "Observez la peau de près — on ne voit aucun coup de pinceau. C'est le choix opposé des tableaux impressionnistes voisins.",
+      "zh-Hans": "仔细看肌肤的部分——几乎看不到任何笔触。这与附近印象派画作的处理方式截然相反。"
+    },
+    "raritySimple": {
+      "en": "This is a great example of the smooth, polished style that ruled official art shows before Impressionism changed everything.",
+      "fr": "C'est un excellent exemple du style lisse et soigné qui dominait les Salons officiels avant que l'impressionnisme ne change tout.",
+      "zh-Hans": "这是印象派颠覆一切之前，那种光滑精致、主导官方沙龙展览风格的绝佳范例。"
+    },
+    "whyKids": {
+      "en": "Bouguereau paints the old myth of the goddess Venus being born from the sea foam, using a painting style so smooth it almost looks like a photograph.",
+      "fr": "Bouguereau peint le mythe ancien de la déesse Vénus naissant de l'écume de la mer, avec un style de peinture si lisse qu'il ressemble presque à une photographie.",
+      "zh-Hans": "布格罗描绘了维纳斯女神从海浪泡沫中诞生的古老神话，画法极其光滑，几乎像一张照片。"
+    },
+    "whereKids": {
+      "en": "Look how perfectly smooth the skin looks — Bouguereau hid every single brushstroke, like a magic trick.",
+      "fr": "Regardez comme la peau paraît parfaitement lisse — Bouguereau a caché chaque coup de pinceau, comme un tour de magie.",
+      "zh-Hans": "看这肌肤画得多么光滑完美——布格罗把每一笔笔触都藏了起来，就像变魔术一样。"
+    },
+    "rarityKids": {
+      "en": "This painting shows the super-polished style that was the most popular and admired style in official art schools of its time.",
+      "fr": "Ce tableau montre le style ultra-soigné qui était le plus populaire et le plus admiré dans les écoles d'art officielles de l'époque.",
+      "zh-Hans": "这幅画展现了当时官方美术学院最受欢迎、最受推崇的那种极致精致的风格。"
     }
   },
   {
@@ -361,8 +645,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 2.5,
+      "high": 6,
+      "logic": "FACT: the most consistently cited Whistler oil-painting auction record found is approximately $2.8M (~EUR2.6M) for Harmony in Grey, Chelsea in Ice, in 2000 -- this specific figure carries lower source confidence than other entries in this batch (conflicting secondary reports exist, and the auction house could not be independently confirmed). EDITORIAL JUDGMENT: Whistler's Mother is unambiguously his single most famous work and one of the most recognized paintings in the world -- a vastly larger fame-to-market-record gap than any other work in this batch, since Whistler's real auction ceiling is otherwise modest. The range stays close to the real (if uncertain) record rather than inflating it to match the painting's actual fame, because no real transaction exists at a higher tier to responsibly anchor a bigger number. This is the estimate in the whole batch with the least confidence behind it -- flagged hardest for expert review, alongside L'Origine du monde.",
+      "comparableSales": [
+        "Harmony in Grey, Chelsea in Ice, James McNeill Whistler — reported sold for approximately $2.8M in 2000 — the most consistently cited Whistler oil-painting auction record, though the exact auction house could not be confirmed with full confidence from available sources."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Whistler insisted this was primarily a study in grey and black tones, not a sentimental portrait — arrangement mattered to him more than the sitter's identity.",
@@ -378,6 +669,36 @@
       "en": "One of the most recognized American paintings in the world, now held at the Musée d'Orsay.",
       "fr": "L'une des peintures américaines les plus reconnues au monde, conservée au Musée d'Orsay.",
       "zh-Hans": "这是世界上辨识度最高的美国画作之一，如今收藏于奥赛博物馆。"
+    },
+    "whySimple": {
+      "en": "Whistler said this was mainly a study of grey and black colours, not a sentimental family portrait. The arrangement of shapes mattered to him more than who was sitting there.",
+      "fr": "Whistler disait qu'il s'agissait avant tout d'une étude de tons gris et noirs, pas d'un portrait de famille sentimental. L'agencement des formes comptait plus pour lui que l'identité du modèle.",
+      "zh-Hans": "惠斯勒说这幅画首先是一幅关于灰色与黑色的色调研究，而不是一幅充满感伤情绪的家庭肖像。对他而言，形状的安排比画中人是谁更重要。"
+    },
+    "whereSimple": {
+      "en": "Notice how plain the room is — the picture is built from flat rectangles and one curved outline.",
+      "fr": "Remarquez comme la pièce est sobre — le tableau est construit à partir de rectangles plats et d'un seul contour courbe.",
+      "zh-Hans": "留意这个房间多么简朴——整幅画由平直的矩形与一条弯曲的轮廓线构成。"
+    },
+    "raritySimple": {
+      "en": "This is one of the most recognized American paintings in the world. Today it is kept at the Musée d'Orsay.",
+      "fr": "C'est l'une des peintures américaines les plus reconnues au monde. Elle est aujourd'hui conservée au Musée d'Orsay.",
+      "zh-Hans": "这是世界上辨识度最高的美国画作之一，如今收藏于奥赛博物馆。"
+    },
+    "whyKids": {
+      "en": "Whistler said this painting is really about shapes and colours — flat rectangles of grey and black — even though it shows his own mother sitting quietly.",
+      "fr": "Whistler disait que ce tableau parlait surtout de formes et de couleurs — des rectangles plats gris et noirs — même s'il montre sa propre mère assise tranquillement.",
+      "zh-Hans": "惠斯勒说这幅画其实主要是关于形状与色彩——灰色与黑色的平整矩形——尽管画中安静坐着的是他自己的母亲。"
+    },
+    "whereKids": {
+      "en": "Look at all the straight lines around her — the frame, the curtain, the floor — and then find the one curved shape: her.",
+      "fr": "Regardez toutes les lignes droites autour d'elle — le cadre, le rideau, le sol — puis trouvez la seule forme courbe : elle.",
+      "zh-Hans": "看她周围所有的直线——画框、窗帘、地板——然后找到唯一的弯曲形状：她自己。"
+    },
+    "rarityKids": {
+      "en": "This is one of the most famous American paintings in the whole world, and you can see the real one right here at the Musée d'Orsay.",
+      "fr": "C'est l'une des peintures américaines les plus célèbres au monde, et vous pouvez voir le vrai tableau ici même, au Musée d'Orsay.",
+      "zh-Hans": "这是全世界最著名的美国画作之一，你现在就能在奥赛博物馆看到这幅真迹。"
     }
   },
   {
@@ -403,8 +724,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 14,
+      "high": 24,
+      "logic": "FACT: Courbet's auction record is $15,285,000 (~EUR14.1M) for Femme nue couchee (Reclining Nude Woman), Christie's New York, Nov 2015. EDITORIAL JUDGMENT: The Painter's Studio is Courbet's largest and most personal work (per its own subtitle, 'a real allegory summing up seven years of my artistic life') -- similar scale/significance reasoning to A Burial at Ornans, a modest upward adjustment over the record; genre mismatch (nude vs. monumental allegorical scene) flagged.",
+      "comparableSales": [
+        "Femme nue couchée (Reclining Nude Woman), Gustave Courbet — sold for $15,285,000 (~€14.1M) at Christie's New York, November 2015 — Courbet's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Courbet paints himself at the center of French society — critics, collectors, a nude model and a nation's history all fit inside his studio.",
@@ -420,6 +748,36 @@
       "en": "One of Courbet's largest and most personal works, subtitled 'a real allegory summing up a seven-year phase of my artistic life.'",
       "fr": "L'une des œuvres les plus vastes et personnelles de Courbet, sous-titrée « allégorie réelle déterminant une phase de sept années de ma vie artistique ».",
       "zh-Hans": "这是库尔贝规模最大、最具个人色彩的作品之一，副标题为“概括我七年艺术生涯的一则真实寓言”。"
+    },
+    "whySimple": {
+      "en": "Courbet paints himself in the middle of French society — critics, art buyers, a model, and even the country's history all fit inside his studio.",
+      "fr": "Courbet se peint au centre de la société française — critiques, collectionneurs, un modèle et même l'histoire du pays tiennent tous dans son atelier.",
+      "zh-Hans": "库尔贝把自己描绘在法国社会的中心——评论家、收藏家、一位模特，甚至整个国家的历史，都被容纳进他的画室之中。"
+    },
+    "whereSimple": {
+      "en": "Find the canvas Courbet is painting inside the painting — he shows himself painting a landscape, a picture inside a picture.",
+      "fr": "Trouvez la toile que peint Courbet à l'intérieur du tableau — il se montre en train de peindre un paysage, un tableau dans le tableau.",
+      "zh-Hans": "在画中找到库尔贝正在画的那幅画——他把自己画成正在画一幅风景画，这是画中画。"
+    },
+    "raritySimple": {
+      "en": "This is one of Courbet's biggest and most personal paintings. He called it 'a real allegory summing up seven years of my life as an artist.'",
+      "fr": "C'est l'un des plus grands tableaux de Courbet, et le plus personnel. Il l'appelait « une allégorie réelle résumant sept années de ma vie d'artiste ».",
+      "zh-Hans": "这是库尔贝规模最大、最具个人色彩的画作之一。他称之为“概括我七年艺术生涯的一则真实寓言”。"
+    },
+    "whyKids": {
+      "en": "Courbet paints himself at work in his studio, surrounded by all sorts of people — friends, strangers, even a model — like he's inviting his whole world into one room.",
+      "fr": "Courbet se peint au travail dans son atelier, entouré de toutes sortes de personnes — des amis, des inconnus, même un modèle — comme s'il invitait tout son monde dans une seule pièce.",
+      "zh-Hans": "库尔贝把自己画在画室里工作的样子，周围围绕着各种各样的人——朋友、陌生人，甚至一位模特——仿佛他把整个世界都请进了同一个房间。"
+    },
+    "whereKids": {
+      "en": "Find the small painting inside the big painting — Courbet shows himself painting a landscape on his easel, a picture inside a picture.",
+      "fr": "Trouvez le petit tableau à l'intérieur du grand tableau — Courbet se montre en train de peindre un paysage sur son chevalet, un tableau dans le tableau.",
+      "zh-Hans": "在这幅大画里找到那幅小画——库尔贝把自己画成正在画架前画一幅风景画，这是画中画。"
+    },
+    "rarityKids": {
+      "en": "This is one of the biggest paintings Courbet ever made, and the most personal — he said it summed up seven whole years of his life as an artist.",
+      "fr": "C'est l'un des plus grands tableaux jamais peints par Courbet, et le plus personnel — il disait qu'il résumait sept années entières de sa vie d'artiste.",
+      "zh-Hans": "这是库尔贝创作过的最大、也最私人化的画作之一——他说这幅画概括了他整整七年的艺术生涯。"
     }
   },
   {
@@ -445,8 +803,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 13,
+      "high": 25,
+      "logic": "FACT: Les Blanchisseuses (The Laundry Maids), a genre scene of ordinary working Parisians, sold for over $13.7M (~EUR12.6M) at Christie's London in 1987 -- a real, genre-matched comparable (everyday Parisian life, not a dancer subject). EDITORIAL JUDGMENT: L'Absinthe is widely considered Degas' most important non-dancer genre painting, reasonably positioned at or somewhat above this comparable. Important limitation: this sale is from 1987 (38+ years old) with NO inflation adjustment applied -- actual current value is very likely higher than this range suggests; flagged explicitly rather than silently adjusted, since an inflation adjustment would itself be an unstated editorial judgment.",
+      "comparableSales": [
+        "Les Blanchisseuses (The Laundry Maids), Edgar Degas — sold for over $13.7M (~€12.6M), Christie's London, 1987 — a genre scene of ordinary working Parisians, the closest real match found to L'Absinthe's subject matter (Degas' real record-holders are dancer-themed sculptures/pastels, a different, more sought-after genre, deliberately not used as the primary comparable here)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Degas paints loneliness inside a crowded café — a modern, unglamorous mood barely shown in painting before this.",
@@ -462,6 +827,36 @@
       "en": "One of the defining images of Parisian café life, controversial at the time for its unflattering honesty.",
       "fr": "L'une des images emblématiques de la vie des cafés parisiens, jugée choquante à l'époque pour son honnêteté sans complaisance.",
       "zh-Hans": "这是巴黎咖啡馆生活最具代表性的画面之一，因其毫不粉饰的诚实笔触，在当时引发争议。"
+    },
+    "whySimple": {
+      "en": "Degas paints loneliness inside a busy café — a modern, unglamorous feeling that painters had almost never shown before.",
+      "fr": "Degas peint la solitude au cœur d'un café animé — une atmosphère moderne et sans complaisance, que les peintres n'avaient presque jamais montrée avant lui.",
+      "zh-Hans": "德加描绘了热闹咖啡馆中的孤独感——这是一种此前画家几乎从未表现过的、不加美化的现代情绪。"
+    },
+    "whereSimple": {
+      "en": "Look at the empty space on the table between the two people — that gap, more than their faces, is the real subject of the painting.",
+      "fr": "Regardez l'espace vide sur la table entre les deux personnages — ce vide, plus que leurs visages, est le vrai sujet du tableau.",
+      "zh-Hans": "看两人之间桌面上那片空白——那片空白，而非他们的面容，才是这幅画真正的主题。"
+    },
+    "raritySimple": {
+      "en": "This is one of the most famous pictures of Parisian café life. At the time, people found its honesty shocking.",
+      "fr": "C'est l'une des images les plus célèbres de la vie des cafés parisiens. À l'époque, son honnêteté choquait.",
+      "zh-Hans": "这是描绘巴黎咖啡馆生活最著名的画作之一。在当时，它的真实感令人震惊。"
+    },
+    "whyKids": {
+      "en": "Degas paints two people sitting at a café table, but instead of a cheerful scene, he shows a quiet, thoughtful moment — a mood, not just a place.",
+      "fr": "Degas peint deux personnes assises à une table de café, mais au lieu d'une scène joyeuse, il montre un moment calme et pensif — une atmosphère, plus qu'un simple lieu.",
+      "zh-Hans": "德加画了两个人坐在咖啡馆的桌旁，但他没有画欢快的场景，而是描绘了一个安静、若有所思的时刻——是一种氛围，而不只是一个地方。"
+    },
+    "whereKids": {
+      "en": "Look at the empty space on the table between the two people — Degas leaves it empty on purpose, to show the distance between them.",
+      "fr": "Regardez l'espace vide sur la table entre les deux personnages — Degas l'a laissé vide exprès, pour montrer la distance entre eux.",
+      "zh-Hans": "看两人之间桌面上那片空白——德加是故意把它留空的，用来表现他们之间的距离感。"
+    },
+    "rarityKids": {
+      "en": "This is one of the most famous paintings ever made of everyday Parisian café life.",
+      "fr": "C'est l'un des tableaux les plus célèbres jamais peints sur la vie quotidienne des cafés parisiens.",
+      "zh-Hans": "这是描绘巴黎日常咖啡馆生活最著名的画作之一。"
     }
   },
   {
@@ -487,8 +882,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 3,
+      "high": 8,
+      "logic": "FACT: Ingres' auction record is $2,652,339 (~EUR2.44M) for Portrait de la comtesse de La Rue, Christie's Paris, 2009 -- a portrait, not the idealized mythological nude genre of The Source. EDITORIAL JUDGMENT: The Source is widely regarded as Ingres' single most famous and most-copied work in Western art history -- the range applies a meaningful premium over the portrait-genre record to reflect that unique canonical status, while acknowledging this is a genre-mismatched extrapolation, not a directly comparable sale.",
+      "comparableSales": [
+        "Portrait de la comtesse de La Rue, Jean-Auguste-Dominique Ingres — sold for $2,652,339 (~€2.44M), Christie's Paris, 2009 — Ingres' auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Ingres spent over 25 years perfecting this single idealized figure, treating flawless line and proportion as more important than any story.",
@@ -504,6 +906,36 @@
       "en": "Begun in the 1820s and only finished decades later, it became one of the most copied nudes in Western art.",
       "fr": "Commencé dans les années 1820 et achevé seulement des décennies plus tard, il devint l'un des nus les plus copiés de l'art occidental.",
       "zh-Hans": "此画始于19世纪20年代，数十年后才最终完成，后来成为西方艺术中被临摹最多的裸体画之一。"
+    },
+    "whySimple": {
+      "en": "Ingres spent more than 25 years perfecting this one idealized figure. For him, a perfect line and perfect proportions mattered more than telling a story.",
+      "fr": "Ingres a passé plus de 25 ans à parfaire cette unique figure idéalisée. Pour lui, une ligne parfaite et des proportions parfaites comptaient plus que le récit.",
+      "zh-Hans": "安格尔花费二十五年以上的时间打磨这一个理想化的人物形象。对他而言，完美的线条与比例比讲述故事更重要。"
+    },
+    "whereSimple": {
+      "en": "Trace the one smooth curve running from her raised arm down to her hip — that single line is the whole point of the painting.",
+      "fr": "Suivez la seule courbe continue qui va de son bras levé jusqu'à sa hanche — cette ligne unique est tout l'enjeu du tableau.",
+      "zh-Hans": "顺着从她扬起的手臂一直延伸到臀部的那一条流畅曲线看去——这条线正是全画的核心所在。"
+    },
+    "raritySimple": {
+      "en": "Ingres started this painting in the 1820s and only finished it decades later. It became one of the most copied figures in Western art.",
+      "fr": "Ingres a commencé ce tableau dans les années 1820 et ne l'a terminé que des décennies plus tard. Il est devenu l'une des figures les plus copiées de l'art occidental.",
+      "zh-Hans": "安格尔在19世纪20年代开始创作此画，数十年后才完成。它后来成为西方艺术中被临摹最多的人体形象之一。"
+    },
+    "whyKids": {
+      "en": "Ingres worked on this one painting for more than 25 years, trying to make a single perfect, flowing line from her arm all the way down her body.",
+      "fr": "Ingres a travaillé sur ce seul tableau pendant plus de 25 ans, en essayant de créer une unique ligne parfaite et fluide, de son bras jusqu'au bas de son corps.",
+      "zh-Hans": "安格尔用了二十五年以上的时间创作这一幅画，努力画出一条从她的手臂一直延伸到身体下方的完美流畅线条。"
+    },
+    "whereKids": {
+      "en": "Trace the smooth curve with your eyes, starting at her raised arm and following it all the way down — that one long line is what Ingres cared about most.",
+      "fr": "Suivez des yeux la courbe douce, en partant de son bras levé et en la suivant jusqu'en bas — cette longue ligne est ce qui comptait le plus pour Ingres.",
+      "zh-Hans": "用眼睛顺着那条柔和的曲线看去，从她扬起的手臂开始，一直往下——这条长长的线条，正是安格尔最在意的地方。"
+    },
+    "rarityKids": {
+      "en": "Ingres started this painting when he was young and only finished it decades later — it became one of the most copied figures in the history of Western art.",
+      "fr": "Ingres a commencé ce tableau quand il était jeune et ne l'a terminé que des décennies plus tard — il est devenu l'une des figures les plus copiées de toute l'histoire de l'art occidental.",
+      "zh-Hans": "安格尔年轻时开始创作这幅画，数十年后才完成——它后来成为整个西方艺术史上被临摹最多的人体形象之一。"
     }
   },
   {
@@ -529,8 +961,16 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 25,
+      "high": 45,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); his secondary record is $33.4M/EUR30.7M (Self-Portrait with a Palette, Sotheby's, 2010). EDITORIAL JUDGMENT: The Balcony is a well-known but not Manet's most iconic work (unlike Olympia/Luncheon on the Grass) -- positioned below both Manet ranges used elsewhere in this batch, closer to his secondary record, reflecting its slightly lower art-historical centrality relative to his two defining scandals.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record.",
+        "Self-Portrait with a Palette, Edouard Manet — $33.4M (~€30.7M), Sotheby's London, 2010 — Manet's secondary record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Manet paints three people sharing one balcony without sharing a single glance, capturing a very modern kind of social distance.",
@@ -546,6 +986,36 @@
       "en": "The bold green shutters and railing were considered shockingly modern, and the sitters became minor celebrities because of it.",
       "fr": "Les volets et la rambarde d'un vert audacieux furent jugés choquants et résolument modernes, ce qui rendit les modèles brièvement célèbres.",
       "zh-Hans": "画中大胆的绿色百叶窗与栏杆在当时被认为极具冲击力、极其现代，也让画中人物一度小有名气。"
+    },
+    "whySimple": {
+      "en": "Manet paints three people standing together on one balcony, but none of them look at each other. This shows a modern kind of social distance.",
+      "fr": "Manet peint trois personnes réunies sur un même balcon, mais aucune ne regarde les autres. Cela montre une forme moderne de distance sociale.",
+      "zh-Hans": "马奈描绘了三个人共处同一个阳台，却没有一个人看向彼此。这展现了一种现代的社交疏离感。"
+    },
+    "whereSimple": {
+      "en": "Notice that none of the three people look at each other or at you — Manet did this on purpose.",
+      "fr": "Remarquez qu'aucun des trois personnages ne regarde les autres, ni vous — Manet l'a fait exprès.",
+      "zh-Hans": "留意这三个人都没有看向彼此，也没有看向观者——这是马奈刻意安排的。"
+    },
+    "raritySimple": {
+      "en": "The bright green shutters and railing were considered shockingly modern at the time, and the people in the painting became a little bit famous because of it.",
+      "fr": "Les volets et la rambarde d'un vert vif étaient jugés étonnamment modernes à l'époque, et les modèles sont devenus un peu célèbres grâce à ce tableau.",
+      "zh-Hans": "画中鲜绿色的百叶窗与栏杆在当时被认为极其大胆现代，画中人物也因此小有名气。"
+    },
+    "whyKids": {
+      "en": "Manet paints three friends standing close together on a balcony, but each one is looking in a different direction, lost in their own thoughts.",
+      "fr": "Manet peint trois amis debout côte à côte sur un balcon, mais chacun regarde dans une direction différente, perdu dans ses pensées.",
+      "zh-Hans": "马奈画了三位朋友并排站在阳台上，但每个人都望向不同的方向，仿佛各自沉浸在自己的思绪里。"
+    },
+    "whereKids": {
+      "en": "Look at the bright green shutters and railing — that bold colour was considered very bold and modern when Manet painted it.",
+      "fr": "Regardez les volets et la rambarde vert vif — cette couleur audacieuse était considérée comme très moderne à l'époque de Manet.",
+      "zh-Hans": "看那鲜艳的绿色百叶窗和栏杆——在马奈那个年代，这种大胆的颜色被认为非常现代。"
+    },
+    "rarityKids": {
+      "en": "The people who posed for this painting became a little famous just because they were in it.",
+      "fr": "Les personnes qui ont posé pour ce tableau sont devenues un peu célèbres, simplement parce qu'elles y figuraient.",
+      "zh-Hans": "为这幅画摆姿势的人们，也因为出现在画中而小有名气。"
     }
   },
   {
@@ -571,8 +1041,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 2.5,
+      "high": 7,
+      "logic": "FACT: Millet's auction record is $1,985,000 (~EUR1.83M) for L'Horizon (La plaine), a landscape, Christie's New York, 2014. EDITORIAL JUDGMENT: The Gleaners is unambiguously Millet's single most famous and historically important work (one of the most reproduced images of 19th-century rural life) -- the range applies a meaningful premium over the landscape-genre record to reflect its unique canonical stature, while acknowledging the underlying genre mismatch (landscape vs. figure/social-realist scene).",
+      "comparableSales": [
+        "L'Horizon (La plaine), Jean-François Millet — sold for $1,985,000 (~€1.83M), Christie's New York, 2014 — Millet's auction record (a landscape, not a figure/genre scene)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Millet gives three poor women gathering leftover grain the same monumental dignity usually reserved for saints, making rural poverty impossible to ignore.",
@@ -588,6 +1065,36 @@
       "en": "Initially condemned by critics as a glorification of the poor, it is now one of the most reproduced images of 19th-century rural life.",
       "fr": "D'abord condamné par la critique comme une glorification des pauvres, c'est aujourd'hui l'une des images les plus reproduites de la vie rurale du XIXe siècle.",
       "zh-Hans": "这幅画最初被评论界批评为美化贫穷，如今却成为19世纪乡村生活最广为流传的图像之一。"
+    },
+    "whySimple": {
+      "en": "Millet paints three poor women picking up leftover grain, and gives them the same dignity usually kept for saints. He makes rural poverty impossible to ignore.",
+      "fr": "Millet peint trois pauvres femmes ramassant les épis de blé restants, et leur donne la même dignité habituellement réservée aux saints. Il rend impossible d'ignorer la pauvreté rurale.",
+      "zh-Hans": "米勒描绘了三位捡拾剩余麦穗的贫穷妇女，赋予她们通常只属于圣徒的庄严感。他让人无法忽视农村的贫困。"
+    },
+    "whereSimple": {
+      "en": "Compare the huge, sunny harvest in the background with the three bent-over women in front — that difference is the whole message of the painting.",
+      "fr": "Comparez l'immense moisson ensoleillée à l'arrière-plan avec les trois femmes courbées au premier plan — cette différence est tout le message du tableau.",
+      "zh-Hans": "比较背景中广阔阳光下的丰收景象，与前景中三个弯腰的身影——这种反差正是整幅画想要表达的核心。"
+    },
+    "raritySimple": {
+      "en": "Critics first attacked this painting for making poor people look too important. Today it's one of the most reproduced images of 19th-century country life.",
+      "fr": "Les critiques ont d'abord attaqué ce tableau pour avoir rendu les pauvres trop importants. Aujourd'hui, c'est l'une des images les plus reproduites de la vie rurale du XIXe siècle.",
+      "zh-Hans": "这幅画最初因为把穷人画得过于“重要”而受到评论家的批评。如今，它已是19世纪乡村生活最广为流传的图像之一。"
+    },
+    "whyKids": {
+      "en": "Millet paints three women picking up the last bits of grain left in the field after the harvest, and paints them as carefully and seriously as if they were important historical figures.",
+      "fr": "Millet peint trois femmes qui ramassent les derniers épis de blé restés dans le champ après la moisson, et les peint avec autant de soin et de sérieux que s'il s'agissait de personnages historiques importants.",
+      "zh-Hans": "米勒画了三位妇女，正在收割后的田地里捡拾剩下的麦穗，他画她们的样子既细致又庄重，仿佛她们是重要的历史人物。"
+    },
+    "whereKids": {
+      "en": "Compare the big, golden harvest far in the background with the three women bending down in front — that difference tells the whole story.",
+      "fr": "Comparez la grande moisson dorée à l'arrière-plan avec les trois femmes courbées au premier plan — cette différence raconte toute l'histoire.",
+      "zh-Hans": "比较背景中那大片金色的丰收景象，与前景中三位弯腰的妇女——这种反差讲述了整个故事。"
+    },
+    "rarityKids": {
+      "en": "This painting is one of the most famous pictures ever made of country life in the 1800s.",
+      "fr": "Ce tableau est l'une des images les plus célèbres jamais peintes de la vie à la campagne au XIXe siècle.",
+      "zh-Hans": "这幅画是19世纪乡村生活题材中最著名的画作之一。"
     }
   },
   {
@@ -613,8 +1120,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 35,
+      "logic": "FACT: the same $78.1M/EUR71.9M Bal du moulin de la Galette comparable used elsewhere in this batch was painted in the same year, same garden, and with the same models as La Balancoire. EDITORIAL JUDGMENT: La Balancoire is a much smaller, more intimate 2-3-figure composition, not the large crowd scene that comparable represents -- positioned well below Bal's own range to reflect that real difference in scale and ambition, not treated as an equivalent work just because it shares context.",
+      "comparableSales": [
+        "Bal du moulin de la Galette (second version) — $78.1M (~€71.9M), Sotheby's, 1990 — same year, same garden, same models as La Balançoire, but a much larger, more ambitious 30+-figure composition."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Renoir dissolves a simple garden scene into patches of dappled light, treating sunlight through leaves as more interesting than the story itself.",
@@ -630,6 +1144,36 @@
       "en": "Painted the same year and in the same garden as Bal du moulin de la Galette, using the same models.",
       "fr": "Peint la même année et dans le même jardin que le Bal du moulin de la Galette, avec les mêmes modèles.",
       "zh-Hans": "此画与《煎饼磨坊的舞会》创作于同一年、同一座花园，甚至使用了相同的模特。"
+    },
+    "whySimple": {
+      "en": "Renoir turns a simple garden scene into patches of dappled light. He finds the sunlight through the leaves more interesting than the story itself.",
+      "fr": "Renoir dissout une simple scène de jardin en taches de lumière tachetée. Il trouve le soleil filtrant à travers les feuilles plus intéressant que l'histoire elle-même.",
+      "zh-Hans": "雷诺阿把一个简单的花园场景溶解成斑驳的光影碎片。他觉得透过树叶洒落的阳光，比故事本身更有趣。"
+    },
+    "whereSimple": {
+      "en": "Look at the blue shadows on the woman's white dress — Renoir paints shadow as a colour, not just as darkness.",
+      "fr": "Regardez les ombres bleues sur la robe blanche de la femme — Renoir peint l'ombre comme une couleur, pas seulement comme une absence de lumière.",
+      "zh-Hans": "看那位女子白色裙子上的阴影——是蓝色的！雷诺阿把阴影当作一种色彩来描绘，而不仅仅是缺乏光线。"
+    },
+    "raritySimple": {
+      "en": "Renoir painted this in the same garden, the same year, and with the same models as his more famous Bal du moulin de la Galette.",
+      "fr": "Renoir a peint cette toile dans le même jardin, la même année, et avec les mêmes modèles que son tableau plus célèbre, le Bal du moulin de la Galette.",
+      "zh-Hans": "雷诺阿在同一座花园、同一年，用与他那幅更著名的《煎饼磨坊的舞会》相同的模特，创作了这幅画。"
+    },
+    "whyKids": {
+      "en": "Renoir paints a woman on a garden swing, with sunlight breaking through the leaves above and scattering little spots of light all around her.",
+      "fr": "Renoir peint une femme sur une balançoire de jardin, avec le soleil qui filtre à travers les feuilles au-dessus d'elle et éparpille de petites taches de lumière tout autour d'elle.",
+      "zh-Hans": "雷诺阿画了一位坐在花园秋千上的女子，阳光穿过头顶的树叶，在她周围洒下点点光斑。"
+    },
+    "whereKids": {
+      "en": "Look closely at the shadows on her white dress — they're not grey, they're blue! Renoir liked to paint shadows in colour.",
+      "fr": "Regardez de près les ombres sur sa robe blanche — elles ne sont pas grises, elles sont bleues ! Renoir aimait peindre les ombres en couleur.",
+      "zh-Hans": "仔细看她白裙子上的阴影——它们不是灰色的，而是蓝色的！雷诺阿喜欢用彩色来画阴影。"
+    },
+    "rarityKids": {
+      "en": "Renoir painted this in the very same garden, on the very same year, using the very same friends as models for his other famous dance painting.",
+      "fr": "Renoir a peint ce tableau dans le même jardin, la même année, avec les mêmes amis comme modèles que pour son autre célèbre tableau de danse.",
+      "zh-Hans": "雷诺阿是在同一座花园、同一年，用同一群朋友当模特，画下了这幅画和他另一幅著名的舞会画作。"
     }
   },
   {
@@ -655,8 +1199,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 3.5,
+      "high": 7,
+      "logic": "FACT: Bouguereau's auction record is $3,615,000 (~EUR3.3M) for Chansons de printemps, Christie's New York, 2019. EDITORIAL JUDGMENT: Dante and Virgil in Hell was a celebrated early masterpiece that won Bouguereau major recognition (per its own rarity text) -- positioned at or moderately above the general record, similar reasoning to the Birth of Venus entry.",
+      "comparableSales": [
+        "Chansons de printemps, William-Adolphe Bouguereau — sold for $3,615,000 (~€3.3M), Christie's New York, 2019 — Bouguereau's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Bouguereau paints damnation with anatomical precision and theatrical violence, showing how academic painting could still shock through technique alone.",
@@ -683,7 +1234,22 @@
       "fr": "Repérez les deux silhouettes calmes et enveloppées d'un manteau qui observent depuis l'ombre, à l'arrière-plan — ce sont Dante et Virgile, les conteurs qui nous guident à travers cette scène.",
       "zh-Hans": "在背景阴影中找到那两个披着斗篷、神情平静的旁观者——那就是但丁和维吉尔，是他们的讲述带领我们看到这一幕。"
     },
-    "contentFlag": "Violent mythological combat scene. Product decision (resolved): stays in Kids mode; Kids why/where rewritten to focus on the Dante/Virgil narrative frame instead of the fight — see whyKids/whereKids."
+    "contentFlag": "Violent mythological combat scene. Product decision (resolved): stays in Kids mode; Kids why/where rewritten to focus on the Dante/Virgil narrative frame instead of the fight — see whyKids/whereKids.",
+    "whySimple": {
+      "en": "Bouguereau paints a dramatic scene from Dante's story with very precise, realistic muscles and bodies. He shows that traditional, academic painting could still shock people, just through skillful technique.",
+      "fr": "Bouguereau peint une scène dramatique tirée de l'histoire de Dante, avec des muscles et des corps très précis et réalistes. Il montre que la peinture académique traditionnelle pouvait encore choquer, uniquement par la maîtrise technique.",
+      "zh-Hans": "布格罗描绘了但丁故事中的一个戏剧性场景，肌肉与身体的描绘极其精准写实。他证明了传统学院派绘画仅凭精湛的技巧就能带来强烈的视觉冲击。"
+    },
+    "whereSimple": {
+      "en": "Follow the twisted, straining muscles of the two fighting figures — Bouguereau studied every muscle carefully, he didn't imagine them.",
+      "fr": "Suivez les muscles tordus et tendus des deux figures qui se battent — Bouguereau a étudié chaque muscle avec soin, il ne les a pas imaginés.",
+      "zh-Hans": "顺着两个搏斗人物扭曲、紧绷的肌肉线条看去——布格罗仔细研究了每一处肌肉，而非凭空想象。"
+    },
+    "raritySimple": {
+      "en": "This dramatic early painting won Bouguereau major recognition, before he became known for gentler, calmer scenes.",
+      "fr": "Ce tableau de jeunesse spectaculaire valut à Bouguereau une reconnaissance majeure, avant qu'il ne devienne célèbre pour des scènes plus douces et plus calmes.",
+      "zh-Hans": "这幅充满戏剧性的早期画作为布格罗赢得了重要声誉，此后他才逐渐以更温和、更平静的场景闻名。"
+    }
   },
   {
     "id": "orsay_rf_755",
@@ -709,7 +1275,14 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data for a defensible range. The only confirmed real auction transaction found for a Renoir domestic/family genre scene is $2M (~EUR1.8M) for L'enfant et ses jouets, a minor, previously-unpublished rediscovered work sold in 2025 -- not representative of a museum-quality, state-commissioned mature Renoir like this one. A valuation website cites a $100-140M figure for a sibling version of this exact composition, but that is an explicitly unconfirmed theoretical estimate, not a real sale, and is excluded per the rule against treating non-transactions as comparable sales. This work needs a specialist to identify a genuinely comparable real transaction before any range can be responsibly drafted.",
+      "comparableSales": [
+        "L'enfant et ses jouets — Gabrielle et le fils de l'artiste, Jean, Pierre-Auguste Renoir — sold for ~$2M (~€1.8M), Drouot, Paris, November 2025 — a minor, previously-unpublished rediscovered work, NOT considered representative of a museum-quality mature Renoir."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
       "en": "Renoir softens Impressionist technique into warmer, rounder forms, painting a quiet domestic moment instead of an outdoor spectacle.",
@@ -725,6 +1298,36 @@
       "en": "One of at least five versions Renoir painted of this scene for a state commission — this is the one acquired for the national collection.",
       "fr": "L'une des cinq versions au moins que Renoir peignit de cette scène pour une commande de l'État — celle-ci fut acquise pour la collection nationale.",
       "zh-Hans": "这是雷诺阿为一项官方委托创作的至少五个版本之一，这一版本最终被收入国家收藏。"
+    },
+    "whySimple": {
+      "en": "Renoir softens his Impressionist style into warmer, rounder shapes here, painting a quiet moment at home instead of a busy outdoor scene.",
+      "fr": "Renoir adoucit ici sa technique impressionniste vers des formes plus chaudes et arrondies, peignant un moment calme à la maison plutôt qu'une scène animée en plein air.",
+      "zh-Hans": "雷诺阿在这里把印象派技法软化为更温暖、更圆润的形态，描绘的是家中宁静的时刻，而非热闹的户外场景。"
+    },
+    "whereSimple": {
+      "en": "Notice how the girls' hair and the piano's wood share the same warm golden colour — Renoir ties the whole room together with colour.",
+      "fr": "Remarquez comment les cheveux des fillettes et le bois du piano partagent le même ton doré chaleureux — Renoir unifie toute la pièce par la couleur.",
+      "zh-Hans": "留意女孩们的头发与钢琴木质的颜色是同样温暖的金色——雷诺阿用色彩把整个房间统一起来。"
+    },
+    "raritySimple": {
+      "en": "Renoir painted at least five versions of this same scene for a government commission. This is the one that became part of the national collection.",
+      "fr": "Renoir a peint au moins cinq versions de cette même scène pour une commande de l'État. Celle-ci est celle qui fut acquise pour la collection nationale.",
+      "zh-Hans": "雷诺阿为一项政府委托至少创作了五个版本的这个场景——这一版本最终被收入国家收藏。"
+    },
+    "whyKids": {
+      "en": "Renoir paints two girls practising piano together in a warm, cosy room, using soft golden colours that make everything feel gentle and calm.",
+      "fr": "Renoir peint deux fillettes qui s'exercent au piano ensemble dans une pièce chaleureuse et douillette, avec des couleurs dorées et douces qui rendent toute la scène apaisante.",
+      "zh-Hans": "雷诺阿画了两个女孩一起在温馨舒适的房间里练习钢琴，用柔和的金色让整个画面显得温暖而平静。"
+    },
+    "whereKids": {
+      "en": "Look for the same warm golden colour in the girls' hair and in the wood of the piano — Renoir used one colour to tie the whole room together.",
+      "fr": "Cherchez la même couleur dorée chaleureuse dans les cheveux des fillettes et dans le bois du piano — Renoir utilise une seule couleur pour unifier toute la pièce.",
+      "zh-Hans": "找一找女孩们的头发和钢琴木质部分那同样温暖的金色——雷诺阿用一种颜色把整个房间统一了起来。"
+    },
+    "rarityKids": {
+      "en": "Renoir painted this same scene at least five different times — this is the version that was chosen to go into the national museum collection.",
+      "fr": "Renoir a peint cette même scène au moins cinq fois différentes — c'est cette version qui fut choisie pour rejoindre la collection du musée national.",
+      "zh-Hans": "雷诺阿把这同一个场景至少画了五个不同的版本——这一版本被选中收入了国家博物馆的收藏。"
     }
   },
   {
@@ -750,8 +1353,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 85,
+      "high": 120,
+      "logic": "FACT: Maternite II, from the same Tahiti period and a closely related subject (Tahitian women), sold for $105.73M (~EUR97.3M) at Christie's New York, November 2022 -- Gauguin's public auction record. EDITORIAL JUDGMENT: this is one of the strongest period- and subject-matched comparables in the whole batch -- range is centered closely around this figure with only a modest spread, minimal additional adjustment applied.",
+      "comparableSales": [
+        "Maternité II, Paul Gauguin — sold for $105.73M (~€97.3M), Christie's New York, November 2022 (Paul Allen collection) — same Tahiti period, similar subject (Tahitian women) — Gauguin's public auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Gauguin painted the Tahiti he wished still existed rather than the one already reshaped by French colonial rule, using flattened, non-European colour that deliberately rejects Western perspective.",
@@ -773,7 +1383,22 @@
       "fr": "Gauguin voyagea loin de la France jusqu'à l'île de Tahiti et peignit ses habitants avec des couleurs vives et aplaties plutôt que des ombres réalistes — même si le Tahiti qu'il peignait était déjà en train de changer, car la France gouvernait l'île à cette époque.",
       "zh-Hans": "高更从法国远渡重洋来到塔希提岛，用大胆而扁平的色彩描绘岛上的人们，而不是写实的明暗处理——不过他所描绘的塔希提，当时已经因为受法国统治而开始发生变化。"
     },
-    "contentFlag": "Gauguin's Tahiti period is discussed alongside colonial context in museum wall text. Product decision (resolved): stays unrestricted in all modes; Normal and Kids why now name the colonial context proportionately — see why/whyKids. (The darker biographical context re: his relationships with very young Tahitian girls is deliberately NOT surfaced in Kids copy — out of scope for a family product.)"
+    "contentFlag": "Gauguin's Tahiti period is discussed alongside colonial context in museum wall text. Product decision (resolved): stays unrestricted in all modes; Normal and Kids why now name the colonial context proportionately — see why/whyKids. (The darker biographical context re: his relationships with very young Tahitian girls is deliberately NOT surfaced in Kids copy — out of scope for a family product.)",
+    "whySimple": {
+      "en": "Gauguin painted the Tahiti he wished still existed, not the one already changed by French colonial rule. He used flat, bold colours that deliberately reject Western-style perspective.",
+      "fr": "Gauguin peint le Tahiti qu'il aurait voulu voir subsister, et non celui déjà transformé par la colonisation française. Il utilise des couleurs plates et vives qui rejettent délibérément la perspective occidentale.",
+      "zh-Hans": "高更描绘的是他希望仍然存在的塔希提，而不是已被法国殖民统治改变的现实塔希提。他使用大胆的平涂色彩，刻意摒弃西方式的透视法则。"
+    },
+    "whereSimple": {
+      "en": "Compare the strong outline around each figure to the softer brushwork in the Impressionist rooms nearby — Gauguin is deliberately going the opposite way.",
+      "fr": "Comparez le contour marqué de chaque silhouette à la touche plus douce des salles impressionnistes voisines — Gauguin prend délibérément le contre-pied.",
+      "zh-Hans": "比较每个人物周围强烈的轮廓线，与附近印象派展厅那种柔和的笔触——高更是在刻意反其道而行之。"
+    },
+    "raritySimple": {
+      "en": "Painted during Gauguin's first trip to Tahiti, this is part of the work that made him a founder of a whole new style of painting.",
+      "fr": "Peint lors du premier séjour de Gauguin à Tahiti, ce tableau fait partie de l'œuvre qui fit de lui l'un des fondateurs d'un tout nouveau style de peinture.",
+      "zh-Hans": "此画创作于高更第一次前往塔希提岛期间，是使他成为一种全新绘画风格奠基人的重要作品之一。"
+    }
   },
   {
     "id": "orsay_rf_2773",
@@ -799,7 +1424,15 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data for a defensible range. Monet's real auction records are all from his mature period (1890s onward) -- landscape/still-life series works like Haystacks ($110.7M, 2019) and Water Lilies ($84.6M, 2018) -- a fundamentally different market segment, 20-30 years removed in period, style and subject from this 1866 early figure painting. His actual closest sibling work from the same year, Camille (1866), has never sold at public auction; a $100-140M figure sometimes cited for it is an explicitly unconfirmed theoretical valuation from a third-party site, not a real transaction, and is excluded per the rule against inventing numbers from non-sales. This work needs a specialist in early Monet / Barbizon-adjacent figure painting specifically -- his mature-period landscape market data does not transfer.",
+      "comparableSales": [
+        "Monet's real auction records (Meules/Haystacks $110.7M 2019, Nympheas en fleur $84.6M 2018) are all mature-period (1890s+) landscape series works — a different market segment from this 1866 early figure painting.",
+        "Camille (1866), Claude Monet — Monet's closest sibling work from the same year — has NEVER sold at public auction (held at Kunsthalle Bremen); a cited $100-140M figure for it is an explicitly unconfirmed theoretical valuation, not a transaction."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
       "en": "Monet paints figures outdoors under real, changing daylight instead of studio lighting, an early step toward what would become Impressionism.",
@@ -815,6 +1448,36 @@
       "en": "Painted almost entirely outdoors on a canvas over two metres tall, an unusually ambitious scale for a plein-air study at the time.",
       "fr": "Peint presque entièrement en extérieur sur une toile de plus de deux mètres de haut, une ambition inhabituelle pour une étude en plein air à l'époque.",
       "zh-Hans": "这幅画几乎完全在户外完成，画布高度超过两米，在当时的外光写生作品中野心异常宏大。"
+    },
+    "whySimple": {
+      "en": "Monet paints people outdoors in real, changing daylight instead of studio light. This was an early step toward what would become Impressionism.",
+      "fr": "Monet peint des personnes en extérieur sous une vraie lumière changeante, plutôt que sous un éclairage d'atelier. C'est un des premiers pas vers ce qui deviendra l'impressionnisme.",
+      "zh-Hans": "莫奈在真实变化的户外光线下描绘人物，而非依赖画室中的人工光线。这是通往印象派道路上的早期一步。"
+    },
+    "whereSimple": {
+      "en": "Look at the dappled shadow moving across the women's white dresses — Monet even dug a trench in his garden just to paint this at full outdoor size.",
+      "fr": "Observez l'ombre tachetée qui parcourt les robes blanches des femmes — Monet a même creusé une tranchée dans son jardin pour peindre cette toile à taille réelle en plein air.",
+      "zh-Hans": "看那斑驳的阴影在女子们白色裙装上移动的方式——莫奈甚至在花园里挖了一条沟渠，只为能以真实尺寸在户外完成这幅画。"
+    },
+    "raritySimple": {
+      "en": "Monet painted almost this whole picture outdoors, on a canvas over two metres tall — a very ambitious size for an outdoor painting at the time.",
+      "fr": "Monet a peint presque tout ce tableau en extérieur, sur une toile de plus de deux mètres de haut — une taille très ambitieuse pour une peinture en plein air à l'époque.",
+      "zh-Hans": "莫奈几乎完全在户外完成了这幅画，画布高度超过两米——在当时这是外光写生作品中极具野心的尺寸。"
+    },
+    "whyKids": {
+      "en": "Monet paints women in real sunlight outside, instead of painting them indoors under lamp light — this was a brand new way to paint at the time.",
+      "fr": "Monet peint des femmes sous la vraie lumière du soleil dehors, au lieu de les peindre à l'intérieur sous une lampe — c'était une toute nouvelle façon de peindre à l'époque.",
+      "zh-Hans": "莫奈在真实的户外阳光下描绘女子们的样子，而不是在室内的灯光下描绘她们——这在当时是一种全新的绘画方式。"
+    },
+    "whereKids": {
+      "en": "Look at the dappled light and shadow moving across the white dresses — Monet even dug a hole in the ground so his giant canvas could be lowered to paint the top of it!",
+      "fr": "Regardez la lumière tachetée et l'ombre qui parcourent les robes blanches — Monet a même creusé un trou dans le sol pour pouvoir abaisser son immense toile et peindre le haut !",
+      "zh-Hans": "看那斑驳的光影在白色裙装上移动的样子——莫奈甚至在地上挖了一个坑，好把巨大的画布放低一些，才能画到画布的顶部！"
+    },
+    "rarityKids": {
+      "en": "This painting is taller than two metres, and Monet painted almost all of it outdoors — a huge, ambitious task for the time.",
+      "fr": "Ce tableau mesure plus de deux mètres de haut, et Monet l'a peint presque entièrement en extérieur — une tâche immense et ambitieuse pour l'époque.",
+      "zh-Hans": "这幅画的高度超过两米，莫奈几乎全部在户外完成——在当时是一项巨大又充满野心的挑战。"
     }
   },
   {
@@ -840,8 +1503,15 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 1,
+      "high": 3,
+      "logic": "FACT: a version of this exact same composition sold for $834,500 (~EUR768K) at Christie's New York, October 2002, to the Dahesh Museum -- Cabanel's auction record and a direct compositional comparable. EDITORIAL JUDGMENT: the Musee d'Orsay's version is the primary, full-scale original purchased directly by Emperor Napoleon III, understood to be the more significant of the (at least two) known versions -- range positioned modestly above the EUR768K comparable to reflect that, not a large speculative multiple.",
+      "comparableSales": [
+        "Birth of Venus (a version of this same composition, likely smaller than the Musée d'Orsay's primary version) — sold for $834,500 (~€768K), Christie's New York, October 2002, to the Dahesh Museum — Cabanel's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
       "en": "Cabanel paints an idealized, softly lit Venus in the polished academic style that Napoleon III himself purchased, the same year Manet's raw, real-life nude in Olympia scandalized Paris.",
@@ -868,7 +1538,22 @@
       "fr": "Regardez les petits angelots qui volent au-dessus des vagues — Cabanel les a ajoutés tout droit du mythe antique pour montrer qu'il s'agit d'une déesse qui naît, et non d'une personne ordinaire.",
       "zh-Hans": "看那些在海浪上方飞舞的小天使——卡巴内尔按照古老神话的描述添加了它们，用来表明画中诞生的是一位女神，而非普通人。"
     },
-    "contentFlag": "Idealized nude. Product decision (resolved): stays in Kids mode; Kids why/where rewritten to focus on the myth and technique instead of skin/body — see whyKids/whereKids."
+    "contentFlag": "Idealized nude. Product decision (resolved): stays in Kids mode; Kids why/where rewritten to focus on the myth and technique instead of skin/body — see whyKids/whereKids.",
+    "whySimple": {
+      "en": "Cabanel paints an idealized Venus in soft light, in the smooth, polished style that Emperor Napoleon III himself bought. The very same year, Manet's raw, real-life nude in Olympia scandalized Paris.",
+      "fr": "Cabanel peint une Vénus idéalisée à la lumière douce, dans le style lisse et soigné que Napoléon III lui-même acheta. La même année, l'Olympia crue et réelle de Manet scandalisait Paris.",
+      "zh-Hans": "卡巴内尔以柔和的光线描绘理想化的维纳斯，采用了拿破仑三世皇帝本人买下的那种精致学院派风格。就在同一年，马奈笔下真实、直露的裸体《奥林匹亚》却令巴黎哗然。"
+    },
+    "whereSimple": {
+      "en": "Compare the smooth, glowing skin here with the flatter, harsher light in Manet's Olympia nearby — the two paintings represent two opposite sides of the same argument about art.",
+      "fr": "Comparez la peau lisse et lumineuse ici avec la lumière plus plate et crue de l'Olympia de Manet, à proximité — les deux tableaux représentent deux camps opposés d'un même débat sur l'art.",
+      "zh-Hans": "把这里柔滑发光的肌肤，与附近马奈《奥林匹亚》中更平直、更强烈的光线做比较——这两幅画代表了一场艺术论战的两个对立面。"
+    },
+    "raritySimple": {
+      "en": "Emperor Napoleon III bought this painting himself. It represents the official taste that Impressionism was reacting against.",
+      "fr": "L'empereur Napoléon III a acheté ce tableau lui-même. Il représente le goût officiel contre lequel réagissait l'impressionnisme.",
+      "zh-Hans": "拿破仑三世皇帝亲自买下了这幅画。它代表了印象派所要反抗的官方审美趣味。"
+    }
   },
   {
     "id": "orsay_rf_1949_17",

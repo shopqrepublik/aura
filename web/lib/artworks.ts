@@ -24,24 +24,37 @@ function pick(text: LocalizedText, locale: Locale): string {
 
 /**
  * Content policy (§ Kids mode), ported 1:1 from the old app.js renderCard()
- * logic:
+ * logic, then extended to Simple mode on the same principle:
  *  - kidsModeExcluded works: no Kids content at all — caller must check
  *    `isExcludedInKids` and show the neutral message instead of calling this.
- *  - whyKids/whereKids: used only in kids mode, when present; every other
- *    work and mode falls back to the plain why/where.
- *  - rarity is never mode-specific.
+ *  - whyKids/whereKids/rarityKids: used only in kids mode, when present;
+ *    every other work/field/mode falls back to the plain Normal text.
+ *    Absence is normal, not a bug — most works only got a Kids rewrite for
+ *    the specific field that actually needed one (e.g. Gauguin has whyKids
+ *    but no whereKids, because only "why" touched colonial context).
+ *  - whySimple/whereSimple/raritySimple: same fallback rule for Simple mode.
+ *  - Kids always wins over Simple if both exist for a field (shouldn't
+ *    normally co-occur as a choice — mode is a single select, not a stack —
+ *    but this keeps precedence explicit rather than accidental).
  */
 export function isExcludedInKids(artwork: Artwork, mode: Mode): boolean {
   return mode === "kids" && artwork.kidsModeExcluded === true;
 }
 
+function resolveModeText(normal: LocalizedText, kids: LocalizedText | undefined, simple: LocalizedText | undefined, mode: Mode): LocalizedText {
+  if (mode === "kids" && kids) return kids;
+  if (mode === "simple" && simple) return simple;
+  return normal;
+}
+
 export function resolveCardText(artwork: Artwork, mode: Mode, locale: Locale) {
-  const whySource = mode === "kids" && artwork.whyKids ? artwork.whyKids : artwork.why;
-  const whereSource = mode === "kids" && artwork.whereKids ? artwork.whereKids : artwork.where;
+  const whySource = resolveModeText(artwork.why, artwork.whyKids, artwork.whySimple, mode);
+  const whereSource = resolveModeText(artwork.where, artwork.whereKids, artwork.whereSimple, mode);
+  const raritySource = resolveModeText(artwork.rarity, artwork.rarityKids, artwork.raritySimple, mode);
   return {
     why: pick(whySource, locale),
     where: pick(whereSource, locale),
-    rarity: pick(artwork.rarity, locale),
+    rarity: pick(raritySource, locale),
   };
 }
 

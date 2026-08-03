@@ -16,6 +16,15 @@ export interface TitleNeedsReview {
 export interface Estimate {
   low: number | null;
   high: number | null;
+  // Editorial provenance for AI-drafted estimate ranges — internal/review
+  // metadata, not shown verbatim in the app UI (the §11 disclaimer covers
+  // the user-facing side of "how was this number produced"). English only:
+  // this is for a human editor's review pass, not translated content.
+  logic?: string;
+  comparableSales?: string[];
+  editorialConfidence?: "low" | "medium" | "high";
+  estimateConfidence?: "low" | "medium" | "high";
+  reviewedBy?: string | null;
 }
 
 export interface Artwork {
@@ -40,8 +49,14 @@ export interface Artwork {
   // needed a decision. Absence means Kids mode == Normal mode for that work.
   whyKids?: LocalizedText;
   whereKids?: LocalizedText;
+  rarityKids?: LocalizedText;
   kidsModeExcluded?: boolean;
   contentFlag?: string;
+  // Simple mode — shorter, plainer language, same meaning as Normal.
+  // Absence means Simple mode falls back to Normal (same rule as Kids).
+  whySimple?: LocalizedText;
+  whereSimple?: LocalizedText;
+  raritySimple?: LocalizedText;
 }
 
 export interface Mission {
