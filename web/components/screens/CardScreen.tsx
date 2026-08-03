@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowLeft, Heart, Play } from "lucide-react";
 import SegmentControl from "@/components/ui/SegmentControl";
 import PriceBadge from "@/components/ui/PriceBadge";
+import ScaleComparisonBadge from "@/components/ui/ScaleComparisonBadge";
 import EyeBlock from "@/components/ui/EyeBlock";
 import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
 import { tt } from "@/lib/i18n";
@@ -83,6 +84,7 @@ export default function CardScreen({
 
         <div className="mt-4 flex items-center gap-2">
           <PriceBadge low={artwork.estimate.low} high={artwork.estimate.high} locale={state.locale} />
+          <ScaleComparisonBadge low={artwork.estimate.low} high={artwork.estimate.high} locale={state.locale} />
         </div>
 
         {excluded ? (
