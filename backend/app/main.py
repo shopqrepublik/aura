@@ -310,26 +310,137 @@ def fuzzy_match_catalog(artist: Optional[str], title: Optional[str]):
 REFERENCE_CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".reference_cache")
 REFERENCE_IMAGE_UA = "AURA-MVP-backend/1.0 (contact: repo owner)"
 
+# One real catalog work (Renoir, Bal du moulin de la Galette) turned out to
+# have a 717MB / 1.24-BILLION-pixel original on Wikimedia — `raw = resp.read()`
+# buffered that whole file into memory before PIL ever saw it, which alone
+# exceeds a small container's total RAM (confirmed: OOM-killed a 512MB *and*
+# a 1024MB Fly machine, since the failure is proportional to file size, not
+# fixed). Two independent guards against this, not just one:
+REFERENCE_MAX_ORIGINAL_BYTES = 50 * 1024 * 1024  # refuse to stream/decode an original bigger than this
+REFERENCE_SAFE_MEGAPIXELS = 20_000_000  # log a warning if even a "successfully fetched" image is this large
 
-def _fetch_reference_image_b64(artwork: dict) -> str:
-    from PIL import Image  # imported lazily, same rationale as the openai import above
-    import io
+
+def _urlopen_with_retry(req, timeout: int = 30, max_attempts: int = 3):
+    """Wikimedia Commons rate-limits (HTTP 429) hard enough that a bulk
+    warm-up sweep across the whole catalog reliably trips it — confirmed
+    live during a Docker build, where it killed the build outright with no
+    retry logic at all. Backs off (2s, 4s, 8s...) only on 429; any other
+    HTTPError propagates immediately, same as before."""
+    import time
+    import urllib.error
     import urllib.request
 
+    for attempt in range(1, max_attempts + 1):
+        try:
+            return urllib.request.urlopen(req, timeout=timeout)
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < max_attempts:
+                wait = 2 ** attempt
+                print(f"[reference-image] HTTP 429 from Wikimedia, retrying in {wait}s "
+                      f"(attempt {attempt}/{max_attempts})")
+                time.sleep(wait)
+                continue
+            raise
+
+
+def _wikimedia_thumbnail_url(image_url: str, width: int = 512) -> Optional[str]:
+    """Primary path: ask Wikimedia's Special:FilePath for an already-downsized,
+    server-generated (and server-cached) thumbnail via its `width` query param,
+    instead of ever downloading the original. Confirmed live: the Renoir case's
+    717MB original becomes a 259KB, 960px-wide thumbnail this way — several
+    thousand times less data for the exact same picture."""
+    import urllib.parse
+
+    parsed = urllib.parse.urlsplit(image_url)
+    if "Special:FilePath" not in parsed.path:
+        return None
+    query = dict(urllib.parse.parse_qsl(parsed.query))
+    query["width"] = str(width)
+    return urllib.parse.urlunsplit(
+        (parsed.scheme, parsed.netloc, parsed.path, urllib.parse.urlencode(query), parsed.fragment)
+    )
+
+
+def _decode_and_resize(raw: bytes, target_w: int = 512):
+    """Shared decode path for both the thumbnail and the fallback-original
+    bytes — deliberately never trusts the caller to have already-small bytes.
+    img.draft() lets libjpeg downsample DURING decode (to the nearest of
+    1/1, 1/2, 1/4, 1/8) instead of fully expanding the image into memory
+    first and cropping after; harmless/near-no-op on an already-small
+    thumbnail, but on an oversized original it's the difference between a
+    multi-GB decode and a two-digit-MB one."""
+    from PIL import Image
+    import io
+
+    img = Image.open(io.BytesIO(raw))  # lazy — reads only the header, no pixel decode yet
+    w, h = img.size
+    if w * h > REFERENCE_SAFE_MEGAPIXELS:
+        print(f"[reference-image] WARNING: source is {w}x{h} ({w * h / 1e6:.0f} MP), "
+              f"over the {REFERENCE_SAFE_MEGAPIXELS / 1e6:.0f}MP safety threshold — "
+              f"forcing a downsampled decode via JPEG draft mode")
+    img.draft("RGB", (target_w, target_w))  # no-op on non-JPEG / already-small images
+    img = img.convert("RGB")
+    w, h = img.size
+    new_h = round(h * (target_w / w)) if w else target_w
+    return img.resize((target_w, new_h), Image.LANCZOS)
+
+
+def _fetch_reference_image_original_bytes(image_url: str) -> bytes:
+    """Fallback path, only used if the Wikimedia thumbnail service itself is
+    unreachable or the URL isn't a Special:FilePath link. Streams in chunks
+    with a hard byte cap enforced both from the Content-Length header (fails
+    fast, before downloading anything) and live during the read (in case the
+    header is missing or wrong) — never buffers an unbounded response."""
+    import urllib.request
+
+    req = urllib.request.Request(image_url, headers={"User-Agent": REFERENCE_IMAGE_UA})
+    with _urlopen_with_retry(req, timeout=30) as resp:
+        content_length = resp.headers.get("Content-Length")
+        if content_length and int(content_length) > REFERENCE_MAX_ORIGINAL_BYTES:
+            raise RuntimeError(
+                f"reference image original is {int(content_length) / 1e6:.0f}MB, over the "
+                f"{REFERENCE_MAX_ORIGINAL_BYTES / 1e6:.0f}MB hard limit — refusing to download it"
+            )
+        chunks, total = [], 0
+        while True:
+            chunk = resp.read(1024 * 1024)
+            if not chunk:
+                break
+            total += len(chunk)
+            if total > REFERENCE_MAX_ORIGINAL_BYTES:
+                raise RuntimeError(
+                    f"reference image original exceeded the {REFERENCE_MAX_ORIGINAL_BYTES / 1e6:.0f}MB "
+                    f"hard limit mid-download (Content-Length was missing or wrong) — aborting"
+                )
+            chunks.append(chunk)
+        return b"".join(chunks)
+
+
+def _fetch_reference_image_b64(artwork: dict) -> str:
     os.makedirs(REFERENCE_CACHE_DIR, exist_ok=True)
     cache_path = os.path.join(REFERENCE_CACHE_DIR, f'{artwork["id"]}.jpg')
     if os.path.exists(cache_path):
         with open(cache_path, "rb") as f:
             return base64.b64encode(f.read()).decode("ascii")
 
-    req = urllib.request.Request(artwork["image_url"], headers={"User-Agent": REFERENCE_IMAGE_UA})
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        raw = resp.read()
-    img = Image.open(io.BytesIO(raw)).convert("RGB")
-    w, h = img.size
-    new_w = 512
-    new_h = round(h * (new_w / w))
-    img = img.resize((new_w, new_h), Image.LANCZOS)
+    import urllib.request
+
+    raw = None
+    thumb_url = _wikimedia_thumbnail_url(artwork["image_url"], width=512)
+    if thumb_url:
+        try:
+            req = urllib.request.Request(thumb_url, headers={"User-Agent": REFERENCE_IMAGE_UA})
+            with _urlopen_with_retry(req, timeout=30) as resp:
+                raw = resp.read()  # thumbnails are server-generated and always small
+        except Exception as e:
+            print(f"[reference-image] thumbnail fetch failed for {artwork['id']} ({e}), "
+                  f"falling back to the original with a hard size cap")
+            raw = None
+
+    if raw is None:
+        raw = _fetch_reference_image_original_bytes(artwork["image_url"])
+
+    img = _decode_and_resize(raw, target_w=512)
     img.save(cache_path, format="JPEG", quality=85)
     with open(cache_path, "rb") as f:
         return base64.b64encode(f.read()).decode("ascii")
