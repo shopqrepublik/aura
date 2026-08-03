@@ -3158,7 +3158,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Bathers",
       "fr": "Les Baigneuses",
@@ -3170,24 +3170,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 18,
+      "high": 32,
+      "logic": "FACT: Baigneuse (The Bather), 1888, a single-figure Renoir nude/bather subject, sold for $20.9M at Sotheby's New York, November 1997 -- the closest available genre match found (a real Renoir nude sale). EDITORIAL JUDGMENT: The Bathers (1918-19) is a larger, multi-figure composition (five nudes across two groups), widely regarded as Renoir's culminating late-period statement and effectively his artistic testament, painted in the final months of his life -- positioned above the single-figure 1997 comparable to reflect that scale and significance. The range is kept relatively modest rather than aggressively inflated, since the comparable itself is nearly three decades old with no attempt made here to model market growth since 1997.",
+      "comparableSales": [
+        "Baigneuse (The Bather), Pierre-Auguste Renoir — $20.9M, Sotheby's New York, November 1997 — closest available genre match (a real Renoir nude/bather sale), though a single figure and an older, non-inflation-adjusted sale."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted in the last two years of his life, when severe arthritis had crippled his hands so badly that assistants strapped a brush to his fingers, this large composition of bathers in a garden landscape was Renoir's own chosen final artistic statement — an unabashed homage to the nude tradition of Titian and Rubens, painted with no reference to the modern world at all.",
+      "fr": "Peint dans les deux dernières années de sa vie, alors qu'une arthrite sévère avait à ce point paralysé ses mains que ses assistants devaient lui attacher un pinceau aux doigts, ce grand tableau de baigneuses dans un paysage de jardin fut la déclaration artistique finale que Renoir choisit lui-même de laisser — un hommage assumé à la tradition du nu de Titien et de Rubens, peint sans la moindre référence au monde moderne.",
+      "zh-Hans": "这幅描绘花园中沐浴者的大型画作，创作于莫奈生命最后两年——当时严重的关节炎已使他的双手几乎无法动弹，助手不得不把画笔绑在他的手指上，他才能继续作画。这被认为是雷诺阿本人有意留下的最后艺术宣言——向提香和鲁本斯所代表的人体裸像传统致以毫不掩饰的敬意，画中丝毫不涉及任何现代世界的元素。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the warm, glowing color and the soft, rounded fullness Renoir gives every figure — a deliberate return to an old-master ideal of the body, painted at the very end of a life spent trying to capture how light falls on skin.",
+      "fr": "Remarquez la couleur chaude et rayonnante et la plénitude douce et arrondie que Renoir donne à chaque figure — un retour délibéré à un idéal du corps hérité des maîtres anciens, peint à l'extrême fin d'une vie passée à essayer de saisir comment la lumière tombe sur la peau.",
+      "zh-Hans": "留意雷诺阿赋予每个人物的那种温暖、洋溢着光泽的色彩，以及柔和、丰腴的体态——这是一种刻意回归古典大师理想化人体的表达方式，创作于他穷尽一生追寻光线如何洒落在肌肤之上的终点。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "One of the models was Andrée Hessling, who went on to marry Renoir's son Jean — later the celebrated film director — linking this final painting directly to the next generation of the family.",
+      "fr": "L'une des modèles était Andrée Hessling, qui épousera plus tard le fils de Renoir, Jean — futur cinéaste célèbre — reliant directement ce dernier tableau à la génération suivante de la famille.",
+      "zh-Hans": "画中的一位模特安德蕾·海斯林，后来嫁给了雷诺阿的儿子让——也就是后来著名的电影导演——这也让这幅晚年的最后杰作，直接与雷诺阿家族的下一代联系在了一起。"
+    },
+    "whySimple": {
+      "en": "Renoir painted this large picture of bathers near the very end of his life, when he could barely hold a paintbrush because of arthritis in his hands. It shows his lifelong love of painting the human body bathed in warm light.",
+      "fr": "Renoir peint ce grand tableau de baigneuses tout à la fin de sa vie, alors qu'il pouvait à peine tenir un pinceau à cause de son arthrite aux mains. Il montre son amour de toute une vie pour la peinture du corps humain baigné de lumière chaude.",
+      "zh-Hans": "雷诺阿在生命即将走到尽头时画下了这幅描绘沐浴者的大画，那时他因为手部关节炎，几乎握不住画笔了。这幅画展现了他一生对描绘沐浴在温暖光线中的人体的热爱。"
+    },
+    "whereSimple": {
+      "en": "Notice the warm colors and soft, rounded shapes Renoir gives the figures — he was inspired by older painters like Titian and Rubens, who painted the body in a similar way.",
+      "fr": "Remarquez les couleurs chaudes et les formes douces et arrondies que Renoir donne aux figures — il s'est inspiré de peintres plus anciens comme Titien et Rubens, qui peignaient le corps d'une manière similaire.",
+      "zh-Hans": "留意雷诺阿赋予人物的那种温暖色彩和柔和、圆润的形态——他从提香、鲁本斯等前辈画家那里汲取了灵感，他们也曾用类似的方式描绘人体。"
+    },
+    "raritySimple": {
+      "en": "Renoir considered this one of his most important late paintings. One of the models later became part of his own family, marrying his son Jean.",
+      "fr": "Renoir considérait ce tableau comme l'un de ses tableaux tardifs les plus importants. L'une des modèles est plus tard devenue membre de sa propre famille, en épousant son fils Jean.",
+      "zh-Hans": "雷诺阿认为这是他晚年最重要的画作之一。画中的一位模特后来还成为了雷诺阿家族的一员，嫁给了他的儿子让。"
+    },
+    "whyKids": {
+      "en": "Renoir painted this big picture very near the end of his life, when his hands hurt so much from arthritis that his helpers had to strap a paintbrush to his fingers just so he could keep painting!",
+      "fr": "Renoir a peint ce grand tableau tout à la fin de sa vie, alors que ses mains le faisaient tellement souffrir à cause de l'arthrite que ses assistants devaient lui attacher un pinceau aux doigts, juste pour qu'il puisse continuer à peindre !",
+      "zh-Hans": "雷诺阿画这幅大画的时候，已经快到生命的尽头了。那时他的手因为关节炎疼得厉害，助手们不得不把画笔绑在他的手指上，这样他才能继续画画！"
+    },
+    "whereKids": {
+      "en": "Look at all the warm, glowing colors Renoir used — even though painting had become so hard for him, he still filled this picture with soft, golden light.",
+      "fr": "Regarde toutes les couleurs chaudes et lumineuses que Renoir a utilisées — même si peindre était devenu si difficile pour lui, il a quand même rempli ce tableau d'une lumière douce et dorée.",
+      "zh-Hans": "看看雷诺阿用了多少温暖、闪耀的颜色呀——尽管画画对他来说已经变得那么困难，他还是把这幅画画满了柔和的金色光芒。"
+    },
+    "rarityKids": {
+      "en": "One of the people who posed for this painting later became part of Renoir's own family — she married his son Jean, who grew up to become a famous filmmaker!",
+      "fr": "L'une des personnes qui a posé pour ce tableau est plus tard devenue membre de la propre famille de Renoir — elle a épousé son fils Jean, qui est devenu un cinéaste célèbre !",
+      "zh-Hans": "为这幅画当模特的一个人，后来成为了雷诺阿家族的一员——她嫁给了雷诺阿的儿子让，让长大后成了一位有名的电影导演！"
+    },
+    "contentFlag": "Multiple full nude bathers (2 foreground, 3 background), no mythological narrative (unlike Cabanel/Bouguereau) -- Renoir's late-period homage to the Titian/Rubens nude tradition, painted in the last two years of his life. Product decision (resolved, reviewed per-case with the user -- explicitly NOT decided by analogy to prior nudity cases): stays in Kids mode; Kids why/where/rarity rewritten to focus on Renoir's late-life arthritis and the family connection (a model married Renoir's son Jean) instead of the nudity -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_729",
@@ -4218,7 +4256,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Torse, effet de soleil",
       "fr": "Torse, effet de soleil",
@@ -4230,24 +4268,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 18,
+      "logic": "FACT: Baigneuse (The Bather), 1888, a single-figure Renoir nude/bather subject, sold for $20.9M at Sotheby's New York, November 1997 -- the closest available genre match found (a real Renoir nude sale). EDITORIAL JUDGMENT: Torse, effet de soleil is a smaller, partial-figure (torso only) study focused on demonstrating a specific technical idea about outdoor light, from an earlier and more experimental period (1875-76) than the polished, exhibition-scale 1888 Baigneuse -- positioned below that comparable to reflect its smaller scope and more sketch-like, studio-experiment character.",
+      "comparableSales": [
+        "Baigneuse (The Bather), Pierre-Auguste Renoir — $20.9M, Sotheby's New York, November 1997 — closest available genre match (a real Renoir nude sale), though a larger, later, more finished composition than this smaller torso study."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This close, sunlit study of a young model named Anna was Renoir's attempt to prove a scientific idea about light — that skin in dappled shade reflects the colors of its surroundings — and became one of the most viciously mocked paintings at the second Impressionist exhibition in 1876.",
+      "fr": "Cette étude rapprochée et ensoleillée d'une jeune modèle nommée Anna fut la tentative de Renoir de démontrer une idée scientifique sur la lumière — que la peau, dans une ombre tachetée, reflète les couleurs de son environnement — et devint l'un des tableaux les plus violemment raillés de la deuxième exposition impressionniste de 1876.",
+      "zh-Hans": "这幅描绘年轻模特安娜、沐浴在阳光下的近景习作，是雷诺阿试图证明一个关于光线的科学理念——处于斑驳树荫下的肌肤，会映射出周围环境的色彩。这幅画后来也成为1876年第二届印象派展览上，遭受最猛烈嘲讽的作品之一。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the patches of green, violet, and blue Renoir lets fall across her skin wherever sunlight filters through leaves — deliberately unnatural-looking color choices that were, at the time, radical evidence for how outdoor light actually behaves.",
+      "fr": "Regardez les touches de vert, de violet et de bleu que Renoir laisse tomber sur sa peau partout où la lumière filtre à travers les feuilles — des choix de couleurs délibérément peu naturels qui constituaient, à l'époque, une preuve radicale de la manière dont la lumière extérieure se comporte réellement.",
+      "zh-Hans": "看阳光透过树叶洒落在她肌肤上的地方，雷诺阿点染出了一片片绿色、紫色和蓝色——这些看起来刻意「不自然」的色彩选择，在当时却是关于户外光线真实运作方式的一次激进论证。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "A hostile critic compared the mottled skin tones to a decomposing corpse; today, the same painting is considered one of the boldest and most technically important works of early Impressionism.",
+      "fr": "Un critique hostile compara les teintes mouchetées de la peau à un cadavre en décomposition ; aujourd'hui, ce même tableau est considéré comme l'une des œuvres les plus audacieuses et les plus importantes sur le plan technique du premier impressionnisme.",
+      "zh-Hans": "一位态度尖刻的评论家，曾把画中斑驳的肤色比作腐烂的尸体；而今天，这幅画却被视为早期印象派中最大胆、技法上最具突破意义的作品之一。"
+    },
+    "whySimple": {
+      "en": "This close-up study of a model in dappled sunlight was Renoir's attempt to show how light really behaves outdoors — skin in the shade reflects colors from its surroundings, like green from leaves. It shocked people when it was first shown.",
+      "fr": "Cette étude en gros plan d'une modèle dans une lumière tachetée était la tentative de Renoir de montrer comment la lumière se comporte réellement en extérieur — la peau à l'ombre reflète les couleurs de son environnement, comme le vert des feuilles. Cela a choqué les gens lors de sa première présentation.",
+      "zh-Hans": "这幅描绘模特沐浴在斑驳阳光下的近景习作，是雷诺阿试图展示户外光线真实运作方式的一次尝试——处于阴影中的肌肤，会反射出周围环境的色彩，比如树叶的绿色。这幅画首次展出时，让很多人感到震惊。"
+    },
+    "whereSimple": {
+      "en": "Look at the patches of green and violet Renoir paints where sunlight filters through leaves — these unusual colors were very daring for the time.",
+      "fr": "Regardez les touches de vert et de violet que Renoir peint là où la lumière du soleil filtre à travers les feuilles — ces couleurs inhabituelles étaient très audacieuses pour l'époque.",
+      "zh-Hans": "看阳光透过树叶洒落的地方，雷诺阿画上了一片片绿色和紫色——这些不寻常的色彩，在当时是非常大胆的尝试。"
+    },
+    "raritySimple": {
+      "en": "A critic at the time said unkind things about the colors in this painting. Today, art historians see it as one of the boldest, most important early Impressionist works.",
+      "fr": "Un critique de l'époque a dit des choses peu aimables sur les couleurs de ce tableau. Aujourd'hui, les historiens de l'art le considèrent comme l'une des œuvres impressionnistes les plus audacieuses et les plus importantes de la première heure.",
+      "zh-Hans": "当时有一位评论家，曾对这幅画的色彩说过一些很不客气的话。而今天，艺术史学家们认为，这是早期印象派中最大胆、最重要的作品之一。"
+    },
+    "whyKids": {
+      "en": "Renoir painted this close-up study to test a science idea about light — he wanted to show that skin sitting in leafy shade actually picks up colors from what's around it, like a bit of green from the leaves!",
+      "fr": "Renoir a peint cette étude en gros plan pour tester une idée scientifique sur la lumière — il voulait montrer que la peau, à l'ombre des feuilles, capte en réalité les couleurs de ce qui l'entoure, comme un peu de vert venu des feuilles !",
+      "zh-Hans": "雷诺阿画这幅近景习作，是为了验证一个关于光线的科学想法——他想证明，处于树叶阴影下的肌肤，其实会「沾上」周围的颜色，比如从树叶那儿带来的一点绿色！"
+    },
+    "whereKids": {
+      "en": "Look for little patches of green and purple in the shadows — Renoir put them there on purpose, because that's really what sunlight does when it filters through leaves.",
+      "fr": "Cherche les petites taches de vert et de violet dans les ombres — Renoir les a mises là exprès, parce que c'est vraiment ce qui se passe quand la lumière du soleil filtre à travers les feuilles.",
+      "zh-Hans": "找找阴影里那些小小的绿色和紫色斑点吧——雷诺阿是特意画上去的，因为阳光透过树叶洒下来时，真的会产生这样的效果。"
+    },
+    "rarityKids": {
+      "en": "When people first saw this painting, one grumpy critic said mean things about the colors Renoir used. Today, people think Renoir was actually right all along about how light works!",
+      "fr": "Quand les gens ont vu ce tableau pour la première fois, un critique grincheux a dit des choses méchantes sur les couleurs que Renoir avait utilisées. Aujourd'hui, on pense que Renoir avait en fait raison depuis le début sur la façon dont la lumière fonctionne !",
+      "zh-Hans": "人们第一次看到这幅画的时候，一位脾气很坏的评论家，说了很多关于雷诺阿用色的坏话。可是今天，大家都认为雷诺阿其实一直都是对的——他真的说对了光线是怎么运作的！"
+    },
+    "contentFlag": "Partial nude torso (bust-length, breasts exposed), a technical light-and-color study with no narrative beyond the scientific demonstration itself (skin reflecting filtered sunlight). Product decision (resolved, reviewed per-case with the user -- explicitly NOT decided by analogy to prior nudity cases): stays in Kids mode; Kids why/where/rarity rewritten to focus on the light-science experiment and the infamous hostile contemporary review instead of the body -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_2011",
