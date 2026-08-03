@@ -1767,7 +1767,7 @@
     "accent": "#754A8F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Bellelli Family",
       "fr": "La Famille Bellelli",
@@ -1779,24 +1779,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 20,
+      "high": 38,
+      "logic": "FACT: Les Blanchisseuses (The Laundry Maids), a genre scene of ordinary working Parisians -- Degas's closest real non-dancer-subject comparable -- sold for over $13.7M (~EUR12.6M) at Christie's London, 1987 (the same comparable used for L'Absinthe elsewhere in this catalog). EDITORIAL JUDGMENT: The Bellelli Family is a far more ambitious, large-scale Salon-style group portrait, widely considered the true beginning of Degas's serious career -- positioned well above the modest genre-scene floor to reflect that significance, though still below the dancer-subject premium tier (Degas's real record-holders are dancer-themed), since this is neither a dancer nor a laundry-genre scene. As with L'Absinthe, the 1987 comparable itself is old and not inflation-adjusted.",
+      "comparableSales": [
+        "Les Blanchisseuses (The Laundry Maids), Edgar Degas — $13.7M (~€12.6M), Christie's London, 1987 — closest available non-dancer Degas genre comparable; an old, non-inflation-adjusted sale."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Degas painted his aunt Laura Bellelli and her family in Florence, capturing something beyond a formal likeness — Laura stands beside a portrait of her recently deceased father, dressed in mourning, while her husband sits apart at his desk, physically separated from the rest of the family within the same room.",
+      "fr": "Degas peint sa tante Laura Bellelli et sa famille à Florence, saisissant quelque chose au-delà d'une simple ressemblance formelle — Laura se tient debout près d'un portrait de son père récemment décédé, vêtue de deuil, tandis que son mari est assis à l'écart, à son bureau, physiquement séparé du reste de la famille dans la même pièce.",
+      "zh-Hans": "德加在佛罗伦萨描绘了他的姑姑劳拉·贝莱利一家，这幅画所捕捉到的，远不止是一幅简单的肖像写照——劳拉身着丧服，站在她刚刚去世的父亲的画像旁；而她的丈夫则独自坐在书桌前，虽同处一室，却与家人在空间上明显分隔开来。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the composition itself tells the story — Laura and her daughters form a tight, upright group on one side, while her husband is pushed to the edge of the canvas, seen mostly from behind.",
+      "fr": "Remarquez comme la composition elle-même raconte l'histoire — Laura et ses filles forment un groupe serré et droit d'un côté, tandis que son mari est repoussé vers le bord de la toile, vu principalement de dos.",
+      "zh-Hans": "留意画面构图本身是如何讲述这个故事的——劳拉和她的女儿们在画面一侧紧紧靠拢、姿态端正，而她的丈夫则被推向画布的边缘，我们看到的多半是他的背影。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "Degas worked on this painting for years after returning from Florence, and it remains one of the most ambitious group portraits of the entire 19th century — widely considered the true beginning of his career as a serious painter.",
+      "fr": "Degas travailla sur ce tableau pendant des années après son retour de Florence, et il demeure l'un des portraits de groupe les plus ambitieux de tout le XIXe siècle — largement considéré comme le véritable début de sa carrière de peintre sérieux.",
+      "zh-Hans": "从佛罗伦萨回来后，德加又花了数年时间打磨这幅画，它至今仍是整个19世纪最具野心的群像画之一——被广泛认为是德加真正开启其严肃画家生涯的起点。"
+    },
+    "whySimple": {
+      "en": "Degas painted his aunt Laura Bellelli and her family. Laura wears black because her father had just died, and his portrait hangs on the wall behind her. Her husband sits apart from the rest of the family at his desk.",
+      "fr": "Degas peint sa tante Laura Bellelli et sa famille. Laura porte du noir parce que son père venait de mourir, et son portrait est accroché au mur derrière elle. Son mari est assis à l'écart du reste de la famille, à son bureau.",
+      "zh-Hans": "德加画了他的姑姑劳拉·贝莱利一家。劳拉身穿黑色丧服，因为她的父亲刚刚去世，他的画像就挂在她身后的墙上。她的丈夫独自坐在书桌前，和家人分开。"
+    },
+    "whereSimple": {
+      "en": "Notice how the composition tells a story — Laura and her daughters stand close together, while her husband is placed off to the side, seen mostly from behind.",
+      "fr": "Remarquez comme la composition raconte une histoire — Laura et ses filles se tiennent serrées les unes contre les autres, tandis que son mari est placé sur le côté, vu principalement de dos.",
+      "zh-Hans": "留意这幅画的构图是如何讲述一个故事的——劳拉和女儿们紧紧靠在一起，而她的丈夫则被安排在一旁，我们看到的多半是他的背影。"
+    },
+    "raritySimple": {
+      "en": "Degas worked on this painting for years. It's considered one of the most ambitious family portraits of the 1800s, and the true start of his career as a serious painter.",
+      "fr": "Degas travailla sur ce tableau pendant des années. Il est considéré comme l'un des portraits de famille les plus ambitieux du XIXe siècle, et le véritable début de sa carrière de peintre sérieux.",
+      "zh-Hans": "德加为这幅画花费了数年心血。它被认为是19世纪最具野心的家庭肖像画之一，也是德加真正开启其严肃画家生涯的起点。"
+    },
+    "whyKids": {
+      "en": "Degas painted this family portrait like a little puzzle — look closely and you can spot clues about how everyone in the picture is feeling, just from where they're standing!",
+      "fr": "Degas a peint ce portrait de famille comme un petit puzzle — regarde bien et tu pourras repérer des indices sur ce que ressent chaque personne du tableau, juste d'après l'endroit où elle se tient !",
+      "zh-Hans": "德加把这幅全家福画得像一个小谜题——仔细看，你能从每个人站的位置，找出他们各自心情的小线索哦！"
+    },
+    "whereKids": {
+      "en": "See how Laura and her two daughters stand close together on one side, while her husband sits all the way over at his desk on the other? Degas arranged everyone on purpose to tell a story without any words.",
+      "fr": "Tu vois comme Laura et ses deux filles se tiennent serrées d'un côté, tandis que son mari est assis tout à l'autre bout, à son bureau ? Degas a placé chaque personne exprès, pour raconter une histoire sans un seul mot.",
+      "zh-Hans": "你看到劳拉和她的两个女儿紧紧靠在画面一侧，而她的丈夫却独自坐在另一边的书桌前了吗？德加是故意这样安排每个人的位置的，为的是不用一个字就讲出一个故事。"
+    },
+    "rarityKids": {
+      "en": "Degas spent years working on this painting after visiting his family in Italy — it's one of the most ambitious family portraits ever painted, and many people say it's where his career as a great artist really began.",
+      "fr": "Degas a passé des années à travailler sur ce tableau après avoir rendu visite à sa famille en Italie — c'est l'un des portraits de famille les plus ambitieux jamais peints, et beaucoup disent que c'est là que sa carrière de grand artiste a vraiment commencé.",
+      "zh-Hans": "德加在意大利探望完家人后，花了好几年时间打磨这幅画——这是有史以来最具野心的全家福画作之一，很多人都说，德加成为伟大画家的旅程，正是从这幅画真正开始的。"
+    },
+    "contentFlag": "Group portrait: Degas's aunt Laura is shown in mourning black for her recently-deceased father (whose portrait hangs behind her), and her husband sits visibly estranged at his desk -- a heavy-but-not-explicit theme (grief/loss, marital estrangement), reviewed with the user per-case, same standing rule as Camille Monet on her deathbed / Hopital Saint-Paul (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus on the composition-as-storytelling technique without naming the death or the marital tension -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_1984_164",
@@ -2695,7 +2733,7 @@
     "accent": "#754A8F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Ballet Class",
       "fr": "La Classe de danse",
@@ -2707,23 +2745,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 30,
+      "high": 55,
+      "logic": "FACT: Danseuse au repos, a pastel of a single ballet dancer, sold for $37.04M (~EUR34.1M) at Sotheby's, November 2008 -- Degas's auction record for a work on paper at the time, and the closest real dancer-subject comparable available (Degas's overall record-holder is now a bronze sculpture, a different medium, deliberately not used here). EDITORIAL JUDGMENT: The Ballet Class is a far more ambitious multi-figure oil painting, widely considered one of Degas's two or three definitive ballet-class compositions -- positioned above the single-figure pastel record to reflect that greater scale and ambition.",
+      "comparableSales": [
+        "Danseuse au repos, Edgar Degas — $37.04M (~€34.1M), Sotheby's, November 2008 — closest real dancer-subject comparable, though a single-figure pastel rather than this multi-figure oil painting."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Degas paints the tired, restless moment at the end of a private ballet lesson, not the poised performance itself — the real ballet master Jules Perrot stands watching as his young pupils stretch, scratch their backs, and fix their hair, paying him little attention.",
+      "fr": "Degas peint le moment fatigué et agité de la fin d'une leçon privée de danse, et non la performance élégante elle-même — le véritable maître de ballet Jules Perrot se tient là, regardant ses jeunes élèves s'étirer, se gratter le dos et arranger leurs cheveux, sans guère lui prêter attention.",
+      "zh-Hans": "德加描绘的是一堂私人芭蕾课接近尾声时那疲惫、松散的时刻，而不是舞台上优雅的表演本身——真实存在的芭蕾教师朱尔·佩罗站在一旁，看着他的年轻学生们伸懒腰、挠背、整理头发，几乎没人在意他。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how few of the dancers are actually dancing — most are caught mid-fidget, adjusting an earring or a ribbon, which is exactly the unglamorous backstage moment Degas found more interesting than the finished performance.",
+      "fr": "Remarquez comme peu de danseuses sont réellement en train de danser — la plupart sont surprises en train de s'agiter, d'ajuster une boucle d'oreille ou un ruban, exactement ce moment sans éclat des coulisses que Degas trouvait plus intéressant que la performance achevée.",
+      "zh-Hans": "留意画中真正在跳舞的舞者其实寥寥无几——大多数人都被定格在了一个小动作里，整理耳环或丝带，而正是这种毫不光鲜的后台瞬间，比起完成的正式演出，更让德加感兴趣。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The teacher shown here, Jules Perrot, was a real, famous ballet master of the era — Degas painted him from memory and older photographs, since Perrot had already retired by the time this was painted.",
+      "fr": "Le professeur représenté ici, Jules Perrot, était un véritable et célèbre maître de ballet de l'époque — Degas le peignit de mémoire et à partir de photographies plus anciennes, Perrot ayant déjà pris sa retraite au moment où ce tableau fut peint.",
+      "zh-Hans": "画中的这位老师朱尔·佩罗，是那个时代一位真实存在的著名芭蕾教师——由于这幅画完成时佩罗其实已经退休，德加是凭借记忆和早年的照片，将他画入了这幅作品之中。"
+    },
+    "whySimple": {
+      "en": "Degas painted the tired end of a private ballet lesson, not a finished performance. The real ballet teacher, Jules Perrot, watches as his young students stretch and fix their hair, barely listening to him.",
+      "fr": "Degas peint la fin fatiguée d'une leçon privée de danse, et non une performance achevée. Le véritable professeur de danse, Jules Perrot, regarde ses jeunes élèves s'étirer et arranger leurs cheveux, l'écoutant à peine.",
+      "zh-Hans": "德加画的是一堂私人芭蕾课疲惫的尾声，而不是一场正式演出。真实存在的芭蕾教师朱尔·佩罗看着他的年轻学生们伸懒腰、整理头发，几乎没在听他说话。"
+    },
+    "whereSimple": {
+      "en": "Notice that hardly any of the dancers are actually dancing — most are caught fidgeting, adjusting an earring or a ribbon. Degas liked painting these unposed, in-between moments.",
+      "fr": "Remarquez que presque aucune des danseuses n'est réellement en train de danser — la plupart sont surprises en train de s'agiter, d'ajuster une boucle d'oreille ou un ruban. Degas aimait peindre ces moments spontanés et intermédiaires.",
+      "zh-Hans": "留意画中几乎没有一个舞者真的在跳舞——大多数人都在做些小动作，整理耳环或丝带。德加就喜欢画这些没有摆拍、处于「中间地带」的瞬间。"
+    },
+    "raritySimple": {
+      "en": "The teacher in this painting, Jules Perrot, was a real and famous ballet master. He had already retired by the time Degas painted this, so Degas worked from memory and old photographs.",
+      "fr": "Le professeur de ce tableau, Jules Perrot, était un véritable et célèbre maître de ballet. Il avait déjà pris sa retraite quand Degas peignit ce tableau, si bien que Degas travailla de mémoire et à partir de vieilles photographies.",
+      "zh-Hans": "这幅画中的老师朱尔·佩罗，是一位真实存在、声名显赫的芭蕾教师。德加画这幅画时，他其实已经退休了，所以德加是凭记忆和旧照片画出了他的样子。"
+    },
+    "whyKids": {
+      "en": "Degas painted the tired end of a ballet class, not a fancy performance — look how many of the dancers are stretching, scratching their backs, or fixing their hair instead of dancing!",
+      "fr": "Degas a peint la fin fatiguée d'un cours de danse, pas une performance chic — regarde combien de danseuses s'étirent, se grattent le dos ou arrangent leurs cheveux au lieu de danser !",
+      "zh-Hans": "德加画的是芭蕾课疲惫的尾声，而不是一场华丽的演出——看看有多少舞者在伸懒腰、挠背，或者整理头发，而不是在跳舞！"
+    },
+    "whereKids": {
+      "en": "Can you find a dancer who's actually dancing? Most of them are taking a little break, just like you would after a long class!",
+      "fr": "Arrives-tu à trouver une danseuse qui danse vraiment ? La plupart d'entre elles font une petite pause, tout comme toi après un long cours !",
+      "zh-Hans": "你能找到一个真的在跳舞的舞者吗？大部分人都在稍微休息一下呢，就像你上完一堂长长的课之后一样！"
+    },
+    "rarityKids": {
+      "en": "The teacher in this painting was a real, very famous ballet master named Jules Perrot — Degas painted him even though the real Mr. Perrot had already stopped teaching by then!",
+      "fr": "Le professeur de ce tableau était un véritable et très célèbre maître de ballet nommé Jules Perrot — Degas l'a peint alors même que le vrai monsieur Perrot avait déjà arrêté d'enseigner !",
+      "zh-Hans": "这幅画里的老师，是一位真实存在、非常有名的芭蕾大师，名叫朱尔·佩罗——德加画他的时候，佩罗先生其实已经不教课啦！"
     }
   },
   {
@@ -3915,7 +3990,7 @@
     "accent": "#754A8F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Tub",
       "fr": "Le Tub",
@@ -3927,24 +4002,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 28,
+      "logic": "FACT: no confirmed real auction sale of a directly comparable Degas nude/bather pastel could be found (one recently rediscovered work has an unconfirmed appraisal figure around $13M, but that is an expert valuation, not a completed transaction, so excluded per the rule against treating non-sales as comparables). Falling back to Les Blanchisseuses (The Laundry Maids), Degas's closest real non-dancer genre comparable, $13.7M (~EUR12.6M), Christie's London, 1987 -- the same fallback used for The Bellelli Family and L'Absinthe elsewhere in this catalog. EDITORIAL JUDGMENT: The Tub is widely regarded as one of the most technically accomplished works in Degas's celebrated 1886 bather series -- positioned moderately above the genre-scene floor to reflect that critical standing, while explicitly flagging that this is a weaker-than-ideal comparable match (no real bather-specific sale found).",
+      "comparableSales": [
+        "Les Blanchisseuses (The Laundry Maids), Edgar Degas — $13.7M (~€12.6M), Christie's London, 1987 — fallback comparable; no confirmed real sale of a comparable Degas bather pastel was found."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Degas paints a woman bathing herself in a shallow tub, seen from an unusually high, tilted angle that flattens the whole scene almost like a diagram — part of a series of bather pastels that pushed his lifelong interest in capturing unposed, private movement to its furthest point.",
+      "fr": "Degas peint une femme se lavant dans une baignoire peu profonde, vue selon un angle inhabituel, en plongée, qui aplatit toute la scène presque comme un diagramme — cette œuvre fait partie d'une série de pastels de baigneuses qui poussa à son point extrême son intérêt de toujours pour la saisie du mouvement privé et spontané.",
+      "zh-Hans": "德加描绘了一位女子在浅浴缸中洗浴的场景，采用了一个异常高、俯视的倾斜视角，让整个画面几乎变得像一张平面图——这幅画属于他一系列描绘沐浴者的粉彩作品，将他一生对捕捉未经摆拍、私密动态瞬间的兴趣，推向了极致。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the strange, almost bird's-eye perspective looking down into the tub — Degas borrows this flattened viewpoint from Japanese prints, giving an intimate scene an unexpectedly modern, abstract structure.",
+      "fr": "Remarquez la perspective étrange, presque en vue aérienne, qui plonge dans la baignoire — Degas emprunte ce point de vue aplati aux estampes japonaises, donnant à une scène intime une structure étonnamment moderne et abstraite.",
+      "zh-Hans": "留意这近乎俯瞰浴缸的奇特视角——德加从他钟爱的日本版画中借鉴了这种扁平化的视点，赋予了这个私密场景一种出人意料的现代感与抽象结构。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "Degas made around 200 pastels on the theme of women bathing over his career; this one, shown at the final Impressionist exhibition in 1886, is considered one of the most technically daring of the entire series.",
+      "fr": "Degas réalisa environ 200 pastels sur le thème des femmes se baignant au cours de sa carrière ; celui-ci, présenté à la dernière exposition impressionniste en 1886, est considéré comme l'un des plus audacieux sur le plan technique de toute la série.",
+      "zh-Hans": "德加一生中创作了约200幅以女性沐浴为主题的粉彩作品；这一幅曾在1886年最后一届印象派展览上展出，被认为是整个系列中技法最为大胆的作品之一。"
+    },
+    "whySimple": {
+      "en": "Degas painted a woman washing herself in a shallow tub, seen from a high, tilted angle that makes the whole scene look almost flat, like a diagram. It's part of a series he made about women bathing.",
+      "fr": "Degas peint une femme se lavant dans une baignoire peu profonde, vue selon un angle élevé et incliné qui rend toute la scène presque plate, comme un diagramme. Cela fait partie d'une série qu'il réalisa sur les femmes se baignant.",
+      "zh-Hans": "德加画了一位女子在浅浴缸中洗浴的样子，采用了高高的倾斜视角，让整个画面看起来几乎是平面的，像一张示意图。这幅画属于他创作的一系列关于女性沐浴的作品。"
+    },
+    "whereSimple": {
+      "en": "Notice the unusual, almost bird's-eye view looking down into the tub — Degas borrowed this flattened way of showing space from Japanese prints he admired.",
+      "fr": "Remarquez la vue inhabituelle, presque aérienne, qui plonge dans la baignoire — Degas a emprunté cette manière aplatie de montrer l'espace à des estampes japonaises qu'il admirait.",
+      "zh-Hans": "留意这近乎俯瞰浴缸的不寻常视角——德加从他所欣赏的日本版画中，借鉴了这种扁平化呈现空间的方式。"
+    },
+    "raritySimple": {
+      "en": "Degas made around 200 pastels about women bathing during his career. This one is considered one of the most technically bold of the whole series.",
+      "fr": "Degas réalisa environ 200 pastels sur les femmes se baignant au cours de sa carrière. Celui-ci est considéré comme l'un des plus audacieux sur le plan technique de toute la série.",
+      "zh-Hans": "德加一生中创作了约200幅关于女性沐浴的粉彩作品。这一幅被认为是整个系列中技法最为大胆的作品之一。"
+    },
+    "whyKids": {
+      "en": "Degas painted this bathing scene from a strange, high-up angle — almost like you're floating above the tub looking straight down!",
+      "fr": "Degas a peint cette scène de bain sous un angle étrange, en hauteur — presque comme si tu flottais au-dessus de la baignoire en regardant droit vers le bas !",
+      "zh-Hans": "德加从一个奇怪的高处角度画出了这个洗浴场景——感觉就像你正飘在浴缸上方，直直地往下看一样！"
+    },
+    "whereKids": {
+      "en": "Notice how flat and pattern-like everything looks from this bird's-eye view — Degas got this clever trick from Japanese art he loved collecting.",
+      "fr": "Remarque comme tout paraît plat et semblable à un motif vu de cette perspective aérienne — Degas a emprunté cette astuce ingénieuse à l'art japonais qu'il adorait collectionner.",
+      "zh-Hans": "留意从这个俯瞰视角看去，一切都显得多么扁平、多像一种图案——德加是从他喜欢收藏的日本艺术里，学到了这个聪明的小窍门。"
+    },
+    "rarityKids": {
+      "en": "Degas made about 200 pictures of people bathing during his whole career — that's a LOT of bathtub pictures!",
+      "fr": "Degas a réalisé environ 200 images de personnes en train de se baigner tout au long de sa carrière — ça fait BEAUCOUP de tableaux de baignoire !",
+      "zh-Hans": "德加一辈子画了大约200幅描绘人们沐浴的画——那可真是好多好多浴缸画呀！"
+    },
+    "contentFlag": "A woman bathing, seen from a high, flattened angle -- part of Degas's acclaimed bather pastel series, no narrative beyond the pose/technique itself. Reviewed with the user per-case, same standing rule as Renoir's Torse/Bathers and Camille Monet (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus on the unusual bird's-eye viewpoint and the Japanese-print influence (technique/history) rather than the body -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_2010_7",
@@ -5056,7 +5169,7 @@
     "accent": "#754A8F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Ballet Rehearsal on Stage",
       "fr": "Répétition d'un ballet sur la scène",
@@ -5068,23 +5181,60 @@
       "en": true
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 22,
+      "high": 40,
+      "logic": "FACT: Danseuse au repos, a pastel of a single ballet dancer, sold for $37.04M (~EUR34.1M) at Sotheby's, November 2008 -- the closest real dancer-subject comparable available (same comparable used for The Ballet Class elsewhere in this batch). EDITORIAL JUDGMENT: this is a multi-figure oil painting rather than a single-figure pastel, and while historically important (shown at the very first Impressionist exhibition, 1874), it is a smaller, more muted grisaille composition than The Ballet Class -- positioned close to but modestly below that comparable.",
+      "comparableSales": [
+        "Danseuse au repos, Edgar Degas — $37.04M (~€34.1M), Sotheby's, November 2008 — closest real dancer-subject comparable, though a single-figure pastel rather than this multi-figure oil painting."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Degas paints a ballet rehearsal from an unusual high, off-center angle, as if we're peeking in from a box seat — the dancers on stage float weightlessly while others, waiting their turn, slouch and stretch at the side.",
+      "fr": "Degas peint une répétition de ballet sous un angle inhabituel, élevé et décentré, comme si nous jetions un coup d'œil depuis une loge — les danseuses sur scène flottent avec légèreté tandis que d'autres, attendant leur tour, s'affalent et s'étirent sur le côté.",
+      "zh-Hans": "德加以一个不同寻常的高处、偏离中心的角度描绘了一场芭蕾排练，仿佛我们正从包厢座位偷偷张望——舞台上的舞者仿佛失重般轻盈飘动，而在一旁等待上场的其他人，则或懒散地靠着、或伸展着身体。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at how pale and ghostly the whole scene feels — Degas paints almost entirely in shades of grey, letting the harsh stage footlights bleach out color the way they really would in a real theater.",
+      "fr": "Regardez comme toute la scène paraît pâle et fantomatique — Degas peint presque entièrement dans des tons de gris, laissant les lumières crues de la rampe délaver les couleurs comme elles le feraient vraiment dans un vrai théâtre.",
+      "zh-Hans": "看整个画面是多么苍白、朦胧——德加几乎完全用灰色调作画，让强烈的脚灯就像在真实剧院里那样，把色彩冲淡、漂白。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This was one of the very first paintings Degas ever exhibited publicly, shown at the first Impressionist exhibition in 1874 — the beginning of his lifelong fascination with the Paris Opera.",
+      "fr": "Ce fut l'un des tout premiers tableaux que Degas exposa publiquement, présenté lors de la première exposition impressionniste en 1874 — le début de sa fascination de toute une vie pour l'Opéra de Paris.",
+      "zh-Hans": "这是德加最早公开展出的画作之一，曾在1874年第一届印象派展览上亮相——从此开启了他对巴黎歌剧院终生不渝的迷恋。"
+    },
+    "whySimple": {
+      "en": "Degas painted a ballet rehearsal from a high, off-to-the-side angle, like we're peeking in from a theater box. Some dancers float across the stage while others wait and stretch at the side.",
+      "fr": "Degas peint une répétition de ballet sous un angle élevé et de côté, comme si nous regardions depuis une loge de théâtre. Certaines danseuses semblent flotter sur la scène tandis que d'autres attendent et s'étirent sur le côté.",
+      "zh-Hans": "德加从一个高处、偏侧的角度画了一场芭蕾排练，就好像我们正从剧院包厢里偷看一样。一些舞者仿佛在舞台上飘动，另一些则在一旁等待、伸展身体。"
+    },
+    "whereSimple": {
+      "en": "Notice how pale and grey the whole painting looks — Degas used mostly greys to show how the bright stage lights would really wash out color.",
+      "fr": "Remarquez comme tout le tableau paraît pâle et gris — Degas a utilisé principalement des gris pour montrer comment les lumières vives de la scène délavent réellement les couleurs.",
+      "zh-Hans": "留意整幅画看起来是多么苍白、灰暗——德加大量使用灰色调，来展现明亮的舞台灯光是如何真实地冲淡色彩的。"
+    },
+    "raritySimple": {
+      "en": "This was one of the very first paintings Degas ever showed to the public, at the very first Impressionist exhibition in 1874.",
+      "fr": "Ce fut l'un des tout premiers tableaux que Degas montra jamais au public, lors de la toute première exposition impressionniste en 1874.",
+      "zh-Hans": "这是德加最早向公众展示的画作之一，展出于1874年第一届印象派展览。"
+    },
+    "whyKids": {
+      "en": "Degas painted dancers practicing on stage, but from a funny high-up angle — like we're peeking down from a balcony seat!",
+      "fr": "Degas a peint des danseuses en train de répéter sur scène, mais sous un angle drôle et élevé — comme si on jetait un coup d'œil depuis un balcon !",
+      "zh-Hans": "德加画了舞者们在舞台上排练的样子，不过是从一个很有意思的高处角度画的——就像我们正从楼上包厢往下偷看一样！"
+    },
+    "whereKids": {
+      "en": "Look how grey and pale everything looks — that's because Degas wanted to show how bright stage lights can wash out all the colors.",
+      "fr": "Regarde comme tout paraît gris et pâle — c'est parce que Degas voulait montrer comment les lumières vives de la scène peuvent délaver toutes les couleurs.",
+      "zh-Hans": "看这一切显得多么灰暗、苍白——那是因为德加想展示出明亮的舞台灯光是怎样把所有颜色都冲淡的。"
+    },
+    "rarityKids": {
+      "en": "This was one of the very first paintings Degas ever showed to the public — the start of his lifelong love of painting ballet dancers!",
+      "fr": "Ce fut l'un des tout premiers tableaux que Degas ait jamais montrés au public — le début de son amour de toute une vie pour la peinture des danseuses de ballet !",
+      "zh-Hans": "这是德加最早向公众展示的画作之一——从此开启了他一生对描绘芭蕾舞者的热爱！"
     }
   },
   {
@@ -5421,7 +5571,7 @@
     "accent": "#754A8F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "L'Orchestre de l'Opéra",
       "fr": "L'Orchestre de l'Opéra",
@@ -5433,23 +5583,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 28,
+      "logic": "FACT: Les Blanchisseuses (The Laundry Maids), Degas's closest real non-dancer genre comparable, sold for $13.7M (~EUR12.6M), Christie's London, 1987. EDITORIAL JUDGMENT: this work is primarily an orchestra portrait, not a dancer subject, but it is one of the very first Degas works to connect him to the Paris Opera -- the institution that became his single most important lifelong subject -- and dancers do appear (cropped) at the top of the canvas. Positioned modestly above the genre-scene floor to reflect that historical significance, without treating it as a full dancer-subject work.",
+      "comparableSales": [
+        "Les Blanchisseuses (The Laundry Maids), Edgar Degas — $13.7M (~€12.6M), Christie's London, 1987 — closest available non-dancer Degas genre comparable; an old, non-inflation-adjusted sale."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Degas painted his friend, the bassoonist Désiré Dihau, deliberately moving him to the front of the orchestra pit — not where he actually sat — so his portrait would stand out among the musicians who introduced Degas to the world of the Paris Opera.",
+      "fr": "Degas peint son ami, le bassoniste Désiré Dihau, en le déplaçant délibérément à l'avant de la fosse d'orchestre — ce qui n'était pas sa véritable place — afin que son portrait se distingue parmi les musiciens qui firent découvrir à Degas l'univers de l'Opéra de Paris.",
+      "zh-Hans": "德加描绘了他的朋友、巴松管演奏家德西雷·迪奥的肖像，特意把他安排到了乐池的最前方——而这并非他实际所坐的位置——这样他的形象便能在众乐师中脱颖而出。正是这些音乐家，把德加引入了巴黎歌剧院的世界。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the dancers' legs and tutus glimpsed just at the very top of the painting, cropped off by the edge of the stage — Degas gives us the orchestra's view, where the performance itself is almost an afterthought.",
+      "fr": "Remarquez les jambes et les tutus des danseuses, entraperçus tout en haut du tableau, coupés par le bord de la scène — Degas nous offre le point de vue de l'orchestre, où la représentation elle-même devient presque secondaire.",
+      "zh-Hans": "留意画面最上方隐约可见的舞者的双腿和芭蕾裙摆，被舞台边缘生生截断——德加为我们呈现的是乐队席的视角，演出本身反倒显得像是画面中的次要角色。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Dihau, the bassoonist, actually commissioned this painting himself — and it was Dihau who first introduced Degas to the backstage world of the Opera that became one of his lifelong subjects.",
+      "fr": "Dihau, le bassoniste, commanda lui-même ce tableau — et c'est lui qui fit découvrir à Degas les coulisses de l'Opéra, univers qui devint l'un des sujets de toute sa vie.",
+      "zh-Hans": "巴松管演奏家迪奥其实亲自委托德加创作了这幅画——也正是迪奥，第一个带领德加走进歌剧院的幕后世界，而这个题材，后来成为德加毕生钟爱的创作主题之一。"
+    },
+    "whySimple": {
+      "en": "Degas painted his friend Désiré Dihau, who played bassoon in the Opera orchestra. Degas moved him to the front of the picture, even though that's not really where he sat, so his portrait would stand out.",
+      "fr": "Degas peint son ami Désiré Dihau, qui jouait du basson dans l'orchestre de l'Opéra. Degas l'a placé à l'avant du tableau, même si ce n'était pas vraiment sa place, afin que son portrait se distingue.",
+      "zh-Hans": "德加画了他的朋友德西雷·迪奥，他在歌剧院乐队里演奏巴松管。德加把他安排到了画面的最前方，尽管那其实并不是他真正坐的位置，这样他的肖像才能格外醒目。"
+    },
+    "whereSimple": {
+      "en": "Notice the dancers' legs and tutus peeking in at the very top of the painting, cut off by the stage — Degas shows us the orchestra's view of the show, not the performance itself.",
+      "fr": "Remarquez les jambes et les tutus des danseuses qui apparaissent tout en haut du tableau, coupés par la scène — Degas nous montre le point de vue de l'orchestre sur le spectacle, et non la représentation elle-même.",
+      "zh-Hans": "留意画面最上方露出的舞者双腿和芭蕾裙摆，被舞台边缘截断——德加向我们展示的是乐队看到的演出景象，而不是演出本身。"
+    },
+    "raritySimple": {
+      "en": "Dihau asked Degas to paint this picture himself — and Dihau was the one who first introduced Degas to backstage life at the Opera, which became one of Degas's favorite subjects.",
+      "fr": "Dihau demanda lui-même à Degas de peindre ce tableau — et c'est Dihau qui fit découvrir à Degas les coulisses de l'Opéra, qui devinrent l'un des sujets préférés de Degas.",
+      "zh-Hans": "这幅画其实是迪奥亲自请德加创作的——也正是迪奥，最初带领德加认识了歌剧院的幕后生活，这后来成为了德加最钟爱的创作主题之一。"
+    },
+    "whyKids": {
+      "en": "Degas painted his friend Désiré, who played a big bassoon in the orchestra, and put him right at the front of the picture — even though that's not really where he sat!",
+      "fr": "Degas a peint son ami Désiré, qui jouait d'un grand basson dans l'orchestre, et l'a placé tout à l'avant du tableau — même si ce n'était pas vraiment sa place !",
+      "zh-Hans": "德加画了他的朋友德西雷，他在乐队里吹着一支大大的巴松管，德加把他画在了画面最前面——虽然那其实不是他真正坐的位置！"
+    },
+    "whereKids": {
+      "en": "Look way up at the very top of the painting — can you spot the dancers' legs and tutus peeking in, cut off by the edge of the stage?",
+      "fr": "Regarde tout en haut du tableau — arrives-tu à repérer les jambes et les tutus des danseuses, coupés par le bord de la scène ?",
+      "zh-Hans": "抬头看看画面最上方——你能找到那些被舞台边缘截断、只露出一点点的舞者的腿和芭蕾裙吗？"
+    },
+    "rarityKids": {
+      "en": "Désiré actually asked Degas to paint this for him — and he's the one who first showed Degas backstage at the Opera, which Degas ended up loving so much he painted it again and again!",
+      "fr": "Désiré a en fait demandé à Degas de peindre ce tableau pour lui — et c'est lui qui a fait découvrir à Degas les coulisses de l'Opéra, que Degas a fini par tellement aimer qu'il les a peintes encore et encore !",
+      "zh-Hans": "其实是德西雷请德加为他画了这幅画——也正是他，第一个带德加去看了歌剧院的后台，德加从此爱上了那里，一遍又一遍地把它画了下来！"
     }
   },
   {
@@ -5463,7 +5650,7 @@
     "accent": "#754A8F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Lorenzo Pagans and Auguste de Gas",
       "fr": "Lorenzo Pagans et Auguste de Gas",
@@ -5475,23 +5662,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 8,
+      "high": 16,
+      "logic": "FACT: Les Blanchisseuses (The Laundry Maids), Degas's closest real non-dancer genre comparable, sold for $13.7M (~EUR12.6M), Christie's London, 1987. EDITORIAL JUDGMENT: a small, intimate double portrait of Degas's own father and a family friend, without the scale or public ambition of The Bellelli Family or the historical significance of L'Orchestre de l'Opera -- positioned modestly, near but slightly below the genre-scene floor, to reflect its more private, domestic character.",
+      "comparableSales": [
+        "Les Blanchisseuses (The Laundry Maids), Edgar Degas — $13.7M (~€12.6M), Christie's London, 1987 — closest available non-dancer Degas genre comparable; an old, non-inflation-adjusted sale."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Degas painted his own father listening intently to the Spanish tenor Lorenzo Pagans singing and playing guitar — a quiet, affectionate glimpse into the private musical evenings the Degas family loved to host at home.",
+      "fr": "Degas peint son propre père écoutant attentivement le ténor espagnol Lorenzo Pagans chanter en s'accompagnant à la guitare — un aperçu paisible et affectueux des soirées musicales privées que la famille Degas aimait organiser chez elle.",
+      "zh-Hans": "德加描绘了自己的父亲专注聆听西班牙男高音洛伦佐·帕甘斯边弹吉他边歌唱的情景——这幅画温柔地呈现了德加家族钟爱的、在家中举办的私人音乐夜晚。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the light falls on Pagans in the center while Degas's father sits further back in shadow, absorbed in listening — Degas gives the performer center stage even in his own family's living room.",
+      "fr": "Remarquez comme la lumière tombe sur Pagans au centre, tandis que le père de Degas est assis plus en retrait, dans l'ombre, absorbé dans l'écoute — Degas donne au musicien la place centrale, même dans le salon de sa propre famille.",
+      "zh-Hans": "留意光线是如何落在画面中央的帕甘斯身上的，而德加的父亲则坐在更靠后的阴影中，沉浸在聆听之中——即便是在自己家的客厅里，德加也把舞台中心留给了这位表演者。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This intimate double portrait is one of the few surviving images Degas made of his own father, who died just a couple of years after it was painted.",
+      "fr": "Ce double portrait intime est l'une des rares images subsistantes que Degas ait faites de son propre père, qui mourut seulement quelques années après que ce tableau fut peint.",
+      "zh-Hans": "这幅私密的双人肖像画，是德加留下的、为数不多的父亲画像之一——他的父亲在这幅画完成后仅仅几年便离世了。"
+    },
+    "whySimple": {
+      "en": "Degas painted his own father listening to the Spanish singer Lorenzo Pagans, who is singing and playing guitar. It's a quiet, warm picture of the musical evenings the Degas family loved to host.",
+      "fr": "Degas peint son propre père écoutant le chanteur espagnol Lorenzo Pagans, qui chante en jouant de la guitare. C'est une image paisible et chaleureuse des soirées musicales que la famille Degas aimait organiser.",
+      "zh-Hans": "德加画了自己的父亲聆听西班牙歌手洛伦佐·帕甘斯边弹吉他边歌唱的样子。这是一幅温暖、宁静的画面，展现了德加家族钟爱的那些音乐夜晚。"
+    },
+    "whereSimple": {
+      "en": "Notice how Pagans is lit up in the center, while Degas's father sits further back in shadow, just listening.",
+      "fr": "Remarquez comme Pagans est éclairé au centre, tandis que le père de Degas est assis plus en retrait, dans l'ombre, se contentant d'écouter.",
+      "zh-Hans": "留意帕甘斯是如何被光线照亮、置身画面中央的，而德加的父亲则坐在更靠后的阴影里，只是静静地聆听。"
+    },
+    "raritySimple": {
+      "en": "This is one of the few pictures Degas ever painted of his own father, who died only a couple of years after this was painted.",
+      "fr": "C'est l'un des rares tableaux que Degas ait jamais peints de son propre père, qui mourut seulement quelques années après que ce tableau fut peint.",
+      "zh-Hans": "这是德加为数不多的、描绘自己父亲的画作之一——他的父亲在这幅画完成后仅仅几年便去世了。"
+    },
+    "whyKids": {
+      "en": "Degas painted his own dad listening to a singer named Lorenzo, who is singing and playing guitar — it's like a cozy little home concert!",
+      "fr": "Degas a peint son propre papa en train d'écouter un chanteur nommé Lorenzo, qui chante en jouant de la guitare — c'est comme un petit concert chaleureux à la maison !",
+      "zh-Hans": "德加画了自己的爸爸，正在听一位叫洛伦佐的歌手边弹吉他边唱歌——就像一场温馨的家庭小音乐会一样！"
+    },
+    "whereKids": {
+      "en": "Look how the light shines on the singer in the middle, while Degas's dad sits back in the shadows, just enjoying the music.",
+      "fr": "Regarde comme la lumière brille sur le chanteur au milieu, tandis que le papa de Degas reste en retrait dans l'ombre, profitant simplement de la musique.",
+      "zh-Hans": "看光线是怎么照在中间那位歌手身上的，而德加的爸爸则坐在阴影里，静静地享受着这段音乐。"
+    },
+    "rarityKids": {
+      "en": "This is one of the only pictures Degas ever made of his very own dad!",
+      "fr": "C'est l'un des seuls tableaux que Degas ait jamais faits de son propre papa !",
+      "zh-Hans": "这是德加为自己亲爱的爸爸所画的、极少数的几幅画像之一！"
     }
   },
   {
