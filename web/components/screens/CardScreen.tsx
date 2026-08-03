@@ -7,6 +7,7 @@ import PriceBadge from "@/components/ui/PriceBadge";
 import ScaleComparisonBadge from "@/components/ui/ScaleComparisonBadge";
 import EyeBlock from "@/components/ui/EyeBlock";
 import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
+import { resolveKidsScaleComparison } from "@/lib/scaleComparison";
 import { tt } from "@/lib/i18n";
 import type { AppState } from "@/lib/app-state";
 
@@ -40,6 +41,10 @@ export default function CardScreen({
   const title = resolveTitle(artwork, state.locale);
   const isAdded = state.added.has(artwork.id);
   const isFavorite = state.favorites.has(artwork.id);
+  const isKids = state.mode === "kids";
+  const kidsComparison = isKids
+    ? resolveKidsScaleComparison(artwork.estimate.low, artwork.estimate.high, state.locale)
+    : null;
 
   return (
     <div className="w-full h-full bg-[#F5F5F7] flex flex-col overflow-y-auto scrollbar-none">
@@ -84,8 +89,15 @@ export default function CardScreen({
 
         <div className="mt-4 flex items-center gap-2">
           <PriceBadge low={artwork.estimate.low} high={artwork.estimate.high} locale={state.locale} />
-          <ScaleComparisonBadge low={artwork.estimate.low} high={artwork.estimate.high} locale={state.locale} />
+          {/* Kids mode gets its own sentence-style comparison below instead
+              of this terse pill — a kid-facing "≈ 2 long-range private
+              jets" reads as a dry fact, not the "Хватило бы на X" story
+              tone the rest of Kids content uses. */}
+          {!isKids && <ScaleComparisonBadge low={artwork.estimate.low} high={artwork.estimate.high} locale={state.locale} />}
         </div>
+        {kidsComparison && (
+          <p className="mt-2 text-[13px] font-semibold text-[#1D1D1F]">{kidsComparison}</p>
+        )}
 
         {excluded ? (
           <p className="mt-5 text-[16px] leading-[24px] tracking-[-0.011em] text-[#1D1D1F] font-[450]">

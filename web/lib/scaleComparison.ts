@@ -27,16 +27,24 @@ const ADULT_OBJECTS: ComparisonObject[] = [
 
 // Kids table: deliberately NOT a reuse of the adult list — a 6-year-old has
 // no intuition for "a private jet" as a unit, but absolutely has one for
-// ice cream, LEGO, bikes and rollercoasters. Values are everyday-knowledge
-// approximations (not independently sourced the way the adult table's
-// big-ticket items were, since these are common consumer prices, not
-// specialist market data).
+// ice cream, LEGO, bikes and rollercoasters. Small-item values are
+// everyday-knowledge approximations (not independently sourced the way the
+// adult table's big-ticket items were, since these are common consumer
+// prices, not specialist market data). The two big-ticket items
+// (trampoline_park, rollercoaster) ARE sourced: a standard trampoline park
+// (25,000-40,000 sq ft) runs ~$1.5-3M per industry cost guides, and a major
+// theme-park rollercoaster is commonly cited in the $10-15M range.
+// trampoline_park exists specifically to fill the gap between backyard_pool
+// and rollercoaster -- without it, a €2-8M work (Cabanel, Ingres tier)
+// landed on 50-140 backyard pools, which reads as flat/uncountable rather
+// than a vivid, graspable comparison.
 const KIDS_OBJECTS: ComparisonObject[] = [
   { id: "ice_cream", valueEur: 0.000004, label: { en: "ice cream scoop", fr: "boule de glace", "zh-Hans": "一球冰淇淋" } },
   { id: "lego_set", valueEur: 0.00006, label: { en: "LEGO set", fr: "boîte de LEGO", "zh-Hans": "一套乐高" } },
   { id: "bicycle", valueEur: 0.0002, label: { en: "bicycle", fr: "vélo", "zh-Hans": "自行车" } },
   { id: "theme_park_day", valueEur: 0.0006, label: { en: "family day at a theme park", fr: "journée en famille dans un parc d'attractions", "zh-Hans": "一次家庭主题乐园之旅" } },
   { id: "backyard_pool", valueEur: 0.04, label: { en: "backyard swimming pool", fr: "piscine de jardin", "zh-Hans": "自家后院游泳池" } },
+  { id: "trampoline_park", valueEur: 2, label: { en: "trampoline park", fr: "parc de trampolines", "zh-Hans": "一座蹦床乐园" } },
   { id: "rollercoaster", valueEur: 12, label: { en: "real rollercoaster", fr: "vrais grand huit", "zh-Hans": "一座真正的过山车" } },
 ];
 
