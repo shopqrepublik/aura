@@ -1935,7 +1935,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Dance in the City",
       "fr": "Danse à la ville",
@@ -1947,23 +1947,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 35,
+      "logic": "FACT: Renoir's auction record is $78.1M (~EUR71.9M) for a second version of Bal du moulin de la Galette (Sotheby's New York, 1990) -- a large multi-figure Parisian social-dance scene, the same broad genre (French social dance) as this work. EDITORIAL JUDGMENT: Dance in the City is a much smaller, two-figure composition, not the 30+-figure crowd scene that record represents, and was painted seven years later as part of a different, later commission -- positioned well below the Bal record, in the same tier used for La Balancoire elsewhere in this catalog (another small, intimate Renoir genre scene), reflecting real differences in scale and date rather than treating the record as directly transferable.",
+      "comparableSales": [
+        "Bal du moulin de la Galette (second version), Pierre-Auguste Renoir — $78.1M (~€71.9M), Sotheby's New York, 1990 — Renoir's auction record; same broad genre (French social dance scene) but a much larger, earlier, and more ambitious composition."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Renoir painted this elegant couple gliding across a ballroom floor as one half of a matched pair with Dance in the Country — the same models, Suzanne Valadon and Paul Lhote, appear in both, but here dressed for a formal, aristocratic Parisian ball rather than a relaxed outdoor party.",
+      "fr": "Renoir peint ce couple élégant glissant sur le parquet d'une salle de bal comme la moitié d'une paire assortie avec la Danse à la campagne — les mêmes modèles, Suzanne Valadon et Paul Lhote, apparaissent dans les deux tableaux, mais ici habillés pour un bal parisien formel et aristocratique plutôt que pour une fête décontractée en plein air.",
+      "zh-Hans": "雷诺阿将这对在舞厅地板上翩翩起舞的优雅舞伴，与《乡村之舞》画成了一对相互呼应的姊妹作——两幅画中的模特都是苏珊娜·瓦拉东和保罗·洛特，只是在这幅画里，他们身着盛装出席一场正式而讲究的巴黎贵族舞会，而非乡间的轻松聚会。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how cool and composed the woman's expression is, and how carefully Renoir renders the sheen of her pale satin gown — a controlled, polished elegance that contrasts sharply with the warmer, looser painting of its country counterpart.",
+      "fr": "Remarquez combien l'expression de la femme est froide et composée, et avec quel soin Renoir rend l'éclat de sa robe de satin pâle — une élégance maîtrisée et raffinée qui contraste nettement avec la touche plus chaude et plus libre de son pendant campagnard.",
+      "zh-Hans": "留意画中女子神情是多么冷静从容，而雷诺阿又是多么细致地描绘出她那件浅色缎裙的光泽——这种克制而精致的优雅，与《乡村之舞》中更温暖、更松弛的笔触形成了鲜明对比。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The model for the woman here, Suzanne Valadon, later became a celebrated painter in her own right — she began as an artist's model for Renoir, Toulouse-Lautrec, and others before picking up the brush herself.",
+      "fr": "Le modèle de la femme ici, Suzanne Valadon, devint plus tard elle-même une peintre célèbre — elle commença comme modèle pour Renoir, Toulouse-Lautrec et d'autres avant de prendre elle-même le pinceau.",
+      "zh-Hans": "画中女子的原型苏珊娜·瓦拉东，后来自己也成为了一位声名卓著的画家——她最初是雷诺阿、图卢兹-劳特累克等画家的模特，之后才拿起画笔，走上了绘画之路。"
+    },
+    "whySimple": {
+      "en": "Renoir painted this elegant dancing couple as one half of a matching pair with Dance in the Country. The same two models appear in both paintings, but here they're dressed up for a formal city ball.",
+      "fr": "Renoir peint ce couple de danseurs élégants comme la moitié d'une paire assortie avec la Danse à la campagne. Les deux mêmes modèles apparaissent dans les deux tableaux, mais ici ils sont habillés pour un bal citadin formel.",
+      "zh-Hans": "雷诺阿画的这对优雅的舞伴，与《乡村之舞》是相互呼应的一对。两幅画里的模特是同一对，只是在这幅画里，他们盛装打扮，出席了一场正式的城市舞会。"
+    },
+    "whereSimple": {
+      "en": "Notice the woman's cool, composed expression and the shiny satin of her dress — very polished and elegant, unlike the warmer, relaxed feeling of the country version.",
+      "fr": "Remarquez l'expression froide et posée de la femme et le satin brillant de sa robe — très raffiné et élégant, à l'opposé de l'ambiance plus chaude et détendue de la version campagnarde.",
+      "zh-Hans": "留意女子那沉静从容的神情，以及她裙子上闪亮的缎面质感——十分精致优雅，与乡村版本那种温暖、放松的氛围截然不同。"
+    },
+    "raritySimple": {
+      "en": "The woman in this painting, Suzanne Valadon, started out as an artist's model but later became a famous painter herself.",
+      "fr": "La femme de ce tableau, Suzanne Valadon, a commencé comme modèle d'artiste avant de devenir elle-même une peintre célèbre.",
+      "zh-Hans": "画中的这位女子苏珊娜·瓦拉东，起初只是画家的模特，后来自己也成为了一位著名画家。"
+    },
+    "whyKids": {
+      "en": "Renoir painted this dancing couple all dressed up for a fancy city ball! It's actually one half of a matching pair — there's another painting showing the same two people dancing outdoors in the countryside instead.",
+      "fr": "Renoir a peint ce couple de danseurs tout habillé pour un bal chic en ville ! C'est en fait la moitié d'une paire assortie — il existe un autre tableau montrant les deux mêmes personnes en train de danser en plein air, à la campagne.",
+      "zh-Hans": "雷诺阿画的这对舞伴，正盛装打扮去参加一场豪华的城市舞会呢！这其实是一对画作中的一半——还有另一幅画，画着同样的两个人在乡下户外跳舞哦。"
+    },
+    "whereKids": {
+      "en": "Look how shiny and smooth her satin dress looks — Renoir was really good at painting fabric that looks like it's catching the light!",
+      "fr": "Regarde comme sa robe de satin a l'air brillante et lisse — Renoir était vraiment doué pour peindre des tissus qui semblent capter la lumière !",
+      "zh-Hans": "看她那条缎子裙子有多光滑闪亮呀——雷诺阿特别擅长把布料画得像真的在反光一样！"
+    },
+    "rarityKids": {
+      "en": "The woman who posed for this painting grew up to become a famous painter herself, even though she started out just modeling for other artists.",
+      "fr": "La femme qui a posé pour ce tableau est devenue elle-même une peintre célèbre en grandissant, même si elle a commencé par simplement poser pour d'autres artistes.",
+      "zh-Hans": "为这幅画当模特的女子，后来自己也成了一位著名画家，尽管她一开始只是给别的画家当模特。"
     }
   },
   {
@@ -1977,7 +2014,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Dance in the Country",
       "fr": "Danse à la campagne",
@@ -1989,23 +2026,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 35,
+      "logic": "FACT: Renoir's auction record is $78.1M (~EUR71.9M) for a second version of Bal du moulin de la Galette (Sotheby's New York, 1990) -- same broad genre (French social dance) as this work. EDITORIAL JUDGMENT: identical range to Dance in the City on purpose, not by mechanical copy -- both are genuine pendant works, painted the same year as a matched pair for the same commission, and no principled fact-based reason was found to value one above the other. As with Luncheon on the Grass/Olympia elsewhere in this catalog, inventing an artificial gap between a true pendant pair would itself be false precision.",
+      "comparableSales": [
+        "Bal du moulin de la Galette (second version), Pierre-Auguste Renoir — $78.1M (~€71.9M), Sotheby's New York, 1990 — Renoir's auction record; same broad genre, same caveats as used for Dance in the City."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Renoir painted this joyful, sun-warmed couple as the country half of a matched pair with Dance in the City — here the woman is Aline Charigot, who would soon become Renoir's own wife, dancing with his friend Paul Lhote at an open-air party.",
+      "fr": "Renoir peint ce couple joyeux et baigné de soleil comme le pendant campagnard de la Danse à la ville — ici, la femme est Aline Charigot, qui deviendra bientôt l'épouse de Renoir, dansant avec son ami Paul Lhote lors d'une fête en plein air.",
+      "zh-Hans": "雷诺阿将这对沐浴在阳光下、洋溢着欢乐气息的舞伴，画成了与《城市之舞》相对应的「乡村篇」——画中的女子是阿琳·夏里戈，不久后她将成为雷诺阿的妻子；她正与雷诺阿的朋友保罗·洛特一起，在一场露天聚会上翩翩起舞。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Compare the loose, warm brushwork here with the cooler, more polished handling of the city version — the woman's flushed cheeks and relaxed, laughing pose set an entirely different mood from her formal counterpart.",
+      "fr": "Comparez la touche libre et chaude ici avec le rendu plus froid et plus raffiné de la version citadine — les joues rosies de la femme et sa pose détendue et rieuse installent une ambiance totalement différente de son pendant plus formel.",
+      "zh-Hans": "把这里松弛而温暖的笔触，和城市版本中那种更冷静、更精致的处理方式比较一下——女子泛红的脸颊和轻松欢笑的姿态，与那位举止端庄的对应人物，营造出了截然不同的氛围。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This is one of the few times Renoir painted his future wife before their relationship was public — Aline appears here simply as \"a dancer,\" years before she became Madame Renoir.",
+      "fr": "C'est l'une des rares fois où Renoir peignit sa future épouse avant que leur relation ne soit publique — Aline apparaît ici simplement comme « une danseuse », des années avant de devenir Madame Renoir.",
+      "zh-Hans": "这是雷诺阿在两人关系公开之前，为未来的妻子作画的少数几次之一——画中的阿琳，此时还只是一位普通的「舞者」，距离她成为雷诺阿夫人还有好几年的时间。"
+    },
+    "whySimple": {
+      "en": "Renoir painted this cheerful outdoor dancing couple as the country half of a matching pair with Dance in the City. The woman, Aline Charigot, later became Renoir's own wife.",
+      "fr": "Renoir peint ce couple de danseurs joyeux en plein air comme la moitié campagnarde d'une paire assortie avec la Danse à la ville. La femme, Aline Charigot, deviendra plus tard l'épouse de Renoir.",
+      "zh-Hans": "雷诺阿画的这对在户外欢快起舞的舞伴，是与《城市之舞》相对应的「乡村篇」。画中的女子阿琳·夏里戈，后来成为了雷诺阿的妻子。"
+    },
+    "whereSimple": {
+      "en": "Compare the loose, warm brushwork here with the more polished city version — her rosy cheeks and relaxed pose feel much warmer and more casual.",
+      "fr": "Comparez la touche libre et chaude ici avec la version citadine plus raffinée — ses joues roses et sa pose détendue paraissent bien plus chaleureuses et décontractées.",
+      "zh-Hans": "把这里松弛温暖的笔触，和更为精致的城市版本比较一下——她红润的脸颊和放松的姿态，显得更加温暖、更加随意。"
+    },
+    "raritySimple": {
+      "en": "This is one of the earliest paintings of Renoir's future wife, Aline, years before they were publicly a couple.",
+      "fr": "C'est l'un des tout premiers tableaux représentant la future épouse de Renoir, Aline, des années avant qu'ils ne forment un couple public.",
+      "zh-Hans": "这是雷诺阿未来的妻子阿琳最早出现在画作中的一次，距离两人公开成为情侣还有好几年。"
+    },
+    "whyKids": {
+      "en": "Renoir painted this happy outdoor dancing couple — it's the country half of a matching pair with a city version of the same two dancers! The woman in this one later became Renoir's own wife.",
+      "fr": "Renoir a peint ce couple de danseurs heureux en plein air — c'est la moitié campagnarde d'une paire assortie avec une version citadine des deux mêmes danseurs ! La femme de ce tableau est plus tard devenue l'épouse de Renoir.",
+      "zh-Hans": "雷诺阿画了这对在户外快乐起舞的舞伴——这是和城市版本相配对的「乡村篇」，两幅画里跳舞的其实是同一对人！画里的这位女子后来成为了雷诺阿的妻子。"
+    },
+    "whereKids": {
+      "en": "Look how warm and rosy her cheeks are, and how relaxed and happy she looks — very different from the cooler, fancier city version!",
+      "fr": "Regarde comme ses joues sont chaudes et roses, et comme elle a l'air détendue et heureuse — très différent de la version citadine, plus froide et plus chic !",
+      "zh-Hans": "看她的脸颊多么温暖、红润，看起来又是多么放松、开心呀——这和更冷静、更讲究的城市版本很不一样！"
+    },
+    "rarityKids": {
+      "en": "Years before they got married, Renoir painted his future wife dancing in this very painting — a fun little secret hiding in plain sight!",
+      "fr": "Des années avant leur mariage, Renoir a peint sa future épouse en train de danser, juste ici, dans ce tableau — un petit secret amusant caché à la vue de tous !",
+      "zh-Hans": "在结婚的好多年前，雷诺阿就把自己未来的妻子画进了这幅跳舞的画里——这是个藏在画里、悄悄等你发现的小秘密！"
     }
   },
   {
@@ -3210,7 +3284,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Frédéric Bazille Painting",
       "fr": "Frédéric Bazille peignant à son chevalet",
@@ -3222,23 +3296,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 4,
+      "high": 8,
+      "logic": "FACT: the closest available genre match for a Renoir single-figure portrait is La femme aux lilas (Portrait de Nini Lopez), 1876-77, sold for $28.2M (~EUR26M) at Christie's New York, May 2026. EDITORIAL JUDGMENT: that comparable is a mature-period (mid-1870s), highly finished Belle Epoque society/model portrait -- Renoir's most sought-after portrait style. This 1867 work is nearly a decade earlier, painted before Renoir's mature Impressionist style emerged, in a plainer, Realist-influenced manner, and depicts a fellow (male) painter at work rather than an elegant sitter. Positioned well below the mature-portrait comparable to reflect this genuine period and style gap, not treated as directly equivalent just because both are single-figure portraits.",
+      "comparableSales": [
+        "La femme aux lilas (Portrait de Nini Lopez), Pierre-Auguste Renoir — $28.2M (~€26M), Christie's New York, May 2026 — closest available genre match (single-figure Renoir portrait), but from a later, more mature and stylistically different period."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Renoir painted his friend and fellow painter Frédéric Bazille at work at his easel, in the Paris studio the two shared with several other future Impressionists — a direct reply to a portrait Bazille had painted of Renoir that same year.",
+      "fr": "Renoir peint son ami et confrère peintre Frédéric Bazille au travail devant son chevalet, dans l'atelier parisien qu'ils partageaient avec plusieurs autres futurs impressionnistes — une réponse directe à un portrait que Bazille avait peint de Renoir cette même année.",
+      "zh-Hans": "雷诺阿描绘了他的朋友、画家弗雷德里克·巴齐耶正在巴黎画室里的画架前作画的情景——这间画室曾由他们和其他几位后来的印象派画家共同使用。这幅画其实是雷诺阿对巴齐耶同年为他所作肖像的一次「回赠」。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look closely at what Bazille is painting on his own easel within the picture — Renoir includes it as a painting-within-a-painting, a small joke between two artist friends who painted each other constantly.",
+      "fr": "Regardez attentivement ce que Bazille peint sur son propre chevalet à l'intérieur du tableau — Renoir l'inclut comme un tableau dans le tableau, une petite plaisanterie entre deux amis peintres qui se peignaient constamment l'un l'autre.",
+      "zh-Hans": "仔细看看画中的巴齐耶自己正在画架上画着什么——雷诺阿在这里画了一幅「画中画」，这是两位常常互相描绘对方的画家朋友之间的一个小玩笑。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bazille was killed in battle in the Franco-Prussian War just three years later, at only 28 — making this a rare, direct record of him at work, painted by a friend who would go on to help found Impressionism without him.",
+      "fr": "Bazille fut tué au combat pendant la guerre franco-prussienne trois ans plus tard seulement, à seulement 28 ans — faisant de ce tableau un témoignage rare et direct de lui au travail, peint par un ami qui allait contribuer à fonder l'impressionnisme sans lui.",
+      "zh-Hans": "仅仅三年后，巴齐耶就在普法战争中阵亡，年仅28岁——这让这幅画成为记录他工作状态的珍贵直接影像，而画下这一切的朋友，日后将在没有他的情况下，参与开创印象派艺术。"
+    },
+    "whySimple": {
+      "en": "Renoir painted his friend, the painter Frédéric Bazille, working at his easel in the studio they shared with other young painters. It was Renoir's reply to a portrait Bazille had painted of him that same year.",
+      "fr": "Renoir peint son ami, le peintre Frédéric Bazille, au travail devant son chevalet, dans l'atelier qu'ils partageaient avec d'autres jeunes peintres. C'était la réponse de Renoir à un portrait que Bazille avait peint de lui cette même année.",
+      "zh-Hans": "雷诺阿画了他的朋友、画家弗雷德里克·巴齐耶，在他们与其他年轻画家共用的画室里，站在画架前工作的样子。这是雷诺阿对巴齐耶同年为他所作肖像的回礼。"
+    },
+    "whereSimple": {
+      "en": "Look at what Bazille is painting inside the picture — Renoir shows a painting within the painting, a playful touch between two friends who often painted each other.",
+      "fr": "Regardez ce que Bazille peint à l'intérieur du tableau — Renoir montre un tableau dans le tableau, une touche espiègle entre deux amis qui se peignaient souvent l'un l'autre.",
+      "zh-Hans": "看看画中的巴齐耶正在画些什么——雷诺阿在画里又画了一幅画，这是两位常常互相描绘对方的朋友之间一个俏皮的小心思。"
+    },
+    "raritySimple": {
+      "en": "Bazille died in battle just three years after this was painted, at age 28 — making this one of the few close-up records we have of him actually at work.",
+      "fr": "Bazille mourut au combat seulement trois ans après que ce tableau fut peint, à l'âge de 28 ans — faisant de lui l'un des rares témoignages rapprochés que nous ayons de lui réellement au travail.",
+      "zh-Hans": "这幅画完成仅三年后，巴齐耶就在战场上牺牲了，年仅28岁——这让这幅画成为我们所拥有的、少数几幅近距离记录他工作状态的画作之一。"
+    },
+    "whyKids": {
+      "en": "Renoir painted a picture of his friend Bazille, who was also a painter, busy working at his easel. Bazille had painted a picture of Renoir that same year, so this was like Renoir painting him back!",
+      "fr": "Renoir a peint son ami Bazille, qui était aussi peintre, occupé à travailler devant son chevalet. Bazille avait peint un tableau de Renoir cette même année, alors c'était un peu comme si Renoir lui rendait la pareille !",
+      "zh-Hans": "雷诺阿画了他的朋友巴齐耶——巴齐耶也是一位画家，正忙着在画架前工作。同一年，巴齐耶也画了一幅雷诺阿的画像，所以这就像是雷诺阿「回画」给他一样！"
+    },
+    "whereKids": {
+      "en": "Can you spot the little painting inside the painting? That's the picture Bazille himself is working on!",
+      "fr": "Arrives-tu à repérer le petit tableau à l'intérieur du tableau ? C'est l'image sur laquelle Bazille lui-même est en train de travailler !",
+      "zh-Hans": "你能找到藏在这幅画里的那幅「小画」吗？那正是巴齐耶自己正在创作的画哦！"
+    },
+    "rarityKids": {
+      "en": "Sadly, Bazille died when he was only 28, just a few years after this was painted — so this picture is a rare, close-up look at him actually at work.",
+      "fr": "Malheureusement, Bazille est mort à seulement 28 ans, quelques années à peine après que ce tableau fut peint — ce tableau est donc un rare aperçu rapproché de lui réellement au travail.",
+      "zh-Hans": "很遗憾，这幅画完成没几年，巴齐耶就在28岁那年去世了——所以这幅画，成了我们能近距离看到他工作时模样的珍贵画面之一。"
     }
   },
   {
@@ -3738,7 +3849,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Claude Monet",
       "fr": "Claude Monet",
@@ -3750,23 +3861,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 18,
+      "logic": "FACT: the closest available genre match for a Renoir single-figure portrait is La femme aux lilas (Portrait de Nini Lopez), 1876-77, sold for $28.2M (~EUR26M) at Christie's New York, May 2026. EDITORIAL JUDGMENT: strong period match (1875, essentially the same mature Impressionist years as the comparable) and praised at the time for the same technical skill, but the sitter is a male painter friend captured informally rather than an elegant society sitter posed for a decorative, market-favored portrait -- positioned below the Nini Lopez tier to reflect that real difference in subject type, while above the earlier, different-period Bazille portrait elsewhere in this batch.",
+      "comparableSales": [
+        "La femme aux lilas (Portrait de Nini Lopez), Pierre-Auguste Renoir — $28.2M (~€26M), Christie's New York, May 2026 — closest available genre match, strong period match, but a different sitter type (decorative society portrait vs. an informal friend's portrait)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Renoir painted his close friend and fellow painter Claude Monet relaxed at home, reading with a pipe in hand — one of several affectionate portraits the Impressionist painters made of each other during the years they were too poor and unknown to find many other willing sitters.",
+      "fr": "Renoir peint son ami proche et confrère peintre Claude Monet détendu chez lui, en train de lire, une pipe à la main — l'un des nombreux portraits affectueux que les peintres impressionnistes firent les uns des autres durant les années où ils étaient trop pauvres et trop peu connus pour trouver beaucoup d'autres modèles volontaires.",
+      "zh-Hans": "雷诺阿描绘了他的挚友、画家克劳德·莫奈在家中放松读书、手持烟斗的情景——这是印象派画家们在那些贫困而默默无闻的岁月里，互相为对方作画的众多深情肖像之一，那时他们很难找到愿意当模特的其他人。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the leafy branch arching over Monet's head in the background — some historians read it as a gentle, joking \"crown\" that Renoir gave his friend.",
+      "fr": "Remarquez la branche feuillue qui s'arque au-dessus de la tête de Monet en arrière-plan — certains historiens y voient une « couronne » douce et espiègle que Renoir aurait offerte à son ami.",
+      "zh-Hans": "留意背景中那根拱在莫奈头顶上方的带叶枝条——一些艺术史学家认为，这是雷诺阿开玩笑般，为朋友戴上的一顶温柔的「桂冠」。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Critics at the 1876 Impressionist exhibition, where this was shown, singled it out as proof that Renoir could paint with the skill of an old master, even while working in this then-controversial new style.",
+      "fr": "Les critiques de l'exposition impressionniste de 1876, où ce tableau fut présenté, le distinguèrent comme la preuve que Renoir pouvait peindre avec le talent d'un maître ancien, même en travaillant dans ce style alors controversé.",
+      "zh-Hans": "在1876年印象派展览上，这幅画首次亮相时，一些评论家特意指出，即便运用的是当时颇具争议的新画风，雷诺阿依然展现出了堪比古典大师的高超技艺。"
+    },
+    "whySimple": {
+      "en": "Renoir painted his good friend and fellow painter Claude Monet relaxing at home, reading and smoking a pipe. The Impressionist painters often painted portraits of each other in these early years.",
+      "fr": "Renoir peint son bon ami et confrère peintre Claude Monet se détendant chez lui, lisant et fumant la pipe. Les peintres impressionnistes se peignaient souvent des portraits les uns des autres durant ces premières années.",
+      "zh-Hans": "雷诺阿画了他的好朋友、画家克劳德·莫奈在家中放松、读书抽烟的样子。在那些早期岁月里，印象派画家们常常互相为对方画肖像。"
+    },
+    "whereSimple": {
+      "en": "Notice the leafy branch arching over Monet's head — some think Renoir painted it as a playful, joking \"crown\" for his friend.",
+      "fr": "Remarquez la branche feuillue qui s'arque au-dessus de la tête de Monet — certains pensent que Renoir l'a peinte comme une « couronne » espiègle pour son ami.",
+      "zh-Hans": "留意那根拱在莫奈头顶上方的带叶枝条——有人认为，这是雷诺阿开玩笑般为朋友画的一顶「桂冠」。"
+    },
+    "raritySimple": {
+      "en": "When this was shown in 1876, some critics said it proved Renoir could paint as skillfully as the old masters, even in this new, controversial style.",
+      "fr": "Lorsqu'il fut exposé en 1876, certains critiques dirent qu'il prouvait que Renoir pouvait peindre aussi habilement que les maîtres anciens, même dans ce style nouveau et controversé.",
+      "zh-Hans": "1876年这幅画展出时，一些评论家表示，这幅画证明了即便运用这种颇具争议的新画风，雷诺阿依然能画得和古典大师一样出色。"
+    },
+    "whyKids": {
+      "en": "Renoir painted his best friend, another painter named Claude Monet, just relaxing at home with a book and a pipe. The painter friends loved painting portraits of each other!",
+      "fr": "Renoir a peint son meilleur ami, un autre peintre nommé Claude Monet, tout simplement en train de se détendre chez lui avec un livre et une pipe. Les amis peintres adoraient se peindre des portraits les uns aux autres !",
+      "zh-Hans": "雷诺阿画了他最好的朋友——另一位叫克劳德·莫奈的画家——正拿着书和烟斗在家放松的样子。这些画家朋友们特别喜欢互相画肖像！"
+    },
+    "whereKids": {
+      "en": "Look at the leafy branch curving over Monet's head — it almost looks like a funny little crown Renoir gave him for fun!",
+      "fr": "Regarde la branche feuillue qui s'incurve au-dessus de la tête de Monet — on dirait presque une petite couronne rigolote que Renoir lui aurait donnée pour s'amuser !",
+      "zh-Hans": "看那根弯弯地绕在莫奈头顶上方的带叶枝条——看起来几乎像是雷诺阿开玩笑给他戴上的一顶小王冠！"
+    },
+    "rarityKids": {
+      "en": "When people first saw this painting, some art critics admitted it was really impressively painted — even though they didn't always like this new \"Impressionist\" style.",
+      "fr": "Quand les gens ont vu ce tableau pour la première fois, certains critiques d'art ont admis qu'il était vraiment impressionnant — même s'ils n'aimaient pas toujours ce nouveau style « impressionniste ».",
+      "zh-Hans": "人们第一次看到这幅画的时候，一些艺术评论家都不得不承认，这幅画画得真的很棒——尽管他们并不总是喜欢这种全新的「印象派」风格。"
     }
   },
   {
@@ -4557,7 +4705,7 @@
     "accent": "#6B89A7",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Madame Charpentier",
       "fr": "Madame Georges Charpentier",
@@ -4569,23 +4717,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 20,
+      "high": 32,
+      "logic": "FACT: La femme aux lilas (Portrait de Nini Lopez), a Renoir single-figure Belle Epoque portrait from the exact same years (1876-77), sold for $28.2M (~EUR26M) at Christie's New York, May 2026. EDITORIAL JUDGMENT: an unusually strong match -- same painter, same years, same genre (elegant single-figure society portrait) -- and this specific sitter has outsized historical importance as Renoir's most important patron, whose salon connections transformed his career, so the range is centered on and around the comparable rather than adjusted down.",
+      "comparableSales": [
+        "La femme aux lilas (Portrait de Nini Lopez), Pierre-Auguste Renoir — $28.2M (~€26M), Christie's New York, May 2026 — same painter, same years (1876-77), same genre: a strong, close comparable."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Renoir painted Marguerite Charpentier, wife of the publisher Georges Charpentier, whose glamorous Paris salon connected Renoir to the wealthy patrons who would transform his career — this portrait marks the beginning of one of the most important relationships of his professional life.",
+      "fr": "Renoir peint Marguerite Charpentier, épouse de l'éditeur Georges Charpentier, dont le salon parisien fastueux mit Renoir en contact avec les riches mécènes qui allaient transformer sa carrière — ce portrait marque le début de l'une des relations les plus importantes de sa vie professionnelle.",
+      "zh-Hans": "雷诺阿描绘了出版商乔治·夏庞蒂埃的妻子玛格丽特·夏庞蒂埃——她那令人瞩目的巴黎沙龙，为雷诺阿引荐了那些日后彻底改变他职业生涯的富有赞助人。这幅肖像画，标志着雷诺阿人生中最重要的一段关系的开端。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the soft, flattering brushwork Renoir uses for her face and dress — a more polished, society-portrait style than his rougher outdoor scenes, tailored to please an elegant, influential sitter.",
+      "fr": "Regardez la touche douce et flatteuse que Renoir emploie pour son visage et sa robe — un style de portrait mondain plus raffiné que ses scènes de plein air plus rugueuses, conçu pour plaire à une commanditaire élégante et influente.",
+      "zh-Hans": "看雷诺阿在她的面容和裙装上运用的那种柔和、讨喜的笔触——这是一种比他那些较为粗犷的户外场景更为精致的社交肖像画风，专为取悦一位优雅而有影响力的委托人而精心打造。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "A few years after this portrait, Renoir painted a much larger group portrait of Madame Charpentier with her children, which became his first major Salon success — this smaller, solo portrait was the opening chapter of that story.",
+      "fr": "Quelques années après ce portrait, Renoir peignit un portrait de groupe bien plus grand de Madame Charpentier avec ses enfants, qui devint son premier grand succès au Salon — ce portrait plus modeste et solitaire en fut le premier chapitre.",
+      "zh-Hans": "在这幅肖像完成几年后，雷诺阿又为夏庞蒂埃夫人及其子女绘制了一幅规模更大的群像画，这幅作品成为他在沙龙上的首次重大成功——而这幅较小的单人肖像，正是那段故事的开篇。"
+    },
+    "whySimple": {
+      "en": "Renoir painted Marguerite Charpentier, the wife of a publisher whose fashionable Paris parties introduced Renoir to wealthy patrons who helped his career.",
+      "fr": "Renoir peint Marguerite Charpentier, l'épouse d'un éditeur dont les fêtes parisiennes à la mode firent connaître Renoir à de riches mécènes qui aidèrent sa carrière.",
+      "zh-Hans": "雷诺阿画了玛格丽特·夏庞蒂埃——一位出版商的妻子，她在巴黎举办的时髦聚会，让雷诺阿结识了许多帮助他事业发展的富有赞助人。"
+    },
+    "whereSimple": {
+      "en": "Look at the soft, polished brushwork on her face and dress — a more elegant, refined style than Renoir's looser outdoor paintings.",
+      "fr": "Regardez la touche douce et raffinée sur son visage et sa robe — un style plus élégant et soigné que les tableaux de plein air plus libres de Renoir.",
+      "zh-Hans": "看她面容和裙装上那柔和、精致的笔触——这比雷诺阿那些更为随性的户外画作要优雅、考究得多。"
+    },
+    "raritySimple": {
+      "en": "A few years later, Renoir painted a bigger portrait of Madame Charpentier with her children, which became his first big success at the Salon — this portrait was the start of that important friendship.",
+      "fr": "Quelques années plus tard, Renoir peignit un plus grand portrait de Madame Charpentier avec ses enfants, qui devint son premier grand succès au Salon — ce portrait marqua le début de cette amitié importante.",
+      "zh-Hans": "几年后，雷诺阿又画了一幅更大的、夏庞蒂埃夫人和她孩子们的肖像，这幅画成为了他在沙龙上的首次重大成功——而这幅肖像，正是这段重要友谊的开端。"
+    },
+    "whyKids": {
+      "en": "Renoir painted this portrait of Madame Charpentier — she and her husband threw fancy parties that helped Renoir meet rich people who liked buying his paintings!",
+      "fr": "Renoir a peint ce portrait de Madame Charpentier — elle et son mari organisaient des fêtes chics qui ont aidé Renoir à rencontrer des gens riches qui aimaient acheter ses tableaux !",
+      "zh-Hans": "雷诺阿画了这幅夏庞蒂埃夫人的肖像——她和丈夫举办的那些豪华聚会，帮助雷诺阿认识了许多喜欢买他画作的有钱人！"
+    },
+    "whereKids": {
+      "en": "Look how soft and smooth Renoir painted her face and dress — very different from his looser, splashier outdoor paintings.",
+      "fr": "Regarde comme Renoir a peint son visage et sa robe de façon douce et lisse — très différent de ses tableaux en plein air plus libres et plus éclaboussés.",
+      "zh-Hans": "看雷诺阿把她的脸和裙子画得多么柔和光滑——这和他那些更随性、更「泼辣」的户外画作很不一样。"
+    },
+    "rarityKids": {
+      "en": "A little while later, Renoir painted an even bigger painting of Madame Charpentier with her kids, and that one became one of his biggest successes ever!",
+      "fr": "Un peu plus tard, Renoir a peint un tableau encore plus grand de Madame Charpentier avec ses enfants, et celui-là est devenu l'un de ses plus grands succès !",
+      "zh-Hans": "过了一阵子，雷诺阿又画了一幅更大的、夏庞蒂埃夫人和孩子们的画，那幅画后来成为了他一生中最成功的作品之一！"
     }
   },
   {
