@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AURA — Musée d'Orsay</title>
+<meta name="theme-color" content="#FAFAF9">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="AURA">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- 7.1 ONBOARDING -->
+  <section class="screen active" id="screen-onboarding">
+    <div class="spacer"></div>
+    <div class="onboard-logo">AURA</div>
+    <div class="onboard-tag" id="ob-tagline">Point. Discover. Understand.</div>
+    <div class="eyebrow">Language</div>
+    <div class="lang-grid" id="langGrid">
+      <div class="lang-option selected" data-lang="en"><span>English</span><span>●</span></div>
+      <div class="lang-option" data-lang="fr"><span>Français</span><span></span></div>
+      <div class="lang-option" data-lang="zh-Hans"><span>简体中文</span><span></span></div>
+    </div>
+    <button class="btn btn-primary" id="btnContinue">Continue</button>
+    <div class="spacer"></div>
+  </section>
+
+  <!-- 7.2 MUSEUM HOME -->
+  <section class="screen" id="screen-home">
+    <div class="chip"><span class="dot-live"></span><span id="museumChipText">Musée d'Orsay detected</span></div>
+    <h1>AURA</h1>
+    <p class="lede" id="homeLede">One museum. One camera. One story per artwork.</p>
+    <div class="hero-card">
+      <div class="section-title" id="missionsLabel">Today's missions</div>
+      <div class="missions" id="missionsList"></div>
+    </div>
+    <button class="btn btn-primary" id="btnStartVisit">Start Visit</button>
+  </section>
+
+  <!-- 7.3 CAMERA -->
+  <section class="screen" id="screen-camera">
+    <div class="topbar">
+      <div class="back-btn" data-nav="screen-progress">↑</div>
+      <div class="eyebrow" id="cameraHall">Hall 34</div>
+      <div class="back-btn" data-nav="screen-home">✕</div>
+    </div>
+    <div class="camera-view" id="cameraView">
+      <div class="frame-guide"></div>
+      <div class="camera-placeholder" id="cameraPlaceholder">🖼️</div>
+      <div class="camera-hint" id="frameHint">Frame the entire artwork</div>
+    </div>
+    <div class="shutter-row"><div class="shutter" id="btnShutter"></div></div>
+    <div class="scan-status" id="scanStatus">&nbsp;</div>
+  </section>
+
+  <!-- 7.4 ARTWORK CARD -->
+  <section class="screen" id="screen-card">
+    <div class="topbar">
+      <div class="back-btn" data-nav="screen-camera">←</div>
+      <div class="confidence-tag" id="confidenceTag">Matched · 96%</div>
+      <div style="width:36px"></div>
+    </div>
+    <div class="card-image" id="cardImage"></div>
+    <h2 id="cardTitle"></h2>
+    <p class="artist-name" id="cardArtist"></p>
+
+    <div class="estimate-box">
+      <div class="estimate-label" id="estimateLabel">Indicative market estimate</div>
+      <div class="estimate-value" id="estimateValue">—</div>
+      <div class="estimate-disclaimer" id="estimateDisclaimer">
+        This museum work is not for sale. The range is an editorial estimate based on comparable public sales, artist, period, subject, size, provenance and museum significance. It is not an appraisal or insurance value.
+      </div>
+    </div>
+
+    <div class="mode-tabs">
+      <div class="mode-tab selected" data-mode="normal">Normal</div>
+      <div class="mode-tab" data-mode="simple">Simple</div>
+      <div class="mode-tab" data-mode="kids">Kids</div>
+    </div>
+
+    <div class="section-block">
+      <div class="section-title" id="whyLabel">Why it matters</div>
+      <div class="section-body" id="whyBody"></div>
+    </div>
+    <div class="section-block">
+      <div class="section-title" id="whereLabel">Where to look</div>
+      <div class="section-body" id="whereBody"></div>
+    </div>
+    <div class="section-block">
+      <div class="section-title">Rarity</div>
+      <div class="section-body" id="rarityBody"></div>
+    </div>
+
+    <div class="card-actions">
+      <div class="icon-btn" id="btnAdd">＋ <span id="addLabel">Add to Visit</span></div>
+      <div class="icon-btn" id="btnFavorite">♡</div>
+      <div class="icon-btn" id="btnListen">▶ Listen</div>
+    </div>
+    <div style="height:14px"></div>
+    <button class="btn btn-secondary" id="btnScanNext">Scan next artwork</button>
+  </section>
+
+  <!-- 7.5 VISIT PROGRESS -->
+  <section class="screen" id="screen-progress">
+    <div class="topbar">
+      <h1 style="margin:0">Visit Progress</h1>
+      <div class="back-btn" data-nav="screen-camera">✕</div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="stat-num" id="statWorks">0</div><div class="stat-label">Works seen</div></div>
+      <div class="stat-box"><div class="stat-num" id="statArtists">0</div><div class="stat-label">Artists</div></div>
+      <div class="stat-box"><div class="stat-num" id="statValue">€0M</div><div class="stat-label">Indicative value</div></div>
+      <div class="stat-box"><div class="stat-num" id="statTime">0m</div><div class="stat-label">Time in visit</div></div>
+    </div>
+    <div class="section-title" id="routeLabel">Route completion</div>
+    <div class="progress-track"><div class="progress-fill" id="routeFill" style="width:0%"></div></div>
+    <div class="section-title" id="galleryLabel">Viewed gallery</div>
+    <div class="gallery-list" id="galleryList"></div>
+    <button class="btn btn-primary" id="btnContinueVisit">Continue scanning</button>
+    <div style="height:10px"></div>
+    <button class="btn btn-secondary" id="btnCompleteVisit">Complete visit</button>
+  </section>
+
+  <!-- 7.6 VISIT RECAP -->
+  <section class="screen" id="screen-recap">
+    <div class="topbar">
+      <h1 style="margin:0">Your visit</h1>
+      <div class="back-btn" data-nav="screen-home">✕</div>
+    </div>
+    <div class="recap-canvas-wrap"><canvas id="recapCanvas" width="1080" height="1920"></canvas></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="btnShare">Share your visit</button>
+      <button class="btn btn-secondary" id="btnSavePng">Save image</button>
+    </div>
+    <div style="height:10px"></div>
+    <button class="btn btn-ghost" id="btnNewVisit">Start a new visit</button>
+  </section>
+
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
