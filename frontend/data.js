@@ -1916,6 +1916,29 @@ const AURA_ARTWORKS = [
     where: { "en": "Editorial content pending review.", "fr": "Contenu editorial en attente de redaction.", "zh-Hans": "编辑内容尚待撰写。" },
     rarity: { "en": "Editorial content pending review.", "fr": "Contenu editorial en attente de redaction.", "zh-Hans": "编辑内容尚待撰写。" },
   },
+  // Manual editorial addition (#101, not from the sitelinks-ranked Top 100 pull) —
+  // this is the spec's own flagship walkthrough example (§7.4) and the original
+  // demo catalog's very first entry. Real Wikidata record (Q17496088, RF 2006),
+  // it just has 0 Wikidata sitelinks so it never surfaced in the automated ranking.
+  {
+    id: "orsay_rf_2006",
+    artist: "Claude Monet",
+    year: "1900",
+    hall: null,
+    inventoryNumber: "RF 2006",
+    image: "🖼️",
+    imageUrl: "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20monet%2C%20v%C3%A9theuil%2C%20sole%20al%20tramonto%2C%201900%20ca.JPG",
+    accent: "#6A5765",
+    priority: "top100",
+    needsEditorialReview: true,
+    editorialStatus: "not_started",
+    title: { "en": "Vétheuil, Sunset", "fr": "Vétheuil, soleil couchant", "zh-Hans": "Vétheuil, Sunset" },
+    titleNeedsReview: { "fr": false, "zh-Hans": true, "en": false },
+    estimate: { low: null, high: null },
+    why: { "en": "Editorial content pending review.", "fr": "Contenu editorial en attente de redaction.", "zh-Hans": "编辑内容尚待撰写。" },
+    where: { "en": "Editorial content pending review.", "fr": "Contenu editorial en attente de redaction.", "zh-Hans": "编辑内容尚待撰写。" },
+    rarity: { "en": "Editorial content pending review.", "fr": "Contenu editorial en attente de redaction.", "zh-Hans": "编辑内容尚待撰写。" },
+  },
 ];
 
 const AURA_MISSIONS = [

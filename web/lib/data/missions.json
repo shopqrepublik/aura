@@ -1,0 +1,20 @@
+[
+  {
+    "id": "m1",
+    "en": "Find a painting made mostly of dots or dabs",
+    "fr": "Trouvez un tableau fait surtout de touches ou de points",
+    "zh-Hans": "找一幅主要由点状笔触构成的画作"
+  },
+  {
+    "id": "m2",
+    "en": "Spot an artist's self-portrait",
+    "fr": "Repérez un autoportrait d'artiste",
+    "zh-Hans": "找到一幅艺术家的自画像"
+  },
+  {
+    "id": "m3",
+    "en": "Find the most expensive work in this room",
+    "fr": "Trouvez l'œuvre la plus estimée de cette salle",
+    "zh-Hans": "找出这个展厅里估值最高的作品"
+  }
+]

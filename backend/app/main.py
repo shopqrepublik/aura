@@ -1,29 +1,45 @@
 """
 AURA backend — FastAPI skeleton implementing the API contract from spec §12.
 
-Recognition strategy (revised): instead of a DINOv2/CLIP + FAISS embedding
-pipeline (§8.2's default), this uses vision-LLM matching against a closed
-candidate list — which §8.2 step 5 already anticipated as "optional
-multimodal verification". Promoting it to the primary method trades
-per-scan latency/cost for a much smaller build (no reference-embedding
-collection, no vector index to maintain). It still respects the spec's
-core principle in §8.1: retrieval against a controlled set, not open
-generation — the model can only return an artwork_id that exists in
-CATALOG, never invent one.
+Recognition strategy history (see README "Распознавание" section for the
+full history with numbers):
+  1. Closed-candidate-list prompt ("pick an id from this catalog or null") —
+     the spec §8.1 "retrieval on a controlled set" as originally read.
+  2. Two-stage (closed): text shortlist of 3 + visual verification against 3
+     real reference images — added after finding the model was pattern-
+     matching same-artist works from memory instead of comparing pixels.
+  3. Open + fuzzy-match only: recognize_open() (no candidate list at all)
+     + fuzzy_match_catalog() against DEMO_ARTWORKS, text score as the final
+     answer. Fixed the "forced wrong choice" failure mode from (1)/(2), but
+     text similarity alone can't be both permissive (to recover legitimate
+     translations/paraphrases) and safe (to reject a model that confidently
+     misidentifies a photo as a *different real* catalog painting) — see (4).
+  4. Current — hybrid: open recognition -> fuzzy_match_catalog() (candidate
+     screen, not a final answer) -> visual_verify_single_candidate() (ONE
+     reference image, only when a candidate was actually found). Two fast
+     paths skip the vision call entirely: nothing recognized, or nothing
+     catalog-adjacent by text. Text matching's job is now recall (find
+     plausible candidates, tolerate false positives like the model saying
+     "Study of Olympia" scoring high against our "Olympia" entry); the
+     visual step's job is precision (reject same-title/same-artist
+     look-alikes that don't actually match on pixels — this is what catches
+     a Cézanne still life confidently misidentified as a different, real
+     Cézanne still life, which pure text similarity structurally cannot).
 
-Requires ANTHROPIC_API_KEY in the environment (or a .env file, see
+Requires OPENAI_API_KEY in the environment (or a .env file, see
 .env.example). Falls back to the old random mock if the key is missing, so
 the frontend keeps working without a key during UI development.
 
 Run:
     pip install -r requirements.txt
-    copy the repo-root .env.example to .env and fill in ANTHROPIC_API_KEY
+    copy the repo-root .env.example to .env and fill in OPENAI_API_KEY
     uvicorn app.main:app --reload --port 8090
 """
 import base64
 import json
 import os
 import random
+import re
 import uuid
 from datetime import datetime, timezone
 from typing import Optional, List
@@ -43,8 +59,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY")
-RECOGNITION_MODEL = "claude-sonnet-5"
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+RECOGNITION_MODEL = "gpt-4o"  # Stage 1 (open recognition) — drives accuracy, left alone per instructions
+# Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
+# latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
+# (2 confirmed false negatives on exact-title-match candidates gpt-4o accepted
+# correctly), and on the 13 real-photo test it flipped BOTH previously-correct
+# in-catalog matches (Cezanne onions, Vetheuil) to wrong rejections, 12/13 ->
+# 11/13. Confident-wrong stayed at 0 in both cases — this is a real-accuracy
+# regression, not a safety one — but "don't regress accuracy" was the explicit
+# bar, so Stage 2 stays on gpt-4o. See README for the full before/after numbers.
+VISUAL_VERIFY_MODEL = "gpt-4o"
 
 
 # ---- In-memory demo store (replace with Supabase/Postgres session) --------
@@ -151,55 +176,244 @@ DEMO_ARTWORKS = [
     {"id": "orsay_rf_2020", "artist": "Alfred Sisley", "title": "Flooding at Port-Marly", "year": "1876", "hall": None, "inventory_number": "RF 2020", "image_url": "http://commons.wikimedia.org/wiki/Special:FilePath/La%20inundaci%C3%B3n%20en%20Port%20Marly%2C%20por%20Alfred%20Sisley.jpg", "estimate_low": None, "estimate_high": None, "needs_editorial_review": True},
     {"id": "orsay_8048", "artist": "Claude Monet", "title": "La Rue Montorgueil", "year": "1878", "hall": None, "inventory_number": "8048", "image_url": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Rue%20Montorgueil%20in%20Paris.%20Celebration%20of%20June%2030%2C%201878%20-%20Google%20Art%20Project.jpg", "estimate_low": None, "estimate_high": None, "needs_editorial_review": True},
     {"id": "orsay_rf_2787", "artist": "Alfred Sisley", "title": "The Regatta at Molesey", "year": "1874", "hall": None, "inventory_number": "RF 2787", "image_url": "http://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20050.jpg", "estimate_low": None, "estimate_high": None, "needs_editorial_review": True},
+    # Manual editorial addition (#101, not from the sitelinks-ranked Top 100 pull) —
+    # this is the spec's own flagship walkthrough example (§7.4) and the original
+    # demo catalog's very first entry. Real Wikidata record (Q17496088, RF 2006),
+    # it just has 0 Wikidata sitelinks so it never surfaced in the automated ranking.
+    {"id": "orsay_rf_2006", "artist": "Claude Monet", "title": "Vétheuil, Sunset", "year": "1900", "hall": None, "inventory_number": "RF 2006", "image_url": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20monet%2C%20v%C3%A9theuil%2C%20sole%20al%20tramonto%2C%201900%20ca.JPG", "estimate_low": None, "estimate_high": None, "needs_editorial_review": True},
 ]
 
 CONFIDENCE_AUTO = 0.92
 CONFIDENCE_REVIEW = 0.82
 
 
-def build_catalog_prompt(candidates: list) -> str:
-    lines = [f'- id="{a["id"]}" | {a["artist"]} — "{a["title"]}" ({a["year"]}), Hall {a["hall"] or "unknown"}'
-             for a in candidates]
-    return "\n".join(lines)
+def recognize_open(image_base64: str, museum_id: str) -> dict:
+    """
+    Open recognition — no candidate list in the prompt at all. A 13-photo
+    real-world test showed the closed-catalog prompt (and even the two-stage
+    visual-verification version) sometimes forces a wrong catalog id when the
+    right answer isn't in the list, or is a same-artist neighbour of it — the
+    model has to pick *something* from what it's given. Asking openly, the
+    way a plain ChatGPT query would, lets the model say "I don't know this
+    specific work" instead of guessing from a constrained menu.
+    """
+    from openai import OpenAI  # imported lazily so the module still loads without the package during UI-only dev
+
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    system_prompt = (
+        "You are an art expert identifying an artwork photographed by a museum visitor "
+        f"(likely at {museum_id or 'a French national museum'}). Identify the artist and title "
+        "exactly as you recognize them, from your own knowledge — do NOT limit yourself to any "
+        "predefined list. If you do not recognize the specific work, say so honestly (title: null) "
+        "rather than guessing. Give the title in English if you know an accepted English title.\n\n"
+        'Respond with a single valid json object only, no prose, no markdown fences: '
+        '{"artist": "<artist name or null>", "title": "<title or null>", '
+        '"confidence": <0-1 float, how confident you are in this identification>}.'
+    )
+
+    resp = client.chat.completions.create(
+        model=RECOGNITION_MODEL,
+        max_tokens=200,
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": [
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+                {"type": "text", "text": "What artwork is this?"}
+            ]}
+        ]
+    )
+    return json.loads(resp.choices[0].message.content)
+
+
+_ARTICLE_RE = re.compile(r"\b(the|a|an|la|le|les|l'|un|une)\b", re.IGNORECASE)
+
+
+def _normalize_for_matching(s: str) -> str:
+    """Strips leading/embedded articles (EN+FR) before fuzzy comparison —
+    without this, "Ballet Rehearsal on Stage" vs "The Rehearsal Onstage"
+    loses points purely on "The"/"Ballet", not on anything meaningful."""
+    if not s:
+        return ""
+    s = s.replace("’", "'")
+    s = _ARTICLE_RE.sub(" ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+# Candidate threshold for the fuzzy text match (§ hybrid redesign). This used
+# to BE the accept/reject decision (0.90) — it no longer is. It now only
+# decides "is this worth a visual check", because a pure text threshold
+# cannot safely be that decision on its own:
+#   - Re-scoring the 32 near-misses from the pure-fuzzy version with
+#     article-stripping + max(token_sort_ratio, partial_ratio) recovers most
+#     of them (e.g. "Dante and Virgil in Hell" vs model's "Dante and Virgil"
+#     goes 0.870 -> 1.000; "La Rue Montorgueil" vs the model's long official
+#     title goes 0.637 -> 1.000) — genuine near-misses now score 0.72-1.00.
+#   - But partial_ratio also creates NEW false-positive risk for short
+#     catalog titles: the model wrongly identifying a photo as Manet's "Study
+#     of Olympia" scores a PERFECT 1.000 against our "Olympia" entry, purely
+#     because "Olympia" is a substring of the model's (wrong) answer. No
+#     text-only threshold can filter that out — "Study of Olympia" is real
+#     art-history vocabulary, not noise.
+#   - The Cézanne case that motivated this whole redesign — "Still Life with
+#     Onions" vs the model's "The Kitchen Table" (a different, real Cézanne
+#     still life) — scores only 0.600, well below any threshold high enough
+#     to be a safe final answer.
+# Given text-only scoring can't be both permissive enough to catch the
+# Cézanne case AND strict enough to reject the Olympia case, the threshold's
+# job changes: 0.55 (comfortably under the Cézanne case's 0.600) casts a wide
+# net for "plausible candidate", and visual_verify_single_candidate() below —
+# not this number — is what actually decides match vs no-match.
+FUZZY_CANDIDATE_THRESHOLD = 0.55
+FUZZY_ARTIST_GATE = 0.5  # candidates below this artist-name similarity are never considered
+
+
+def fuzzy_match_catalog(artist: Optional[str], title: Optional[str]):
+    """Matches a freely-stated (artist, title) against DEMO_ARTWORKS. Returns
+    (best_match_or_None, best_score, runner_up_or_None)."""
+    from rapidfuzz import fuzz  # imported lazily, same rationale as the openai import above
+
+    if not title:
+        return None, 0.0, None
+
+    title_n = _normalize_for_matching(title)
+    artist_n = _normalize_for_matching(artist or "")
+
+    scored = []
+    for a in DEMO_ARTWORKS:
+        artist_score = fuzz.token_sort_ratio(artist_n, _normalize_for_matching(a["artist"])) / 100
+        if artist_score < FUZZY_ARTIST_GATE:
+            continue
+        cat_title_n = _normalize_for_matching(a["title"])
+        title_score = max(
+            fuzz.token_sort_ratio(title_n, cat_title_n),
+            fuzz.partial_ratio(title_n, cat_title_n),
+        ) / 100
+        combined = 0.35 * artist_score + 0.65 * title_score
+        scored.append((combined, a))
+
+    if not scored:
+        return None, 0.0, None
+    scored.sort(key=lambda t: t[0], reverse=True)
+    best_score, best = scored[0]
+    runner_up = scored[1][1] if len(scored) > 1 and scored[1][0] >= 0.5 else None
+    return best, best_score, runner_up
+
+
+# One reference image per verified candidate, cached to disk — Wikimedia
+# Commons rate-limits repeated bot traffic (HTTP 429) on re-fetch.
+REFERENCE_CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".reference_cache")
+REFERENCE_IMAGE_UA = "AURA-MVP-backend/1.0 (contact: repo owner)"
+
+
+def _fetch_reference_image_b64(artwork: dict) -> str:
+    from PIL import Image  # imported lazily, same rationale as the openai import above
+    import io
+    import urllib.request
+
+    os.makedirs(REFERENCE_CACHE_DIR, exist_ok=True)
+    cache_path = os.path.join(REFERENCE_CACHE_DIR, f'{artwork["id"]}.jpg')
+    if os.path.exists(cache_path):
+        with open(cache_path, "rb") as f:
+            return base64.b64encode(f.read()).decode("ascii")
+
+    req = urllib.request.Request(artwork["image_url"], headers={"User-Agent": REFERENCE_IMAGE_UA})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        raw = resp.read()
+    img = Image.open(io.BytesIO(raw)).convert("RGB")
+    w, h = img.size
+    new_w = 512
+    new_h = round(h * (new_w / w))
+    img = img.resize((new_w, new_h), Image.LANCZOS)
+    img.save(cache_path, format="JPEG", quality=85)
+    with open(cache_path, "rb") as f:
+        return base64.b64encode(f.read()).decode("ascii")
+
+
+def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
+    """
+    The step that actually catches what text matching structurally cannot:
+    is this the SAME painting, or just a same-artist/same-title-sounding one?
+    Exactly one reference image — not three like the old two-stage design —
+    because by this point fuzzy_match_catalog() has already narrowed it to
+    one specific claim to check, not a shortlist to pick from.
+    """
+    from openai import OpenAI
+
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    ref_b64 = _fetch_reference_image_b64(candidate)
+
+    system_prompt = (
+        "You are verifying whether a museum visitor's photo shows the SAME specific artwork as "
+        "a reference image — not just a similar or same-artist work, and not just a work with a "
+        "similar-sounding title. A different painting by the same artist, or a different work that "
+        "happens to share a generic title, does NOT count as a match — only the same physical "
+        f'object counts. The reference image is: {candidate["artist"]} — "{candidate["title"]}" '
+        f'({candidate["year"]}).\n\n'
+        'Respond with a single valid json object only, no prose, no markdown fences: '
+        '{"is_match": true or false, "confidence": <0-1 float, how confident you are in this judgment>}.'
+    )
+
+    resp = client.chat.completions.create(
+        model=VISUAL_VERIFY_MODEL,
+        max_tokens=50,  # {"is_match": true/false, "confidence": 0.NN} needs ~15-20 tokens; 50 leaves margin
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": [
+                {"type": "text", "text": "Visitor's photo:"},
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+                {"type": "text", "text": "Reference image:"},
+                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{ref_b64}"}},
+                {"type": "text", "text": "Is this the same specific artwork?"}
+            ]}
+        ]
+    )
+    return json.loads(resp.choices[0].message.content)
 
 
 def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional[str]) -> dict:
     """
-    Retrieval against a CLOSED list (§8.1 principle): the model is only ever
-    allowed to answer with an id that appears in the catalog below, or null.
-    This is the key guardrail that keeps a vision-LLM approach from turning
-    into open, hallucination-prone generation.
+    Hybrid: open recognition (no candidate list) -> fuzzy text match against
+    DEMO_ARTWORKS -> ONE visual verification call, but only when a candidate
+    was actually found. Two fast paths skip the visual call entirely (model
+    recognized nothing, or nothing in the catalog is even textually close);
+    only a real candidate pays the extra latency. See FUZZY_CANDIDATE_THRESHOLD
+    and visual_verify_single_candidate() for why both stages are necessary —
+    neither alone can be both safe and accurate. Layer 2 editorial content
+    (estimates, why/where/rarity) is still only ever pulled from our reviewed
+    database after a confirmed match — the model never generates it, at
+    either stage.
     """
-    import anthropic  # imported lazily so the module still loads without the package during UI-only dev
+    ident = recognize_open(image_base64, museum_id)
+    artist, title = ident.get("artist"), ident.get("title")
+    model_confidence = float(ident.get("confidence", 0) or 0)
 
-    candidates = [a for a in DEMO_ARTWORKS]  # TODO: filter by museum_id/hall_hint once catalog is bigger
-    catalog = build_catalog_prompt(candidates)
+    if not title:
+        return {"artwork_id": None, "confidence": 0.0, "alternatives": []}  # fast path: nothing recognized
 
-    client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
-    system_prompt = (
-        "You identify which artwork from a CLOSED catalog is shown in a museum visitor's photo. "
-        "You must answer ONLY with one of the ids in the catalog below, or null if none match — "
-        "never invent an id or describe an artwork not in this list.\n\n"
-        f"CATALOG (museum: {museum_id}, hall hint: {hall_hint or 'none'}):\n{catalog}\n\n"
-        'Respond with ONLY compact JSON: {"artwork_id": "<id or null>", "confidence": <0-1 float>, '
-        '"alternatives": ["<id>", ...]}. No prose, no markdown fences.'
-    )
+    match, match_score, runner_up = fuzzy_match_catalog(artist, title)
+    if not match or match_score < FUZZY_CANDIDATE_THRESHOLD:
+        return {  # fast path: recognized something, but nothing catalog-adjacent
+            "artwork_id": None,
+            "confidence": 0.0,
+            "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": artist, "title": title},
+        }
 
-    resp = client.messages.create(
-        model=RECOGNITION_MODEL,
-        max_tokens=300,
-        system=system_prompt,
-        messages=[{
-            "role": "user",
-            "content": [
-                {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": image_base64}},
-                {"type": "text", "text": "Which catalog artwork is this?"}
-            ]
-        }]
-    )
-    raw = "".join(block.text for block in resp.content if block.type == "text").strip()
-    raw = raw.removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-    return json.loads(raw)
+    verdict = visual_verify_single_candidate(image_base64, match)  # slow path
+    if not verdict.get("is_match"):
+        return {
+            "artwork_id": None,
+            "confidence": 0.0,
+            "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": artist, "title": title},
+        }
+
+    visual_confidence = float(verdict.get("confidence", 0) or 0)
+    final_confidence = min(model_confidence, visual_confidence)
+    alternatives = [runner_up["id"]] if runner_up else []
+    return {"artwork_id": match["id"], "confidence": final_confidence, "alternatives": alternatives}
 
 
 # ---- Schemas ----------------------------------------------------------
@@ -210,11 +424,21 @@ class RecognizeRequest(BaseModel):
     locale: str = "en"
 
 
+class RecognizedButNotCataloged(BaseModel):
+    artist: Optional[str] = None
+    title: Optional[str] = None
+
+
 class RecognizeResponse(BaseModel):
     status: str  # "matched" | "needs_confirmation" | "no_match"
     artwork_id: Optional[str] = None
     confidence: float
     alternatives: List[str] = []
+    # Open recognition identified *something* (artist/title), but it didn't
+    # fuzzy-match any catalog entry — never shown to the visitor as a full
+    # card (no reviewed estimate/editorial text exists for it), but useful
+    # for us to see what the model actually recognized outside the catalog.
+    recognized_but_not_cataloged: Optional[RecognizedButNotCataloged] = None
 
 
 class VisitCreate(BaseModel):
@@ -234,7 +458,7 @@ def recognize(req: RecognizeRequest):
     if not req.image_base64:
         raise HTTPException(status_code=400, detail="image_base64 required")
 
-    if ANTHROPIC_API_KEY:
+    if OPENAI_API_KEY:
         try:
             result = recognize_with_vision(req.image_base64, req.museum_id, req.hall_hint)
         except Exception as e:
@@ -243,9 +467,11 @@ def recognize(req: RecognizeRequest):
         artwork_id = result.get("artwork_id")
         confidence = float(result.get("confidence", 0))
         alternatives = result.get("alternatives", [])
+        recognized_but_not_cataloged = result.get("recognized_but_not_cataloged")
 
         if not artwork_id or artwork_id not in {a["id"] for a in DEMO_ARTWORKS}:
-            return RecognizeResponse(status="no_match", confidence=confidence)
+            return RecognizeResponse(status="no_match", confidence=confidence,
+                                      recognized_but_not_cataloged=recognized_but_not_cataloged)
         if confidence >= CONFIDENCE_AUTO:
             return RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence)
         elif confidence >= CONFIDENCE_REVIEW:

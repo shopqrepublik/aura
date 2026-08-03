@@ -1,0 +1,4275 @@
+[
+  {
+    "id": "orsay_rf_1995_10",
+    "artist": "Gustave Courbet",
+    "year": "1866",
+    "hall": null,
+    "inventoryNumber": "RF 1995 10",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Origin-of-the-World.jpg",
+    "accent": "#5D4457",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "kidsModeExcluded": true,
+    "title": {
+      "en": "L'Origine du monde",
+      "fr": "L'Origine du monde",
+      "zh-Hans": "L'Origine du monde"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Courbet paints the body with the same unidealized realism he gave landscapes and labourers, refusing centuries of mythological softening.",
+      "fr": "Courbet peint le corps avec le même réalisme sans idéalisation qu'il appliquait aux paysages et aux travailleurs, refusant des siècles d'adoucissement mythologique.",
+      "zh-Hans": "库尔贝以描绘风景和劳动者同样毫不美化的写实手法描绘人体，拒绝了几个世纪以来神话化的柔美处理。"
+    },
+    "where": {
+      "en": "Notice how tightly the canvas crops the frame — there is no story, setting or face to look away into.",
+      "fr": "Observez le cadrage très serré de la toile — aucun décor, aucun visage où détourner le regard.",
+      "zh-Hans": "留意画面极度紧凑的取景——没有场景，也没有面容可供视线躲避。"
+    },
+    "rarity": {
+      "en": "Hidden from public view for over a century, it is now one of the most discussed paintings in the history of art.",
+      "fr": "Resté caché du public pendant plus d'un siècle, c'est aujourd'hui l'un des tableaux les plus commentés de l'histoire de l'art.",
+      "zh-Hans": "这幅画曾长期被隐藏、不对公众展出达一个多世纪，如今是艺术史上被讨论最多的画作之一。"
+    },
+    "contentFlag": "Explicit nude close-up. Product decision (resolved): fully excluded from Kids mode — see kidsModeExcluded."
+  },
+  {
+    "id": "orsay_rf_1668",
+    "artist": "Édouard Manet",
+    "year": "1863",
+    "hall": null,
+    "inventoryNumber": "RF 1668",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Luncheon%20on%20the%20Grass%20-%20Google%20Art%20Project.jpg",
+    "accent": "#665DA8",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Luncheon on the Grass",
+      "fr": "Le Déjeuner sur l'herbe",
+      "zh-Hans": "草地上的午餐"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Manet placed a nude woman among clothed men in a contemporary park, not a myth, and scandalized Paris by making the present day worthy of grand painting.",
+      "fr": "Manet place une femme nue parmi des hommes habillés dans un parc contemporain, sans prétexte mythologique, et scandalise Paris en jugeant le présent digne de la grande peinture.",
+      "zh-Hans": "马奈把一位裸体女子安置在衣着整齐的男子中间、置身当代公园而非神话场景，令巴黎哗然，认为当下的生活也配得上宏大绘画。"
+    },
+    "where": {
+      "en": "Compare the flat, almost cut-out lighting on the woman's body with the deep shadow behind her — Manet is breaking the old rules on purpose.",
+      "fr": "Comparez la lumière plate, presque découpée, sur le corps de la femme avec l'ombre profonde derrière elle — Manet enfreint les règles volontairement.",
+      "zh-Hans": "比较女子身上近乎平涂剪影般的光线，与她身后浓重的阴影——马奈是在故意打破旧规则。"
+    },
+    "rarity": {
+      "en": "Rejected by the official Salon in 1863, it became the founding scandal of modern painting.",
+      "fr": "Refusé par le Salon officiel en 1863, il devient le scandale fondateur de la peinture moderne.",
+      "zh-Hans": "1863年被官方沙龙拒绝展出，此后却成为现代绘画开端的标志性丑闻。"
+    }
+  },
+  {
+    "id": "orsay_rf_2739",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1876",
+    "hall": null,
+    "inventoryNumber": "RF 2739",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Renoir%2C%20Pierre-Auguste%20-%20Dance%20at%20Le%20Moulin%20de%20la%20Galette%2C%201876.jpg",
+    "accent": "#6B89A7",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Bal du moulin de la Galette",
+      "fr": "Bal du moulin de la Galette",
+      "zh-Hans": "Bal du moulin de la Galette"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Renoir paints ordinary Parisians dancing in dappled outdoor light, treating everyday joy as a subject as serious as any historical scene.",
+      "fr": "Renoir peint des Parisiens ordinaires dansant sous une lumière tachetée en plein air, traitant la joie quotidienne comme un sujet aussi sérieux qu'une scène historique.",
+      "zh-Hans": "雷诺阿描绘普通巴黎人在户外斑驳光影中跳舞，把日常的欢愉当作与历史题材同等严肃的绘画主题。"
+    },
+    "where": {
+      "en": "Follow the patches of sunlight scattered across the crowd — Renoir built the whole atmosphere from broken light, not outlines.",
+      "fr": "Suivez les taches de soleil dispersées sur la foule — Renoir construit toute l'atmosphère à partir de la lumière brisée, pas des contours.",
+      "zh-Hans": "留意光斑洒落在人群上的方式——雷诺阿用破碎的光线而非轮廓线来构建整个氛围。"
+    },
+    "rarity": {
+      "en": "One of Impressionism's largest and most ambitious figure paintings, showing over 30 people in a single scene.",
+      "fr": "L'une des plus grandes et ambitieuses compositions figuratives de l'impressionnisme, réunissant plus de 30 personnages.",
+      "zh-Hans": "这是印象派规模最大、最具野心的人物画之一，画面中出现了三十多个人物。"
+    }
+  },
+  {
+    "id": "orsay_rf_644",
+    "artist": "Édouard Manet",
+    "year": "1863",
+    "hall": null,
+    "inventoryNumber": "RF 644",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Olympia%20-%20Google%20Art%20Project%203.jpg",
+    "accent": "#665DA8",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Olympia",
+      "fr": "Olympia",
+      "zh-Hans": "奥林比亚"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Manet paints a reclining nude who stares directly back at the viewer instead of looking away, turning a classical pose into an uncomfortably modern confrontation.",
+      "fr": "Manet peint une nue allongée qui regarde le spectateur droit dans les yeux au lieu de détourner le regard, transformant une pose classique en confrontation résolument moderne.",
+      "zh-Hans": "马奈笔下的裸体女子直视观者，而非移开目光，将古典的姿态转化为一种令人不安的现代对峙。"
+    },
+    "where": {
+      "en": "Meet her gaze rather than her body — Manet composed the painting so you cannot avoid it.",
+      "fr": "Croisez son regard plutôt que son corps — Manet a composé le tableau pour que vous ne puissiez pas l'éviter.",
+      "zh-Hans": "迎向她的目光，而非打量她的身体——马奈的构图让你无法回避这一点。"
+    },
+    "rarity": {
+      "en": "Its 1865 Salon debut caused one of the biggest public scandals in the history of French painting.",
+      "fr": "Sa présentation au Salon de 1865 provoqua l'un des plus grands scandales publics de l'histoire de la peinture française.",
+      "zh-Hans": "1865年在沙龙展出时引发了法国绘画史上最大的公众丑闻之一。"
+    },
+    "contentFlag": "Reclining nude. Product decision (resolved): no Kids-mode restriction — not one of the 4 works the content policy singles out."
+  },
+  {
+    "id": "orsay_rf_1975_19",
+    "artist": "Vincent van Gogh",
+    "year": "1888",
+    "hall": null,
+    "inventoryNumber": "RF 1975 19",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Starry%20Night%20-%20Google%20Art%20Project.jpg",
+    "accent": "#618E59",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Starry Night Over the Rhone",
+      "fr": "La Nuit étoilée",
+      "zh-Hans": "罗纳河上的星夜"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Van Gogh paints gaslight and starlight as equally alive, turning an ordinary riverside evening into something that seems to move and glow.",
+      "fr": "Van Gogh peint la lumière au gaz et celle des étoiles comme également vivantes, transformant une soirée ordinaire au bord du fleuve en une vision presque mouvante.",
+      "zh-Hans": "梵高把煤气灯光与星光画得同样充满生命力，把一个普通的河畔夜晚变成仿佛在流动发光的景象。"
+    },
+    "where": {
+      "en": "Follow the gas lamps' reflections rippling down into the water — that broken light is the real subject, not the sky.",
+      "fr": "Suivez le reflet des réverbères qui ondule dans l'eau — cette lumière brisée est le vrai sujet, plus que le ciel.",
+      "zh-Hans": "顺着河面上摇曳的煤气灯倒影看去——那破碎的光才是真正的主题，而不是天空。"
+    },
+    "rarity": {
+      "en": "Painted from life at night on the Rhône, months before his more famous Starry Night in Saint-Rémy.",
+      "fr": "Peint sur le motif, de nuit, au bord du Rhône, plusieurs mois avant sa Nuit étoilée plus célèbre de Saint-Rémy.",
+      "zh-Hans": "这幅画是梵高在罗讷河畔夜晚对景写生所作，比他更著名的圣雷米《星夜》早了几个月。"
+    }
+  },
+  {
+    "id": "orsay_rf_1951_42",
+    "artist": "Vincent van Gogh",
+    "year": "1890",
+    "hall": null,
+    "inventoryNumber": "RF 1951 42",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Church%20in%20Auvers-sur-Oise%2C%20View%20from%20the%20Chevet%20-%20Google%20Art%20Project.jpg",
+    "accent": "#618E59",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Church at Auvers",
+      "fr": "L'Église d'Auvers-sur-Oise",
+      "zh-Hans": "The Church at Auvers"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Van Gogh bends the church's stone walls as if they were breathing, showing feeling rather than architecture.",
+      "fr": "Van Gogh courbe les murs de pierre de l'église comme s'ils respiraient, peignant une émotion plutôt qu'une architecture.",
+      "zh-Hans": "梵高把教堂的石墙画得仿佛在呼吸弯曲，呈现的是情绪而非建筑本身。"
+    },
+    "where": {
+      "en": "Notice the sky is deep blue, not grey — Van Gogh lights the building from a mood, not a real sun.",
+      "fr": "Remarquez le ciel bleu profond, pas gris — Van Gogh éclaire l'édifice par une humeur, pas par un vrai soleil.",
+      "zh-Hans": "留意天空是深蓝色而非灰色——照亮建筑的是画家的情绪，而非真实的阳光。"
+    },
+    "rarity": {
+      "en": "Painted weeks before his death, using a village church he had sketched from life.",
+      "fr": "Peint quelques semaines avant sa mort, d'après une église de village qu'il avait dessinée sur le motif.",
+      "zh-Hans": "这幅画作于梵高去世前几周，取材于他曾对景写生的一座乡村教堂。"
+    }
+  },
+  {
+    "id": "orsay_rf_325",
+    "artist": "Gustave Courbet",
+    "year": "1849-1850",
+    "hall": null,
+    "inventoryNumber": "RF 325",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Courbet%20-%20A%20Burial%20at%20Ornans%20-%20Google%20Art%20Project.jpg",
+    "accent": "#5D4457",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "A Burial at Ornans",
+      "fr": "Un enterrement à Ornans",
+      "zh-Hans": "A Burial at Ornans"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Courbet paints an ordinary provincial funeral at the huge scale usually reserved for kings and battles, insisting that regular people's lives matter just as much.",
+      "fr": "Courbet peint un enterrement provincial ordinaire à l'échelle habituellement réservée aux rois et aux batailles, affirmant que la vie des gens du peuple compte tout autant.",
+      "zh-Hans": "库尔贝以往常只用于表现帝王与战争的巨大画幅，描绘一场平凡的外省葬礼，坚持普通人的生活同样值得被认真描绘。"
+    },
+    "where": {
+      "en": "Count how many individual, specific faces are shown — Courbet based each one on a real person from his hometown.",
+      "fr": "Comptez les visages individuels et précis représentés — chacun est basé sur une personne réelle de sa ville natale, Ornans.",
+      "zh-Hans": "数一数画中那些具体、真实的面孔——每一个都取自库尔贝家乡的真实人物。"
+    },
+    "rarity": {
+      "en": "Its unheroic honesty made it one of the most controversial paintings shown in Paris in the 1850s.",
+      "fr": "Son honnêteté sans grandeur en fit l'un des tableaux les plus controversés exposés à Paris dans les années 1850.",
+      "zh-Hans": "这种毫不英雄化的诚实笔触，使它成为1850年代巴黎展出中最具争议的画作之一。"
+    }
+  },
+  {
+    "id": "orsay_rf_253",
+    "artist": "William-Adolphe Bouguereau",
+    "year": "1879",
+    "hall": null,
+    "inventoryNumber": "RF 253",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/William-Adolphe%20Bouguereau%20%281825-1905%29%20-%20The%20Birth%20of%20Venus%20%281879%29.jpg",
+    "accent": "#735057",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Birth of Venus",
+      "fr": "La Naissance de Vénus",
+      "zh-Hans": "维纳斯的诞生"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Bouguereau paints myth with flawless, almost photographic finish, showing what official 19th-century taste prized just as Impressionism was starting to reject it.",
+      "fr": "Bouguereau peint le mythe avec une finition impeccable, presque photographique, incarnant le goût académique officiel du XIXe siècle au moment même où l'impressionnisme commençait à le rejeter.",
+      "zh-Hans": "布格罗以近乎照片般完美无瑕的笔法描绘神话题材，代表了19世纪官方沙龙所推崇的品味，而这正是印象派开始反抗的对象。"
+    },
+    "where": {
+      "en": "Look closely at the skin — the brushwork is deliberately invisible, the opposite choice from the Impressionist rooms nearby.",
+      "fr": "Observez de près la peau — la touche est délibérément invisible, à l'opposé du choix fait dans les salles impressionnistes voisines.",
+      "zh-Hans": "仔细观察肌肤的画法——笔触被刻意隐藏，这与附近印象派展厅的处理方式截然相反。"
+    },
+    "rarity": {
+      "en": "A prime example of the polished academic style that dominated official Salons before Impressionism overturned it.",
+      "fr": "Un exemple emblématique du style académique lisse qui dominait les Salons officiels avant que l'impressionnisme ne le renverse.",
+      "zh-Hans": "这是印象派颠覆官方沙龙之前，那种精致学院派风格的典型代表。"
+    }
+  },
+  {
+    "id": "orsay_rf_699",
+    "artist": "James McNeill Whistler",
+    "year": "1871",
+    "hall": null,
+    "inventoryNumber": "RF 699",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Whistlers%20Mother%20high%20res.jpg",
+    "accent": "#626166",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Whistler's Mother",
+      "fr": "Arrangement en gris et noir n°1",
+      "zh-Hans": "Whistler's Mother"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Whistler insisted this was primarily a study in grey and black tones, not a sentimental portrait — arrangement mattered to him more than the sitter's identity.",
+      "fr": "Whistler insistait sur le fait qu'il s'agissait avant tout d'une étude de tons gris et noirs, non d'un portrait sentimental — l'agencement comptait plus pour lui que l'identité du modèle.",
+      "zh-Hans": "惠斯勒坚持认为这首先是一幅关于灰色与黑色色调的研究，而非一幅感伤的肖像画——对他而言，构图安排比画中人的身份更重要。"
+    },
+    "where": {
+      "en": "Notice how little decoration surrounds her — the composition is built from flat rectangles and one curved silhouette.",
+      "fr": "Remarquez le peu de décor autour d'elle — la composition est bâtie à partir de rectangles plats et d'une seule silhouette courbe.",
+      "zh-Hans": "留意她周围几乎没有任何装饰——整个构图由平直的矩形与一条弯曲的轮廓线构成。"
+    },
+    "rarity": {
+      "en": "One of the most recognized American paintings in the world, now held at the Musée d'Orsay.",
+      "fr": "L'une des peintures américaines les plus reconnues au monde, conservée au Musée d'Orsay.",
+      "zh-Hans": "这是世界上辨识度最高的美国画作之一，如今收藏于奥赛博物馆。"
+    }
+  },
+  {
+    "id": "orsay_rf_2257",
+    "artist": "Gustave Courbet",
+    "year": "1854-1855",
+    "hall": null,
+    "inventoryNumber": "RF 2257",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Courbet%20LAtelier%20du%20peintre.jpg",
+    "accent": "#5D4457",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Painter's Studio",
+      "fr": "L'Atelier du peintre",
+      "zh-Hans": "The Painter's Studio"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Courbet paints himself at the center of French society — critics, collectors, a nude model and a nation's history all fit inside his studio.",
+      "fr": "Courbet se peint au centre de la société française — critiques, collectionneurs, un modèle nu et l'histoire d'une nation tiennent tous dans son atelier.",
+      "zh-Hans": "库尔贝把自己置于法国社会的中心——评论家、收藏家、一位裸体模特与一个国家的历史，都被容纳进他的画室之中。"
+    },
+    "where": {
+      "en": "Find Courbet's own canvas within the canvas — the painting shows him painting a landscape, a picture inside the picture.",
+      "fr": "Repérez la toile de Courbet à l'intérieur du tableau — on le voit peindre un paysage, un tableau dans le tableau.",
+      "zh-Hans": "在画中找到库尔贝自己正在画的那幅画——这是画中画，他正在描绘一幅风景。"
+    },
+    "rarity": {
+      "en": "One of Courbet's largest and most personal works, subtitled 'a real allegory summing up a seven-year phase of my artistic life.'",
+      "fr": "L'une des œuvres les plus vastes et personnelles de Courbet, sous-titrée « allégorie réelle déterminant une phase de sept années de ma vie artistique ».",
+      "zh-Hans": "这是库尔贝规模最大、最具个人色彩的作品之一，副标题为“概括我七年艺术生涯的一则真实寓言”。"
+    }
+  },
+  {
+    "id": "orsay_rf_1984",
+    "artist": "Edgar Degas",
+    "year": "1875",
+    "hall": null,
+    "inventoryNumber": "RF 1984",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20In%20a%20Caf%C3%A9%20-%20Google%20Art%20Project%202.jpg",
+    "accent": "#754A8F",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "L'Absinthe",
+      "fr": "L'Absinthe",
+      "zh-Hans": "L'Absinthe"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Degas paints loneliness inside a crowded café — a modern, unglamorous mood barely shown in painting before this.",
+      "fr": "Degas peint la solitude au cœur d'un café bondé — une atmosphère moderne et sans complaisance, rarement montrée en peinture avant lui.",
+      "zh-Hans": "德加描绘了拥挤咖啡馆中的孤独——一种此前绘画中鲜少展现的、毫不美化的现代情绪。"
+    },
+    "where": {
+      "en": "Look at the empty stretch of table between the two figures — that gap, not their faces, is the real subject.",
+      "fr": "Regardez l'espace vide de la table entre les deux personnages — ce vide, plus que leurs visages, est le vrai sujet.",
+      "zh-Hans": "看两个人物之间桌面上那段空白——那片空白，而非他们的面容，才是真正的主题。"
+    },
+    "rarity": {
+      "en": "One of the defining images of Parisian café life, controversial at the time for its unflattering honesty.",
+      "fr": "L'une des images emblématiques de la vie des cafés parisiens, jugée choquante à l'époque pour son honnêteté sans complaisance.",
+      "zh-Hans": "这是巴黎咖啡馆生活最具代表性的画面之一，因其毫不粉饰的诚实笔触，在当时引发争议。"
+    }
+  },
+  {
+    "id": "orsay_rf_219",
+    "artist": "Jean-Auguste-Dominique Ingres",
+    "year": "1856",
+    "hall": null,
+    "inventoryNumber": "RF 219",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Jean%20Auguste%20Dominique%20Ingres%20-%20The%20Spring%20-%20Google%20Art%20Project%202.jpg",
+    "accent": "#50AE99",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Source",
+      "fr": "La Source",
+      "zh-Hans": "The Source"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Ingres spent over 25 years perfecting this single idealized figure, treating flawless line and proportion as more important than any story.",
+      "fr": "Ingres passa plus de 25 ans à parfaire cette unique figure idéalisée, plaçant la perfection de la ligne et des proportions au-dessus de toute narration.",
+      "zh-Hans": "安格尔花费二十五年以上的时间打磨这一个理想化的人物形象，将线条与比例的完美置于叙事之上。"
+    },
+    "where": {
+      "en": "Trace the single continuous curve running from her raised arm down to her hip — that line is the whole point of the painting.",
+      "fr": "Suivez la courbe continue qui va de son bras levé jusqu'à sa hanche — cette ligne est tout l'enjeu du tableau.",
+      "zh-Hans": "顺着从她扬起的手臂一直延伸到臀部的那条连续曲线看去——这条线正是全画的核心所在。"
+    },
+    "rarity": {
+      "en": "Begun in the 1820s and only finished decades later, it became one of the most copied nudes in Western art.",
+      "fr": "Commencé dans les années 1820 et achevé seulement des décennies plus tard, il devint l'un des nus les plus copiés de l'art occidental.",
+      "zh-Hans": "此画始于19世纪20年代，数十年后才最终完成，后来成为西方艺术中被临摹最多的裸体画之一。"
+    }
+  },
+  {
+    "id": "orsay_rf_2772",
+    "artist": "Édouard Manet",
+    "year": "1868",
+    "hall": null,
+    "inventoryNumber": "RF 2772",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20The%20Balcony%20-%20Google%20Art%20Project.jpg",
+    "accent": "#665DA8",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Balcony",
+      "fr": "Le Balcon",
+      "zh-Hans": "The Balcony"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Manet paints three people sharing one balcony without sharing a single glance, capturing a very modern kind of social distance.",
+      "fr": "Manet peint trois personnes partageant un même balcon sans échanger le moindre regard, saisissant une forme très moderne de distance sociale.",
+      "zh-Hans": "马奈描绘三个人共处同一个阳台，却彼此毫无眼神交流，捕捉到一种非常现代的社交疏离感。"
+    },
+    "where": {
+      "en": "Notice none of the three figures look at each other or at you — that disconnection is deliberate.",
+      "fr": "Remarquez qu'aucun des trois personnages ne regarde les autres, ni vous — cette absence de contact est voulue.",
+      "zh-Hans": "留意画中三个人物都没有互相对视，也没有看向观者——这种疏离感是刻意为之的。"
+    },
+    "rarity": {
+      "en": "The bold green shutters and railing were considered shockingly modern, and the sitters became minor celebrities because of it.",
+      "fr": "Les volets et la rambarde d'un vert audacieux furent jugés choquants et résolument modernes, ce qui rendit les modèles brièvement célèbres.",
+      "zh-Hans": "画中大胆的绿色百叶窗与栏杆在当时被认为极具冲击力、极其现代，也让画中人物一度小有名气。"
+    }
+  },
+  {
+    "id": "orsay_rf_592",
+    "artist": "Jean-François Millet",
+    "year": "1857",
+    "hall": null,
+    "inventoryNumber": "RF 592",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Jean-Fran%C3%A7ois%20Millet%20-%20Gleaners%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6A5DA4",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Gleaners",
+      "fr": "Des glaneuses",
+      "zh-Hans": "拾穗"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Millet gives three poor women gathering leftover grain the same monumental dignity usually reserved for saints, making rural poverty impossible to ignore.",
+      "fr": "Millet donne à trois pauvres glaneuses la même dignité monumentale habituellement réservée aux saints, rendant impossible d'ignorer la pauvreté rurale.",
+      "zh-Hans": "米勒赋予三位拾取剩余麦穗的贫穷妇女以往常只属于圣徒的庄严感，使人无法忽视农村的贫困。"
+    },
+    "where": {
+      "en": "Compare the huge, sunlit harvest in the background with the three bent figures in front — that gap is the whole social statement.",
+      "fr": "Comparez l'immense moisson ensoleillée à l'arrière-plan avec les trois silhouettes courbées au premier plan — cet écart est tout le propos social du tableau.",
+      "zh-Hans": "比较背景中阳光下丰收的广袤麦田，与前景中三个弯腰的身影——这种反差正是整幅画的社会意涵所在。"
+    },
+    "rarity": {
+      "en": "Initially condemned by critics as a glorification of the poor, it is now one of the most reproduced images of 19th-century rural life.",
+      "fr": "D'abord condamné par la critique comme une glorification des pauvres, c'est aujourd'hui l'une des images les plus reproduites de la vie rurale du XIXe siècle.",
+      "zh-Hans": "这幅画最初被评论界批评为美化贫穷，如今却成为19世纪乡村生活最广为流传的图像之一。"
+    }
+  },
+  {
+    "id": "orsay_rf_2738",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1876",
+    "hall": null,
+    "inventoryNumber": "RF 2738",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Swing-Renoir.jpeg",
+    "accent": "#6B89A7",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "La Balançoire",
+      "fr": "La Balançoire",
+      "zh-Hans": "La Balançoire"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Renoir dissolves a simple garden scene into patches of dappled light, treating sunlight through leaves as more interesting than the story itself.",
+      "fr": "Renoir dissout une simple scène de jardin en taches de lumière tachetée, traitant le soleil filtrant à travers les feuilles comme plus intéressant que l'histoire elle-même.",
+      "zh-Hans": "雷诺阿把一个简单的花园场景溶解成斑驳的光影碎片，认为透过树叶洒落的阳光比叙事本身更值得描绘。"
+    },
+    "where": {
+      "en": "Look at the blue shadows on the woman's white dress — Renoir paints shadow as colour, not just darkness.",
+      "fr": "Observez les ombres bleues sur la robe blanche de la femme — Renoir peint l'ombre comme une couleur, pas seulement comme une absence de lumière.",
+      "zh-Hans": "看那位女子白色裙子上的蓝色阴影——雷诺阿把阴影当作一种色彩来描绘，而不仅仅是缺乏光线。"
+    },
+    "rarity": {
+      "en": "Painted the same year and in the same garden as Bal du moulin de la Galette, using the same models.",
+      "fr": "Peint la même année et dans le même jardin que le Bal du moulin de la Galette, avec les mêmes modèles.",
+      "zh-Hans": "此画与《煎饼磨坊的舞会》创作于同一年、同一座花园，甚至使用了相同的模特。"
+    }
+  },
+  {
+    "id": "orsay_rf_2010_8",
+    "artist": "William-Adolphe Bouguereau",
+    "year": "1850",
+    "hall": null,
+    "inventoryNumber": "RF 2010 8",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/William%20Bouguereau%20-%20Dante%20and%20Virgile%20-%20Google%20Art%20Project%202.jpg",
+    "accent": "#735057",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Dante and Virgil in Hell",
+      "fr": "Dante et Virgille en Enfer",
+      "zh-Hans": "Dante and Virgil in Hell"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Bouguereau paints damnation with anatomical precision and theatrical violence, showing how academic painting could still shock through technique alone.",
+      "fr": "Bouguereau peint la damnation avec une précision anatomique et une violence théâtrale, montrant que la peinture académique pouvait choquer par la seule virtuosité technique.",
+      "zh-Hans": "布格罗以精准的解剖学描绘与戏剧化的暴力场面呈现地狱的惩罚，展示学院派绘画仅凭技巧便能带来强烈冲击。"
+    },
+    "where": {
+      "en": "Follow the twisted, straining muscles of the two fighting figures — every tendon is studied, not imagined.",
+      "fr": "Suivez les muscles tordus et tendus des deux figures qui se battent — chaque tendon est étudié, non imaginé.",
+      "zh-Hans": "顺着两个搏斗人物扭曲、紧绷的肌肉线条看去——每一处肌腱都是经过细致研究而非凭空想象。"
+    },
+    "rarity": {
+      "en": "A dramatic early masterpiece that won Bouguereau major recognition before he became known for gentler mythological scenes.",
+      "fr": "Un chef-d'œuvre de jeunesse spectaculaire qui valut à Bouguereau une reconnaissance majeure, avant qu'il ne devienne célèbre pour des scènes mythologiques plus douces.",
+      "zh-Hans": "这幅充满戏剧性的早期杰作为布格罗赢得了重要声誉，此后他才逐渐以更温和的神话题材闻名。"
+    },
+    "whyKids": {
+      "en": "Bouguereau paints a scene from a famous Italian story where two poets, Dante and Virgil, travel through an imaginary underworld and watch strange things happen to the people they meet there.",
+      "fr": "Bouguereau peint une scène tirée d'une célèbre histoire italienne où deux poètes, Dante et Virgile, traversent un monde imaginaire souterrain et observent d'étranges événements arriver aux personnages qu'ils croisent.",
+      "zh-Hans": "布格罗描绘的是一则著名意大利故事中的场景：诗人但丁和维吉尔在一个想象出来的地下世界中旅行，看到那里发生的种种奇怪事情。"
+    },
+    "whereKids": {
+      "en": "Find the two calm, cloaked figures watching from the shadows in the background — that's Dante and Virgil, the storytellers guiding us through this scene.",
+      "fr": "Repérez les deux silhouettes calmes et enveloppées d'un manteau qui observent depuis l'ombre, à l'arrière-plan — ce sont Dante et Virgile, les conteurs qui nous guident à travers cette scène.",
+      "zh-Hans": "在背景阴影中找到那两个披着斗篷、神情平静的旁观者——那就是但丁和维吉尔，是他们的讲述带领我们看到这一幕。"
+    },
+    "contentFlag": "Violent mythological combat scene. Product decision (resolved): stays in Kids mode; Kids why/where rewritten to focus on the Dante/Virgil narrative frame instead of the fight — see whyKids/whereKids."
+  },
+  {
+    "id": "orsay_rf_755",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1892",
+    "hall": null,
+    "inventoryNumber": "RF 755",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20Young%20Girls%20at%20the%20Piano%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6B89A7",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Girls at the Piano",
+      "fr": "Jeunes Filles au piano",
+      "zh-Hans": "Girls at the Piano"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Renoir softens Impressionist technique into warmer, rounder forms, painting a quiet domestic moment instead of an outdoor spectacle.",
+      "fr": "Renoir adoucit la technique impressionniste vers des formes plus chaudes et arrondies, peignant un moment domestique calme plutôt qu'un spectacle en plein air.",
+      "zh-Hans": "雷诺阿将印象派技法软化为更温暖、更圆润的形态，描绘的是宁静的家庭时刻，而非户外的壮丽景象。"
+    },
+    "where": {
+      "en": "Notice how the girls' hair and the piano's wood share the same warm golden tone — Renoir ties the whole room together with colour.",
+      "fr": "Remarquez comment les cheveux des fillettes et le bois du piano partagent le même ton doré chaleureux — Renoir unifie toute la pièce par la couleur.",
+      "zh-Hans": "留意女孩们的头发与钢琴木质的色调如此接近而温暖——雷诺阿用色彩把整个房间统一起来。"
+    },
+    "rarity": {
+      "en": "One of at least five versions Renoir painted of this scene for a state commission — this is the one acquired for the national collection.",
+      "fr": "L'une des cinq versions au moins que Renoir peignit de cette scène pour une commande de l'État — celle-ci fut acquise pour la collection nationale.",
+      "zh-Hans": "这是雷诺阿为一项官方委托创作的至少五个版本之一，这一版本最终被收入国家收藏。"
+    }
+  },
+  {
+    "id": "orsay_rf_2765",
+    "artist": "Paul Gauguin",
+    "year": "1890",
+    "hall": null,
+    "inventoryNumber": "RF 2765",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20056.jpg",
+    "accent": "#AA8E9A",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Tahitian Women on the Beach",
+      "fr": "Femmes de Tahiti",
+      "zh-Hans": "Tahitian Women on the Beach"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Gauguin painted the Tahiti he wished still existed rather than the one already reshaped by French colonial rule, using flattened, non-European colour that deliberately rejects Western perspective.",
+      "fr": "Gauguin peint le Tahiti qu'il aurait voulu voir subsister plutôt que celui déjà transformé par la colonisation française, avec des couleurs aplaties et non européennes qui rejettent délibérément la perspective occidentale.",
+      "zh-Hans": "高更描绘的是他希望仍然存在的塔希提，而非已被法国殖民统治所改变的现实塔希提，他使用扁平化、非欧洲式的色彩，故意摒弃西方透视法则。"
+    },
+    "where": {
+      "en": "Compare the strong outline around each figure to the softer brushwork of Impressionist rooms elsewhere — Gauguin is deliberately going the opposite direction.",
+      "fr": "Comparez le contour marqué de chaque silhouette à la touche plus douce des salles impressionnistes voisines — Gauguin prend délibérément le contre-pied.",
+      "zh-Hans": "比较每个人物周围强烈的轮廓线，与附近印象派展厅那种柔和的笔触——高更是在刻意反其道而行之。"
+    },
+    "rarity": {
+      "en": "Painted during Gauguin's first trip to Tahiti, part of the body of work that made him a founder of Symbolist and Post-Impressionist painting.",
+      "fr": "Peint lors du premier séjour de Gauguin à Tahiti, cette œuvre appartient à l'ensemble qui fit de lui l'un des fondateurs du symbolisme et du postimpressionnisme.",
+      "zh-Hans": "此画创作于高更第一次前往塔希提岛期间，是使他成为象征主义与后印象派奠基人的重要作品之一。"
+    },
+    "whyKids": {
+      "en": "Gauguin traveled far from France to the island of Tahiti and painted its people using bold, flat colours instead of realistic shading — though the Tahiti he painted was already changing, because France ruled the island at the time.",
+      "fr": "Gauguin voyagea loin de la France jusqu'à l'île de Tahiti et peignit ses habitants avec des couleurs vives et aplaties plutôt que des ombres réalistes — même si le Tahiti qu'il peignait était déjà en train de changer, car la France gouvernait l'île à cette époque.",
+      "zh-Hans": "高更从法国远渡重洋来到塔希提岛，用大胆而扁平的色彩描绘岛上的人们，而不是写实的明暗处理——不过他所描绘的塔希提，当时已经因为受法国统治而开始发生变化。"
+    },
+    "contentFlag": "Gauguin's Tahiti period is discussed alongside colonial context in museum wall text. Product decision (resolved): stays unrestricted in all modes; Normal and Kids why now name the colonial context proportionately — see why/whyKids. (The darker biographical context re: his relationships with very young Tahitian girls is deliberately NOT surfaced in Kids copy — out of scope for a family product.)"
+  },
+  {
+    "id": "orsay_rf_2773",
+    "artist": "Claude Monet",
+    "year": "1866",
+    "hall": null,
+    "inventoryNumber": "RF 2773",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20024.jpg",
+    "accent": "#6A5765",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "Women in the Garden",
+      "fr": "Femmes au jardin",
+      "zh-Hans": "Women in the Garden"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Monet paints figures outdoors under real, changing daylight instead of studio lighting, an early step toward what would become Impressionism.",
+      "fr": "Monet peint des figures en extérieur sous une lumière réelle et changeante plutôt qu'un éclairage d'atelier, un des premiers pas vers ce qui deviendra l'impressionnisme.",
+      "zh-Hans": "莫奈在真实变化的户外光线下描绘人物，而非依赖画室中的人工光线，这是通往印象派道路上的早期一步。"
+    },
+    "where": {
+      "en": "Look at the dappled shadow moving across the women's white dresses — Monet dug a trench in his garden just to paint this at true outdoor scale.",
+      "fr": "Observez l'ombre tachetée qui parcourt les robes blanches des femmes — Monet creusa une tranchée dans son jardin pour peindre cette toile à l'échelle réelle en plein air.",
+      "zh-Hans": "看那斑驳的阴影在女子们白色裙装上移动的方式——莫奈甚至在花园里挖了一条沟渠，只为能以真实尺寸在户外完成这幅画。"
+    },
+    "rarity": {
+      "en": "Painted almost entirely outdoors on a canvas over two metres tall, an unusually ambitious scale for a plein-air study at the time.",
+      "fr": "Peint presque entièrement en extérieur sur une toile de plus de deux mètres de haut, une ambition inhabituelle pour une étude en plein air à l'époque.",
+      "zh-Hans": "这幅画几乎完全在户外完成，画布高度超过两米，在当时的外光写生作品中野心异常宏大。"
+    }
+  },
+  {
+    "id": "orsay_rf_273",
+    "artist": "Alexandre Cabanel",
+    "year": "1863",
+    "hall": null,
+    "inventoryNumber": "RF 273",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Alexandre%20Cabanel%20-%20The%20Birth%20of%20Venus%20-%20Google%20Art%20Project%202.jpg",
+    "accent": "#8C8494",
+    "priority": "top20",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "title": {
+      "en": "The Birth of Venus",
+      "fr": "La Naissance de Vénus",
+      "zh-Hans": "The Birth of Venus"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Cabanel paints an idealized, softly lit Venus in the polished academic style that Napoleon III himself purchased, the same year Manet's raw, real-life nude in Olympia scandalized Paris.",
+      "fr": "Cabanel peint une Vénus idéalisée à la lumière douce, dans un style académique lisse que Napoléon III lui-même acheta, la même année où l'Olympia crue et réelle de Manet scandalisait Paris.",
+      "zh-Hans": "卡巴内尔以柔和光线描绘理想化的维纳斯，采用当时官方推崇的精致学院派风格，拿破仑三世本人买下了此画；而同一年马奈笔下真实、直露的裸体《奥林匹亚》却令巴黎哗然。"
+    },
+    "where": {
+      "en": "Compare the smooth, glowing skin here with the flatter, harsher light in Manet's Olympia nearby — the two paintings define opposite sides of a single argument about art.",
+      "fr": "Comparez la peau lisse et lumineuse ici avec la lumière plus plate et crue de l'Olympia de Manet, à proximité — les deux tableaux incarnent deux camps opposés d'un même débat sur l'art.",
+      "zh-Hans": "把这里柔滑发光的肌肤，与附近马奈《奥林匹亚》中更平直、更强烈的光线做比较——这两幅画代表了一场艺术论战的两端。"
+    },
+    "rarity": {
+      "en": "Bought directly by Emperor Napoleon III, it represents the official taste that Impressionism was reacting against.",
+      "fr": "Acheté directement par l'empereur Napoléon III, il incarne le goût officiel contre lequel réagissait l'impressionnisme.",
+      "zh-Hans": "此画由拿破仑三世皇帝亲自购藏，代表了印象派所要反抗的官方审美趣味。"
+    },
+    "whyKids": {
+      "en": "Cabanel paints the myth of Venus being born from the sea, using the smooth, polished painting style that official art schools taught and admired in the 1800s.",
+      "fr": "Cabanel peint le mythe de la naissance de Vénus sortant de la mer, dans le style lisse et soigné enseigné et admiré par les écoles d'art officielles du XIXe siècle.",
+      "zh-Hans": "卡巴内尔描绘了维纳斯从海中诞生的神话故事，使用了19世纪官方美术学院所推崇的那种细腻光滑的绘画风格。"
+    },
+    "whereKids": {
+      "en": "Look at the little cherubs flying above the waves — Cabanel added them straight from the old myth to show this is a goddess being born, not an ordinary person.",
+      "fr": "Regardez les petits angelots qui volent au-dessus des vagues — Cabanel les a ajoutés tout droit du mythe antique pour montrer qu'il s'agit d'une déesse qui naît, et non d'une personne ordinaire.",
+      "zh-Hans": "看那些在海浪上方飞舞的小天使——卡巴内尔按照古老神话的描述添加了它们，用来表明画中诞生的是一位女神，而非普通人。"
+    },
+    "contentFlag": "Idealized nude. Product decision (resolved): stays in Kids mode; Kids why/where rewritten to focus on the myth and technique instead of skin/body — see whyKids/whereKids."
+  },
+  {
+    "id": "orsay_rf_1949_17",
+    "artist": "Vincent van Gogh",
+    "year": "1889",
+    "hall": null,
+    "inventoryNumber": "RF 1949 17",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Self-Portrait%20-%20Google%20Art%20Project.jpg",
+    "accent": "#618E59",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Self-portrait",
+      "fr": "Portrait de l'artiste",
+      "zh-Hans": "Self-portrait"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1992",
+    "artist": "Édouard Manet",
+    "year": "1866",
+    "hall": null,
+    "inventoryNumber": "RF 1992",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Manet%2C%20Edouard%20-%20Young%20Flautist%2C%20or%20The%20Fifer%2C%201866%20%282%29.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Fifer",
+      "fr": "Le Fifre",
+      "zh-Hans": "The Fif"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": true
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_051804048",
+    "artist": "Jean-François Millet",
+    "year": "1858",
+    "hall": null,
+    "inventoryNumber": "RF 051804048",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/JEAN-FRAN%C3%87OIS%20MILLET%20-%20El%20%C3%81ngelus%20%28Museo%20de%20Orsay%2C%201857-1859.%20%C3%93leo%20sobre%20lienzo%2C%2055.5%20x%2066%20cm%29.jpg",
+    "accent": "#6A5DA4",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Angelus",
+      "fr": "L'Angélus",
+      "zh-Hans": "晚祷"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2210",
+    "artist": "Edgar Degas",
+    "year": "1858",
+    "hall": null,
+    "inventoryNumber": "RF 2210",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20The%20Bellelli%20Family%20-%20Google%20Art%20Project.jpg",
+    "accent": "#754A8F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Bellelli Family",
+      "fr": "La Famille Bellelli",
+      "zh-Hans": "The Bellelli Family"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1984_164",
+    "artist": "Claude Monet",
+    "year": "1868",
+    "hall": null,
+    "inventoryNumber": "RF 1984 164",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Magpie%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Magpie",
+      "fr": "La Pie",
+      "zh-Hans": "The Magpie"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2718",
+    "artist": "Gustave Caillebotte",
+    "year": "1875",
+    "hall": null,
+    "inventoryNumber": "RF 2718",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20The%20Floor%20Planers%20-%20Google%20Art%20Project.jpg",
+    "accent": "#667E9B",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Les raboteurs de parquet",
+      "fr": "Les Raboteurs de parquet",
+      "zh-Hans": "Les raboteurs de parquet"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2511",
+    "artist": "Georges Seurat",
+    "year": "1891",
+    "hall": null,
+    "inventoryNumber": "RF 2511",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Georges%20Seurat%20-%20The%20Circus%20-%20Google%20Art%20Project.jpg",
+    "accent": "#B8B96E",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Circus",
+      "fr": "Le Cirque",
+      "zh-Hans": "The Circus"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1978_13",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1883",
+    "hall": null,
+    "inventoryNumber": "RF 1978 13",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20019.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Dance in the City",
+      "fr": "Danse à la ville",
+      "zh-Hans": "Dance in the City"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1979_64",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1883",
+    "hall": null,
+    "inventoryNumber": "RF 1979 64",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Pierre%20Auguste%20Renoir%20-%20Country%20Dance%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Dance in the Country",
+      "fr": "Danse à la campagne",
+      "zh-Hans": "Dance in the Country"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1998_30",
+    "artist": "Édouard Manet",
+    "year": "1872",
+    "hall": null,
+    "inventoryNumber": "RF 1998 30",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Berthe%20Morisot%20With%20a%20Bouquet%20of%20Violets%20-%20Google%20Art%20Project.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Berthe Morisot with a Bouquet of Violets",
+      "fr": "Berthe Morisot au bouquet de violettes",
+      "zh-Hans": "Berthe Morisot with a Bouquet of Violets"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1957_7",
+    "artist": "Claude Monet",
+    "year": "1865",
+    "hall": null,
+    "inventoryNumber": "RF 1957 7",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Le%20dejeurner%20sur%20l%27herbe%20%28left%20panel%29.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Le Déjeuner sur l'herbe",
+      "fr": "Le Déjeuner sur l'herbe",
+      "zh-Hans": "Le Déjeuner sur l'herbe"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2205",
+    "artist": "Édouard Manet",
+    "year": "1868",
+    "hall": null,
+    "inventoryNumber": "RF 2205",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20049.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Emile Zola",
+      "fr": "Émile Zola",
+      "zh-Hans": "Portrait of Emile Zola"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_338",
+    "artist": "Gustave Courbet",
+    "year": "1844",
+    "hall": null,
+    "inventoryNumber": "RF 338",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20the%20Artist%20called%20The%20Wounded%20Man%20%28L%27homme%20bless%C3%A9%29%20by%20Gustave%20Courbet.jpg",
+    "accent": "#5D4457",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Wounded Man",
+      "fr": "L'Homme blessé",
+      "zh-Hans": "The Wounded Man"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_64",
+    "artist": "Rosa Bonheur",
+    "year": "1849",
+    "hall": null,
+    "inventoryNumber": "RF 64",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Rosa%20Bonheur%20-%20Ploughing%20in%20Nevers%20-%20Google%20Art%20Project.jpg",
+    "accent": "#56684B",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Ploughing in the Nivernais",
+      "fr": "Labourage nivernais",
+      "zh-Hans": "Ploughing in the Nivernais"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_88",
+    "artist": "Jean-Léon Gérôme",
+    "year": "1846",
+    "hall": null,
+    "inventoryNumber": "RF 88",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Jean-L%C3%A9on%20G%C3%A9r%C3%B4me%20-%20Young%20Greeks%20Attending%20a%20Cock%20Fight%20-%20Google%20Art%20Project.jpg",
+    "accent": "#A255AB",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Young Greeks Attending a Cock Fight",
+      "fr": "Un combat de coqs",
+      "zh-Hans": "Young Greeks Attending a Cock Fight"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2450",
+    "artist": "Frédéric Bazille",
+    "year": "1864",
+    "hall": null,
+    "inventoryNumber": "RF 2450",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Fr%C3%A9d%C3%A9ric%20Bazille%20-%20The%20Pink%20Dress%20-%20Google%20Art%20Project.jpg",
+    "accent": "#418A48",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Pink Dress",
+      "fr": "La Robe rose",
+      "zh-Hans": "The Pink Dress"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2778",
+    "artist": "Claude Monet",
+    "year": "1872",
+    "hall": null,
+    "inventoryNumber": "RF 2778",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Regattas%20at%20Argenteuil%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Régates à Argenteuil",
+      "fr": "Régates à Argenteuil",
+      "zh-Hans": "Régates à Argenteuil"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1983_6",
+    "artist": "Claude Monet",
+    "year": "1900",
+    "hall": null,
+    "inventoryNumber": "RF 1983 6",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Monet%20-%20Monets%20Garten%20in%20Giverny.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The artist's garden at Giverny",
+      "fr": "Le Jardin de l'artiste à Giverny",
+      "zh-Hans": "The artist's garden at Giverny"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1976",
+    "artist": "Edgar Degas",
+    "year": "1871",
+    "hall": null,
+    "inventoryNumber": "RF 1976",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20The%20Ballet%20Class%20-%20Google%20Art%20Project.jpg",
+    "accent": "#754A8F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Ballet Class",
+      "fr": "La Classe de danse",
+      "zh-Hans": "The Ballet Class"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1990_7",
+    "artist": "Jean-Léon Gérôme",
+    "year": "1867",
+    "hall": null,
+    "inventoryNumber": "RF 1990 7",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Jean-L%C3%A9on%20G%C3%A9r%C3%B4me%20Consummatum%20est.jpg",
+    "accent": "#A255AB",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Jerusalem",
+      "fr": "Consummatum est",
+      "zh-Hans": "Jerusalem"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_lux_1439",
+    "artist": "Frédéric Bazille",
+    "year": "1870",
+    "hall": null,
+    "inventoryNumber": "LUX 1439",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Fr%C3%A9d%C3%A9ric%20Bazille%20-%20Bazille%27s%20Studio%20-%20Google%20Art%20Project.jpg",
+    "accent": "#418A48",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Bazille's Studio",
+      "fr": "L'Atelier de la rue de la Condamine",
+      "zh-Hans": "Bazille's Studio"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_876",
+    "artist": "Gustave Caillebotte",
+    "year": "1878",
+    "hall": null,
+    "inventoryNumber": "RF 876",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Gustave%20Caillebotte%20-%20Rooftops%20in%20the%20Snow%20%28snow%20effect%29%20-%20Google%20Art%20Project.jpg",
+    "accent": "#667E9B",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Vue de toits",
+      "fr": "Vue de toits",
+      "zh-Hans": "Vue de toits"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1981_33",
+    "artist": "William-Adolphe Bouguereau",
+    "year": "1856",
+    "hall": null,
+    "inventoryNumber": "RF 1981 33",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/William-Adolphe%20Bouguereau%20%281825-1905%29%20-%20The%20Dance%20%281856%29.jpg",
+    "accent": "#735057",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Dance",
+      "fr": "La Danse",
+      "zh-Hans": "舞蹈"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": false,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1937_7",
+    "artist": "Henri Rousseau",
+    "year": "1907",
+    "hall": null,
+    "inventoryNumber": "RF 1937 7",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/HENRI%20ROUSSEAU%20-%20La%20Encantadora%20de%20Serpientes%20%28Museo%20de%20Orsay%2C%20Par%C3%ADs%2C%201907.%20%C3%93leo%20sobre%20lienzo%2C%20169%20x%20189.5%20cm%29.jpg",
+    "accent": "#73A898",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Snake Charmer",
+      "fr": "La Charmeuse de serpents",
+      "zh-Hans": "La encantadora de serpientes"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": true
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1952_17",
+    "artist": "Vincent van Gogh",
+    "year": "1890",
+    "hall": null,
+    "inventoryNumber": "RF 1952 17",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20siesta%20%28after%20Millet%29%20-%20Google%20Art%20Project.jpg",
+    "accent": "#618E59",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The siesta (after Millet)",
+      "fr": "La Méridienne",
+      "zh-Hans": "The siesta (after Millet)"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1961_6",
+    "artist": "Paul Gauguin",
+    "year": "1892",
+    "hall": null,
+    "inventoryNumber": "RF 1961 6",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Arearea%20-%20Google%20Art%20Project.jpg",
+    "accent": "#AA8E9A",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Arearea",
+      "fr": "Arearea",
+      "zh-Hans": "Arearea"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2749",
+    "artist": "Frédéric Bazille",
+    "year": "1867",
+    "hall": null,
+    "inventoryNumber": "RF 2749",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/R%C3%A9union%20de%20famille%20-%20Fr%C3%A9d%C3%A9ric%20Bazille%20-%20mus%C3%A9e%20d%27Orsay%20RF%202749.jpg",
+    "accent": "#418A48",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Réunion de famille",
+      "fr": "Réunion de famille",
+      "zh-Hans": "Réunion de famille"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1944_17",
+    "artist": "Édouard Manet",
+    "year": "1865",
+    "hall": null,
+    "inventoryNumber": "RF 1944 17",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20005.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Reading",
+      "fr": "La Lecture",
+      "zh-Hans": "The Reading"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2849",
+    "artist": "Berthe Morisot",
+    "year": "1872",
+    "hall": null,
+    "inventoryNumber": "RF 2849",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Berthe%20Morisot%20-%20The%20Cradle%20-%20Google%20Art%20Project.jpg",
+    "accent": "#7C998C",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Cradle",
+      "fr": "Le Berceau",
+      "zh-Hans": "The Cradle"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2795",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1918",
+    "hall": null,
+    "inventoryNumber": "RF 2795",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Pierre%20Auguste%20Renoir%20-%20The%20Bathers%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Bathers",
+      "fr": "Les Baigneuses",
+      "zh-Hans": "The Bathers"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_729",
+    "artist": "Henri Fantin-Latour",
+    "year": "1870",
+    "hall": null,
+    "inventoryNumber": "RF 729",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Fantin-Latour%20-%20A%20Studio%20at%20Les%20Batignolles%20-%20Google%20Art%20Project.jpg",
+    "accent": "#68B48D",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "A Studio at Les Batignolles",
+      "fr": "Un atelier aux Batignolles",
+      "zh-Hans": "A Studio at Les Batignolles"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1970",
+    "artist": "Paul Cézanne",
+    "year": "1874",
+    "hall": null,
+    "inventoryNumber": "RF 1970",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/La%20Maison%20du%20pendu%2C%20Auvers-sur-Oise%2C%20par%20Paul%20C%C3%A9zanne%2C%20FWN%2081.jpg",
+    "accent": "#58594F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "La Maison du pendu, Auvers-sur-Oise",
+      "fr": "La Maison du pendu",
+      "zh-Hans": "La Maison du pendu, Auvers-sur-Oise"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_d2006_3_5",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1867",
+    "hall": null,
+    "inventoryNumber": "D2006.3.5",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Fr%C3%A9d%C3%A9ric%20Bazille.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Frédéric Bazille Painting",
+      "fr": "Frédéric Bazille peignant à son chevalet",
+      "zh-Hans": "Portrait of Frédéric Bazille Painting"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1676",
+    "artist": "Claude Monet",
+    "year": "1873",
+    "hall": null,
+    "inventoryNumber": "RF 1676",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Poppy%20Field%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Poppy Field near Argenteuil",
+      "fr": "Les Coquelicots",
+      "zh-Hans": "The Poppy Field near Argenteuil"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2617",
+    "artist": "Paul Gauguin",
+    "year": "1889",
+    "hall": null,
+    "inventoryNumber": "RF 2617",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20La%20Belle%20Ang%C3%A8le%20-%20Google%20Art%20Project.jpg",
+    "accent": "#AA8E9A",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "La belle Angèle",
+      "fr": "La Belle Angèle",
+      "zh-Hans": "La belle Angèle"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1959_18",
+    "artist": "Édouard Manet",
+    "year": "1880",
+    "hall": null,
+    "inventoryNumber": "RF 1959 18",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20Asparagus%20-%20Google%20Art%20Project.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "L'Asperge",
+      "fr": "L'Asperge",
+      "zh-Hans": "L'Asperge"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1991",
+    "artist": "Édouard Manet",
+    "year": "1862",
+    "hall": null,
+    "inventoryNumber": "RF 1991",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Lola%20de%20Valence%20%281862%29%20-%20Edouard%20Manet%20%28Mus%C3%A9e%20d%27Orsay%2C%20Paris%29.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Lola de Valence",
+      "fr": "Lola de Valence",
+      "zh-Hans": "Lola de Valence"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1977_12",
+    "artist": "Édouard Manet",
+    "year": "1860",
+    "hall": null,
+    "inventoryNumber": "RF 1977 12",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20M.%20and%20Mme.%20Auguste%20Manet%20%281860%29%20-%20Edouard%20Manet%20%28Mus%C3%A9e%20d%27Orsay%2C%20Paris%29.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Monsieur and Madame Auguste Manet",
+      "fr": "Portrait de M. et Mme Auguste Manet",
+      "zh-Hans": "Portrait of Monsieur and Madame Auguste Manet"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1965_14",
+    "artist": "Vincent van Gogh",
+    "year": "1887",
+    "hall": null,
+    "inventoryNumber": "RF 1965 14",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20The%20Italian%20Woman%20-%20Google%20Art%20Project.jpg",
+    "accent": "#618E59",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "L'Italienne",
+      "fr": "L'Italienne",
+      "zh-Hans": "L'Italienne"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_4046",
+    "artist": "Edgar Degas",
+    "year": "1886",
+    "hall": null,
+    "inventoryNumber": "RF 4046",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20Le%20Tub%20%281886%20Mus%C3%A9e%20d%27Orsay%29.jpg",
+    "accent": "#754A8F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Tub",
+      "fr": "Le Tub",
+      "zh-Hans": "The Tub"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2010_7",
+    "artist": "William-Adolphe Bouguereau",
+    "year": "1848",
+    "hall": null,
+    "inventoryNumber": "RF 2010 7",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Bouguereau%20-%20%C3%A9galit%C3%A9%20devant%20la%20mort%201848.jpg",
+    "accent": "#735057",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Equality Before Death",
+      "fr": "Égalité devant la mort",
+      "zh-Hans": "Equality Before Death"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_3666",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1875",
+    "hall": null,
+    "inventoryNumber": "RF 3666",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Auguste%20Renoir%20-%20Claude%20Monet%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Claude Monet",
+      "fr": "Claude Monet",
+      "zh-Hans": "Claude Monet"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_do_1986_16",
+    "artist": "Albert Edelfelt",
+    "year": "1885",
+    "hall": null,
+    "inventoryNumber": "DO 1986 16",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Albert%20Edelfelt%20-%20Louis%20Pasteur%20-%201885.jpg",
+    "accent": "#A47C96",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Louis Pasteur",
+      "fr": "Louis Pasteur",
+      "zh-Hans": "Pasteur's portrait by Edelfelt"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": true
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1994_2",
+    "artist": "Paul Gauguin",
+    "year": "1890",
+    "hall": null,
+    "inventoryNumber": "RF 1994 2",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20-%20Portrait%20of%20the%20Artist%20with%20the%20Yellow%20Christ%20%281890-91%29.jpg",
+    "accent": "#AA8E9A",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of the Artist with the Yellow Christ",
+      "fr": "Portrait de l'artiste au Christ jaune",
+      "zh-Hans": "Portrait of the Artist with the Yellow Christ"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2010_4",
+    "artist": "William-Adolphe Bouguereau",
+    "year": "1902",
+    "hall": null,
+    "inventoryNumber": "RF 2010 4",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/William-Adolphe%20Bouguereau%20-%20Les%20Or%C3%A9ades.jpg",
+    "accent": "#735057",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Oreads",
+      "fr": "Les Oréades",
+      "zh-Hans": "The Oreads"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1994",
+    "artist": "Édouard Manet",
+    "year": "1867",
+    "hall": null,
+    "inventoryNumber": "RF 1994",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/%C3%89douard%20Manet%20-%20Madame%20Manet%20ou%20Piano.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Suzanne Manet Playing the Piano",
+      "fr": "Madame Manet au piano",
+      "zh-Hans": "Suzanne Manet Playing the Piano"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2242",
+    "artist": "Henri de Toulouse-Lautrec",
+    "year": "1889",
+    "hall": null,
+    "inventoryNumber": "RF 2242",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/%28Albi%29%20Rousse%20%28La%20Toilette%29%20-%201889%20-%20Henri%20de%20Toulouse-Lautrec%20-%20Mus%C3%A9e%20d%27Orsay%2C%20Paris.jpg",
+    "accent": "#42B1B9",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "La Toilette",
+      "fr": "La Toilette",
+      "zh-Hans": "La Toilette"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2817",
+    "artist": "Paul Cézanne",
+    "year": "1898",
+    "hall": null,
+    "inventoryNumber": "RF 2817",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Still%20Life%20with%20Onions%20-%20Google%20Art%20Project.jpg",
+    "accent": "#58594F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Still Life with Onions",
+      "fr": "Nature morte aux oignons",
+      "zh-Hans": "Still Life with Onions"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2740",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1875",
+    "hall": null,
+    "inventoryNumber": "RF 2740",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Torso%20Effect%20of%20Sunlight%20Renoir%201876.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Torse, effet de soleil",
+      "fr": "Torse, effet de soleil",
+      "zh-Hans": "Torse, effet de soleil"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2011",
+    "artist": "Claude Monet",
+    "year": "1865",
+    "hall": null,
+    "inventoryNumber": "RF 2011",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Monet%2C%20A%20Cart%20on%20the%20Snowy%20Road%20at%20Honfleur%20%281865%20or%201867%29.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "A Cart on the Snowy Road at Honfleur",
+      "fr": "La Charrette. Route sous la neige à Honfleur",
+      "zh-Hans": "A Cart on the Snowy Road at Honfleur"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_inv_10168",
+    "artist": "Edouard Louis Dubufe",
+    "year": "1856",
+    "hall": null,
+    "inventoryNumber": "INV 10168",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Dubufe%20Congr%C3%A8s%20de%20Paris.jpg",
+    "accent": "#758F87",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Congress of Paris",
+      "fr": "Le Congrès de Paris en 1856",
+      "zh-Hans": "The Congress of Paris"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1959_5",
+    "artist": "Paul Gauguin",
+    "year": "1897",
+    "hall": null,
+    "inventoryNumber": "RF 1959 5",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20135.jpg",
+    "accent": "#AA8E9A",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Vairumati",
+      "fr": "Vairumati",
+      "zh-Hans": "Vairumati"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1664",
+    "artist": "Henri Fantin-Latour",
+    "year": "1864",
+    "hall": null,
+    "inventoryNumber": "RF 1664",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Hommage%20%C3%A0%20Delacroix%20-%20Henri%20Fantin-Latour.jpg",
+    "accent": "#68B48D",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Homage to Delacroix",
+      "fr": "Hommage à Delacroix",
+      "zh-Hans": "Homage to Delacroix"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1966_7",
+    "artist": "Paul Gauguin",
+    "year": "1893",
+    "hall": null,
+    "inventoryNumber": "RF 1966 7",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20Gauguin%20111.jpg",
+    "accent": "#AA8E9A",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Self-portrait with hat",
+      "fr": "Autoportrait au chapeau",
+      "zh-Hans": "Self-portrait with hat"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2173",
+    "artist": "Henri Fantin-Latour",
+    "year": "1885",
+    "hall": null,
+    "inventoryNumber": "RF 2173",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Henri%20fantin-latour%2C%20attorno%20al%20piano%2C%201885%20-%20frameless.jpg",
+    "accent": "#68B48D",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Around the Piano",
+      "fr": "Autour du piano",
+      "zh-Hans": "Around the Piano"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1993",
+    "artist": "Édouard Manet",
+    "year": "1869",
+    "hall": null,
+    "inventoryNumber": "RF 1993",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Ed.%20Manet.%20Clair%20de%20lune%20sur%20le%20port%20de%20Boulogne.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Clair de lune sur le port de Boulogne",
+      "fr": "Clair de lune sur le port de Boulogne",
+      "zh-Hans": "Clair de lune sur le port de Boulogne"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2774",
+    "artist": "Claude Monet",
+    "year": "1873",
+    "hall": null,
+    "inventoryNumber": "RF 2774",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Monet%20Luncheon.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Luncheon",
+      "fr": "Le Déjeuner",
+      "zh-Hans": "The Luncheon"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2244",
+    "artist": "Pierre-Auguste Renoir",
+    "year": "1876",
+    "hall": null,
+    "inventoryNumber": "RF 2244",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Pierre-Auguste%20Renoir%20-%20Madame%20Charpentier%20-%2001.jpg",
+    "accent": "#6B89A7",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Madame Charpentier",
+      "fr": "Madame Georges Charpentier",
+      "zh-Hans": "Portrait of Madame Charpentier"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_bx_d_18",
+    "artist": "Henri Gervex",
+    "year": "1878",
+    "hall": null,
+    "inventoryNumber": "Bx D 18",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Gervex%20-%20Rolla%2003.jpg",
+    "accent": "#516666",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Rolla",
+      "fr": "Rolla",
+      "zh-Hans": "Rolla"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1967_5",
+    "artist": "Frédéric Bazille",
+    "year": "1865",
+    "hall": null,
+    "inventoryNumber": "RF 1967 5",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Bazille%20L%27Ambulance%20improvis%C3%A9e%201865.jpg",
+    "accent": "#418A48",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "L'Ambulance improvisée",
+      "fr": "L'Ambulance improvisée",
+      "zh-Hans": "L'Ambulance improvisée"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1978",
+    "artist": "Edgar Degas",
+    "year": "1874",
+    "hall": null,
+    "inventoryNumber": "RF 1978",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20Ballet%20Rehearsal%20on%20Stage%20-%20Google%20Art%20Project.jpg",
+    "accent": "#754A8F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Ballet Rehearsal on Stage",
+      "fr": "Répétition d'un ballet sur la scène",
+      "zh-Hans": "Edgar Degas - Rehearsal on Stage"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": true
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2325",
+    "artist": "Vincent van Gogh",
+    "year": "1887",
+    "hall": null,
+    "inventoryNumber": "RF 2325",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Van%20Gogh%20-%20Das%20Restaurant%20de%20la%20Sir%C3%A9ne%20in%20Asni%C3%A9res.jpeg",
+    "accent": "#618E59",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Restaurant de la Sirène à Asnières",
+      "fr": "Restaurant de la Sirène à Asnières",
+      "zh-Hans": "Restaurant de la Sirène à Asnières"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1944_9",
+    "artist": "Vincent van Gogh",
+    "year": "1888",
+    "hall": null,
+    "inventoryNumber": "RF 1944 9",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Vincent%20van%20Gogh%20-%20Eug%C3%A8ne%20Boch%20-%20Google%20Art%20Project.jpg",
+    "accent": "#618E59",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Eugène Boch",
+      "fr": "Portrait d'Eugène Boch",
+      "zh-Hans": "Portrait of Eugène Boch"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1951_40",
+    "artist": "Alfred Sisley",
+    "year": "1870",
+    "hall": null,
+    "inventoryNumber": "RF 1951 40",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Sisley%2C%20St%20Martin%20Canal%201870.jpg",
+    "accent": "#5A4387",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Vue du canal Saint-Martin",
+      "fr": "Vue du canal Saint-Martin",
+      "zh-Hans": "Vue du canal Saint-Martin"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1973_25",
+    "artist": "Vincent van Gogh",
+    "year": "1889",
+    "hall": null,
+    "inventoryNumber": "RF 1973 25",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Hospital%20in%20Saint-Remy.jpg",
+    "accent": "#618E59",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Hôpital Saint-Paul à Saint-Rémy-de-Provence",
+      "fr": "Hôpital Saint-Paul à Saint-Rémy-de-Provence",
+      "zh-Hans": "Hôpital Saint-Paul à Saint-Rémy-de-Provence"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1955_20",
+    "artist": "Paul Cézanne",
+    "year": "1879",
+    "hall": null,
+    "inventoryNumber": "RF 1955 20",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Pont%20de%20Maincy%2C%20par%20Paul%20C%C3%A9zanne.jpg",
+    "accent": "#58594F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Pont de Maincy",
+      "fr": "Le Pont de Maincy",
+      "zh-Hans": "Pont de Maincy"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2417",
+    "artist": "Edgar Degas",
+    "year": "1868",
+    "hall": null,
+    "inventoryNumber": "RF 2417",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20The%20Orchestra%20at%20the%20Opera%20-%20Google%20Art%20Project.jpg",
+    "accent": "#754A8F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "L'Orchestre de l'Opéra",
+      "fr": "L'Orchestre de l'Opéra",
+      "zh-Hans": "L'Orchestre de l'Opéra"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_3736",
+    "artist": "Edgar Degas",
+    "year": "1871",
+    "hall": null,
+    "inventoryNumber": "RF 3736",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edgar%20Degas%20-%20Lorenzo%20Pagans%20and%20Auguste%20de%20Gas%20-%20Google%20Art%20Project.jpg",
+    "accent": "#754A8F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Lorenzo Pagans and Auguste de Gas",
+      "fr": "Lorenzo Pagans et Auguste de Gas",
+      "zh-Hans": "Lorenzo Pagans and Auguste de Gas"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1972",
+    "artist": "Paul Cézanne",
+    "year": "1899",
+    "hall": null,
+    "inventoryNumber": "RF 1972",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Nature%20morte%20aux%20pommes%20et%20aux%20oranges%2C%20par%20Paul%20C%C3%A9zanne.jpg",
+    "accent": "#58594F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Apples and Oranges",
+      "fr": "Pommes et Oranges",
+      "zh-Hans": "Apples and Oranges"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1959",
+    "artist": "Henri Fantin-Latour",
+    "year": "1872",
+    "hall": null,
+    "inventoryNumber": "RF 1959",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Fantin-Latour%20-%20By%20the%20Table%20-%20Google%20Art%20Project.jpg",
+    "accent": "#68B48D",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Un coin de table",
+      "fr": "Un coin de table",
+      "zh-Hans": "Un coin de table"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_inv_3451",
+    "artist": "Thomas Couture",
+    "year": "1847",
+    "hall": null,
+    "inventoryNumber": "INV 3451",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Thomas%20Couture%20-%20Romans%20during%20the%20Decadence%20-%20Google%20Art%20Project.jpg",
+    "accent": "#543FB4",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Romans of the Decadence",
+      "fr": "Les Romains de la décadence",
+      "zh-Hans": "The Romans of the Decadence"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1956_13",
+    "artist": "Paul Cézanne",
+    "year": "1895",
+    "hall": null,
+    "inventoryNumber": "RF 1956 13",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Paul%20C%C3%A9zanne%20-%20Woman%20with%20a%20Coffeepot%20-%20Google%20Art%20Project.jpg",
+    "accent": "#58594F",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "La Femme à la cafetière (Woman with a Coffeepot)",
+      "fr": "La Femme à la cafetière",
+      "zh-Hans": "La Femme à la cafetière (Woman with a Coffeepot)"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1937_41",
+    "artist": "Claude Monet",
+    "year": "1874",
+    "hall": null,
+    "inventoryNumber": "RF 1937 41",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Le%20Pont%20d%27Argenteuil%20-%20Claude%20Monet.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Railway Bridge at Argenteuil",
+      "fr": "Le Pont d'Argenteuil",
+      "zh-Hans": "The Railway Bridge at Argenteuil"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2621",
+    "artist": "Claude Monet",
+    "year": "1886",
+    "hall": null,
+    "inventoryNumber": "RF 2621",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Femme%20%C3%A0%20l%27ombrelle%20tourn%C3%A9e%20vers%20la%20gauche%20-%20Claude%20Monnet%20-%20Mus%C3%A9e%20d%27Orsay%20RF%202621.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Woman with a Parasol, facing left",
+      "fr": "Femme à l'ombrelle tournée vers la gauche",
+      "zh-Hans": "Woman with a Parasol, facing left"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2661",
+    "artist": "Édouard Manet",
+    "year": "1876",
+    "hall": null,
+    "inventoryNumber": "RF 2661",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Edouard%20Manet%20-%20St%C3%A9phane%20Mallarm%C3%A9%20-%20Google%20Art%20Project.jpg",
+    "accent": "#665DA8",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Portrait of Stéphane Mallarmé",
+      "fr": "portrait de Stéphane Mallarmé",
+      "zh-Hans": "Portrait of Stéphane Mallarmé"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_1963_3",
+    "artist": "Claude Monet",
+    "year": "1879",
+    "hall": null,
+    "inventoryNumber": "RF 1963 3",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20Camille%20Monet%20sur%20son%20lit%20de%20mort.JPG",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Camille Monet on her deathbed",
+      "fr": "Camille sur son lit de mort",
+      "zh-Hans": "Camille Monet on her deathbed"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_lux_367",
+    "artist": "Camille Pissarro",
+    "year": "1877",
+    "hall": null,
+    "inventoryNumber": "LUX 367",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Camille%20Pissarro%20011.jpg",
+    "accent": "#6A6197",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Red Roofs, Côte Saint-Denis at Pontoise, Winter Effect",
+      "fr": "Les Toits rouges, coin de village, effet d'hiver",
+      "zh-Hans": "The Red Roofs, Côte Saint-Denis at Pontoise, Winter Effect"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2020",
+    "artist": "Alfred Sisley",
+    "year": "1876",
+    "hall": null,
+    "inventoryNumber": "RF 2020",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/La%20inundaci%C3%B3n%20en%20Port%20Marly%2C%20por%20Alfred%20Sisley.jpg",
+    "accent": "#5A4387",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Flooding at Port-Marly",
+      "fr": "L'Inondation à Port-Marly",
+      "zh-Hans": "Flooding at Port-Marly"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_8048",
+    "artist": "Claude Monet",
+    "year": "1878",
+    "hall": null,
+    "inventoryNumber": "8048",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Rue%20Montorgueil%20in%20Paris.%20Celebration%20of%20June%2030%2C%201878%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "La Rue Montorgueil",
+      "fr": "La Rue Montorgueil",
+      "zh-Hans": "La Rue Montorgueil"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2787",
+    "artist": "Alfred Sisley",
+    "year": "1874",
+    "hall": null,
+    "inventoryNumber": "RF 2787",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Sisley%20050.jpg",
+    "accent": "#5A4387",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "The Regatta at Molesey",
+      "fr": "Les Régates à Molesey",
+      "zh-Hans": "The Regatta at Molesey"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  },
+  {
+    "id": "orsay_rf_2006",
+    "artist": "Claude Monet",
+    "year": "1900",
+    "hall": null,
+    "inventoryNumber": "RF 2006",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20monet%2C%20v%C3%A9theuil%2C%20sole%20al%20tramonto%2C%201900%20ca.JPG",
+    "accent": "#6A5765",
+    "priority": "top100",
+    "needsEditorialReview": true,
+    "editorialStatus": "not_started",
+    "title": {
+      "en": "Vétheuil, Sunset",
+      "fr": "Vétheuil, soleil couchant",
+      "zh-Hans": "Vétheuil, Sunset"
+    },
+    "titleNeedsReview": {
+      "fr": false,
+      "zh-Hans": true,
+      "en": false
+    },
+    "estimate": {
+      "low": null,
+      "high": null
+    },
+    "why": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "where": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    },
+    "rarity": {
+      "en": "Editorial content pending review.",
+      "fr": "Contenu editorial en attente de redaction.",
+      "zh-Hans": "编辑内容尚待撰写。"
+    }
+  }
+]

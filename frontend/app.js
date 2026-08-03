@@ -1,6 +1,6 @@
 // AURA — app state & logic
 // Recognition: tries the real backend (/v1/recognize, vision-LLM based) first.
-// If the backend isn't running or fails (e.g. no ANTHROPIC_API_KEY set yet),
+// If the backend isn't running or fails (e.g. no OPENAI_API_KEY set yet),
 // falls back to a client-side mock so the UI stays testable standalone.
 
 const BACKEND_URL = "http://localhost:8090"; // change if backend runs elsewhere

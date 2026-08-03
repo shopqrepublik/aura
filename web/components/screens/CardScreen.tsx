@@ -1,0 +1,135 @@
+"use client";
+
+import { useState } from "react";
+import { ArrowLeft, Heart, Play } from "lucide-react";
+import SegmentControl from "@/components/ui/SegmentControl";
+import PriceBadge from "@/components/ui/PriceBadge";
+import EyeBlock from "@/components/ui/EyeBlock";
+import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
+import { tt } from "@/lib/i18n";
+import type { AppState } from "@/lib/app-state";
+
+// "03 ARTWORK CARD HERO" — exact classNames mined from the HTML reference.
+// Content policy (Kids mode) ported 1:1 from the old app.js renderCard():
+// kidsModeExcluded works show the neutral message and hide Where/Rarity
+// entirely instead of falling back to Normal text; everything else uses
+// whyKids/whereKids when present, else the plain why/where. See
+// lib/artworks.ts (isExcludedInKids / resolveCardText) for the shared logic
+// — this component never duplicates that decision.
+export default function CardScreen({
+  state,
+  onSetMode,
+  onBack,
+  onAddToVisit,
+  onToggleFavorite,
+}: {
+  state: AppState;
+  onSetMode: (mode: AppState["mode"]) => void;
+  onBack: () => void;
+  onAddToVisit: () => void;
+  onToggleFavorite: () => void;
+}) {
+  const [imgError, setImgError] = useState(false);
+  const [listening, setListening] = useState(false);
+  const artwork = state.currentArtwork;
+  if (!artwork) return null;
+
+  const excluded = isExcludedInKids(artwork, state.mode);
+  const { why, where, rarity } = resolveCardText(artwork, state.mode, state.locale);
+  const title = resolveTitle(artwork, state.locale);
+  const isAdded = state.added.has(artwork.id);
+  const isFavorite = state.favorites.has(artwork.id);
+
+  return (
+    <div className="w-full h-full bg-[#F5F5F7] flex flex-col overflow-y-auto scrollbar-none">
+      <div className="shrink-0 relative">
+        <div className="aspect-[4/3] w-full overflow-hidden bg-[#EDE8E1]">
+          {!imgError ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={artwork.imageUrl}
+              alt={title}
+              className="w-full h-full object-cover"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="w-full h-full relative">
+              <div className="absolute inset-0 bg-[linear-gradient(105deg,#FFD8A8_0%,#FFA98E_18%,#7BA7D9_42%,#2B4A7A_68%,#E8B86D_100%)]" />
+            </div>
+          )}
+          <div className="absolute bottom-3 right-3 px-2 py-1 rounded-full bg-black/70 text-[10px] font-semibold text-white tracking-widest">
+            4:3 • SCAN
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={onBack}
+          aria-label="Back"
+          className="absolute top-4 left-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur flex items-center justify-center"
+        >
+          <ArrowLeft className="w-4 h-4 text-white" />
+        </button>
+        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full bg-black/15" />
+      </div>
+
+      <div className="bg-white rounded-t-[24px] -mt-4 relative z-10 flex-1 px-5 pt-7 pb-[32px]">
+        <SegmentControl mode={state.mode} locale={state.locale} onChange={onSetMode} />
+
+        <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#8E8E93]">
+          {artwork.artist.toUpperCase()}
+        </div>
+        <h1 className="mt-1 text-[22px] font-bold leading-[24px] tracking-[-0.03em] text-[#111]">{title}</h1>
+        <p className="mt-1 text-[14px] text-[#6E6E73] font-[450]">{artwork.year}</p>
+
+        <div className="mt-4 flex items-center gap-2">
+          <PriceBadge low={artwork.estimate.low} high={artwork.estimate.high} locale={state.locale} />
+        </div>
+
+        {excluded ? (
+          <p className="mt-5 text-[16px] leading-[24px] tracking-[-0.011em] text-[#1D1D1F] font-[450]">
+            {tt("kids_mode_excluded", state.locale)}
+          </p>
+        ) : (
+          <>
+            <p className="mt-5 text-[16px] leading-[24px] tracking-[-0.011em] text-[#1D1D1F] font-[450]">{why}</p>
+            <EyeBlock text={where} />
+            <p className="mt-4 text-[12px] leading-[17px] text-[#8E8E93] font-[450]">{rarity}</p>
+          </>
+        )}
+
+        <div className="mt-6 space-y-3">
+          <button
+            type="button"
+            onClick={onAddToVisit}
+            className={`w-full h-[50px] rounded-full text-[15px] font-semibold tracking-[-0.01em] shadow-[0_8px_20px_rgba(0,0,0,0.18)] active:scale-[0.98] transition-transform ${
+              isAdded ? "bg-black text-white" : "bg-black text-white"
+            }`}
+          >
+            {isAdded ? tt("added_check", state.locale) : tt("add_to_my_visit", state.locale)}
+          </button>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                setListening(true);
+                setTimeout(() => setListening(false), 1800);
+              }}
+              className="flex-1 h-[44px] rounded-full bg-[#F5F5F7] text-[14px] font-semibold flex items-center justify-center gap-2"
+            >
+              <Play className="w-4 h-4 fill-black" />
+              {listening ? "…" : `${tt("listen_label", state.locale)} 45s`}
+            </button>
+            <button
+              type="button"
+              onClick={onToggleFavorite}
+              aria-pressed={isFavorite}
+              className="w-[44px] h-[44px] rounded-full bg-[#F5F5F7] flex items-center justify-center"
+            >
+              <Heart className={`w-4 h-4 ${isFavorite ? "fill-black text-black" : "text-black"}`} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

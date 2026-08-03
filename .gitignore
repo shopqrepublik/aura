@@ -24,3 +24,12 @@ Thumbs.db
 aura-mvp.zip
 /aura-mvp/
 /main.py
+
+# Real visitor photos used for manual recognition testing — personal photos,
+# not project source data, never meant to be committed.
+/test_photos/
+
+# Runtime cache — reference images fetched from Wikimedia Commons for the
+# hybrid pipeline's visual-verification step (see backend/app/main.py);
+# rebuildable, not source data.
+/backend/.reference_cache/

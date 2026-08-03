@@ -1,0 +1,52 @@
+{
+  "start_visit": {
+    "en": "Start Visit",
+    "fr": "Commencer la visite",
+    "zh-Hans": "开始参观"
+  },
+  "frame_artwork": {
+    "en": "Frame the entire artwork",
+    "fr": "Cadrez l'œuvre en entier",
+    "zh-Hans": "请将整件作品置于画面中"
+  },
+  "add_to_visit": {
+    "en": "Add to Visit",
+    "fr": "Ajouter à ma visite",
+    "zh-Hans": "加入本次参观"
+  },
+  "why_it_matters": {
+    "en": "Why it matters",
+    "fr": "Pourquoi cette œuvre compte",
+    "zh-Hans": "为什么它重要"
+  },
+  "where_to_look": {
+    "en": "Where to look",
+    "fr": "Où regarder",
+    "zh-Hans": "看哪里"
+  },
+  "indicative_estimate": {
+    "en": "Indicative market estimate",
+    "fr": "Estimation indicative de marché",
+    "zh-Hans": "市场参考估值"
+  },
+  "share_visit": {
+    "en": "Share your visit",
+    "fr": "Partager votre visite",
+    "zh-Hans": "分享本次参观"
+  },
+  "try_again": {
+    "en": "Try again",
+    "fr": "Réessayer",
+    "zh-Hans": "重试"
+  },
+  "added_to_visit": {
+    "en": "Added",
+    "fr": "Ajouté",
+    "zh-Hans": "已加入"
+  },
+  "kids_mode_excluded": {
+    "en": "Switch to Normal mode to view this artwork",
+    "fr": "Passez en mode Normal pour voir cette œuvre",
+    "zh-Hans": "请切换到普通模式以查看此作品"
+  }
+}

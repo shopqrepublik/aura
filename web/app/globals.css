@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/* ELYIO design tokens — see D:\AURA\design\ELYIO-FINAL-PROMPT.md.
+   Values are used mostly via Tailwind arbitrary syntax (bg-[#FAFAF9] etc.)
+   to match the reference build exactly; these CSS vars exist for the few
+   places (keyframes, non-Tailwind-expressible rules) that need a plain
+   CSS name. Light theme only — the spec explicitly calls for it. */
+:root {
+  --elyio-canvas: #FAFAF9;
+  --elyio-ink: #111111;
+  --elyio-obsidian: #000000;
+  --elyio-stone: #F5F5F7;
+  --elyio-billion: #FF3B30;
+  --elyio-glow-bg: #FFF8E1;
+  --elyio-glow-border: #F5E6B8;
+  --elyio-glow-text: #5C4D1E;
+  --elyio-muted: #8E8E93;
+  --elyio-muted-2: #6E6E73;
+  --elyio-success: #30D158;
+}
+
+* {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, "Helvetica Neue", sans-serif;
+}
+
+html, body {
+  background: var(--elyio-canvas);
+  color: var(--elyio-ink);
+}
+
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
+
+@keyframes flash {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.animate-flash {
+  animation: flash 0.35s ease-out;
+}
