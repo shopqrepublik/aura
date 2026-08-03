@@ -49,8 +49,12 @@ export default function CameraScreen({
           return;
         }
         stream = s;
+        // videoRef is safe to use unconditionally now — the <video> element
+        // is always mounted (see render below), never conditionally swapped
+        // in after this resolves, which used to leave the ref null here.
         if (videoRef.current) {
           videoRef.current.srcObject = s;
+          videoRef.current.play().catch(() => {});
         }
         setHasCamera(true);
       })
@@ -92,10 +96,13 @@ export default function CameraScreen({
   return (
     <div className="relative w-full h-full bg-[#0A0A0A] overflow-hidden">
       <div className="absolute inset-0">
-        {hasCamera ? (
-          <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full bg-[radial-gradient(100%_100%_at_50%_40%,#8FA8C8_0%,#6B7EA8_25%,#4A5A85_55%,#1A2333_100%)] opacity-90" />
+        {/* Always mounted, even before the stream is ready — a conditional
+            swap here left videoRef null exactly when getUserMedia resolved,
+            so the stream never actually got attached to it. The gradient
+            fallback now overlays it instead of replacing it. */}
+        <video ref={videoRef} autoPlay playsInline muted className="w-full h-full object-cover" />
+        {!hasCamera && (
+          <div className="absolute inset-0 w-full h-full bg-[radial-gradient(100%_100%_at_50%_40%,#8FA8C8_0%,#6B7EA8_25%,#4A5A85_55%,#1A2333_100%)] opacity-90" />
         )}
         <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_40%,#d6e8ff_0%,transparent_100%)] opacity-30 pointer-events-none" />
       </div>
