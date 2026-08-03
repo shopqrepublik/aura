@@ -1734,7 +1734,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Magpie",
       "fr": "La Pie",
@@ -1747,22 +1747,59 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data. The Magpie (1868) predates the Argenteuil years and the mature landscape-series period that Monet's actual auction records come from by 20-30 years. No real transaction was found for a comparably early Monet snow landscape. Applying his mature-period series prices here would repeat the same genre/period mismatch already ruled out for Women in the Garden.",
+      "comparableSales": [
+        "No real auction transaction found for Monet's pre-1870s snow-landscape period specifically; his real records are all mature-period (1890s+) series works, a different market segment."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints a single black-and-white bird on a gate, using the white snow to study countless subtle shades of white, grey and blue instead of treating snow as flat and colourless.",
+      "fr": "Monet peint une seule pie noire et blanche sur une barrière, utilisant la neige blanche pour étudier d'innombrables nuances subtiles de blanc, gris et bleu, au lieu de traiter la neige comme plate et sans couleur.",
+      "zh-Hans": "莫奈在画面中画了一只栖息在栅栏上的黑白喜鹊，借助白雪来研究无数细微的白、灰与蓝色调，而不是把雪简单地画成毫无色彩的平面。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look closely at the shadow the fence throws across the snow — it's built from blue and violet, not grey, one of the clearest early signs of Monet's mature colour sense.",
+      "fr": "Observez de près l'ombre que la clôture projette sur la neige — elle est composée de bleu et de violet, pas de gris, l'un des signes les plus clairs de la sensibilité chromatique déjà mature de Monet.",
+      "zh-Hans": "仔细看栅栏投在雪地上的阴影——那是由蓝色与紫色构成的，而非灰色，这是莫奈成熟色彩感知早期最清晰的标志之一。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted just before Monet turned decisively toward Impressionism, it was rejected by the official Salon for its unconventional shadows.",
+      "fr": "Peint juste avant le tournant décisif de Monet vers l'impressionnisme, il fut refusé par le Salon officiel en raison de ses ombres non conventionnelles.",
+      "zh-Hans": "此画创作于莫奈决定性地转向印象派风格之前，因其不合常规的阴影处理而被官方沙龙拒绝展出。"
+    },
+    "whySimple": {
+      "en": "Monet paints one black-and-white bird on a gate. He uses the white snow to study many small shades of white, grey and blue, instead of painting snow as one flat colour.",
+      "fr": "Monet peint un seul oiseau noir et blanc sur une barrière. Il utilise la neige blanche pour étudier de nombreuses nuances de blanc, de gris et de bleu, au lieu de peindre la neige d'une seule couleur plate.",
+      "zh-Hans": "莫奈画了一只栖息在栅栏上的黑白鸟儿。他借助白雪研究了许多细微的白、灰、蓝色调，而不是把雪画成单一的平面颜色。"
+    },
+    "whereSimple": {
+      "en": "Look at the shadow on the snow — it's blue and purple, not grey. This was an early sign of how Monet would paint colour later in his career.",
+      "fr": "Regardez l'ombre sur la neige — elle est bleue et violette, pas grise. C'était un signe précoce de la façon dont Monet peindrait la couleur plus tard dans sa carrière.",
+      "zh-Hans": "看雪地上的阴影——是蓝色和紫色，而不是灰色。这是莫奈日后绘画用色方式的早期信号。"
+    },
+    "raritySimple": {
+      "en": "This was painted just before Monet fully became an Impressionist. The official art show rejected it because its shadows were too unusual.",
+      "fr": "Ce tableau a été peint juste avant que Monet ne devienne pleinement impressionniste. Le Salon officiel l'a refusé car ses ombres étaient trop inhabituelles.",
+      "zh-Hans": "这幅画创作于莫奈完全成为印象派画家之前不久。官方美术展因其阴影处理过于反常而拒绝展出此画。"
+    },
+    "whyKids": {
+      "en": "Monet paints a little black-and-white bird called a magpie, sitting quietly on a gate in the snow — and he fills all that white snow with secret colours if you look closely.",
+      "fr": "Monet peint un petit oiseau noir et blanc, une pie, posée tranquillement sur une barrière dans la neige — et il remplit toute cette neige blanche de couleurs secrètes si vous regardez de près.",
+      "zh-Hans": "莫奈画了一只小小的黑白喜鹊，安静地栖息在雪地里的栅栏上——如果你仔细看，会发现那片白雪里藏着秘密的颜色。"
+    },
+    "whereKids": {
+      "en": "Look at the shadow stretching across the snow — it's not grey at all, it's blue! Monet loved finding colour hiding in places you wouldn't expect.",
+      "fr": "Regardez l'ombre qui s'étire sur la neige — elle n'est pas grise du tout, elle est bleue ! Monet adorait trouver de la couleur cachée là où on ne s'y attend pas.",
+      "zh-Hans": "看那道横跨雪地的阴影——它一点也不是灰色的，是蓝色的！莫奈喜欢在你意想不到的地方寻找隐藏的色彩。"
+    },
+    "rarityKids": {
+      "en": "This painting was turned away from a big official art show because the judges thought painting snow with colourful shadows was too strange.",
+      "fr": "Ce tableau fut refusé par un grand salon officiel car les juges trouvaient que peindre la neige avec des ombres colorées était trop étrange.",
+      "zh-Hans": "这幅画曾被一场重要的官方美术展拒之门外，因为评委们觉得把雪的阴影画得如此多彩太奇怪了。"
     }
   },
   {
@@ -1986,7 +2023,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Le Déjeuner sur l'herbe",
       "fr": "Le Déjeuner sur l'herbe",
@@ -1999,22 +2036,59 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data. This is an early (1865) multi-figure outdoor genre composition, from the same untested early period as Women in the Garden (1866), which was already marked null for the same reason: Monet's early figure-painting period has essentially never been tested at real auction.",
+      "comparableSales": [
+        "No real auction transaction found for Monet's own 1865 Déjeuner sur l'herbe composition or its period."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet planned an enormous outdoor picnic scene — larger than Manet's more famous painting of the same name — to prove that everyday modern life, painted from direct observation, deserved the grand scale usually reserved for history painting.",
+      "fr": "Monet projeta une immense scène de pique-nique en plein air — plus grande que le tableau plus célèbre de Manet portant le même titre — pour prouver que la vie moderne quotidienne, peinte d'après nature, méritait l'échelle grandiose habituellement réservée à la peinture d'histoire.",
+      "zh-Hans": "莫奈构思了一幅规模宏大的户外野餐场景——比马奈那幅更为著名的同名画作还要大——旨在证明如实描绘的现代日常生活，同样配得上通常只属于历史画的宏大尺幅。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the dappled sunlight falling through the trees onto the picnickers' clothes — Monet was already, this early, more interested in outdoor light than in finishing every face.",
+      "fr": "Remarquez la lumière tachetée qui filtre à travers les arbres sur les vêtements des pique-niqueurs — dès cette époque, Monet s'intéressait déjà davantage à la lumière extérieure qu'à la finition de chaque visage.",
+      "zh-Hans": "留意阳光透过树叶洒落在野餐者衣物上的斑驳光影——早在这个阶段，莫奈就已经对户外光线的兴趣超过了对每张面孔精雕细琢的兴趣。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The finished canvas was so large Monet could not pay his rent and left part of it behind as collateral — only two large fragments of the original survive today.",
+      "fr": "La toile achevée était si grande que Monet, incapable de payer son loyer, en laissa une partie en gage — seuls deux grands fragments de l'original subsistent aujourd'hui.",
+      "zh-Hans": "这幅完成的画作尺幅巨大，莫奈甚至因付不起房租而把它的一部分留作抵押——如今只有两大块原作残片留存于世。"
+    },
+    "whySimple": {
+      "en": "Monet planned a huge outdoor picnic painting, even bigger than Manet's more famous painting with the same name. He wanted to show that ordinary modern life deserved a grand painting too.",
+      "fr": "Monet a projeté un immense tableau de pique-nique en plein air, encore plus grand que celui, plus célèbre, de Manet portant le même titre. Il voulait montrer que la vie moderne ordinaire méritait elle aussi une grande peinture.",
+      "zh-Hans": "莫奈计划创作一幅巨大的户外野餐画作，甚至比马奈那幅更著名的同名画作还要大。他想证明，普通的现代生活同样值得用宏大的画作来表现。"
+    },
+    "whereSimple": {
+      "en": "Look at the dappled sunlight falling through the trees onto the picnickers — even this early, Monet cared more about outdoor light than painting every face perfectly.",
+      "fr": "Regardez la lumière tachetée qui tombe à travers les arbres sur les pique-niqueurs — même à cette époque précoce, Monet se souciait plus de la lumière extérieure que de peindre chaque visage à la perfection.",
+      "zh-Hans": "看阳光透过树叶洒落在野餐者身上的斑驳光影——即使在这么早的阶段，莫奈也更关心户外光线，而不是把每张脸都画得完美无缺。"
+    },
+    "raritySimple": {
+      "en": "The finished canvas was so big that Monet couldn't pay his rent and had to leave part of it behind as payment. Only two large pieces of the original survive today.",
+      "fr": "La toile achevée était si grande que Monet, ne pouvant payer son loyer, dut en laisser une partie en paiement. Seuls deux grands fragments de l'original subsistent aujourd'hui.",
+      "zh-Hans": "这幅完成的画作尺幅巨大，莫奈甚至因交不起房租而不得不留下其中一部分抵债。如今只有两大块原作残片留存于世。"
+    },
+    "whyKids": {
+      "en": "Monet wanted to paint a giant picnic scene in the forest, with friends relaxing and eating together under the trees — he made it huge, almost like a wall painting!",
+      "fr": "Monet voulait peindre une scène de pique-nique géante dans la forêt, avec des amis se détendant et mangeant ensemble sous les arbres — il l'a faite immense, presque comme une peinture murale !",
+      "zh-Hans": "莫奈想画一幅巨大的森林野餐场景，朋友们在树下一起放松、用餐——他把这幅画画得非常大，几乎像一面墙画！"
+    },
+    "whereKids": {
+      "en": "Look for the sunlight spots dancing on the picnickers' clothes as it filters through the leaves above them.",
+      "fr": "Cherchez les taches de soleil qui dansent sur les vêtements des pique-niqueurs, filtrées par les feuilles au-dessus d'eux.",
+      "zh-Hans": "找一找阳光透过头顶树叶洒落在野餐者衣服上、跳跃闪烁的光斑。"
+    },
+    "rarityKids": {
+      "en": "This painting was once so enormous that Monet couldn't even fit it through a normal doorway — today, only two big pieces of it still exist.",
+      "fr": "Ce tableau était autrefois si immense que Monet ne pouvait même pas le faire passer par une porte normale — aujourd'hui, il n'en reste que deux grands morceaux.",
+      "zh-Hans": "这幅画曾经巨大到连莫奈都没法把它搬过普通的门——如今，它只剩下两大块残片留存了下来。"
     }
   },
   {
@@ -2238,7 +2312,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Régates à Argenteuil",
       "fr": "Régates à Argenteuil",
@@ -2250,23 +2324,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 32,
+      "high": 44,
+      "logic": "FACT: Le Pont du chemin de fer a Argenteuil, painted in the same Argenteuil years as this work, sold for $41,481,000 (~EUR38.2M) at Christie's in 2008. EDITORIAL JUDGMENT: Regates depicts a related marine/water subject (regatta boats) from the same period and location -- range centered closely around this comparable with a modest spread.",
+      "comparableSales": [
+        "Le Pont du chemin de fer à Argenteuil, Claude Monet — sold for $41,481,000 (~€38.2M), Christie's, 2008 — same Argenteuil years (early-mid 1870s), water/boats subject."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints sailboats and their reflections as one continuous surface of broken colour, treating the water itself — not the boats — as the real subject of the scene.",
+      "fr": "Monet peint les voiliers et leurs reflets comme une seule surface continue de couleur brisée, traitant l'eau elle-même — et non les bateaux — comme le vrai sujet de la scène.",
+      "zh-Hans": "莫奈把帆船与它们的倒影画成一整片连续破碎的色彩，把水面本身——而非船只——当作这幅画真正的主题。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Compare the sharp white triangle of a sail with its blurred, rippling reflection below it — Monet paints the same shape twice, once solid and once dissolved.",
+      "fr": "Comparez le triangle blanc net d'une voile avec son reflet flou et ondoyant en dessous — Monet peint la même forme deux fois, une fois solide, une fois dissoute.",
+      "zh-Hans": "比较船帆锐利的白色三角形与下方那模糊、荡漾的倒影——莫奈把同一个形状画了两遍，一次坚实，一次消融。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted at Argenteuil, the riverside town just outside Paris that Monet made into the unofficial birthplace of Impressionist boating scenes.",
+      "fr": "Peint à Argenteuil, la ville au bord de l'eau juste à l'extérieur de Paris que Monet fit devenir le berceau officieux des scènes nautiques impressionnistes.",
+      "zh-Hans": "此画创作于阿让特伊，这座巴黎近郊的塞纳河畔小镇，因莫奈而成为印象派水上题材事实上的发源地。"
+    },
+    "whySimple": {
+      "en": "Monet paints sailboats and their reflections as one continuous surface of broken colour. The water itself, not the boats, is the real subject.",
+      "fr": "Monet peint les voiliers et leurs reflets comme une seule surface continue de couleur brisée. L'eau elle-même, et non les bateaux, est le vrai sujet.",
+      "zh-Hans": "莫奈把帆船与它们的倒影画成一整片破碎的色彩。水面本身，而非船只，才是这幅画真正的主题。"
+    },
+    "whereSimple": {
+      "en": "Compare the sharp white sail with its blurry, rippling reflection below it — Monet paints the same shape twice, once solid and once broken up by water.",
+      "fr": "Comparez la voile blanche nette avec son reflet flou et ondoyant en dessous — Monet peint la même forme deux fois, une fois solide, une fois brisée par l'eau.",
+      "zh-Hans": "比较锐利的白色船帆与下方模糊荡漾的倒影——莫奈把同一个形状画了两遍，一次坚实完整，一次被水面打碎。"
+    },
+    "raritySimple": {
+      "en": "Painted at Argenteuil, the riverside town near Paris that became the unofficial home of Impressionist boating scenes.",
+      "fr": "Peint à Argenteuil, la ville au bord de l'eau près de Paris devenue le foyer officieux des scènes nautiques impressionnistes.",
+      "zh-Hans": "此画创作于阿让特伊，这座巴黎附近的河畔小镇后来成为印象派水上题材事实上的发源地。"
+    },
+    "whyKids": {
+      "en": "Monet paints sailboats racing on the river, but he's just as interested in painting their wobbly, colourful reflections in the water below.",
+      "fr": "Monet peint des voiliers qui font la course sur la rivière, mais il s'intéresse tout autant à peindre leurs reflets tremblants et colorés dans l'eau en dessous.",
+      "zh-Hans": "莫奈画了在河面上比赛的帆船，但他同样喜欢描绘水面下那些摇曳多彩的倒影。"
+    },
+    "whereKids": {
+      "en": "Find one white sail, then find its reflection in the water just below it — see how the reflection wobbles and breaks apart?",
+      "fr": "Trouvez une voile blanche, puis trouvez son reflet dans l'eau juste en dessous — voyez comme le reflet tremble et se brise ?",
+      "zh-Hans": "找到一面白色的船帆，再找到它正下方水中的倒影——看到倒影是怎么摇晃、碎裂的了吗？"
+    },
+    "rarityKids": {
+      "en": "Monet painted this in a riverside town called Argenteuil, which became famous for exactly this kind of sunny, sailboat-filled Impressionist painting.",
+      "fr": "Monet a peint ce tableau dans une ville au bord de l'eau appelée Argenteuil, devenue célèbre pour ce genre de peinture impressionniste ensoleillée et remplie de voiliers.",
+      "zh-Hans": "莫奈是在一座名叫阿让特伊的河畔小镇画下这幅画的，这座小镇后来因这类阳光明媚、满是帆船的印象派画作而闻名。"
     }
   },
   {
@@ -2280,7 +2391,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The artist's garden at Giverny",
       "fr": "Le Jardin de l'artiste à Giverny",
@@ -2292,23 +2403,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 25,
+      "high": 45,
+      "logic": "FACT: Nympheas en fleur, from the same Giverny garden and Monet's mature period, sold for $84.6M (~EUR77.8M) at Christie's in May 2018. EDITORIAL JUDGMENT: this 1900 garden view is an earlier, less iconic motif than the water-lily pond series that record represents -- positioned meaningfully below it to reflect that, not treated as an equivalent subject.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet — sold for $84.6M (~€77.8M), Christie's, May 2018 — same Giverny garden, mature period."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints his own garden at Giverny, the flower beds he designed and planted himself, blurring precise botany into rivers of pure colour running down the canvas.",
+      "fr": "Monet peint son propre jardin de Giverny, les massifs de fleurs qu'il a lui-même conçus et plantés, dissolvant la botanique précise en rivières de couleur pure qui descendent le long de la toile.",
+      "zh-Hans": "莫奈描绘的是他在吉维尼亲手设计、亲手种植的自家花园，把精确的植物形态化解成一道道沿画布流淌而下的纯色之河。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Follow the diagonal path of flowers running from the top of the canvas to the bottom — Monet built the whole composition around that single sweeping line.",
+      "fr": "Suivez le chemin diagonal de fleurs qui descend du haut de la toile vers le bas — Monet a construit toute la composition autour de cette seule ligne ample.",
+      "zh-Hans": "顺着从画布顶端一路延伸到底部的那条花丛斜线看去——莫奈把整幅构图都建立在这一条流畅的线条之上。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "By this point Monet had become wealthy enough to design and maintain his own garden purely as a subject to paint, something almost no painter before him could afford to do.",
+      "fr": "À cette époque, Monet était devenu assez fortuné pour concevoir et entretenir son propre jardin dans le seul but de le peindre, ce que presque aucun peintre avant lui n'avait eu les moyens de faire.",
+      "zh-Hans": "此时的莫奈已经足够富有，能够设计并维护属于自己的花园，仅仅是为了将它作为绘画题材——在他之前，几乎没有画家能负担得起这样的事。"
+    },
+    "whySimple": {
+      "en": "Monet paints his own garden at Giverny, which he designed and planted himself. He turns exact flowers into rivers of pure colour flowing down the canvas.",
+      "fr": "Monet peint son propre jardin de Giverny, qu'il a conçu et planté lui-même. Il transforme des fleurs précises en rivières de couleur pure qui coulent le long de la toile.",
+      "zh-Hans": "莫奈画的是他在吉维尼亲手设计、亲手种植的花园。他把精确的花朵变成了沿画布流淌而下的纯色之河。"
+    },
+    "whereSimple": {
+      "en": "Follow the line of flowers running diagonally from the top of the canvas to the bottom — the whole painting is built around that one sweeping line.",
+      "fr": "Suivez la ligne de fleurs qui descend en diagonale du haut de la toile vers le bas — tout le tableau est construit autour de cette seule ligne ample.",
+      "zh-Hans": "顺着从画布顶端斜向延伸到底部的那条花丛线条看去——整幅画都是围绕着这一条流畅的线条构建的。"
+    },
+    "raritySimple": {
+      "en": "By this time, Monet was wealthy enough to design and keep his own garden just so he could paint it — something almost no painter before him could afford.",
+      "fr": "À cette époque, Monet était assez riche pour concevoir et entretenir son propre jardin dans le seul but de le peindre — ce que presque aucun peintre avant lui n'avait pu se permettre.",
+      "zh-Hans": "这时的莫奈已经足够富有，能够设计并维护一座属于自己的花园，只为了能画它——这是他之前几乎没有画家能负担得起的事。"
+    },
+    "whyKids": {
+      "en": "Monet paints his very own garden, full of flowers he planted himself, and turns them into swirling rivers of bright colour instead of painting each flower exactly.",
+      "fr": "Monet peint son propre jardin, rempli de fleurs qu'il a plantées lui-même, et les transforme en rivières tourbillonnantes de couleurs vives, au lieu de peindre chaque fleur exactement.",
+      "zh-Hans": "莫奈画的是他自己的花园，里面开满了他亲手种下的花朵，他把这些花变成了旋转流动的明艳色河，而不是精确地画出每一朵花。"
+    },
+    "whereKids": {
+      "en": "Follow the path of flowers that runs like a river all the way down the painting, from top to bottom.",
+      "fr": "Suivez le chemin de fleurs qui coule comme une rivière tout le long du tableau, de haut en bas.",
+      "zh-Hans": "顺着那条像河流一样贯穿整幅画面、从上到下延伸的花丛小径看去。"
+    },
+    "rarityKids": {
+      "en": "Monet grew this garden himself, just so he would always have something beautiful nearby to paint whenever he wanted.",
+      "fr": "Monet a lui-même cultivé ce jardin, simplement pour avoir toujours quelque chose de beau à peindre à proximité, quand il le souhaitait.",
+      "zh-Hans": "这座花园是莫奈亲手栽种的，为的是无论他什么时候想画画，身边总有美丽的景色可供描绘。"
     }
   },
   {
@@ -2952,7 +3100,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Poppy Field near Argenteuil",
       "fr": "Les Coquelicots",
@@ -2964,23 +3112,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 38,
+      "high": 55,
+      "logic": "FACT: Le Pont du chemin de fer a Argenteuil, same Argenteuil period, sold for $41,481,000 (~EUR38.2M), Christie's, 2008. EDITORIAL JUDGMENT: this poppy field is one of Monet's single most reproduced and widely recognized images -- positioned at or somewhat above the direct comparable given its outsized fame relative to the bridge painting, a moderate premium, not a large multiple.",
+      "comparableSales": [
+        "Le Pont du chemin de fer à Argenteuil, Claude Monet — sold for $41,481,000 (~€38.2M), Christie's, 2008 — same Argenteuil period."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet dots a hillside with pure red poppies against green grass, using the two colours' natural contrast to make the whole field vibrate rather than mixing a duller 'realistic' shade.",
+      "fr": "Monet parsème un coteau de coquelicots d'un rouge pur sur l'herbe verte, utilisant le contraste naturel des deux couleurs pour faire vibrer tout le champ, plutôt que de mélanger une teinte plus terne et « réaliste ».",
+      "zh-Hans": "莫奈在山坡上点缀满纯红色的罂粟花，与绿色的草地相映衬，利用这两种颜色天然的对比让整片田野仿佛在震颤，而不是调出一种更沉闷、更“写实”的色调。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the two figures walking through the poppies near the top of the hill echo the pair in the foreground — Monet repeats the same walk twice at two different distances.",
+      "fr": "Remarquez que les deux silhouettes marchant parmi les coquelicots près du sommet de la colline font écho au couple au premier plan — Monet répète la même promenade deux fois, à deux distances différentes.",
+      "zh-Hans": "留意山坡顶部附近那两个穿行于罂粟花丛中的身影，与前景中的一对人物遥相呼应——莫奈把同一次散步在两个不同的距离上重复描绘了两次。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "One of the most reproduced Impressionist paintings in the world, and one of the clearest early examples of Monet's dot-like brushwork.",
+      "fr": "L'un des tableaux impressionnistes les plus reproduits au monde, et l'un des exemples les plus clairs de la touche pointilliste précoce de Monet.",
+      "zh-Hans": "这是世界上被复制最多的印象派画作之一，也是莫奈早期点彩式笔触最清晰的范例之一。"
+    },
+    "whySimple": {
+      "en": "Monet paints a hillside dotted with bright red poppies against green grass. He lets the two colours contrast naturally, instead of mixing a duller, more 'realistic' colour.",
+      "fr": "Monet peint un coteau parsemé de coquelicots rouge vif sur l'herbe verte. Il laisse les deux couleurs contraster naturellement, au lieu de mélanger une couleur plus terne et plus « réaliste ».",
+      "zh-Hans": "莫奈画了一座山坡，上面点缀着鲜红的罂粟花和绿色的草地。他让这两种颜色自然地形成对比，而不是调出一种更沉闷、更“写实”的颜色。"
+    },
+    "whereSimple": {
+      "en": "Notice the two people walking through the poppies near the top of the hill — they match the pair in the front. Monet paints the same walk twice, at two distances.",
+      "fr": "Remarquez les deux personnes qui marchent parmi les coquelicots près du sommet de la colline — elles correspondent au couple au premier plan. Monet peint la même promenade deux fois, à deux distances différentes.",
+      "zh-Hans": "留意山坡顶部附近那两个穿行于罂粟花丛中的人——他们与前景中的一对人物相呼应。莫奈把同一次散步在两个不同的距离上画了两遍。"
+    },
+    "raritySimple": {
+      "en": "This is one of the most reproduced Impressionist paintings in the world, and a clear early example of Monet's dot-like brushwork.",
+      "fr": "C'est l'un des tableaux impressionnistes les plus reproduits au monde, et un exemple précoce et évident de la touche pointilliste de Monet.",
+      "zh-Hans": "这是世界上被复制最多的印象派画作之一，也是莫奈早期点彩式笔触的一个鲜明例子。"
+    },
+    "whyKids": {
+      "en": "Monet fills a whole hillside with bright red poppy flowers dotted over green grass — he loved how those two colours look even brighter sitting right next to each other.",
+      "fr": "Monet remplit tout un coteau de coquelicots rouge vif parsemés sur l'herbe verte — il adorait la façon dont ces deux couleurs semblent encore plus vives l'une à côté de l'autre.",
+      "zh-Hans": "莫奈把整座山坡都画满了鲜红的罂粟花，点缀在绿色的草地上——他喜欢这两种颜色紧挨在一起时显得更加明艳。"
+    },
+    "whereKids": {
+      "en": "Can you find two pairs of walking people in this painting — one pair close to you, and a smaller matching pair far up the hill?",
+      "fr": "Pouvez-vous trouver deux paires de personnes qui marchent dans ce tableau — une paire près de vous, et une paire plus petite, semblable, tout en haut de la colline ?",
+      "zh-Hans": "你能在这幅画里找到两对走路的人吗——一对离你很近，还有一对更小、样子相同的人在山坡远处？"
+    },
+    "rarityKids": {
+      "en": "This is one of the most famous and most copied paintings in the whole world.",
+      "fr": "C'est l'un des tableaux les plus célèbres et les plus copiés du monde entier.",
+      "zh-Hans": "这是全世界最著名、被临摹最多的画作之一。"
     }
   },
   {
@@ -3624,7 +3809,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "A Cart on the Snowy Road at Honfleur",
       "fr": "La Charrette. Route sous la neige à Honfleur",
@@ -3637,22 +3822,59 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data. This 1865 Honfleur work predates the Argenteuil years that Monet's best real comparable (the 2008 railway-bridge sale) comes from, and is a minor, less-exhibited motif with no identifiable real transaction to anchor a range.",
+      "comparableSales": [
+        "No real auction transaction found for this pre-Argenteuil (1865, Honfleur) period specifically."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints a grey winter sky and a muddy snow-covered road as seriously as he would later paint sunlight, proving early on that even the dullest weather could be a real subject.",
+      "fr": "Monet peint un ciel d'hiver gris et une route enneigée et boueuse avec autant de sérieux qu'il peindra plus tard la lumière du soleil, prouvant dès cette époque que même le temps le plus terne pouvait être un vrai sujet.",
+      "zh-Hans": "莫奈以后来描绘阳光时同样的认真态度，描绘了灰蒙蒙的冬日天空与泥泞的积雪道路，早早地证明即便是最阴沉的天气，也能成为真正值得描绘的题材。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the thick, dragged brushstrokes in the road itself — Monet built up the mud and slush almost like sculpture, not just flat paint.",
+      "fr": "Regardez les épaisses touches de pinceau traînées sur la route elle-même — Monet a construit la boue et la neige fondue presque comme une sculpture, pas seulement comme une peinture plate.",
+      "zh-Hans": "看道路本身那些厚重、拖曳的笔触——莫奈几乎是像雕塑一样堆砌出了泥泞与融雪，而不只是平涂颜料。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "One of Monet's earliest surviving winter landscapes, painted years before Impressionism had a name.",
+      "fr": "L'un des plus anciens paysages hivernaux de Monet parvenus jusqu'à nous, peint des années avant que l'impressionnisme n'ait un nom.",
+      "zh-Hans": "这是莫奈现存最早的冬季风景画之一，创作时间比“印象派”这个名称的诞生还要早上许多年。"
+    },
+    "whySimple": {
+      "en": "Monet paints a grey winter sky and a muddy, snowy road just as seriously as he would later paint sunshine. Even dull weather could be a real subject for him.",
+      "fr": "Monet peint un ciel d'hiver gris et une route enneigée et boueuse aussi sérieusement qu'il peindra plus tard le soleil. Même le mauvais temps pouvait être pour lui un vrai sujet.",
+      "zh-Hans": "莫奈描绘灰暗的冬日天空和泥泞积雪的道路，态度和他日后描绘阳光时一样认真。即使是阴沉的天气，对他而言也是值得描绘的真正主题。"
+    },
+    "whereSimple": {
+      "en": "Look at the thick brushstrokes dragged through the road — Monet built up the mud and melting snow almost like a sculpture, not flat paint.",
+      "fr": "Regardez les épaisses touches de pinceau traînées sur la route — Monet a construit la boue et la neige fondante presque comme une sculpture, pas comme une peinture plate.",
+      "zh-Hans": "看道路上那些被拖曳出的厚重笔触——莫奈几乎是像雕塑一样堆砌出泥泞与融雪，而不是简单的平涂。"
+    },
+    "raritySimple": {
+      "en": "This is one of Monet's earliest winter landscapes still surviving today, painted years before 'Impressionism' was even a word.",
+      "fr": "C'est l'un des plus anciens paysages hivernaux de Monet encore existants aujourd'hui, peint des années avant que le mot « impressionnisme » n'existe même.",
+      "zh-Hans": "这是莫奈现存最早的冬季风景画之一，创作时间甚至比“印象派”这个词出现得还要早。"
+    },
+    "whyKids": {
+      "en": "Monet paints a grey, snowy day with a horse cart stuck in the mush — he wanted to show that even a plain, chilly day could make a beautiful painting.",
+      "fr": "Monet peint une journée grise et enneigée avec une charrette tirée par un cheval coincée dans la gadoue — il voulait montrer que même une journée froide et ordinaire pouvait faire un beau tableau.",
+      "zh-Hans": "莫奈画了一个灰蒙蒙的雪天，一辆马车陷在雪泥里——他想告诉我们，即使是平淡寒冷的一天，也能画成美丽的画作。"
+    },
+    "whereKids": {
+      "en": "Look at the road — Monet piled the paint on thick to show the wet, mushy snow, almost like real mud you could touch.",
+      "fr": "Regardez la route — Monet a appliqué la peinture en épaisses couches pour montrer la neige mouillée et boueuse, presque comme de la vraie boue qu'on pourrait toucher.",
+      "zh-Hans": "看那条路——莫奈把颜料涂得很厚，用来表现湿漉漉的雪泥，几乎像真的泥巴一样可以摸到。"
+    },
+    "rarityKids": {
+      "en": "This is one of the very first winter paintings Monet ever made, long before he became famous.",
+      "fr": "C'est l'un des tout premiers tableaux d'hiver que Monet ait jamais peints, bien avant de devenir célèbre.",
+      "zh-Hans": "这是莫奈最早创作的冬季画作之一，那时他还远远没有成名。"
     }
   },
   {
@@ -3918,7 +4140,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Luncheon",
       "fr": "Le Déjeuner",
@@ -3930,23 +4152,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 25,
+      "logic": "FACT: the same 2008 Argenteuil-period comparable ($41,481,000/~EUR38.2M) exists for the same years and location, but for a landscape/marine subject. EDITORIAL JUDGMENT: The Luncheon is an indoor domestic genre scene with figures, a different genre from that outdoor landscape comparable -- range set well below it to reflect real uncertainty rather than implying a confident match that doesn't exist.",
+      "comparableSales": [
+        "Le Pont du chemin de fer à Argenteuil, Claude Monet — $41,481,000 (~€38.2M), Christie's, 2008 — same years/place, but an outdoor landscape, not this indoor domestic scene."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints a quiet family meal in his own garden, including his own son's abandoned toys and hat on the table, treating his private domestic life as worthy of the same careful eye as his landscapes.",
+      "fr": "Monet peint un repas de famille tranquille dans son propre jardin, incluant les jouets et le chapeau abandonnés de son fils sur la table, traitant sa vie domestique privée avec le même regard attentif que ses paysages.",
+      "zh-Hans": "莫奈描绘了自家花园中一场宁静的家庭用餐，桌上还留着他儿子遗落的玩具和帽子，他以描绘风景般专注的眼光，同样认真地对待着自己私密的家庭生活。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Find the small straw hat and toys left on the table in the foreground — Monet includes them as carefully as the fruit and dishes, small traces of a child who has just run off.",
+      "fr": "Trouvez le petit chapeau de paille et les jouets laissés sur la table au premier plan — Monet les inclut avec autant de soin que les fruits et la vaisselle, petites traces d'un enfant qui vient de s'enfuir en courant.",
+      "zh-Hans": "在前景桌上找到那顶小小的草帽和玩具——莫奈把它们画得和水果、餐具一样细致，那是一个刚刚跑开的孩子留下的小小痕迹。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "A rare, intimate interior scene from an artist far better known for painting outdoors, showing his home life at Argenteuil at its most peaceful.",
+      "fr": "Une rare scène d'intérieur intime d'un artiste bien mieux connu pour ses peintures en plein air, montrant sa vie familiale à Argenteuil dans ce qu'elle a de plus paisible.",
+      "zh-Hans": "这是一位以户外写生闻名的画家笔下罕见的室内私人场景，展现了他在阿让特伊最为宁静祥和的家庭生活。"
+    },
+    "whySimple": {
+      "en": "Monet paints a quiet family meal in his own garden. He even includes his son's toys and hat left on the table, treating his home life as carefully as his outdoor scenes.",
+      "fr": "Monet peint un repas de famille tranquille dans son propre jardin. Il inclut même les jouets et le chapeau de son fils laissés sur la table, traitant sa vie de famille avec autant de soin que ses scènes en plein air.",
+      "zh-Hans": "莫奈描绘了自家花园中一场宁静的家庭用餐。他甚至把儿子留在桌上的玩具和帽子也画了进去，用画外景一样细致的态度对待自己的家庭生活。"
+    },
+    "whereSimple": {
+      "en": "Find the small hat and toys left on the table in the front of the painting — Monet paints them as carefully as the fruit and dishes.",
+      "fr": "Trouvez le petit chapeau et les jouets laissés sur la table au premier plan du tableau — Monet les peint avec autant de soin que les fruits et la vaisselle.",
+      "zh-Hans": "在画面前景的桌上找到那顶小帽子和玩具——莫奈把它们画得和水果、餐具一样细致。"
+    },
+    "raritySimple": {
+      "en": "This is a rare indoor, family scene from an artist much better known for painting outdoors — a peaceful look at his home life at Argenteuil.",
+      "fr": "C'est une rare scène familiale d'intérieur d'un artiste bien plus connu pour ses peintures en plein air — un aperçu paisible de sa vie de famille à Argenteuil.",
+      "zh-Hans": "这是一位更以户外画作闻名的画家罕见的室内家庭场景——展现了他在阿让特伊宁静的家庭生活一隅。"
+    },
+    "whyKids": {
+      "en": "Monet paints a peaceful family lunch in his own garden — and you can tell his little boy was just here, because he left his hat and toys on the table!",
+      "fr": "Monet peint un déjeuner de famille paisible dans son propre jardin — et on devine que son petit garçon était juste là, car il a laissé son chapeau et ses jouets sur la table !",
+      "zh-Hans": "莫奈画了一顿在自家花园里的宁静家庭午餐——你能看出他的小儿子刚刚就在这儿，因为他把帽子和玩具都落在了桌上！"
+    },
+    "whereKids": {
+      "en": "Can you spot the little hat and toys left behind on the table? They belong to Monet's own son.",
+      "fr": "Pouvez-vous repérer le petit chapeau et les jouets laissés sur la table ? Ils appartiennent au propre fils de Monet.",
+      "zh-Hans": "你能找到桌上留下的那顶小帽子和玩具吗？它们是莫奈自己儿子的东西。"
+    },
+    "rarityKids": {
+      "en": "Monet usually painted outside, so this quiet, indoor family scene is a rare peek into his everyday home life.",
+      "fr": "Monet peignait habituellement en extérieur, donc cette scène familiale calme et intérieure est un rare aperçu de sa vie quotidienne à la maison.",
+      "zh-Hans": "莫奈通常都在户外作画，所以这幅安静的室内家庭场景，是难得一见的、走进他日常家庭生活的一瞥。"
     }
   },
   {
@@ -4590,7 +4849,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Railway Bridge at Argenteuil",
       "fr": "Le Pont d'Argenteuil",
@@ -4602,23 +4861,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 35,
+      "high": 45,
+      "logic": "FACT: Le Pont du chemin de fer a Argenteuil -- likely the same bridge motif Monet painted several times in this period -- sold for $41,481,000 (~EUR38.2M) at Christie's in 2008. EDITORIAL JUDGMENT: this is the closest possible match found in this batch (same subject, same years, quite possibly the same series) -- range centered tightly on this figure, minimal adjustment applied.",
+      "comparableSales": [
+        "Le Pont du chemin de fer à Argenteuil, Claude Monet — sold for $41,481,000 (~€38.2M), Christie's, 2008 — same bridge subject, same years, likely the closest same-motif comparable in this whole project."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints a modern iron railway bridge and a plume of steam with the same reverence earlier painters gave cathedrals, treating industrial progress as a genuinely beautiful, paintable subject.",
+      "fr": "Monet peint un pont ferroviaire moderne en fer et un panache de fumée avec la même révérence que les peintres antérieurs accordaient aux cathédrales, traitant le progrès industriel comme un sujet véritablement beau et digne d'être peint.",
+      "zh-Hans": "莫奈以往昔画家描绘大教堂般的敬意，描绘了一座现代化的铁质铁路桥与一缕蒸汽——他把工业进步当作一个真正美丽、值得入画的主题。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Follow the trail of steam from the passing train as it dissolves into the sky — Monet paints smoke with the same loose brushwork he uses for clouds.",
+      "fr": "Suivez le panache de fumée du train qui passe alors qu'il se dissout dans le ciel — Monet peint la fumée avec la même touche libre qu'il utilise pour les nuages.",
+      "zh-Hans": "顺着驶过的火车喷出的蒸汽看去，看它如何消融进天空——莫奈用描绘云朵时同样松弛的笔触来描绘烟雾。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet painted this exact bridge motif several times; a related version sold for over $41 million at auction in 2008, making this subject one of his most sought-after.",
+      "fr": "Monet a peint ce même motif du pont plusieurs fois ; une version apparentée s'est vendue plus de 41 millions de dollars aux enchères en 2008, faisant de ce sujet l'un des plus recherchés de son œuvre.",
+      "zh-Hans": "莫奈曾多次描绘这座同一的桥梁主题；其中一个相关版本在2008年的拍卖会上以超过4100万美元成交，使这一题材成为他作品中最受追捧的之一。"
+    },
+    "whySimple": {
+      "en": "Monet paints a modern iron railway bridge and a cloud of steam, treating this new industrial scene as beautiful and worth painting, the way older painters treated cathedrals.",
+      "fr": "Monet peint un pont ferroviaire moderne en fer et un nuage de vapeur, traitant cette scène industrielle nouvelle comme belle et digne d'être peinte, à la manière dont les peintres plus anciens traitaient les cathédrales.",
+      "zh-Hans": "莫奈描绘了一座现代铁质铁路桥和一团蒸汽云，把这个全新的工业场景当作美丽而值得描绘的题材，就像从前的画家对待大教堂那样。"
+    },
+    "whereSimple": {
+      "en": "Follow the steam from the passing train as it fades into the sky — Monet paints smoke with the same loose brushstrokes he uses for clouds.",
+      "fr": "Suivez la vapeur du train qui passe alors qu'elle se fond dans le ciel — Monet peint la fumée avec les mêmes touches libres qu'il utilise pour les nuages.",
+      "zh-Hans": "顺着驶过的火车喷出的蒸汽看去，看它如何在天空中消散——莫奈用画云朵时同样松散的笔触来画烟雾。"
+    },
+    "raritySimple": {
+      "en": "Monet painted this exact bridge several times. A related version sold for over $41 million at auction in 2008, making it one of his most valuable subjects.",
+      "fr": "Monet a peint ce pont exact plusieurs fois. Une version apparentée s'est vendue plus de 41 millions de dollars aux enchères en 2008, ce qui en fait l'un de ses sujets les plus précieux.",
+      "zh-Hans": "莫奈曾多次描绘这座同一座桥。一个相关版本在2008年拍卖中以超过4100万美元成交，使其成为他最具价值的题材之一。"
+    },
+    "whyKids": {
+      "en": "Monet paints a big iron bridge with a train crossing it, puffing out a cloud of steam — he thought this brand-new, modern kind of bridge was just as beautiful as an old castle.",
+      "fr": "Monet peint un grand pont en fer avec un train qui le traverse, crachant un nuage de vapeur — il pensait que ce pont d'un genre nouveau et moderne était tout aussi beau qu'un vieux château.",
+      "zh-Hans": "莫奈画了一座巨大的铁桥，一列火车正驶过桥面，喷出一团蒸汽——他认为这种全新的现代化桥梁，和古老的城堡一样美丽。"
+    },
+    "whereKids": {
+      "en": "Follow the puff of steam from the train as it drifts up and dissolves into the sky.",
+      "fr": "Suivez le panache de vapeur du train alors qu'il s'élève et se dissout dans le ciel.",
+      "zh-Hans": "顺着火车喷出的那团蒸汽看去，看它如何升起、消散进天空。"
+    },
+    "rarityKids": {
+      "en": "Monet loved this bridge so much he painted it several times — one of his paintings of it is one of the most expensive he ever made.",
+      "fr": "Monet aimait tellement ce pont qu'il l'a peint plusieurs fois — l'un de ses tableaux le représentant est l'un des plus chers qu'il ait jamais peints.",
+      "zh-Hans": "莫奈非常喜欢这座桥，画了好几次——他画的其中一幅，成为他所有作品中最昂贵的画作之一。"
     }
   },
   {
@@ -4632,7 +4928,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Woman with a Parasol, facing left",
       "fr": "Femme à l'ombrelle tournée vers la gauche",
@@ -4645,22 +4941,59 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data. This 1886 work is part of Monet's figure-in-landscape 'parasol' motif; the far more famous 1875 version of this subject has never sold at public auction, and a $120-180M figure sometimes cited for it is an unconfirmed theoretical valuation-site estimate, not a real sale -- excluded per the rule against inventing numbers from non-transactions. His real landscape-series auction records are pure landscapes (no figure), a genre mismatch to this figure-in-landscape subject.",
+      "comparableSales": [
+        "Woman with a Parasol — Madame Monet and Her Son (1875, the more famous version of this motif) has NEVER sold at auction (National Gallery, Washington DC); a cited $120-180M figure for it is an unconfirmed theoretical valuation, not a transaction."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints a figure outdoors from a low angle against the sky, so the wind moving her dress and parasol becomes as much the subject as the woman herself.",
+      "fr": "Monet peint une silhouette en plein air, vue en contre-plongée contre le ciel, si bien que le vent qui agite sa robe et son ombrelle devient autant le sujet que la femme elle-même.",
+      "zh-Hans": "莫奈从低角度描绘了一位置身天空背景下的户外人物，风吹动她的裙摆与阳伞，几乎与人物本身同样成为画面的主题。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice you can barely see her face — Monet deliberately turns her away from the sun and toward the wind, more interested in movement and light than a likeness.",
+      "fr": "Remarquez que l'on distingue à peine son visage — Monet la tourne délibérément vers le vent et loin du soleil, plus intéressé par le mouvement et la lumière que par la ressemblance.",
+      "zh-Hans": "留意她的面容几乎难以看清——莫奈故意让她背对阳光、迎向风势，他更关心的是动感与光线，而非画出一幅肖似的容颜。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "One of several 'woman with a parasol' figures Monet painted outdoors, a motif so associated with him that a related 1875 version is now considered priceless.",
+      "fr": "L'une des nombreuses figures de « femme à l'ombrelle » que Monet peignit en plein air, un motif si associé à son nom qu'une version apparentée de 1875 est aujourd'hui considérée comme inestimable.",
+      "zh-Hans": "这是莫奈在户外创作的多幅“撑伞女子”题材作品之一，这一图式与他的名字紧密相连，其中1875年的一个相关版本如今被视为无价之宝。"
+    },
+    "whySimple": {
+      "en": "Monet paints a woman outdoors from a low angle, against the sky. The wind moving her dress and parasol becomes just as important as the woman herself.",
+      "fr": "Monet peint une femme en plein air, vue d'en bas, contre le ciel. Le vent qui agite sa robe et son ombrelle devient tout aussi important que la femme elle-même.",
+      "zh-Hans": "莫奈从低角度描绘了一位置身天空背景下的户外女子。风吹动她的裙摆与阳伞，几乎和人物本身同样重要。"
+    },
+    "whereSimple": {
+      "en": "Notice you can barely see her face — Monet turns her toward the wind instead of the sun. He cared more about movement and light than about a perfect likeness.",
+      "fr": "Remarquez que l'on distingue à peine son visage — Monet la tourne vers le vent plutôt que vers le soleil. Il se souciait plus du mouvement et de la lumière que d'une ressemblance parfaite.",
+      "zh-Hans": "留意她的脸几乎看不清——莫奈让她面向风而不是阳光。比起画出精确的肖像，他更在意动感和光线。"
+    },
+    "raritySimple": {
+      "en": "This is one of several 'woman with a parasol' paintings Monet made outdoors — a subject so linked to him that a related 1875 version is now considered priceless.",
+      "fr": "C'est l'un des nombreux tableaux de « femme à l'ombrelle » que Monet a peints en plein air — un sujet si lié à son nom qu'une version apparentée de 1875 est aujourd'hui considérée comme inestimable.",
+      "zh-Hans": "这是莫奈在户外创作的多幅“撑伞女子”画作之一——这一题材与他的名字紧密相连，其中1875年的一个相关版本如今被视为无价之宝。"
+    },
+    "whyKids": {
+      "en": "Monet paints a woman standing outside holding a parasol, with the wind blowing her dress — he wanted to capture that windy, breezy moment more than her exact face.",
+      "fr": "Monet peint une femme debout en plein air tenant une ombrelle, sa robe soulevée par le vent — il voulait capturer ce moment venteux plus que son visage exact.",
+      "zh-Hans": "莫奈画了一位撑着阳伞站在户外的女子，风吹动着她的裙子——比起画出她准确的容貌，他更想捕捉那个起风的瞬间。"
+    },
+    "whereKids": {
+      "en": "Look how the wind pushes her dress and parasol to one side — can you feel the breeze just by looking at the painting?",
+      "fr": "Regardez comme le vent pousse sa robe et son ombrelle d'un côté — pouvez-vous sentir la brise rien qu'en regardant le tableau ?",
+      "zh-Hans": "看风是怎么把她的裙子和阳伞吹向一侧的——你能仅仅通过看这幅画，就感觉到那阵微风吗？"
+    },
+    "rarityKids": {
+      "en": "Monet painted women holding parasols outdoors many times — it became one of his favourite subjects to capture wind and light together.",
+      "fr": "Monet a peint plusieurs fois des femmes tenant une ombrelle en plein air — c'est devenu l'un de ses sujets préférés pour capturer le vent et la lumière ensemble.",
+      "zh-Hans": "莫奈多次描绘户外撑伞的女子——这成了他最喜欢的题材之一，能同时捕捉风与光。"
     }
   },
   {
@@ -4716,7 +5049,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Camille Monet on her deathbed",
       "fr": "Camille sur son lit de mort",
@@ -4729,22 +5062,42 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "No estimate attempted. This is a singular, deeply personal painting of Monet's own wife on her deathbed -- not a genre with any real market comparable, and treating it as a priceable commodity via an artist's general auction record would misrepresent what the painting is. Left null out of respect for the subject, not for lack of searching.",
+      "comparableSales": [],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet painted his own wife in the moments after her death, later admitting he found himself observing the changing colours of her face even as he grieved — a confession about how completely painting had taken over his way of seeing.",
+      "fr": "Monet peignit sa propre épouse dans les instants suivant sa mort, admettant plus tard qu'il s'était surpris à observer les couleurs changeantes de son visage tout en étant submergé par le chagrin — un aveu sur la manière dont la peinture avait totalement pris possession de son regard.",
+      "zh-Hans": "莫奈描绘了自己的妻子在她去世后的瞬间，他后来坦言，即便在悲痛之中，自己仍不由自主地观察着她面容色彩的变化——这坦白揭示了绘画是如何彻底占据了他观看世界的方式。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the loose, rapid brushwork across her face — this was painted quickly, in a single sitting, by a man documenting an unbearable moment almost against his own will.",
+      "fr": "Regardez la touche libre et rapide sur son visage — ce tableau fut peint vite, en une seule séance, par un homme documentant un instant insupportable presque malgré lui.",
+      "zh-Hans": "看她面容上那松弛而急促的笔触——这幅画是一气呵成、快速完成的，出自一个几乎身不由己地记录下这难以承受的时刻的人之手。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "A uniquely personal and unrepeatable painting — Monet later said he regretted having painted it at all, and no comparable subject exists anywhere else in his work.",
+      "fr": "Un tableau d'une intimité unique et irréductible — Monet dira plus tard regretter de l'avoir peint, et aucun sujet comparable n'existe ailleurs dans son œuvre.",
+      "zh-Hans": "这是一幅独一无二、无法复制的极私密画作——莫奈后来坦言后悔画下了它，在他的全部作品中，再也找不到与之相类的题材。"
+    },
+    "whySimple": {
+      "en": "Monet painted his own wife just after she died. He later said that even while he was grieving, he couldn't stop noticing the changing colours in her face — painting had become part of how he saw everything.",
+      "fr": "Monet a peint sa propre épouse juste après sa mort. Il dira plus tard que même en plein chagrin, il ne pouvait s'empêcher de remarquer les couleurs changeantes de son visage — la peinture était devenue une part de sa façon de voir toute chose.",
+      "zh-Hans": "莫奈在妻子去世后不久画下了这幅画。他后来说，即便在悲痛之中，他仍无法不去注意她面容色彩的变化——绘画已经成为他观看一切事物方式的一部分。"
+    },
+    "whereSimple": {
+      "en": "Look at the quick, loose brushstrokes on her face — this was painted fast, in one sitting, by someone recording an unbearable moment.",
+      "fr": "Regardez les touches de pinceau rapides et libres sur son visage — ce tableau fut peint vite, en une seule séance, par quelqu'un qui enregistrait un moment insupportable.",
+      "zh-Hans": "看她面容上那快速而松散的笔触——这幅画是一气呵成完成的，出自一个记录下难以承受的时刻的人之手。"
+    },
+    "raritySimple": {
+      "en": "This is a uniquely personal painting. Monet later said he regretted painting it at all, and there is nothing else quite like it in his work.",
+      "fr": "C'est un tableau d'une intimité unique. Monet dira plus tard regretter de l'avoir peint, et rien d'autre dans son œuvre ne lui ressemble vraiment.",
+      "zh-Hans": "这是一幅极其私密、独一无二的画作。莫奈后来说他后悔画了它，在他的作品中再也没有与之相似的画作。"
     }
   },
   {
@@ -4842,7 +5195,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "La Rue Montorgueil",
       "fr": "La Rue Montorgueil",
@@ -4855,22 +5208,59 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "Insufficient real data. This urban street-scene subject (flags, festival crowd) doesn't match either of Monet's real comparable categories found in this project: his mature-period series landscapes (haystacks, water lilies) or the Argenteuil river/bridge comparable used elsewhere in this batch. No real transaction for a Monet cityscape of this kind was found.",
+      "comparableSales": [
+        "No real auction transaction found for a comparable Monet urban/cityscape street-scene subject."
+      ],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints a Paris street entirely covered in French flags during a national holiday, dissolving the whole scene into rapid strokes of red, white and blue to capture pure movement and celebration rather than any individual building or person.",
+      "fr": "Monet peint une rue parisienne entièrement recouverte de drapeaux français lors d'une fête nationale, dissolvant toute la scène en touches rapides de rouge, blanc et bleu pour capturer le mouvement pur et la fête plutôt qu'un bâtiment ou une personne en particulier.",
+      "zh-Hans": "莫奈描绘了一条在国庆节完全被法国国旗覆盖的巴黎街道，把整个场景化解成一片红、白、蓝交织的迅疾笔触，捕捉的是纯粹的动感与欢庆气氛，而非任何具体的建筑或人物。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Try to find a single clear face in the crowd below — you can't, because Monet wanted you to feel the density and motion of the celebration, not recognize anyone in it.",
+      "fr": "Essayez de trouver un seul visage net dans la foule en contrebas — vous n'y parviendrez pas, car Monet voulait que vous ressentiez la densité et le mouvement de la fête, pas que vous reconnaissiez quelqu'un.",
+      "zh-Hans": "试着在下方的人群中找出一张清晰的面孔——你找不到，因为莫奈想让你感受到这场庆典的拥挤与流动感，而不是让你辨认出画中的某个人。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted on France's first official national holiday celebrating the Republic, capturing a specific, once-only moment of citywide celebration.",
+      "fr": "Peint lors de la première fête nationale officielle célébrant la République, capturant un moment précis et unique de liesse collective dans toute la ville.",
+      "zh-Hans": "此画创作于法国首个正式庆祝共和国的国庆日，定格了一场全城欢庆、独一无二的瞬间。"
+    },
+    "whySimple": {
+      "en": "Monet paints a Paris street covered in French flags during a national holiday. He turns the whole scene into fast strokes of red, white and blue, capturing movement and celebration, not any one building or person.",
+      "fr": "Monet peint une rue parisienne recouverte de drapeaux français lors d'une fête nationale. Il transforme toute la scène en touches rapides de rouge, blanc et bleu, capturant le mouvement et la fête, pas un bâtiment ou une personne en particulier.",
+      "zh-Hans": "莫奈描绘了一条在国庆节挂满法国国旗的巴黎街道。他把整个场景变成快速的红、白、蓝笔触，捕捉的是动感与庆典气氛，而不是某一栋建筑或某个人。"
+    },
+    "whereSimple": {
+      "en": "Try to find one clear face in the crowd below — you can't, because Monet wants you to feel the crowd's motion, not recognize anyone in it.",
+      "fr": "Essayez de trouver un visage net dans la foule en contrebas — vous n'y arriverez pas, car Monet veut que vous ressentiez le mouvement de la foule, pas que vous reconnaissiez quelqu'un.",
+      "zh-Hans": "试着在下方的人群中找出一张清晰的脸——你找不到，因为莫奈想让你感受人群的流动，而不是认出画中的某个人。"
+    },
+    "raritySimple": {
+      "en": "Painted on France's first official national holiday celebrating the Republic — a one-time, citywide moment of celebration.",
+      "fr": "Peint lors de la toute première fête nationale officielle célébrant la République — un moment de liesse collective, unique dans toute la ville.",
+      "zh-Hans": "此画创作于法国首个正式庆祝共和国的国庆日——那是一场独一无二、席卷全城的欢庆时刻。"
+    },
+    "whyKids": {
+      "en": "Monet paints a busy street completely covered in red, white and blue flags for a big holiday celebration — he used quick little dashes of paint to show how exciting and crowded it felt.",
+      "fr": "Monet peint une rue animée entièrement recouverte de drapeaux rouges, blancs et bleus pour une grande fête — il a utilisé de petits coups de pinceau rapides pour montrer à quel point c'était excitant et bondé.",
+      "zh-Hans": "莫奈画了一条热闹的街道，为了庆祝盛大的节日，街上挂满了红白蓝三色旗——他用快速的小笔触，表现出那种热闹拥挤、令人兴奋的感觉。"
+    },
+    "whereKids": {
+      "en": "Count how many flags you can spot fluttering above the street — Monet painted so many that the whole street seems to be made of flags.",
+      "fr": "Comptez le nombre de drapeaux que vous pouvez repérer flottant au-dessus de la rue — Monet en a peint tellement que toute la rue semble faite de drapeaux.",
+      "zh-Hans": "数一数你能在街道上方找到多少面飘扬的旗帜——莫奈画了这么多旗子，整条街几乎都像是由旗帜组成的。"
+    },
+    "rarityKids": {
+      "en": "Monet painted this on one of France's biggest holiday celebrations, capturing a party that happened only once, on that exact day.",
+      "fr": "Monet a peint ce tableau lors de l'une des plus grandes fêtes de France, capturant une célébration qui n'a eu lieu qu'une seule fois, exactement ce jour-là.",
+      "zh-Hans": "莫奈是在法国最盛大的节日庆典之一时画下这幅画的，定格了一场只在那一天发生过一次的欢庆。"
     }
   },
   {
@@ -4926,7 +5316,7 @@
     "accent": "#6A5765",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Vétheuil, Sunset",
       "fr": "Vétheuil, soleil couchant",
@@ -4938,23 +5328,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 20,
+      "high": 40,
+      "logic": "FACT: Monet's mature-period landscape-series record cluster: Meules $110.7M/EUR101.8M (2019) and $81.4M/EUR74.9M (2016), both Sotheby's/Christie's. EDITORIAL JUDGMENT: this Vetheuil sunset is contemporaneous with that mature period (1900) but is a single, non-serial work rather than part of his most iconic named series (haystacks, water lilies) -- positioned well below those series records to reflect that real difference in market status.",
+      "comparableSales": [
+        "Meules (Haystacks), Claude Monet — $110.7M (~€101.8M), Sotheby's, May 2019 — Monet's auction record, mature-period landscape series.",
+        "Another Meules, Claude Monet — $81.4M (~€74.9M), Christie's, November 2016 — mature-period landscape series."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet paints the sun dissolving into the Seine at Vétheuil, letting the sky and its reflection blur into nearly the same mass of colour so the whole canvas seems to glow from within.",
+      "fr": "Monet peint le soleil se dissolvant dans la Seine à Vétheuil, laissant le ciel et son reflet se fondre presque en une seule masse de couleur, si bien que toute la toile semble rayonner de l'intérieur.",
+      "zh-Hans": "莫奈描绘了夕阳在维特伊的塞纳河中消融的景象，让天空与其倒影几乎融为同一片色彩，使整幅画布仿佛从内部散发着光芒。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Try to find the exact line where the riverbank ends and the water begins — Monet blurs it on purpose, so sky, land and reflection all melt together.",
+      "fr": "Essayez de trouver la ligne exacte où la berge se termine et où l'eau commence — Monet la brouille exprès, si bien que le ciel, la terre et le reflet se fondent tous ensemble.",
+      "zh-Hans": "试着找出河岸与水面之间那道确切的分界线——莫奈是故意把它模糊化的，让天空、陆地与倒影都融为一体。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted at Vétheuil, the smaller riverside town where Monet lived for several years before Giverny made him famous.",
+      "fr": "Peint à Vétheuil, la petite ville au bord de l'eau où Monet vécut plusieurs années avant que Giverny ne le rende célèbre.",
+      "zh-Hans": "此画创作于维特伊，这座莫奈在吉维尼成名之前曾居住过数年的塞纳河畔小镇。"
+    },
+    "whySimple": {
+      "en": "Monet paints the sun dissolving into the river at Vétheuil. He lets the sky and its reflection blur together into almost the same colour, so the whole painting seems to glow.",
+      "fr": "Monet peint le soleil se dissolvant dans la rivière à Vétheuil. Il laisse le ciel et son reflet se fondre presque dans la même couleur, si bien que tout le tableau semble rayonner.",
+      "zh-Hans": "莫奈描绘了夕阳在维特伊河中消融的景象。他让天空与其倒影几乎融为同一种颜色，使整幅画仿佛在发光。"
+    },
+    "whereSimple": {
+      "en": "Try to find the exact line where the riverbank ends and the water starts — Monet blurs it on purpose, so everything melts together.",
+      "fr": "Essayez de trouver la ligne exacte où la berge se termine et où l'eau commence — Monet la brouille exprès, pour que tout se fonde ensemble.",
+      "zh-Hans": "试着找出河岸与水面之间的那条分界线——莫奈是故意把它模糊化的，让一切融为一体。"
+    },
+    "raritySimple": {
+      "en": "Painted at Vétheuil, the small riverside town where Monet lived for several years before he became famous at Giverny.",
+      "fr": "Peint à Vétheuil, la petite ville au bord de l'eau où Monet vécut plusieurs années avant de devenir célèbre à Giverny.",
+      "zh-Hans": "此画创作于维特伊，这座莫奈在吉维尼成名之前曾居住数年的小镇。"
+    },
+    "whyKids": {
+      "en": "Monet paints a glowing orange sunset melting into the river, so that the sky and the water almost look like the exact same colour.",
+      "fr": "Monet peint un coucher de soleil orange et lumineux se fondant dans la rivière, si bien que le ciel et l'eau semblent presque avoir exactement la même couleur.",
+      "zh-Hans": "莫奈画了一片橙色的夕阳，仿佛融化进了河流之中，使天空和水面看起来几乎是同一种颜色。"
+    },
+    "whereKids": {
+      "en": "Can you find exactly where the riverbank ends and the water begins? It's hard — Monet blurred the edge on purpose!",
+      "fr": "Pouvez-vous trouver exactement où la berge se termine et où l'eau commence ? C'est difficile — Monet a brouillé la limite exprès !",
+      "zh-Hans": "你能找到河岸结束、水面开始的确切位置吗？很难吧——莫奈是故意把边界画模糊的！"
+    },
+    "rarityKids": {
+      "en": "Monet painted this in a small riverside village called Vétheuil, where he lived before he moved to the garden at Giverny that made him famous.",
+      "fr": "Monet a peint ce tableau dans un petit village au bord de l'eau appelé Vétheuil, où il vivait avant de s'installer dans le jardin de Giverny qui le rendra célèbre.",
+      "zh-Hans": "莫奈是在一座名叫维特伊的小河畔村庄画下这幅画的，那是他搬到后来让他成名的吉维尼花园之前居住的地方。"
     }
   }
 ]
