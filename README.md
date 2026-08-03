@@ -250,3 +250,48 @@ npm run dev -- --experimental-https
 `localhost:8090`, просто получал `503`, пока backend не запущен) — контракт и обработка
 ошибок рабочие, но полный цикл с реальным распознаванием стоит перепроверить на чистой
 машине перед тем, как считать `web/` готовым к переключению.
+
+## Деплой backend на Fly.io
+
+`backend/` готов к деплою: `Dockerfile` (Python 3.11-slim, uvicorn на `0.0.0.0:8080`),
+`fly.toml` (app name-плейсхолдер `elyio-api`, `primary_region = "cdg"` — Париж, ближайший
+к Musée d'Orsay регион Fly; если недоступен при `launch` — `ams` или `lhr`), `.dockerignore`
+(исключает `venv/`, `.reference_cache/`, `__pycache__/`, `test_photos/`, `.env`, `.git`).
+
+CORS в `app/main.py` сужен с `allow_origins=["*"]` до конкретного списка:
+`https://elyio.vercel.app`, `https://elyio.co`, `https://www.elyio.co` и
+`http://localhost:3000` (для локальной разработки `web/`). Если домен на Vercel/своём
+хостинге в итоге будет другим — добавь его в этот список.
+
+Сам деплой (`flyctl deploy`) я не запускаю — нужна твоя авторизация в Fly. Команды по
+порядку, все из `backend/`:
+
+```bash
+cd backend
+
+# 1. Логин в Fly (откроет браузер)
+flyctl auth login
+
+# 2. Регистрация приложения в Fly БЕЗ перезаписи уже готовых fly.toml/Dockerfile
+#    и без немедленного деплоя (секреты выставим на следующем шаге):
+flyctl launch --copy-config --no-deploy --yes
+# --copy-config говорит flyctl использовать уже существующий fly.toml как есть,
+# вместо того чтобы предлагать пересоздать его; --no-deploy — зарегистрировать
+# приложение, но не деплоить прямо сейчас. flyctl всё равно может задать 1-2
+# вопроса (например, в какой организации Fly создать приложение) — это нормально.
+# Если имя "elyio-api" уже занято другим пользователем Fly (имена глобально
+# уникальные) — flyctl об этом скажет; поменяй `app = "elyio-api"` в fly.toml
+# на другое имя и повтори команду.
+
+# 3. Секрет с ключом OpenAI — впиши сюда СВОЙ реальный ключ вместо плейсхолдера:
+flyctl secrets set OPENAI_API_KEY=<вставь-свой-настоящий-ключ-здесь>
+
+# 4. Деплой:
+flyctl deploy
+```
+
+После `flyctl deploy` публичный URL — `https://<app-name>.fly.dev` (с именем из
+`fly.toml`, т.е. по умолчанию `https://elyio-api.fly.dev` — flyctl также печатает его
+в конце вывода `deploy`, и его всегда можно посмотреть через `flyctl status` или
+`flyctl info`). Этот URL и есть значение для `NEXT_PUBLIC_BACKEND_URL` в настройках
+окружения на Vercel (см. раздел про `web/` выше).

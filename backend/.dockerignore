@@ -1,0 +1,7 @@
+venv/
+.reference_cache/
+__pycache__/
+*.pyc
+test_photos/
+.env
+.git

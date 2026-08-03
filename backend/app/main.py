@@ -54,7 +54,12 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # tighten before real deployment
+    allow_origins=[
+        "https://elyio.vercel.app",
+        "https://elyio.co",
+        "https://www.elyio.co",
+        "http://localhost:3000",  # local web/ dev
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
