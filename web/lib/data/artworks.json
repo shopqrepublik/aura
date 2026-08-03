@@ -1608,7 +1608,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Fifer",
       "fr": "Le Fifre",
@@ -1620,23 +1620,61 @@
       "en": true
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 25,
+      "high": 45,
+      "logic": "FACT: Manet's auction record is $65.1M (~EUR59.9M) for Le Printemps (Christie's, 2014, single-figure society portrait); his secondary record is $33.2M (~EUR30.5M) for Self-Portrait with a Palette (Sotheby's, 2010). EDITORIAL JUDGMENT: The Fifer has no direct sale comparable, but it is one of Manet's most art-historically pivotal single-figure works -- its radical flatness (rejected by the 1866 Salon jury, publicly defended by Emile Zola) is widely cited as an early step toward 20th-century abstraction. Positioned at the same tier used for The Balcony elsewhere in this catalog, reflecting comparable canonical stature among Manet's single-figure portraits, not a fact drawn from a specific comparable sale at this exact level.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's New York, 2014 — Manet's auction record.",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted an anonymous boy fifer from an army band completely flat against a bare grey background, with almost no shadow or depth — a radical simplicity that scandalized the 1866 Salon jury into rejecting it outright, and that later painters would look back on as one of the first steps toward modern abstraction.",
+      "fr": "Manet peint un jeune fifre anonyme d'une fanfare militaire de manière totalement plate sur un fond gris nu, presque sans ombre ni profondeur — une simplicité radicale qui scandalisa le jury du Salon de 1866, lequel refusa l'œuvre, et que les peintres suivants considéreront comme l'un des premiers pas vers l'abstraction moderne.",
+      "zh-Hans": "莫奈将一名来自军乐队的无名小鼓手描绘得完全平面化，背景是一片空荡荡的灰色——几乎没有阴影和纵深。这种极端的简化让1866年沙龙评审团大为震惊，直接拒绝了这幅作品；后世画家却将其视为迈向现代抽象艺术的最早一步。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at how little modeling there is: the uniform's red, black, and white sit as flat blocks of color, like a cut-out pasted onto the wall, with barely a hint of a shadow to place the boy in space.",
+      "fr": "Observez le peu de modelé : le rouge, le noir et le blanc de l'uniforme se posent en aplats de couleur, comme une découpe collée sur le mur, avec à peine une ombre pour situer le garçon dans l'espace.",
+      "zh-Hans": "看看这幅画有多缺乏立体塑造：制服上的红、黑、白只是一块块平涂的色彩，就像贴在墙上的剪纸，几乎看不到任何阴影来交代男孩所处的空间。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Rejected by the Salon in 1866, it provoked the young novelist Émile Zola into publicly defending Manet in print — the start of a friendship that later produced Manet's portrait of Zola himself.",
+      "fr": "Refusé par le Salon en 1866, ce tableau poussa le jeune romancier Émile Zola à défendre publiquement Manet dans la presse — le début d'une amitié qui donnera plus tard naissance au portrait de Zola par Manet.",
+      "zh-Hans": "这幅画在1866年被沙龙拒绝，促使年轻的小说家埃米尔·左拉公开撰文为莫奈辩护——这段友谊后来也促成了莫奈为左拉绘制的肖像画。"
+    },
+    "whySimple": {
+      "en": "Manet painted a boy playing a fife (a small flute) from an army band. He painted him almost totally flat, with hardly any shadow — a very bold, simple style for its time.",
+      "fr": "Manet peint un garçon jouant du fifre (une petite flûte) dans une fanfare militaire. Il le peint de façon presque totalement plate, avec très peu d'ombre — un style très audacieux et simple pour l'époque.",
+      "zh-Hans": "莫奈画了一个在军乐队里吹奏横笛的男孩。他把男孩画得几乎完全平面化，几乎没有阴影——在当时是非常大胆、简约的画法。"
+    },
+    "whereSimple": {
+      "en": "Look at the flat blocks of red, black and white in his uniform — there's barely any shading, so he looks almost like a cut-out shape stuck onto a plain grey wall.",
+      "fr": "Regardez les aplats de rouge, de noir et de blanc de son uniforme — il n'y a presque pas d'ombrage, si bien qu'il ressemble presque à une forme découpée collée sur un mur gris uni.",
+      "zh-Hans": "看看他制服上那一块块平涂的红、黑、白色——几乎没有明暗过渡，让他看起来几乎像是贴在素灰墙面上的剪纸形状。"
+    },
+    "raritySimple": {
+      "en": "The Salon jury rejected this painting in 1866. The writer Émile Zola was so angry about it that he wrote articles defending Manet — the beginning of their friendship.",
+      "fr": "Le jury du Salon refusa ce tableau en 1866. L'écrivain Émile Zola en fut si indigné qu'il écrivit des articles pour défendre Manet — le début de leur amitié.",
+      "zh-Hans": "1866年，沙龙评审团拒绝了这幅画。作家埃米尔·左拉对此非常愤怒，写文章为莫奈辩护——这也是他们友谊的开端。"
+    },
+    "whyKids": {
+      "en": "Manet painted a boy soldier playing a little flute called a fife. Instead of making him look round and solid, Manet painted him almost totally flat — like a paper cut-out!",
+      "fr": "Manet peint un jeune garçon soldat jouant d'une petite flûte appelée fifre. Au lieu de le peindre rond et en relief, Manet le peint presque totalement plat — comme une découpe en papier !",
+      "zh-Hans": "莫奈画了一个吹着小笛子（叫作横笛）的小兵男孩。莫奈没有把他画得圆润立体，而是画得几乎完全平平的——就像一张剪纸！"
+    },
+    "whereKids": {
+      "en": "Can you see how flat his uniform looks? Red, black and white, just sitting there like colored paper, with hardly any shadow at all.",
+      "fr": "Tu vois comme son uniforme a l'air plat ? Rouge, noir et blanc, posés là comme du papier de couleur, presque sans aucune ombre.",
+      "zh-Hans": "你能看出他的制服有多平吗？红色、黑色、白色，就像彩纸一样贴在那里，几乎完全没有阴影。"
+    },
+    "rarityKids": {
+      "en": "Grown-up art judges didn't like this painting at first and said no to it! But a writer named Émile Zola loved it so much he wrote articles telling everyone they were wrong.",
+      "fr": "Les juges d'art n'ont d'abord pas aimé ce tableau et l'ont refusé ! Mais un écrivain nommé Émile Zola l'a tellement aimé qu'il a écrit des articles pour dire à tout le monde qu'ils avaient tort.",
+      "zh-Hans": "大人评审一开始不喜欢这幅画，还拒绝了它！可是一位叫埃米尔·左拉的作家非常喜欢它，还写文章告诉大家评审错了。"
     }
   },
   {
@@ -1981,7 +2019,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Berthe Morisot with a Bouquet of Violets",
       "fr": "Berthe Morisot au bouquet de violettes",
@@ -1993,23 +2031,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 28,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010). EDITORIAL JUDGMENT: this is one of the most reproduced and celebrated of Manet's roughly dozen portraits of fellow painter Berthe Morisot, but it is a smaller, more intimate bust-length composition than Le Printemps or The Balcony -- positioned in an upper-middle tier below the top single-figure works in this catalog rather than at the very top, reflecting scale and format rather than a lack of fame.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record.",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted his friend and fellow painter Berthe Morisot — dressed in black, her dark eyes fixed intently on the viewer — in what's considered one of the most striking and psychologically direct of the roughly dozen portraits he made of her.",
+      "fr": "Manet peint son amie et consœur peintre Berthe Morisot — vêtue de noir, son regard sombre fixé intensément sur le spectateur — dans ce qui est considéré comme l'un des plus saisissants et des plus directs psychologiquement parmi la douzaine de portraits qu'il fit d'elle.",
+      "zh-Hans": "莫奈描绘了他的画家朋友贝尔特·莫里索——她身穿黑衣，深色的双眼直直地凝视着观者。在莫奈为她所作的十余幅肖像中，这幅被认为是最摄人心魄、心理刻画最直接的一幅。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at her eyes — dark, wide, and looking straight out at you — Manet gives almost no attention to finishing detail elsewhere in the painting, so her gaze carries the entire portrait.",
+      "fr": "Regardez ses yeux — sombres, grands ouverts, fixés droit sur vous — Manet ne porte presque aucune attention à finir le reste du tableau, si bien que son regard porte à lui seul tout le portrait.",
+      "zh-Hans": "看她的眼睛——深邃、睁大，径直望向你——莫奈几乎没有花心思去完善画面其余部分的细节，于是这一整幅肖像的分量，全都落在了她的目光之中。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Morisot went on to become one of the founding members of the Impressionist group and, a few years after this was painted, married Manet's younger brother Eugène — tying the two painters' families together for good.",
+      "fr": "Morisot devint par la suite l'un des membres fondateurs du groupe impressionniste et, quelques années après ce portrait, épousa le frère cadet de Manet, Eugène — liant ainsi durablement les familles des deux peintres.",
+      "zh-Hans": "莫里索后来成为印象派的创始成员之一，在这幅画完成几年后，她嫁给了莫奈的弟弟欧仁——从此将两位画家的家族永远联系在了一起。"
+    },
+    "whySimple": {
+      "en": "Manet painted his friend, the painter Berthe Morisot, dressed in black with a small bunch of violets. Her dark eyes look straight at the viewer — it's one of his most intense portraits of her.",
+      "fr": "Manet peint son amie, la peintre Berthe Morisot, vêtue de noir avec un petit bouquet de violettes. Ses yeux sombres regardent droit vers le spectateur — c'est l'un de ses portraits d'elle les plus intenses.",
+      "zh-Hans": "莫奈画了他的朋友、画家贝尔特·莫里索，她身穿黑衣，手边放着一小束紫罗兰。她深色的眼睛径直望向观者——这是莫奈为她所作的最动人心魄的肖像之一。"
+    },
+    "whereSimple": {
+      "en": "Look closely at her eyes — everything else in the painting is loosely brushed, almost unfinished, but her gaze is sharp and direct.",
+      "fr": "Regardez attentivement ses yeux — tout le reste du tableau est peint librement, presque inachevé, mais son regard est net et direct.",
+      "zh-Hans": "仔细看她的眼睛——画面其余部分笔触松散，几乎像未完成一样，但她的目光却清晰而直接。"
+    },
+    "raritySimple": {
+      "en": "Berthe Morisot became a major Impressionist painter in her own right, and a few years after this portrait she married Manet's brother, Eugène.",
+      "fr": "Berthe Morisot devint elle-même une grande peintre impressionniste, et quelques années après ce portrait, elle épousa le frère de Manet, Eugène.",
+      "zh-Hans": "贝尔特·莫里索本人后来成为一位重要的印象派画家，在这幅肖像完成几年后，她嫁给了莫奈的弟弟欧仁。"
+    },
+    "whyKids": {
+      "en": "Manet painted his artist friend Berthe Morisot. Look how her dark eyes stare right out at you — it feels like she's really looking at YOU!",
+      "fr": "Manet peint son amie artiste Berthe Morisot. Regarde comme ses yeux sombres te fixent droit dans les yeux — on dirait qu'elle te regarde vraiment, TOI !",
+      "zh-Hans": "莫奈画了他的画家朋友贝尔特·莫里索。看她深色的眼睛是不是直直地盯着你？感觉她真的在看着你哦！"
+    },
+    "whereKids": {
+      "en": "Everything around her is painted quickly and loosely, but her eyes are painted so carefully they seem to follow you around the room.",
+      "fr": "Tout autour d'elle est peint vite et librement, mais ses yeux sont peints si soigneusement qu'ils semblent te suivre partout dans la salle.",
+      "zh-Hans": "她周围的一切都画得又快又随意，但她的眼睛却画得特别仔细，感觉会一直跟着你在房间里走动。"
+    },
+    "rarityKids": {
+      "en": "Berthe Morisot wasn't just a model — she became a famous painter herself, and later she even became part of Manet's own family!",
+      "fr": "Berthe Morisot n'était pas seulement un modèle — elle est elle-même devenue une peintre célèbre, et plus tard elle a même rejoint la famille de Manet !",
+      "zh-Hans": "贝尔特·莫里索可不只是个模特——她后来自己也成了一位著名画家，甚至还成了莫奈家族的一员！"
     }
   },
   {
@@ -2102,7 +2178,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Emile Zola",
       "fr": "Émile Zola",
@@ -2114,23 +2190,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 28,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010). EDITORIAL JUDGMENT: extremely well-known and widely reproduced for its art-historical detail (the pinned-up Olympia, Japanese print, and Velazquez engraving on Zola's desk), but it is a seated interior portrait rather than one of Manet's two career-defining Salon scandals -- positioned in the same upper-middle tier as Berthe Morisot with a Bouquet of Violets and Portrait of Stephane Mallarme, reflecting comparable fame among Manet's celebrated sitter portraits.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record.",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted the novelist Émile Zola partly as thanks — Zola had publicly defended Manet in print two years earlier, when almost every critic in Paris was mocking his work — and filled the desk behind him with clues to their shared tastes: a Japanese print, an engraving after Velázquez, and a reproduction of Manet's own scandalous Olympia pinned to the wall.",
+      "fr": "Manet peint le romancier Émile Zola en partie pour le remercier — Zola l'avait publiquement défendu dans la presse deux ans plus tôt, quand presque tous les critiques parisiens se moquaient de son travail — et remplit le bureau derrière lui d'indices sur leurs goûts communs : une estampe japonaise, une gravure d'après Velázquez, et une reproduction de son propre Olympia, tant décriée, épinglée au mur.",
+      "zh-Hans": "莫奈绘制小说家埃米尔·左拉的这幅肖像，部分是为了感谢他——两年前，当巴黎几乎所有评论家都在嘲讽莫奈的作品时，左拉曾公开撰文为他辩护。莫奈在左拉身后的书桌上摆满了体现两人共同品味的物件：一幅日本版画、一幅仿委拉斯开兹的版画，以及一张钉在墙上的、他自己那幅饱受争议的《奥林匹亚》复制品。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the pinned-up reproduction of Olympia just above the desk — Manet is quietly signing the painting with a reference to his own most controversial work, tucked into his friend's portrait.",
+      "fr": "Regardez la reproduction d'Olympia épinglée juste au-dessus du bureau — Manet signe discrètement le tableau d'une référence à sa propre œuvre la plus controversée, glissée dans le portrait de son ami.",
+      "zh-Hans": "看看书桌上方那张钉着的《奥林匹亚》复制品——莫奈悄悄地在朋友的肖像画里埋下了一处对自己最具争议作品的暗示，就像是画家留下的一枚签名。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Zola himself later admitted the painting captured his surroundings and Manet's own interests more than it captured him — he appears absorbed in a book rather than looking out at the viewer.",
+      "fr": "Zola lui-même admit plus tard que le tableau saisissait davantage son décor et les propres centres d'intérêt de Manet que sa propre personne — il apparaît absorbé dans un livre plutôt que tourné vers le spectateur.",
+      "zh-Hans": "左拉后来坦言，这幅画捕捉到的与其说是他本人，不如说是他周围的环境和莫奈自己的兴趣所在——画中的他正专注地读着书，并没有望向观者。"
+    },
+    "whySimple": {
+      "en": "Manet painted the writer Émile Zola to thank him — Zola had publicly defended Manet's paintings when most critics were mocking them. Manet filled the desk with things they both liked: Japanese prints and a picture of his own painting, Olympia.",
+      "fr": "Manet peint l'écrivain Émile Zola pour le remercier — Zola avait publiquement défendu les tableaux de Manet quand la plupart des critiques les tournaient en dérision. Manet remplit le bureau de choses qu'ils aimaient tous les deux : des estampes japonaises et une image de son propre tableau, Olympia.",
+      "zh-Hans": "莫奈画了作家埃米尔·左拉的肖像来表达谢意——当大多数评论家都在嘲笑莫奈的画作时，左拉曾公开为他辩护。莫奈在书桌上摆满了两人都喜欢的东西：日本版画，还有一张他自己的画作《奥林匹亚》的图片。"
+    },
+    "whereSimple": {
+      "en": "Look just above the desk — you can spot a small reproduction of Manet's own painting Olympia pinned to the wall.",
+      "fr": "Regardez juste au-dessus du bureau — vous pouvez repérer une petite reproduction du tableau de Manet, Olympia, épinglée au mur.",
+      "zh-Hans": "看书桌上方——你能发现一张钉在墙上的小图片吗？那正是莫奈自己的画作《奥林匹亚》。"
+    },
+    "raritySimple": {
+      "en": "Zola later said the painting showed more about Manet's own interests than about him — he's shown reading, not looking at us.",
+      "fr": "Zola dira plus tard que le tableau en disait plus sur les centres d'intérêt de Manet que sur lui-même — il est montré en train de lire, sans regarder vers nous.",
+      "zh-Hans": "左拉后来说，这幅画展现的更多是莫奈自己的兴趣，而不是他本人——画中的他正在读书，并没有看向我们。"
+    },
+    "whyKids": {
+      "en": "Manet painted his friend, the writer Émile Zola, to say thank you — Zola had stood up for Manet when other people were being mean about his paintings!",
+      "fr": "Manet peint son ami, l'écrivain Émile Zola, pour lui dire merci — Zola avait pris la défense de Manet quand d'autres personnes étaient méchantes à propos de ses tableaux !",
+      "zh-Hans": "莫奈给他的朋友、作家埃米尔·左拉画了一幅肖像来表示感谢——因为当别人对莫奈的画很刻薄的时候，左拉挺身而出为他说话！"
+    },
+    "whereKids": {
+      "en": "Look closely at the wall behind Zola — can you spot a small picture pinned up there? It's actually a copy of one of Manet's own paintings, hidden in the background like a secret.",
+      "fr": "Regarde bien le mur derrière Zola — arrives-tu à repérer une petite image épinglée là ? C'est en fait une copie d'un des tableaux de Manet, caché en arrière-plan comme un secret.",
+      "zh-Hans": "仔细看左拉身后的墙——你能找到那张小图片吗？其实那是莫奈自己一幅画作的复制品，像个小秘密一样藏在背景里。"
+    },
+    "rarityKids": {
+      "en": "Zola later joked that the painting was almost more about Manet than about him — Zola isn't even looking at us, he's busy reading a book!",
+      "fr": "Zola plaisantera plus tard en disant que le tableau parlait presque plus de Manet que de lui-même — Zola ne nous regarde même pas, il est occupé à lire un livre !",
+      "zh-Hans": "左拉后来开玩笑说，这幅画讲的好像更多是莫奈，而不是他自己——左拉甚至都没有看向我们，他正忙着读书呢！"
     }
   },
   {
@@ -2848,7 +2962,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Reading",
       "fr": "La Lecture",
@@ -2860,23 +2974,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 6,
+      "high": 11,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010) -- both single-figure society portraits. EDITORIAL JUDGMENT: The Reading is a quieter domestic double portrait (wife and son, painted as a study of white light rather than as a major public statement), never exhibited at the Salon and not among Manet's widely reproduced signature works -- positioned well below the top portrait tiers in this catalog, closer to his more modest domestic-interior works, reflecting genuinely lower art-historical centrality rather than any doubt about its authenticity or quality.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record (used here only as a general ceiling reference, not a close genre match).",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record (same caveat)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted his wife Suzanne in a flowing white summer dress with their son Léon reading behind her, using the scene mainly as an excuse to study white light on white fabric against a pale curtain — a quiet domestic moment rather than a story with a point to make.",
+      "fr": "Manet peint son épouse Suzanne dans une ample robe d'été blanche, avec leur fils Léon lisant derrière elle, se servant surtout de la scène comme prétexte pour étudier la lumière blanche sur un tissu blanc devant un rideau clair — un instant domestique paisible plutôt qu'une histoire à message.",
+      "zh-Hans": "莫奈将妻子苏珊娜画在一袭飘逸的白色夏裙中，儿子莱昂在她身后专心读书。这幅画主要是莫奈借着这个场景，研究白色布料在浅色窗帘前呈现出的白色光线——这是一个安静的家庭时刻，而非什么带有寓意的故事。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at how many different whites Manet finds in a single dress — cream, grey-white, blue-white — all placed side by side without any outline separating them.",
+      "fr": "Regardez combien de blancs différents Manet trouve dans une seule robe — crème, blanc grisé, blanc bleuté — tous juxtaposés sans aucun contour pour les séparer.",
+      "zh-Hans": "看看莫奈在一条裙子上找出了多少种不同的白色——奶白、灰白、蓝白——它们相互并置，中间没有任何轮廓线分隔。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The painting stayed out of public view for over a century: it belonged to a private collector until 1944, then hung in the Louvre for decades before finally joining the Musée d'Orsay's collection in 1986.",
+      "fr": "Le tableau resta hors de la vue du public pendant plus d'un siècle : il appartint à une collectionneuse privée jusqu'en 1944, puis fut exposé au Louvre pendant des décennies avant de rejoindre finalement les collections du Musée d'Orsay en 1986.",
+      "zh-Hans": "这幅画在一个多世纪的时间里都未曾公开展出：它先是归私人收藏家所有，直到1944年，之后又在卢浮宫悬挂了数十年，最终在1986年才成为奥赛博物馆藏品。"
+    },
+    "whySimple": {
+      "en": "Manet painted his wife Suzanne in a white dress, with their son Léon reading in the background. He was mainly interested in painting all the different shades of white light on the fabric.",
+      "fr": "Manet peint son épouse Suzanne dans une robe blanche, avec leur fils Léon qui lit en arrière-plan. Il s'intéressait surtout à peindre toutes les nuances de lumière blanche sur le tissu.",
+      "zh-Hans": "莫奈画了穿着白裙的妻子苏珊娜，背景中儿子莱昂正在读书。莫奈主要感兴趣的是描绘布料上各种不同色调的白色光线。"
+    },
+    "whereSimple": {
+      "en": "Look closely at her dress — it's not just one white, but many different whites and greys placed side by side.",
+      "fr": "Regardez attentivement sa robe — ce n'est pas un seul blanc, mais de nombreux blancs et gris différents placés côte à côte.",
+      "zh-Hans": "仔细看她的裙子——那可不是单一的白色，而是许多不同的白色和灰色并排放在一起。"
+    },
+    "raritySimple": {
+      "en": "This painting stayed in private hands for a very long time. It only joined the museum's collection in 1986, more than a hundred years after it was painted.",
+      "fr": "Ce tableau resta longtemps entre des mains privées. Il n'a rejoint les collections du musée qu'en 1986, plus de cent ans après avoir été peint.",
+      "zh-Hans": "这幅画在私人手中收藏了很长时间，直到1986年——也就是它完成一百多年后——才成为博物馆的藏品。"
+    },
+    "whyKids": {
+      "en": "Manet painted his own wife and son at home — Mom in a big white dress, and their son reading a book behind her. It's just a quiet, everyday moment.",
+      "fr": "Manet peint sa propre femme et son fils à la maison — maman dans une grande robe blanche, et leur fils qui lit un livre derrière elle. C'est juste un moment tranquille, tout simple.",
+      "zh-Hans": "莫奈画了他自己的妻子和儿子在家里的样子——妈妈穿着一条大大的白裙子，儿子在她身后读书。这只是一个安静的日常时刻。"
+    },
+    "whereKids": {
+      "en": "Look super closely at her white dress — it's not really just \"white\"! Can you find all the different shades hiding inside it — some grey, some blue, some cream?",
+      "fr": "Regarde très attentivement sa robe blanche — ce n'est pas vraiment juste « blanc » ! Arrives-tu à trouver toutes les nuances cachées à l'intérieur — un peu de gris, un peu de bleu, un peu de crème ?",
+      "zh-Hans": "仔细仔细地看她的白裙子——其实它可不只是「白色」哦！你能找出藏在里面的各种色调吗——一点灰色，一点蓝色，一点奶油色？"
+    },
+    "rarityKids": {
+      "en": "This cozy family painting was kept privately for a very long time before it finally came to live in this museum.",
+      "fr": "Ce tableau familial et douillet est resté longtemps chez des particuliers avant de venir enfin vivre dans ce musée.",
+      "zh-Hans": "这幅温馨的家庭画作被私人收藏了很长很长时间，最后才终于「搬进」了这座博物馆。"
     }
   },
   {
@@ -3221,7 +3373,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "L'Asperge",
       "fr": "L'Asperge",
@@ -3233,23 +3385,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 5,
+      "high": 9,
+      "logic": "FACT: Lilas et roses, a small (13x10in) late Manet flower still life from the Peggy and David Rockefeller collection, sold for approximately $13M (~EUR12M) at Christie's New York in 2018, well above its $7-10M estimate. EDITORIAL JUDGMENT: this is the closest genuinely comparable Manet market data point (same late-period small-format still-life genre), but A Sprig of Asparagus is an even smaller, more minor 'joke' object -- a single stalk sent as a wry aside, not a fully worked exhibition still life like Lilas et roses -- so the range is positioned below that comparable rather than at it.",
+      "comparableSales": [
+        "Lilas et roses, Edouard Manet — ~$13M (~€12M), Christie's New York, 2018, Rockefeller collection — closest available genre match (small late-period Manet flower/food still life)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This tiny painting of a single asparagus stalk is a joke: the collector Charles Ephrussi had commissioned a full still life, \"A Bundle of Asparagus,\" for 800 francs but sent 1,000 by mistake, and Manet painted this extra stalk and mailed it back with a note explaining that one had slipped out of the bundle.",
+      "fr": "Cette petite peinture d'une simple tige d'asperge est une plaisanterie : le collectionneur Charles Ephrussi avait commandé une véritable nature morte, « Une Botte d'asperges », pour 800 francs, mais en envoya 1 000 par erreur ; Manet peignit alors cette tige supplémentaire et la lui renvoya avec un mot expliquant qu'il en manquait une à la botte.",
+      "zh-Hans": "这幅画着一根芦笋的小画其实是个玩笑：收藏家夏尔·埃夫吕西曾以800法郎委托莫奈创作一幅完整的静物画《一捆芦笋》，却误付了1000法郎。于是莫奈又画了这根多出来的芦笋，附上一张字条寄回给他，笑称是从那捆芦笋里掉出来的一根。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at how much Manet does with almost nothing — a few confident strokes of grey, mauve, and green describe the whole stalk resting on a marble ledge.",
+      "fr": "Regardez tout ce que Manet parvient à faire avec si peu — quelques touches assurées de gris, de mauve et de vert suffisent à décrire toute la tige posée sur un rebord de marbre.",
+      "zh-Hans": "看看莫奈仅用寥寥数笔就完成了这幅画——几笔自信的灰色、淡紫色和绿色，便勾勒出了整根搁在大理石台面上的芦笋。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The \"real\" bundle now hangs in a museum in Cologne, while this single, joking asparagus stalk stayed in Paris — a tiny footnote to a much bigger painting.",
+      "fr": "La « vraie » botte est aujourd'hui exposée dans un musée de Cologne, tandis que cette simple tige d'asperge, née d'une plaisanterie, est restée à Paris — une petite note en bas de page d'un tableau bien plus grand.",
+      "zh-Hans": "那捆「正版」芦笋如今挂在科隆的一座博物馆里，而这根出于玩笑而画的单根芦笋则留在了巴黎——像是那幅更大画作的一则小小注脚。"
+    },
+    "whySimple": {
+      "en": "This little painting shows just one asparagus stalk. It's actually a joke: Manet had painted a bigger painting of a whole bundle for a collector, but the collector accidentally paid too much — so Manet painted this single extra stalk and sent it as a funny \"refund.\"",
+      "fr": "Ce petit tableau ne montre qu'une seule tige d'asperge. C'est en fait une plaisanterie : Manet avait peint pour un collectionneur un plus grand tableau représentant toute une botte, mais celui-ci avait payé trop cher par erreur — alors Manet a peint cette tige supplémentaire et la lui a envoyée comme un « remboursement » amusant.",
+      "zh-Hans": "这幅小画只画了一根芦笋。这其实是个玩笑：莫奈曾为一位收藏家画过一幅更大的、画着一整捆芦笋的画，但那位收藏家不小心多付了钱——于是莫奈又画了这一根芦笋，作为一份好玩的「找零」寄了回去。"
+    },
+    "whereSimple": {
+      "en": "Look how few brushstrokes Manet needed — just a handful of strokes make the whole asparagus stalk feel real.",
+      "fr": "Regardez le peu de touches dont Manet a eu besoin — quelques coups de pinceau suffisent à rendre toute la tige d'asperge bien réelle.",
+      "zh-Hans": "看看莫奈用了多么少的笔触——只用了寥寥几笔，就让整根芦笋显得真实可触。"
+    },
+    "raritySimple": {
+      "en": "The bigger \"real\" painting of the bundle is in a museum in Germany. This single stalk, the joke version, stayed here in Paris.",
+      "fr": "Le grand tableau « original » de la botte se trouve dans un musée en Allemagne. Cette tige unique, la version plaisanterie, est restée ici, à Paris.",
+      "zh-Hans": "那幅画着整捆芦笋的「正式」大画如今在德国的一座博物馆里。而这根出于玩笑而画的单根芦笋，则留在了这里，巴黎。"
+    },
+    "whyKids": {
+      "en": "This is a painting of just ONE asparagus! It's actually a funny joke — Manet was paid too much money for a bigger painting of a whole bunch of asparagus, so he painted this one extra stalk and sent it as a silly \"here's your change!\"",
+      "fr": "Ce tableau ne montre qu'UNE SEULE asperge ! C'est en fait une blague : Manet avait reçu trop d'argent pour un plus grand tableau montrant toute une botte d'asperges, alors il a peint cette tige en plus et l'a envoyée comme pour dire « voici ta monnaie ! »",
+      "zh-Hans": "这幅画上只画了一根芦笋！这其实是个好玩的玩笑——因为有人为一幅画着一整捆芦笋的大画多付了钱，莫奈就又画了一根芦笋寄过去，好像在说：「这是找你的零钱！」"
+    },
+    "whereKids": {
+      "en": "Count the brushstrokes if you can — Manet used hardly any to make this asparagus look real enough to pick up!",
+      "fr": "Essaie de compter les coups de pinceau si tu peux — Manet en a utilisé très peu pour rendre cette asperge assez réelle pour qu'on ait envie de la ramasser !",
+      "zh-Hans": "试着数数笔触吧——莫奈用了非常少的几笔，就让这根芦笋看起来真实得像是能伸手拿起来一样！"
+    },
+    "rarityKids": {
+      "en": "There's a bigger painting of a whole bunch of asparagus in a museum far away in Germany — this cheeky single stalk is its funny little sequel.",
+      "fr": "Il existe un plus grand tableau montrant toute une botte d'asperges, dans un musée situé loin, en Allemagne — cette tige unique et espiègle en est la drôle de petite suite.",
+      "zh-Hans": "在遥远的德国，有一座博物馆收藏着画有一整捆芦笋的大画——而这根调皮的单根芦笋，就是它有趣的小小「续集」。"
     }
   },
   {
@@ -3263,7 +3452,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Lola de Valence",
       "fr": "Lola de Valence",
@@ -3275,23 +3464,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 9,
+      "high": 16,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010). EDITORIAL JUDGMENT: Lola de Valence is well known among Manet specialists, largely for its association with Baudelaire's quatrain, but it is a smaller, single-figure work from early in Manet's career with less broad public recognition today than his major Salon-scandal or Salon-debut portraits -- positioned in a lower-middle tier, on a par with the Portrait of Monsieur and Madame Auguste Manet elsewhere in this batch.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record (general ceiling reference only).",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record (same caveat)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "When a Spanish dance troupe performed in Paris in 1862, Manet painted one of its stars, Lola Melea, in her full stage costume — a subject that let him indulge his fascination with Spanish art without ever having visited Spain.",
+      "fr": "Lorsqu'une troupe de danse espagnole se produisit à Paris en 1862, Manet peignit l'une de ses vedettes, Lola Melea, en costume de scène complet — un sujet qui lui permit d'assouvir sa fascination pour l'art espagnol sans jamais avoir mis les pieds en Espagne.",
+      "zh-Hans": "1862年，一支西班牙舞团来到巴黎演出，莫奈为其中一位明星舞者洛拉·梅莉亚画了这幅身着全套舞台戏服的肖像——这个题材让他得以尽情投入自己对西班牙艺术的痴迷，尽管当时他其实从未去过西班牙。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the confident, direct pose — Manet's friend, the poet Charles Baudelaire, was so struck by the painting that he wrote a short poem about it, comparing Lola to \"an unexpected pink and black jewel.\"",
+      "fr": "Regardez la pose assurée et directe — l'ami de Manet, le poète Charles Baudelaire, fut si frappé par ce tableau qu'il écrivit un court poème à son sujet, comparant Lola à « un bijou rose et noir inattendu ».",
+      "zh-Hans": "看这自信而直接的姿态——莫奈的朋友、诗人夏尔·波德莱尔被这幅画深深打动，专门为它写了一首短诗，将洛拉比作「一件出人意料的粉黑相间的珠宝」。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Baudelaire wanted his poem displayed right on the painting's frame; the museum instead displays it on a nearby label, but the pairing of poem and portrait remains one of the best-known collaborations between an Impressionist-era painter and poet.",
+      "fr": "Baudelaire voulait que son poème soit inscrit directement sur le cadre du tableau ; le musée le présente plutôt sur un cartel à proximité, mais l'association du poème et du portrait demeure l'une des collaborations les plus connues entre un peintre de l'ère impressionniste et un poète.",
+      "zh-Hans": "波德莱尔本希望自己的诗句能直接刻在画框上；博物馆最终选择将诗句展示在旁边的说明牌上，但这幅画与诗歌的组合，至今仍是印象派时代画家与诗人合作中最著名的一例。"
+    },
+    "whySimple": {
+      "en": "In 1862, a Spanish dance troupe performed in Paris, and Manet painted one of its dancers, Lola, in her stage costume. He loved Spanish art, even though he had never actually been to Spain.",
+      "fr": "En 1862, une troupe de danse espagnole se produisit à Paris, et Manet peignit l'une de ses danseuses, Lola, en costume de scène. Il aimait l'art espagnol, même s'il n'était en réalité jamais allé en Espagne.",
+      "zh-Hans": "1862年，一支西班牙舞团在巴黎演出，莫奈画下了其中一位舞者洛拉，身穿她的舞台戏服。莫奈非常喜爱西班牙艺术，尽管他其实从未去过西班牙。"
+    },
+    "whereSimple": {
+      "en": "Manet's poet friend Charles Baudelaire loved this painting so much that he wrote a short poem about it, calling Lola \"a pink and black jewel.\"",
+      "fr": "L'ami poète de Manet, Charles Baudelaire, aima tellement ce tableau qu'il écrivit un court poème à son sujet, appelant Lola « un bijou rose et noir ».",
+      "zh-Hans": "莫奈的诗人朋友夏尔·波德莱尔非常喜欢这幅画，为它写了一首短诗，把洛拉称作「一件粉黑相间的珠宝」。"
+    },
+    "raritySimple": {
+      "en": "Baudelaire wanted his poem placed right on the frame of the painting. The museum keeps his poem nearby on a label instead.",
+      "fr": "Baudelaire voulait que son poème soit placé directement sur le cadre du tableau. Le musée le conserve plutôt à proximité, sur un cartel.",
+      "zh-Hans": "波德莱尔希望自己的诗能直接放在画框上。博物馆则选择把这首诗放在旁边的说明牌上。"
+    },
+    "whyKids": {
+      "en": "A group of Spanish dancers came to perform in Paris, and Manet painted one of the star dancers, named Lola, all dressed up in her sparkly stage costume!",
+      "fr": "Un groupe de danseurs espagnols est venu se produire à Paris, et Manet a peint l'une des danseuses vedettes, nommée Lola, toute habillée de son costume de scène étincelant !",
+      "zh-Hans": "一群西班牙舞者来到巴黎演出，莫奈画下了其中一位明星舞者，名叫洛拉，她穿着闪闪发光的舞台戏服！"
+    },
+    "whereKids": {
+      "en": "Manet's friend, a poet named Baudelaire, loved this painting so much he wrote a poem about Lola — he called her a \"pink and black jewel\"!",
+      "fr": "L'ami de Manet, un poète nommé Baudelaire, a tellement aimé ce tableau qu'il a écrit un poème sur Lola — il l'a appelée un « bijou rose et noir » !",
+      "zh-Hans": "莫奈的朋友，一位叫波德莱尔的诗人，非常喜欢这幅画，还为洛拉写了一首诗——他把她称作「一件粉黑相间的珠宝」！"
+    },
+    "rarityKids": {
+      "en": "The poet wanted his poem written right on the picture frame! The museum keeps it close by instead, on a little sign next to the painting.",
+      "fr": "Le poète voulait que son poème soit écrit directement sur le cadre du tableau ! Le musée le garde plutôt tout près, sur une petite pancarte à côté du tableau.",
+      "zh-Hans": "这位诗人本想把他的诗直接写在画框上！博物馆最后把它放在了画旁边的一块小牌子上。"
     }
   },
   {
@@ -3305,7 +3532,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Monsieur and Madame Auguste Manet",
       "fr": "Portrait de M. et Mme Auguste Manet",
@@ -3317,23 +3544,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 9,
+      "high": 16,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010). EDITORIAL JUDGMENT: historically important as one of the two paintings that made up Manet's true public debut at the 1861 Salon, but a deliberately conservative, dark-toned family portrait rather than one of his visually radical or scandal-associated works, and today better known to specialists than the general public -- positioned in the same lower-middle tier as Lola de Valence.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record (general ceiling reference only).",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record (same caveat)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted his own parents — his father Auguste, a magistrate, seated stiffly in dark formal clothes, and his mother Eugénie-Désirée standing beside him with a basket of flowers — deliberately in a conservative, old-master style that stood a much better chance with the Salon jury than his more daring work.",
+      "fr": "Manet peint ses propres parents — son père Auguste, magistrat, assis raide dans une tenue sombre et formelle, et sa mère Eugénie-Désirée debout à ses côtés avec un panier de fleurs — dans un style volontairement classique et académique, qui avait bien plus de chances de plaire au jury du Salon que ses œuvres les plus audacieuses.",
+      "zh-Hans": "莫奈画下了自己的父母——父亲奥古斯特是一名法官，身着深色正装僵直地坐着；母亲欧仁妮-德西蕾则站在他身旁，手提一篮鲜花。莫奈刻意采用了保守的古典大师风格来创作，这比他那些更大胆的作品，更有希望获得沙龙评审团的青睐。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Compare the sober, dark palette here with Manet's later paintings — this restrained style, indebted to Spanish masters, was calculated to please the jury rather than provoke them.",
+      "fr": "Comparez la palette sombre et sobre de ce tableau avec les œuvres ultérieures de Manet — ce style retenu, redevable aux maîtres espagnols, fut calculé pour plaire au jury plutôt que pour le provoquer.",
+      "zh-Hans": "把这里沉稳、深色的调色板，和莫奈后来的画作比较一下——这种受西班牙大师影响的克制画风，是精心计算过的，为的是取悦评审团，而不是挑衅他们。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The gamble worked: this was one of the two paintings that made up Manet's true public debut at the 1861 Salon, alongside The Spanish Singer, which won an honorable mention.",
+      "fr": "Le pari fonctionna : ce tableau fut l'une des deux œuvres qui constituèrent les véritables débuts publics de Manet au Salon de 1861, aux côtés du Chanteur espagnol, qui reçut une mention honorable.",
+      "zh-Hans": "这个赌注奏效了：这幅画正是1861年沙龙上标志着莫奈真正公开亮相的两幅作品之一，另一幅是《西班牙歌手》，该作还获得了荣誉奖。"
+    },
+    "whySimple": {
+      "en": "Manet painted a portrait of his own parents — his father, a court judge, sitting formally, and his mother standing beside him with a basket of flowers. He painted it in a careful, traditional style.",
+      "fr": "Manet peint un portrait de ses propres parents — son père, juge, assis de façon formelle, et sa mère debout à ses côtés avec un panier de fleurs. Il l'a peint dans un style soigné et traditionnel.",
+      "zh-Hans": "莫奈画了一幅自己父母的肖像——父亲是一名法官，正襟危坐；母亲站在他身旁，手提一篮鲜花。莫奈用了细致、传统的画法来创作这幅画。"
+    },
+    "whereSimple": {
+      "en": "Notice how dark and formal the colors are here — very different from Manet's later, more colorful paintings. He painted this way on purpose, to please the judges.",
+      "fr": "Remarquez comme les couleurs sont sombres et formelles ici — très différentes des tableaux plus colorés que Manet peindra plus tard. Il a peint ainsi exprès, pour plaire aux juges.",
+      "zh-Hans": "注意这里的色彩有多深沉、多正式——和莫奈后来那些更绚丽的画作截然不同。他是故意这样画的，为了讨评审的喜欢。"
+    },
+    "raritySimple": {
+      "en": "This careful approach worked — this was one of the paintings that launched Manet's public career at the 1861 Salon.",
+      "fr": "Cette approche prudente fonctionna — ce tableau fut l'un de ceux qui lancèrent la carrière publique de Manet au Salon de 1861.",
+      "zh-Hans": "这种谨慎的策略成功了——这幅画正是1861年沙龙上让莫奈公开亮相、开启职业生涯的作品之一。"
+    },
+    "whyKids": {
+      "en": "Manet painted a picture of his own mom and dad! His dad was a judge, so he's dressed very formally, and his mom is holding a basket of flowers.",
+      "fr": "Manet a peint un tableau de sa propre maman et de son papa ! Son papa était juge, donc il est habillé très formellement, et sa maman tient un panier de fleurs.",
+      "zh-Hans": "莫奈画了自己的爸爸妈妈！他爸爸是法官，所以穿得非常正式，他妈妈则提着一篮鲜花。"
+    },
+    "whereKids": {
+      "en": "This painting looks much darker and more serious than a lot of Manet's other paintings — he wanted the strict art judges to like it!",
+      "fr": "Ce tableau paraît beaucoup plus sombre et sérieux que beaucoup d'autres tableaux de Manet — il voulait que les juges d'art sévères l'apprécient !",
+      "zh-Hans": "这幅画看起来比莫奈的很多其他作品都要深沉、严肃得多——因为他希望严格的评审们会喜欢它！"
+    },
+    "rarityKids": {
+      "en": "It worked! This was one of the very first paintings that helped Manet become known as a real artist.",
+      "fr": "Ça a marché ! Ce fut l'un des tout premiers tableaux qui ont aidé Manet à se faire connaître comme un vrai artiste.",
+      "zh-Hans": "成功啦！这正是帮助莫奈第一次被大家认可为真正艺术家的作品之一。"
     }
   },
   {
@@ -3641,7 +3906,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Suzanne Manet Playing the Piano",
       "fr": "Madame Manet au piano",
@@ -3653,23 +3918,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 6,
+      "high": 11,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010) -- both single-figure society portraits. EDITORIAL JUDGMENT: a modest, affectionate domestic portrait of Manet's wife rather than a public-facing Salon work, closer in scale and stature to The Reading than to his major portrait commissions -- positioned in the same lower tier.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record (general ceiling reference only, not a close genre match).",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record (same caveat)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted his wife Suzanne, a skilled pianist who had once been his own piano teacher, seated at the keyboard in quiet profile — reportedly painted partly in reaction to a version by his friend Edgar Degas that Manet disliked so much he cut part of the canvas away.",
+      "fr": "Manet peint son épouse Suzanne, pianiste accomplie qui avait autrefois été son propre professeur de piano, assise au clavier de profil et en silence — un tableau apparemment peint en partie en réaction à une version réalisée par son ami Edgar Degas, que Manet détesta au point d'en découper une partie de la toile.",
+      "zh-Hans": "莫奈画下了妻子苏珊娜，她曾是一位出色的钢琴师，甚至一度是莫奈自己的钢琴老师。画中她安静地侧身坐在琴前——据说，莫奈之所以画这幅画，部分原因是他很不喜欢朋友埃德加·德加所画的另一版本，甚至气到把那幅画的一部分剪掉了。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the calm, uncluttered composition — Manet strips away distraction to focus entirely on Suzanne's concentration at the keys.",
+      "fr": "Remarquez la composition calme et épurée — Manet supprime toute distraction pour se concentrer entièrement sur la concentration de Suzanne au clavier.",
+      "zh-Hans": "留意这幅画平静而简洁的构图——莫奈去除了一切干扰元素，将全部注意力集中在苏珊娜专注弹琴的神情上。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The Degas version Manet mutilated survives today only as a fragment, in a different museum — making this Manet's own, more flattering answer to it.",
+      "fr": "La version de Degas que Manet mutila ne survit aujourd'hui que sous forme de fragment, dans un autre musée — faisant de ce tableau la réponse plus flatteuse de Manet à cette œuvre.",
+      "zh-Hans": "被莫奈剪坏的那幅德加版本，如今只剩下残片留存在另一座博物馆里——而这幅画，正是莫奈亲手给出的、更为讨喜的「回应之作」。"
+    },
+    "whySimple": {
+      "en": "Manet painted his wife Suzanne playing the piano — she was a talented pianist who had actually once been his piano teacher. He may have painted this partly because he didn't like a painting his friend Edgar Degas made of her.",
+      "fr": "Manet peint son épouse Suzanne jouant du piano — elle était une pianiste talentueuse qui avait en réalité été son professeur de piano. Il a peut-être peint ce tableau en partie parce qu'il n'aimait pas un tableau que son ami Edgar Degas avait fait d'elle.",
+      "zh-Hans": "莫奈画了妻子苏珊娜弹钢琴的样子——她是一位有才华的钢琴家，其实还曾经是莫奈的钢琴老师。莫奈画这幅画，部分原因也许是他不喜欢朋友埃德加·德加为她画的另一幅画。"
+    },
+    "whereSimple": {
+      "en": "The composition is calm and simple, with almost nothing else in the room to distract from Suzanne at the piano.",
+      "fr": "La composition est calme et simple, avec presque rien d'autre dans la pièce pour distraire de Suzanne au piano.",
+      "zh-Hans": "这幅画的构图平静而简洁，房间里几乎没有其他东西会让人分心，注意力全都集中在弹钢琴的苏珊娜身上。"
+    },
+    "raritySimple": {
+      "en": "Degas's painting of the same subject still exists today, but only as a cut-up fragment — Manet was so unhappy with it that he sliced part of it away.",
+      "fr": "Le tableau de Degas sur le même sujet existe encore aujourd'hui, mais seulement sous forme de fragment découpé — Manet en était tellement mécontent qu'il en a coupé une partie.",
+      "zh-Hans": "德加画的同一主题的画作至今仍然存在，不过只剩下被剪掉的一部分——莫奈当时非常不满意，甚至把画的一部分给剪掉了。"
+    },
+    "whyKids": {
+      "en": "Manet painted his wife Suzanne playing the piano — she was actually really good at piano and used to be his teacher! He wasn't happy with a painting his friend Degas made of her, so he made his own version instead.",
+      "fr": "Manet a peint sa femme Suzanne en train de jouer du piano — elle était en fait très douée pour le piano et avait été sa professeure ! Il n'était pas content d'un tableau que son ami Degas avait fait d'elle, alors il a fait sa propre version.",
+      "zh-Hans": "莫奈画了妻子苏珊娜弹钢琴的样子——她其实钢琴弹得特别棒，还曾经是莫奈的钢琴老师呢！他不喜欢朋友德加为她画的一幅画，所以自己又画了一幅。"
+    },
+    "whereKids": {
+      "en": "Look how simple and calm this painting is — there's nothing else to look at except Suzanne, quietly playing.",
+      "fr": "Regarde comme ce tableau est simple et calme — il n'y a rien d'autre à regarder à part Suzanne, qui joue tranquillement.",
+      "zh-Hans": "看这幅画多么简单、多么安静——画面里没有别的东西好看，只有苏珊娜安静地弹着琴。"
+    },
+    "rarityKids": {
+      "en": "Manet was so cross about his friend Degas's painting of Suzanne that he cut part of it up! You can still see the cut-up piece in another museum today.",
+      "fr": "Manet était tellement fâché contre le tableau que son ami Degas avait fait de Suzanne qu'il en a découpé une partie ! Tu peux encore voir le morceau découpé dans un autre musée aujourd'hui.",
+      "zh-Hans": "莫奈对朋友德加画的苏珊娜那幅画气坏了，居然把它剪掉了一部分！那被剪下来的一小块，如今还能在另一座博物馆里看到哦。"
     }
   },
   {
@@ -4098,7 +4401,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Clair de lune sur le port de Boulogne",
       "fr": "Clair de lune sur le port de Boulogne",
@@ -4111,22 +4414,57 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "No estimate attempted. Manet's two verified auction records (Le Printemps, $65.1M/2014; Self-Portrait with a Palette, $33.2M/2010) are both single-figure society portraits, and no defensible Manet marine or nocturne comparable sale could be found despite searching -- applying the portrait-market records to a genuinely different genre (a rare nocturnal harbor scene) would misrepresent what actually trades at that level. Left null for lack of a real comparable, not out of caution about the subject.",
+      "comparableSales": [],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted from a hotel window in the port town of Boulogne-sur-Mer, this nighttime harbor scene shows fishermen's wives waiting on the quay for a boat's return by moonlight — astronomers have even worked out the exact night it depicts, August 3–4, 1868.",
+      "fr": "Peinte depuis la fenêtre d'un hôtel dans la ville portuaire de Boulogne-sur-Mer, cette scène de port nocturne montre des épouses de pêcheurs attendant sur le quai, au clair de lune, le retour d'un bateau — des astronomes ont même déterminé la nuit exacte représentée, celle du 3 au 4 août 1868.",
+      "zh-Hans": "这幅画是莫奈从港口小镇布洛涅的一间旅馆窗口望出去所绘的夜景，画面中渔妇们正站在码头上，借着月光等待渔船归来——天文学家甚至推算出了这幅画所描绘的确切夜晚：1868年8月3日至4日的夜里。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Follow the pool of moonlight breaking across the dark water — Manet borrows the mysterious, glowing light of 17th-century Dutch night scenes, but paints an ordinary, unposed moment instead of a biblical one.",
+      "fr": "Suivez la nappe de clair de lune qui se répand sur l'eau sombre — Manet emprunte la lumière mystérieuse et rayonnante des scènes nocturnes hollandaises du XVIIe siècle, mais peint un instant ordinaire et non posé plutôt qu'une scène biblique.",
+      "zh-Hans": "顺着月光在深色水面上洒下的那一片光晕看去——莫奈借用了17世纪荷兰夜景画中那种神秘而闪烁的光线，但他描绘的却是一个平凡、未经摆拍的日常瞬间，而不是圣经故事场景。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "True nocturnes and marine subjects are rare in Manet's work, making this quiet, moonlit harbor one of the more unusual paintings in his output.",
+      "fr": "Les véritables nocturnes et sujets marins sont rares dans l'œuvre de Manet, ce qui fait de ce port paisible et éclairé par la lune l'un des tableaux les plus singuliers de sa production.",
+      "zh-Hans": "真正的夜景与海景题材在莫奈的作品中十分罕见，这也让这幅静谧的月光港口画，成为他创作生涯中较为特别的一幅作品。"
+    },
+    "whySimple": {
+      "en": "Manet painted this nighttime harbor scene from a hotel window, showing fishermen's wives waiting for a boat to come back under the moonlight.",
+      "fr": "Manet peint cette scène de port nocturne depuis la fenêtre d'un hôtel, montrant des épouses de pêcheurs attendant le retour d'un bateau au clair de lune.",
+      "zh-Hans": "莫奈从旅馆窗口画下了这幅夜晚的港口景象，画面中渔妇们正在月光下等待渔船归来。"
+    },
+    "whereSimple": {
+      "en": "Follow the moonlight glowing across the dark water — Manet uses the kind of dramatic light older Dutch painters used, but for an ordinary everyday scene instead of a religious one.",
+      "fr": "Suivez le clair de lune qui brille sur l'eau sombre — Manet utilise le genre de lumière dramatique qu'employaient les anciens peintres hollandais, mais pour une scène de tous les jours plutôt que religieuse.",
+      "zh-Hans": "顺着月光在深色水面上闪烁的光芒看去——莫奈用了古代荷兰画家惯用的那种戏剧性光线，但画的却是一个平凡的日常场景，而非宗教题材。"
+    },
+    "raritySimple": {
+      "en": "Manet rarely painted night scenes or the sea, which makes this quiet, moonlit harbor unusual among his paintings.",
+      "fr": "Manet peignait rarement des scènes nocturnes ou la mer, ce qui rend ce port paisible et éclairé par la lune inhabituel parmi ses tableaux.",
+      "zh-Hans": "莫奈很少描绘夜景或海景，这也让这幅静谧的月光港口画，在他的作品中显得格外与众不同。"
+    },
+    "whyKids": {
+      "en": "Manet looked out of his hotel window at night and painted this harbor — see the wives waiting on the dock for their husbands' fishing boat to come home under the moon?",
+      "fr": "Manet a regardé par la fenêtre de son hôtel, la nuit, et a peint ce port — tu vois les épouses qui attendent sur le quai le retour du bateau de pêche de leurs maris, sous la lune ?",
+      "zh-Hans": "莫奈在夜里望着旅馆窗外，画下了这个港口——你看到码头上那些等着丈夫的渔船在月光下回家的妻子们了吗？"
+    },
+    "whereKids": {
+      "en": "Follow the moonlight as it glows across the dark water — doesn't it feel a little mysterious and quiet?",
+      "fr": "Suis le clair de lune qui brille sur l'eau sombre — ça ne te fait pas un peu penser à un moment mystérieux et silencieux ?",
+      "zh-Hans": "跟着月光在深色水面上洒下的光芒看过去——是不是感觉有点神秘、有点安静？"
+    },
+    "rarityKids": {
+      "en": "Manet almost never painted nighttime scenes or the sea — so this glowing, moonlit harbor is a rare treat among his paintings.",
+      "fr": "Manet ne peignait presque jamais de scènes nocturnes ou la mer — ce port brillant, éclairé par la lune, est donc une rareté parmi ses tableaux.",
+      "zh-Hans": "莫奈几乎从不画夜景或大海——所以这幅在月光下闪闪发亮的港口画，在他的作品中算是一份难得的惊喜。"
     }
   },
   {
@@ -5007,7 +5345,7 @@
     "accent": "#665DA8",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Stéphane Mallarmé",
       "fr": "portrait de Stéphane Mallarmé",
@@ -5019,23 +5357,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 28,
+      "logic": "FACT: Manet's record is $65.1M/EUR59.9M (Le Printemps, 2014); secondary record $33.2M/EUR30.5M (Self-Portrait with a Palette, 2010). EDITORIAL JUDGMENT: a beloved and widely reproduced friendship portrait of a major literary figure (Mallarme), comparable in fame to Manet's other celebrated sitter portraits from this batch (Zola, Berthe Morisot with a Bouquet of Violets) despite its small physical scale -- positioned in the same upper-middle tier as those two.",
+      "comparableSales": [
+        "Le Printemps, Edouard Manet — $65.1M (~€59.9M), Christie's, 2014 — Manet's auction record.",
+        "Self-Portrait with a Palette, Edouard Manet — $33.2M (~€30.5M), Sotheby's London, 2010 — Manet's secondary record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Manet painted his close friend, the poet Stéphane Mallarmé, relaxed and informal with a cigar in hand — a portrait of genuine friendship rather than a formal commission, small in scale but warm in feeling.",
+      "fr": "Manet peint son ami proche, le poète Stéphane Mallarmé, détendu et informel, un cigare à la main — un portrait né d'une amitié sincère plutôt que d'une commande officielle, modeste par la taille mais chaleureux par le sentiment.",
+      "zh-Hans": "莫奈为他的挚友、诗人斯特凡·马拉美画了这幅肖像——马拉美姿态放松随意，手里夹着一支雪茄。这不是一幅正式委托的肖像画，而是发自真挚友情的作品，尺幅虽小，却情意深厚。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how loosely and quickly it's painted compared with Manet's grander portraits — the casual brushwork matches the casual, easy pose of a friend simply visiting.",
+      "fr": "Remarquez la touche libre et rapide, en comparaison des portraits plus solennels de Manet — la facture décontractée s'accorde à la pose détendue d'un ami simplement venu en visite.",
+      "zh-Hans": "留意这幅画的笔触比莫奈那些更为庄重的肖像画松散、迅疾得多——这种随性的笔法，恰好呼应了一位朋友随意来访时那种轻松自在的姿态。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Mallarmé kept the portrait in his own home for the rest of his life — a sign of how much the friendship, not just the painting, meant to him.",
+      "fr": "Mallarmé conserva ce portrait chez lui jusqu'à la fin de sa vie — un signe de l'importance que revêtait pour lui cette amitié, et pas seulement le tableau.",
+      "zh-Hans": "马拉美一生都将这幅肖像留在自己家中——这也说明，对他而言，重要的不仅是这幅画本身，更是这段珍贵的友情。"
+    },
+    "whySimple": {
+      "en": "Manet painted his close friend, the poet Stéphane Mallarmé, sitting relaxed with a cigar. It's an informal, friendly portrait, not a formal commission.",
+      "fr": "Manet peint son ami proche, le poète Stéphane Mallarmé, assis, détendu, un cigare à la main. C'est un portrait informel et amical, pas une commande officielle.",
+      "zh-Hans": "莫奈画了他的挚友、诗人斯特凡·马拉美放松地坐着、手夹雪茄的样子。这是一幅随性、友好的肖像画，而不是正式委托的作品。"
+    },
+    "whereSimple": {
+      "en": "The brushwork here is loose and quick, matching the relaxed, casual pose of a friend just visiting.",
+      "fr": "La touche est ici libre et rapide, en accord avec la pose détendue et décontractée d'un ami simplement en visite.",
+      "zh-Hans": "这幅画的笔触松散、迅速，正好呼应了一位朋友随意来访时那种轻松惬意的姿态。"
+    },
+    "raritySimple": {
+      "en": "Mallarmé loved this portrait so much that he kept it in his own home for the rest of his life.",
+      "fr": "Mallarmé aima tellement ce portrait qu'il le garda chez lui jusqu'à la fin de sa vie.",
+      "zh-Hans": "马拉美非常喜爱这幅肖像画，一生都把它留在自己家中。"
+    },
+    "whyKids": {
+      "en": "Manet painted a portrait of his good friend, a poet named Mallarmé, just relaxing and chatting — not a fancy, formal painting, just a picture of a friend.",
+      "fr": "Manet a peint un portrait de son bon ami, un poète nommé Mallarmé, tout simplement en train de se détendre et de discuter — pas un tableau chic et formel, juste l'image d'un ami.",
+      "zh-Hans": "莫奈给他的好朋友、一位叫马拉美的诗人画了一幅肖像——就是随意地坐着聊天的样子，不是什么正式又讲究的画，只是一张朋友的画像。"
+    },
+    "whereKids": {
+      "en": "See how quick and loose the brushstrokes are? That matches how relaxed and casual the pose is.",
+      "fr": "Tu vois comme les coups de pinceau sont rapides et libres ? Ça correspond bien à la pose détendue et décontractée.",
+      "zh-Hans": "你看这些笔触是不是又快又随意？这正好配上了他那放松、随性的坐姿。"
+    },
+    "rarityKids": {
+      "en": "Mallarmé loved this little painting so much he kept it hanging in his own house for the rest of his life!",
+      "fr": "Mallarmé a tellement aimé ce petit tableau qu'il l'a gardé accroché chez lui jusqu'à la fin de sa vie !",
+      "zh-Hans": "马拉美太喜欢这幅小画了，一辈子都把它挂在自己家里！"
     }
   },
   {
