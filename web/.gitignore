@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated service worker (see sw-template.js + scripts/stamp-service-worker.mjs)
+/public/sw.js
