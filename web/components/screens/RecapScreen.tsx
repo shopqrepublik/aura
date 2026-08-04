@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { tt } from "@/lib/i18n";
 import { generateRecapImage } from "@/lib/recap-image";
+import { buildVisitPalette, visitPaletteCssBackground, GRAIN_BACKGROUND_IMAGE, FRAGMENT_LAYOUT } from "@/lib/visitPalette";
+import CollectorsSeal from "@/components/ui/CollectorsSeal";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
 
@@ -60,6 +62,11 @@ export default function RecapScreen({
   const visitTimestamp = state.startTime ?? now;
   const dateStr = visitTimestamp ? formatDate(visitTimestamp) : "";
 
+  // design-direction-v3.md §10 "Visit Palette" -- background for this whole
+  // screen, derived from the same top-3-significant-works ranking used for
+  // "Most valuable" above. See lib/visitPalette.ts for the muting rationale.
+  const palette = buildVisitPalette(seenArtworks);
+
   // €1000M = €1B. Real threshold against the real summed estimate — with
   // all 101 catalog works' estimate.high summing to ~€2.94B, this is
   // reachable but only by deliberately scanning roughly the museum's top
@@ -95,6 +102,7 @@ export default function RecapScreen({
       mostValuable,
       mostValuableHasEstimate: mostValuable?.estimate.high != null,
       isBillion,
+      paletteAccents: palette.accents,
     });
   }
 
@@ -154,10 +162,41 @@ export default function RecapScreen({
   }
 
   return (
-    <div
-      className="w-full h-full flex flex-col pt-16 pb-9 px-6 overflow-y-auto scrollbar-none"
-      style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 55%, #EDEEF2 100%)" }}
-    >
+    <div className="relative w-full h-full overflow-y-auto scrollbar-none">
+      {/* Visit Palette background layer -- muted accent gradient + grain +
+          cropped photo fragments, all behind the content below. Real <img>
+          fragments are fine here (unlike the PNG export path) since this is
+          live DOM, not a canvas pixel read -- see lib/visitPalette.ts. */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ backgroundImage: visitPaletteCssBackground(palette) }}>
+        <div
+          className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
+          style={{ backgroundImage: GRAIN_BACKGROUND_IMAGE, backgroundSize: "180px 180px" }}
+        />
+        {palette.works.map((w, i) => {
+          const layout = FRAGMENT_LAYOUT[i];
+          if (!layout) return null;
+          return (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={w.id}
+              src={w.imageUrl}
+              alt=""
+              aria-hidden="true"
+              className="absolute object-cover rounded-[24px] opacity-[0.12]"
+              style={{
+                top: layout.top,
+                left: layout.left,
+                right: layout.right,
+                width: layout.width,
+                height: layout.height,
+                transform: `rotate(${layout.rotate}deg)`,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      <div className="relative flex flex-col h-full pt-16 pb-9 px-6">
       <div className="flex items-center justify-between shrink-0">
         <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#8E8E93]">
           ELYIO • {dateStr}
@@ -218,12 +257,7 @@ export default function RecapScreen({
       )}
 
       <div className="mt-auto space-y-3 pt-8 shrink-0">
-        {isBillion && (
-          <div className="w-fit px-3.5 py-2 rounded-full bg-[#FF3B30] text-white text-[12px] font-bold tracking-wide shadow-[0_8px_20px_rgba(255,59,48,0.35)] flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
-            {tt("billion_euro_visitor", state.locale)}
-          </div>
-        )}
+        {isBillion && <CollectorsSeal timestamp={visitTimestamp} locale={state.locale} />}
         <button
           type="button"
           onClick={handleShare}
@@ -244,6 +278,7 @@ export default function RecapScreen({
           {tt("new_visit", state.locale)}
         </button>
         <p className="text-[11px] text-[#8E8E93] text-center pt-2">elyio.co / v1.0</p>
+      </div>
       </div>
     </div>
   );

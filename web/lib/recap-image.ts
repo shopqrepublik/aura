@@ -1,4 +1,5 @@
 import { tt } from "@/lib/i18n";
+import { paintVisitPaletteCanvas, paintGrainCanvas, paintFragmentsCanvas } from "@/lib/visitPalette";
 import type { Artwork, Locale } from "@/lib/types";
 
 // Generates the actual shareable PNG for the Recap screen — 1080x1920, per
@@ -11,6 +12,40 @@ export const RECAP_IMAGE_WIDTH = 1080;
 export const RECAP_IMAGE_HEIGHT = 1920;
 
 const FONT_STACK = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', Inter, 'Helvetica Neue', sans-serif";
+
+// Draws `text` centered on `angleCenter` around the circle at (cx, cy) --
+// canvas has no native equivalent of SVG's <textPath>. angle 0 = straight
+// up from center (ctx.rotate is clockwise), matching the same top-arc
+// convention CollectorsSeal.tsx's SVG path uses, so the exported PNG and
+// the on-screen component read identically.
+//
+// Spaces each character by its OWN measured width (ctx.measureText), not
+// by an equal angle per character -- an equal-angle version was tried
+// first and produced a visibly uneven gap around "MILESTONE" (narrow
+// letters like I got the same angular slot as wide ones, so the run
+// visually drifted out of alignment with itself once bold+narrow letters
+// mixed together). Real per-glyph widths is what SVG's textPath already
+// does automatically; this just replicates that on canvas.
+function drawCircularText(ctx: CanvasRenderingContext2D, text: string, cx: number, cy: number, radius: number, angleCenter: number): void {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  const chars = [...text];
+  const widths = chars.map((ch) => ctx.measureText(ch).width);
+  const totalAngle = widths.reduce((sum, w) => sum + w, 0) / radius;
+  let angle = angleCenter - totalAngle / 2;
+  for (let i = 0; i < chars.length; i++) {
+    const charAngle = angle + widths[i] / 2 / radius;
+    ctx.save();
+    ctx.rotate(charAngle);
+    ctx.translate(0, -radius);
+    ctx.fillText(chars[i], 0, 0);
+    ctx.restore();
+    angle += widths[i] / radius;
+  }
+  ctx.restore();
+}
 
 export interface RecapImageData {
   locale: Locale;
@@ -25,6 +60,11 @@ export interface RecapImageData {
   mostValuable: Artwork | null;
   mostValuableHasEstimate: boolean;
   isBillion: boolean;
+  /** design-direction-v3.md §10 "Visit Palette" -- up to 3 accent hex colors
+   * from the visit's most significant seen works (RecapScreen computes this
+   * via lib/visitPalette.ts's buildVisitPalette, same ranking as
+   * mostValuable above). Empty when nothing was seen. */
+  paletteAccents: string[];
 }
 
 // The most-valuable card's thumbnail is always a solid accent-color block,
@@ -51,13 +91,14 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
   const H = RECAP_IMAGE_HEIGHT;
   const marginX = 64;
 
-  // Background — same 3-stop gradient as the on-screen version.
-  const bg = ctx.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, "#FFFFFF");
-  bg.addColorStop(0.55, "#F5F5F7");
-  bg.addColorStop(1, "#EDEEF2");
-  ctx.fillStyle = bg;
-  ctx.fillRect(0, 0, W, H);
+  // Visit Palette background — same muted accent-tint-over-neutral-base
+  // layering as the on-screen version (lib/visitPalette.ts), plus grain and
+  // abstract accent-color fragments standing in for the on-screen photo
+  // collage (see paintFragmentsCanvas's doc comment for why this path can't
+  // use the real photos).
+  paintVisitPaletteCanvas(ctx, data.paletteAccents, W, H);
+  paintFragmentsCanvas(ctx, data.paletteAccents, W, H);
+  paintGrainCanvas(ctx, W, H);
 
   // Header: "ELYIO • date" + black circular "E" mark.
   ctx.fillStyle = "#8E8E93";
@@ -183,28 +224,50 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
     y = cardY + cardH;
   }
 
-  // Billion badge, only when it's genuinely earned (isBillion is computed by
-  // the caller from the real summed estimate, not decorative).
+  // Collector's Seal, only when it's genuinely earned (isBillion is computed
+  // by the caller from the real summed estimate, not decorative) --
+  // replaces the old flat red pill. Same circular-stamp design as the
+  // on-screen CollectorsSeal component (graphite, double hairline ring, top
+  // arc of circumference text, fixed non-localized stamp text -- see that
+  // component's doc comment for why it isn't run through tt()).
   if (data.isBillion) {
-    const badgeY = H - 260;
-    ctx.font = `700 30px ${FONT_STACK}`;
-    const label = tt("billion_euro_visitor", data.locale);
-    const textWidth = ctx.measureText(label).width;
-    const badgeW = textWidth + 100;
-    const badgeH = 68;
-    const badgeX = marginX;
+    const radius = 110;
+    const cx = marginX + radius;
+    const cy = H - 250;
 
-    ctx.fillStyle = "#FF3B30";
+    ctx.fillStyle = "#1B1B1D";
     ctx.beginPath();
-    ctx.roundRect(badgeX, badgeY, badgeW, badgeH, badgeH / 2);
+    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
     ctx.fill();
+    ctx.strokeStyle = "rgba(255,255,255,0.16)";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius - 6, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.strokeStyle = "rgba(255,255,255,0.1)";
+    ctx.beginPath();
+    ctx.arc(cx, cy, radius - 12, 0, Math.PI * 2);
+    ctx.stroke();
 
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.font = `600 13px ${FONT_STACK}`;
+    drawCircularText(ctx, "ELYIO · CULTURAL MILESTONE · PARIS", cx, cy, radius - 22, 0);
+
+    ctx.textAlign = "center";
     ctx.fillStyle = "#FFFFFF";
-    ctx.beginPath();
-    ctx.arc(badgeX + 34, badgeY + badgeH / 2, 7, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillText(label, badgeX + 58, badgeY + badgeH / 2 + 11);
+    ctx.font = `700 30px ${FONT_STACK}`;
+    ctx.fillText("€1B+", cx, cy - 6);
+    ctx.fillStyle = "rgba(255,255,255,0.78)";
+    ctx.font = `600 15px ${FONT_STACK}`;
+    ctx.fillText("VISITOR", cx, cy + 20);
+    // dateStr is "DD.MM.YYYY" (formatDate in RecapScreen.tsx) -- the seal
+    // uses the same short "DD·MM·YY" form as the doc's own example
+    // ("04·08·26"), matching the on-screen CollectorsSeal exactly.
+    const [dd, mm, yyyy] = data.dateStr.split(".");
+    ctx.fillStyle = "rgba(255,255,255,0.42)";
+    ctx.font = `500 13px ${FONT_STACK}`;
+    if (dd && mm && yyyy) ctx.fillText(`${dd}·${mm}·${yyyy.slice(-2)}`, cx, cy + 46);
+    ctx.textAlign = "left";
   }
 
   // Footer tagline.

@@ -104,6 +104,51 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     "zh-Hans": "已评估 {n}/{total} 件作品",
   },
   generating_image: { en: "Preparing image…", fr: "Préparation de l'image…", "zh-Hans": "正在生成图片…" },
+
+  // Design-direction-v3 "The Curated Reveal", ProvenanceReveal component.
+  market_context_label: { en: "Market context", fr: "Contexte de marché", "zh-Hans": "市场背景" },
+  // Exact fr/zh wording from design-direction-v3.md §9's own multilingual
+  // example -- used verbatim rather than re-translated.
+  estimated_market_range: {
+    en: "Estimated market range",
+    fr: "Fourchette de valeur estimative",
+    "zh-Hans": "估算市场价值区间",
+  },
+  view_methodology: { en: "View methodology", fr: "Voir la méthodologie", "zh-Hans": "查看估值方法" },
+  // {n} placeholder. Only ever rendered when comparableSales.length > 0 --
+  // never shown as "0 comparable sales" (see ProvenanceReveal.tsx). Two
+  // separate keys (not one templated string) because en/fr both inflect
+  // for a count of exactly 1 ("1 comparable sale", not "1 comparable
+  // sales") -- zh-Hans doesn't inflect, so its two values are identical on
+  // purpose, not an oversight.
+  comparable_sales_count_one: {
+    en: "{n} comparable sale",
+    fr: "{n} vente comparable",
+    "zh-Hans": "{n} 项可比拍卖记录",
+  },
+  comparable_sales_count_other: {
+    en: "{n} comparable sales",
+    fr: "{n} ventes comparables",
+    "zh-Hans": "{n} 项可比拍卖记录",
+  },
+  exceptional_market_tier: { en: "Exceptional market tier", fr: "Niveau de marché exceptionnel", "zh-Hans": "顶级市场水平" },
+  methodology_sheet_title: { en: "How estimates work", fr: "Comment les estimations sont calculées", "zh-Hans": "估值是如何计算的" },
+  // General, artwork-agnostic explanation of the process -- deliberately
+  // does NOT repeat any specific work's comparable-sales text or AI-drafted
+  // `estimate.logic` field verbatim (both are internal editorial-review
+  // metadata per lib/types.ts, not user-facing copy). This sheet describes
+  // the METHOD, the always-visible disclaimer (estimate_disclaimer) already
+  // carries the per-artwork legal/factual disclosure.
+  methodology_sheet_body: {
+    en: "Each range is an editorial estimate, drafted by comparing this work to real public auction results for comparable artists, periods, subjects, sizes and provenance, then reviewed for museum significance. It reflects public market data, not a private valuation of this specific museum-held work — which is not for sale and has no formal appraisal.",
+    fr: "Chaque fourchette est une estimation éditoriale, établie en comparant cette œuvre à des résultats de ventes aux enchères publiques pour des artistes, périodes, sujets, tailles et provenances comparables, puis réexaminée au regard de son importance muséale. Elle reflète des données de marché public, non une expertise privée de cette œuvre précise conservée au musée — laquelle n'est pas à vendre et n'a fait l'objet d'aucune expertise formelle.",
+    "zh-Hans": "每个估值区间都是编辑性估算，通过将该作品与可比艺术家、年代、主题、尺寸及来源的真实公开拍卖结果进行比较后得出，并结合其博物馆重要性进行复核。该区间反映的是公开市场数据，而非对这件博物馆藏品本身的私人估价——该作品并非用于出售，也未经过正式鉴定。",
+  },
+  reveal_pending_review_note: {
+    en: "This work hasn't been reviewed for a market estimate yet.",
+    fr: "Cette œuvre n'a pas encore fait l'objet d'une estimation de marché.",
+    "zh-Hans": "这件作品尚未进行市场估值评审。",
+  },
 };
 
 export function tt(key: string, locale: Locale): string {
