@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import ProgressRing from "@/components/ui/ProgressRing";
 import { ARTWORKS, MISSIONS, missionLabel } from "@/lib/artworks";
+import { isMissionComplete } from "@/lib/missions";
 import { tt } from "@/lib/i18n";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
@@ -14,9 +15,12 @@ import type { Artwork } from "@/lib/types";
 // non-null estimates, "Pending review" otherwise — never an invented number.
 // Deep focus and the "Next" suggestion are new to ELYIO (no equivalent in
 // the old frontend) but stay on the same rule: Deep focus only renders when
-// there is a real measured dwell time (cardOpenedAt), and "Next" surfaces
-// the first actually-incomplete mission from the real MISSIONS dataset
-// rather than inventing example copy like "Find one more Monet".
+// there is a real measured dwell time (cardOpenedAt), and "Next"/the
+// mission list below both use lib/missions.ts's real per-mission
+// completion check (has the user actually scanned a work that satisfies
+// this specific mission?) rather than the old placeholder that just
+// marked mission N done once N works had been scanned, regardless of
+// which ones.
 export default function ProgressScreen({
   state,
   seenArtworks,
@@ -57,8 +61,7 @@ export default function ProgressScreen({
     ? Math.max(0.1, (now - state.cardOpenedAt) / 60000)
     : null;
 
-  const nextMissionIndex = MISSIONS.findIndex((_, i) => state.seen.length <= i);
-  const nextMission = nextMissionIndex >= 0 ? MISSIONS[nextMissionIndex] : null;
+  const nextMission = MISSIONS.find((m) => !isMissionComplete(m.id, state.seen)) ?? null;
 
   const thumbnails = seenArtworks.slice().reverse();
 
@@ -125,6 +128,31 @@ export default function ProgressScreen({
         </div>
 
         <div className="h-[1px] bg-black/10 mt-8" />
+
+        <div className="mt-6">
+          <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#8E8E93]">
+            {tt("missions_label", state.locale)}
+          </div>
+          <div className="mt-3 space-y-2">
+            {MISSIONS.map((mission) => {
+              const done = isMissionComplete(mission.id, state.seen);
+              return (
+                <div key={mission.id} className="flex items-center gap-3">
+                  <div
+                    className={`w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-[10px] font-bold ${
+                      done ? "bg-[#111] text-white" : "bg-black/[0.08] text-[#8E8E93]"
+                    }`}
+                  >
+                    {done ? "✓" : ""}
+                  </div>
+                  <span className={`text-[13px] font-medium ${done ? "text-[#111] line-through" : "text-[#3C3C43]"}`}>
+                    {missionLabel(mission, state.locale)}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         {thumbnails.length > 0 && (
           <div className="mt-6 flex gap-3 overflow-x-auto -mx-1 px-1 pb-2 scrollbar-none">

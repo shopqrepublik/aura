@@ -55,6 +55,7 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   listen_label: { en: "Listen", fr: "Écouter", "zh-Hans": "收听" },
   listen_playing_label: { en: "Playing", fr: "Lecture en cours", "zh-Hans": "播放中" },
   live_progress: { en: "Live Progress", fr: "Progression en direct", "zh-Hans": "实时进度" },
+  missions_label: { en: "Missions", fr: "Missions", "zh-Hans": "任务" },
   stat_value_seen: { en: "Value seen", fr: "Valeur découverte", "zh-Hans": "已发现价值" },
   stat_works: { en: "Works", fr: "Œuvres", "zh-Hans": "作品数" },
   stat_time: { en: "Time", fr: "Durée", "zh-Hans": "用时" },

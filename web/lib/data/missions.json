@@ -13,8 +13,8 @@
   },
   {
     "id": "m3",
-    "en": "Find the most expensive work in this room",
-    "fr": "Trouvez l'œuvre la plus estimée de cette salle",
-    "zh-Hans": "找出这个展厅里估值最高的作品"
+    "en": "Find the museum's most valuable work",
+    "fr": "Trouvez l'œuvre la plus estimée du musée",
+    "zh-Hans": "找出馆内估值最高的作品"
   }
 ]

@@ -1832,7 +1832,8 @@
       "en": "Van Gogh painted about 35 pictures of his own face during his life — mostly because he was too poor to pay other people to sit still for him! This might be the very last one he ever painted.",
       "fr": "Van Gogh a peint environ 35 tableaux de son propre visage au cours de sa vie — surtout parce qu'il était trop pauvre pour payer d'autres personnes pour poser pour lui ! Celui-ci pourrait être le tout dernier qu'il ait jamais peint.",
       "zh-Hans": "梵高一生中画了大约35幅自己的脸——主要是因为他太穷了，付不起钱请别人当模特！这幅可能是他画的最后一幅呢。"
-    }
+    },
+    "isSelfPortrait": true
   },
   {
     "id": "orsay_rf_1992",
@@ -2309,7 +2310,8 @@
       "en": "Sadly, Seurat finished this painting and then died just a few days later, when he was only 31 years old — so this ended up being his very last big painting.",
       "fr": "Malheureusement, Seurat a terminé ce tableau et est mort seulement quelques jours plus tard, alors qu'il n'avait que 31 ans — ce tableau s'est donc retrouvé être son tout dernier grand tableau.",
       "zh-Hans": "很遗憾，修拉画完这幅画没几天就去世了，那时他只有31岁——所以这幅画，最终成了他最后一幅重要的大画作。"
-    }
+    },
+    "techniqueTag": "pointillism"
   },
   {
     "id": "orsay_rf_1978_13",
@@ -6026,7 +6028,8 @@
       "en": "Gauguin painted this after people in Paris weren't as excited about his Tahiti paintings as he'd hoped — so this is a bit of a \"tough day\" self-portrait.",
       "fr": "Gauguin a peint ce tableau après que les gens de Paris n'étaient pas aussi enthousiastes qu'il l'espérait à propos de ses tableaux de Tahiti — c'est donc un peu un autoportrait d'un « jour difficile ».",
       "zh-Hans": "高更画这幅画的时候，巴黎人对他塔希提画作的反应并没有他期望的那么热烈——所以这算是一幅「不太顺心的日子」的自画像。"
-    }
+    },
+    "isSelfPortrait": true
   },
   {
     "id": "orsay_rf_2173",

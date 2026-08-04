@@ -75,6 +75,16 @@ export interface Artwork {
   // Absence of either field means no Listen button for that work.
   audioScript?: LocalizedText;
   audioUrl?: LocalizedText;
+  // Mission completion flags (see lib/missions.ts) -- structured, not
+  // inferred from free-text why/where/rarity, so a mission check is never
+  // guessing from prose. Absence means false/not-applicable, same
+  // optional-field convention as the rest of this interface.
+  isSelfPortrait?: boolean;
+  // Free-text on purpose (not a closed enum) since only one real value
+  // ("pointillism", on Seurat's The Circus) exists in the catalog today --
+  // see lib/missions.ts for why the "dots or dabs" mission currently has
+  // exactly one valid target work.
+  techniqueTag?: string;
 }
 
 export interface Mission {

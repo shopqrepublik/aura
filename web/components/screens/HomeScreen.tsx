@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ProgressRing from "@/components/ui/ProgressRing";
 import { MISSIONS, missionLabel } from "@/lib/artworks";
+import { isMissionComplete } from "@/lib/missions";
 import { tt, LOCALES } from "@/lib/i18n";
 import { useMuseumDetection } from "@/lib/geolocation";
 import type { AppState } from "@/lib/app-state";
@@ -129,7 +130,7 @@ export default function HomeScreen({
 
       <div className="absolute bottom-0 left-0 right-0 z-10 p-3 pb-[34px] space-y-2.5">
         {MISSIONS.map((mission, i) => {
-          const done = state.seen.length > i;
+          const done = isMissionComplete(mission.id, state.seen);
           return (
             <div
               key={mission.id}
