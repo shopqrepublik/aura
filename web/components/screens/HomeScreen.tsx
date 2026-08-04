@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import ProgressRing from "@/components/ui/ProgressRing";
 import { MISSIONS, missionLabel } from "@/lib/artworks";
 import { tt, LOCALES } from "@/lib/i18n";
+import { useMuseumDetection } from "@/lib/geolocation";
 import type { AppState } from "@/lib/app-state";
 
 // "01 MUSEUM HOME" — exact bg/pill/button/mission-card classNames mined from
@@ -20,6 +22,9 @@ export default function HomeScreen({
   onStartVisit: () => void;
   onSetLocale: (locale: AppState["locale"]) => void;
 }) {
+  const { status: museumStatus, confirmManually } = useMuseumDetection();
+  const [showConfirm, setShowConfirm] = useState(false);
+
   return (
     <div className="relative w-full h-full bg-[#F5F5F7] overflow-hidden">
       <div className="absolute inset-0">
@@ -28,11 +33,72 @@ export default function HomeScreen({
       </div>
 
       <div className="relative z-10 pt-[56px] flex items-center justify-center gap-2">
-        <div className="h-[28px] px-3 rounded-full bg-black/80 backdrop-blur-xl flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
-          <div className="w-2 h-2 rounded-full bg-[#30D158] shadow-[0_0_8px_#30D158]" />
-          <span className="text-[12px] font-[600] text-white tracking-[-0.01em]">
-            {tt("museum_detected", state.locale)}
-          </span>
+        <div className="relative">
+          {/* Chip is only a <button> (tappable) in the "manual-prompt"
+              state -- otherwise it's just a status readout. This is the
+              honest fallback for §4.1's "GPS/geofence OR manual, both
+              valid" -- we never block the app on a missing/denied/out-of-
+              range GPS fix, we just stop claiming we detected something we
+              didn't. "manual-confirmed" gets its own color (not green) so
+              it never reads as a GPS-verified detection it isn't. */}
+          {museumStatus === "manual-prompt" ? (
+            <button
+              type="button"
+              onClick={() => setShowConfirm((v) => !v)}
+              className="h-[28px] px-3 rounded-full bg-black/80 backdrop-blur-xl flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+            >
+              <div className="w-2 h-2 rounded-full bg-white/40" />
+              <span className="text-[12px] font-[600] text-white tracking-[-0.01em]">
+                {tt("museum_select_prompt", state.locale)}
+              </span>
+            </button>
+          ) : (
+            <div className="h-[28px] px-3 rounded-full bg-black/80 backdrop-blur-xl flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
+              <div
+                className={`w-2 h-2 rounded-full ${
+                  museumStatus === "detected"
+                    ? "bg-[#30D158] shadow-[0_0_8px_#30D158]"
+                    : museumStatus === "manual-confirmed"
+                      ? "bg-[#0A84FF] shadow-[0_0_8px_#0A84FF]"
+                      : "bg-white/40 animate-pulse"
+                }`}
+              />
+              <span className="text-[12px] font-[600] text-white tracking-[-0.01em]">
+                {museumStatus === "detected"
+                  ? tt("museum_detected", state.locale)
+                  : museumStatus === "manual-confirmed"
+                    ? tt("museum_confirmed_manual", state.locale)
+                    : tt("museum_locating", state.locale)}
+              </span>
+            </div>
+          )}
+
+          {showConfirm && (
+            <div className="absolute top-[36px] left-1/2 -translate-x-1/2 w-[220px] rounded-[16px] bg-white shadow-[0_12px_32px_rgba(0,0,0,0.2)] p-3 z-20">
+              <p className="text-[13px] font-semibold text-[#111] text-center leading-[18px]">
+                {tt("museum_confirm_question", state.locale)}
+              </p>
+              <div className="mt-2.5 flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm(false)}
+                  className="flex-1 h-[32px] rounded-full bg-[#F5F5F7] text-[12px] font-semibold text-black"
+                >
+                  {tt("museum_confirm_not_now", state.locale)}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    confirmManually();
+                    setShowConfirm(false);
+                  }}
+                  className="flex-1 h-[32px] rounded-full bg-black text-[12px] font-semibold text-white"
+                >
+                  {tt("museum_confirm_yes", state.locale)}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <select
           aria-label="Language"

@@ -15,6 +15,36 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     fr: "Musée d'Orsay • Détecté",
     "zh-Hans": "奥赛博物馆 • 已识别",
   },
+  museum_locating: {
+    en: "Locating…",
+    fr: "Localisation…",
+    "zh-Hans": "正在定位…",
+  },
+  museum_select_prompt: {
+    en: "Select your museum",
+    fr: "Sélectionnez votre musée",
+    "zh-Hans": "选择您所在的博物馆",
+  },
+  museum_confirmed_manual: {
+    en: "Musée d'Orsay • Confirmed",
+    fr: "Musée d'Orsay • Confirmé",
+    "zh-Hans": "奥赛博物馆 • 已确认",
+  },
+  museum_confirm_question: {
+    en: "Are you at Musée d'Orsay?",
+    fr: "Êtes-vous au Musée d'Orsay ?",
+    "zh-Hans": "您现在在奥赛博物馆吗？",
+  },
+  museum_confirm_yes: {
+    en: "Yes, I'm here",
+    fr: "Oui, j'y suis",
+    "zh-Hans": "是的，我在这里",
+  },
+  museum_confirm_not_now: {
+    en: "Not now",
+    fr: "Pas maintenant",
+    "zh-Hans": "暂不确认",
+  },
   start_visit_label: { en: "Start visit", fr: "Commencer la visite", "zh-Hans": "开始参观" },
   visit_active_label: { en: "Visit active", fr: "Visite en cours", "zh-Hans": "参观进行中" },
   tap_to_begin: { en: "Tap to begin", fr: "Touchez pour commencer", "zh-Hans": "点击开始" },
