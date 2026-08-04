@@ -2533,7 +2533,7 @@
     "accent": "#418A48",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Pink Dress",
       "fr": "La Robe rose",
@@ -2545,23 +2545,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 4,
+      "high": 9,
+      "logic": "FACT: Pot de fleurs, a flower still life, holds Bazille's auction record -- reported as $3.66M (~EUR3.37M) at Christie's, 2022 (sources also cite an earlier ~EUR4.4M sale in 2004; the discrepancy is noted rather than silently resolved). EDITORIAL JUDGMENT: Bazille's major figure paintings almost never come to market (most are already in museums, as with all four Bazille works in this batch), so a flower still life is the closest real transaction available -- a genuine genre mismatch against this single-figure outdoor portrait. Positioned modestly above the still-life floor to reflect this being an early, personal, but real figure painting rather than a still life.",
+      "comparableSales": [
+        "Pot de fleurs, Frédéric Bazille — $3.66M (~€3.37M), Christie's, 2022 (also reported as ~€4.4M at a 2004 sale; source discrepancy noted) — Bazille's auction record, but a flower still life, not a figure painting."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bazille paints his cousin Thérèse seated on a stone ledge at his family's country estate near Montpellier, using dark trees to frame and push the eye toward the sunlit village glowing in the distance — an early, personal experiment with the kind of outdoor light that would soon define Impressionism.",
+      "fr": "Bazille peint sa cousine Thérèse assise sur un rebord de pierre du domaine familial près de Montpellier, utilisant des arbres sombres pour encadrer et diriger le regard vers le village ensoleillé qui brille au loin — une expérimentation précoce et personnelle avec le type de lumière extérieure qui définirait bientôt l'impressionnisme.",
+      "zh-Hans": "巴齐耶描绘了他的表妹泰蕾兹，坐在蒙彼利埃附近家族庄园的一处石栏上——他用深色的树木作为画框，将视线引向远处那座沐浴在阳光中、闪闪发亮的村庄，这是他早期一次私人性质的尝试，探索着不久后将定义印象派的那种户外光线。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how carefully Bazille balances the dark, shadowed foreground against the bright, sunstruck landscape beyond — a lighting contrast borrowed from the earlier Barbizon School of landscape painters.",
+      "fr": "Remarquez avec quel soin Bazille équilibre le premier plan sombre et ombragé avec le paysage lumineux et ensoleillé à l'arrière-plan — un contraste de lumière emprunté aux peintres paysagistes de l'école de Barbizon qui l'avaient précédé.",
+      "zh-Hans": "留意巴齐耶是如何精心平衡前景那深色、阴影笼罩的部分，与背景中明亮、阳光普照的风景之间的对比的——这种光影对比手法，借鉴自更早的巴比松画派风景画家。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted when Bazille was only 23 and still training as a medical student in Paris, this is one of his earliest surviving paintings, made during a summer visit home to the south of France.",
+      "fr": "Peint alors que Bazille n'avait que 23 ans et se formait encore comme étudiant en médecine à Paris, ce tableau est l'une de ses toutes premières œuvres conservées, réalisée lors d'une visite d'été dans le sud de la France, chez lui.",
+      "zh-Hans": "这幅画创作于巴齐耶年仅23岁、仍在巴黎学医之时，是他现存最早的作品之一，画于他夏天回到法国南方老家探亲期间。"
+    },
+    "whySimple": {
+      "en": "Bazille painted his cousin Thérèse sitting outside at his family's country home near Montpellier, with the sunny village glowing in the distance behind her.",
+      "fr": "Bazille peint sa cousine Thérèse assise dehors, à la maison de campagne familiale près de Montpellier, avec le village ensoleillé qui brille au loin derrière elle.",
+      "zh-Hans": "巴齐耶画了他的表妹泰蕾兹坐在蒙彼利埃附近家族乡间宅邸外面的样子，她身后是远处那座沐浴在阳光中的村庄。"
+    },
+    "whereSimple": {
+      "en": "Notice how the dark trees in the foreground make the sunny village in the background look even brighter.",
+      "fr": "Remarquez comme les arbres sombres au premier plan font paraître le village ensoleillé à l'arrière-plan encore plus lumineux.",
+      "zh-Hans": "留意前景中那些深色的树木，是如何让背景中那座阳光明媚的村庄，看起来更加明亮的。"
+    },
+    "raritySimple": {
+      "en": "Bazille painted this when he was only 23, while he was still studying to be a doctor in Paris. It's one of his earliest surviving paintings.",
+      "fr": "Bazille a peint ce tableau alors qu'il n'avait que 23 ans, pendant qu'il étudiait encore pour devenir médecin à Paris. C'est l'une de ses toutes premières œuvres conservées.",
+      "zh-Hans": "巴齐耶画这幅画时年仅23岁，当时他还在巴黎学医。这是他现存最早的作品之一。"
+    },
+    "whyKids": {
+      "en": "Bazille painted his cousin Thérèse sitting outside near his family's home, with a sunny little village glowing far away in the background.",
+      "fr": "Bazille a peint sa cousine Thérèse assise dehors près de la maison de sa famille, avec un petit village ensoleillé qui brille au loin, en arrière-plan.",
+      "zh-Hans": "巴齐耶画了他的表妹泰蕾兹坐在他家附近户外的样子，远处的背景里，有一座沐浴在阳光中、闪闪发亮的小村庄。"
+    },
+    "whereKids": {
+      "en": "Look how dark the trees are up close, and how bright and sunny it looks far away — that makes the faraway village feel extra glowy!",
+      "fr": "Regarde comme les arbres sont sombres de près, et comme tout paraît lumineux et ensoleillé au loin — ça donne l'impression que le village au loin brille encore plus fort !",
+      "zh-Hans": "看近处的树木有多暗，而远处又是多么明亮、阳光灿烂——这让远方的小村庄看起来格外闪闪发光！"
+    },
+    "rarityKids": {
+      "en": "Bazille was only 23 years old when he painted this — and at the time, he was actually studying to become a doctor, not a full-time painter yet!",
+      "fr": "Bazille n'avait que 23 ans quand il a peint ce tableau — et à l'époque, il étudiait en réalité pour devenir médecin, pas encore peintre à temps plein !",
+      "zh-Hans": "巴齐耶画这幅画的时候只有23岁——而且当时他其实还在学医，还没有成为一名全职画家呢！"
     }
   },
   {
@@ -2854,7 +2891,7 @@
     "accent": "#418A48",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Bazille's Studio",
       "fr": "L'Atelier de la rue de la Condamine",
@@ -2866,23 +2903,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: Pot de fleurs, a flower still life, holds Bazille's auction record ($3.66M/~EUR3.37M, Christie's 2022; also cited at ~EUR4.4M in 2004). EDITORIAL JUDGMENT: a genuine genre mismatch (still life vs. this large, multi-figure historical group portrait), but this is one of Bazille's two or three most art-historically significant works -- a real-time document of Manet, Renoir, Monet, Zola, and Bazille himself together, partly painted by Manet's own hand -- positioned well above the still-life floor to reflect that exceptional historical importance.",
+      "comparableSales": [
+        "Pot de fleurs, Frédéric Bazille — $3.66M (~€3.37M), Christie's, 2022 — Bazille's auction record, but a flower still life, a genuine genre mismatch against this major group portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bazille paints himself and his closest artist friends gathered in his own Paris studio — Manet, Renoir, Zola, and Monet all appear together in one room — documenting the tight-knit circle of painters and writers who would soon become known as the Impressionists.",
+      "fr": "Bazille se peint lui-même et ses amis artistes les plus proches réunis dans son propre atelier parisien — Manet, Renoir, Zola et Monet apparaissent tous ensemble dans une même pièce — documentant le cercle soudé de peintres et d'écrivains qui allaient bientôt devenir connus sous le nom d'impressionnistes.",
+      "zh-Hans": "巴齐耶把自己和最亲密的画家朋友们，一起画进了自己在巴黎的画室——马奈、雷诺阿、左拉和莫奈全都齐聚一堂——记录下了这个日后将被称为「印象派」的画家与作家紧密团体。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the tall figure standing at the easel — that's Bazille himself, though his friend Manet actually painted that figure into the canvas for him.",
+      "fr": "Regardez la haute silhouette debout devant le chevalet — c'est Bazille lui-même, bien que ce soit en réalité son ami Manet qui ait peint cette figure sur la toile pour lui.",
+      "zh-Hans": "看那个站在画架前、身材高大的人物——那就是巴齐耶本人，不过这个人物形象，其实是他的朋友马奈亲自动笔为他画上去的。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This is one of the only paintings that shows the future Impressionists together in one room before they became famous — Bazille would be killed in battle just months later, making it an unplanned group farewell portrait.",
+      "fr": "C'est l'un des seuls tableaux qui montrent les futurs impressionnistes réunis dans une même pièce avant qu'ils ne deviennent célèbres — Bazille serait tué au combat quelques mois plus tard seulement, faisant de cette œuvre un portrait d'adieu collectif non planifié.",
+      "zh-Hans": "这是极少数展现未来印象派画家们在成名之前，齐聚一堂的画作之一——几个月后，巴齐耶就在战场上牺牲了，这使得这幅画，无意间成为了一幅群像式的告别肖像。"
+    },
+    "whySimple": {
+      "en": "Bazille painted himself and his closest artist friends together in his Paris studio — including Manet, Renoir, Zola, and Monet — all in one room, before any of them were famous.",
+      "fr": "Bazille s'est peint lui-même avec ses amis artistes les plus proches réunis dans son atelier parisien — dont Manet, Renoir, Zola et Monet — tous dans une même pièce, avant qu'aucun d'entre eux ne soit célèbre.",
+      "zh-Hans": "巴齐耶把自己和最亲密的画家朋友们画在了一起，都在他巴黎的画室里——包括马奈、雷诺阿、左拉和莫奈——全都聚在同一间屋子里，那时他们谁都还没有成名。"
+    },
+    "whereSimple": {
+      "en": "Look at the tall figure at the easel — that's Bazille himself, though his friend Manet actually painted that part of the picture for him.",
+      "fr": "Regardez la haute silhouette devant le chevalet — c'est Bazille lui-même, bien que son ami Manet ait en réalité peint cette partie du tableau pour lui.",
+      "zh-Hans": "看画架前那个高大的身影——那就是巴齐耶本人，不过这一部分，其实是他的朋友马奈替他画的。"
+    },
+    "raritySimple": {
+      "en": "This shows the future Impressionist painters together in one room before they became famous. Bazille died in battle just months after painting this.",
+      "fr": "Ce tableau montre les futurs peintres impressionnistes réunis dans une même pièce avant qu'ils ne deviennent célèbres. Bazille mourut au combat quelques mois seulement après l'avoir peint.",
+      "zh-Hans": "这幅画展现了未来的印象派画家们在成名之前，齐聚一堂的场景。巴齐耶在画完这幅画几个月后，就在战场上牺牲了。"
+    },
+    "whyKids": {
+      "en": "Bazille painted himself and all his best artist friends together in his own studio — including some painters who later became super famous!",
+      "fr": "Bazille s'est peint lui-même avec tous ses meilleurs amis artistes dans son propre atelier — dont des peintres qui sont devenus super célèbres plus tard !",
+      "zh-Hans": "巴齐耶把自己和所有最好的画家朋友们，一起画进了他自己的画室——其中有些画家后来变得超级有名呢！"
+    },
+    "whereKids": {
+      "en": "Can you find Bazille himself standing tall at his easel? Funny fact: his friend Manet actually painted that part for him!",
+      "fr": "Arrives-tu à trouver Bazille lui-même, debout devant son chevalet ? Fait amusant : son ami Manet a en fait peint cette partie pour lui !",
+      "zh-Hans": "你能找到巴齐耶自己站在画架前的样子吗？有趣的是：这部分其实是他的朋友马奈替他画的哦！"
+    },
+    "rarityKids": {
+      "en": "This is one of the only paintings that shows this whole group of future-famous painters together, all in one room, before anyone knew how famous they'd become.",
+      "fr": "C'est l'un des seuls tableaux qui montre tout ce groupe de futurs peintres célèbres réunis, tous dans une même pièce, avant que personne ne sache à quel point ils deviendraient célèbres.",
+      "zh-Hans": "这是极少数能看到这整群未来的著名画家们，全都聚在同一间屋子里的画作之一——那时候，谁都还不知道他们日后会有多出名。"
     }
   },
   {
@@ -3180,7 +3254,7 @@
     "accent": "#418A48",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Réunion de famille",
       "fr": "Réunion de famille",
@@ -3192,23 +3266,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 12,
+      "high": 24,
+      "logic": "FACT: Pot de fleurs, a flower still life, holds Bazille's auction record ($3.66M/~EUR3.37M, Christie's 2022). EDITORIAL JUDGMENT: a genuine genre mismatch, but Réunion de famille is widely considered Bazille's single greatest achievement -- a large-scale, ten-figure Salon-accepted masterpiece he reworked for over a year -- positioned at the top of this batch's Bazille range to reflect that consensus critical standing.",
+      "comparableSales": [
+        "Pot de fleurs, Frédéric Bazille — $3.66M (~€3.37M), Christie's, 2022 — Bazille's auction record, but a flower still life, a genuine genre mismatch against this ambitious Salon-scale group portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bazille gathers ten of his own relatives on the shaded terrace of his family's country estate, painting each one as a careful individual portrait rather than a generic crowd — nearly everyone looks straight out at the viewer, almost like a group photograph.",
+      "fr": "Bazille réunit dix de ses propres proches sur la terrasse ombragée du domaine familial, peignant chacun comme un portrait individuel soigné plutôt que comme une foule générique — presque tout le monde regarde droit vers le spectateur, presque comme une photographie de groupe.",
+      "zh-Hans": "巴齐耶把自己十位亲属齐聚在家族庄园那处树荫遮蔽的露台上，将每一个人都当作一幅精心刻画的独立肖像来描绘，而非泛泛的人群——几乎每个人都径直望向观者，就像一张全家福照片一样。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the deep shade of the tree overhead makes the sunlit landscape beyond feel even more vivid — Bazille loved this contrast between shadow and southern French light.",
+      "fr": "Remarquez comme l'ombre profonde de l'arbre au-dessus rend le paysage ensoleillé à l'arrière-plan encore plus vif — Bazille aimait ce contraste entre l'ombre et la lumière du sud de la France.",
+      "zh-Hans": "留意头顶那棵大树投下的浓密阴影，是如何让身后阳光明媚的风景显得更加生动鲜明的——巴齐耶特别喜爱这种阴影与法国南方阳光之间的对比。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bazille reworked this ambitious painting for over a year, and it was accepted into the official Paris Salon of 1868 — a rare success at a time when his friends Monet and Renoir were still being rejected.",
+      "fr": "Bazille retravailla ce tableau ambitieux pendant plus d'un an, et il fut accepté au Salon officiel de Paris de 1868 — un succès rare à une époque où ses amis Monet et Renoir se faisaient encore refuser.",
+      "zh-Hans": "巴齐耶反复打磨这幅雄心勃勃的画作长达一年多，最终被1868年官方巴黎沙龙接纳展出——在他的朋友莫奈和雷诺阿仍屡屡被拒的年代，这是一次难得的成功。"
+    },
+    "whySimple": {
+      "en": "Bazille gathered ten of his own family members on the shaded terrace of his family's country home, painting each person carefully, almost like a family photograph.",
+      "fr": "Bazille réunit dix membres de sa propre famille sur la terrasse ombragée de la maison de campagne familiale, peignant chaque personne avec soin, presque comme une photographie de famille.",
+      "zh-Hans": "巴齐耶把自己十位家人齐聚在家族乡间宅邸那处树荫遮蔽的露台上，仔细地描绘了每一个人，几乎就像一张全家福照片。"
+    },
+    "whereSimple": {
+      "en": "Notice how the deep shade under the tree makes the sunny landscape behind everyone look even brighter.",
+      "fr": "Remarquez comme l'ombre profonde sous l'arbre fait paraître le paysage ensoleillé derrière tout le monde encore plus lumineux.",
+      "zh-Hans": "留意树下那浓密的阴影，是如何让大家身后那片阳光明媚的风景显得更加明亮的。"
+    },
+    "raritySimple": {
+      "en": "Bazille spent over a year reworking this painting, and it was accepted into the official Paris Salon in 1868 — a big success at a time when his friends Monet and Renoir kept getting rejected.",
+      "fr": "Bazille passa plus d'un an à retravailler ce tableau, et il fut accepté au Salon officiel de Paris en 1868 — un grand succès à une époque où ses amis Monet et Renoir se faisaient sans cesse refuser.",
+      "zh-Hans": "巴齐耶花了一年多的时间反复修改这幅画，最终被1868年官方巴黎沙龙接纳——在他的朋友莫奈和雷诺阿屡屡被拒的年代，这是一次巨大的成功。"
+    },
+    "whyKids": {
+      "en": "Bazille painted ten of his own family members all together on a shady terrace — almost like a big family photo, except painted!",
+      "fr": "Bazille a peint dix membres de sa propre famille réunis sur une terrasse ombragée — presque comme une grande photo de famille, mais en peinture !",
+      "zh-Hans": "巴齐耶把自己十位家人一起画在了一处树荫下的露台上——几乎就像一张大大的全家福照片，只不过是画出来的！"
+    },
+    "whereKids": {
+      "en": "See how dark the shade is under the tree, and how bright and sunny it looks just beyond it? Bazille loved painting that kind of contrast.",
+      "fr": "Tu vois comme l'ombre est sombre sous l'arbre, et comme ça a l'air lumineux et ensoleillé juste au-delà ? Bazille adorait peindre ce genre de contraste.",
+      "zh-Hans": "你看到树下的阴影有多暗，而紧挨着它的地方又是多么明亮、阳光灿烂了吗？巴齐耶特别喜欢画这种对比。"
+    },
+    "rarityKids": {
+      "en": "Bazille worked on this painting for over a year, and it got accepted into a big, important art show — even though his friends' paintings kept getting turned down!",
+      "fr": "Bazille a travaillé sur ce tableau pendant plus d'un an, et il a été accepté dans une grande exposition d'art importante — même si les tableaux de ses amis se faisaient sans cesse refuser !",
+      "zh-Hans": "巴齐耶为这幅画忙了一年多，最后它被一场重要的大型艺术展接纳了——尽管他朋友们的画却总是被拒绝！"
     }
   },
   {
@@ -3424,7 +3535,7 @@
     "accent": "#68B48D",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "A Studio at Les Batignolles",
       "fr": "Un atelier aux Batignolles",
@@ -3436,23 +3547,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 12,
+      "high": 25,
+      "logic": "FACT: Nature morte aux reines-marguerites, a flower still life, is Fantin-Latour's highest confirmed sale, at EUR1.918M, 2022 (his major group portraits, including this one and the others in this batch, are already in museum collections and essentially never trade). EDITORIAL JUDGMENT: a genuine, large genre mismatch (a modest still life vs. this monumental multi-figure historical document), but this specific painting is arguably the single most important group portrait of the entire Impressionist movement's origin -- gathering Manet, Renoir, Monet, Bazille, Zola and others in one room -- positioned well above the still-life floor to reflect that exceptional significance, at the top of the range used across this batch.",
+      "comparableSales": [
+        "Nature morte aux reines-marguerites, Henri Fantin-Latour — €1.918M, 2022 — Fantin-Latour's highest confirmed sale, but a flower still life; a genuine genre mismatch against this major historical group portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Fantin-Latour paints Édouard Manet at his easel, surrounded by the young painters and writers who gathered around him at the Café Guerbois — including Renoir, Monet, Bazille, and the novelist Émile Zola — presenting Manet as the acknowledged leader of a new generation.",
+      "fr": "Fantin-Latour peint Édouard Manet devant son chevalet, entouré des jeunes peintres et écrivains qui se réunissaient autour de lui au Café Guerbois — dont Renoir, Monet, Bazille et le romancier Émile Zola — présentant Manet comme le chef reconnu d'une nouvelle génération.",
+      "zh-Hans": "方丹-拉图尔描绘了埃杜瓦·马奈在画架前作画的情景，身边环绕着常在格尔布瓦咖啡馆聚集在他周围的年轻画家和作家们——包括雷诺阿、莫奈、巴齐耶，以及小说家埃米尔·左拉——将马奈塑造成了新一代艺术家公认的领袖人物。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Count how many now-famous names are crowded into this one room — this single painting captures an entire artistic movement before anyone outside their circle had heard of it.",
+      "fr": "Comptez combien de noms aujourd'hui célèbres sont réunis dans cette seule pièce — ce tableau unique capture tout un mouvement artistique avant que quiconque en dehors de leur cercle n'en ait entendu parler.",
+      "zh-Hans": "数数看，这一间屋子里挤了多少个如今赫赫有名的名字——在圈外人还从未听说过这场艺术运动之前，这幅画就已经把整个运动定格了下来。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Frédéric Bazille, shown here tall and clean-shaven near the back, was killed in battle just months after this was exhibited — making this one of the last images ever made of him.",
+      "fr": "Frédéric Bazille, représenté ici, grand et imberbe, à l'arrière du groupe, fut tué au combat quelques mois seulement après l'exposition de ce tableau — faisant de cette image l'une des dernières jamais réalisées de lui.",
+      "zh-Hans": "画中站在后方、身材高大、面容清秀的弗雷德里克·巴齐耶，在这幅画展出后仅仅几个月，便在战场上牺牲了——这也让这幅画，成为了留存至今、为数不多描绘他的画像之一。"
+    },
+    "whySimple": {
+      "en": "Fantin-Latour painted Édouard Manet at his easel, surrounded by young painters and writers who gathered around him — including Renoir, Monet, Bazille, and the writer Émile Zola.",
+      "fr": "Fantin-Latour a peint Édouard Manet devant son chevalet, entouré des jeunes peintres et écrivains qui se réunissaient autour de lui — dont Renoir, Monet, Bazille et l'écrivain Émile Zola.",
+      "zh-Hans": "方丹-拉图尔画了埃杜瓦·马奈在画架前作画的样子，身边围绕着常聚在他身旁的年轻画家和作家们——包括雷诺阿、莫奈、巴齐耶，还有作家埃米尔·左拉。"
+    },
+    "whereSimple": {
+      "en": "Count how many now-famous names are crowded into this one room — this painting captures a whole art movement before anyone outside their group had heard of it.",
+      "fr": "Comptez combien de noms aujourd'hui célèbres sont réunis dans cette seule pièce — ce tableau capture tout un mouvement artistique avant que quiconque en dehors de leur groupe n'en ait entendu parler.",
+      "zh-Hans": "数数看，这一间屋子里挤了多少个如今赫赫有名的名字——在圈外人还从未听说过这场艺术运动之前，这幅画就已经把整个运动定格了下来。"
+    },
+    "raritySimple": {
+      "en": "Frédéric Bazille, shown tall near the back of the group, was killed in battle just months after this painting was shown to the public.",
+      "fr": "Frédéric Bazille, représenté grand à l'arrière du groupe, fut tué au combat quelques mois seulement après que ce tableau eut été montré au public.",
+      "zh-Hans": "画中站在群像后方、身材高大的弗雷德里克·巴齐耶，在这幅画向公众展出后仅仅几个月，便在战场上牺牲了。"
+    },
+    "whyKids": {
+      "en": "Fantin-Latour painted a whole room full of artist friends gathered around one painter, Manet — and lots of them became super famous later on!",
+      "fr": "Fantin-Latour a peint toute une pièce remplie d'amis artistes réunis autour d'un peintre, Manet — et beaucoup d'entre eux sont devenus super célèbres plus tard !",
+      "zh-Hans": "方丹-拉图尔画了满满一屋子的画家朋友，都聚集在一位画家马奈的身边——他们中有很多人后来都变得超级有名呢！"
+    },
+    "whereKids": {
+      "en": "Try counting all the people in this painting — can you believe this many now-famous artists were once all friends hanging out in one room?",
+      "fr": "Essaie de compter toutes les personnes de ce tableau — arrives-tu à croire que tous ces artistes aujourd'hui célèbres étaient autrefois de simples amis réunis dans une même pièce ?",
+      "zh-Hans": "试着数数这幅画里的人——你能相信这么多如今赫赫有名的艺术家，曾经只是聚在同一间屋子里闲聊的朋友吗？"
+    },
+    "rarityKids": {
+      "en": "One of the young men in this painting, Bazille, sadly died in a battle just months after this painting was shown — so this is one of the last pictures ever made of him.",
+      "fr": "L'un des jeunes hommes de ce tableau, Bazille, est malheureusement mort au combat quelques mois seulement après que ce tableau ait été montré — c'est donc l'une des dernières images jamais faites de lui.",
+      "zh-Hans": "这幅画里的一位年轻人巴齐耶，很不幸地在这幅画展出后仅仅几个月，就在战场上牺牲了——所以这是留存至今、为数不多描绘他的画像之一。"
     }
   },
   {
@@ -4950,7 +5098,7 @@
     "accent": "#68B48D",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Homage to Delacroix",
       "fr": "Hommage à Delacroix",
@@ -4962,23 +5110,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: Nature morte aux reines-marguerites, a flower still life, is Fantin-Latour's highest confirmed sale, at EUR1.918M, 2022. EDITORIAL JUDGMENT: a genuine genre mismatch, but this is one of Fantin-Latour's most historically significant group portraits, gathering Manet, Baudelaire, and Whistler around a tribute to Delacroix -- positioned well above the still-life floor, in the same tier as Un coin de table elsewhere in this batch given comparable historical stature.",
+      "comparableSales": [
+        "Nature morte aux reines-marguerites, Henri Fantin-Latour — €1.918M, 2022 — Fantin-Latour's highest confirmed sale, but a flower still life; a genuine genre mismatch against this major group portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Fantin-Latour gathers ten painters and writers — including Manet, Baudelaire, and Whistler — standing solemnly around a portrait of the recently deceased painter Eugène Delacroix, honoring an artist they all admired rather than mourning him with sadness.",
+      "fr": "Fantin-Latour réunit dix peintres et écrivains — dont Manet, Baudelaire et Whistler — debout solennellement autour d'un portrait du peintre récemment décédé Eugène Delacroix, honorant un artiste qu'ils admiraient tous plutôt que de le pleurer avec tristesse.",
+      "zh-Hans": "方丹-拉图尔把十位画家和作家聚集在一起——包括马奈、波德莱尔和惠斯勒——他们庄重地站在刚刚去世的画家欧仁·德拉克罗瓦的画像周围，以此向这位大家共同敬仰的艺术家致敬，而非以哀伤的姿态悼念他。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how still and formal everyone looks, almost like a photograph — critics at the time actually complained this group portrait felt too stiff and dark.",
+      "fr": "Remarquez comme tout le monde paraît immobile et formel, presque comme une photographie — les critiques de l'époque se plaignaient en réalité que ce portrait de groupe paraissait trop rigide et sombre.",
+      "zh-Hans": "留意画中每个人都显得多么静止、多么正式，几乎像一张照片——当时的评论家其实还抱怨过，这幅群像画显得过于僵硬、色调过于阴沉。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Fantin-Latour includes himself in the painting, palette in hand, standing right beside the portrait of Delacroix he's paying tribute to.",
+      "fr": "Fantin-Latour s'inclut lui-même dans le tableau, palette à la main, se tenant juste à côté du portrait de Delacroix auquel il rend hommage.",
+      "zh-Hans": "方丹-拉图尔还把自己也画进了这幅画里，手持调色盘，就站在他所致敬的德拉克罗瓦画像旁边。"
+    },
+    "whySimple": {
+      "en": "Fantin-Latour painted ten painters and writers — including Manet, the poet Baudelaire, and the painter Whistler — standing around a portrait of the recently died painter Eugène Delacroix, whom they all admired.",
+      "fr": "Fantin-Latour a peint dix peintres et écrivains — dont Manet, le poète Baudelaire et le peintre Whistler — debout autour d'un portrait du peintre récemment décédé Eugène Delacroix, qu'ils admiraient tous.",
+      "zh-Hans": "方丹-拉图尔画了十位画家和作家——包括马奈、诗人波德莱尔和画家惠斯勒——站在刚刚去世的画家欧仁·德拉克罗瓦的画像周围，他们都十分敬仰这位画家。"
+    },
+    "whereSimple": {
+      "en": "Notice how still and formal everyone looks, almost like a photograph.",
+      "fr": "Remarquez comme tout le monde paraît immobile et formel, presque comme une photographie.",
+      "zh-Hans": "留意画中每个人都显得多么静止、多么正式，几乎像一张照片。"
+    },
+    "raritySimple": {
+      "en": "Fantin-Latour painted himself into this picture too, holding his paintbrushes, standing right next to the portrait of Delacroix.",
+      "fr": "Fantin-Latour s'est également peint lui-même dans ce tableau, tenant ses pinceaux, debout juste à côté du portrait de Delacroix.",
+      "zh-Hans": "方丹-拉图尔也把自己画进了这幅画里，手持画笔，就站在德拉克罗瓦的画像旁边。"
+    },
+    "whyKids": {
+      "en": "Fantin-Latour painted a group of artist friends standing around a picture of another painter they all admired, named Delacroix, who had just died.",
+      "fr": "Fantin-Latour a peint un groupe d'amis artistes debout autour du portrait d'un autre peintre qu'ils admiraient tous, nommé Delacroix, qui venait de mourir.",
+      "zh-Hans": "方丹-拉图尔画了一群艺术家朋友，站在另一位他们都十分敬仰的画家德拉克罗瓦的画像周围，这位画家刚刚去世。"
+    },
+    "whereKids": {
+      "en": "Notice how still and serious everyone looks, almost like they're posing for a photograph!",
+      "fr": "Remarque comme tout le monde a l'air immobile et sérieux, presque comme s'ils posaient pour une photographie !",
+      "zh-Hans": "看画里每个人都显得多么静止、多么严肃，几乎像是在为拍照摆姿势一样！"
+    },
+    "rarityKids": {
+      "en": "Fantin-Latour actually painted himself into this picture too — look for the artist holding paintbrushes standing right next to Delacroix's portrait.",
+      "fr": "Fantin-Latour s'est en fait peint lui-même dans ce tableau aussi — cherche l'artiste tenant des pinceaux, debout juste à côté du portrait de Delacroix.",
+      "zh-Hans": "方丹-拉图尔其实也把自己画进了这幅画里——找找看那个手持画笔、站在德拉克罗瓦画像旁边的艺术家吧。"
     }
   },
   {
@@ -5072,7 +5257,7 @@
     "accent": "#68B48D",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Around the Piano",
       "fr": "Autour du piano",
@@ -5084,23 +5269,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 6,
+      "high": 14,
+      "logic": "FACT: Nature morte aux reines-marguerites, a flower still life, is Fantin-Latour's highest confirmed sale, at EUR1.918M, 2022. EDITORIAL JUDGMENT: a genuine genre mismatch, but this is the last of Fantin-Latour's four major group portraits -- positioned above the still-life floor, though below the other three group portraits in this batch, since it documents a more specialist musical circle (Chabrier, d'Indy) rather than the historically pivotal Impressionist/literary circles of the other three works.",
+      "comparableSales": [
+        "Nature morte aux reines-marguerites, Henri Fantin-Latour — €1.918M, 2022 — Fantin-Latour's highest confirmed sale, but a flower still life; a genuine genre mismatch against this group portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Fantin-Latour paints a circle of musicians and music-lovers gathered around the composer Emmanuel Chabrier at the piano — a later, calmer companion to his earlier group portraits of painters, this time honoring the Paris music scene he loved just as much as painting.",
+      "fr": "Fantin-Latour peint un cercle de musiciens et de mélomanes réunis autour du compositeur Emmanuel Chabrier au piano — un pendant plus tardif et plus calme à ses précédents portraits de groupe de peintres, honorant cette fois la scène musicale parisienne qu'il aimait autant que la peinture.",
+      "zh-Hans": "方丹-拉图尔描绘了一群音乐家和音乐爱好者，聚集在钢琴前的作曲家埃马纽埃尔·夏布里埃身边——这是他早年那些描绘画家群体的作品之后，一幅更晚期、氛围更为平和的姊妹作，这一次，他致敬的是他与绘画同样热爱的巴黎音乐界。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how Fantin-Latour arranges everyone's attention toward the piano, using the group's postures and glances to lead your eye exactly where his own focus was.",
+      "fr": "Remarquez comment Fantin-Latour dirige l'attention de tout le monde vers le piano, utilisant les postures et les regards du groupe pour guider votre œil exactement là où se portait sa propre attention.",
+      "zh-Hans": "留意方丹-拉图尔是如何把每个人的注意力都引向钢琴的——他借助人物的姿态和目光，把你的视线引导到他自己所关注的焦点上。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This was the last in a series of large group portraits Fantin-Latour made celebrating different circles of friends — after this one, he mostly returned to painting flowers.",
+      "fr": "Ce fut le dernier d'une série de grands portraits de groupe que Fantin-Latour réalisa pour célébrer différents cercles d'amis — après celui-ci, il retourna surtout à la peinture de fleurs.",
+      "zh-Hans": "这是方丹-拉图尔一系列致敬不同友人圈子的大型群像画中的最后一幅——在此之后，他大多回归了花卉绘画。"
+    },
+    "whySimple": {
+      "en": "Fantin-Latour painted a group of musicians and music-lovers gathered around the composer Emmanuel Chabrier at the piano. He loved music almost as much as he loved painting.",
+      "fr": "Fantin-Latour a peint un groupe de musiciens et de mélomanes réunis autour du compositeur Emmanuel Chabrier au piano. Il aimait la musique presque autant qu'il aimait la peinture.",
+      "zh-Hans": "方丹-拉图尔画了一群音乐家和音乐爱好者，聚集在钢琴前的作曲家埃马纽埃尔·夏布里埃身边。他对音乐的热爱，几乎不亚于对绘画的热爱。"
+    },
+    "whereSimple": {
+      "en": "Notice how everyone in the painting is looking toward the piano — Fantin-Latour arranges the whole group to lead your eye there too.",
+      "fr": "Remarquez comme tout le monde dans le tableau regarde vers le piano — Fantin-Latour organise tout le groupe pour guider votre œil là aussi.",
+      "zh-Hans": "留意画中每个人都看向钢琴的方向——方丹-拉图尔安排整个群体的姿态，也是为了把你的视线引向那里。"
+    },
+    "raritySimple": {
+      "en": "This was the last of several large group portraits Fantin-Latour made of his friends. After this, he mostly painted flowers instead.",
+      "fr": "Ce fut le dernier de plusieurs grands portraits de groupe que Fantin-Latour réalisa de ses amis. Après celui-ci, il peignit surtout des fleurs.",
+      "zh-Hans": "这是方丹-拉图尔为朋友们所作的多幅大型群像画中的最后一幅。在此之后，他大多改画花卉了。"
+    },
+    "whyKids": {
+      "en": "Fantin-Latour painted a group of his musician friends gathered around a piano, listening to one of them play!",
+      "fr": "Fantin-Latour a peint un groupe de ses amis musiciens réunis autour d'un piano, écoutant l'un d'eux jouer !",
+      "zh-Hans": "方丹-拉图尔画了一群音乐家朋友，围在一架钢琴旁，听其中一位演奏！"
+    },
+    "whereKids": {
+      "en": "Notice how everyone in the picture is looking toward the piano — Fantin-Latour wants your eyes to go there too.",
+      "fr": "Remarque comme tout le monde dans le tableau regarde vers le piano — Fantin-Latour veut que tes yeux se posent là aussi.",
+      "zh-Hans": "看画里每个人都望向钢琴的方向——方丹-拉图尔也想让你的目光落在那里。"
+    },
+    "rarityKids": {
+      "en": "This was the last big \"friends group\" picture Fantin-Latour ever painted — after this, he mostly painted pretty flowers instead!",
+      "fr": "C'est le dernier grand tableau « groupe d'amis » que Fantin-Latour ait jamais peint — après celui-ci, il a surtout peint de jolies fleurs à la place !",
+      "zh-Hans": "这是方丹-拉图尔画的最后一幅大型「朋友聚会」画——在这之后，他大多改画漂亮的花朵啦！"
     }
   },
   {
@@ -5391,7 +5613,7 @@
     "accent": "#418A48",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "L'Ambulance improvisée",
       "fr": "L'Ambulance improvisée",
@@ -5403,23 +5625,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 5,
+      "high": 10,
+      "logic": "FACT: Pot de fleurs, a flower still life, holds Bazille's auction record ($3.66M/~EUR3.37M, Christie's 2022). EDITORIAL JUDGMENT: a genuine genre mismatch, but this is a genuine figure/genre scene with real biographical significance (a rare glimpse of Bazille's medical training and his friendship with Monet) -- positioned modestly above the still-life floor, below the two more ambitious Bazille group portraits elsewhere in this batch given its smaller physical scale and more intimate, private subject.",
+      "comparableSales": [
+        "Pot de fleurs, Frédéric Bazille — $3.66M (~€3.37M), Christie's, 2022 — Bazille's auction record, but a flower still life, a genuine genre mismatch against this small figure/genre scene."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bazille, who had studied medicine before turning to painting, built a makeshift pulley system out of rope and a weighted bucket to keep his friend Claude Monet's injured leg raised in bed — and then painted the whole improvised setup, medical training and artistic eye working together.",
+      "fr": "Bazille, qui avait étudié la médecine avant de se tourner vers la peinture, construisit un système de poulie improvisé, fait d'une corde et d'un seau lesté, pour maintenir surélevée la jambe blessée de son ami Claude Monet, alité — puis peignit l'ensemble de cette installation de fortune, formation médicale et regard artistique travaillant de concert.",
+      "zh-Hans": "巴齐耶在成为画家之前曾学过医，为了让卧床的好友克劳德·莫奈那条受伤的腿保持抬高，他用绳子和一个配重水桶搭建了一套简易的滑轮装置——随后，他把这整套临时搭建的装置画了下来，医学训练与艺术之眼在这幅画中相互交融。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the homemade contraption suspended over the bed — Bazille used his half-finished medical training to rig up real, practical care for his friend, not just paint a sickroom scene from imagination.",
+      "fr": "Remarquez le dispositif artisanal suspendu au-dessus du lit — Bazille utilisa sa formation médicale inachevée pour mettre en place des soins réels et pratiques pour son ami, et non pour peindre une scène de chambre de malade purement imaginaire.",
+      "zh-Hans": "留意那悬挂在床上方的自制装置——巴齐耶运用他尚未完成的医学训练，为朋友设计出了一套真实、实用的护理方案，而不只是凭空想象画出一幅病房场景。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Monet had injured his leg while on a painting trip in the forest near Chailly; Bazille, one of the only people he knew nearby, dropped everything to take care of him — a small act of friendship now preserved in paint.",
+      "fr": "Monet s'était blessé à la jambe lors d'un voyage de peinture dans la forêt près de Chailly ; Bazille, l'une des seules personnes qu'il connaissait dans les environs, laissa tout tomber pour s'occuper de lui — un petit acte d'amitié désormais conservé en peinture.",
+      "zh-Hans": "莫奈是在沙伊附近森林里外出写生时伤了腿；而巴齐耶，作为他在附近为数不多认识的朋友之一，放下一切前来照顾他——这一份微小的友情，如今通过画笔被永远保存了下来。"
+    },
+    "whySimple": {
+      "en": "Bazille had studied medicine before becoming a painter, so when his friend Claude Monet hurt his leg, Bazille built a homemade device with ropes to keep Monet's leg raised comfortably in bed. He then painted the whole scene.",
+      "fr": "Bazille avait étudié la médecine avant de devenir peintre, alors quand son ami Claude Monet s'est blessé à la jambe, Bazille a construit un dispositif artisanal avec des cordes pour maintenir la jambe de Monet surélevée confortablement dans son lit. Il a ensuite peint toute la scène.",
+      "zh-Hans": "巴齐耶在成为画家之前学过医，所以当他的朋友克劳德·莫奈伤了腿之后，巴齐耶用绳子搭建了一套自制装置，让莫奈的腿能舒适地抬高、卧床休息。之后他把整个场景画了下来。"
+    },
+    "whereSimple": {
+      "en": "Notice the homemade contraption hanging over the bed — Bazille used what he'd learned studying medicine to actually help his friend, not just paint a made-up scene.",
+      "fr": "Remarquez le dispositif artisanal suspendu au-dessus du lit — Bazille a utilisé ce qu'il avait appris en étudiant la médecine pour vraiment aider son ami, et non pour peindre une scène inventée.",
+      "zh-Hans": "留意那悬挂在床上方的自制装置——巴齐耶运用他学医时所学到的知识，真正地帮助了朋友，而不只是画一幅凭空想象的场景。"
+    },
+    "raritySimple": {
+      "en": "Monet hurt his leg on a painting trip in the forest, and Bazille — one of the only friends nearby — dropped everything to take care of him.",
+      "fr": "Monet s'est blessé à la jambe lors d'un voyage de peinture en forêt, et Bazille — l'un des seuls amis à proximité — a tout laissé tomber pour s'occuper de lui.",
+      "zh-Hans": "莫奈是在森林写生时伤了腿，而巴齐耶——作为附近为数不多的朋友之一——放下一切，前来照顾他。"
+    },
+    "whyKids": {
+      "en": "Bazille used to study to become a doctor before he became a painter — so when his friend Monet hurt his leg, Bazille built a clever homemade contraption with ropes to help him rest comfortably!",
+      "fr": "Bazille étudiait pour devenir médecin avant de devenir peintre — alors quand son ami Monet s'est blessé à la jambe, Bazille a construit un ingénieux dispositif fait maison avec des cordes pour l'aider à se reposer confortablement !",
+      "zh-Hans": "巴齐耶在成为画家之前，曾经学习过怎么当医生——所以当他的朋友莫奈伤了腿之后，巴齐耶就用绳子搭了一个聪明的自制小装置，帮助他舒舒服服地休息！"
+    },
+    "whereKids": {
+      "en": "Look at that funny rope-and-bucket gadget hanging over the bed — Bazille invented it himself to help his friend feel better!",
+      "fr": "Regarde ce drôle de dispositif avec une corde et un seau suspendu au-dessus du lit — Bazille l'a inventé lui-même pour aider son ami à aller mieux !",
+      "zh-Hans": "看看床上方那个用绳子和水桶做成的有趣小装置——那是巴齐耶自己发明出来，帮助朋友养伤的呢！"
+    },
+    "rarityKids": {
+      "en": "When Monet got hurt, Bazille was one of the only friends nearby, so he dropped everything to help take care of him — what a good friend!",
+      "fr": "Quand Monet s'est blessé, Bazille était l'un des seuls amis à proximité, alors il a tout laissé tomber pour l'aider et prendre soin de lui — quel bon ami !",
+      "zh-Hans": "莫奈受伤的时候，巴齐耶正好是附近为数不多的朋友之一，于是他放下一切去照顾莫奈——真是个好朋友！"
     }
   },
   {
@@ -6110,7 +6369,7 @@
     "accent": "#68B48D",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Un coin de table",
       "fr": "Un coin de table",
@@ -6122,23 +6381,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: Nature morte aux reines-marguerites, a flower still life, is Fantin-Latour's highest confirmed sale, at EUR1.918M, 2022. EDITORIAL JUDGMENT: a genuine genre mismatch, but this painting's fame rests heavily on the literary reputation of its sitters -- most notably a teenage Arthur Rimbaud, painted from life shortly before he became one of France's most influential poets -- positioned in the same tier as Homage to Delacroix given comparable historical and cultural significance. Note: the later, well-known 1873 incident in which Verlaine shot Rimbaud is deliberately not referenced here, since it postdates this 1872 painting and is not depicted or implied by it.",
+      "comparableSales": [
+        "Nature morte aux reines-marguerites, Henri Fantin-Latour — €1.918M, 2022 — Fantin-Latour's highest confirmed sale, but a flower still life; a genuine genre mismatch against this group portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Fantin-Latour paints eight young poets gathered around a table, including a 17-year-old Arthur Rimbaud on the far left and his mentor Paul Verlaine beside him — a snapshot of a literary group just as Rimbaud, soon to become one of France's most influential poets, was arriving on the Paris scene.",
+      "fr": "Fantin-Latour peint huit jeunes poètes réunis autour d'une table, dont un Arthur Rimbaud âgé de 17 ans à l'extrême gauche et son mentor Paul Verlaine à ses côtés — un instantané d'un groupe littéraire au moment même où Rimbaud, bientôt l'un des poètes les plus influents de France, faisait son entrée dans le milieu parisien.",
+      "zh-Hans": "方丹-拉图尔描绘了八位年轻诗人围坐在一张桌子旁的情景，画面最左侧是年仅17岁的阿蒂尔·兰波，他的导师保罗·魏尔伦坐在他身旁——这幅画定格了这个文学团体的一个瞬间，恰逢兰波——日后法国最具影响力的诗人之一——初登巴黎文坛之时。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look for the bouquet of flowers on the right side of the table — Fantin-Latour placed it there to fill the space of a poet who refused to sit for the portrait after an argument with Rimbaud.",
+      "fr": "Cherchez le bouquet de fleurs sur le côté droit de la table — Fantin-Latour l'a placé là pour combler la place d'un poète qui refusa de poser pour le portrait après une dispute avec Rimbaud.",
+      "zh-Hans": "找找看桌子右侧的那束花——方丹-拉图尔把它放在那里，是为了填补一位诗人的空位，那位诗人在与兰波发生争执后，拒绝为这幅肖像画摆姿势。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This painting is one of the only images that shows the teenage Rimbaud from life — a face that would become legendary in French poetry, captured almost by chance in a group portrait.",
+      "fr": "Ce tableau est l'une des seules images montrant Rimbaud adolescent, peint d'après nature — un visage qui deviendrait légendaire dans la poésie française, saisi presque par hasard dans un portrait de groupe.",
+      "zh-Hans": "这幅画是极少数根据真人写生、描绘少年兰波的画像之一——这张后来在法国诗歌史上成为传奇的面孔，几乎是偶然地，被定格在了一幅群像画之中。"
+    },
+    "whySimple": {
+      "en": "Fantin-Latour painted eight young poets gathered around a table, including a 17-year-old named Arthur Rimbaud, who would soon become one of France's most famous poets.",
+      "fr": "Fantin-Latour a peint huit jeunes poètes réunis autour d'une table, dont un jeune homme de 17 ans nommé Arthur Rimbaud, qui allait bientôt devenir l'un des poètes les plus célèbres de France.",
+      "zh-Hans": "方丹-拉图尔画了八位年轻诗人围坐在一张桌子旁，其中包括一位17岁的少年，名叫阿蒂尔·兰波，他不久后将成为法国最著名的诗人之一。"
+    },
+    "whereSimple": {
+      "en": "Look for the bouquet of flowers on the right side of the table — it's there because one poet refused to sit for the painting after an argument.",
+      "fr": "Cherche le bouquet de fleurs sur le côté droit de la table — il est là parce qu'un poète a refusé de poser pour le tableau après une dispute.",
+      "zh-Hans": "找找看桌子右侧的那束花——它出现在那里，是因为有一位诗人在一次争执后，拒绝为这幅画摆姿势。"
+    },
+    "raritySimple": {
+      "en": "This is one of the only paintings that shows the teenage Rimbaud, who later became a legendary figure in French poetry.",
+      "fr": "C'est l'un des seuls tableaux qui montrent Rimbaud adolescent, devenu plus tard une figure légendaire de la poésie française.",
+      "zh-Hans": "这是极少数描绘少年时期兰波的画作之一，兰波后来成为了法国诗歌史上的一位传奇人物。"
+    },
+    "whyKids": {
+      "en": "Fantin-Latour painted a group of young poets sitting around a table together — one of them, a teenager named Arthur, later grew up to become one of France's most famous poets!",
+      "fr": "Fantin-Latour a peint un groupe de jeunes poètes assis ensemble autour d'une table — l'un d'eux, un adolescent nommé Arthur, est devenu en grandissant l'un des poètes les plus célèbres de France !",
+      "zh-Hans": "方丹-拉图尔画了一群年轻诗人围坐在一张桌子旁——其中一位是个叫阿蒂尔的少年，他长大后成为了法国最著名的诗人之一！"
+    },
+    "whereKids": {
+      "en": "Can you spot the bouquet of flowers on the table? It's standing in for a poet who got in an argument and didn't want to be painted with the others!",
+      "fr": "Arrives-tu à repérer le bouquet de fleurs sur la table ? Il remplace un poète qui s'est disputé et ne voulait pas être peint avec les autres !",
+      "zh-Hans": "你能找到桌上那束花吗？它代替的是一位闹了别扭、不想和大家一起被画进画里的诗人哦！"
+    },
+    "rarityKids": {
+      "en": "This is one of the only pictures ever made of that famous poet when he was still just a teenager.",
+      "fr": "C'est l'une des seules images jamais faites de ce célèbre poète alors qu'il n'était encore qu'un adolescent.",
+      "zh-Hans": "这是那位后来成名的诗人还是个少年时，留存至今为数不多的画像之一。"
     }
   },
   {
