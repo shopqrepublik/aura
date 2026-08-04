@@ -3466,7 +3466,7 @@
     "accent": "#58594F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "La Maison du pendu, Auvers-sur-Oise",
       "fr": "La Maison du pendu",
@@ -3478,23 +3478,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 25,
+      "high": 50,
+      "logic": "FACT: La Montagne Sainte-Victoire (1888-90), sold for $137.8M (~EUR126.8M) at Christie's New York, November 2022 -- Cezanne's auction record, same broad genre (Provencal/rural landscape). EDITORIAL JUDGMENT: this is a much earlier (1873), transitional work from Cezanne's Impressionist-adjacent period, not part of his mature Mont Sainte-Victoire series -- positioned well below the record to reflect that real period and stylistic gap, while still reflecting its historical importance as the first painting Cezanne ever sold.",
+      "comparableSales": [
+        "La Montagne Sainte-Victoire, Paul Cézanne — $137.8M (~€126.8M), Christie's New York, November 2022 (Paul Allen collection) — Cezanne's auction record, same broad landscape genre, but from a much later, more mature period."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Despite its unsettling name, this quiet village house near Auvers-sur-Oise was simply Cézanne's subject for an early, exacting study in structure and light — the odd nickname was already attached to the house before he ever painted it, and has nothing to do with the picture itself.",
+      "fr": "Malgré son nom troublant, cette maison de village paisible près d'Auvers-sur-Oise n'était pour Cézanne qu'un sujet pour une étude précoce et rigoureuse de structure et de lumière — le surnom insolite était déjà attaché à la maison avant même qu'il ne la peigne, et n'a rien à voir avec le tableau lui-même.",
+      "zh-Hans": "尽管这个名字听起来令人不安，但塞尚笔下这座位于奥维尔小镇附近的宁静村舍，其实只是他早期一次关于结构与光线的严谨研究对象——这个古怪的绰号，早在塞尚动笔之前就已经附着在这座房子身上了，与画作本身其实并无关联。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the empty, still composition — no people appear anywhere — and the deliberately imperfect perspective, an early sign of Cézanne pulling away from realistic depth toward the more structural way of painting he'd spend his life developing.",
+      "fr": "Remarquez la composition vide et immobile — aucun personnage n'apparaît nulle part — et la perspective délibérément imparfaite, un signe précoce de l'éloignement de Cézanne vis-à-vis de la profondeur réaliste, vers la façon plus structurée de peindre qu'il développerait toute sa vie.",
+      "zh-Hans": "留意这空旷、静谧的画面构图——画中没有出现任何人物——以及那刻意呈现出的不完美透视，这正是塞尚逐渐脱离写实空间深度、转向他日后穷尽一生所探索的那种更具结构感的绘画方式的早期征兆。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This was the very first painting Cézanne ever sold to a collector, and Claude Monet personally wrote a letter urging a buyer to purchase it — a rare vote of confidence early in Cézanne's career.",
+      "fr": "Ce fut le tout premier tableau que Cézanne vendit jamais à un collectionneur, et Claude Monet écrivit personnellement une lettre pressant un acheteur de l'acquérir — un rare témoignage de confiance au tout début de la carrière de Cézanne.",
+      "zh-Hans": "这是塞尚卖给收藏家的第一幅画，克劳德·莫奈还曾亲自写信，力劝一位买家将其买下——这在塞尚职业生涯的早期，是一份难得的信任与支持。"
+    },
+    "whySimple": {
+      "en": "Despite its strange name, this is just a quiet painting of an ordinary village house near Auvers-sur-Oise. The house already had this odd nickname before Cézanne ever painted it — it has nothing to do with the picture itself.",
+      "fr": "Malgré son nom étrange, ce n'est qu'un tableau paisible d'une maison de village ordinaire près d'Auvers-sur-Oise. La maison avait déjà ce surnom insolite avant même que Cézanne ne la peigne — cela n'a rien à voir avec le tableau lui-même.",
+      "zh-Hans": "尽管名字听起来很奇怪，这其实只是一幅描绘奥维尔附近一座普通村舍的宁静画作。这座房子在塞尚画它之前，就已经有了这个古怪的绰号——和画作本身其实没有关系。"
+    },
+    "whereSimple": {
+      "en": "Notice that there are no people in this painting at all, and the perspective looks slightly off on purpose — an early sign of Cézanne's unusual, structural way of painting.",
+      "fr": "Remarquez qu'il n'y a absolument aucun personnage dans ce tableau, et que la perspective paraît volontairement légèrement décalée — un signe précoce de la manière inhabituelle et structurée de peindre de Cézanne.",
+      "zh-Hans": "留意这幅画里根本没有任何人物，而且透视看起来是故意有点「不对劲」的——这正是塞尚那种独特、注重结构的绘画方式的早期征兆。"
+    },
+    "raritySimple": {
+      "en": "This was the very first painting Cézanne ever sold. Claude Monet even wrote a letter encouraging someone to buy it.",
+      "fr": "Ce fut le tout premier tableau que Cézanne ait jamais vendu. Claude Monet écrivit même une lettre pour encourager quelqu'un à l'acheter.",
+      "zh-Hans": "这是塞尚卖出的第一幅画。克劳德·莫奈甚至还写信，鼓励别人买下它。"
+    },
+    "whyKids": {
+      "en": "Cézanne painted this quiet village house near Auvers-sur-Oise — even though it has an odd, mysterious old nickname, the painting itself is just peaceful houses, trees, and sky.",
+      "fr": "Cézanne a peint cette maison de village paisible près d'Auvers-sur-Oise — même si elle a un surnom étrange et mystérieux depuis longtemps, le tableau lui-même ne montre que des maisons, des arbres et un ciel paisibles.",
+      "zh-Hans": "塞尚画了这座位于奥维尔附近的宁静村舍——虽然它有一个古怪、神秘的老绰号，但这幅画本身，画的其实只是安静的房子、树木和天空。"
+    },
+    "whereKids": {
+      "en": "Can you spot any people in this painting? There aren't any at all — just houses, trees, and sky, painted with slightly wobbly, on-purpose lines.",
+      "fr": "Arrives-tu à repérer des personnes dans ce tableau ? Il n'y en a aucune — juste des maisons, des arbres et un ciel, peints avec des lignes légèrement bancales, faites exprès.",
+      "zh-Hans": "你能在这幅画里找到人吗？一个都没有哦——只有房子、树木和天空，还用了故意画得有点歪歪扭扭的线条。"
+    },
+    "rarityKids": {
+      "en": "This was the very first painting Cézanne ever managed to sell! Another famous painter, Claude Monet, even helped convince someone to buy it.",
+      "fr": "Ce fut le tout premier tableau que Cézanne ait jamais réussi à vendre ! Un autre peintre célèbre, Claude Monet, a même aidé à convaincre quelqu'un de l'acheter.",
+      "zh-Hans": "这是塞尚第一次成功卖出的画作！另一位著名画家克劳德·莫奈，还帮忙说服了别人把它买下来呢！"
     }
   },
   {
@@ -4552,7 +4589,7 @@
     "accent": "#58594F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Still Life with Onions",
       "fr": "Nature morte aux oignons",
@@ -4564,23 +4601,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 30,
+      "high": 50,
+      "logic": "FACT: two real still-life sales from a similar mature period: Rideau, Cruchon et Compotier sold for $60.5M (~EUR55.7M) at Sotheby's, 1999 (Cezanne's still-life record), and Nature morte aux fruits et pot de gingembre (c. 1895 -- the same years as this work) sold for $36.97M (~EUR34M) at Sotheby's. EDITORIAL JUDGMENT: Still Life with Onions is a well-regarded, frequently reproduced late still life, positioned between these two real same-genre, close-period comparables.",
+      "comparableSales": [
+        "Rideau, Cruchon et Compotier, Paul Cézanne — $60.5M (~€55.7M), Sotheby's, 1999 — Cezanne's still-life auction record.",
+        "Nature morte aux fruits et pot de gingembre, Paul Cézanne — $36.97M (~€34M), Sotheby's — painted c. 1895, the same years as this work."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Cézanne arranges onions, a knife, a bottle, and a glass on a table only half-covered by a white cloth, using still life the way he used every subject late in life — as a problem of pure form, weight, and color rather than a display of everyday objects.",
+      "fr": "Cézanne dispose des oignons, un couteau, une bouteille et un verre sur une table à demi recouverte d'un linge blanc, utilisant la nature morte comme il utilisait tout sujet à la fin de sa vie — comme un problème de pure forme, de poids et de couleur plutôt que comme l'exposition d'objets du quotidien.",
+      "zh-Hans": "塞尚在一张只铺了一半白布的桌子上，摆放了洋葱、一把刀、一只瓶子和一只玻璃杯——晚年的塞尚，对待每一个题材都是如此：他将静物视为纯粹的形态、重量与色彩问题，而非单纯展示日常物件。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look closely and you'll notice the tabletop doesn't quite line up — Cézanne paints the same scene from several slightly different angles at once, decades before Cubist painters would push that idea much further.",
+      "fr": "Regardez attentivement et vous remarquerez que le plateau de la table ne s'aligne pas tout à fait — Cézanne peint la même scène sous plusieurs angles légèrement différents à la fois, des décennies avant que les peintres cubistes ne poussent cette idée beaucoup plus loin.",
+      "zh-Hans": "仔细看，你会发现桌面其实并不完全对齐——塞尚同时从好几个略微不同的角度描绘着同一个场景，比立体主义画家们把这一理念推向极致，还要早上好几十年。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Cézanne painted still lifes obsessively throughout his career because, unlike people, onions and bottles never got tired of sitting still — giving him unlimited time to study exactly how light falls on form.",
+      "fr": "Cézanne peignit des natures mortes de manière obsessionnelle tout au long de sa carrière car, contrairement aux personnes, les oignons et les bouteilles ne se lassaient jamais de rester immobiles — lui offrant un temps illimité pour étudier précisément comment la lumière tombe sur les formes.",
+      "zh-Hans": "塞尚一生都痴迷于描绘静物，因为和人不一样，洋葱和瓶子永远不会因久坐不动而感到疲倦——这给了他无限的时间，去精确研究光线是如何落在形体之上的。"
+    },
+    "whySimple": {
+      "en": "Cézanne arranged onions, a knife, a bottle, and a glass on a table for this still life. Late in life, he used ordinary objects like this to study shape, weight, and color rather than just show off nice things.",
+      "fr": "Cézanne a disposé des oignons, un couteau, une bouteille et un verre sur une table pour cette nature morte. À la fin de sa vie, il utilisait des objets ordinaires comme ceux-ci pour étudier la forme, le poids et la couleur, plutôt que de simplement montrer de jolies choses.",
+      "zh-Hans": "塞尚在桌上摆好了洋葱、一把刀、一只瓶子和一只玻璃杯，画下了这幅静物画。晚年的他，喜欢用这样的日常物品来研究形状、重量和色彩，而不只是单纯展示漂亮的东西。"
+    },
+    "whereSimple": {
+      "en": "Look closely at the table — it doesn't quite line up correctly. Cézanne painted the same scene from several slightly different angles at once.",
+      "fr": "Regardez attentivement la table — elle ne s'aligne pas tout à fait correctement. Cézanne a peint la même scène sous plusieurs angles légèrement différents à la fois.",
+      "zh-Hans": "仔细看这张桌子——它其实并没有完全对齐。塞尚是同时从好几个略微不同的角度，画出了同一个场景。"
+    },
+    "raritySimple": {
+      "en": "Cézanne loved painting still lifes because, unlike people, onions and bottles never get tired of sitting still for hours.",
+      "fr": "Cézanne adorait peindre des natures mortes car, contrairement aux personnes, les oignons et les bouteilles ne se fatiguent jamais de rester immobiles pendant des heures.",
+      "zh-Hans": "塞尚特别喜欢画静物，因为和人不一样，洋葱和瓶子永远不会因为一动不动坐上好几个小时而感到厌烦。"
+    },
+    "whyKids": {
+      "en": "Cézanne painted a bunch of onions, a bottle, a knife, and a glass on a table — just ordinary kitchen things, but he studied them like they were the most fascinating shapes in the world!",
+      "fr": "Cézanne a peint un tas d'oignons, une bouteille, un couteau et un verre sur une table — de simples objets de cuisine ordinaires, mais il les a étudiés comme s'ils étaient les formes les plus fascinantes du monde !",
+      "zh-Hans": "塞尚画了一堆洋葱、一只瓶子、一把刀和一只玻璃杯放在桌上——都是些普通的厨房用品，可他研究起它们来，就好像它们是世界上最迷人的形状一样！"
+    },
+    "whereKids": {
+      "en": "Look closely at the edge of the table — something's a little strange about it! Cézanne painted it from more than one angle at the same time.",
+      "fr": "Regarde attentivement le bord de la table — il y a quelque chose d'un peu étrange ! Cézanne l'a peint sous plus d'un angle à la fois.",
+      "zh-Hans": "仔细看看桌子的边缘——是不是感觉有点奇怪？塞尚是同时从不止一个角度画出来的哦！"
+    },
+    "rarityKids": {
+      "en": "Cézanne loved painting things like onions and bottles because they never got bored and never had to take a break — perfect models!",
+      "fr": "Cézanne adorait peindre des choses comme des oignons et des bouteilles parce qu'ils ne s'ennuyaient jamais et n'avaient jamais besoin de faire une pause — des modèles parfaits !",
+      "zh-Hans": "塞尚特别喜欢画洋葱、瓶子这样的东西，因为它们永远不会觉得无聊，也永远不需要休息——简直是完美的模特！"
     }
   },
   {
@@ -5718,7 +5793,7 @@
     "accent": "#58594F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Pont de Maincy",
       "fr": "Le Pont de Maincy",
@@ -5730,23 +5805,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 20,
+      "high": 40,
+      "logic": "FACT: La Montagne Sainte-Victoire (1888-90), sold for $137.8M (~EUR126.8M) at Christie's New York, November 2022 -- Cezanne's auction record, same broad landscape genre. EDITORIAL JUDGMENT: this is an earlier (1879-80), unusually light and Impressionist-influenced work, before Cezanne's mature Mont Sainte-Victoire style fully developed -- positioned below the record to reflect the real period/style gap, though above La Maison du pendu (1873) elsewhere in this batch, since Pont de Maincy is a slightly later, more art-historically significant transitional work.",
+      "comparableSales": [
+        "La Montagne Sainte-Victoire, Paul Cézanne — $137.8M (~€126.8M), Christie's New York, November 2022 — Cezanne's auction record, same broad landscape genre, later and more mature period."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Cézanne paints a small wooden footbridge over a quiet, wooded river near Melun, using long, crosshatched brushstrokes that let sunlight scatter and flicker across the water — an unusually luminous, almost Impressionist moment in an artist who was already moving toward something more solid and structured.",
+      "fr": "Cézanne peint une petite passerelle en bois au-dessus d'une rivière boisée et paisible près de Melun, utilisant de longues touches croisées qui laissent la lumière du soleil se disperser et scintiller sur l'eau — un moment inhabituellement lumineux, presque impressionniste, chez un artiste qui s'orientait déjà vers quelque chose de plus solide et structuré.",
+      "zh-Hans": "塞尚描绘了默伦附近一条林荫环绕、宁静河流上的一座小木桥，运用交错的长笔触，让阳光在水面上洒落、闪烁——对于一位已经开始转向更为坚实、更具结构感风格的画家而言，这是一幅异常明亮、近乎印象派风格的作品。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Watch how the reflections in the water break the bridge and trees into overlapping patches of color — Cézanne is as interested in the water's surface as in anything actually standing above it.",
+      "fr": "Observez comme les reflets dans l'eau brisent le pont et les arbres en taches de couleur qui se chevauchent — Cézanne s'intéresse autant à la surface de l'eau qu'à tout ce qui se dresse réellement au-dessus.",
+      "zh-Hans": "看水中的倒影是如何把桥梁和树木打散成一片片相互重叠的色块的——塞尚对水面本身的兴趣，丝毫不亚于对水面上方那些真实矗立之物的兴趣。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This painting is considered unusually light and airy for Cézanne, who by this point in his career was already pulling away from Impressionism's fleeting effects toward his own, more solid and geometric style.",
+      "fr": "Ce tableau est considéré comme inhabituellement léger et aérien pour Cézanne, qui, à ce stade de sa carrière, s'éloignait déjà des effets fugaces de l'impressionnisme vers son propre style, plus solide et géométrique.",
+      "zh-Hans": "对塞尚而言，这幅画被认为是异常轻盈、明快的作品——在他职业生涯的这个阶段，他其实已经在逐渐脱离印象派那种转瞬即逝的效果，转向了自己那种更坚实、更几何化的风格。"
+    },
+    "whySimple": {
+      "en": "Cézanne painted a small wooden footbridge over a quiet river near Melun, using long brushstrokes that let sunlight flicker across the water. It's an unusually bright, airy painting for Cézanne.",
+      "fr": "Cézanne a peint une petite passerelle en bois au-dessus d'une rivière paisible près de Melun, utilisant de longues touches qui laissent la lumière du soleil scintiller sur l'eau. C'est un tableau inhabituellement clair et aérien pour Cézanne.",
+      "zh-Hans": "塞尚画了默伦附近一条宁静河流上的小木桥，用长长的笔触让阳光在水面上闪烁跳动。对塞尚而言，这是一幅异常明亮、轻盈的画作。"
+    },
+    "whereSimple": {
+      "en": "Watch how the reflections in the water break the bridge and trees into little patches of color.",
+      "fr": "Observez comme les reflets dans l'eau brisent le pont et les arbres en petites taches de couleur.",
+      "zh-Hans": "看水中的倒影是如何把桥梁和树木打散成一片片小小的色块的。"
+    },
+    "raritySimple": {
+      "en": "This painting is unusually light and sunny for Cézanne, who was already moving away from this kind of Impressionist style toward his own, more solid way of painting.",
+      "fr": "Ce tableau est inhabituellement clair et ensoleillé pour Cézanne, qui s'éloignait déjà de ce style impressionniste vers sa propre manière de peindre, plus solide.",
+      "zh-Hans": "对塞尚而言，这幅画异常明亮、阳光灿烂——他当时其实已经在逐渐脱离这种印象派风格，转向了自己那种更坚实的绘画方式。"
+    },
+    "whyKids": {
+      "en": "Cézanne painted a little wooden bridge over a quiet river, with sunlight sparkling and dancing all across the water!",
+      "fr": "Cézanne a peint un petit pont en bois au-dessus d'une rivière paisible, avec la lumière du soleil qui scintille et danse sur toute la surface de l'eau !",
+      "zh-Hans": "塞尚画了一座横跨在宁静河流上的小木桥，阳光在水面上闪闪发光、跳来跳去！"
+    },
+    "whereKids": {
+      "en": "Look at all the little patches of color in the water — that's the bridge and the trees, all broken up into reflections.",
+      "fr": "Regarde toutes les petites taches de couleur dans l'eau — ce sont le pont et les arbres, tout décomposés en reflets.",
+      "zh-Hans": "看水里那些小小的色块——那其实是桥和树，被水面的倒影打散成了一片片碎片。"
+    },
+    "rarityKids": {
+      "en": "This painting is extra sunny and sparkly for Cézanne — he usually painted in a more solid, blocky way, so this one feels like a rare treat.",
+      "fr": "Ce tableau est particulièrement ensoleillé et scintillant pour Cézanne — il peignait habituellement d'une manière plus solide et plus massive, alors celui-ci fait l'effet d'une rareté.",
+      "zh-Hans": "对塞尚来说，这幅画特别阳光、特别闪亮——他平时画画的风格更加厚重、方块感更强，所以这一幅感觉就像是难得一见的惊喜。"
     }
   },
   {
@@ -5918,7 +6030,7 @@
     "accent": "#58594F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Apples and Oranges",
       "fr": "Pommes et Oranges",
@@ -5930,23 +6042,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 35,
+      "high": 55,
+      "logic": "FACT: two real still-life sales: Rideau, Cruchon et Compotier sold for $60.5M (~EUR55.7M) at Sotheby's, 1999 (Cezanne's still-life record), and Nature morte aux fruits et pot de gingembre (c. 1895) sold for $36.97M (~EUR34M) at Sotheby's. EDITORIAL JUDGMENT: Apples and Oranges is widely considered one of Cezanne's most ambitious and successful late still lifes, made near the end of his life -- positioned toward the upper half of the range formed by these two real comparables to reflect that exceptional standing.",
+      "comparableSales": [
+        "Rideau, Cruchon et Compotier, Paul Cézanne — $60.5M (~€55.7M), Sotheby's, 1999 — Cezanne's still-life auction record.",
+        "Nature morte aux fruits et pot de gingembre, Paul Cézanne — $36.97M (~€34M), Sotheby's — same broad genre and late period."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Cézanne piles apples and oranges across a rumpled white cloth and patterned fabric, tilting the table and the fruit bowl at angles that don't quite match reality — building the whole composition out of color and shape rather than realistic space.",
+      "fr": "Cézanne empile des pommes et des oranges sur un linge blanc froissé et un tissu à motifs, inclinant la table et la coupe de fruits selon des angles qui ne correspondent pas tout à fait à la réalité — construisant toute la composition à partir de la couleur et de la forme plutôt que d'un espace réaliste.",
+      "zh-Hans": "塞尚把苹果和橙子堆放在一块起皱的白布和一块印花织物上，把桌子和果盘都倾斜成了与现实不太吻合的角度——他所构建的整个画面，依靠的是色彩与形态，而非写实的空间关系。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how nothing quite sits where gravity says it should — the fruit bowl looks like it's tipping forward, and the tablecloth's folds seem to push and pull against each other, all in service of the painting's balance rather than physical accuracy.",
+      "fr": "Remarquez comme rien ne se trouve tout à fait là où la gravité le voudrait — la coupe de fruits semble basculer vers l'avant, et les plis de la nappe semblent se pousser et se tirer mutuellement, tout cela au service de l'équilibre du tableau plutôt que d'une exactitude physique.",
+      "zh-Hans": "留意画面中没有什么东西真的乖乖遵循重力法则——果盘看起来像是正在向前倾倒，桌布的褶皱也仿佛在相互推挤、拉扯，这一切都是为了服务于画面的整体平衡，而非物理上的精确。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Painted near the end of his life, this is considered one of Cézanne's most ambitious and successful still lifes — a summary of everything he had spent decades trying to work out about form and color.",
+      "fr": "Peint vers la fin de sa vie, ce tableau est considéré comme l'une des natures mortes les plus ambitieuses et les plus réussies de Cézanne — une synthèse de tout ce qu'il avait passé des décennies à essayer de résoudre sur la forme et la couleur.",
+      "zh-Hans": "这幅画创作于塞尚生命的晚期，被认为是他最具野心、也最为成功的静物画之一——它总结了他穷尽数十年光阴，在形态与色彩问题上所做的全部探索。"
+    },
+    "whySimple": {
+      "en": "Cézanne piled apples and oranges on a rumpled white cloth, tilting the table and fruit bowl at angles that don't quite match real life. He cared more about color and shape than about painting things exactly as they look.",
+      "fr": "Cézanne a empilé des pommes et des oranges sur un linge blanc froissé, inclinant la table et la coupe de fruits selon des angles qui ne correspondent pas tout à fait à la réalité. Il se souciait davantage de la couleur et de la forme que de peindre les choses exactement comme elles apparaissent.",
+      "zh-Hans": "塞尚把苹果和橙子堆放在一块起皱的白布上，把桌子和果盘都倾斜成了与现实不太吻合的角度。比起把东西画得和实物一模一样，他更在意的是色彩和形状。"
+    },
+    "whereSimple": {
+      "en": "Notice how nothing quite sits the way gravity says it should — the fruit bowl looks like it's tipping forward, on purpose.",
+      "fr": "Remarquez comme rien ne se trouve tout à fait là où la gravité le voudrait — la coupe de fruits semble basculer vers l'avant, exprès.",
+      "zh-Hans": "留意画面中没有什么东西真的乖乖遵循重力法则——果盘看起来像是故意画成正在向前倾倒的样子。"
+    },
+    "raritySimple": {
+      "en": "Painted near the end of his life, this is considered one of Cézanne's most successful and important still lifes.",
+      "fr": "Peint vers la fin de sa vie, ce tableau est considéré comme l'une des natures mortes les plus réussies et les plus importantes de Cézanne.",
+      "zh-Hans": "这幅画创作于塞尚生命的晚期，被认为是他最成功、最重要的静物画之一。"
+    },
+    "whyKids": {
+      "en": "Cézanne painted a big pile of apples and oranges on a wrinkly white cloth — but look closely, some of it looks a little wobbly and tilted, like it might tip over!",
+      "fr": "Cézanne a peint un gros tas de pommes et d'oranges sur un linge blanc froissé — mais regarde bien, tout ça a l'air un peu bancal et penché, comme si ça allait basculer !",
+      "zh-Hans": "塞尚画了一大堆苹果和橙子，放在一块皱巴巴的白布上——不过仔细看看，是不是感觉有点摇摇晃晃、歪歪斜斜的，好像随时会倒下来一样！"
+    },
+    "whereKids": {
+      "en": "Can you tell the fruit bowl looks like it's about to slide right off the table? Cézanne painted it that way on purpose!",
+      "fr": "Tu remarques que la coupe de fruits a l'air d'être sur le point de glisser de la table ? Cézanne l'a peinte ainsi exprès !",
+      "zh-Hans": "你有没有发现果盘看起来像是马上就要从桌子上滑下去了？塞尚是故意这样画的哦！"
+    },
+    "rarityKids": {
+      "en": "Cézanne painted this near the end of his life, and lots of people think it's one of his very best paintings ever.",
+      "fr": "Cézanne a peint ce tableau vers la fin de sa vie, et beaucoup de gens pensent que c'est l'un de ses tout meilleurs tableaux.",
+      "zh-Hans": "塞尚是在生命快要走到尽头时画下了这幅画，很多人都认为，这是他一生中画得最好的作品之一。"
     }
   },
   {
@@ -6044,7 +6194,7 @@
     "accent": "#58594F",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "La Femme à la cafetière (Woman with a Coffeepot)",
       "fr": "La Femme à la cafetière",
@@ -6056,23 +6206,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: Portrait de Madame Cezanne (c. 1877), a real Cezanne figure/portrait sale, sold for $7.4M at Sotheby's, 2025 -- described as the second-highest price for one of Cezanne's roughly 29 portraits of his wife, Hortense. EDITORIAL JUDGMENT: Cezanne's portraits and figure paintings trade in a distinctly lower tier than his landscapes and still lifes (confirmed by this comparable, well below the $60M+ still-life/landscape records used elsewhere in this batch). La Femme a la cafetiere is a larger, more structurally significant work than a typical Hortense portrait, later described as anticipating Cubism -- positioned modestly above the portrait-genre floor to reflect that significance.",
+      "comparableSales": [
+        "Portrait de Madame Cézanne, Paul Cézanne — $7.4M, Sotheby's, 2025 — closest available genre match (a real Cezanne portrait/figure sale); Cezanne's portraits trade well below his landscape/still-life records."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Cézanne paints a woman — likely a household servant rather than a formal sitter — seated bolt upright beside a coffeepot, reducing her entire figure to simplified blocks of color arranged in strict verticals and horizontals, more interested in her shape than her personality.",
+      "fr": "Cézanne peint une femme — probablement une domestique plutôt qu'un modèle formel — assise très droite à côté d'une cafetière, réduisant toute sa silhouette à des aplats de couleur simplifiés disposés en verticales et horizontales strictes, davantage intéressé par sa forme que par sa personnalité.",
+      "zh-Hans": "塞尚描绘了一位女子——很可能是家中的女仆，而非正式邀请来的模特——她笔直地坐在一只咖啡壶旁，塞尚把她整个身形简化成了严格按垂直与水平线排列的色块，他关心的与其说是她的个性，不如说是她的形态。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the tilted tabletop and the woman's rigid, column-like posture echo each other — Cézanne treats a person with the same geometric structure he gave to apples or bottles, decades before Cubist painters took that idea even further.",
+      "fr": "Remarquez comme le plateau incliné de la table et la posture rigide et colonnaire de la femme se font écho — Cézanne traite une personne avec la même structure géométrique qu'il donnait à des pommes ou des bouteilles, des décennies avant que les peintres cubistes ne poussent cette idée encore plus loin.",
+      "zh-Hans": "留意倾斜的桌面与女子那僵直如立柱般的姿态是如何相互呼应的——塞尚用描绘苹果或瓶子时同样的几何结构来处理一个人物，比立体主义画家们把这一理念推向更远之处，还要早上好几十年。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Cézanne never identified the sitter by name, and even her exact identity remains uncertain today — unusual for a painting this large and ambitious, where sitters were typically people of some importance to the artist.",
+      "fr": "Cézanne n'identifia jamais le modèle par son nom, et son identité exacte demeure incertaine aujourd'hui encore — chose inhabituelle pour un tableau aussi grand et ambitieux, où les modèles étaient généralement des personnes ayant une certaine importance pour l'artiste.",
+      "zh-Hans": "塞尚从未透露过这位模特的名字，直到今天，她的确切身份依然是个谜——对于一幅规模如此宏大、构思如此宏伟的画作来说，这颇为不同寻常，因为通常能担任模特的人，对画家而言总有些特殊的意义。"
+    },
+    "whySimple": {
+      "en": "Cézanne painted a woman, probably a household servant, sitting very upright next to a coffeepot. He simplified her whole body into blocks of color and straight lines, more interested in her shape than her personality.",
+      "fr": "Cézanne a peint une femme, probablement une domestique, assise très droite à côté d'une cafetière. Il a simplifié tout son corps en aplats de couleur et en lignes droites, davantage intéressé par sa forme que par sa personnalité.",
+      "zh-Hans": "塞尚画了一位女子，很可能是一名女仆，笔直地坐在一只咖啡壶旁。他把她整个身体简化成了色块和直线，比起她的个性，他更关心她的形态。"
+    },
+    "whereSimple": {
+      "en": "Notice how the tilted table and the woman's straight, stiff posture seem to match each other — Cézanne paints a person almost like he'd paint a bottle or a fruit bowl.",
+      "fr": "Remarquez comme la table inclinée et la posture droite et raide de la femme semblent se correspondre — Cézanne peint une personne presque comme il peindrait une bouteille ou une coupe de fruits.",
+      "zh-Hans": "留意倾斜的桌子和女子那笔直、僵硬的姿态是如何相互呼应的——塞尚画一个人的方式，几乎就像在画一只瓶子或一只果盘。"
+    },
+    "raritySimple": {
+      "en": "Cézanne never wrote down who this woman was, and even today nobody is completely sure — unusual for such a large, important painting.",
+      "fr": "Cézanne n'a jamais écrit qui était cette femme, et aujourd'hui encore, personne n'en est tout à fait certain — chose inhabituelle pour un tableau aussi grand et important.",
+      "zh-Hans": "塞尚从未写下过这位女子是谁，直到今天，也没有人能完全确定——对于这样一幅规模宏大、意义重要的画作来说，这颇为不同寻常。"
+    },
+    "whyKids": {
+      "en": "Cézanne painted a woman sitting up very straight next to a coffeepot — he painted her almost like a set of blocks and straight lines, the same way he'd paint a bottle!",
+      "fr": "Cézanne a peint une femme assise très droite à côté d'une cafetière — il l'a peinte presque comme un ensemble de blocs et de lignes droites, de la même façon qu'il aurait peint une bouteille !",
+      "zh-Hans": "塞尚画了一位坐得笔直笔直的女子，旁边放着一只咖啡壶——他画她的方式，几乎就像在画一堆方块和直线，就跟画一只瓶子一样！"
+    },
+    "whereKids": {
+      "en": "Look how stiff and straight she's sitting, just like the tilted table beside her — everything in this painting feels blocky and geometric.",
+      "fr": "Regarde comme elle est assise, raide et droite, tout comme la table inclinée à côté d'elle — tout dans ce tableau paraît anguleux et géométrique.",
+      "zh-Hans": "看她坐得多么僵直、笔挺，就像她身旁那张倾斜的桌子一样——这幅画里的一切，都显得方方正正、充满几何感。"
+    },
+    "rarityKids": {
+      "en": "Nobody actually knows who this woman was — Cézanne never wrote her name down anywhere, and it's still a mystery today!",
+      "fr": "Personne ne sait vraiment qui était cette femme — Cézanne n'a jamais écrit son nom nulle part, et cela reste un mystère aujourd'hui !",
+      "zh-Hans": "其实没人知道这位女子到底是谁——塞尚从来没有在任何地方写下过她的名字，直到今天，这依然是个谜！"
     }
   },
   {
