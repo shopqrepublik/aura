@@ -67,6 +67,14 @@ export interface Artwork {
   whySimple?: LocalizedText;
   whereSimple?: LocalizedText;
   raritySimple?: LocalizedText;
+  // Audio narration (§10.4/§11) — Normal mode only, Top 20 for launch.
+  // audioScript is a separate spoken script per locale, not a literal
+  // reading of why/where/rarity (natural spoken duration, not word-for-
+  // word parity). audioUrl points at a pre-generated, cached file (static
+  // asset under web/public/audio/) — never a generate-on-play endpoint.
+  // Absence of either field means no Listen button for that work.
+  audioScript?: LocalizedText;
+  audioUrl?: LocalizedText;
 }
 
 export interface Mission {

@@ -23,6 +23,7 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   add_to_my_visit: { en: "Add to my visit", fr: "Ajouter à ma visite", "zh-Hans": "加入我的参观" },
   added_check: { en: "Added ✓", fr: "Ajouté ✓", "zh-Hans": "已加入 ✓" },
   listen_label: { en: "Listen", fr: "Écouter", "zh-Hans": "收听" },
+  listen_playing_label: { en: "Playing", fr: "Lecture en cours", "zh-Hans": "播放中" },
   live_progress: { en: "Live Progress", fr: "Progression en direct", "zh-Hans": "实时进度" },
   stat_value_seen: { en: "Value seen", fr: "Valeur découverte", "zh-Hans": "已发现价值" },
   stat_works: { en: "Works", fr: "Œuvres", "zh-Hans": "作品数" },

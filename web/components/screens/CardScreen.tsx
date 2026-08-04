@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Heart, Play } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import SegmentControl from "@/components/ui/SegmentControl";
 import PriceBadge from "@/components/ui/PriceBadge";
 import ScaleComparisonBadge from "@/components/ui/ScaleComparisonBadge";
 import EyeBlock from "@/components/ui/EyeBlock";
+import ListenButton from "@/components/ui/ListenButton";
 import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
 import { resolveKidsScaleComparison } from "@/lib/scaleComparison";
 import { tt } from "@/lib/i18n";
@@ -32,8 +33,15 @@ export default function CardScreen({
   onToggleFavorite: () => void;
 }) {
   const [imgError, setImgError] = useState(false);
-  const [listening, setListening] = useState(false);
   const artwork = state.currentArtwork;
+
+  // Narration only exists for Normal mode (Top 20 launch scope, §10.4) --
+  // Kids/Simple text is often deliberately different or redacted (see
+  // content-policy work throughout lib/data/artworks.json), so playing the
+  // Normal-mode script in another mode would leak content that mode is
+  // meant to avoid.
+  const audioUrl = state.mode === "normal" ? artwork?.audioUrl?.[state.locale] : undefined;
+
   if (!artwork) return null;
 
   const excluded = isExcludedInKids(artwork, state.mode);
@@ -131,17 +139,7 @@ export default function CardScreen({
             {isAdded ? tt("added_check", state.locale) : tt("add_to_my_visit", state.locale)}
           </button>
           <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                setListening(true);
-                setTimeout(() => setListening(false), 1800);
-              }}
-              className="flex-1 h-[44px] rounded-full bg-[#F5F5F7] text-[14px] font-semibold flex items-center justify-center gap-2"
-            >
-              <Play className="w-4 h-4 fill-black" />
-              {listening ? "…" : `${tt("listen_label", state.locale)} 45s`}
-            </button>
+            {audioUrl && <ListenButton key={`${artwork.id}-${state.locale}`} audioUrl={audioUrl} locale={state.locale} />}
             <button
               type="button"
               onClick={onToggleFavorite}
