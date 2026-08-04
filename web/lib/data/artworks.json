@@ -1926,7 +1926,7 @@
     "accent": "#667E9B",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Les raboteurs de parquet",
       "fr": "Les Raboteurs de parquet",
@@ -1938,23 +1938,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 45,
+      "high": 70,
+      "logic": "FACT: Young Man at His Window, sold for $53M (~EUR48.8M) at Christie's New York, November 2021 -- Caillebotte's auction record, a similarly modern, everyday Parisian figure/genre scene. EDITORIAL JUDGMENT: Les raboteurs de parquet is widely considered Caillebotte's single most important and reproduced painting -- famously rejected by the official Salon as too 'vulgar' a subject, then celebrated at the Impressionist exhibitions -- positioned at or modestly above the record to reflect that exceptional standing.",
+      "comparableSales": [
+        "Young Man at His Window, Gustave Caillebotte — $53M (~€48.8M), Christie's New York, November 2021 — Caillebotte's auction record, a similarly modern Parisian genre/figure scene."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Caillebotte paints three shirtless workmen scraping the floor of a Paris apartment on their knees, their bodies twisted in matching poses of hard physical labor — a scene of ordinary manual work rendered with the same seriousness academic painters usually reserved for gods and kings.",
+      "fr": "Caillebotte peint trois ouvriers torse nu, agenouillés, en train de racler le parquet d'un appartement parisien, leurs corps tordus dans des poses similaires de dur labeur physique — une scène de travail manuel ordinaire rendue avec le même sérieux que les peintres académiques réservaient d'habitude aux dieux et aux rois.",
+      "zh-Hans": "卡耶博特描绘了三位赤裸上身的工人跪在巴黎一间公寓里刨地板的场景，他们的身体因繁重的体力劳动而扭曲成相似的姿态——这幅描绘平凡体力劳动的画面，被赋予了学院派画家通常只留给神祇与帝王的那种庄重感。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the sharp, almost photographic perspective of the floorboards, curling wood shavings, and light pouring in from the tall window — Caillebotte studied engineering before turning to painting, and his exacting sense of geometry shows in every line.",
+      "fr": "Remarquez la perspective aiguë, presque photographique, des lattes du parquet, les copeaux de bois qui s'enroulent, et la lumière qui entre à flots par la haute fenêtre — Caillebotte étudia l'ingénierie avant de se tourner vers la peinture, et son sens rigoureux de la géométrie transparaît dans chaque ligne.",
+      "zh-Hans": "留意地板木条那锐利、近乎摄影般精确的透视效果，卷曲的木屑，以及从高高的窗户中倾泻而入的光线——卡耶博特在成为画家之前学过工程学，这种一丝不苟的几何精确感，体现在画中的每一条线里。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "The official Paris Salon rejected this painting in 1875, reportedly because working men shown bare-chested and sweating was considered too \"vulgar\" a subject for serious art — Caillebotte showed it at the Impressionist exhibition instead, where it's now considered one of the movement's masterpieces.",
+      "fr": "Le Salon officiel de Paris refusa ce tableau en 1875, apparemment parce que montrer des ouvriers torse nu et en sueur était jugé un sujet trop « vulgaire » pour l'art sérieux — Caillebotte l'exposa alors à l'exposition impressionniste, où il est aujourd'hui considéré comme l'un des chefs-d'œuvre du mouvement.",
+      "zh-Hans": "1875年，巴黎官方沙龙拒绝了这幅画，据说是因为展示赤裸上身、汗流浃背的工人，被认为对严肃艺术而言是过于「粗俗」的题材——于是卡耶博特转而在印象派展览上展出了这幅画，如今，它被认为是这场艺术运动的杰作之一。"
+    },
+    "whySimple": {
+      "en": "Caillebotte painted three shirtless workmen scraping a wooden floor on their knees in a Paris apartment — an ordinary work scene painted as carefully and seriously as a grand historical painting.",
+      "fr": "Caillebotte a peint trois ouvriers torse nu, à genoux, en train de racler un parquet dans un appartement parisien — une scène de travail ordinaire peinte avec autant de soin et de sérieux qu'un grand tableau historique.",
+      "zh-Hans": "卡耶博特画了三位赤裸上身的工人，跪在巴黎一间公寓里刨着木地板——这个平凡的劳动场景，被描绘得如同一幅宏大的历史画作一样认真、用心。"
+    },
+    "whereSimple": {
+      "en": "Notice the sharp, precise lines of the floorboards and the curled wood shavings, and the light pouring in from the tall window. Caillebotte studied engineering before becoming a painter, and it shows in his careful geometry.",
+      "fr": "Remarquez les lignes nettes et précises du parquet et les copeaux de bois enroulés, ainsi que la lumière qui entre à flots par la haute fenêtre. Caillebotte étudia l'ingénierie avant de devenir peintre, et cela se voit dans sa géométrie soignée.",
+      "zh-Hans": "留意地板那锐利、精确的线条和卷曲的木屑，还有从高窗倾泻而入的光线。卡耶博特在成为画家之前学过工程学，这一点从他一丝不苟的几何构图中就能看出来。"
+    },
+    "raritySimple": {
+      "en": "The official Paris Salon rejected this painting in 1875 because showing working men bare-chested and sweating was considered too \"vulgar.\" Caillebotte showed it at an Impressionist exhibition instead, and today it's considered one of the movement's masterpieces.",
+      "fr": "Le Salon officiel de Paris refusa ce tableau en 1875 parce que montrer des ouvriers torse nu et en sueur était jugé trop « vulgaire ». Caillebotte l'exposa alors à une exposition impressionniste, et aujourd'hui il est considéré comme l'un des chefs-d'œuvre du mouvement.",
+      "zh-Hans": "1875年，巴黎官方沙龙拒绝了这幅画，因为展示赤裸上身、汗流浃背的工人被认为太「粗俗」了。卡耶博特转而在一场印象派展览上展出了它，如今，它被认为是这场艺术运动的杰作之一。"
+    },
+    "whyKids": {
+      "en": "Caillebotte painted three workmen on their knees, scraping and smoothing a wooden floor — hard, sweaty work, painted just as carefully as a painting of a king or a queen!",
+      "fr": "Caillebotte a peint trois ouvriers à genoux, en train de racler et de lisser un parquet — un travail dur et fatigant, peint avec autant de soin qu'un tableau représentant un roi ou une reine !",
+      "zh-Hans": "卡耶博特画了三个跪在地上、刨着地板、把地板磨光滑的工人——这是又累又出汗的辛苦活儿，可他画得就跟画国王或王后一样认真！"
+    },
+    "whereKids": {
+      "en": "Look at the curly wood shavings on the floor, and how the sunlight pours in through the window — Caillebotte used to study to be an engineer, and you can tell from how precise and careful all the lines are.",
+      "fr": "Regarde les copeaux de bois enroulés sur le sol, et comme la lumière du soleil entre à flots par la fenêtre — Caillebotte étudiait pour devenir ingénieur, et ça se voit à quel point toutes les lignes sont précises et soignées.",
+      "zh-Hans": "看地板上那些卷曲的木屑，还有阳光是怎么从窗户倾泻进来的——卡耶博特曾经学过怎么当工程师，从这些线条画得多精确、多细致就能看出来。"
+    },
+    "rarityKids": {
+      "en": "Some judges thought this painting wasn't fancy enough to show in the big official art show, because it showed regular workers doing sweaty, ordinary jobs! Today, it's considered one of the most important paintings of its whole art movement.",
+      "fr": "Certains juges ont trouvé que ce tableau n'était pas assez chic pour être montré dans la grande exposition d'art officielle, parce qu'il montrait des ouvriers ordinaires en train de faire un travail fatigant ! Aujourd'hui, il est considéré comme l'un des tableaux les plus importants de tout ce mouvement artistique.",
+      "zh-Hans": "有些评委觉得这幅画不够「高雅」，配不上放进那场官方大型艺术展，因为它画的是普通工人干着又累又出汗的活儿！可如今，它却被认为是整个艺术运动中最重要的画作之一。"
     }
   },
   {
@@ -2491,7 +2528,7 @@
     "accent": "#A255AB",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Young Greeks Attending a Cock Fight",
       "fr": "Un combat de coqs",
@@ -2503,24 +2540,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 4,
+      "high": 9,
+      "logic": "FACT: Femme circassienne voilée, sold for $4,098,638 at Christie's London -- Gerome's auction record. EDITORIAL JUDGMENT: this was Gerome's breakthrough Salon success at age 22, launching his entire career -- positioned at or modestly above the record to reflect that historical significance.",
+      "comparableSales": [
+        "Femme circassienne voilée, Jean-Léon Gérôme — $4,098,638, Christie's London — Gérôme's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gérôme paints two young people in ancient Greek dress crouched beside a fountain, absorbed in setting two roosters against each other — a small, everyday moment from antiquity rendered with the crisp, polished precision that made this \"Neo-Grec\" style so popular at the time.",
+      "fr": "Gérôme peint deux jeunes gens en costume grec antique, accroupis près d'une fontaine, absorbés à opposer deux coqs l'un à l'autre — un petit moment ordinaire de l'Antiquité rendu avec la précision nette et léchée qui rendit ce style « néo-grec » si populaire à l'époque.",
+      "zh-Hans": "热罗姆描绘了两位身着古希腊服饰的年轻人，蹲在喷泉旁，全神贯注地让两只公鸡相斗——这是一个源自古代生活的日常瞬间，以那种清晰、精致的笔法呈现，也正是这种「新希腊风格」在当时大受欢迎的原因。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the smooth, almost porcelain-like finish of the figures and the crumbling ancient Sphinx statue behind them — Gérôme contrasts youthful freshness with the weathered stone of a much older civilization.",
+      "fr": "Remarquez le fini lisse, presque semblable à de la porcelaine, des personnages, et la statue antique du Sphinx qui s'effrite derrière eux — Gérôme oppose la fraîcheur de la jeunesse à la pierre usée d'une civilisation bien plus ancienne.",
+      "zh-Hans": "留意人物那光滑、近乎瓷器般的质感，以及他们身后那尊正在剥落风化的古老斯芬克斯雕像——热罗姆借此将青春的鲜活，与一个更古老文明那饱经风霜的石雕形成了对比。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "This ambitious painting was Gérôme's breakthrough at the 1847 Salon, launching the career of an artist who would go on to become one of the most celebrated academic painters of the 19th century.",
+      "fr": "Ce tableau ambitieux marqua la percée de Gérôme au Salon de 1847, lançant la carrière d'un artiste qui allait devenir l'un des peintres académiques les plus célébrés du XIXe siècle.",
+      "zh-Hans": "这幅雄心勃勃的画作，让热罗姆在1847年的沙龙上一举成名，开启了他的艺术生涯——他后来成为了19世纪最负盛名的学院派画家之一。"
+    },
+    "whySimple": {
+      "en": "Gérôme painted two young people in ancient Greek dress crouched by a fountain, focused on two roosters fighting in front of them. It's an everyday moment from ancient life, painted in a smooth, polished style called \"Neo-Grec.\"",
+      "fr": "Gérôme a peint deux jeunes gens en costume grec antique, accroupis près d'une fontaine, concentrés sur deux coqs se battant devant eux. C'est un moment ordinaire de la vie antique, peint dans un style lisse et léché appelé « néo-grec ».",
+      "zh-Hans": "热罗姆画了两位身着古希腊服饰的年轻人蹲在喷泉旁，专注地看着面前两只斗鸡打架。这是古代生活中的一个日常瞬间，用一种叫做「新希腊」的光滑、精致风格画成。"
+    },
+    "whereSimple": {
+      "en": "Notice the smooth, polished look of the figures and the old, weathered statue behind them — Gérôme liked contrasting fresh youth with ancient, worn stone.",
+      "fr": "Remarquez l'aspect lisse et léché des personnages et la vieille statue usée derrière eux — Gérôme aimait opposer la fraîcheur de la jeunesse à la pierre ancienne et usée.",
+      "zh-Hans": "留意人物那光滑、精致的质感，以及他们身后那尊古老、饱经风霜的雕像——热罗姆喜欢把鲜活的青春与古老、磨损的石雕放在一起对比。"
+    },
+    "raritySimple": {
+      "en": "This painting was Gérôme's big success at the 1847 Salon, launching his career as one of the most famous academic painters of the century.",
+      "fr": "Ce tableau fut le grand succès de Gérôme au Salon de 1847, lançant sa carrière comme l'un des peintres académiques les plus célèbres du siècle.",
+      "zh-Hans": "这幅画是热罗姆在1847年沙龙上取得的巨大成功，开启了他成为那个世纪最著名学院派画家之一的职业生涯。"
+    },
+    "whyKids": {
+      "en": "Gérôme painted two young people from ancient Greece watching two roosters have a contest, sitting near an old stone fountain.",
+      "fr": "Gérôme a peint deux jeunes gens de la Grèce antique regardant deux coqs se mesurer l'un à l'autre, assis près d'une vieille fontaine de pierre.",
+      "zh-Hans": "热罗姆画了两位来自古希腊的年轻人，坐在一座古老的石头喷泉旁，看着两只公鸡较量。"
+    },
+    "whereKids": {
+      "en": "Look at how smooth and polished everything looks in this painting — almost like the figures are made of porcelain! And check out the old, worn statue behind them.",
+      "fr": "Regarde comme tout paraît lisse et léché dans ce tableau — presque comme si les personnages étaient en porcelaine ! Et regarde la vieille statue usée derrière eux.",
+      "zh-Hans": "看这幅画里的一切是多么光滑、精致——人物看起来几乎像是瓷器做的一样！再看看他们身后那尊古老、磨损的雕像。"
+    },
+    "rarityKids": {
+      "en": "This painting made Gérôme famous almost overnight when it was first shown at a big art exhibition — the start of a long, successful career!",
+      "fr": "Ce tableau a rendu Gérôme célèbre presque du jour au lendemain lorsqu'il fut montré pour la première fois lors d'une grande exposition d'art — le début d'une longue et brillante carrière !",
+      "zh-Hans": "这幅画在一场大型艺术展上首次亮相时，几乎让热罗姆一夜成名——这是他漫长而成功的职业生涯的开端！"
+    },
+    "contentFlag": "A nude young man and a topless young woman kneeling together over two fighting roosters, blood visible on the ground and pedestal -- verified by viewing the actual image, not assumed from the title. The pre-flagged item from the original content-policy list. Unlike prior nudity cases, this combines nudity with depicted animal violence (a cockfight, blood visible) -- a new combination. No myth narrative available (a Neo-Grec genre scene, not a specific mythological story). Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the Neo-Grec technique, the ancient setting, and the Sphinx statue, without describing the bodies or the fight/blood -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_2450",
@@ -2849,7 +2924,7 @@
     "accent": "#A255AB",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Jerusalem",
       "fr": "Consummatum est",
@@ -2861,23 +2936,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 2.5,
+      "high": 6,
+      "logic": "FACT: Femme circassienne voilée, sold for $4,098,638 at Christie's London -- Gerome's auction record, an Orientalist figure/portrait subject. EDITORIAL JUDGMENT: Jerusalem is a landscape/history subject rather than the Orientalist figure/portrait genre that drives Gerome's top prices, and was reportedly criticized at its 1868 Salon debut for its unconventional composition -- positioned modestly below the record.",
+      "comparableSales": [
+        "Femme circassienne voilée, Jean-Léon Gérôme — $4,098,638, Christie's London — Gérôme's auction record, but an Orientalist figure/portrait genre, not this landscape."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gérôme paints the ground at Golgotha in the aftermath of the Crucifixion, showing only the long shadows of three crosses stretching across the rock and a small crowd walking away in the distance — Jesus and the two thieves are never actually shown, only implied by the shapes they cast.",
+      "fr": "Gérôme peint le sol du Golgotha au lendemain de la Crucifixion, ne montrant que les longues ombres de trois croix s'étirant sur la roche et une petite foule s'éloignant au loin — Jésus et les deux larrons ne sont jamais montrés directement, seulement suggérés par les formes qu'ils projettent.",
+      "zh-Hans": "热罗姆描绘的是各各他刑场在耶稣受难之后的地面——画中只呈现了三个十字架投射在岩石上的长长阴影，以及远处一小群渐行渐远的人群，耶稣和两名盗贼本人从未真正出现，只能从他们投下的影子中推知。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Follow the three shadow-shapes reaching across the pale rock in the foreground — Gérôme lets absence and implication carry the entire weight of the story, a radical choice for a subject usually painted head-on.",
+      "fr": "Suivez les trois formes d'ombre qui s'étendent sur la roche pâle du premier plan — Gérôme laisse l'absence et la suggestion porter tout le poids du récit, un choix radical pour un sujet habituellement peint de face.",
+      "zh-Hans": "顺着前景中那片苍白岩石上伸展开来的三道阴影形状看过去——热罗姆让「缺席」与「暗示」承担起了整个叙事的分量，这对于一个通常会被正面直接描绘的题材而言，是一个极为大胆的选择。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "When this painting was shown at the 1868 Salon, critics found it baffling — an image built almost entirely around what it deliberately leaves out of view was far too unconventional for its time.",
+      "fr": "Lorsque ce tableau fut montré au Salon de 1868, les critiques le trouvèrent déconcertant — une image construite presque entièrement autour de ce qu'elle laisse délibérément hors champ était bien trop peu conventionnelle pour son époque.",
+      "zh-Hans": "这幅画在1868年沙龙上展出时，评论家们感到十分困惑——一幅几乎完全建立在「刻意省略」之上的画作，对于那个时代而言实在是太不合常规了。"
+    },
+    "whySimple": {
+      "en": "Gérôme painted the hillside at Golgotha right after the Crucifixion, showing only the long shadows of three crosses on the ground, not the crosses or figures themselves.",
+      "fr": "Gérôme a peint la colline du Golgotha juste après la Crucifixion, ne montrant que les longues ombres de trois croix sur le sol, et non les croix ou les personnages eux-mêmes.",
+      "zh-Hans": "热罗姆画了耶稣受难后各各他的山坡，画面中只有地上三个十字架投下的长长阴影，而没有画出十字架或人物本身。"
+    },
+    "whereSimple": {
+      "en": "Follow the three shadow-shapes stretching across the pale ground — Gérôme tells the story through shadows instead of showing the scene directly.",
+      "fr": "Suis les trois formes d'ombre qui s'étirent sur le sol pâle — Gérôme raconte l'histoire à travers des ombres plutôt qu'en montrant la scène directement.",
+      "zh-Hans": "顺着苍白地面上伸展开来的三道阴影形状看过去——热罗姆是通过阴影来讲述这个故事的，而不是直接呈现这个场景。"
+    },
+    "raritySimple": {
+      "en": "When this was first shown in 1868, critics found it very strange, because it left out the very thing you'd expect a painting like this to show.",
+      "fr": "Lorsqu'il fut montré pour la première fois en 1868, les critiques le trouvèrent très étrange, car il laissait de côté la chose même que l'on s'attendrait à voir dans un tel tableau.",
+      "zh-Hans": "1868年这幅画首次展出时，评论家们觉得它非常奇怪，因为它偏偏省略了人们最期待在这样一幅画中看到的东西。"
+    },
+    "whyKids": {
+      "en": "Gérôme painted a quiet, sunny hillside with long shadows stretching across the rocks, and a little group of people walking away in the distance.",
+      "fr": "Gérôme a peint une colline paisible et ensoleillée avec de longues ombres s'étirant sur les rochers, et un petit groupe de personnes s'éloignant au loin.",
+      "zh-Hans": "热罗姆画了一片安静、阳光明媚的山坡，长长的阴影洒在岩石上，远处还有一小群人正渐渐走远。"
+    },
+    "whereKids": {
+      "en": "Follow those long shadows across the pale ground — Gérôme liked to tell stories in unusual ways, using shadows and empty space instead of showing everything directly.",
+      "fr": "Suis ces longues ombres sur le sol pâle — Gérôme aimait raconter des histoires de manières inhabituelles, en utilisant des ombres et des espaces vides plutôt qu'en montrant tout directement.",
+      "zh-Hans": "顺着苍白地面上那些长长的阴影看过去——热罗姆喜欢用不寻常的方式讲故事，用阴影和空白，而不是把一切都直接画出来。"
+    },
+    "rarityKids": {
+      "en": "When people first saw this painting, they found it really puzzling, because it was so different from what they expected — Gérôme liked doing things his own way!",
+      "fr": "Quand les gens ont vu ce tableau pour la première fois, ils l'ont trouvé vraiment déconcertant, parce qu'il était si différent de ce à quoi ils s'attendaient — Gérôme aimait faire les choses à sa façon !",
+      "zh-Hans": "人们第一次看到这幅画的时候，都觉得非常困惑，因为它和大家预想的完全不一样——热罗姆就是喜欢按自己的方式来！"
     }
   },
   {
@@ -2970,7 +3082,7 @@
     "accent": "#667E9B",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Vue de toits",
       "fr": "Vue de toits",
@@ -2982,23 +3094,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 30,
+      "logic": "FACT: Young Man at His Window, sold for $53M (~EUR48.8M) at Christie's New York, November 2021 -- Caillebotte's auction record. EDITORIAL JUDGMENT: this is a pure landscape (no figures), a genuine genre mismatch against the record, which is a figure/portrait scene -- positioned well below the record while still reflecting Caillebotte's strong general market and this work's genuine art-historical interest as an early, unusual urban rooftop view.",
+      "comparableSales": [
+        "Young Man at His Window, Gustave Caillebotte — $53M (~€48.8M), Christie's New York, November 2021 — Caillebotte's auction record, but a figure/portrait scene, not this landscape genre."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Caillebotte paints a rooftop view over snow-covered Paris, looking down from a high window onto a jumble of chimneys and rooflines rather than any famous monument — a modern, almost accidental-feeling view of the city that only an apartment dweller would think to paint.",
+      "fr": "Caillebotte peint une vue de toits sur le Paris enneigé, regardant depuis une fenêtre en hauteur un enchevêtrement de cheminées et de lignes de toit plutôt qu'un quelconque monument célèbre — une vue moderne et presque accidentelle de la ville, qu'un simple habitant d'appartement aurait songé à peindre.",
+      "zh-Hans": "卡耶博特描绘了一幅俯瞰白雪覆盖巴黎屋顶的景象——从一扇高高的窗户望下去，映入眼帘的是一片错落有致的烟囱与屋脊，而非某座著名的地标建筑——这是一幅现代、近乎偶然的城市一瞥，唯有身居公寓的人才会想到把它画下来。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the muted grays and soft pinks Caillebotte finds within what looks at first like plain white snow — a quiet, close study of how a grey winter sky changes the color of everything beneath it.",
+      "fr": "Remarquez les gris feutrés et les roses doux que Caillebotte découvre dans ce qui semble d'abord une simple neige blanche — une étude discrète et attentive de la manière dont un ciel d'hiver gris change la couleur de tout ce qui se trouve en dessous.",
+      "zh-Hans": "留意卡耶博特在这片乍看只是纯白的积雪中，找到了怎样的柔和灰色与淡淡的粉色——这是一次安静而细腻的研究，探索着灰蒙蒙的冬日天空是如何改变了地面万物的色调的。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Caillebotte showed this painting alongside more than twenty other works at the fourth Impressionist exhibition in 1879, part of a small series of rooftop views he made from his own Paris apartment.",
+      "fr": "Caillebotte présenta ce tableau aux côtés de plus de vingt autres œuvres lors de la quatrième exposition impressionniste en 1879, faisant partie d'une petite série de vues de toits qu'il réalisa depuis son propre appartement parisien.",
+      "zh-Hans": "1879年，卡耶博特在第四届印象派展览上展出了这幅画，同场展出的还有他二十多件其他作品——这幅画属于他从自己巴黎公寓窗口望出去所作的一小组屋顶景象系列之一。"
+    },
+    "whySimple": {
+      "en": "Caillebotte painted a view of snow-covered rooftops in Paris, looking down from a high window at chimneys and rooflines instead of any famous landmark.",
+      "fr": "Caillebotte a peint une vue de toits enneigés à Paris, regardant depuis une fenêtre en hauteur des cheminées et des lignes de toit plutôt qu'un monument célèbre.",
+      "zh-Hans": "卡耶博特画了一幅巴黎白雪覆盖屋顶的景象，从一扇高窗俯瞰烟囱与屋脊，而不是什么著名的地标建筑。"
+    },
+    "whereSimple": {
+      "en": "Notice the soft grays and pinks Caillebotte finds within the white snow — a quiet study of how a cloudy winter sky changes the color of everything below it.",
+      "fr": "Remarquez les gris et les roses doux que Caillebotte trouve dans la neige blanche — une étude discrète de la manière dont un ciel d'hiver nuageux change la couleur de tout ce qui se trouve en dessous.",
+      "zh-Hans": "留意卡耶博特在这片白雪中找到了怎样的柔和灰色与粉色——这是一次安静的研究，探索着阴云密布的冬日天空是如何改变了地面万物的色调的。"
+    },
+    "raritySimple": {
+      "en": "Caillebotte painted this as part of a small series of rooftop views made from his own Paris apartment window.",
+      "fr": "Caillebotte a peint ce tableau dans le cadre d'une petite série de vues de toits réalisées depuis la fenêtre de son propre appartement parisien.",
+      "zh-Hans": "这幅画是卡耶博特从自己巴黎公寓窗口所作的一小组屋顶景象系列之一。"
+    },
+    "whyKids": {
+      "en": "Caillebotte looked out of his own window and painted the snowy rooftops of Paris — chimneys, roof angles, everything, instead of some famous building!",
+      "fr": "Caillebotte a regardé par sa propre fenêtre et a peint les toits enneigés de Paris — cheminées, pans de toit, tout — au lieu d'un bâtiment célèbre !",
+      "zh-Hans": "卡耶博特从自己家的窗户往外看，画下了巴黎积雪覆盖的屋顶——烟囱、屋顶的各种角度，全都画了下来，而不是什么著名的建筑！"
+    },
+    "whereKids": {
+      "en": "Look closely at the \"white\" snow — can you find soft grays and pinks hiding inside it?",
+      "fr": "Regarde bien la neige « blanche » — arrives-tu à trouver des gris et des roses doux cachés à l'intérieur ?",
+      "zh-Hans": "仔细看看这片「白色」的雪——你能找到藏在里面的柔和灰色和粉色吗？"
+    },
+    "rarityKids": {
+      "en": "Caillebotte painted this by just looking out of his own apartment window — no need to travel anywhere fancy!",
+      "fr": "Caillebotte a peint ce tableau simplement en regardant par la fenêtre de son propre appartement — pas besoin d'aller où que ce soit de chic !",
+      "zh-Hans": "卡耶博特画这幅画，只是望着自己公寓的窗外——完全不需要跑去什么特别高级的地方！"
     }
   },
   {
