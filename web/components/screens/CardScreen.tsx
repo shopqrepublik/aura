@@ -149,6 +149,22 @@ export default function CardScreen({
               <Heart className={`w-4 h-4 ${isFavorite ? "fill-black text-black" : "text-black"}`} />
             </button>
           </div>
+          {/* The only other way off this screen is the small back-arrow
+              overlaid on the photo (top-left) -- an icon with no label,
+              easy to miss on a first real visit. The old vanilla app had
+              exactly this same icon PLUS an explicit labeled button
+              (frontend/index.html #btnScanNext); the ELYIO redesign kept
+              only the icon and dropped the label, which is what actually
+              left people stuck on this screen with no visible way to
+              continue. This button is the reliable, always-visible path;
+              the icon is a bonus shortcut, not the only way out. */}
+          <button
+            type="button"
+            onClick={onBack}
+            className="w-full h-[50px] rounded-full bg-[#F5F5F7] text-[#111] text-[15px] font-semibold tracking-[-0.01em]"
+          >
+            {tt("scan_next_artwork", state.locale)}
+          </button>
         </div>
       </div>
     </div>

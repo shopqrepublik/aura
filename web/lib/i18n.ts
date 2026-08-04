@@ -52,6 +52,7 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   hold_steady: { en: "Hold steady • Auto-capture on", fr: "Restez immobile • Capture automatique activée", "zh-Hans": "保持稳定 • 自动拍摄已开启" },
   add_to_my_visit: { en: "Add to my visit", fr: "Ajouter à ma visite", "zh-Hans": "加入我的参观" },
   added_check: { en: "Added ✓", fr: "Ajouté ✓", "zh-Hans": "已加入 ✓" },
+  scan_next_artwork: { en: "Scan next artwork", fr: "Scanner l'œuvre suivante", "zh-Hans": "扫描下一件作品" },
   listen_label: { en: "Listen", fr: "Écouter", "zh-Hans": "收听" },
   listen_playing_label: { en: "Playing", fr: "Lecture en cours", "zh-Hans": "播放中" },
   live_progress: { en: "Live Progress", fr: "Progression en direct", "zh-Hans": "实时进度" },
