@@ -19,14 +19,33 @@ import { useEffect, useState } from "react";
 // (fixed English copy, no i18n) since this renders in the root layout,
 // outside the app's own locale state (lib/app-state.ts), and this is a
 // rare, non-critical system-level notice, not app content.
+//
+// register() only checks for an update at the moment it runs, i.e. once
+// per real page execution. That's not enough on iOS: a backgrounded
+// installed PWA is typically suspended in memory rather than closed, and
+// reopening it (app switcher / home-screen icon, short of a force-quit)
+// often resumes the exact same JS context with no navigation and no
+// re-run of this effect — so the app can go a very long time without ever
+// re-checking. visibilitychange/pageshow/focus are the signals that DO
+// fire when a suspended page resumes, so an explicit update() call on each
+// makes the check happen every time the user actually looks at the app
+// again, instead of depending on a fresh full reload the platform may
+// never deliver on its own.
 export default function ServiceWorkerRegister() {
   const [updateAvailable, setUpdateAvailable] = useState(false);
 
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
-    navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {
-      // registration is a progressive enhancement — the app works fine without it
-    });
+
+    let registration: ServiceWorkerRegistration | null = null;
+    navigator.serviceWorker
+      .register("/sw.js", { scope: "/" })
+      .then((reg) => {
+        registration = reg;
+      })
+      .catch(() => {
+        // registration is a progressive enhancement — the app works fine without it
+      });
 
     let hadController = !!navigator.serviceWorker.controller;
     const onControllerChange = () => {
@@ -34,7 +53,23 @@ export default function ServiceWorkerRegister() {
       hadController = true;
     };
     navigator.serviceWorker.addEventListener("controllerchange", onControllerChange);
-    return () => navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
+
+    const checkForUpdate = () => {
+      registration?.update().catch(() => {});
+    };
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") checkForUpdate();
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("pageshow", checkForUpdate);
+    window.addEventListener("focus", checkForUpdate);
+
+    return () => {
+      navigator.serviceWorker.removeEventListener("controllerchange", onControllerChange);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("pageshow", checkForUpdate);
+      window.removeEventListener("focus", checkForUpdate);
+    };
   }, []);
 
   if (!updateAvailable) return null;
