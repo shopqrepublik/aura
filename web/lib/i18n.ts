@@ -90,6 +90,16 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   works_seen_count: { en: "Works", fr: "Œuvres", "zh-Hans": "作品" },
   new_visit: { en: "Start a new visit", fr: "Commencer une nouvelle visite", "zh-Hans": "开始新的参观" },
   my_visit_title: { en: "My Musée d'Orsay Visit", fr: "Ma visite du Musée d'Orsay", "zh-Hans": "我的奥赛博物馆之旅" },
+  // {n}/{total} placeholders, replaced by string substitution at the call
+  // site — shown only when SOME but not all scanned works have a reviewed
+  // estimate, so the value total doesn't silently read as "everything you
+  // scanned" when it's actually a partial sum (see RecapScreen.tsx).
+  value_seen_partial_note: {
+    en: "{n} of {total} works reviewed",
+    fr: "{n} sur {total} œuvres évaluées",
+    "zh-Hans": "已评估 {n}/{total} 件作品",
+  },
+  generating_image: { en: "Preparing image…", fr: "Préparation de l'image…", "zh-Hans": "正在生成图片…" },
 };
 
 export function tt(key: string, locale: Locale): string {

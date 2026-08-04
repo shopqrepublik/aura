@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { tt } from "@/lib/i18n";
+import { generateRecapImage } from "@/lib/recap-image";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
 
@@ -59,17 +60,97 @@ export default function RecapScreen({
   const visitTimestamp = state.startTime ?? now;
   const dateStr = visitTimestamp ? formatDate(visitTimestamp) : "";
 
+  // €1000M = €1B. Real threshold against the real summed estimate — with
+  // all 101 catalog works' estimate.high summing to ~€2.94B, this is
+  // reachable but only by deliberately scanning roughly the museum's top
+  // ten most valuable works in one visit (cumulative total crosses €1B
+  // around the 11th-priciest work) — a rare, deliberately-earned badge, not
+  // a routine one.
   const isBillion = totalHigh >= 1000;
 
+  // Honest partial-coverage note: when SOME but not all scanned works have
+  // a reviewed estimate, the €low–highM total silently covers only the
+  // reviewed subset (`.reduce` treats null as 0) — this makes that visible
+  // instead of letting the number read as "everything you scanned".
+  const valueNote =
+    hasAnyEstimate && withEstimate.length < seenArtworks.length
+      ? tt("value_seen_partial_note", state.locale)
+          .replace("{n}", String(withEstimate.length))
+          .replace("{total}", String(seenArtworks.length))
+      : null;
+
+  const [imageBusy, setImageBusy] = useState<"share" | "save" | null>(null);
+
+  async function buildImage(): Promise<Blob | null> {
+    return generateRecapImage({
+      locale: state.locale,
+      dateStr,
+      worksCount: seenArtworks.length,
+      artistsCount: artists.size,
+      timeStr,
+      hasAnyEstimate,
+      reviewedCount: withEstimate.length,
+      totalLow,
+      totalHigh,
+      mostValuable,
+      mostValuableHasEstimate: mostValuable?.estimate.high != null,
+      isBillion,
+    });
+  }
+
   async function handleShare() {
-    const text = `${seenArtworks.length} works • ${artists.size} artists • ${timeStr} at Musée d'Orsay — ELYIO`;
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: "My ELYIO visit", text });
-      } catch {
-        // user cancelled the native share sheet — nothing to do
+    setImageBusy("share");
+    try {
+      const text = `${seenArtworks.length} works • ${artists.size} artists • ${timeStr} at Musée d'Orsay — ELYIO`;
+      const blob = await buildImage();
+      const file = blob ? new File([blob], "elyio-visit-recap.png", { type: "image/png" }) : null;
+
+      // Web Share Level 2 (files) has patchy cross-browser support even
+      // where navigator.share itself exists — canShare({files}) is the
+      // actual capability check, not just the presence of navigator.share.
+      if (file && navigator.canShare?.({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: "My ELYIO visit", text });
+        } catch {
+          // user cancelled the native share sheet — nothing to do
+        }
+        return;
       }
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: "My ELYIO visit", text });
+        } catch {
+          // user cancelled — nothing to do
+        }
+        return;
+      }
+
+      // No Web Share support at all (most desktop browsers): fall back to
+      // the same download flow as the explicit "Save image" button.
+      if (blob) downloadBlob(blob);
+    } finally {
+      setImageBusy(null);
     }
+  }
+
+  async function handleSave() {
+    setImageBusy("save");
+    try {
+      const blob = await buildImage();
+      if (blob) downloadBlob(blob);
+    } finally {
+      setImageBusy(null);
+    }
+  }
+
+  function downloadBlob(blob: Blob) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "elyio-visit-recap.png";
+    link.click();
+    URL.revokeObjectURL(url);
   }
 
   return (
@@ -97,14 +178,21 @@ export default function RecapScreen({
 
       <div className="mt-8 space-y-4 shrink-0">
         {[
-          [tt("works_seen_count", state.locale), String(seenArtworks.length)],
-          [tt("stat_artists", state.locale), String(artists.size)],
-          [tt("stat_value_seen", state.locale), hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale)],
-          [tt("stat_time", state.locale), timeStr],
-        ].map(([label, value]) => (
-          <div key={label} className="flex justify-between items-baseline border-b border-black/10 pb-4">
-            <span className="text-[13px] font-semibold uppercase tracking-widest text-[#8E8E93]">{label}</span>
-            <span className="text-[22px] font-bold tracking-[-0.03em] text-[#111] tabular-nums">{value}</span>
+          [tt("works_seen_count", state.locale), String(seenArtworks.length), null],
+          [tt("stat_artists", state.locale), String(artists.size), null],
+          [
+            tt("stat_value_seen", state.locale),
+            hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale),
+            valueNote,
+          ],
+          [tt("stat_time", state.locale), timeStr, null],
+        ].map(([label, value, note]) => (
+          <div key={label} className="border-b border-black/10 pb-4">
+            <div className="flex justify-between items-baseline">
+              <span className="text-[13px] font-semibold uppercase tracking-widest text-[#8E8E93]">{label}</span>
+              <span className="text-[22px] font-bold tracking-[-0.03em] text-[#111] tabular-nums">{value}</span>
+            </div>
+            {note && <div className="text-right text-[11px] text-[#8E8E93] mt-0.5">{note}</div>}
           </div>
         ))}
       </div>
@@ -139,9 +227,18 @@ export default function RecapScreen({
         <button
           type="button"
           onClick={handleShare}
-          className="w-full h-[52px] rounded-full bg-black text-white text-[15px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.18)]"
+          disabled={imageBusy !== null}
+          className="w-full h-[52px] rounded-full bg-black text-white text-[15px] font-semibold shadow-[0_8px_20px_rgba(0,0,0,0.18)] disabled:opacity-60"
         >
-          {tt("share_your_visit", state.locale)}
+          {imageBusy === "share" ? tt("generating_image", state.locale) : tt("share_your_visit", state.locale)}
+        </button>
+        <button
+          type="button"
+          onClick={handleSave}
+          disabled={imageBusy !== null}
+          className="w-full h-[52px] rounded-full bg-[#F5F5F7] text-[#111] text-[15px] font-semibold disabled:opacity-60"
+        >
+          {imageBusy === "save" ? tt("generating_image", state.locale) : tt("save_image", state.locale)}
         </button>
         <button type="button" onClick={onNewVisit} className="w-full text-center text-[13px] font-semibold text-[#8E8E93] pt-1">
           {tt("new_visit", state.locale)}
