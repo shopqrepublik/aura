@@ -3012,7 +3012,7 @@
     "accent": "#735057",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Dance",
       "fr": "La Danse",
@@ -3024,23 +3024,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 2.5,
+      "high": 6,
+      "logic": "FACT: Bouguereau's auction record is $3,615,000 (~EUR3.3M) for Chansons de printemps, Christie's New York, 2019. EDITORIAL JUDGMENT: a large, well-regarded decorative commission, but less individually iconic than Bouguereau's flagship works (The Birth of Venus, The Oreads) elsewhere in this catalog -- positioned at or modestly below the record.",
+      "comparableSales": [
+        "Chansons de printemps, William-Adolphe Bouguereau — sold for $3,615,000 (~€3.3M), Christie's New York, 2019 — Bouguereau's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bouguereau paints an allegory of Dance itself as two graceful, wind-swept women sweeping across the sky with a great blue veil, accompanied by a young tambourine player — a large decorative commission meant to bring movement and joy to a Paris drawing room.",
+      "fr": "Bouguereau peint une allégorie de la Danse elle-même sous la forme de deux femmes gracieuses, balayées par le vent, glissant à travers le ciel avec un grand voile bleu, accompagnées d'un jeune joueur de tambourin — une vaste commande décorative destinée à apporter mouvement et joie à un salon parisien.",
+      "zh-Hans": "布格罗将「舞蹈」本身塑造成了一则寓言：两位优雅的女子在风中飘扬，手持一大片蓝色的薄纱，掠过天空，身旁伴着一位年轻的手鼓演奏者——这是一件规模宏大的装饰性委托作品，意在为一间巴黎客厅带来律动与欢愉。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the loose robes and the huge unfurling veil seem to catch the wind, giving the whole composition a sense of floating, weightless motion despite being painted on a flat, static canvas.",
+      "fr": "Remarquez comme les robes amples et l'immense voile déployé semblent happer le vent, donnant à toute la composition une sensation de mouvement flottant et léger, bien qu'elle soit peinte sur une toile plate et immobile.",
+      "zh-Hans": "留意那飘逸的长袍和那片舒展开来的巨大薄纱，是如何看起来捕捉住了风的——尽管这只是画在一块平面、静止的画布上，整幅构图却传达出一种漂浮、失重般的动感。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This painting was originally commissioned to decorate a private Paris mansion, not for public exhibition — a rare case of a major Bouguereau work made purely for a wealthy patron's own home before entering a museum collection.",
+      "fr": "Ce tableau fut à l'origine commandé pour décorer un hôtel particulier parisien, et non pour une exposition publique — un cas rare d'œuvre majeure de Bouguereau réalisée uniquement pour la demeure d'un riche mécène, avant d'entrer dans une collection muséale.",
+      "zh-Hans": "这幅画最初是受委托装饰一座巴黎私人宅邸的，而非用于公开展览——这是布格罗一件重要作品纯粹为一位富有赞助人自家宅邸而作的罕见案例，后来才进入了博物馆收藏。"
+    },
+    "whySimple": {
+      "en": "Bouguereau painted an allegory (a symbolic picture) of Dance itself — two graceful women swirl through the sky holding a huge blue veil, with a young tambourine player below them.",
+      "fr": "Bouguereau a peint une allégorie (une image symbolique) de la Danse elle-même — deux femmes gracieuses tourbillonnent dans le ciel en tenant un immense voile bleu, avec un jeune joueur de tambourin en dessous d'elles.",
+      "zh-Hans": "布格罗画了一幅关于「舞蹈」本身的寓言画（一幅具有象征意义的画）——两位优雅的女子手持一大片蓝色薄纱，在空中盘旋飞舞，下方还有一位年轻的手鼓演奏者。"
+    },
+    "whereSimple": {
+      "en": "Notice how the flowing robes and the huge veil seem to catch the wind, making the whole painting feel like it's floating and moving.",
+      "fr": "Remarquez comme les robes flottantes et l'immense voile semblent happer le vent, donnant l'impression que tout le tableau flotte et bouge.",
+      "zh-Hans": "留意那飘逸的长袍和巨大的薄纱，是如何看起来捕捉住了风的，让整幅画都仿佛在漂浮、流动。"
+    },
+    "raritySimple": {
+      "en": "This painting was originally made to decorate a wealthy Parisian's private home, not for a public art show.",
+      "fr": "Ce tableau fut à l'origine réalisé pour décorer la demeure privée d'un riche Parisien, et non pour une exposition d'art publique.",
+      "zh-Hans": "这幅画最初是为了装饰一位富有巴黎人的私人宅邸而创作的，而不是为了公开艺术展览。"
+    },
+    "whyKids": {
+      "en": "Bouguereau painted two graceful dancers swirling through the sky with a giant blue scarf, and a little tambourine player having fun below them!",
+      "fr": "Bouguereau a peint deux danseuses gracieuses tourbillonnant dans le ciel avec une immense écharpe bleue, et un petit joueur de tambourin qui s'amuse en dessous d'elles !",
+      "zh-Hans": "布格罗画了两位优雅的舞者，拿着一条巨大的蓝色围巾在空中盘旋飞舞，下面还有一个开心地敲着手鼓的小家伙呢！"
+    },
+    "whereKids": {
+      "en": "Look how the big blue veil billows out like it's really catching the wind — doesn't it make you feel like everyone is floating?",
+      "fr": "Regarde comme le grand voile bleu se gonfle comme s'il happait vraiment le vent — ça ne te donne pas l'impression que tout le monde flotte ?",
+      "zh-Hans": "看那条大大的蓝色薄纱是怎么鼓起来的，好像真的被风吹起来了一样——是不是感觉大家都要飘起来了呢？"
+    },
+    "rarityKids": {
+      "en": "This painting wasn't made for a museum at first — it was painted to decorate the living room of a rich Parisian's own home!",
+      "fr": "Ce tableau n'a pas été fait pour un musée au départ — il a été peint pour décorer le salon de la propre maison d'un riche Parisien !",
+      "zh-Hans": "这幅画一开始其实不是为博物馆画的——它是用来装饰一位富有巴黎人自己家客厅的呢！"
     }
   },
   {
@@ -4330,7 +4367,7 @@
     "accent": "#735057",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Equality Before Death",
       "fr": "Égalité devant la mort",
@@ -4342,24 +4379,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 3.5,
+      "high": 7,
+      "logic": "FACT: Bouguereau's auction record is $3,615,000 (~EUR3.3M) for Chansons de printemps, Christie's New York, 2019 -- the same comparable used for The Birth of Venus and Dante and Virgil in Hell elsewhere in this catalog. EDITORIAL JUDGMENT: this was Bouguereau's ambitious Salon debut at age 23, the painting that launched his career -- positioned at or moderately above the record, similar reasoning to Dante and Virgil in Hell.",
+      "comparableSales": [
+        "Chansons de printemps, William-Adolphe Bouguereau — sold for $3,615,000 (~€3.3M), Christie's New York, 2019 — Bouguereau's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "In Bouguereau's ambitious Salon debut, a solemn winged figure sweeps a dead young man up in a great white shroud — not a scene of violence or suffering, but a symbolic reminder that death eventually claims everyone equally, regardless of rank or fortune.",
+      "fr": "Dans ces débuts ambitieux de Bouguereau au Salon, une figure ailée et solennelle emporte un jeune homme mort dans un grand linceul blanc — non pas une scène de violence ou de souffrance, mais un rappel symbolique que la mort finit par réclamer tout le monde de façon égale, quels que soient le rang ou la fortune.",
+      "zh-Hans": "在布格罗雄心勃勃的沙龙首秀之作中，一位庄严的有翼形象，用一大片白色的裹尸布，将一名已故的年轻男子托举而起——这并非一幅暴力或苦难的场景，而是一则象征性的提醒：无论地位高低、贫富贵贱，死亡终将平等地降临到每个人身上。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how calm and untroubled the young man's face looks, and how gently the angel gathers him up — Bouguereau paints this as a dignified passage, not a tragedy.",
+      "fr": "Remarquez combien le visage du jeune homme paraît calme et paisible, et avec quelle douceur l'ange le recueille — Bouguereau peint cela comme un passage empreint de dignité, et non comme une tragédie.",
+      "zh-Hans": "留意年轻男子的面容是多么平静、安详，天使又是如何温柔地将他托起的——布格罗把这一幕描绘成一次庄重而有尊严的过渡，而非一场悲剧。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "Painted when Bouguereau was only 23, straight out of art school, this ambitious work launched his entire career at the Paris Salon.",
+      "fr": "Peint alors que Bouguereau n'avait que 23 ans, tout juste sorti de l'école des beaux-arts, cette œuvre ambitieuse lança toute sa carrière au Salon de Paris.",
+      "zh-Hans": "这幅画创作于布格罗年仅23岁、刚刚从美术学院毕业之时，这幅雄心勃勃的作品，让他在巴黎沙龙上一举成名，开启了他的整个艺术生涯。"
+    },
+    "whySimple": {
+      "en": "In this early Salon painting, Bouguereau shows a symbolic winged figure gently carrying a young man away in a large white cloth — a peaceful, symbolic image meaning that death eventually comes for everyone, rich or poor.",
+      "fr": "Dans ce tableau de jeunesse présenté au Salon, Bouguereau montre une figure ailée symbolique emportant doucement un jeune homme dans un grand linge blanc — une image paisible et symbolique signifiant que la mort finit par venir pour tout le monde, riche ou pauvre.",
+      "zh-Hans": "在这幅早期的沙龙参展作品中，布格罗描绘了一个象征性的有翼形象，用一块巨大的白布温柔地托起一名年轻男子——这是一幅平和的象征性画面，寓意着无论贫富，死亡终将降临到每个人身上。"
+    },
+    "whereSimple": {
+      "en": "Notice how peaceful and calm the young man's face looks — Bouguereau paints this gently, not as something frightening.",
+      "fr": "Remarquez combien le visage du jeune homme paraît paisible et calme — Bouguereau peint cela avec douceur, non comme quelque chose d'effrayant.",
+      "zh-Hans": "留意年轻男子的面容是多么平和、安详——布格罗用温柔的笔触描绘了这一切，而不是把它画成什么可怕的东西。"
+    },
+    "raritySimple": {
+      "en": "Bouguereau painted this when he was only 23, right after finishing art school. It was his very first major success.",
+      "fr": "Bouguereau peignit ce tableau alors qu'il n'avait que 23 ans, juste après avoir terminé l'école des beaux-arts. Ce fut son tout premier grand succès.",
+      "zh-Hans": "布格罗画这幅画时年仅23岁，刚从美术学院毕业。这是他人生中第一次真正意义上的成功。"
+    },
+    "whyKids": {
+      "en": "This painting shows a made-up, symbolic character — a winged figure carrying someone away wrapped in a big white cloth, like something out of an old story about how everyone eventually grows old.",
+      "fr": "Ce tableau montre un personnage imaginaire et symbolique — une figure ailée emportant quelqu'un enveloppé dans un grand linge blanc, comme tiré d'une vieille histoire sur le fait que tout le monde vieillit un jour.",
+      "zh-Hans": "这幅画描绘的是一个想象出来的、具有象征意义的角色——一个有翅膀的形象，用一大块白布裹着一个人，把他带走，就像一个古老故事里讲的那样：每个人终究都会长大、变老。"
+    },
+    "whereKids": {
+      "en": "Notice how calm and peaceful everything looks in this painting — it's meant to feel gentle, not scary.",
+      "fr": "Remarque comme tout paraît calme et paisible dans ce tableau — il est fait pour donner une impression douce, pas effrayante.",
+      "zh-Hans": "留意这幅画里的一切显得多么平静、安详——它想传达的是一种温柔的感觉，而不是让人害怕。"
+    },
+    "rarityKids": {
+      "en": "Bouguereau painted this when he was only 23 years old, right when he was just starting out as an artist — and it made him famous!",
+      "fr": "Bouguereau a peint ce tableau alors qu'il n'avait que 23 ans, tout juste au moment où il débutait comme artiste — et ça l'a rendu célèbre !",
+      "zh-Hans": "布格罗画这幅画的时候只有23岁，那时他才刚刚开始自己的艺术生涯——而这幅画，让他一举成名！"
+    },
+    "contentFlag": "A nude, winged allegorical figure (Death) carries the nude body of a dead young man on a white shroud. Combines two flagged categories at once: an actual depicted death (like Camille Monet/Bellelli Family/Hopital Saint-Paul) and nudity (both figures). Verified by viewing the actual image (not assumed from the title) -- calm, non-graphic, allegorical treatment, not violent or injured. Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the allegorical idea and Bouguereau's youth/ambition as a debut Salon piece, without naming or explaining the death directly -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_3666",
@@ -4573,7 +4648,7 @@
     "accent": "#735057",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Oreads",
       "fr": "Les Oréades",
@@ -4585,24 +4660,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 4,
+      "high": 9,
+      "logic": "FACT: Bouguereau's auction record is $3,615,000 (~EUR3.3M) for Chansons de printemps, Christie's New York, 2019. EDITORIAL JUDGMENT: The Oreads is widely described by art historians as Bouguereau's late-career masterpiece and a technical culmination of his entire practice (an enormous, ambitious multi-figure composition painted at age 76) -- positioned above the record, at the top of the range used across Bouguereau's works in this catalog, similar reasoning to The Birth of Venus.",
+      "comparableSales": [
+        "Chansons de printemps, William-Adolphe Bouguereau — sold for $3,615,000 (~€3.3M), Christie's New York, 2019 — Bouguereau's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bouguereau paints the Oreads, mountain nymphs from Greek mythology, caught mid-leap in a swirling, weightless mass as they bound across the sky — a late-career technical showpiece built almost entirely from the challenge of painting dozens of figures in motion at once.",
+      "fr": "Bouguereau peint les Oréades, nymphes des montagnes de la mythologie grecque, saisies en plein bond dans une masse tourbillonnante et légère alors qu'elles bondissent à travers le ciel — une démonstration technique de fin de carrière construite presque entièrement sur le défi de peindre des dizaines de figures en mouvement à la fois.",
+      "zh-Hans": "布格罗描绘的是希腊神话中的山林女神奥瑞阿德斯——她们在空中腾跃、飞掠而过，定格在一片旋转、失重般的群像之中——这是布格罗晚年一件展现精湛技艺的力作，几乎完全建立在同时描绘数十个运动中人物这一巨大挑战之上。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Follow the sweeping diagonal rhythm running through the whole composition — Bouguereau links dozens of figures together into one continuous, flowing movement, like a single gust of wind made visible.",
+      "fr": "Suivez le rythme diagonal ample qui parcourt toute la composition — Bouguereau relie des dizaines de figures en un seul mouvement continu et fluide, comme une seule rafale de vent rendue visible.",
+      "zh-Hans": "顺着贯穿整幅构图的那股宏大的对角线律动看过去——布格罗把数十个人物连成了一股连贯、流畅的动势，仿佛是一阵疾风被可视化了一般。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "Painted when Bouguereau was 76, near the very end of his life, this enormous and technically demanding composition is considered by many art historians to be the crowning achievement of his long career.",
+      "fr": "Peinte alors que Bouguereau avait 76 ans, presque à la toute fin de sa vie, cette composition immense et techniquement exigeante est considérée par de nombreux historiens de l'art comme l'aboutissement de sa longue carrière.",
+      "zh-Hans": "这幅画创作于布格罗76岁高龄、几乎是他生命尽头之时，这幅规模宏大、技法要求极高的作品，被众多艺术史学家认为是他漫长艺术生涯的巅峰之作。"
+    },
+    "whySimple": {
+      "en": "Bouguereau painted the Oreads, mountain nymphs from Greek mythology, leaping together through the sky in one big, swirling group.",
+      "fr": "Bouguereau a peint les Oréades, nymphes des montagnes de la mythologie grecque, bondissant ensemble à travers le ciel en un grand groupe tourbillonnant.",
+      "zh-Hans": "布格罗画了希腊神话中的山林女神奥瑞阿德斯，她们聚成一大群，在空中盘旋着一起腾跃飞掠。"
+    },
+    "whereSimple": {
+      "en": "Follow the sweeping, diagonal movement running through the whole painting — Bouguereau links many figures together into one flowing motion.",
+      "fr": "Suis le mouvement diagonal et ample qui parcourt tout le tableau — Bouguereau relie de nombreuses figures en un seul mouvement fluide.",
+      "zh-Hans": "顺着贯穿整幅画的那股宏大的对角线动势看过去——布格罗把众多人物连成了一股流畅的动感。"
+    },
+    "raritySimple": {
+      "en": "Bouguereau painted this when he was 76 years old, near the end of his life. Many experts consider it the greatest achievement of his entire career.",
+      "fr": "Bouguereau a peint ce tableau alors qu'il avait 76 ans, vers la fin de sa vie. De nombreux experts le considèrent comme le plus grand accomplissement de toute sa carrière.",
+      "zh-Hans": "布格罗画这幅画时已经76岁，接近生命的尽头。许多专家都认为，这是他整个艺术生涯中最伟大的成就。"
+    },
+    "whyKids": {
+      "en": "Bouguereau painted the Oreads — in Greek myths, these are nymphs who live on mountains — leaping and flying together through the sky in one big group!",
+      "fr": "Bouguereau a peint les Oréades — dans les mythes grecs, ce sont des nymphes qui vivent sur les montagnes — bondissant et volant ensemble à travers le ciel en un grand groupe !",
+      "zh-Hans": "布格罗画的是奥瑞阿德斯——在希腊神话里，她们是住在山里的女神——她们聚成一大群，一起腾跃、飞翔在天空中！"
+    },
+    "whereKids": {
+      "en": "Can you follow the swirling, diagonal movement running through the whole picture? It's like Bouguereau painted one big gust of wind made of people!",
+      "fr": "Arrives-tu à suivre le mouvement tourbillonnant et diagonal qui parcourt toute l'image ? On dirait que Bouguereau a peint une grande rafale de vent faite de personnes !",
+      "zh-Hans": "你能顺着贯穿整幅画的那股旋转、倾斜的动势看下去吗？就好像布格罗画了一整阵由人组成的大风一样！"
+    },
+    "rarityKids": {
+      "en": "Bouguereau painted this huge, complicated picture when he was 76 years old — many people say it's the best painting he ever made!",
+      "fr": "Bouguereau a peint cette immense et complexe image alors qu'il avait 76 ans — beaucoup de gens disent que c'est le meilleur tableau qu'il ait jamais fait !",
+      "zh-Hans": "布格罗画这幅巨大又复杂的画时，已经76岁了——很多人都说，这是他一生中画得最好的一幅画！"
+    },
+    "contentFlag": "Dozens of fully nude female nymphs (Oreads, mountain nymphs of Greek myth) in a dynamic aerial mass, watched at close range by three nude male satyrs explicitly ogling them -- verified by viewing the actual image, not assumed from description. The pre-flagged item from the original content-policy list. Unlike Cabanel's Birth of Venus or Vairumati, there is a real mythological figure-type (Oreads) but no single narrative story, and the satyrs'-gaze dynamic is compositionally central rather than incidental. Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the Oreads as a Greek-myth nymph type and the technical/compositional achievement of painting dozens of figures in motion, without describing the bodies or the satyrs' gaze -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_1994",
@@ -5930,7 +6043,7 @@
     "accent": "#5A4387",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Vue du canal Saint-Martin",
       "fr": "Vue du canal Saint-Martin",
@@ -5942,23 +6055,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 4,
+      "high": 8,
+      "logic": "FACT: Effet de neige a Louveciennes, sold for $9,064,733 (~EUR8.35M) at Sotheby's London, March 2017 -- Sisley's auction record, same broad landscape genre. EDITORIAL JUDGMENT: this is an early, modest Salon painting that was reportedly ignored by critics at the time -- positioned well below the record to reflect that it is not among Sisley's most celebrated or mature works.",
+      "comparableSales": [
+        "Effet de neige à Louveciennes, Alfred Sisley — $9,064,733 (~€8.35M), Sotheby's London, March 2017 — Sisley's auction record, same landscape genre, but a later, more mature and celebrated work."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Sisley paints a quiet, sunlit view of the Canal Saint-Martin in Paris, using short, flickering brushstrokes to capture clouds and light reflected on the water's surface — a calm, everyday corner of the city rather than a grand monument.",
+      "fr": "Sisley peint une vue paisible et ensoleillée du canal Saint-Martin à Paris, utilisant de courtes touches vibrantes pour capturer les nuages et la lumière se reflétant à la surface de l'eau — un coin calme et quotidien de la ville plutôt qu'un grand monument.",
+      "zh-Hans": "西斯莱描绘了巴黎圣马丁运河一处宁静、阳光洒落的景象，运用短促、闪烁跳跃的笔触，捕捉着云朵和光线在水面上的倒影——这是这座城市里一处安静的日常角落，而非什么宏伟的地标建筑。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how much of the canvas Sisley gives to the sky and its reflection in the canal — nearly half the painting is water and cloud, showing his early fascination with capturing changing light.",
+      "fr": "Remarquez la place que Sisley accorde au ciel et à son reflet dans le canal — près de la moitié du tableau est constituée d'eau et de nuages, montrant sa fascination précoce pour la saisie de la lumière changeante.",
+      "zh-Hans": "留意西斯莱把画布上多大的面积留给了天空及其在运河中的倒影——几乎有一半的画面都是水和云，这展现了他早年就已经对捕捉变幻光线充满了痴迷。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This painting was owned by Dr. Paul Gachet, the same physician and art collector famously connected to Van Gogh's final months, who bought it directly from Sisley for a modest sum.",
+      "fr": "Ce tableau appartint au docteur Paul Gachet, le même médecin et collectionneur d'art célèbre pour son lien avec les derniers mois de Van Gogh, qui l'acheta directement à Sisley pour une somme modeste.",
+      "zh-Hans": "这幅画曾归保罗·加歇医生所有——正是那位以与梵高生命最后几个月的交往而闻名的医生兼艺术收藏家，他当年以一笔不算多的钱，直接从西斯莱手中买下了这幅画。"
+    },
+    "whySimple": {
+      "en": "Sisley painted a quiet, sunny view of the Canal Saint-Martin in Paris, using short brushstrokes to show clouds and light reflected in the water.",
+      "fr": "Sisley a peint une vue paisible et ensoleillée du canal Saint-Martin à Paris, utilisant de courtes touches pour montrer les nuages et la lumière se reflétant dans l'eau.",
+      "zh-Hans": "西斯莱画了巴黎圣马丁运河一处宁静、阳光明媚的景象，用短促的笔触表现云朵和光线在水中的倒影。"
+    },
+    "whereSimple": {
+      "en": "Notice how much of the painting is just sky and its reflection in the water — Sisley loved capturing changing light and clouds.",
+      "fr": "Remarquez la part du tableau occupée uniquement par le ciel et son reflet dans l'eau — Sisley aimait capturer la lumière changeante et les nuages.",
+      "zh-Hans": "留意这幅画里有多大一部分只是天空和它在水中的倒影——西斯莱特别喜欢捕捉变幻的光线和云朵。"
+    },
+    "raritySimple": {
+      "en": "This painting was once owned by Dr. Paul Gachet, the same doctor who later became known for caring for Vincent van Gogh.",
+      "fr": "Ce tableau appartint autrefois au docteur Paul Gachet, le même médecin qui devint plus tard connu pour avoir soigné Vincent van Gogh.",
+      "zh-Hans": "这幅画曾经归保罗·加歇医生所有，就是那位后来因照顾文森特·梵高而广为人知的医生。"
+    },
+    "whyKids": {
+      "en": "Sisley painted a peaceful, sunny canal in Paris, using quick little brushstrokes to show fluffy clouds floating in the sky and in the water below!",
+      "fr": "Sisley a peint un canal paisible et ensoleillé à Paris, utilisant de petites touches rapides pour montrer des nuages moelleux flottant dans le ciel et dans l'eau en dessous !",
+      "zh-Hans": "西斯莱画了巴黎一条宁静、阳光灿烂的运河，用快速的小笔触，画出了天空中飘着的蓬松云朵，还有它们在下方水面上的倒影！"
+    },
+    "whereKids": {
+      "en": "Look how much of this painting is just sky and water — more than half of it! Sisley loved painting clouds and light.",
+      "fr": "Regarde comme une grande partie de ce tableau n'est que ciel et eau — plus de la moitié ! Sisley adorait peindre les nuages et la lumière.",
+      "zh-Hans": "看这幅画里有多大一部分只是天空和水——超过一半呢！西斯莱特别喜欢画云朵和光线。"
+    },
+    "rarityKids": {
+      "en": "The person who first bought this painting was a doctor who later became friends with the painter Vincent van Gogh!",
+      "fr": "La première personne à avoir acheté ce tableau était un médecin qui est devenu plus tard ami avec le peintre Vincent van Gogh !",
+      "zh-Hans": "第一个买下这幅画的人是一位医生，他后来还成为了画家文森特·梵高的朋友呢！"
     }
   },
   {
@@ -6918,7 +7068,7 @@
     "accent": "#5A4387",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Flooding at Port-Marly",
       "fr": "L'Inondation à Port-Marly",
@@ -6930,23 +7080,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 7,
+      "high": 14,
+      "logic": "FACT: Effet de neige a Louveciennes, sold for $9,064,733 (~EUR8.35M) at Sotheby's London, March 2017 -- Sisley's auction record, same broad landscape genre and a close chronological match (1874 vs. this work's 1876). EDITORIAL JUDGMENT: this is one of Sisley's most celebrated and reproduced motifs -- he painted the same flooded street seven times, and one version was shown at the third Impressionist exhibition -- positioned at or above the record to reflect that exceptional standing among his work.",
+      "comparableSales": [
+        "Effet de neige à Louveciennes, Alfred Sisley — $9,064,733 (~€8.35M), Sotheby's London, March 2017 — Sisley's auction record, same landscape genre, close chronological match."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Sisley paints the aftermath of a severe flood that swallowed the streets of Port-Marly in early 1876, showing rowboats gliding past half-submerged buildings where a wine merchant's sign still hangs above the waterline.",
+      "fr": "Sisley peint les suites d'une inondation sévère qui engloutit les rues de Port-Marly au début de 1876, montrant des barques glissant devant des bâtiments à moitié submergés, où l'enseigne d'un marchand de vin est encore accrochée au-dessus de la ligne d'eau.",
+      "zh-Hans": "西斯莱描绘了1876年初一场严重洪水淹没波尔玛尔利街道后的景象，画面中小船在半被淹没的建筑物间划过，一块酒商的招牌，依然挂在水面以上。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how calm and mirror-like the floodwater is — rather than painting chaos or disaster, Sisley finds a strange, still beauty in the flooded street, with reflections doubling every building and boat.",
+      "fr": "Remarquez comme l'eau de crue est calme et semblable à un miroir — plutôt que de peindre le chaos ou le désastre, Sisley trouve une beauté étrange et paisible dans cette rue inondée, les reflets doublant chaque bâtiment et chaque barque.",
+      "zh-Hans": "留意洪水是多么平静、如镜面一般——西斯莱并没有描绘混乱或灾难，而是在这条被淹没的街道中，发现了一种奇特而静谧的美，每一栋建筑、每一艘小船，都在水中呈现出对称的倒影。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Sisley was so struck by this flood that he painted the same street seven different times that year — this painting is one of a closely watched series now split between museums around the world.",
+      "fr": "Sisley fut si marqué par cette inondation qu'il peignit la même rue sept fois différentes cette année-là — ce tableau fait partie d'une série très suivie, aujourd'hui répartie entre des musées du monde entier.",
+      "zh-Hans": "西斯莱对这场洪水印象深刻，那一年他七次描绘了同一条街道——这幅画正是这一广受关注的系列作品之一，如今这些画作分散收藏在世界各地的博物馆中。"
+    },
+    "whySimple": {
+      "en": "Sisley painted the streets of Port-Marly after a severe flood in 1876, with rowboats gliding past buildings that were half underwater.",
+      "fr": "Sisley a peint les rues de Port-Marly après une inondation sévère en 1876, avec des barques glissant devant des bâtiments à moitié sous l'eau.",
+      "zh-Hans": "西斯莱画了1876年一场严重洪水后波尔玛尔利的街道，小船在半被淹没的建筑物间划过。"
+    },
+    "whereSimple": {
+      "en": "Notice how calm and mirror-like the floodwater looks — Sisley finds a strange kind of beauty in the flooded street, with reflections of the buildings and boats.",
+      "fr": "Remarquez comme l'eau de crue paraît calme et semblable à un miroir — Sisley trouve une beauté étrange dans cette rue inondée, avec les reflets des bâtiments et des barques.",
+      "zh-Hans": "留意洪水看起来是多么平静、如镜面一般——西斯莱在这条被淹没的街道中，找到了一种奇特的美，建筑物和小船都在水中留下了倒影。"
+    },
+    "raritySimple": {
+      "en": "Sisley was so struck by this flood that he painted the very same street seven different times that year.",
+      "fr": "Sisley fut si marqué par cette inondation qu'il peignit cette même rue sept fois différentes cette année-là.",
+      "zh-Hans": "西斯莱对这场洪水印象深刻，那一年他七次描绘了同一条街道。"
+    },
+    "whyKids": {
+      "en": "Sisley painted a street that got completely flooded! Look, people are rowing boats right down the middle of it where the street used to be!",
+      "fr": "Sisley a peint une rue complètement inondée ! Regarde, des gens rament en barque juste au milieu, là où se trouvait la rue !",
+      "zh-Hans": "西斯莱画了一条被彻底淹没的街道！你看，人们划着小船，就在原本是街道的地方中间穿行呢！"
+    },
+    "whereKids": {
+      "en": "Notice how still and calm the floodwater looks, almost like a mirror — you can see the buildings reflected upside down in the water!",
+      "fr": "Remarque comme l'eau de crue paraît immobile et calme, presque comme un miroir — tu peux voir les bâtiments se refléter à l'envers dans l'eau !",
+      "zh-Hans": "看洪水多么平静、多么安静，几乎像一面镜子——你能看到建筑物倒映在水中、上下颠倒的样子呢！"
+    },
+    "rarityKids": {
+      "en": "Sisley loved this flooded street so much that he painted it seven whole times that year!",
+      "fr": "Sisley a tellement aimé cette rue inondée qu'il l'a peinte sept fois cette année-là !",
+      "zh-Hans": "西斯莱太喜欢这条被淹没的街道了，那一年他一共画了整整七次呢！"
     }
   },
   {
@@ -7039,7 +7226,7 @@
     "accent": "#5A4387",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Regatta at Molesey",
       "fr": "Les Régates à Molesey",
@@ -7051,23 +7238,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 6,
+      "high": 12,
+      "logic": "FACT: Effet de neige a Louveciennes, sold for $9,064,733 (~EUR8.35M) at Sotheby's London, March 2017 -- Sisley's auction record, same landscape genre and the exact same year (1874) as this work. EDITORIAL JUDGMENT: an exceptionally close date match, plus a distinguished provenance (once owned by fellow painter Gustave Caillebotte) -- positioned close to the record, though modestly below, since the record work is a snow scene generally considered among Sisley's most celebrated individual motifs.",
+      "comparableSales": [
+        "Effet de neige à Louveciennes, Alfred Sisley — $9,064,733 (~€8.35M), Sotheby's London, March 2017 — Sisley's auction record, same landscape genre, exact same year (1874)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Sisley paints a lively boat race on the River Thames near Hampton Court in England, filling the scene with small flags snapping in the breeze — a rare moment of English river life captured during a four-month painting trip funded by a wealthy patron.",
+      "fr": "Sisley peint une régate animée sur la Tamise, près de Hampton Court en Angleterre, remplissant la scène de petits drapeaux claquant dans la brise — un rare instant de la vie fluviale anglaise, capturé lors d'un voyage de peinture de quatre mois financé par un riche mécène.",
+      "zh-Hans": "西斯莱描绘了英国汉普顿宫附近泰晤士河上一场热闹的赛船会，画面中飘满了在微风中猎猎作响的小旗子——这是他在一位富有赞助人资助下、为期四个月的英国之旅中，捕捉到的一个难得的英伦河畔生活瞬间。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at how loosely and quickly Sisley paints the flags and rippling water — he's chasing a fleeting breeze and a moment of movement, not a carefully posed scene.",
+      "fr": "Regardez avec quelle liberté et quelle rapidité Sisley peint les drapeaux et l'eau ondoyante — il poursuit une brise fugace et un instant de mouvement, non une scène soigneusement posée.",
+      "zh-Hans": "看西斯莱是多么松散、迅速地描绘那些旗帜和泛着涟漪的水面——他追逐的是一阵转瞬即逝的微风和一个动态的瞬间，而非一个精心摆拍的场景。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This painting later belonged to fellow painter and collector Gustave Caillebotte, who left his entire art collection to the French state — which is how many Impressionist masterpieces, including this one, ended up in French museums.",
+      "fr": "Ce tableau appartint plus tard au peintre et collectionneur Gustave Caillebotte, qui légua toute sa collection d'art à l'État français — c'est ainsi que de nombreux chefs-d'œuvre impressionnistes, dont celui-ci, se retrouvèrent dans des musées français.",
+      "zh-Hans": "这幅画后来归画家兼收藏家古斯塔夫·卡耶博特所有，他把自己全部的艺术收藏都遗赠给了法国政府——这也正是包括这幅画在内、众多印象派杰作最终得以进入法国各大博物馆的原因。"
+    },
+    "whySimple": {
+      "en": "Sisley painted a lively boat race on the River Thames in England, with little flags fluttering in the breeze. He painted this during a four-month trip to England.",
+      "fr": "Sisley a peint une régate animée sur la Tamise en Angleterre, avec de petits drapeaux flottant dans la brise. Il a peint ce tableau lors d'un voyage de quatre mois en Angleterre.",
+      "zh-Hans": "西斯莱画了英国泰晤士河上一场热闹的赛船会，微风中飘扬着小小的旗帜。这幅画创作于他在英国为期四个月的旅行期间。"
+    },
+    "whereSimple": {
+      "en": "Look at how quickly and loosely Sisley paints the flags and the rippling water — he wanted to capture a passing breeze, not a posed, still scene.",
+      "fr": "Regarde avec quelle rapidité et quelle liberté Sisley peint les drapeaux et l'eau ondoyante — il voulait capturer une brise passagère, non une scène posée et figée.",
+      "zh-Hans": "看西斯莱是多么迅速、松散地描绘那些旗帜和泛着涟漪的水面——他想捕捉的是一阵转瞬即逝的微风，而不是一个摆拍、静止的场景。"
+    },
+    "raritySimple": {
+      "en": "This painting later belonged to the painter Gustave Caillebotte, who left his whole art collection to France — which is how many Impressionist paintings ended up in French museums.",
+      "fr": "Ce tableau appartint plus tard au peintre Gustave Caillebotte, qui légua toute sa collection d'art à la France — c'est ainsi que de nombreux tableaux impressionnistes se retrouvèrent dans des musées français.",
+      "zh-Hans": "这幅画后来归画家古斯塔夫·卡耶博特所有，他把自己全部的艺术收藏都赠予了法国——这也正是许多印象派画作最终进入法国各大博物馆的原因。"
+    },
+    "whyKids": {
+      "en": "Sisley painted a fun boat race happening on a river in England, with little flags flapping and fluttering all over the place in the wind!",
+      "fr": "Sisley a peint une amusante régate sur une rivière en Angleterre, avec de petits drapeaux qui claquent et flottent partout dans le vent !",
+      "zh-Hans": "西斯莱画了一场在英国某条河上举行的有趣赛船会，风中到处都是啪嗒啪嗒飘动的小旗子！"
+    },
+    "whereKids": {
+      "en": "Look how quick and loose the brushstrokes are on the flags and the water — Sisley wanted to catch a gust of wind before it disappeared!",
+      "fr": "Regarde comme les touches sont rapides et libres sur les drapeaux et l'eau — Sisley voulait attraper une rafale de vent avant qu'elle ne disparaisse !",
+      "zh-Hans": "看旗帜和水面上的笔触是多么快速、随意——西斯莱想要在一阵风消失之前，把它捕捉下来！"
+    },
+    "rarityKids": {
+      "en": "This painting was once owned by another painter, Gustave Caillebotte, who gave his whole art collection to France — that's actually how a lot of famous Impressionist paintings ended up in French museums!",
+      "fr": "Ce tableau a un jour appartenu à un autre peintre, Gustave Caillebotte, qui a donné toute sa collection d'art à la France — c'est en fait comme ça que beaucoup de célèbres tableaux impressionnistes se sont retrouvés dans des musées français !",
+      "zh-Hans": "这幅画曾经归另一位画家古斯塔夫·卡耶博特所有，他把自己全部的艺术收藏都送给了法国——很多著名的印象派画作，其实就是这样才进入了法国各大博物馆的！"
     }
   },
   {
