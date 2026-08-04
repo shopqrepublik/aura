@@ -25,12 +25,14 @@ export default function CardScreen({
   onBack,
   onAddToVisit,
   onToggleFavorite,
+  onGoProgress,
 }: {
   state: AppState;
   onSetMode: (mode: AppState["mode"]) => void;
   onBack: () => void;
   onAddToVisit: () => void;
   onToggleFavorite: () => void;
+  onGoProgress: () => void;
 }) {
   const [imgError, setImgError] = useState(false);
   const artwork = state.currentArtwork;
@@ -164,6 +166,19 @@ export default function CardScreen({
             className="w-full h-[50px] rounded-full bg-[#F5F5F7] text-[#111] text-[15px] font-semibold tracking-[-0.01em]"
           >
             {tt("scan_next_artwork", state.locale)}
+          </button>
+          {/* CardScreen previously had NO route to Progress/Recap at all --
+              only Camera did (and only via its own small icon, fixed above).
+              Reaching Progress meant first guessing that "Scan next artwork"
+              would take you back to Camera, then separately noticing the
+              icon there. This makes it reachable directly from the card,
+              same reliability bar as the button above. */}
+          <button
+            type="button"
+            onClick={onGoProgress}
+            className="w-full text-center text-[13px] font-semibold text-[#8E8E93] pt-1"
+          >
+            {tt("view_visit_progress", state.locale)}
           </button>
         </div>
       </div>

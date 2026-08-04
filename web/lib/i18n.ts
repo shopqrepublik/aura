@@ -53,6 +53,8 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   add_to_my_visit: { en: "Add to my visit", fr: "Ajouter à ma visite", "zh-Hans": "加入我的参观" },
   added_check: { en: "Added ✓", fr: "Ajouté ✓", "zh-Hans": "已加入 ✓" },
   scan_next_artwork: { en: "Scan next artwork", fr: "Scanner l'œuvre suivante", "zh-Hans": "扫描下一件作品" },
+  progress_label: { en: "Progress", fr: "Progression", "zh-Hans": "进度" },
+  view_visit_progress: { en: "View visit progress", fr: "Voir la progression de la visite", "zh-Hans": "查看参观进度" },
   listen_label: { en: "Listen", fr: "Écouter", "zh-Hans": "收听" },
   listen_playing_label: { en: "Playing", fr: "Lecture en cours", "zh-Hans": "播放中" },
   live_progress: { en: "Live Progress", fr: "Progression en direct", "zh-Hans": "实时进度" },

@@ -43,6 +43,7 @@ export default function AppPage() {
             onBack={() => actions.goto("camera")}
             onAddToVisit={actions.addToVisit}
             onToggleFavorite={actions.toggleFavorite}
+            onGoProgress={() => actions.goto("progress")}
           />
         )}
         {state.screen === "progress" && (

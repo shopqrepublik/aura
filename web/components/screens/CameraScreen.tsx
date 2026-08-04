@@ -109,13 +109,21 @@ export default function CameraScreen({
 
       {flashing && <div className="absolute inset-0 bg-white animate-flash pointer-events-none z-30" />}
 
+      {/* Same regression the "Scan next artwork" fix addressed on
+          CardScreen: this used to be an icon with no visible label
+          (aria-label only, invisible to a sighted user), which is exactly
+          the kind of undiscoverable affordance that left people stuck
+          without a way to reach Progress/Recap. The text makes the
+          destination explicit instead of relying on an arrow glyph being
+          self-evident on a first real visit. */}
       <button
         type="button"
         onClick={onGoProgress}
         aria-label="Visit progress"
-        className="absolute top-[54px] left-4 z-20 w-9 h-9 rounded-full bg-black/40 backdrop-blur flex items-center justify-center"
+        className="absolute top-[54px] left-4 z-20 h-9 pl-2.5 pr-3.5 rounded-full bg-black/40 backdrop-blur flex items-center gap-1.5"
       >
         <ArrowUp className="w-4 h-4 text-white" />
+        <span className="text-[12px] font-semibold text-white tracking-[-0.01em]">{tt("progress_label", state.locale)}</span>
       </button>
       <button
         type="button"

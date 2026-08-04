@@ -133,7 +133,7 @@ const SCREEN_DEMOS = [
   {
     id: "card",
     label: "03 — ARTWORK CARD • HERO",
-    note: "Drag to dismiss. Value badge reveals once. Eye block fades in 240ms.",
+    note: "Explicit \"Scan next artwork\" + \"View visit progress\" buttons — no swipe/drag gesture exists. Value badge reveals once. Eye block fades in 240ms.",
     node: (
       <CardScreen
         state={demoState({ screen: "card", currentArtwork: DEMO_ARTWORK })}
@@ -141,6 +141,7 @@ const SCREEN_DEMOS = [
         onBack={noop}
         onAddToVisit={noop}
         onToggleFavorite={noop}
+        onGoProgress={noop}
       />
     ),
   },
