@@ -3101,7 +3101,7 @@
     "accent": "#AA8E9A",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Arearea",
       "fr": "Arearea",
@@ -3113,23 +3113,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 70,
+      "high": 105,
+      "logic": "FACT: Maternite II, from the same first-Tahiti-trip period and a closely related subject (Tahitian women), sold for $105.73M (~EUR97.3M) at Christie's New York, November 2022 -- the same comparable used for Tahitian Women on the Beach elsewhere in this catalog (Gauguin's public auction record). EDITORIAL JUDGMENT: an exceptionally close period and subject match, and Gauguin himself considered Arearea one of his best paintings (he bought it back for himself in 1895) -- positioned just below the Tahitian Women on the Beach range, since that specific image is still likely the single most reproduced and iconic of Gauguin's Tahiti period.",
+      "comparableSales": [
+        "Maternité II, Paul Gauguin — $105.73M (~€97.3M), Christie's New York, November 2022 (Paul Allen collection) — same first-Tahiti-trip period, closely related subject (Tahitian women), Gauguin's public auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin paints two Tahitian women at leisure — one in a traditional pareo, the other in a missionary-introduced dress, a quiet detail marking the collision of island tradition and colonial influence — while in the background he imagines a giant sacred statue and a ceremony that never actually took place.",
+      "fr": "Gauguin peint deux femmes tahitiennes au repos — l'une vêtue d'un paréo traditionnel, l'autre d'une robe introduite par les missionnaires, un détail discret qui marque la rencontre entre tradition insulaire et influence coloniale — tandis qu'à l'arrière-plan, il imagine une statue sacrée gigantesque et une cérémonie qui n'a en réalité jamais eu lieu.",
+      "zh-Hans": "高更描绘了两位悠闲休憩的塔希提女子——一位身穿传统的帕蕾欧裙，另一位则穿着传教士引入的西式长裙，这个细微的细节，正暗示着岛屿传统与殖民影响的碰撞——而在画面背景中，他想象出了一座巨大的神圣雕像，以及一场从未真正发生过的仪式。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the small red dog crossing the foreground, which mocking critics singled out when this was first shown — and notice how Gauguin flattens the sky into bands of green, yellow, and red instead of painting it realistically.",
+      "fr": "Regardez le petit chien rouge qui traverse le premier plan, que les critiques railleurs ne manquèrent pas de relever lors de la première présentation du tableau — et remarquez comme Gauguin aplatit le ciel en bandes de vert, de jaune et de rouge, au lieu de le peindre de manière réaliste.",
+      "zh-Hans": "看前景中那只穿行而过的小红狗——这幅画首次展出时，一些爱嘲讽的评论家还特意拿它开玩笑——再留意高更是如何把天空处理成一条条绿色、黄色和红色的色带，而不是写实地描绘天空。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin considered this one of his own best paintings — he liked it so much that he bought it back for himself in 1895, just before leaving Europe for Tahiti for good.",
+      "fr": "Gauguin considérait ce tableau comme l'un de ses meilleurs — il l'aimait tant qu'il le racheta pour lui-même en 1895, juste avant de quitter l'Europe pour Tahiti, pour de bon.",
+      "zh-Hans": "高更认为这是他自己最出色的作品之一——他非常喜欢这幅画，甚至在1895年离开欧洲、永远定居塔希提之前，特意把它买了回来，留在了自己身边。"
+    },
+    "whySimple": {
+      "en": "Gauguin painted two Tahitian women relaxing — one wearing a traditional wrap, the other a dress introduced by missionaries. In the background, he imagined a giant statue and a ceremony that never really happened.",
+      "fr": "Gauguin peint deux femmes tahitiennes en train de se détendre — l'une portant un paréo traditionnel, l'autre une robe introduite par les missionnaires. À l'arrière-plan, il a imaginé une statue géante et une cérémonie qui n'a jamais vraiment eu lieu.",
+      "zh-Hans": "高更画了两位正在休息的塔希提女子——一位穿着传统的裹裙，另一位穿着传教士带来的连衣裙。在画面背景中，他想象出了一座巨大的雕像，以及一场从未真正发生过的仪式。"
+    },
+    "whereSimple": {
+      "en": "Notice the small red dog in the foreground, which people made fun of when this painting was first shown — and how Gauguin paints the sky as flat bands of color instead of realistic sky.",
+      "fr": "Remarquez le petit chien rouge au premier plan, dont on se moqua lorsque ce tableau fut montré pour la première fois — et comment Gauguin peint le ciel en bandes de couleurs plates plutôt qu'un ciel réaliste.",
+      "zh-Hans": "留意前景中那只小红狗，这幅画首次展出时，还有人拿它开玩笑呢——再看看高更是如何把天空画成一条条平涂的色带，而不是写实的天空。"
+    },
+    "raritySimple": {
+      "en": "Gauguin thought this was one of his best paintings. He liked it so much that he bought it back for himself before leaving Europe for good.",
+      "fr": "Gauguin pensait que c'était l'un de ses meilleurs tableaux. Il l'aimait tant qu'il le racheta pour lui-même avant de quitter l'Europe pour de bon.",
+      "zh-Hans": "高更认为这是他最出色的画作之一。他非常喜欢这幅画，甚至在永远离开欧洲之前，特意把它买了回来。"
+    },
+    "whyKids": {
+      "en": "Gauguin painted two Tahitian women relaxing together, with a little red dog wandering by — and in the background, he imagined a huge statue and a make-believe ceremony that never really happened!",
+      "fr": "Gauguin a peint deux femmes tahitiennes en train de se détendre ensemble, avec un petit chien rouge qui se promène — et à l'arrière-plan, il a imaginé une immense statue et une cérémonie imaginaire qui n'a jamais vraiment eu lieu !",
+      "zh-Hans": "高更画了两位一起休息的塔希提女子，还有一只小红狗在旁边溜达——背景里，他还想象出了一座巨大的雕像和一场从未真正发生过的、假装出来的仪式！"
+    },
+    "whereKids": {
+      "en": "Can you spot the red dog? People actually laughed at Gauguin for painting a red dog when this picture was first shown!",
+      "fr": "Arrives-tu à repérer le chien rouge ? Les gens se sont vraiment moqués de Gauguin pour avoir peint un chien rouge quand ce tableau a été montré pour la première fois !",
+      "zh-Hans": "你能找到那只红色的小狗吗？这幅画第一次展出的时候，人们还真笑话过高更，说他怎么把狗画成了红色！"
+    },
+    "rarityKids": {
+      "en": "Gauguin loved this painting so much that he bought it back just for himself before he left Europe forever!",
+      "fr": "Gauguin a tellement aimé ce tableau qu'il l'a racheté rien que pour lui avant de quitter l'Europe pour toujours !",
+      "zh-Hans": "高更太喜欢这幅画了，在永远离开欧洲之前，他特意把它买了回来，留给自己！"
     }
   },
   {
@@ -3629,7 +3666,7 @@
     "accent": "#AA8E9A",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "La belle Angèle",
       "fr": "La Belle Angèle",
@@ -3641,23 +3678,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 30,
+      "logic": "FACT: two real sales from Gauguin's Pont-Aven (Brittany) period are confirmed: La Vague (1888) sold for $39.24M (~EUR36.1M) at Sotheby's New York, 2007, and La Maison du Pen du, gardeuse de vache (summer 1889 -- the same year as this work) sold for $4.9M (~EUR4.5M) at Sotheby's, November 2025. EDITORIAL JUDGMENT: La Belle Angele is a significant, ambitious single-figure Synthetist portrait, closer in artistic stature to La Vague than to the smaller landscape/genre scene of La Maison du Pen du -- positioned between the two real Breton-period sales rather than defaulting to either extreme.",
+      "comparableSales": [
+        "La Vague, Paul Gauguin — $39.24M (~€36.1M), Sotheby's New York, 2007 — same Pont-Aven (Brittany) period, a major work.",
+        "La Maison du Pen du, gardeuse de vache, Paul Gauguin — $4.9M (~€4.5M), Sotheby's, November 2025 — same year (1889), but a smaller landscape/genre scene, not a portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin painted Angèle Satre, a Pont-Aven innkeeper, framed inside her own circular medallion like a Japanese print or a devotional icon — an experimental, almost decorative format he was developing at the time, far from a conventional portrait.",
+      "fr": "Gauguin peint Angèle Satre, aubergiste à Pont-Aven, encadrée dans son propre médaillon circulaire, comme une estampe japonaise ou une icône dévotionnelle — un format expérimental, presque décoratif, qu'il développait à l'époque, bien loin d'un portrait conventionnel.",
+      "zh-Hans": "高更为蓬塔旺的一位旅店老板娘安热勒·萨特尔作了这幅肖像，把她框在一个圆形徽章般的画面里，仿佛一幅日本版画或一幅圣像画——这是他当时正在探索的一种实验性的、近乎装饰性的构图方式，与传统肖像画大相径庭。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the flat, deep blue background pressing right up against her traditional Breton costume — Gauguin uses bold, unmodulated color blocks instead of realistic shading, a style historians call Synthetism.",
+      "fr": "Remarquez le fond bleu profond et plat, qui vient presque au contact de son costume breton traditionnel — Gauguin utilise des aplats de couleur audacieux et non modulés plutôt qu'un ombrage réaliste, un style que les historiens appellent le synthétisme.",
+      "zh-Hans": "留意那片平涂的深蓝色背景，几乎紧贴着她身上传统的布列塔尼服饰——高更运用的是大胆、未经渐变处理的色块，而非写实的明暗渲染，艺术史学家称这种风格为「综合主义」。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin gave this portrait to Angèle and her husband to settle a debt at their café — but they disliked it so much they refused to accept it.",
+      "fr": "Gauguin offrit ce portrait à Angèle et à son mari pour régler une dette contractée dans leur café — mais ils le détestèrent tant qu'ils refusèrent de l'accepter.",
+      "zh-Hans": "高更把这幅肖像画送给安热勒和她的丈夫，用来抵偿在他们咖啡馆欠下的债务——可是他们非常不喜欢这幅画，竟然拒绝收下它。"
+    },
+    "whySimple": {
+      "en": "Gauguin painted Angèle Satre, who ran an inn in Pont-Aven, framed inside a round medallion shape like a Japanese print. It's a very experimental way to paint a portrait.",
+      "fr": "Gauguin peint Angèle Satre, qui tenait une auberge à Pont-Aven, encadrée dans une forme de médaillon rond, comme une estampe japonaise. C'est une manière très expérimentale de peindre un portrait.",
+      "zh-Hans": "高更画了在蓬塔旺经营一家旅店的安热勒·萨特尔，把她框在一个圆形徽章的形状里，就像日本版画那样。这是一种非常前卫的肖像画法。"
+    },
+    "whereSimple": {
+      "en": "Notice the flat, deep blue background next to her traditional Breton clothing — Gauguin uses bold blocks of color instead of realistic shading.",
+      "fr": "Remarquez le fond bleu profond et plat à côté de son costume breton traditionnel — Gauguin utilise des aplats de couleur audacieux plutôt qu'un ombrage réaliste.",
+      "zh-Hans": "留意她传统的布列塔尼服饰旁那片平涂的深蓝色背景——高更用的是大胆的色块，而不是写实的明暗渲染。"
+    },
+    "raritySimple": {
+      "en": "Gauguin gave this portrait to Angèle and her husband to pay off a debt — but they didn't like it and refused to take it!",
+      "fr": "Gauguin offrit ce portrait à Angèle et à son mari pour rembourser une dette — mais ils ne l'aimèrent pas et refusèrent de le prendre !",
+      "zh-Hans": "高更把这幅肖像画送给安热勒和她的丈夫，用来还债——可是他们不喜欢这幅画，拒绝收下它！"
+    },
+    "whyKids": {
+      "en": "Gauguin painted Angèle, who ran an inn, framed inside a round shape almost like a fancy picture frame within the picture!",
+      "fr": "Gauguin a peint Angèle, qui tenait une auberge, encadrée dans une forme ronde, presque comme un cadre décoratif à l'intérieur même du tableau !",
+      "zh-Hans": "高更画了经营旅店的安热勒，把她框在一个圆形里，就像画中还藏着一个花哨的相框一样！"
+    },
+    "whereKids": {
+      "en": "Look at that bright blue background right next to her traditional costume — Gauguin loved using bold blocks of color instead of soft shading.",
+      "fr": "Regarde ce fond bleu vif juste à côté de son costume traditionnel — Gauguin adorait utiliser des aplats de couleur audacieux plutôt qu'un ombrage doux.",
+      "zh-Hans": "看她传统服饰旁边那片亮蓝色的背景——高更特别喜欢用大胆的色块，而不是柔和的明暗过渡。"
+    },
+    "rarityKids": {
+      "en": "Gauguin tried to pay off money he owed with this painting — but the people he gave it to didn't like it and wouldn't take it!",
+      "fr": "Gauguin a essayé de rembourser une dette avec ce tableau — mais les gens à qui il l'a offert ne l'aimaient pas et n'ont pas voulu le prendre !",
+      "zh-Hans": "高更想用这幅画来还债——可是收到画的人却不喜欢它，根本不肯收下！"
     }
   },
   {
@@ -4233,7 +4308,7 @@
     "accent": "#AA8E9A",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of the Artist with the Yellow Christ",
       "fr": "Portrait de l'artiste au Christ jaune",
@@ -4245,23 +4320,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: the same two real Pont-Aven (Brittany) period sales used for La Belle Angele apply here: La Vague ($39.24M/EUR36.1M, Sotheby's 2007) and La Maison du Pen du ($4.9M/EUR4.5M, Sotheby's Nov 2025). EDITORIAL JUDGMENT: this is a small (38x46cm), psychologically dense self-portrait rather than a major landscape or ambitious single-figure portrait like the two comparables -- positioned toward the lower end of the Breton-period range to reflect its modest physical scale, despite its high art-historical importance as a personal 'manifesto' piece painted just before Gauguin's first Tahiti trip.",
+      "comparableSales": [
+        "La Vague, Paul Gauguin — $39.24M (~€36.1M), Sotheby's New York, 2007 — same Pont-Aven period, a much larger and more ambitious work.",
+        "La Maison du Pen du, gardeuse de vache, Paul Gauguin — $4.9M (~€4.5M), Sotheby's, November 2025 — same broad period, a small landscape/genre scene."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin paints himself sandwiched between two of his own artworks — his painting The Yellow Christ and a strange ceramic self-portrait jug — creating a triple self-portrait just before leaving for Tahiti, at a low point when his wife had left and his art remained widely misunderstood.",
+      "fr": "Gauguin se peint lui-même pris en sandwich entre deux de ses propres œuvres — son tableau Le Christ jaune et un étrange pot en céramique en forme d'autoportrait — créant un triple autoportrait juste avant son départ pour Tahiti, à un moment difficile où sa femme l'avait quitté et où son art restait largement incompris.",
+      "zh-Hans": "高更把自己夹在了两件自己的作品之间——他的画作《黄色基督》，以及一个造型怪异、以自己面容为原型的陶罐——在即将启程前往塔希提之前，创作了这幅「三重自画像」。当时正值他人生的低谷：妻子已经离开了他，他的艺术也依然普遍不被世人理解。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the intense, direct stare Gauguin gives himself — painted while broke and struggling for recognition, this is less a likeness than a declaration of stubborn artistic purpose.",
+      "fr": "Remarquez le regard intense et direct que Gauguin se porte à lui-même — peint alors qu'il était sans le sou et luttait pour être reconnu, ce tableau est moins une ressemblance qu'une déclaration d'obstination artistique.",
+      "zh-Hans": "留意高更投向自己的那种强烈而直接的目光——这幅画作于他身无分文、苦苦寻求认可的时期，与其说是一幅肖像写真，不如说是一份倔强的艺术宣言。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin often used images of Christ as a stand-in for his own suffering and sacrifice as an artist — this painting is essentially three self-portraits in one.",
+      "fr": "Gauguin utilisait souvent des images du Christ comme substitut de sa propre souffrance et de son sacrifice d'artiste — ce tableau est en réalité trois autoportraits en un seul.",
+      "zh-Hans": "高更常常借用基督的形象，来隐喻自己作为艺术家所承受的苦难与牺牲——这幅画，实际上是「三合一」的自画像。"
+    },
+    "whySimple": {
+      "en": "Gauguin painted himself between two of his own artworks — a painting called The Yellow Christ and a strange ceramic self-portrait jug. It's like three self-portraits combined into one, painted right before he left for Tahiti.",
+      "fr": "Gauguin s'est peint lui-même entre deux de ses propres œuvres — un tableau intitulé Le Christ jaune et un étrange pot en céramique en forme d'autoportrait. C'est comme trois autoportraits réunis en un seul, peint juste avant son départ pour Tahiti.",
+      "zh-Hans": "高更把自己画在了两件自己的作品之间——一幅叫《黄色基督》的画，还有一个造型怪异、以自己面容为原型的陶罐。这就像是把三幅自画像合成了一幅，创作于他启程前往塔希提之前。"
+    },
+    "whereSimple": {
+      "en": "Notice Gauguin's intense, direct stare — he painted this while struggling financially and feeling misunderstood as an artist.",
+      "fr": "Remarquez le regard intense et direct de Gauguin — il a peint ce tableau alors qu'il traversait des difficultés financières et se sentait incompris en tant qu'artiste.",
+      "zh-Hans": "留意高更那强烈而直接的目光——他创作这幅画时正深陷经济困境，作为艺术家也感到不被理解。"
+    },
+    "raritySimple": {
+      "en": "Gauguin often used pictures of Christ to represent his own struggles as an artist — so this painting is really him showing himself three different ways at once.",
+      "fr": "Gauguin utilisait souvent des images du Christ pour représenter ses propres difficultés d'artiste — ce tableau est donc en réalité lui-même montré de trois façons différentes à la fois.",
+      "zh-Hans": "高更常常用基督的形象来表达自己作为艺术家的挣扎——所以这幅画其实是他同时以三种不同方式展现自己。"
+    },
+    "whyKids": {
+      "en": "Gauguin painted himself standing between two of his OWN artworks — a painting and a strange clay jug shaped like his own face! That's three pictures of himself in one painting!",
+      "fr": "Gauguin s'est peint debout entre deux de ses PROPRES œuvres — un tableau et un étrange pot en argile en forme de son propre visage ! Ça fait trois images de lui-même dans un seul tableau !",
+      "zh-Hans": "高更把自己画在了两件自己的作品中间——一幅画，还有一个造型像他自己脸的怪陶罐！这一幅画里，竟然藏着三个「他自己」！"
+    },
+    "whereKids": {
+      "en": "Look at how intensely Gauguin stares out at you — he really wanted people to notice him and his art.",
+      "fr": "Regarde comme Gauguin te fixe intensément — il voulait vraiment que les gens le remarquent, lui et son art.",
+      "zh-Hans": "看高更是多么用力地盯着你看——他真的很想让大家注意到他，还有他的艺术。"
+    },
+    "rarityKids": {
+      "en": "Gauguin liked hiding pictures of himself inside his other artworks — sneaky, right?",
+      "fr": "Gauguin aimait cacher des images de lui-même à l'intérieur de ses autres œuvres — malin, non ?",
+      "zh-Hans": "高更喜欢把自己的形象藏在他其他的作品里——是不是有点调皮呀？"
     }
   },
   {
@@ -4682,7 +4795,7 @@
     "accent": "#AA8E9A",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Vairumati",
       "fr": "Vairumati",
@@ -4694,24 +4807,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 25,
+      "high": 45,
+      "logic": "FACT: Te Bourao II, painted the same year (1897) during Gauguin's second Tahiti stay, sold for $10.5M (~EUR9.5M) at Artcurial, Paris -- described at the time as the first work from Gauguin's Tahitian period to appear on the French market in over 20 years. EDITORIAL JUDGMENT: an exceptionally close period match, but Vairumati is a far more significant and iconic work -- the same mythological figure reappears in Gauguin's largest and most ambitious painting, Where Do We Come From? What Are We? Where Are We Going?, made that same year, which Gauguin considered his life's masterpiece. Positioned well above the Te Bourao II comparable to reflect that connection, though still below the blockbuster Christie's-evening-sale tier (Maternite II, $105.73M) used elsewhere in this batch, since Vairumati is a smaller, less prominently marketed painting with no comparable evening-sale transaction of its own.",
+      "comparableSales": [
+        "Te Bourao II, Paul Gauguin — $10.5M (~€9.5M), Artcurial, Paris — same year (1897), same second-Tahiti-trip period, though a less iconic work sold at a smaller regional auction house rather than a major evening sale."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin paints Vairumati, a legendary figure from Tahitian mythology sometimes called the islands' first mother — her union with the god 'Oro was said to have founded a sacred Tahitian society, making her a figure as central to Tahitian myth as Eve is to the Bible.",
+      "fr": "Gauguin peint Vairumati, une figure légendaire de la mythologie tahitienne parfois appelée la première mère des îles — son union avec le dieu 'Oro aurait fondé une société sacrée tahitienne, faisant d'elle une figure aussi centrale dans le mythe tahitien qu'Ève l'est dans la Bible.",
+      "zh-Hans": "高更描绘的是瓦伊鲁马蒂——塔希提神话中的一位传奇人物，有时被称为岛屿的「第一位母亲」。传说她与神灵'奥罗的结合，缔造了一个神圣的塔希提社团，使她在塔希提神话中占据着如同《圣经》中夏娃一般的核心地位。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look at the white bird and the dark lizard beside her — Gauguin fills the scene with symbolic creatures rather than realistic detail, using flat red and gold to suggest something sacred and timeless rather than a specific place.",
+      "fr": "Regardez l'oiseau blanc et le lézard sombre à ses côtés — Gauguin remplit la scène de créatures symboliques plutôt que de détails réalistes, utilisant des aplats de rouge et d'or pour suggérer quelque chose de sacré et d'intemporel plutôt qu'un lieu précis.",
+      "zh-Hans": "看她身旁那只白色的鸟和一只深色的蜥蜴——高更在画面中填满了具有象征意义的生物，而非写实的细节，用平涂的红色与金色，营造出一种神圣而永恒的氛围，而非描绘某个具体的地点。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "Vairumati reappears as a figure in Gauguin's largest and most ambitious painting, Where Do We Come From? What Are We? Where Are We Going?, made the same year — connecting this work directly to what he considered his life's masterpiece.",
+      "fr": "Vairumati réapparaît comme figure dans le tableau le plus vaste et le plus ambitieux de Gauguin, D'où venons-nous ? Que sommes-nous ? Où allons-nous ?, réalisé la même année — reliant directement cette œuvre à ce qu'il considérait comme le chef-d'œuvre de sa vie.",
+      "zh-Hans": "瓦伊鲁马蒂这一形象，也出现在了高更同年创作的规模最大、最具野心的画作《我们从何处来？我们是谁？我们向何处去？》之中——这幅画，正与高更自己视为毕生杰作的那幅巨作紧密相连。"
+    },
+    "whySimple": {
+      "en": "Gauguin painted Vairumati, a legendary figure from Tahitian mythology, sometimes called the islands' first mother. Her story was central to an old Tahitian religious tradition, similar to how Eve is central to the Bible.",
+      "fr": "Gauguin a peint Vairumati, une figure légendaire de la mythologie tahitienne, parfois appelée la première mère des îles. Son histoire était centrale dans une ancienne tradition religieuse tahitienne, un peu comme Ève l'est dans la Bible.",
+      "zh-Hans": "高更画了瓦伊鲁马蒂，塔希提神话中的一位传奇人物，有时被称为岛屿的「第一位母亲」。她的故事在古老的塔希提宗教传统中占据核心地位，就像夏娃在《圣经》中的地位一样。"
+    },
+    "whereSimple": {
+      "en": "Look at the white bird and dark lizard beside her — Gauguin uses symbolic animals and flat, warm colors instead of realistic detail to make the scene feel sacred and timeless.",
+      "fr": "Regardez l'oiseau blanc et le lézard sombre à ses côtés — Gauguin utilise des animaux symboliques et des couleurs chaudes et plates plutôt que des détails réalistes pour donner à la scène un caractère sacré et intemporel.",
+      "zh-Hans": "看她身旁那只白色的鸟和深色的蜥蜴——高更用富有象征意义的动物和平涂的暖色调，而非写实的细节，营造出一种神圣而永恒的氛围。"
+    },
+    "raritySimple": {
+      "en": "Gauguin painted this same figure again that same year in his largest and most important painting — connecting this work to what he considered the masterpiece of his life.",
+      "fr": "Gauguin a peint cette même figure à nouveau la même année dans son tableau le plus grand et le plus important — reliant cette œuvre à ce qu'il considérait comme le chef-d'œuvre de sa vie.",
+      "zh-Hans": "同一年，高更在自己规模最大、最重要的画作中，又一次画下了这同一个人物形象——将这幅画与他心目中毕生的杰作联系在了一起。"
+    },
+    "whyKids": {
+      "en": "Gauguin painted Vairumati, a character from an old Tahitian legend — some people call her the \"first mother\" of the islands, kind of like a character from a very old story that everyone knew.",
+      "fr": "Gauguin a peint Vairumati, un personnage d'une vieille légende tahitienne — certains l'appellent la « première mère » des îles, un peu comme un personnage d'une très vieille histoire que tout le monde connaissait.",
+      "zh-Hans": "高更画了瓦伊鲁马蒂，一个来自古老塔希提传说中的人物——有人叫她岛屿的「第一位母亲」，有点像大家都听过的、一个非常古老故事里的人物。"
+    },
+    "whereKids": {
+      "en": "Can you spot the white bird and the little lizard next to her? Gauguin loved adding animals with special meaning into his paintings instead of just realistic details.",
+      "fr": "Arrives-tu à repérer l'oiseau blanc et le petit lézard à côté d'elle ? Gauguin adorait ajouter des animaux ayant une signification particulière dans ses tableaux, plutôt que de simples détails réalistes.",
+      "zh-Hans": "你能找到她旁边那只白色的鸟和那只小蜥蜴吗？高更特别喜欢在画里加入一些有特殊意义的动物，而不只是画一些写实的细节。"
+    },
+    "rarityKids": {
+      "en": "Gauguin painted this same legendary character again in one of his biggest, most important paintings ever — made that very same year!",
+      "fr": "Gauguin a peint ce même personnage légendaire à nouveau dans l'un de ses plus grands et plus importants tableaux jamais réalisés — peint cette même année-là !",
+      "zh-Hans": "高更在他有史以来最大、最重要的一幅画里，又一次画了这个传说中的人物——而且就在同一年画的呢！"
+    },
+    "contentFlag": "A bare-chested Tahitian woman depicting Vairaumati, a named figure in Tahitian mythology (the 'original mother' of the Maohi people, whose union with the god 'Oro founded the Arioi society). Unlike Renoir's Torse/Bathers or Degas's Tub, this has a genuine mythological narrative available, similar in kind to Cabanel's Birth of Venus but drawn from Tahitian rather than Greco-Roman mythology, in the context of Gauguin's colonial-era depiction of Tahiti (see also Tahitian Women on the Beach's contentFlag for the general Tahiti-period colonial-context policy). Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity retell the Vairaumati/'Oro origin story and the bird/lizard symbolism instead of describing the body -- see whyKids/whereKids/rarityKids."
   },
   {
     "id": "orsay_rf_1664",
@@ -4766,7 +4917,7 @@
     "accent": "#AA8E9A",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Self-portrait with hat",
       "fr": "Autoportrait au chapeau",
@@ -4778,23 +4929,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 8,
+      "high": 16,
+      "logic": "FACT: the same two real Pont-Aven (Brittany) period sales used elsewhere in this batch: La Vague ($39.24M/EUR36.1M, Sotheby's 2007) and La Maison du Pen du ($4.9M/EUR4.5M, Sotheby's Nov 2025). EDITORIAL JUDGMENT: no directly comparable Gauguin self-portrait sale could be found, and this work is neither Tahiti-period nor Breton-period in subject (painted in Paris, just after Gauguin's first Tahiti stay) -- the Breton-period range is used only as a rough Gauguin-market floor given the weak match, positioned modestly, similar to the treatment given to Portrait of the Artist with the Yellow Christ elsewhere in this batch.",
+      "comparableSales": [
+        "La Vague, Paul Gauguin — $39.24M (~€36.1M), Sotheby's New York, 2007 — weak match (different period and genre), used only as a rough market-floor reference.",
+        "La Maison du Pen du, gardeuse de vache, Paul Gauguin — $4.9M (~€4.5M), Sotheby's, November 2025 — same caveat."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin paints himself freshly back in Paris after his first stay in Tahiti, his face half-shadowed by a wide-brimmed hat, with his own painting Spirit of the Dead Watching visible behind him — a defiant re-introduction of himself to a Paris art world that had mostly ignored his Tahitian work.",
+      "fr": "Gauguin se peint lui-même, tout juste de retour à Paris après son premier séjour à Tahiti, le visage à moitié dans l'ombre d'un chapeau à large bord, avec son propre tableau L'Esprit des morts veille visible derrière lui — une réintroduction de lui-même, pleine de défi, dans un monde de l'art parisien qui avait largement ignoré son travail tahitien.",
+      "zh-Hans": "高更描绘了自己刚从塔希提第一次归来、重返巴黎时的样子——他的脸庞半隐在宽边帽的阴影中，身后隐约可见他自己的画作《幽灵在注视》。这幅画像是他向那个几乎无视了他塔希提创作的巴黎艺术界，发出的一次带着挑衅意味的重新亮相。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the bold, unrealistic colors and heavy outlines around his face — the same flattened style Gauguin used to paint Tahiti, now turned on himself back in a French studio.",
+      "fr": "Remarquez les couleurs audacieuses et peu réalistes ainsi que les contours marqués autour de son visage — le même style aplati que Gauguin utilisait pour peindre Tahiti, désormais tourné vers lui-même, de retour dans un atelier français.",
+      "zh-Hans": "留意他脸部周围那大胆而不写实的色彩，以及粗重的轮廓线——这正是高更用来描绘塔希提的那种平面化风格，如今被他用在了自己身上，回到了法国的画室里。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gauguin painted this shortly after a disappointing exhibition of his Tahitian paintings in Paris — a moody, defiant self-portrait made at a genuine low point in his career.",
+      "fr": "Gauguin peint ce tableau peu après une exposition décevante de ses tableaux tahitiens à Paris — un autoportrait sombre et provocateur, réalisé à un véritable moment bas de sa carrière.",
+      "zh-Hans": "高更是在他的塔希提画作于巴黎展出后、反响令人失望不久，画下了这幅自画像——一幅情绪低沉、带着倔强意味的自画像，创作于他事业真正陷入低谷的时刻。"
+    },
+    "whySimple": {
+      "en": "Gauguin painted himself just after returning to Paris from his first trip to Tahiti. His face is half in shadow from his wide-brimmed hat, and one of his own Tahitian paintings is visible behind him.",
+      "fr": "Gauguin s'est peint lui-même juste après son retour à Paris de son premier voyage à Tahiti. Son visage est à moitié dans l'ombre de son chapeau à large bord, et l'un de ses propres tableaux tahitiens est visible derrière lui.",
+      "zh-Hans": "高更在第一次从塔希提回到巴黎后不久，画下了这幅自画像。他的脸庞半隐在宽边帽的阴影中，身后可以看到他自己的一幅塔希提画作。"
+    },
+    "whereSimple": {
+      "en": "Notice the bold, unrealistic colors and strong outlines around his face — the same style Gauguin used to paint Tahiti, now used to paint himself.",
+      "fr": "Remarquez les couleurs audacieuses et peu réalistes ainsi que les contours marqués autour de son visage — le même style que Gauguin utilisait pour peindre Tahiti, désormais utilisé pour se peindre lui-même.",
+      "zh-Hans": "留意他脸部周围那大胆而不写实的色彩，以及粗重的轮廓线——这正是高更描绘塔希提时用的风格，如今被用来描绘他自己。"
+    },
+    "raritySimple": {
+      "en": "Gauguin painted this after his Tahitian paintings didn't get the reaction he'd hoped for in Paris — a moody self-portrait from a difficult moment in his career.",
+      "fr": "Gauguin a peint ce tableau après que ses tableaux tahitiens n'eurent pas reçu l'accueil qu'il espérait à Paris — un autoportrait sombre né d'un moment difficile de sa carrière.",
+      "zh-Hans": "高更是在他的塔希提画作没能获得他所期望的反响之后，画下了这幅自画像——这是他事业艰难时期的一幅情绪低沉的自画像。"
+    },
+    "whyKids": {
+      "en": "Gauguin painted himself with a big hat casting a shadow over half his face, right after coming back from his big trip to Tahiti!",
+      "fr": "Gauguin s'est peint lui-même avec un grand chapeau projetant une ombre sur la moitié de son visage, juste après être revenu de son grand voyage à Tahiti !",
+      "zh-Hans": "高更把自己画成了戴着一顶大帽子的样子，帽檐在他半张脸上投下了阴影——这正是他刚从塔希提的大冒险归来的时候画的！"
+    },
+    "whereKids": {
+      "en": "Look at the bold colors and thick outlines around his face — Gauguin used the same colorful style he used to paint Tahiti, but this time on himself.",
+      "fr": "Regarde les couleurs audacieuses et les contours épais autour de son visage — Gauguin a utilisé le même style coloré qu'il employait pour peindre Tahiti, mais cette fois sur lui-même.",
+      "zh-Hans": "看他脸部周围那大胆的色彩和粗粗的轮廓线——高更用了和画塔希提时一样的缤纷风格，只不过这次画的是他自己。"
+    },
+    "rarityKids": {
+      "en": "Gauguin painted this after people in Paris weren't as excited about his Tahiti paintings as he'd hoped — so this is a bit of a \"tough day\" self-portrait.",
+      "fr": "Gauguin a peint ce tableau après que les gens de Paris n'étaient pas aussi enthousiastes qu'il l'espérait à propos de ses tableaux de Tahiti — c'est donc un peu un autoportrait d'un « jour difficile ».",
+      "zh-Hans": "高更画这幅画的时候，巴黎人对他塔希提画作的反应并没有他期望的那么热烈——所以这算是一幅「不太顺心的日子」的自画像。"
     }
   },
   {
