@@ -1725,7 +1725,7 @@
     "accent": "#6A5DA4",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Angelus",
       "fr": "L'Angélus",
@@ -1737,23 +1737,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 3,
+      "high": 8,
+      "logic": "FACT: L'Horizon (La plaine), sold for $1,985,000 (~EUR1.83M) at Christie's New York, 2014 -- Millet's best-documented recent auction record. EDITORIAL JUDGMENT: The Angelus is one of the most reproduced and widely recognized paintings in art history, far exceeding typical Millet market data in cultural significance -- positioned well above the record to reflect that extraordinary fame.",
+      "comparableSales": [
+        "L'Horizon (La plaine), Jean-François Millet — $1,985,000 (~€1.83M), Christie's New York, 2014 — Millet's best-documented recent auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Millet paints two peasants pausing in a potato field at dusk, heads bowed as a distant church bell calls them to prayer — their tools, a wheelbarrow, and a half-filled basket scattered around them exactly where the work stopped.",
+      "fr": "Millet peint deux paysans qui s'arrêtent dans un champ de pommes de terre au crépuscule, la tête inclinée alors qu'une cloche d'église lointaine les appelle à la prière — leurs outils, une brouette et un panier à moitié rempli sont éparpillés autour d'eux, exactement là où le travail s'est interrompu.",
+      "zh-Hans": "米勒描绘了两位农民在黄昏时分停下手中的土豆田劳作，远处教堂的钟声唤他们低头祈祷——他们的农具、一辆手推车，还有一只装了一半的篮子，就散落在他们停下劳作的地方。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how small and monumental the two figures feel at once, alone in a vast, empty plain — Millet gives ordinary farm laborers the same solemn dignity artists usually reserved for saints.",
+      "fr": "Remarquez comme les deux figures paraissent à la fois petites et monumentales, seules dans une vaste plaine vide — Millet confère à de simples ouvriers agricoles la même dignité solennelle que les artistes réservaient habituellement aux saints.",
+      "zh-Hans": "留意这两个人物是如何在一片辽阔空旷的平原上，同时显得渺小又庄严的——米勒赋予了这两位普通的农田劳动者，一种通常只留给圣徒的庄重尊严。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Millet said the idea came from his own grandmother, who always made him stop working in the fields whenever the church bell rang, to say a prayer for the dead.",
+      "fr": "Millet disait que l'idée lui était venue de sa propre grand-mère, qui le faisait toujours arrêter de travailler aux champs dès que la cloche de l'église sonnait, pour dire une prière pour les défunts.",
+      "zh-Hans": "米勒说，这个灵感来自他自己的祖母——每当教堂钟声响起，她总会让他停下田间的劳作，为逝者祈祷。"
+    },
+    "whySimple": {
+      "en": "Millet painted two peasants stopping their work in a potato field at sunset to pray, as a church bell rings in the distance. Their tools lie scattered around them exactly where they left off.",
+      "fr": "Millet a peint deux paysans qui arrêtent leur travail dans un champ de pommes de terre au coucher du soleil pour prier, tandis qu'une cloche d'église sonne au loin. Leurs outils sont éparpillés autour d'eux, exactement là où ils se sont arrêtés.",
+      "zh-Hans": "米勒画了两位农民在日落时分停下土豆田里的劳作，远处教堂钟声响起，他们停下来祈祷。他们的农具就散落在停下的地方。"
+    },
+    "whereSimple": {
+      "en": "Notice how small the two figures look in the huge, empty field — Millet paints ordinary farm workers with the same seriousness usually given to saints.",
+      "fr": "Remarquez comme les deux figures paraissent petites dans cet immense champ vide — Millet peint de simples ouvriers agricoles avec le même sérieux habituellement réservé aux saints.",
+      "zh-Hans": "留意这两个人物在这片辽阔空旷的田野中显得多么渺小——米勒用通常只留给圣徒的那种庄重笔触，来描绘普通的农田劳动者。"
+    },
+    "raritySimple": {
+      "en": "Millet said he got the idea from his grandmother, who always made him stop working whenever the church bell rang, to say a prayer.",
+      "fr": "Millet a dit qu'il avait eu l'idée grâce à sa grand-mère, qui le faisait toujours arrêter de travailler dès que la cloche de l'église sonnait, pour dire une prière.",
+      "zh-Hans": "米勒说，这个想法来自他的祖母——每当教堂钟声响起，她总会让他停下手中的活儿，祈祷片刻。"
+    },
+    "whyKids": {
+      "en": "Millet painted two farm workers who stopped digging potatoes in the evening because they heard church bells ringing — so they paused to say a little prayer.",
+      "fr": "Millet a peint deux ouvriers agricoles qui arrêtent de creuser pour des pommes de terre le soir parce qu'ils entendent les cloches de l'église sonner — alors ils font une pause pour dire une petite prière.",
+      "zh-Hans": "米勒画了两位农田工人，傍晚时分停下了挖土豆的活儿，因为他们听到了教堂的钟声——于是他们停下来，做了个小小的祈祷。"
+    },
+    "whereKids": {
+      "en": "Look how tiny the two people look in that huge, empty field — but Millet still makes them feel really important.",
+      "fr": "Regarde comme les deux personnes ont l'air minuscules dans cet immense champ vide — mais Millet parvient quand même à les rendre vraiment importantes.",
+      "zh-Hans": "看这两个人在那片辽阔空旷的田野里显得多么渺小——可米勒还是让他们看起来特别重要。"
+    },
+    "rarityKids": {
+      "en": "Millet got the idea from his own grandmother, who used to make him stop working in the fields every time the church bells rang!",
+      "fr": "Millet a eu l'idée grâce à sa propre grand-mère, qui le faisait arrêter de travailler aux champs chaque fois que les cloches de l'église sonnaient !",
+      "zh-Hans": "米勒的这个想法来自他自己的祖母——每次教堂钟声响起，她都会让他停下田里的活儿呢！"
     }
   },
   {
@@ -2005,7 +2042,7 @@
     "accent": "#B8B96E",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Circus",
       "fr": "Le Cirque",
@@ -2017,23 +2054,61 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 80,
+      "high": 140,
+      "logic": "FACT: Les Poseuses, Ensemble (Petite version), sold for $149.2M (~EUR137.3M) at Christie's New York, November 2022 -- Seurat's auction record, a Divisionist figure/genre study. Previous record: La Rade de Grandcamp, $34.06M (~EUR31.3M), Christie's, 2018, a landscape. EDITORIAL JUDGMENT: The Circus was Seurat's last major work, left unfinished at his sudden death at 31 -- an exceptionally significant, ambitious multi-figure composition -- positioned between the two real records, weighted toward the top given its singular historical importance as his final statement.",
+      "comparableSales": [
+        "Les Poseuses, Ensemble (Petite version), Georges Seurat — $149.2M (~€137.3M), Christie's New York, November 2022 — Seurat's auction record, a Divisionist figure/genre study.",
+        "La Rade de Grandcamp (Le Port de Grandcamp), Georges Seurat — $34.06M (~€31.3M), Christie's, 2018 — a landscape, Seurat's previous record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Seurat paints a circus performer balancing on a galloping horse, using thousands of tiny dots of pure color instead of blended brushstrokes — a technique he called Divisionism, built on scientific theories about how our eyes mix color on their own.",
+      "fr": "Seurat peint une acrobate en équilibre sur un cheval au galop, utilisant des milliers de minuscules points de couleur pure plutôt que des touches mélangées — une technique qu'il appelait le divisionnisme, fondée sur des théories scientifiques sur la façon dont nos yeux mélangent la couleur d'eux-mêmes.",
+      "zh-Hans": "修拉描绘了一位马戏团表演者在一匹奔驰的马背上保持平衡的场景，他没有用调和过的笔触，而是用了成千上万个纯色的小圆点——这种技法他称之为「分色主义」，其理论基础，源于关于我们的眼睛如何自行「调和」色彩的科学理论。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Look closely and you can still see the blue grid lines and bare white canvas Seurat used to plan his composition — he died only days after finishing the exhibition, leaving parts of the painting unfinished.",
+      "fr": "Regardez de près et vous pouvez encore voir les lignes de grille bleues et la toile blanche nue que Seurat utilisait pour planifier sa composition — il mourut seulement quelques jours après avoir terminé l'exposition, laissant des parties du tableau inachevées.",
+      "zh-Hans": "仔细看，你还能看到修拉用来规划构图的蓝色网格线和裸露的白色画布——他在完成展览后仅仅几天就去世了，这幅画的一些部分因此未能完成。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This was the last major painting Seurat completed before his sudden death at only 31, making it an unplanned final statement from an artist who had already transformed how painters thought about color.",
+      "fr": "Ce fut le dernier grand tableau que Seurat acheva avant sa mort soudaine à seulement 31 ans, en faisant une déclaration finale non préméditée d'un artiste qui avait déjà transformé la façon dont les peintres pensaient la couleur.",
+      "zh-Hans": "这是修拉在31岁英年早逝前完成的最后一幅重要画作，成为了这位早已彻底改变了画家们对色彩认知方式的艺术家，一份意料之外的谢幕之作。"
+    },
+    "whySimple": {
+      "en": "Seurat painted a circus performer balancing on a running horse, using thousands of tiny dots of color instead of blended brushstrokes — a technique called Divisionism.",
+      "fr": "Seurat a peint une acrobate en équilibre sur un cheval au galop, utilisant des milliers de minuscules points de couleur plutôt que des touches mélangées — une technique appelée le divisionnisme.",
+      "zh-Hans": "修拉画了一位马戏团表演者在奔跑的马背上保持平衡的样子，用了成千上万个色彩小圆点，而不是调和过的笔触——这种技法叫做「分色主义」。"
+    },
+    "whereSimple": {
+      "en": "Look closely and you can still see some blue grid lines and bare canvas Seurat used to plan the painting — he died very suddenly right after finishing it.",
+      "fr": "Regardez de près et vous pouvez encore voir des lignes de grille bleues et de la toile nue que Seurat utilisait pour planifier le tableau — il est mort très soudainement juste après l'avoir terminé.",
+      "zh-Hans": "仔细看，你还能看到修拉用来规划画作的一些蓝色网格线和裸露的画布——他在完成这幅画之后不久，就突然去世了。"
+    },
+    "raritySimple": {
+      "en": "This was the last major painting Seurat ever completed — he died only days later, at just 31 years old.",
+      "fr": "Ce fut le dernier grand tableau que Seurat ait jamais achevé — il est mort seulement quelques jours plus tard, à seulement 31 ans.",
+      "zh-Hans": "这是修拉完成的最后一幅重要画作——仅仅几天后，他就在31岁那年去世了。"
+    },
+    "whyKids": {
+      "en": "Seurat painted this circus scene using thousands and thousands of tiny dots instead of regular brushstrokes — if you stand back, your eyes blend the dots together into one picture!",
+      "fr": "Seurat a peint cette scène de cirque en utilisant des milliers et des milliers de minuscules points au lieu de touches de pinceau ordinaires — si tu recules, tes yeux mélangent les points pour former une seule image !",
+      "zh-Hans": "修拉画这幅马戏团场景，用的是成千上万个小圆点，而不是普通的笔触——如果你站远一点看，你的眼睛会自动把这些点混合成一整幅画面！"
+    },
+    "whereKids": {
+      "en": "Look really closely — can you spot the individual dots? And look for some unfinished parts where you can still see the bare canvas underneath!",
+      "fr": "Regarde de très près — arrives-tu à repérer les points individuels ? Et cherche des parties inachevées où l'on peut encore voir la toile nue en dessous !",
+      "zh-Hans": "凑近仔细看看——你能找到一个一个单独的小圆点吗？再找找有没有还没画完、能看到底下裸露画布的地方！"
+    },
+    "rarityKids": {
+      "en": "Sadly, Seurat finished this painting and then died just a few days later, when he was only 31 years old — so this ended up being his very last big painting.",
+      "fr": "Malheureusement, Seurat a terminé ce tableau et est mort seulement quelques jours plus tard, alors qu'il n'avait que 31 ans — ce tableau s'est donc retrouvé être son tout dernier grand tableau.",
+      "zh-Hans": "很遗憾，修拉画完这幅画没几天就去世了，那时他只有31岁——所以这幅画，最终成了他最后一幅重要的大画作。"
     }
   },
   {
@@ -2444,7 +2519,7 @@
     "accent": "#5D4457",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Wounded Man",
       "fr": "L'Homme blessé",
@@ -2456,23 +2531,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 5,
+      "high": 12,
+      "logic": "FACT: Reclining Nude (Femme nue couchée), sold for $15.3M (~EUR14.1M) at Christie's New York, 2015 -- Courbet's auction record, a nude genre, not a self-portrait. EDITORIAL JUDGMENT: The Wounded Man is one of Courbet's most personally significant and famous self-portraits, part of a celebrated series -- positioned moderately below the record to reflect the real genre gap.",
+      "comparableSales": [
+        "Reclining Nude (Femme nue couchée), Gustave Courbet — $15.3M (~€14.1M), Christie's New York, 2015 — Courbet's auction record, but a nude, not a self-portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Courbet paints himself apparently wounded and resting against a tree, eyes closed, a small bloodstain on his shirt near his heart — but this isn't really a battle scene: X-rays reveal he originally painted a woman leaning on his shoulder in this exact spot, only adding the wound years later after their relationship ended.",
+      "fr": "Courbet se peint apparemment blessé et reposant contre un arbre, les yeux fermés, une petite tache de sang sur sa chemise près du cœur — mais ce n'est pas vraiment une scène de bataille : les radiographies révèlent qu'il avait d'abord peint une femme appuyée sur son épaule à cet endroit précis, n'ajoutant la blessure que des années plus tard, après la fin de leur relation.",
+      "zh-Hans": "库尔贝把自己画成了一个显然受了伤、靠在树上休息的人，双眼紧闭，白衬衫上心脏附近有一小片血迹——但这其实并不是什么战场场景：X光透视显示，他最初在这个位置画的其实是一个女人靠在他肩上，多年后两人关系结束，他才把那个位置改成了伤口。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how calm and serene his face looks despite the supposed injury — Courbet paints heartbreak as a kind of noble, romantic wound rather than anything frightening or violent.",
+      "fr": "Remarquez comme son visage paraît calme et serein malgré la blessure supposée — Courbet peint le chagrin d'amour comme une sorte de blessure noble et romantique plutôt que comme quelque chose d'effrayant ou de violent.",
+      "zh-Hans": "留意尽管画中暗示着伤势，他的面容却是多么平静、安详——库尔贝把这份心碎，描绘成了一种高贵而浪漫的「伤痛」，而非任何令人害怕或暴力的东西。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Courbet reworked this painting over roughly a decade, transforming a tender scene with his companion into this symbolic self-portrait of emotional pain after she left him.",
+      "fr": "Courbet retravailla ce tableau sur environ une décennie, transformant une scène tendre avec sa compagne en cet autoportrait symbolique de douleur affective après qu'elle l'eut quitté.",
+      "zh-Hans": "库尔贝花了大约十年时间反复修改这幅画，把一幕与伴侣的温情场景，逐渐转变成了这幅象征着她离开后内心伤痛的自画像。"
+    },
+    "whySimple": {
+      "en": "Courbet painted himself looking wounded, resting against a tree with his eyes closed and a small bloodstain on his shirt. But it's not really about a battle — he originally painted a woman next to him and changed it years later after they broke up.",
+      "fr": "Courbet s'est peint lui-même avec l'air blessé, reposant contre un arbre, les yeux fermés, avec une petite tache de sang sur sa chemise. Mais ce n'est pas vraiment une histoire de bataille — il avait d'abord peint une femme à côté de lui, puis a changé le tableau des années plus tard après leur rupture.",
+      "zh-Hans": "库尔贝把自己画成了受伤的样子，靠在树上，双眼紧闭，衬衫上有一小片血迹。但这其实和战斗无关——他最初画的是一个女人在他身旁，多年后两人分手，他才把画改成了现在这样。"
+    },
+    "whereSimple": {
+      "en": "Notice how calm and peaceful his face looks, even with the \"wound\" — Courbet is painting heartbreak, not real violence.",
+      "fr": "Remarquez comme son visage paraît calme et paisible, même avec la « blessure » — Courbet peint un chagrin d'amour, non une véritable violence.",
+      "zh-Hans": "留意即便带着这处「伤口」，他的面容依然是多么平静、安详——库尔贝画的是心碎，而不是真正的暴力。"
+    },
+    "raritySimple": {
+      "en": "Courbet reworked this painting over about ten years, changing a tender scene into this symbolic self-portrait of sadness after a relationship ended.",
+      "fr": "Courbet retravailla ce tableau pendant une dizaine d'années, transformant une scène tendre en cet autoportrait symbolique de tristesse après la fin d'une relation.",
+      "zh-Hans": "库尔贝花了大约十年时间反复修改这幅画，把一幕温情场景，变成了这幅象征着一段感情结束后的伤感自画像。"
+    },
+    "whyKids": {
+      "en": "Courbet painted himself resting peacefully against a tree, with his eyes closed — but this painting has a secret hidden underneath it!",
+      "fr": "Courbet s'est peint lui-même reposant paisiblement contre un arbre, les yeux fermés — mais ce tableau cache un secret en dessous !",
+      "zh-Hans": "库尔贝把自己画成了靠在树上安静休息、闭着眼睛的样子——不过这幅画底下藏着一个小秘密呢！"
+    },
+    "whereKids": {
+      "en": "Notice how calm and peaceful he looks — this isn't really a scary picture at all.",
+      "fr": "Remarque comme il a l'air calme et paisible — ce n'est pas du tout un tableau effrayant.",
+      "zh-Hans": "看他显得多么平静、安详——这其实一点也不是一幅可怕的画。"
+    },
+    "rarityKids": {
+      "en": "Courbet actually painted something completely different in this same spot at first, then changed his mind years later and painted what we see now!",
+      "fr": "Courbet a en fait peint quelque chose de complètement différent à cet endroit au début, puis a changé d'avis des années plus tard et a peint ce que nous voyons maintenant !",
+      "zh-Hans": "库尔贝一开始其实在这个位置画的是完全不同的东西，好多年后他改变了主意，才画成了我们现在看到的样子！"
     }
   },
   {
@@ -2486,7 +2598,7 @@
     "accent": "#56684B",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Ploughing in the Nivernais",
       "fr": "Labourage nivernais",
@@ -2498,23 +2610,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 1.5,
+      "high": 4,
+      "logic": "FACT: Emigration de Bisons (Amérique), Bonheur's auction record, sold for $650,000 (~EUR600K) at Coeur d'Alene Art Auction, 2019 -- a direct genre match (animal painting). EDITORIAL JUDGMENT: Ploughing in the Nivernais is Bonheur's single most important and celebrated painting -- a government commission that won her a First Medal at the 1849 Salon and launched her career -- positioned well above the record to reflect that exceptional standing relative to typical Bonheur market data.",
+      "comparableSales": [
+        "Emigration de Bisons (Amérique), Rosa Bonheur — $650,000 (~€600K), Coeur d'Alene Art Auction, 2019 — Bonheur's auction record, a direct genre match (animal painting)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Bonheur paints twelve powerful oxen pulling heavy ploughs through a French field, giving the animals themselves — not the small human figures guiding them — the true starring role of the painting.",
+      "fr": "Bonheur peint douze puissants bœufs tirant de lourdes charrues à travers un champ français, donnant aux animaux eux-mêmes — et non aux petites figures humaines qui les guident — le véritable rôle principal du tableau.",
+      "zh-Hans": "邦赫尔描绘了十二头强壮的公牛，拉着沉重的犁具穿过法国的田野——画面真正的主角是这些动物本身，而非那些在一旁引导它们的、身形渺小的人类。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how carefully Bonheur renders the animals' muscles, coats, and the strain of pulling — she studied real cattle anatomy in slaughterhouses and farms to get every detail right.",
+      "fr": "Remarquez avec quel soin Bonheur rend les muscles des animaux, leur pelage, et l'effort de la traction — elle étudiait l'anatomie réelle du bétail dans les abattoirs et les fermes pour obtenir chaque détail avec exactitude.",
+      "zh-Hans": "留意邦赫尔是多么细致地描绘了这些动物的肌肉、皮毛，以及拉犁时的用力感——她曾在屠宰场和农场里认真研究真实的牛的解剖结构，力求每一个细节都精准无误。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This painting was commissioned by the French government and won Bonheur a First Medal at the 1849 Salon, launching her into becoming one of the most famous and successful female painters of the 19th century.",
+      "fr": "Ce tableau fut commandé par le gouvernement français et valut à Bonheur une première médaille au Salon de 1849, la lançant vers le statut de l'une des peintres femmes les plus célèbres et les plus accomplies du XIXe siècle.",
+      "zh-Hans": "这幅画是受法国政府委托创作的，为邦赫尔赢得了1849年沙龙的一等奖，让她从此成为19世纪最著名、最成功的女性画家之一。"
+    },
+    "whySimple": {
+      "en": "Bonheur painted twelve strong oxen pulling heavy ploughs through a French field. The animals themselves, not the small farmers guiding them, are the real stars of the painting.",
+      "fr": "Bonheur a peint douze bœufs puissants tirant de lourdes charrues à travers un champ français. Ce sont les animaux eux-mêmes, et non les petits fermiers qui les guident, qui sont les véritables vedettes du tableau.",
+      "zh-Hans": "邦赫尔画了十二头强壮的公牛，拉着沉重的犁具穿过法国的田野。画面真正的主角是这些动物本身，而不是一旁那些身形渺小的农夫。"
+    },
+    "whereSimple": {
+      "en": "Notice how carefully Bonheur paints the animals' muscles and coats — she studied real cattle up close to get every detail right.",
+      "fr": "Remarquez avec quel soin Bonheur peint les muscles et le pelage des animaux — elle étudiait le bétail réel de près pour obtenir chaque détail avec exactitude.",
+      "zh-Hans": "留意邦赫尔是多么细致地描绘了这些动物的肌肉和皮毛——她曾近距离研究真实的牛，力求每个细节都精准无误。"
+    },
+    "raritySimple": {
+      "en": "This painting was commissioned by the French government and won Bonheur a top prize at the 1849 Salon, helping make her one of the most successful painters of her century.",
+      "fr": "Ce tableau fut commandé par le gouvernement français et valut à Bonheur un prix majeur au Salon de 1849, contribuant à faire d'elle l'une des peintres les plus accomplies de son siècle.",
+      "zh-Hans": "这幅画是受法国政府委托创作的，为邦赫尔赢得了1849年沙龙的一项大奖，帮助她成为了那个世纪最成功的画家之一。"
+    },
+    "whyKids": {
+      "en": "Bonheur painted twelve big, strong oxen pulling heavy ploughs through a field — the animals are the real stars here, way more important than the tiny farmers walking beside them!",
+      "fr": "Bonheur a peint douze gros bœufs puissants tirant de lourdes charrues à travers un champ — les animaux sont les vraies vedettes ici, bien plus importants que les petits fermiers qui marchent à côté d'eux !",
+      "zh-Hans": "邦赫尔画了十二头高大强壮的公牛，拉着沉重的犁具穿过田野——这些动物才是这幅画真正的主角，比旁边走着的那些小小的农夫重要多了！"
+    },
+    "whereKids": {
+      "en": "Look how carefully Bonheur painted every muscle and every patch of fur on the oxen — she really loved studying animals up close.",
+      "fr": "Regarde comme Bonheur a peint avec soin chaque muscle et chaque touffe de poil des bœufs — elle adorait vraiment étudier les animaux de près.",
+      "zh-Hans": "看邦赫尔把公牛身上的每一块肌肉、每一片皮毛画得多么细致——她真的很喜欢近距离研究动物。"
+    },
+    "rarityKids": {
+      "en": "This painting won a big prize when Bonheur was young, and helped her become one of the most famous painters of her whole century!",
+      "fr": "Ce tableau a remporté un grand prix quand Bonheur était jeune, et l'a aidée à devenir l'une des peintres les plus célèbres de tout son siècle !",
+      "zh-Hans": "邦赫尔年轻时，这幅画为她赢得了一项大奖，帮助她成为了整个世纪里最著名的画家之一！"
     }
   },
   {
@@ -3240,7 +3389,7 @@
     "accent": "#73A898",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Snake Charmer",
       "fr": "La Charmeuse de serpents",
@@ -3252,24 +3401,62 @@
       "en": true
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 30,
+      "high": 55,
+      "logic": "FACT: Les Flamants, sold for $43.5M (~EUR40M) at Christie's, May 2022 -- Rousseau's auction record, a large-format jungle/animal painting, the same genre as this work. EDITORIAL JUDGMENT: an exceptionally close genre match -- both large, imagined jungle scenes from Rousseau's late period -- range centered closely around this comparable.",
+      "comparableSales": [
+        "Les Flamants, Henri Rousseau — $43.5M (~€40M), Christie's, May 2022 — Rousseau's auction record, same genre (large-format imagined jungle scene)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Rousseau paints a mysterious dark silhouette playing a flute in a moonlit jungle, snakes uncoiling toward her from the surrounding foliage — an entirely imagined scene, since Rousseau never once left France or saw a real jungle.",
+      "fr": "Rousseau peint une mystérieuse silhouette sombre jouant de la flûte dans une jungle éclairée par la lune, des serpents se déroulant vers elle depuis le feuillage environnant — une scène entièrement imaginée, puisque Rousseau ne quitta jamais la France et ne vit jamais de véritable jungle.",
+      "zh-Hans": "卢梭描绘了一个神秘的深色剪影，在月光下的丛林中吹奏长笛，周围的枝叶间，几条蛇正朝她蜿蜒游来——这是一个完全出自想象的场景，因为卢梭一生从未离开过法国，也从未见过真正的丛林。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the impossibly lush, layered leaves and the huge pale moon glowing behind them — Rousseau built this dreamlike jungle entirely from botanical gardens, illustrated books, and his own imagination.",
+      "fr": "Remarquez les feuillages luxuriants et superposés à l'impossible, et l'immense lune pâle qui brille derrière eux — Rousseau a construit cette jungle onirique entièrement à partir de jardins botaniques, de livres illustrés et de sa propre imagination.",
+      "zh-Hans": "留意那茂密得近乎不真实、层层叠叠的树叶，以及它们身后那轮巨大而苍白、散发着微光的月亮——卢梭完全凭借植物园、插图书籍和自己的想象力，构建出了这片梦幻般的丛林。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "Rousseau was a self-taught painter who worked as a customs officer for most of his life, only painting in his spare time — critics mocked his simple style for years before it was recognized as genuinely visionary.",
+      "fr": "Rousseau était un peintre autodidacte qui travailla comme douanier pendant la majeure partie de sa vie, ne peignant que sur son temps libre — les critiques se moquèrent de son style simple pendant des années avant qu'il ne soit reconnu comme véritablement visionnaire.",
+      "zh-Hans": "卢梭是一位自学成才的画家，一生大部分时间都在做海关官员的工作，只有业余时间才作画——多年来，评论家们一直嘲笑他那种朴拙的风格，直到后来人们才认识到，这其实是真正富有远见的创作。"
+    },
+    "whySimple": {
+      "en": "Rousseau painted a mysterious dark figure playing a flute in a moonlit jungle, with snakes curling out of the plants around her. He imagined this entire scene — he never actually left France or saw a real jungle.",
+      "fr": "Rousseau a peint une mystérieuse figure sombre jouant de la flûte dans une jungle éclairée par la lune, avec des serpents s'enroulant hors des plantes autour d'elle. Il a imaginé toute cette scène — il n'a en réalité jamais quitté la France ni vu de véritable jungle.",
+      "zh-Hans": "卢梭画了一个神秘的深色身影，在月光下的丛林中吹奏长笛，周围的植物间蜿蜒探出几条蛇。这整个场景都是他想象出来的——他其实从未离开过法国，也从未见过真正的丛林。"
+    },
+    "whereSimple": {
+      "en": "Notice the thick, layered leaves and the big pale moon glowing behind them — Rousseau imagined this jungle using botanical gardens and picture books, not real travel.",
+      "fr": "Remarquez les feuillages épais et superposés et la grande lune pâle qui brille derrière eux — Rousseau a imaginé cette jungle grâce à des jardins botaniques et des livres illustrés, et non par de vrais voyages.",
+      "zh-Hans": "留意那茂密、层层叠叠的树叶，以及它们身后那轮散发着微光的苍白大月亮——卢梭是靠植物园和图画书，而不是靠真实的旅行，想象出了这片丛林。"
+    },
+    "raritySimple": {
+      "en": "Rousseau taught himself to paint while working as a customs officer. People made fun of his simple style for years before it was recognized as truly special.",
+      "fr": "Rousseau s'est appris à peindre seul tout en travaillant comme douanier. Les gens se sont moqués de son style simple pendant des années avant qu'il ne soit reconnu comme vraiment particulier.",
+      "zh-Hans": "卢梭是在做海关官员工作的同时自学画画的。多年来，人们一直嘲笑他那朴拙的风格，直到后来才认识到，这其实是非常特别的创作。"
+    },
+    "whyKids": {
+      "en": "Rousseau painted a mysterious, shadowy figure playing music to some snakes in a moonlit jungle — but he made the WHOLE jungle up in his imagination!",
+      "fr": "Rousseau a peint une figure mystérieuse et sombre jouant de la musique pour des serpents dans une jungle éclairée par la lune — mais il a inventé TOUTE la jungle dans son imagination !",
+      "zh-Hans": "卢梭画了一个神秘的、影影绰绰的身影，在月光下的丛林里给几条蛇演奏音乐——不过整片丛林，都是他自己想象出来的！"
+    },
+    "whereKids": {
+      "en": "Look at all those layers and layers of leaves, and that big glowing moon — doesn't it feel like a dream?",
+      "fr": "Regarde toutes ces couches et ces couches de feuilles, et cette grande lune qui brille — ça ne te fait pas penser à un rêve ?",
+      "zh-Hans": "看那一层又一层的树叶，还有那轮散发着光芒的大月亮——是不是感觉像在做梦一样？"
+    },
+    "rarityKids": {
+      "en": "Rousseau never once traveled to a real jungle — he got all his ideas from botanical gardens and picture books, and just imagined the rest!",
+      "fr": "Rousseau n'a jamais voyagé dans une vraie jungle — il a puisé toutes ses idées dans des jardins botaniques et des livres illustrés, et a imaginé le reste !",
+      "zh-Hans": "卢梭一次都没去过真正的丛林——他所有的灵感都来自植物园和图画书，剩下的全靠想象！"
+    },
+    "contentFlag": "A nude female figure rendered as a near-black silhouette against moonlight (body form visible, no anatomical detail), snakes wrapped around her. Reviewed with the user per-case for consistency (an adult nude figure, even though heavily abstracted by the silhouette treatment) -- not decided by analogy to the non-sexualized child/putto case in Bazille's Dance. Decision: stays in Kids mode; Kids why/where/rarity focus on the moonlit jungle mood, the mysterious silhouette, and the animals/plants, not the figure's body."
   },
   {
     "id": "orsay_rf_1952_17",
@@ -3599,7 +3786,7 @@
     "accent": "#7C998C",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Cradle",
       "fr": "Le Berceau",
@@ -3611,23 +3798,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 10,
+      "high": 20,
+      "logic": "FACT: Après le déjeuner, sold for $10,933,478 (~EUR10.06M) at Christie's London, 2013 -- Morisot's auction record, a figure/genre painting. EDITORIAL JUDGMENT: The Cradle is widely considered Morisot's most historically significant work -- the first in her recurring motherhood theme, and shown at the very first Impressionist exhibition in 1874 -- positioned at or modestly above the record.",
+      "comparableSales": [
+        "Après le déjeuner, Berthe Morisot — $10,933,478 (~€10.06M), Christie's London, 2013 — Morisot's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Morisot paints her sister Edma gazing tenderly at her sleeping infant daughter, the cradle veiled by a sheer curtain that softens the whole scene into something quiet and private.",
+      "fr": "Morisot peint sa sœur Edma qui regarde tendrement sa fille endormie, le berceau voilé par un rideau transparent qui adoucit toute la scène, la rendant paisible et intime.",
+      "zh-Hans": "莫里索描绘了她的姐姐埃德玛，正温柔地凝望着熟睡中的女儿，摇篮被一层薄纱轻轻遮掩，让整个画面都显得宁静而私密。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the quick, loose brushstrokes that give the translucent netting over the cradle its delicate, almost breathing quality — Morisot captures the softness of the fabric as much as the tenderness of the moment.",
+      "fr": "Remarquez les touches de pinceau rapides et libres qui donnent à la moustiquaire transparente au-dessus du berceau sa qualité délicate, presque vivante — Morisot capture autant la douceur du tissu que la tendresse du moment.",
+      "zh-Hans": "留意那快速、松散的笔触，是如何让摇篮上方那层半透明的纱网显得如此柔软细腻、仿佛在轻轻呼吸一般的——莫里索捕捉到的，既是布料的柔软质感，也是这个瞬间的深情厚意。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This is the first painting of motherhood Morisot ever made — a subject that became one of her favorites — and it was shown at the very first Impressionist exhibition in 1874.",
+      "fr": "C'est le premier tableau sur la maternité que Morisot ait jamais réalisé — un sujet qui devint l'un de ses préférés — et il fut présenté à la toute première exposition impressionniste en 1874.",
+      "zh-Hans": "这是莫里索创作的第一幅以母爱为主题的画作——这个题材后来成为了她最钟爱的主题之一——这幅画曾在1874年第一届印象派展览上展出。"
+    },
+    "whySimple": {
+      "en": "Morisot painted her sister Edma looking tenderly at her sleeping baby daughter, with the cradle covered by a light, see-through curtain.",
+      "fr": "Morisot a peint sa sœur Edma regardant tendrement sa fille endormie, le berceau couvert d'un léger rideau transparent.",
+      "zh-Hans": "莫里索画了她的姐姐埃德玛温柔地看着熟睡女儿的样子，摇篮上盖着一层轻薄、透明的纱帘。"
+    },
+    "whereSimple": {
+      "en": "Notice the quick, loose brushstrokes that make the sheer netting over the cradle feel soft and delicate.",
+      "fr": "Remarquez les touches de pinceau rapides et libres qui rendent la moustiquaire transparente au-dessus du berceau douce et délicate.",
+      "zh-Hans": "留意那快速、松散的笔触，让摇篮上方那层薄纱显得多么柔软、细腻。"
+    },
+    "raritySimple": {
+      "en": "This is the first painting of motherhood Morisot ever made, a subject she returned to often. It was shown at the first Impressionist exhibition in 1874.",
+      "fr": "C'est le premier tableau sur la maternité que Morisot ait jamais réalisé, un sujet auquel elle revint souvent. Il fut présenté à la première exposition impressionniste en 1874.",
+      "zh-Hans": "这是莫里索创作的第一幅以母爱为主题的画作，这个题材她后来常常回归。这幅画曾在1874年第一届印象派展览上展出。"
+    },
+    "whyKids": {
+      "en": "Morisot painted her own sister gently watching over her sleeping baby, with a soft see-through curtain covering the cradle.",
+      "fr": "Morisot a peint sa propre sœur veillant tendrement sur son bébé endormi, avec un doux rideau transparent couvrant le berceau.",
+      "zh-Hans": "莫里索画了自己的姐姐温柔地守护着熟睡宝宝的样子，摇篮上盖着一层柔软的透明纱帘。"
+    },
+    "whereKids": {
+      "en": "Look how soft and see-through the curtain over the cradle looks — Morisot used quick, light brushstrokes to make it feel almost like real, delicate fabric.",
+      "fr": "Regarde comme le rideau au-dessus du berceau paraît doux et transparent — Morisot a utilisé des touches rapides et légères pour lui donner l'impression d'un vrai tissu délicat.",
+      "zh-Hans": "看摇篮上那层纱帘显得多么柔软、透明——莫里索用轻快的笔触，让它感觉几乎就像真实、细腻的布料一样。"
+    },
+    "rarityKids": {
+      "en": "This was the very first painting Morisot ever made about being a mother — and mothers and babies became one of her favorite things to paint!",
+      "fr": "Ce fut le tout premier tableau que Morisot ait jamais peint sur la maternité — et les mamans et leurs bébés sont devenus l'un de ses sujets préférés à peindre !",
+      "zh-Hans": "这是莫里索创作的第一幅以「当妈妈」为主题的画——从此，妈妈和宝宝成了她最喜欢画的题材之一！"
     }
   },
   {
@@ -4675,7 +4899,7 @@
     "accent": "#A47C96",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Portrait of Louis Pasteur",
       "fr": "Louis Pasteur",
@@ -4687,23 +4911,60 @@
       "en": true
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 1.5,
+      "high": 3.5,
+      "logic": "FACT: The Boys' Workhouse, Helsinki, Edelfelt's auction record, sold for $693,703 (~EUR638K) at Sotheby's London, 2013 -- a genre scene. EDITORIAL JUDGMENT: this is the single most famous portrait of Louis Pasteur ever painted, a work that earned Edelfelt France's Legion of Honour -- positioned well above the record to reflect that exceptional fame and significance relative to typical Edelfelt market data.",
+      "comparableSales": [
+        "The Boys' Workhouse, Helsinki, Albert Edelfelt — $693,703 (~€638K), Sotheby's London, 2013 — Edelfelt's auction record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Edelfelt paints the scientist Louis Pasteur surrounded by his own laboratory equipment, holding up a jar containing tissue from an animal infected with rabies — the very research Pasteur used to develop his life-saving rabies vaccine.",
+      "fr": "Edelfelt peint le scientifique Louis Pasteur entouré de son propre matériel de laboratoire, tenant un bocal contenant un tissu prélevé sur un animal infecté par la rage — les recherches mêmes que Pasteur utilisa pour mettre au point son vaccin salvateur contre la rage.",
+      "zh-Hans": "埃德费尔特描绘了科学家路易·巴斯德被自己的实验室器材环绕的场景，他手中举着一只玻璃罐，里面装着感染了狂犬病的动物组织样本——这正是巴斯德用来研发那挽救无数生命的狂犬病疫苗的研究工作。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the cluttered glass bottles and equipment around Pasteur are painted with the same careful precision as his face — Edelfelt wanted viewers to understand this was a working scientist, not a posed dignitary.",
+      "fr": "Remarquez comme les flacons de verre et le matériel encombrant autour de Pasteur sont peints avec la même précision minutieuse que son visage — Edelfelt voulait que les spectateurs comprennent qu'il s'agissait d'un scientifique au travail, et non d'un dignitaire posant pour la postérité.",
+      "zh-Hans": "留意巴斯德周围那些杂乱的玻璃瓶和实验器材，被画得和他的面容一样细致精确——埃德费尔特希望观者能明白，这是一位正在工作的科学家，而不是一位摆拍的达官显贵。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "This portrait earned Edelfelt France's Legion of Honour when it was shown at the 1886 Salon, and remains the single most famous image of Pasteur ever painted.",
+      "fr": "Ce portrait valut à Edelfelt la Légion d'honneur française lorsqu'il fut présenté au Salon de 1886, et demeure l'image de Pasteur la plus célèbre jamais peinte.",
+      "zh-Hans": "这幅肖像画在1886年沙龙展出时，为埃德费尔特赢得了法国荣誉军团勋章，至今仍是有史以来最著名的巴斯德画像。"
+    },
+    "whySimple": {
+      "en": "Edelfelt painted the scientist Louis Pasteur surrounded by his laboratory equipment, holding a jar connected to his research on a vaccine against rabies.",
+      "fr": "Edelfelt a peint le scientifique Louis Pasteur entouré de son matériel de laboratoire, tenant un bocal lié à ses recherches sur un vaccin contre la rage.",
+      "zh-Hans": "埃德费尔特画了科学家路易·巴斯德被实验室器材环绕的样子，他手中拿着一只与狂犬病疫苗研究相关的玻璃罐。"
+    },
+    "whereSimple": {
+      "en": "Notice how carefully Edelfelt paints all the glass bottles and equipment around Pasteur, just as carefully as his face — showing he was a real working scientist.",
+      "fr": "Remarquez avec quel soin Edelfelt peint tous les flacons de verre et le matériel autour de Pasteur, avec autant de précision que son visage — montrant que c'était un véritable scientifique au travail.",
+      "zh-Hans": "留意埃德费尔特把巴斯德周围所有的玻璃瓶和器材，都画得和他的面容一样细致——这展现出他是一位真正在工作的科学家。"
+    },
+    "raritySimple": {
+      "en": "This portrait won Edelfelt a top French honor when it was shown in 1886, and it's still the most famous painting ever made of Pasteur.",
+      "fr": "Ce portrait valut à Edelfelt une haute distinction française lorsqu'il fut montré en 1886, et c'est toujours le tableau le plus célèbre jamais réalisé de Pasteur.",
+      "zh-Hans": "1886年这幅肖像画展出时，为埃德费尔特赢得了法国的一项崇高荣誉，直到今天，它依然是有史以来最著名的巴斯德画像。"
+    },
+    "whyKids": {
+      "en": "Edelfelt painted the scientist Louis Pasteur surrounded by all his laboratory equipment, holding up a jar from his important science experiments!",
+      "fr": "Edelfelt a peint le scientifique Louis Pasteur entouré de tout son matériel de laboratoire, tenant un bocal de ses importantes expériences scientifiques !",
+      "zh-Hans": "埃德费尔特画了科学家路易·巴斯德被所有实验室器材环绕的样子，他手里还举着一只装着重要科学实验样本的玻璃罐！"
+    },
+    "whereKids": {
+      "en": "Look at all those glass bottles and bits of equipment around him — Edelfelt painted them just as carefully as Pasteur's own face.",
+      "fr": "Regarde tous ces flacons de verre et ces petits appareils autour de lui — Edelfelt les a peints avec autant de soin que le visage de Pasteur lui-même.",
+      "zh-Hans": "看他周围那些玻璃瓶和各种小器材——埃德费尔特把它们画得和巴斯德本人的脸一样仔细。"
+    },
+    "rarityKids": {
+      "en": "This is still the most famous painting ever made of Pasteur — and it even won Edelfelt a special award when people first saw it!",
+      "fr": "C'est toujours le tableau le plus célèbre jamais réalisé de Pasteur — et il a même valu à Edelfelt une récompense spéciale quand les gens l'ont vu pour la première fois !",
+      "zh-Hans": "这至今仍是有史以来最著名的巴斯德画像——人们第一次看到它的时候，这幅画甚至还为埃德费尔特赢得了一项特别的奖项呢！"
     }
   },
   {
@@ -4957,7 +5218,7 @@
     "accent": "#42B1B9",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "La Toilette",
       "fr": "La Toilette",
@@ -4969,24 +5230,48 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 15,
+      "high": 28,
+      "logic": "FACT: La Blanchisseuse, sold for $22.4M (~EUR20.6M) at Christie's, November 2005 -- Toulouse-Lautrec's auction record, an intimate genre portrait of a working woman, a close genre match. EDITORIAL JUDGMENT: La Toilette is a similarly well-regarded, frequently reproduced intimate genre portrait -- positioned close to the record.",
+      "comparableSales": [
+        "La Blanchisseuse, Henri de Toulouse-Lautrec — $22.4M (~€20.6M), Christie's, November 2005 — Toulouse-Lautrec's auction record, a close genre match (an intimate portrait of a working woman)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Toulouse-Lautrec paints a woman seated on the floor with her back to the viewer, caught in a private, unposed moment before or after washing — an intimate glimpse indebted to Edgar Degas, whom Lautrec deeply admired and consciously echoed in this loose, \"keyhole\" style of observation.",
+      "fr": "Toulouse-Lautrec peint une femme assise sur le sol, de dos, saisie dans un moment privé et spontané avant ou après sa toilette — un aperçu intime redevable à Edgar Degas, que Lautrec admirait profondément et dont il fit consciemment écho dans ce style d'observation libre, comme « par le trou de la serrure ».",
+      "zh-Hans": "图卢兹-罗特列克描绘了一位背对观者、坐在地板上的女子，捕捉的是她洗浴前后一个私密、未经摆拍的瞬间——这种亲密的观察视角，深受埃德加·德加的影响，罗特列克对德加十分敬仰，并有意识地在这种松散、「透过锁孔窥视」般的观察风格中，向他致敬。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the high, slightly overhead viewpoint and the quick, unblended brushwork — Lautrec captures a fleeting private moment rather than a formal, posed portrait.",
+      "fr": "Remarquez le point de vue élevé, légèrement plongeant, et la touche rapide et non mélangée — Lautrec capture un instant privé et fugace plutôt qu'un portrait formel et posé.",
+      "zh-Hans": "留意这个略微俯视的高视角，以及那迅疾、未经调和的笔触——罗特列克捕捉到的是一个转瞬即逝的私密瞬间，而非一幅正式摆拍的肖像画。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "The model was likely Carmen Gaudin, one of Lautrec's favorite red-haired models, whom he painted repeatedly throughout his career and gave the simple exhibition title \"Rousse\" (\"Redhead\").",
+      "fr": "Le modèle était probablement Carmen Gaudin, l'une des modèles rousses favorites de Lautrec, qu'il peignit à maintes reprises tout au long de sa carrière et à qui il donna le simple titre d'exposition « Rousse ».",
+      "zh-Hans": "这位模特很可能是卡门·戈丹——罗特列克最钟爱的红发模特之一，他在整个职业生涯中反复描绘过她，并为这幅画起了一个朴素的展览标题「Rousse」（意为「红发女子」）。"
+    },
+    "whySimple": {
+      "en": "Toulouse-Lautrec painted a woman sitting on the floor with her back to us, caught in a private moment before or after washing. He admired the painter Edgar Degas and used a similar candid, \"peeking in\" style.",
+      "fr": "Toulouse-Lautrec a peint une femme assise par terre, de dos, saisie dans un moment privé avant ou après sa toilette. Il admirait le peintre Edgar Degas et a utilisé un style similaire, spontané, comme s'il « jetait un coup d'œil ».",
+      "zh-Hans": "图卢兹-罗特列克画了一位背对着我们、坐在地板上的女子，捕捉的是她洗浴前后的一个私密瞬间。他十分敬仰画家埃德加·德加，采用了一种类似的、如同「偷偷张望」般的坦率风格。"
+    },
+    "whereSimple": {
+      "en": "Notice the high viewpoint and the quick, loose brushwork — Lautrec is capturing a fleeting private moment, not a formal posed portrait.",
+      "fr": "Remarquez le point de vue élevé et la touche rapide et libre — Lautrec capture un instant privé et fugace, non un portrait formel et posé.",
+      "zh-Hans": "留意这个高视角，以及那迅疾、松散的笔触——罗特列克捕捉的是一个转瞬即逝的私密瞬间，而不是一幅正式摆拍的肖像画。"
+    },
+    "raritySimple": {
+      "en": "The model was probably Carmen Gaudin, one of Lautrec's favorite models, whom he painted many times throughout his career.",
+      "fr": "Le modèle était probablement Carmen Gaudin, l'une des modèles favorites de Lautrec, qu'il peignit à de nombreuses reprises tout au long de sa carrière.",
+      "zh-Hans": "这位模特很可能是卡门·戈丹——罗特列克最钟爱的模特之一，他在整个职业生涯中多次描绘过她。"
+    },
+    "kidsModeExcluded": true,
+    "contentFlag": "A woman stripped to the waist, seated on the floor, seen from behind, before/after bathing -- an intimate, candid style explicitly borrowed from Degas (whom Lautrec deeply admired). Near-identical in spirit to Degas's The Tub, which was resolved to stay in Kids mode with a technique-focused rewrite. Asked fresh for this work rather than assuming that resolution carried over. Decision this time: EXCLUDE from Kids mode (kidsModeExcluded: true), using the generic kids_mode_excluded message (same mechanism as L'Origine du monde) -- no custom kidsExclusionMessage or Kids why/where/rarity written."
   },
   {
     "id": "orsay_rf_2817",
@@ -5238,7 +5523,7 @@
     "accent": "#758F87",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Congress of Paris",
       "fr": "Le Congrès de Paris en 1856",
@@ -5251,22 +5536,57 @@
     },
     "estimate": {
       "low": null,
-      "high": null
+      "high": null,
+      "logic": "No estimate attempted. Dubufe's own confirmed auction record is only $60,000 (A Treat for her Pet, Christie's New York, 2006) -- a minor decorative genre piece, reflecting a very limited overall market for this artist. Grand state-commissioned diplomatic congress paintings like this one essentially never trade (this specific work remains in French national collections) -- no defensible comparable sale exists at the appropriate scale or genre. Applying any multiple to the $60,000 floor to reach a figure appropriate for a 311x511cm official state history painting would be pure speculation with no transaction basis at all, unlike the modest-but-real premiums applied elsewhere in this catalog. Left null for genuine lack of any usable market data, not out of caution about the subject.",
+      "comparableSales": [],
+      "editorialConfidence": null,
+      "estimateConfidence": null,
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Dubufe paints the diplomats who gathered in Paris to formally end the Crimean War, arranging dozens of real, individually recognizable statesmen around a table in strict order of official rank and protocol.",
+      "fr": "Dubufe peint les diplomates réunis à Paris pour mettre officiellement fin à la guerre de Crimée, disposant des dizaines d'hommes d'État réels et individuellement reconnaissables autour d'une table, dans un strict ordre de rang et de protocole officiels.",
+      "zh-Hans": "杜比夫描绘了齐聚巴黎、正式结束克里米亚战争的各国外交官们，画中数十位真实存在、各自可辨认的政治家，按照严格的官方级别与礼宾顺序，围坐在一张桌子旁。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the small bust of Emperor Napoleon III on the mantelpiece — even though he wasn't present at the actual signing, Dubufe includes him as a symbolic presence overseeing the historic agreement made in his own city.",
+      "fr": "Remarquez le petit buste de l'empereur Napoléon III sur le manteau de la cheminée — même s'il n'était pas présent lors de la signature elle-même, Dubufe l'inclut comme une présence symbolique veillant sur l'accord historique conclu dans sa propre ville.",
+      "zh-Hans": "留意壁炉台上那尊小小的拿破仑三世半身像——尽管他本人并未出席实际的签署仪式，杜比夫还是把他画了进去，作为一种象征性的在场，仿佛在自己的城市里注视着这份历史性协议的达成。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Every single figure in this enormous painting is an accurate portrait of a real diplomat who attended — Dubufe had to carefully research and match each man's face and rank before he could even begin arranging the composition.",
+      "fr": "Chaque personnage de cet immense tableau est un portrait fidèle d'un diplomate réellement présent — Dubufe dut soigneusement rechercher et faire correspondre le visage et le rang de chaque homme avant même de pouvoir commencer à organiser la composition.",
+      "zh-Hans": "这幅巨大画作中的每一个人物，都是与会真实外交官的精准肖像——杜比夫必须先仔细研究、核对每个人的相貌与官职，才能开始安排这幅画的构图。"
+    },
+    "whySimple": {
+      "en": "Dubufe painted the diplomats who met in Paris to officially end the Crimean War, showing dozens of real statesmen gathered around a table in their correct order of importance.",
+      "fr": "Dubufe a peint les diplomates réunis à Paris pour mettre officiellement fin à la guerre de Crimée, montrant des dizaines d'hommes d'État réels réunis autour d'une table dans leur ordre d'importance exact.",
+      "zh-Hans": "杜比夫画了齐聚巴黎、正式结束克里米亚战争的各国外交官，展现了数十位真实政治家按照各自的重要性顺序，围坐在一张桌子旁的场景。"
+    },
+    "whereSimple": {
+      "en": "Notice the small statue of Emperor Napoleon III on the mantelpiece — he wasn't at the actual meeting, but Dubufe included him as a symbolic presence.",
+      "fr": "Remarquez la petite statue de l'empereur Napoléon III sur le manteau de la cheminée — il n'était pas à la réunion elle-même, mais Dubufe l'a inclus comme une présence symbolique.",
+      "zh-Hans": "留意壁炉台上那尊拿破仑三世的小雕像——他其实并未出席实际的会议，但杜比夫还是把他作为一种象征性的存在画了进去。"
+    },
+    "raritySimple": {
+      "en": "Every person in this huge painting is an accurate portrait of a real diplomat — Dubufe had to research each person's face before he could even start planning the painting.",
+      "fr": "Chaque personne de cet immense tableau est un portrait fidèle d'un diplomate réel — Dubufe dut se documenter sur le visage de chacun avant même de pouvoir commencer à planifier le tableau.",
+      "zh-Hans": "这幅巨大画作中的每一个人，都是真实外交官的精准肖像——杜比夫必须先研究清楚每个人的相貌，才能开始规划这幅画。"
+    },
+    "whyKids": {
+      "en": "Dubufe painted a huge meeting of important diplomats from different countries, who came together in Paris to officially end a war and make peace!",
+      "fr": "Dubufe a peint une immense réunion de diplomates importants venus de différents pays, qui se sont retrouvés à Paris pour mettre officiellement fin à une guerre et faire la paix !",
+      "zh-Hans": "杜比夫画了一场来自不同国家的重要外交官们的盛大会议，他们齐聚巴黎，正式结束了一场战争，达成了和平！"
+    },
+    "whereKids": {
+      "en": "Look for the little statue on the mantelpiece — that's the French emperor, even though he wasn't actually in the room for the meeting!",
+      "fr": "Cherche la petite statue sur le manteau de la cheminée — c'est l'empereur français, même s'il n'était pas vraiment présent dans la salle pour la réunion !",
+      "zh-Hans": "找找壁炉台上那尊小雕像——那是法国皇帝，尽管他其实并没有真的出现在这场会议的房间里！"
+    },
+    "rarityKids": {
+      "en": "Every single person in this giant painting is a real person who was really there — Dubufe had to find out exactly what each person looked like before he could even start painting!",
+      "fr": "Chaque personne de ce tableau géant est une vraie personne qui était vraiment présente — Dubufe a dû découvrir exactement à quoi ressemblait chaque personne avant même de pouvoir commencer à peindre !",
+      "zh-Hans": "这幅巨大画作里的每一个人，都是真实存在、真的到场的人——杜比夫必须先弄清楚每个人到底长什么样，才能开始动笔画画！"
     }
   },
   {
@@ -5833,7 +6153,7 @@
     "accent": "#516666",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "Rolla",
       "fr": "Rolla",
@@ -5845,24 +6165,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 1.8,
+      "high": 3.5,
+      "logic": "FACT: Rolla itself -- almost certainly a smaller replica or reduced version, not this museum original, which has never been and could never be sold -- realized $2,034,512 at Sotheby's London, 2016; this is Gervex's auction record. EDITORIAL JUDGMENT: range centered closely around this same-subject comparable, with the caveat that it reflects a different, smaller physical version of the composition.",
+      "comparableSales": [
+        "Rolla (reduced version/replica), Henri Gervex — $2,034,512, Sotheby's London, 2016 — Gervex's auction record; a different, smaller version of the same composition, not this museum original, which has never traded."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Gervex paints the morning after a night shared by a wealthy young man and his mistress, inspired by a poem by Alfred de Musset about a man who has spent his last money on pleasure before taking his own life — the discarded clothes and open corset on the floor were reportedly suggested by Gervex's friend Edgar Degas, so viewers would understand exactly who this woman was.",
+      "fr": "Gervex peint le lendemain matin d'une nuit partagée par un jeune homme fortuné et sa maîtresse, inspiré d'un poème d'Alfred de Musset sur un homme qui a dépensé son dernier argent pour le plaisir avant de mettre fin à ses jours — les vêtements jetés et le corset dénoué sur le sol auraient été suggérés par l'ami de Gervex, Edgar Degas, afin que les spectateurs comprennent exactement qui était cette femme.",
+      "zh-Hans": "热尔韦克斯描绘的，是一位富家青年与他的情人共度一夜之后的清晨——灵感源自阿尔弗雷德·德·缪塞的一首诗，讲述一个把最后的钱都花在享乐上、随后即将了结自己生命的男子。据说，地上散落的衣物和松开的紧身胸衣，是热尔韦克斯的朋友埃德加·德加建议加上的，好让观者一眼就能明白这位女子的身份。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice the still life of clothing tossed on the chair — a top hat, a walking stick, a hastily undone corset — Gervex tells the whole story through these abandoned objects rather than through any dramatic gesture from the two figures themselves.",
+      "fr": "Remarquez la nature morte formée par les vêtements jetés sur la chaise — un haut-de-forme, une canne, un corset défait à la hâte — Gervex raconte toute l'histoire à travers ces objets abandonnés plutôt que par un geste dramatique des deux personnages eux-mêmes.",
+      "zh-Hans": "留意扔在椅子上那一堆静物般的衣物——一顶大礼帽、一根手杖、一件匆忙解开的紧身胸衣——热尔韦克斯正是通过这些被遗落的物件，而非画中两个人物的任何戏剧性动作，讲述了整个故事。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "The painting was banned from the 1878 Salon before it even opened — not primarily because of the nudity itself, which was common in academic painting, but because these very details made its subject unmistakably scandalous.",
+      "fr": "Le tableau fut interdit au Salon de 1878 avant même son ouverture — non pas principalement en raison de la nudité elle-même, courante dans la peinture académique, mais parce que ces détails précis rendaient son sujet indéniablement scandaleux.",
+      "zh-Hans": "这幅画在1878年沙龙开幕之前就被禁止展出——主要原因并非裸体本身（这在学院派绘画中十分常见），而是正因为这些细节，让画作的主题变得无可争辩地充满争议。"
+    },
+    "whySimple": {
+      "en": "Gervex painted the morning after a night shared by a wealthy young man and a woman, based on a sad poem about a man who spends his last money before a tragic ending. Details like the discarded clothes on the floor hint at the full story.",
+      "fr": "Gervex a peint le lendemain matin d'une nuit partagée par un jeune homme fortuné et une femme, d'après un poème triste sur un homme qui dépense son dernier argent avant une fin tragique. Des détails comme les vêtements abandonnés au sol laissent deviner toute l'histoire.",
+      "zh-Hans": "热尔韦克斯画了一位富家青年与一位女子共度一夜之后的清晨，灵感来自一首悲伤的诗，讲述一个男子在悲剧结局之前花光最后钱财的故事。地上散落的衣物等细节，暗示着完整的故事。"
+    },
+    "whereSimple": {
+      "en": "Notice the clothes tossed on the chair — a hat, a cane, an undone corset — Gervex tells much of the story through these small details.",
+      "fr": "Remarquez les vêtements jetés sur la chaise — un chapeau, une canne, un corset défait — Gervex raconte une grande partie de l'histoire à travers ces petits détails.",
+      "zh-Hans": "留意扔在椅子上的衣物——一顶帽子、一根手杖、一件解开的紧身胸衣——热尔韦克斯正是通过这些小细节，讲述了大部分的故事。"
+    },
+    "raritySimple": {
+      "en": "This painting was banned from the official art show before it even opened, because of how clearly it told its scandalous story.",
+      "fr": "Ce tableau fut interdit de l'exposition d'art officielle avant même son ouverture, en raison de la clarté avec laquelle il racontait son histoire scandaleuse.",
+      "zh-Hans": "这幅画在官方艺术展开幕之前就被禁止展出，因为它把这个充满争议的故事讲得太过明白了。"
+    },
+    "whyKids": {
+      "en": "Gervex painted a quiet bedroom in the early morning, with soft light streaming in through tall windows.",
+      "fr": "Gervex a peint une chambre paisible tôt le matin, avec une douce lumière entrant à flots par de hautes fenêtres.",
+      "zh-Hans": "热尔韦克斯画了一间清晨时分安静的卧室，柔和的光线透过高高的窗户洒落进来。"
+    },
+    "whereKids": {
+      "en": "Notice the soft morning light spilling across the rumpled white sheets and the curtains — Gervex was very skilled at painting light.",
+      "fr": "Remarque la douce lumière du matin qui se répand sur les draps blancs froissés et les rideaux — Gervex était très doué pour peindre la lumière.",
+      "zh-Hans": "留意柔和的晨光是如何洒在皱巴巴的白色床单和窗帘上的——热尔韦克斯非常擅长描绘光线。"
+    },
+    "rarityKids": {
+      "en": "Gervex was known for painting realistic, everyday scenes with lots of careful attention to light and detail, like in this painting.",
+      "fr": "Gervex était connu pour peindre des scènes réalistes et quotidiennes avec une grande attention portée à la lumière et aux détails, comme dans ce tableau.",
+      "zh-Hans": "热尔韦克斯以描绘写实的日常场景著称，非常注重光线和细节，就像这幅画一样。"
+    },
+    "contentFlag": "The pre-flagged item from the original content-policy list. Verified by viewing the image: a fully nude young woman asleep on a bed, a man dressing by the window; discarded clothes/corset on the floor make the prostitution/mistress context visually explicit. The underlying story (Musset's poem) has the man about to poison himself after this last night, though the suicide itself is not depicted. No technique-only or narrative angle exists that isn't itself mature -- reviewed with the user, not decided by analogy. Decision: stays in Kids mode with a MINIMAL redirect -- Kids why/where/rarity describe only generic morning light/brushwork, with no reference to the story, the two figures' relationship, or any hint that invites a follow-up question about what's really happening."
   },
   {
     "id": "orsay_rf_1967_5",
@@ -6747,7 +7105,7 @@
     "accent": "#543FB4",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Romans of the Decadence",
       "fr": "Les Romains de la décadence",
@@ -6759,24 +7117,62 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 0.8,
+      "high": 2,
+      "logic": "FACT: Study for 'The Decadence of the Romans', a preparatory study for this exact painting, sold for $182,500 (~EUR168K) at Christie's New York, 2013. EDITORIAL JUDGMENT: the finished, exhibited masterpiece -- the sensation of the 1847 Salon and Couture's single defining work -- would be worth substantially more than a mere preparatory study, but Couture's overall market remains modest -- positioned well above the study's price while staying conservative given the artist's generally limited market.",
+      "comparableSales": [
+        "Study for 'The Decadence of the Romans', Thomas Couture — $182,500 (~€168K), Christie's New York, 2013 — a preparatory study for this exact finished painting."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Couture paints a huge, crowded party of ancient Romans lounging in exhaustion after a night of excess, deliberately contrasted with the dignified stone statues of their own ancestors looking sternly down on them — a not-so-subtle warning about what happens when a great civilization stops caring about anything except pleasure.",
+      "fr": "Couture peint une immense et foisonnante fête de Romains antiques alanguis d'épuisement après une nuit d'excès, délibérément mise en contraste avec les statues de pierre dignes de leurs propres ancêtres qui les observent sévèrement — un avertissement à peine voilé sur ce qui advient quand une grande civilisation cesse de se soucier de tout, sauf du plaisir.",
+      "zh-Hans": "库退尔描绘了一场规模宏大、人声鼎沸的古罗马宴饮场景，狂欢一夜之后，众人疲惫地瘫倒在一旁，画面刻意将他们与身后那些庄严肃穆、俯视着他们的祖先石像形成对比——这几乎是一则毫不含蓄的警示：当一个伟大的文明除了享乐之外，不再在乎任何事情时，会发生什么。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the solemn old statues in the background seem to judge the scene below them — Couture use this contrast to turn a huge crowd scene into a moral lesson rather than just a party painting.",
+      "fr": "Remarquez comme les vieilles statues solennelles à l'arrière-plan semblent juger la scène en dessous d'elles — Couture utilise ce contraste pour transformer une immense scène de foule en une leçon morale plutôt qu'en une simple peinture de fête.",
+      "zh-Hans": "留意背景中那些庄重古老的雕像，仿佛正在审视着下方的场景——库退尔正是借助这种对比，把一幅庞大的人群场景，变成了一则道德寓言，而不仅仅是一幅描绘宴会的画作。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
-    }
+      "en": "This enormous painting was the sensation of the 1847 Salon, and Couture meant it as a coded criticism of his own society in Paris, not just a scene from ancient history.",
+      "fr": "Cet immense tableau fut la sensation du Salon de 1847, et Couture le concevait comme une critique codée de sa propre société parisienne, et non comme une simple scène d'histoire ancienne.",
+      "zh-Hans": "这幅巨大的画作是1847年沙龙的轰动之作，库退尔本意是借此对自己所处的巴黎社会进行一种隐晦的批判，而不仅仅是描绘一段古代历史场景。"
+    },
+    "whySimple": {
+      "en": "Couture painted a huge party of ancient Romans, worn out after a night of excess, with statues of their stern ancestors looking down on them from behind. It's a lesson about what happens when people care only about pleasure.",
+      "fr": "Couture a peint une immense fête de Romains antiques, épuisés après une nuit d'excès, avec des statues de leurs ancêtres sévères qui les surplombent. C'est une leçon sur ce qui arrive quand les gens ne se soucient que du plaisir.",
+      "zh-Hans": "库退尔画了一场古罗马人的盛大宴会，狂欢一夜之后众人疲惫不堪，身后是他们严厉的祖先雕像俯视着他们。这是一则关于人们只顾享乐会发生什么的教训。"
+    },
+    "whereSimple": {
+      "en": "Notice how the serious old statues seem to judge the tired party-goers below them — Couture uses this contrast to make his point.",
+      "fr": "Remarquez comme les vieilles statues sérieuses semblent juger les fêtards fatigués en dessous d'elles — Couture utilise ce contraste pour faire passer son message.",
+      "zh-Hans": "留意那些严肃的古老雕像，仿佛正在审视着下方疲惫的狂欢者——库退尔正是借助这种对比来表达他的观点。"
+    },
+    "raritySimple": {
+      "en": "This huge painting was a sensation when it was first shown in 1847. Couture meant it as a hidden criticism of his own society, not just a scene from ancient history.",
+      "fr": "Cet immense tableau fut une sensation lors de sa première présentation en 1847. Couture le concevait comme une critique cachée de sa propre société, et non comme une simple scène d'histoire ancienne.",
+      "zh-Hans": "这幅巨大的画作在1847年首次展出时轰动一时。库退尔的本意是借此隐晦地批判自己所处的社会，而不仅仅是描绘一段古代历史场景。"
+    },
+    "whyKids": {
+      "en": "Couture painted a huge, busy party scene from ancient Rome — and behind all the party-goers, statues of stern, serious ancestors are watching from the background!",
+      "fr": "Couture a peint une immense et animée scène de fête de la Rome antique — et derrière tous les fêtards, des statues d'ancêtres sévères et sérieux les observent depuis l'arrière-plan !",
+      "zh-Hans": "库退尔画了一场热闹非凡的古罗马宴会场景——在所有狂欢者的身后，严肃的祖先雕像正从背景中注视着他们呢！"
+    },
+    "whereKids": {
+      "en": "Look how serious and disapproving those old statues look, compared to all the tired party-goers below them — it's almost like they're saying \"shame on you!\"",
+      "fr": "Regarde comme ces vieilles statues ont l'air sérieuses et désapprobatrices, comparées à tous les fêtards fatigués en dessous d'elles — c'est presque comme si elles disaient « honte à vous ! »",
+      "zh-Hans": "看那些古老的雕像显得多么严肃、多么不赞同，再对比一下下面那些疲惫的狂欢者——几乎就像在说「你们真该感到羞愧！」"
+    },
+    "rarityKids": {
+      "en": "This giant painting was a huge sensation when people first saw it — it was actually meant as a lesson about not overdoing it with parties and fun!",
+      "fr": "Ce tableau géant a fait sensation quand les gens l'ont vu pour la première fois — il était en fait censé donner une leçon sur le fait de ne pas exagérer avec les fêtes et l'amusement !",
+      "zh-Hans": "这幅巨大的画作在人们第一次看到它的时候引起了巨大轰动——它其实是想传达一个道理：玩乐要适度，别太过火！"
+    },
+    "contentFlag": "The pre-flagged item from the original content-policy list. Verified by viewing the image: a huge multi-figure scene of reclining, partly nude revelers exhausted after a night of excess, watched by dignified nude classical statues in the background. No sex acts depicted, but heavy nudity throughout a large crowd. Couture's own stated intent was moral allegory (criticizing his own era's decadence via ancient Rome, quoting Juvenal). Reviewed with the user; decision: stays in Kids mode; Kids why/where/rarity focus on the moral-lesson idea and the contrast between the stern statues and the tired revelers, not the bodies."
   },
   {
     "id": "orsay_rf_1956_13",
@@ -7175,7 +7571,7 @@
     "accent": "#6A6197",
     "priority": "top100",
     "needsEditorialReview": true,
-    "editorialStatus": "not_started",
+    "editorialStatus": "draft",
     "title": {
       "en": "The Red Roofs, Côte Saint-Denis at Pontoise, Winter Effect",
       "fr": "Les Toits rouges, coin de village, effet d'hiver",
@@ -7187,23 +7583,60 @@
       "en": false
     },
     "estimate": {
-      "low": null,
-      "high": null
+      "low": 8,
+      "high": 18,
+      "logic": "FACT: Le Boulevard Montmartre, Matinée de Printemps, sold for $32,094,392 (~EUR29.5M) at Sotheby's London, 2014 -- Pissarro's auction record, a Paris street scene. EDITORIAL JUDGMENT: The Red Roofs is a rural landscape from an earlier period than the record-holding late urban boulevard series -- a genuine subgenre gap (rural vs. urban) -- positioned well below the record to reflect that difference.",
+      "comparableSales": [
+        "Le Boulevard Montmartre, Matinée de Printemps, Camille Pissarro — $32,094,392 (~€29.5M), Sotheby's London, 2014 — Pissarro's auction record, but an urban street scene, a genuine subgenre gap against this rural landscape."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
     },
     "why": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Pissarro paints a cluster of red-roofed houses on a hillside near Pontoise, using thick, richly loaded brushstrokes that echo the same orange-red tones across the roofs, the fields, and the distant hill.",
+      "fr": "Pissarro peint un groupe de maisons aux toits rouges sur une colline près de Pontoise, utilisant des touches épaisses et chargées qui font écho aux mêmes tons orange-rouge à travers les toits, les champs et la colline lointaine.",
+      "zh-Hans": "毕沙罗描绘了蓬图瓦兹附近山坡上一簇红色屋顶的房屋，运用厚重、饱含颜料的笔触，让屋顶、田野和远山之间，回响着同样的橙红色调。"
     },
     "where": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Notice how the thick paint itself catches real light on the canvas surface — Pissarro builds texture as much as color, giving the whole scene a vibrating, energetic feel.",
+      "fr": "Remarquez comme la peinture épaisse elle-même capte la lumière réelle sur la surface de la toile — Pissarro construit autant la texture que la couleur, donnant à toute la scène une sensation vibrante et énergique.",
+      "zh-Hans": "留意这厚重的颜料本身，是如何在画布表面真实地捕捉光线的——毕沙罗在营造色彩的同时，也在营造肌理质感，让整个画面都充满了跃动的活力。"
     },
     "rarity": {
-      "en": "Editorial content pending review.",
-      "fr": "Contenu editorial en attente de redaction.",
-      "zh-Hans": "编辑内容尚待撰写。"
+      "en": "Pissarro painted this around the same time he and his friend Paul Cézanne were working side by side on similar countryside scenes near Pontoise, each influencing the other's developing style.",
+      "fr": "Pissarro a peint ce tableau à peu près à l'époque où lui et son ami Paul Cézanne travaillaient côte à côte sur des scènes de campagne similaires près de Pontoise, chacun influençant le style naissant de l'autre.",
+      "zh-Hans": "毕沙罗创作这幅画的时期，正是他与朋友保罗·塞尚在蓬图瓦兹附近并肩描绘类似乡间景色的时候，两人当时正相互影响着彼此正在成形的绘画风格。"
+    },
+    "whySimple": {
+      "en": "Pissarro painted red-roofed houses on a hillside near Pontoise, using thick brushstrokes that repeat the same orange-red color across the roofs, fields, and hills.",
+      "fr": "Pissarro a peint des maisons aux toits rouges sur une colline près de Pontoise, utilisant des touches épaisses qui répètent la même couleur orange-rouge à travers les toits, les champs et les collines.",
+      "zh-Hans": "毕沙罗画了蓬图瓦兹附近山坡上一些红屋顶的房子，用厚重的笔触，让屋顶、田野和山丘上重复出现同样的橙红色。"
+    },
+    "whereSimple": {
+      "en": "Notice how the thick paint itself catches the light — Pissarro builds texture as much as color, giving the scene an energetic feel.",
+      "fr": "Remarquez comme la peinture épaisse elle-même capte la lumière — Pissarro construit autant la texture que la couleur, donnant à la scène une sensation énergique.",
+      "zh-Hans": "留意这厚重的颜料本身是如何捕捉光线的——毕沙罗在营造色彩的同时也在营造肌理，让画面充满了活力。"
+    },
+    "raritySimple": {
+      "en": "Pissarro painted this around the same time he and his friend Paul Cézanne were painting similar countryside scenes together near Pontoise.",
+      "fr": "Pissarro a peint ce tableau à peu près à l'époque où lui et son ami Paul Cézanne peignaient ensemble des scènes de campagne similaires près de Pontoise.",
+      "zh-Hans": "毕沙罗创作这幅画的时期，正是他和朋友保罗·塞尚在蓬图瓦兹附近一起描绘类似乡间景色的时候。"
+    },
+    "whyKids": {
+      "en": "Pissarro painted a cluster of houses with red roofs on a hillside — and he used the same orangey-red color again and again, in the roofs, the fields, everywhere!",
+      "fr": "Pissarro a peint un groupe de maisons aux toits rouges sur une colline — et il a utilisé la même couleur orange-rouge encore et encore, dans les toits, les champs, partout !",
+      "zh-Hans": "毕沙罗画了山坡上一簇红屋顶的房子——他反反复复用了同样的橙红色，屋顶上、田野里，到处都是！"
+    },
+    "whereKids": {
+      "en": "Look how thick and bumpy the paint looks — you can almost feel the texture just by looking at it!",
+      "fr": "Regarde comme la peinture paraît épaisse et bosselée — tu peux presque sentir la texture rien qu'en la regardant !",
+      "zh-Hans": "看这些颜料有多厚、多凹凸不平——光是看着，你几乎都能感受到那种质感！"
+    },
+    "rarityKids": {
+      "en": "Pissarro painted this while working right alongside his friend, another painter named Cézanne — they were painting the same countryside together!",
+      "fr": "Pissarro a peint ce tableau en travaillant juste à côté de son ami, un autre peintre nommé Cézanne — ils peignaient la même campagne ensemble !",
+      "zh-Hans": "毕沙罗画这幅画的时候，就在他的朋友、另一位叫塞尚的画家旁边工作——他们一起描绘着同一片乡间景色呢！"
     }
   },
   {
