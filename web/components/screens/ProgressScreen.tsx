@@ -193,7 +193,18 @@ export default function ProgressScreen({
         )}
       </div>
 
-      <div className="sticky bottom-0 left-0 right-0 p-3 pb-9 bg-gradient-to-t from-[#FAFAF9] via-[#FAFAF9]/90 to-transparent">
+      {/* The black "Next" bar below is the strongest visual element on this
+          screen, and reads as THE primary action -- easy to mistake for the
+          only path forward. The actual way to reach Recap was a plain
+          13px gray text link in the top-right corner (onCompleteVisit,
+          tt("complete_visit")), the same visual weight as a "cancel" link
+          and nowhere near the bottom CTA a first-time user's eye lands on.
+          Same class of regression as the Camera/Card navigation fixes: the
+          handler existed, but nothing made it discoverable. This button
+          doesn't replace the top-corner link (still there, still works) or
+          the Next bar (still the right nudge for continuing to scan) -- it
+          adds a second, equally-visible, always-available way to finish. */}
+      <div className="sticky bottom-0 left-0 right-0 p-3 pb-9 space-y-3 bg-gradient-to-t from-[#FAFAF9] via-[#FAFAF9]/90 to-transparent">
         <button
           type="button"
           onClick={onContinueScanning}
@@ -205,6 +216,13 @@ export default function ProgressScreen({
               {nextMission ? missionLabel(nextMission, state.locale) : tt("keep_exploring", state.locale)}
             </span>
           </span>
+        </button>
+        <button
+          type="button"
+          onClick={onCompleteVisit}
+          className="w-full h-[50px] rounded-full bg-[#F5F5F7] text-[#111] text-[15px] font-semibold tracking-[-0.01em]"
+        >
+          {tt("complete_visit_button", state.locale)}
         </button>
       </div>
     </div>

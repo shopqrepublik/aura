@@ -86,6 +86,7 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   pending_review: { en: "Pending review", fr: "En cours de révision", "zh-Hans": "待审核" },
   keep_exploring: { en: "Keep exploring the museum →", fr: "Continuez à explorer le musée →", "zh-Hans": "继续探索博物馆 →" },
   complete_visit: { en: "Finish", fr: "Terminer", "zh-Hans": "结束" },
+  complete_visit_button: { en: "Complete visit", fr: "Terminer la visite", "zh-Hans": "结束参观" },
   most_valuable_today: { en: "Most valuable seen today", fr: "La plus estimée aujourd'hui", "zh-Hans": "今日最高估值" },
   featured_today: { en: "Featured today", fr: "À l'honneur aujourd'hui", "zh-Hans": "今日特写" },
   estimate_pending: { en: "Estimate pending review", fr: "Estimation en cours de révision", "zh-Hans": "估值待审核" },
