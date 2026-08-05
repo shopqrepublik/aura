@@ -2,7 +2,9 @@
 // see README "API" section. Default port matches the documented run command
 // (`uvicorn app.main:app --port 8090`); override with NEXT_PUBLIC_BACKEND_URL
 // if your backend runs elsewhere.
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8090";
+// Exported so lib/visitPalette.ts can build the /v1/image-proxy URL for the
+// Recap PNG export without duplicating this fallback logic.
+export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8090";
 const MUSEUM_ID = "orsay";
 
 export interface RecognizeResponse {

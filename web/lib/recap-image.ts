@@ -1,5 +1,5 @@
 import { tt } from "@/lib/i18n";
-import { paintVisitPaletteCanvas, paintGrainCanvas, paintThumbnailBlocksCanvas } from "@/lib/visitPalette";
+import { paintVisitPaletteCanvas, paintGrainCanvas, paintThumbnailsCanvas, paintAnchorThumbnailCanvas } from "@/lib/visitPalette";
 import type { Artwork, Locale } from "@/lib/types";
 
 // Generates the actual shareable PNG for the Recap screen — 1080x1920, per
@@ -89,18 +89,26 @@ export interface RecapImageData {
    * via lib/visitPalette.ts's buildVisitPalette, same ranking as
    * mostValuable above). Empty when nothing was seen. */
   paletteAccents: string[];
+  /** Same works as paletteAccents is derived from, this time with the
+   * imageUrl each needs to actually draw a real photo via the image proxy
+   * (see visitPalette.ts's paintThumbnailsCanvas) -- a slim {imageUrl,
+   * accent} projection, not the full Artwork, since that's all the canvas
+   * painter needs. */
+  paletteWorks: Array<{ imageUrl: string; accent: string }>;
 }
 
-// The artwork-thumbnail row and most-valuable block never draw the real
-// photos here — confirmed live via fetch(url, {mode:"cors"}) against the
-// actual commons.wikimedia.org redirect chain these imageUrls use: it
-// throws (CORS-blocked), not just the earlier <img crossOrigin> test this
-// project already knew failed. A canvas-safe load of these URLs isn't
-// possible without either a same-origin proxy or switching this whole
-// export to a DOM-rendering technique (html2canvas et al.) that isn't
-// otherwise part of this app — out of scope for one export feature.
-// paintThumbnailBlocksCanvas draws honest accent-color blocks at the same
-// position/size/radius instead, not a fallback for a rare failure.
+// The artwork-thumbnail row and most-valuable block draw real photos here
+// via our own backend's /v1/image-proxy endpoint (server-side fetch +
+// resize + cache, see backend/app/main.py) -- canvas.drawImage() refuses
+// cross-origin Wikimedia images outright even with img.crossOrigin set
+// (confirmed live: fetch(url, {mode:"cors"}) against the actual
+// commons.wikimedia.org redirect chain throws, because Wikimedia's CDN
+// doesn't send a CORS header), so a same-origin-as-far-as-the-browser-cares
+// proxy was the fix, not a DOM-rendering rewrite (html2canvas et al.) of
+// the whole export. paintThumbnailsCanvas/paintAnchorThumbnailCanvas fall
+// back to the honest accent-color block per item, but only when the proxy
+// itself genuinely fails (network down, this specific image genuinely
+// missing) -- that's the rare edge case now, not the default path.
 export async function generateRecapImage(data: RecapImageData): Promise<Blob | null> {
   if (typeof document === "undefined") return null;
 
@@ -215,17 +223,17 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
     statX += Math.max(ctx.measureText(value).width, 140) + 60;
   }
 
-  // Artwork thumbnails -- real photos on screen, honest accent-color blocks
-  // here (see this file's own top-level comment on why).
+  // Artwork thumbnails -- real photos, via the image proxy (see this file's
+  // own top-level comment for why that's needed at all).
   y += 70;
   const thumbHeight = 357; // ~132px on-screen * the ~2.7x export scale ratio this file already uses elsewhere
-  paintThumbnailBlocksCanvas(ctx, data.paletteAccents, marginX, y, thumbHeight);
+  await paintThumbnailsCanvas(ctx, data.paletteWorks, marginX, y, thumbHeight);
   y += thumbHeight;
 
   // Most valuable work, directly on the poster -- no white card (§14). Text
-  // sits to the right of a small accent-color anchor block -- the export's
-  // honest counterpart to the on-screen version's real-photo thumbnail (see
-  // this file's own top-level comment on why photos can't be canvas-drawn).
+  // sits to the right of a small real-photo anchor (same image-proxy path
+  // as the thumbnail row above, same accent-color fallback on a genuine
+  // proxy failure).
   if (data.mostValuable) {
     y += 56;
     const anchorHeight = 194; // ~72px on-screen small thumbnail * this file's ~2.7x export ratio
@@ -233,15 +241,15 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
     const anchorGap = 38;
     const anchorTop = y - 40;
     const radius = 22;
-    ctx.fillStyle = data.mostValuable.accent || "#3A3A3A";
-    ctx.beginPath();
-    ctx.roundRect(marginX, anchorTop, anchorWidth, anchorHeight, radius);
-    ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,0.22)";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.roundRect(marginX, anchorTop, anchorWidth, anchorHeight, radius);
-    ctx.stroke();
+    await paintAnchorThumbnailCanvas(
+      ctx,
+      { imageUrl: data.mostValuable.imageUrl, accent: data.mostValuable.accent },
+      marginX,
+      anchorTop,
+      anchorWidth,
+      anchorHeight,
+      radius
+    );
 
     const textX = marginX + anchorWidth + anchorGap;
     ctx.fillStyle = "rgba(243,232,215,0.65)";

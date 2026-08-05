@@ -33,3 +33,7 @@ aura-mvp.zip
 # hybrid pipeline's visual-verification step (see backend/app/main.py);
 # rebuildable, not source data.
 /backend/.reference_cache/
+
+# Runtime cache — Recap PNG export's image-proxy endpoint (same rationale
+# as .reference_cache/ above, different cache key: URL hash, not artwork id).
+/backend/.image_proxy_cache/

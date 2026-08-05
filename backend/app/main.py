@@ -36,6 +36,7 @@ Run:
     uvicorn app.main:app --reload --port 8090
 """
 import base64
+import hashlib
 import json
 import os
 import random
@@ -47,6 +48,7 @@ from typing import Optional, List
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from pydantic import BaseModel
 
 load_dotenv()  # reads .env from the repo root if present; no-op otherwise
@@ -446,6 +448,70 @@ def _fetch_reference_image_b64(artwork: dict) -> str:
         return base64.b64encode(f.read()).decode("ascii")
 
 
+# ---- Image proxy (Recap PNG export) ---------------------------------------
+# canvas.drawImage() refuses cross-origin Wikimedia images outright (a real
+# browser security restriction: reading pixels back out via toBlob/toDataURL
+# taints the canvas unless the image was served with a CORS header) -- the
+# Recap poster's shareable PNG export drew solid accent-color blocks instead
+# of the actual paintings because of this. This endpoint re-fetches the same
+# image server-side (where CORS doesn't apply) and re-serves it with our own
+# CORS header via the CORSMiddleware already configured above, so the
+# frontend's `img.crossOrigin = "anonymous"` + drawImage works.
+IMAGE_PROXY_CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".image_proxy_cache")
+# Reachable from any browser with no auth -- without an allowlist this would
+# be an open server-side URL fetcher (internal-network probing, arbitrary
+# outbound requests billed to us, etc). Only the two Wikimedia hosts this
+# catalog's image_url fields actually use are allowed; nothing else.
+IMAGE_PROXY_ALLOWED_HOSTS = {"commons.wikimedia.org", "upload.wikimedia.org"}
+
+
+def _validate_proxy_url(url: str) -> None:
+    import urllib.parse
+
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme not in ("http", "https") or not parsed.hostname:
+        raise HTTPException(status_code=400, detail="invalid image URL")
+    if parsed.hostname not in IMAGE_PROXY_ALLOWED_HOSTS:
+        raise HTTPException(status_code=400, detail="host not allowed")
+
+
+def _fetch_proxy_image_bytes(url: str) -> bytes:
+    """Same fetch/resize pipeline as _fetch_reference_image_b64 above (same
+    512px target, same Wikimedia-thumbnail-first strategy, same size guards
+    against the 717MB-original case) -- keyed by a hash of the URL instead of
+    a catalog id, since this serves the Recap poster's photo thumbnails, a
+    different caller from the recognition-verification path. Returns raw
+    JPEG bytes (this is served directly as an image response) rather than
+    the other function's base64 (embedded in a vision-model prompt)."""
+    os.makedirs(IMAGE_PROXY_CACHE_DIR, exist_ok=True)
+    cache_key = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    cache_path = os.path.join(IMAGE_PROXY_CACHE_DIR, f"{cache_key}.jpg")
+    if os.path.exists(cache_path):
+        with open(cache_path, "rb") as f:
+            return f.read()
+
+    import urllib.request
+
+    raw = None
+    thumb_url = _wikimedia_thumbnail_url(url, width=512)
+    if thumb_url:
+        try:
+            req = urllib.request.Request(thumb_url, headers={"User-Agent": REFERENCE_IMAGE_UA})
+            with _urlopen_with_retry(req, timeout=30) as resp:
+                raw = resp.read()
+        except Exception as e:
+            print(f"[image-proxy] thumbnail fetch failed for {url} ({e}), falling back to the original")
+            raw = None
+
+    if raw is None:
+        raw = _fetch_reference_image_original_bytes(url)
+
+    img = _decode_and_resize(raw, target_w=512)
+    img.save(cache_path, format="JPEG", quality=85)
+    with open(cache_path, "rb") as f:
+        return f.read()
+
+
 def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
     """
     The step that actually catches what text matching structurally cannot:
@@ -618,6 +684,31 @@ def get_artwork(artwork_id: str, locale: str = "en", mode: str = "normal"):
     # Real implementation joins artworks + artwork_localizations(locale, mode)
     # + artwork_estimates, with English fallback per §10.
     return {**art, "locale": locale, "mode": mode}
+
+
+@app.get("/v1/image-proxy")
+def image_proxy(url: str):
+    """Server-side fetch + resize (512px, same as the recognition reference
+    cache) + on-disk cache for a Wikimedia image URL, re-served with our own
+    CORS header (via the CORSMiddleware configured above) so the frontend's
+    canvas export can draw it -- see _fetch_proxy_image_bytes's doc comment
+    for why this exists at all. Allowlisted to Wikimedia hosts only: this is
+    a public, unauthenticated GET, so it must not become a general-purpose
+    open proxy."""
+    _validate_proxy_url(url)
+    try:
+        image_bytes = _fetch_proxy_image_bytes(url)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"image proxy fetch failed: {e}")
+    return Response(
+        content=image_bytes,
+        media_type="image/jpeg",
+        # Immutable + long max-age: the cache key is a hash of the URL, and
+        # Wikimedia file revisions at a fixed URL don't change in practice
+        # for this catalog's purposes -- same convention as the on-disk cache
+        # never re-checking freshness once a file exists.
+        headers={"Cache-Control": "public, max-age=604800, immutable"},
+    )
 
 
 # ---- Visits (§12) --------------------------------------------------------

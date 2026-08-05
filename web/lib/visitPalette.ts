@@ -1,4 +1,5 @@
 import { hexToRgba } from "./cardReveal";
+import { BACKEND_URL } from "./api";
 import type { Artwork } from "./types";
 
 // design-direction-v3.md §10 "Recap v3 / Visit Palette": the Recap poster's
@@ -149,38 +150,145 @@ export function paintGrainCanvas(ctx: CanvasRenderingContext2D, width: number, h
   ctx.restore();
 }
 
-/** Canvas stand-in for the on-screen artwork-thumbnail row (§14: "три
- * изображения, 120-150px высотой, ratio ~4:5, radius 8-10px"): real photos
- * on screen (see RecapScreen.tsx), solid accent-color blocks here, at the
- * SAME position/size/radius/border the real thumbnails use -- tested live
- * via fetch(url, {mode:"cors"}) against the actual commons.wikimedia.org
- * redirect chain: it throws (confirmed CORS-blocked, not just the earlier
- * <img crossorigin> test), so this remains the honest choice, not a
- * shortcut. Returns the row's height so the caller's y-accumulator can
- * continue past it. */
-export function paintThumbnailBlocksCanvas(
+/** Routes a Wikimedia image URL through our own backend's /v1/image-proxy
+ * (server-side fetch + 512px resize + on-disk cache, see backend/app/main.py)
+ * instead of loading it directly -- canvas.drawImage() refuses cross-origin
+ * Wikimedia images outright even with img.crossOrigin set (confirmed live:
+ * fetch(url, {mode:"cors"}) against the actual commons.wikimedia.org redirect
+ * chain throws), because Wikimedia's CDN doesn't send a CORS header. Our own
+ * backend re-serves the same bytes from an origin that does. */
+function proxyImageUrl(url: string): string {
+  return `${BACKEND_URL}/v1/image-proxy?url=${encodeURIComponent(url)}`;
+}
+
+/** Generic crossOrigin-anonymous image loader with a hard timeout -- the
+ * export shouldn't hang indefinitely if the backend itself is slow/down
+ * (this goes through our own proxy now, not raw Wikimedia, so the ~18s
+ * hangs observed there shouldn't recur, but nothing guarantees it). */
+function loadImage(url: string, timeoutMs = 8000): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    const timer = setTimeout(() => reject(new Error("image load timed out")), timeoutMs);
+    img.onload = () => {
+      clearTimeout(timer);
+      resolve(img);
+    };
+    img.onerror = () => {
+      clearTimeout(timer);
+      reject(new Error("image load failed"));
+    };
+    img.src = url;
+  });
+}
+
+/** object-fit: cover equivalent for canvas -- crops the source to the
+ * destination's aspect ratio instead of stretching it, matching the
+ * on-screen <img className="object-cover"> the real thumbnails use. */
+function coverSourceRect(imgWidth: number, imgHeight: number, dstWidth: number, dstHeight: number) {
+  const srcRatio = imgWidth / imgHeight;
+  const dstRatio = dstWidth / dstHeight;
+  let sx = 0, sy = 0, sw = imgWidth, sh = imgHeight;
+  if (srcRatio > dstRatio) {
+    sw = imgHeight * dstRatio;
+    sx = (imgWidth - sw) / 2;
+  } else {
+    sh = imgWidth / dstRatio;
+    sy = (imgHeight - sh) / 2;
+  }
+  return { sx, sy, sw, sh };
+}
+
+/** Canvas version of the on-screen artwork-thumbnail row (§14: "три
+ * изображения, 120-150px высотой, ratio ~4:5, radius 8-10px") -- real
+ * photos via the image proxy above, same position/size/radius/border the
+ * on-screen thumbnails use. Falls back to the honest accent-color block
+ * PER ITEM, only on a genuine proxy failure (network down, this specific
+ * image genuinely missing) -- not the default path anymore.
+ *
+ * Loads all items CONCURRENTLY (network-bound, safe to parallelize) but
+ * draws them SEQUENTIALLY afterward: ctx.save()/clip()/restore() share one
+ * global context stack, and interleaving those calls across concurrently
+ * awaited draws (if drawing itself were async, e.g. one `await
+ * loadImage()` per item inside a Promise.all) would corrupt that shared
+ * stack the moment two items' save/restore pairs overlap out of order.
+ * Separating "fetch" from "draw" avoids that entirely while keeping the
+ * network round-trips parallel. Returns the row's height so the caller's
+ * y-accumulator can continue past it, same contract as before. */
+export async function paintThumbnailsCanvas(
   ctx: CanvasRenderingContext2D,
-  accents: string[],
+  works: Array<{ imageUrl: string; accent: string }>,
   x: number,
   y: number,
   thumbHeight: number
-): number {
+): Promise<number> {
   const thumbWidth = thumbHeight * (4 / 5);
   const gap = 14;
   const radius = 22; // canvas-scale equivalent of the on-screen 8-10px at ~2.7x export ratio
-  accents.slice(0, 3).forEach((accent, i) => {
+  const items = works.slice(0, 3);
+
+  const loaded = await Promise.all(
+    items.map((work) => loadImage(proxyImageUrl(work.imageUrl)).catch(() => null))
+  );
+
+  items.forEach((work, i) => {
     const thumbX = x + i * (thumbWidth + gap);
-    ctx.fillStyle = hexToRgba(accent, 0.9);
+    const img = loaded[i];
+    ctx.save();
     ctx.beginPath();
     ctx.roundRect(thumbX, y, thumbWidth, thumbHeight, radius);
-    ctx.fill();
+    ctx.clip();
+    if (img) {
+      const { sx, sy, sw, sh } = coverSourceRect(img.naturalWidth, img.naturalHeight, thumbWidth, thumbHeight);
+      ctx.drawImage(img, sx, sy, sw, sh, thumbX, y, thumbWidth, thumbHeight);
+    } else {
+      ctx.fillStyle = hexToRgba(work.accent, 0.9);
+      ctx.fillRect(thumbX, y, thumbWidth, thumbHeight);
+    }
+    ctx.restore();
     ctx.strokeStyle = "rgba(255,255,255,0.22)";
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.roundRect(thumbX, y, thumbWidth, thumbHeight, radius);
     ctx.stroke();
   });
+
   return thumbHeight;
+}
+
+/** Same real-photo-with-accent-fallback approach as paintThumbnailsCanvas
+ * above, sized/positioned for the "Most valuable work" anchor instead of
+ * the thumbnail row -- see recap-image.ts's call site. Single item, so no
+ * concurrency-vs-canvas-state concern, but kept as a separate load-then-draw
+ * pair for the same reason (consistency, and so a future caller that adds a
+ * second item doesn't reintroduce the interleaving bug). */
+export async function paintAnchorThumbnailCanvas(
+  ctx: CanvasRenderingContext2D,
+  work: { imageUrl: string; accent: string },
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number
+): Promise<void> {
+  const img = await loadImage(proxyImageUrl(work.imageUrl)).catch(() => null);
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(x, y, width, height, radius);
+  ctx.clip();
+  if (img) {
+    const { sx, sy, sw, sh } = coverSourceRect(img.naturalWidth, img.naturalHeight, width, height);
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, width, height);
+  } else {
+    ctx.fillStyle = work.accent || "#3A3A3A";
+    ctx.fillRect(x, y, width, height);
+  }
+  ctx.restore();
+  ctx.strokeStyle = "rgba(255,255,255,0.22)";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.roundRect(x, y, width, height, radius);
+  ctx.stroke();
 }
 
 // Self-contained SVG fractal-noise grain, inlined as a data URI -- no

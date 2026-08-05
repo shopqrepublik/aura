@@ -135,6 +135,7 @@ export default function RecapScreen({
       mostValuableTitle: mostValuable ? resolveTitle(mostValuable, state.locale) : "",
       isBillion,
       paletteAccents: palette.accents,
+      paletteWorks: palette.works.map((w) => ({ imageUrl: w.imageUrl, accent: w.accent })),
     });
   }
 
