@@ -184,15 +184,26 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
   ctx.font = `500 ${headlineSize}px ${SERIF_STACK}`;
   ctx.fillText(valueText, marginX, y);
 
-  y += 66;
+  // The gap to the next line used to be a flat 66px, which overlapped badly
+  // whenever headlineSize landed on one of fitFontSize's larger candidates
+  // (up to 250px -- this export is scaled ~2.7x vs the on-screen version,
+  // where the equivalent line uses line-height:0.85 and never exceeds
+  // 92px, so a constant tuned for that never worked here). Measuring the
+  // headline's actual descent and the subtitle's actual ascent at their
+  // real draw-time font sizes makes the gap scale with whatever size
+  // fitFontSize actually picked, instead of assuming one.
+  const headlineDescent = ctx.measureText(valueText).actualBoundingBoxDescent || headlineSize * 0.08;
+  const subtitleText = data.hasAnyEstimate
+    ? tt("in_estimated_market_value", data.locale)
+    : tt("recap_value_pending_caption", data.locale);
+  const subtitleFontSize = 58;
+  ctx.font = `500 ${subtitleFontSize}px ${SERIF_STACK}`;
+  const subtitleAscent = ctx.measureText(subtitleText).actualBoundingBoxAscent || subtitleFontSize * 0.75;
+
+  y += headlineDescent + subtitleAscent + 22; // ~22px breathing room, matching the on-screen mt-2 (8px) at this file's ~2.7x export scale
   ctx.fillStyle = CREAM;
   ctx.globalAlpha = 0.92;
-  ctx.font = `500 58px ${SERIF_STACK}`;
-  ctx.fillText(
-    data.hasAnyEstimate ? tt("in_estimated_market_value", data.locale) : tt("recap_value_pending_caption", data.locale),
-    marginX,
-    y
-  );
+  ctx.fillText(subtitleText, marginX, y);
   ctx.globalAlpha = 1;
 
   if (valueNote) {

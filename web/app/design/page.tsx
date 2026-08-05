@@ -90,6 +90,17 @@ const DEMO_ARTWORK = getArtwork("orsay_rf_2739") as Artwork; // Renoir — Bal d
 const DEMO_SEEN_IDS = ["orsay_rf_2739", "orsay_rf_1975_19", "orsay_rf_699"];
 const DEMO_SEEN: Artwork[] = DEMO_SEEN_IDS.map((id) => getArtwork(id)).filter((a): a is Artwork => !!a);
 
+// 11 highest-estimate catalog works, summed high-estimate crosses the real
+// €1B threshold (~€1045M) -- for exercising the Collector's Seal + the
+// widest headline size fitFontSize can pick, per recap-image.ts's own
+// "isBillion" gate (never decorative, only shown past a genuine sum).
+const DEMO_BILLION_IDS = [
+  "orsay_rf_2511", "orsay_rf_1975_19", "orsay_rf_2765", "orsay_rf_1961_6",
+  "orsay_rf_2739", "orsay_rf_1668", "orsay_rf_644", "orsay_rf_1951_42",
+  "orsay_rf_1949_17", "orsay_rf_2718", "orsay_rf_1944_9",
+];
+const DEMO_BILLION_SEEN: Artwork[] = DEMO_BILLION_IDS.map((id) => getArtwork(id)).filter((a): a is Artwork => !!a);
+
 function demoState(overrides: Partial<AppState>): AppState {
   return {
     screen: "home",
@@ -202,6 +213,12 @@ const SCREEN_DEMOS = [
     label: "05 — VISIT RECAP • VIRAL",
     note: "Native share sheet. Gradient mesh. Billion badge only fires past a real €1B threshold.",
     node: <RecapScreen state={demoState({ screen: "recap" })} seenArtworks={DEMO_SEEN} onNewVisit={noop} />,
+  },
+  {
+    id: "recap-billion",
+    label: "05b — VISIT RECAP · €1B+",
+    note: "Widest headline size + Collector's Seal together -- checks the value/subtitle line gap at the largest fitFontSize candidate (recap-image.ts), not just the typical 3-work case.",
+    node: <RecapScreen state={demoState({ screen: "recap" })} seenArtworks={DEMO_BILLION_SEEN} onNewVisit={noop} />,
   },
 ];
 
