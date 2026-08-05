@@ -135,24 +135,60 @@ export default function CameraScreen({
       </button>
 
       <div className="relative z-10 pt-[54px] text-center">
-        <div className="text-[15px] font-[600] text-white tracking-[-0.01em] drop-shadow">
-          {failed ? tt("we_could_not_identify", state.locale) : tt("frame_artwork_fully", state.locale)}
-        </div>
-        <div className="text-[12px] text-white/60 mt-1 font-medium">
-          {scanning ? tt("scanning", state.locale) : tt("hold_steady", state.locale)}
+        {scanning ? (
+          <div
+            style={{ fontFamily: "var(--font-editorial)" }}
+            className="text-[19px] font-medium tracking-[-0.01em] text-[#F5EBDD] drop-shadow"
+          >
+            {tt("scanning", state.locale)}
+          </div>
+        ) : (
+          <div className="text-[15px] font-[600] text-white tracking-[-0.01em] drop-shadow">
+            {failed ? tt("we_could_not_identify", state.locale) : tt("frame_artwork_fully", state.locale)}
+          </div>
+        )}
+        <div className="mt-2 flex items-center justify-center gap-1.5 h-3">
+          {scanning ? (
+            <>
+              <div className="w-[5px] h-[5px] rounded-full bg-[#F5E6B8] animate-scan-dot" style={{ animationDelay: "0ms" }} />
+              <div className="w-[5px] h-[5px] rounded-full bg-[#F5E6B8] animate-scan-dot" style={{ animationDelay: "180ms" }} />
+              <div className="w-[5px] h-[5px] rounded-full bg-[#F5E6B8] animate-scan-dot" style={{ animationDelay: "360ms" }} />
+            </>
+          ) : (
+            <div className="text-[12px] text-white/60 font-medium">{tt("hold_steady", state.locale)}</div>
+          )}
         </div>
       </div>
 
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[264px] h-[352px] z-10">
-        <div className="absolute inset-0 border border-white/15 rounded-[8px]" />
-        <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-[2.5px] border-l-[2.5px] border-white rounded-tl-[10px]" />
-        <div className="absolute -top-[1px] -right-[1px] w-8 h-8 border-t-[2.5px] border-r-[2.5px] border-white rounded-tr-[10px]" />
-        <div className="absolute -bottom-[1px] -left-[1px] w-8 h-8 border-b-[2.5px] border-l-[2.5px] border-white rounded-bl-[10px]" />
-        <div className="absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b-[2.5px] border-r-[2.5px] border-white rounded-br-[10px]" />
+        <div className={`absolute inset-0 border rounded-[8px] transition-colors ${scanning ? "border-[#F5E6B8]/40" : "border-white/15"}`} />
+        <div
+          className={`absolute -top-[1px] -left-[1px] w-8 h-8 border-t-[2.5px] border-l-[2.5px] rounded-tl-[10px] transition-colors ${scanning ? "border-[#F5E6B8] animate-scan-glow" : "border-white"}`}
+        />
+        <div
+          className={`absolute -top-[1px] -right-[1px] w-8 h-8 border-t-[2.5px] border-r-[2.5px] rounded-tr-[10px] transition-colors ${scanning ? "border-[#F5E6B8] animate-scan-glow" : "border-white"}`}
+          style={scanning ? { animationDelay: "0.4s" } : undefined}
+        />
+        <div
+          className={`absolute -bottom-[1px] -left-[1px] w-8 h-8 border-b-[2.5px] border-l-[2.5px] rounded-bl-[10px] transition-colors ${scanning ? "border-[#F5E6B8] animate-scan-glow" : "border-white"}`}
+          style={scanning ? { animationDelay: "0.8s" } : undefined}
+        />
+        <div
+          className={`absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b-[2.5px] border-r-[2.5px] rounded-br-[10px] transition-colors ${scanning ? "border-[#F5E6B8] animate-scan-glow" : "border-white"}`}
+          style={scanning ? { animationDelay: "1.2s" } : undefined}
+        />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className={`w-[52px] h-[52px] rounded-full border-2 border-white/30 flex items-center justify-center ${scanning ? "animate-pulse" : ""}`}>
-            <div className="w-2 h-2 bg-white rounded-full" />
-          </div>
+          {scanning ? (
+            <div className="relative w-[52px] h-[52px] flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full border-2 border-[#F5E6B8]/20" />
+              <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-[#F5E6B8] animate-scan-ring" />
+              <div className="w-2 h-2 bg-[#F5E6B8] rounded-full" />
+            </div>
+          ) : (
+            <div className="w-[52px] h-[52px] rounded-full border-2 border-white/30 flex items-center justify-center">
+              <div className="w-2 h-2 bg-white rounded-full" />
+            </div>
+          )}
         </div>
       </div>
 

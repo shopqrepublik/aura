@@ -151,6 +151,20 @@ const SCREEN_DEMOS = [
     ),
   },
   {
+    id: "camera-scanning",
+    label: "02b — CAMERA · SCANNING",
+    note: "Waiting UX for the real 3-6s /v1/recognize round trip (backend/scripts/latency_test.py) -- warm-gold breathing corners, rotating ring, 3-dot caption instead of a frozen screen.",
+    node: (
+      <CameraScreen
+        state={demoState({ screen: "camera", scanStatus: "scanning" })}
+        onCapture={noop}
+        onGoProgress={noop}
+        onGoHome={noop}
+        preview
+      />
+    ),
+  },
+  {
     id: "card",
     label: "03 — ARTWORK CARD • HERO",
     note: "Explicit \"Scan next artwork\" + \"View visit progress\" buttons — no swipe/drag gesture exists. Value badge reveals once. Eye block fades in 240ms.",
