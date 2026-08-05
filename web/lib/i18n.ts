@@ -149,6 +149,30 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     fr: "Cette œuvre n'a pas encore fait l'objet d'une estimation de marché.",
     "zh-Hans": "这件作品尚未进行市场估值评审。",
   },
+
+  // Recap "Acquisition Poster" headline (design-direction-v3.md §10).
+  you_saw_label: { en: "You saw", fr: "Vous avez vu", "zh-Hans": "您看到了" },
+  // Singular forms for the "{n} works · {n} artists · {time}" stat line --
+  // works_seen_count/stat_artists above are the plural/label forms used
+  // everywhere else; without these, a 1-work visit read "1 works · 1
+  // artists" (zh-Hans doesn't inflect, so its value is identical on
+  // purpose, same convention as scaleComparison.ts's pickLabel).
+  stat_work_one: { en: "work", fr: "œuvre", "zh-Hans": "作品" },
+  stat_artist_one: { en: "artist", fr: "artiste", "zh-Hans": "艺术家" },
+  in_estimated_market_value: {
+    en: "in estimated art market value",
+    fr: "en valeur marchande estimée",
+    "zh-Hans": "的估算艺术市场价值",
+  },
+  // Shown instead of the caption above when NONE of the seen works have a
+  // reviewed estimate -- same honesty rule as everywhere else this data
+  // appears: never caption a "Pending review" headline as if it were a real
+  // market-value claim.
+  recap_value_pending_caption: {
+    en: "None of the works you saw have a reviewed market estimate yet.",
+    fr: "Aucune des œuvres vues n'a encore d'estimation de marché.",
+    "zh-Hans": "您看到的作品均尚未进行市场估值评审。",
+  },
 };
 
 export function tt(key: string, locale: Locale): string {

@@ -86,6 +86,15 @@ export default function RecapScreen({
           .replace("{total}", String(seenArtworks.length))
       : null;
 
+  const worksLabel = seenArtworks.length === 1 ? tt("stat_work_one", state.locale) : tt("works_seen_count", state.locale).toLowerCase();
+  const artistsLabel = artists.size === 1 ? tt("stat_artist_one", state.locale) : tt("stat_artists", state.locale).toLowerCase();
+
+  const headlineText = hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale);
+  // Discrete size steps (not a fluid clamp -- this codebase doesn't use
+  // clamp() elsewhere, so this stays consistent with ProvenanceReveal's own
+  // tiered price sizing rather than introducing a new technique).
+  const headlineSize = headlineText.length > 10 ? 44 : headlineText.length > 7 ? 56 : 68;
+
   const [imageBusy, setImageBusy] = useState<"share" | "save" | null>(null);
 
   async function buildImage(): Promise<Blob | null> {
@@ -198,42 +207,48 @@ export default function RecapScreen({
 
       <div className="relative flex flex-col h-full pt-16 pb-9 px-6">
       <div className="flex items-center justify-between shrink-0">
-        <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#8E8E93]">
-          ELYIO • {dateStr}
-        </span>
+        <div>
+          <div className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#8E8E93]">Musée d&apos;Orsay</div>
+          <div className="text-[10px] font-medium tracking-[0.1em] uppercase text-[#B4B4B8] mt-0.5">Paris · {dateStr}</div>
+        </div>
         <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-[10px] font-bold">
           E
         </div>
       </div>
 
-      <div className="mt-8 shrink-0">
-        <h1 className="text-[24px] font-bold tracking-[-0.04em] leading-[26px] text-[#111]">
-          {tt("my_visit_title", state.locale)}
-        </h1>
-        <p className="mt-1 text-[13px] font-medium text-[#6E6E73]">
-          {`${seenArtworks.length} ${tt("works_seen_count", state.locale).toLowerCase()} • ${timeStr} • Musée d'Orsay`}
-        </p>
+      {/* "The Acquisition Poster" (design-direction-v3.md §10): one big
+          culmination number, not four identical bordered cells. Kept as the
+          same honest low-high RANGE the rest of this app always shows
+          (ProvenanceReveal, the old "Value seen" row) rather than collapsing
+          to a single fabricated point figure the way the doc's literal
+          "€3.8B" example does -- a range is the real data; a single number
+          would imply false precision this project has repeatedly ruled out
+          (see estimate handling everywhere else). Font size steps down for
+          longer strings instead of shrinking indefinitely or overflowing;
+          wrapping (no nowrap) is the safety net for extreme cumulative
+          totals a very long visit could produce. */}
+      <div className="mt-10 shrink-0">
+        <div className="text-[11px] font-bold tracking-[0.14em] uppercase text-[#8E8E93]">
+          {tt("you_saw_label", state.locale)}
+        </div>
+        <div
+          className="mt-1 font-bold text-[#111]"
+          style={
+            hasAnyEstimate
+              ? { fontSize: headlineSize, letterSpacing: "-0.025em", lineHeight: 0.98 }
+              : { fontSize: 26, letterSpacing: "-0.01em", lineHeight: 1.2 }
+          }
+        >
+          {headlineText}
+        </div>
+        <div className="mt-2 text-[13px] font-medium text-[#6E6E73] uppercase tracking-[0.02em] max-w-[280px]">
+          {hasAnyEstimate ? tt("in_estimated_market_value", state.locale) : tt("recap_value_pending_caption", state.locale)}
+        </div>
+        {valueNote && <div className="text-[11px] text-[#8E8E93] mt-1">{valueNote}</div>}
       </div>
 
-      <div className="mt-8 space-y-4 shrink-0">
-        {[
-          [tt("works_seen_count", state.locale), String(seenArtworks.length), null],
-          [tt("stat_artists", state.locale), String(artists.size), null],
-          [
-            tt("stat_value_seen", state.locale),
-            hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale),
-            valueNote,
-          ],
-          [tt("stat_time", state.locale), timeStr, null],
-        ].map(([label, value, note]) => (
-          <div key={label} className="border-b border-black/10 pb-4">
-            <div className="flex justify-between items-baseline">
-              <span className="text-[13px] font-semibold uppercase tracking-widest text-[#8E8E93]">{label}</span>
-              <span className="text-[22px] font-bold tracking-[-0.03em] text-[#111] tabular-nums">{value}</span>
-            </div>
-            {note && <div className="text-right text-[11px] text-[#8E8E93] mt-0.5">{note}</div>}
-          </div>
-        ))}
+      <div className="mt-6 text-[13px] font-semibold text-[#6E6E73] shrink-0">
+        {`${seenArtworks.length} ${worksLabel} · ${artists.size} ${artistsLabel} · ${timeStr}`}
       </div>
 
       {mostValuable && (

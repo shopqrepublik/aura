@@ -26,6 +26,20 @@ const FONT_STACK = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', Inter, 
 // visually drifted out of alignment with itself once bold+narrow letters
 // mixed together). Real per-glyph widths is what SVG's textPath already
 // does automatically; this just replicates that on canvas.
+// Picks the largest font size (from `candidates`, descending) at which
+// `text` still fits within `maxWidth` -- canvas has no native text-wrap, so
+// this is the shrink-to-fit safety net for cumulative totals a very long
+// visit could produce (the on-screen version wraps to a 2nd line instead;
+// canvas text wrapping needs manual line-splitting, more code than this
+// headline -- a handful of digits -- actually needs).
+function fitFontSize(ctx: CanvasRenderingContext2D, text: string, weight: number, candidates: number[], maxWidth: number): number {
+  for (const size of candidates) {
+    ctx.font = `${weight} ${size}px ${FONT_STACK}`;
+    if (ctx.measureText(text).width <= maxWidth) return size;
+  }
+  return candidates[candidates.length - 1];
+}
+
 function drawCircularText(ctx: CanvasRenderingContext2D, text: string, cx: number, cy: number, radius: number, angleCenter: number): void {
   ctx.save();
   ctx.translate(cx, cy);
@@ -100,38 +114,32 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
   paintFragmentsCanvas(ctx, data.paletteAccents, W, H);
   paintGrainCanvas(ctx, W, H);
 
-  // Header: "ELYIO • date" + black circular "E" mark.
+  // Header: "MUSÉE D'ORSAY" / "PARIS · date" + black circular "E" mark --
+  // matches the on-screen version's museum-branded masthead (design-
+  // direction-v3.md §10), ELYIO's own brand kept as the small corner mark.
   ctx.fillStyle = "#8E8E93";
-  ctx.font = `700 26px ${FONT_STACK}`;
+  ctx.font = `700 30px ${FONT_STACK}`;
   ctx.textBaseline = "alphabetic";
-  ctx.fillText(`ELYIO • ${data.dateStr}`.toUpperCase(), marginX, 150);
+  ctx.fillText("MUSÉE D'ORSAY", marginX, 150);
+  ctx.fillStyle = "#B4B4B8";
+  ctx.font = `500 26px ${FONT_STACK}`;
+  ctx.fillText(`PARIS · ${data.dateStr}`.toUpperCase(), marginX, 190);
 
   ctx.beginPath();
-  ctx.arc(W - marginX - 24, 138, 24, 0, Math.PI * 2);
+  ctx.arc(W - marginX - 24, 145, 24, 0, Math.PI * 2);
   ctx.fillStyle = "#111111";
   ctx.fill();
   ctx.fillStyle = "#FFFFFF";
   ctx.font = `700 22px ${FONT_STACK}`;
   ctx.textAlign = "center";
-  ctx.fillText("E", W - marginX - 24, 146);
+  ctx.fillText("E", W - marginX - 24, 153);
   ctx.textAlign = "left";
 
-  // Title + subtitle.
-  ctx.fillStyle = "#111111";
-  ctx.font = `700 64px ${FONT_STACK}`;
-  ctx.fillText(tt("my_visit_title", data.locale), marginX, 280);
-
-  ctx.fillStyle = "#6E6E73";
-  ctx.font = `500 34px ${FONT_STACK}`;
-  ctx.fillText(
-    `${data.worksCount} ${tt("works_seen_count", data.locale).toLowerCase()} • ${data.timeStr} • Musée d'Orsay`,
-    marginX,
-    334
-  );
-
-  // Stat rows: Works / Artists / Value seen / Time — mirrors the on-screen
-  // list, including the honest "N of M works reviewed" note when the value
-  // total only covers some of what was scanned.
+  // "The Acquisition Poster" headline (§10) -- one big culmination number,
+  // not four identical bordered cells. Kept as the same honest low-high
+  // RANGE the rest of this app always shows (ProvenanceReveal, the old
+  // "Value seen" row) rather than collapsing to a single fabricated point
+  // figure the way the doc's literal "€3.8B" example does.
   const valueText = data.hasAnyEstimate
     ? `€${data.totalLow}–${data.totalHigh}M`
     : tt("pending_review", data.locale);
@@ -142,47 +150,49 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
           .replace("{total}", String(data.worksCount))
       : null;
 
-  const rows: Array<[string, string, string | null]> = [
-    [tt("works_seen_count", data.locale), String(data.worksCount), null],
-    [tt("stat_artists", data.locale), String(data.artistsCount), null],
-    [tt("stat_value_seen", data.locale), valueText, valueNote],
-    [tt("stat_time", data.locale), data.timeStr, null],
-  ];
+  let y = 280;
+  ctx.fillStyle = "#8E8E93";
+  ctx.font = `700 30px ${FONT_STACK}`;
+  ctx.fillText(tt("you_saw_label", data.locale).toUpperCase(), marginX, y);
 
-  let y = 470;
-  const rowH = 132;
-  for (const [label, value, note] of rows) {
-    ctx.strokeStyle = "rgba(0,0,0,0.1)";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(marginX, y);
-    ctx.lineTo(W - marginX, y);
-    ctx.stroke();
+  const maxHeadlineWidth = W - marginX * 2;
+  const headlineSize = data.hasAnyEstimate
+    ? fitFontSize(ctx, valueText, 700, [182, 150, 118, 90], maxHeadlineWidth)
+    : 70;
+  y += headlineSize * 0.85;
+  ctx.fillStyle = "#111111";
+  ctx.font = `700 ${headlineSize}px ${FONT_STACK}`;
+  ctx.fillText(valueText, marginX, y);
 
+  y += 60;
+  ctx.fillStyle = "#6E6E73";
+  ctx.font = `500 32px ${FONT_STACK}`;
+  ctx.fillText(
+    (data.hasAnyEstimate ? tt("in_estimated_market_value", data.locale) : tt("recap_value_pending_caption", data.locale)).toUpperCase(),
+    marginX,
+    y
+  );
+
+  if (valueNote) {
+    y += 38;
     ctx.fillStyle = "#8E8E93";
-    ctx.font = `600 28px ${FONT_STACK}`;
-    ctx.fillText(label.toUpperCase(), marginX, y - 40);
-
-    ctx.fillStyle = "#111111";
-    ctx.font = `700 56px ${FONT_STACK}`;
-    ctx.textAlign = "right";
-    ctx.fillText(value, W - marginX, y - 30);
-    ctx.textAlign = "left";
-
-    if (note) {
-      ctx.fillStyle = "#8E8E93";
-      ctx.font = `500 24px ${FONT_STACK}`;
-      ctx.textAlign = "right";
-      ctx.fillText(note, W - marginX, y + 4);
-      ctx.textAlign = "left";
-    }
-
-    y += rowH;
+    ctx.font = `500 24px ${FONT_STACK}`;
+    ctx.fillText(valueNote, marginX, y);
   }
+
+  // Single stat line -- "N works · N artists · Nm" -- not four bordered
+  // rows, per §10's explicit "не четыре одинаковые клетки". Singular forms
+  // match the on-screen version's fix for "1 works · 1 artists".
+  const worksLabel = data.worksCount === 1 ? tt("stat_work_one", data.locale) : tt("works_seen_count", data.locale).toLowerCase();
+  const artistsLabel = data.artistsCount === 1 ? tt("stat_artist_one", data.locale) : tt("stat_artists", data.locale).toLowerCase();
+  y += 60;
+  ctx.fillStyle = "#6E6E73";
+  ctx.font = `600 32px ${FONT_STACK}`;
+  ctx.fillText(`${data.worksCount} ${worksLabel} · ${data.artistsCount} ${artistsLabel} · ${data.timeStr}`, marginX, y);
 
   // Most valuable / featured card.
   if (data.mostValuable) {
-    const cardY = y + 20;
+    const cardY = y + 60;
     const cardH = 220;
     const cardX = marginX;
     const cardW = W - marginX * 2;
