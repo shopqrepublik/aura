@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     title: "ELYIO",
     statusBarStyle: "default",
   },
+  // The app switches locale client-side (no server-rendered lang routing),
+  // so <html lang> below can't track it and Chrome's translate heuristic
+  // sees a mismatch against the real French/Chinese UI text and offers to
+  // "helpfully" machine-translate over our authored i18n copy. notranslate
+  // opts out for every locale, not just during testing.
+  other: {
+    google: "notranslate",
+  },
 };
 
 export const viewport: Viewport = {
@@ -48,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`h-full antialiased ${editorialSerif.variable}`}>
+    <html lang="en" translate="no" className={`h-full antialiased ${editorialSerif.variable}`}>
       <body className="min-h-full flex flex-col bg-[#F7F3EC] text-[#181714]">
         {children}
         <ServiceWorkerRegister />
