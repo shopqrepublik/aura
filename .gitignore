@@ -37,3 +37,7 @@ aura-mvp.zip
 # Runtime cache — Recap PNG export's image-proxy endpoint (same rationale
 # as .reference_cache/ above, different cache key: URL hash, not artwork id).
 /backend/.image_proxy_cache/
+
+# Point-in-time output of backend/scripts/latency_test.py -- rerun the
+# script for current numbers rather than trusting a stale committed copy.
+/latency_test_results.json
