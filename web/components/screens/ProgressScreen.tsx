@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import ProgressRing from "@/components/ui/ProgressRing";
 import { ARTWORKS, MISSIONS, missionLabel } from "@/lib/artworks";
 import { isMissionComplete } from "@/lib/missions";
@@ -21,6 +21,18 @@ import type { Artwork } from "@/lib/types";
 // this specific mission?) rather than the old placeholder that just
 // marked mission N done once N works had been scanned, regardless of
 // which ones.
+//
+// visual-rebuild-contract.md §13/§22 "Progress page": this used to be a
+// 4-cell KPI-dashboard grid (value/works/time/museum% as four identical
+// stat blocks) -- the contract calls that out by name as one of the things
+// that makes ELYIO read like a fintech app instead of a museum guide. Now
+// it's one editorial-serif headline value (value seen) with one secondary
+// line (works · time), the museum-% ring shrunk and moved to a corner
+// marker instead of a competing stat cell, missions as a numbered editorial
+// checklist instead of filled circle-badges, and the thumbnail row's
+// ring-2/ring-offset-2 (a genuinely double outline) replaced by the same
+// thin hairline border + accent bar convention the Recap thumbnails
+// already use.
 export default function ProgressScreen({
   state,
   seenArtworks,
@@ -56,6 +68,10 @@ export default function ProgressScreen({
 
   const mins = now && state.startTime ? Math.max(1, Math.round((now - state.startTime) / 60000)) : 0;
   const pct = ARTWORKS.length ? Math.min(100, Math.round((seenArtworks.length / ARTWORKS.length) * 100)) : 0;
+  // Same singular/plural convention RecapScreen's own stats row already
+  // uses (lib/i18n.ts's stat_work_one / works_seen_count pair) -- one
+  // secondary line here replaces what used to be two of the four KPI cells.
+  const worksLabel = seenArtworks.length === 1 ? tt("stat_work_one", state.locale) : tt("works_seen_count", state.locale).toLowerCase();
 
   const focusMins = now && state.currentArtwork && state.cardOpenedAt
     ? Math.max(0.1, (now - state.cardOpenedAt) / 60000)
@@ -66,86 +82,86 @@ export default function ProgressScreen({
   const thumbnails = seenArtworks.slice().reverse();
 
   return (
-    <div className="w-full h-full bg-[#FAFAF9] overflow-y-auto scrollbar-none flex flex-col">
+    <div className="w-full h-full bg-[#F7F3EC] overflow-y-auto scrollbar-none flex flex-col">
       <div className="px-6 pt-[60px] pb-[100px] flex-1">
         <div className="flex items-center justify-between">
           <button
             type="button"
             onClick={onBack}
             aria-label="Back"
-            className="w-9 h-9 rounded-full bg-black/[0.06] flex items-center justify-center"
+            className="w-9 h-9 rounded-full bg-[rgba(24,23,20,0.055)] flex items-center justify-center"
           >
-            <ArrowLeft className="w-4 h-4 text-black" />
+            <ArrowLeft className="w-4 h-4 text-[#181714]" />
           </button>
-          <button type="button" onClick={onCompleteVisit} className="text-[13px] font-semibold text-[#8E8E93]">
+          <button type="button" onClick={onCompleteVisit} className="text-[13px] font-semibold text-[#67635C]">
             {tt("complete_visit", state.locale)}
           </button>
         </div>
 
-        <div className="relative mt-5">
-          <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#8E8E93]">
+        {/* Header row: label + a small corner ring instead of the old
+            64px ring floating over a 4-cell grid -- museum-% is real
+            context, not a stat that should visually compete with the
+            headline value below it. */}
+        <div className="mt-6 flex items-start justify-between">
+          <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#67635C]">
             {tt("live_progress", state.locale)}
           </div>
+          <ProgressRing
+            progress={pct / 100}
+            radius={16}
+            strokeWidth={3}
+            size={38}
+            trackColor="rgba(24,23,20,0.08)"
+            progressColor="#181714"
+            centerLabel={<span className="text-[9px] font-semibold tabular-nums text-[#181714]">{pct}%</span>}
+          />
+        </div>
 
-          <div className="absolute -top-2 -right-2 w-16 h-16">
-            <ProgressRing
-              progress={pct / 100}
-              radius={26}
-              strokeWidth={4}
-              size={64}
-              centerLabel={<span className="text-[12px] font-bold">{pct}%</span>}
-            />
+        {/* One editorial-serif headline value + one secondary line --
+            replaces the old 2x2 KPI grid (value/works/time/museum% as four
+            identical cells). Same "you saw €X in Y works" shape RecapScreen
+            already uses, just sized for an in-progress stat instead of the
+            final poster number. */}
+        <div className="mt-3">
+          <div
+            className="font-medium leading-[0.9] text-[#181714]"
+            style={{ fontFamily: "var(--font-editorial)", fontSize: "clamp(38px, 10vw, 48px)", letterSpacing: "-0.03em" }}
+          >
+            {valueSeen}
           </div>
-
-          <div className="grid grid-cols-2 gap-6 mt-6 max-w-[70%]">
-            <div>
-              <div className="text-[28px] font-bold tracking-[-0.04em] text-[#111] tabular-nums">{valueSeen}</div>
-              <div className="text-[11px] uppercase tracking-[0.08em] text-[#8E8E93] mt-1">
-                {tt("stat_value_seen", state.locale)}
-              </div>
-            </div>
-            <div>
-              <div className="text-[28px] font-bold tracking-[-0.04em] text-[#111] tabular-nums">
-                {seenArtworks.length}
-              </div>
-              <div className="text-[11px] uppercase tracking-[0.08em] text-[#8E8E93] mt-1">
-                {tt("stat_works", state.locale)}
-              </div>
-            </div>
-            <div>
-              <div className="text-[28px] font-bold tracking-[-0.04em] text-[#111] tabular-nums">{mins}m</div>
-              <div className="text-[11px] uppercase tracking-[0.08em] text-[#8E8E93] mt-1">
-                {tt("stat_time", state.locale)}
-              </div>
-            </div>
-            <div>
-              <div className="text-[28px] font-bold tracking-[-0.04em] text-[#111] tabular-nums">{pct}%</div>
-              <div className="text-[11px] uppercase tracking-[0.08em] text-[#8E8E93] mt-1">
-                {tt("stat_museum", state.locale)}
-              </div>
-            </div>
+          <div className="mt-1.5 text-[13px] text-[#67635C]">{tt("stat_value_seen", state.locale).toLowerCase()}</div>
+          <div className="mt-3 text-[14px] font-medium text-[#302E29] tabular-nums">
+            {seenArtworks.length} {worksLabel} · {mins}m
           </div>
         </div>
 
-        <div className="h-[1px] bg-black/10 mt-8" />
+        <div className="h-px bg-[rgba(30,27,22,0.10)] mt-7" />
 
+        {/* Missions: numbered editorial checklist -- filled circle-badges
+            with a checkmark glyph read as a to-do app; a tabular index
+            number that gives way to a thin checkmark on completion, with
+            hairline row dividers, reads closer to a printed visit guide's
+            own checklist. */}
         <div className="mt-6">
-          <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#8E8E93]">
+          <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#67635C]">
             {tt("missions_label", state.locale)}
           </div>
-          <div className="mt-3 space-y-2">
-            {MISSIONS.map((mission) => {
+          <div className="mt-2.5">
+            {MISSIONS.map((mission, i) => {
               const done = isMissionComplete(mission.id, state.seen);
               return (
-                <div key={mission.id} className="flex items-center gap-3">
-                  <div
-                    className={`w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-[10px] font-bold ${
-                      done ? "bg-[#111] text-white" : "bg-black/[0.08] text-[#8E8E93]"
-                    }`}
-                  >
-                    {done ? "✓" : ""}
-                  </div>
-                  <span className={`text-[13px] font-medium ${done ? "text-[#111] line-through" : "text-[#3C3C43]"}`}>
+                <div
+                  key={mission.id}
+                  className={`flex items-center gap-3 py-2.5 ${i > 0 ? "border-t border-[rgba(30,27,22,0.08)]" : ""}`}
+                >
+                  {done ? (
+                    <Check className="w-3.5 h-3.5 shrink-0 text-[#181714]" strokeWidth={2.5} />
+                  ) : (
+                    <span className="w-3.5 shrink-0 text-[11px] tabular-nums text-[#8B867E]">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  )}
+                  <span className={`text-[13px] font-medium ${done ? "text-[#8B867E]" : "text-[#302E29]"}`}>
                     {missionLabel(mission, state.locale)}
                   </span>
                 </div>
@@ -155,21 +171,17 @@ export default function ProgressScreen({
         </div>
 
         {thumbnails.length > 0 && (
-          <div className="mt-6 flex gap-3 overflow-x-auto -mx-1 px-1 pb-2 scrollbar-none">
+          <div className="mt-6 flex gap-2.5 overflow-x-auto -mx-1 px-1 pb-2 scrollbar-none">
             {thumbnails.map((a) => {
               const active = a.id === state.currentArtwork?.id;
               return (
                 <div
                   key={a.id}
-                  className={`relative w-[72px] h-[72px] rounded-[16px] bg-[#E8E8E8] shrink-0 overflow-hidden ${
-                    active ? "ring-2 ring-black ring-offset-2" : ""
-                  }`}
+                  className="relative w-[64px] h-[64px] rounded-[12px] bg-[#EDE6DA] shrink-0 overflow-hidden border border-[rgba(24,23,20,0.08)]"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={a.imageUrl} alt="" className="w-full h-full object-cover" />
-                  {active && (
-                    <div className="absolute bottom-1 left-1 right-1 h-1 rounded-full bg-black/70" />
-                  )}
+                  {active && <div className="absolute bottom-1 left-1 right-1 h-[3px] rounded-full bg-[#181714]" />}
                 </div>
               );
             })}
@@ -177,42 +189,51 @@ export default function ProgressScreen({
         )}
 
         {state.currentArtwork && focusMins != null && (
-          <div className="mt-6 rounded-[20px] bg-white border border-black/[0.06] shadow-sm p-4 flex items-center justify-between">
+          <div
+            className="mt-6 rounded-[16px] p-4 flex items-center justify-between"
+            style={{ backgroundColor: "#FBF8F2", border: "1px solid rgba(24,23,20,0.06)" }}
+          >
             <div>
-              <div className="text-[12px] uppercase tracking-[0.08em] text-[#8E8E93]">
-                {tt("deep_focus", state.locale)}
-              </div>
-              <div className="text-[14px] font-semibold text-[#111] mt-1">
+              <div className="text-[11px] uppercase tracking-[0.1em] text-[#67635C]">{tt("deep_focus", state.locale)}</div>
+              <div className="text-[14px] font-medium text-[#181714] mt-1">
                 {focusMins < 1
                   ? `< 1 min · ${state.currentArtwork.artist}`
                   : `${focusMins.toFixed(1)} min · ${state.currentArtwork.artist}`}
               </div>
             </div>
-            <div className="w-10 h-10 rounded-full bg-[#F5F5F7] shrink-0" />
+            <div className="w-10 h-10 rounded-full bg-[#EDE6DA] shrink-0" />
           </div>
         )}
       </div>
 
-      {/* The black "Next" bar below is the strongest visual element on this
-          screen, and reads as THE primary action -- easy to mistake for the
-          only path forward. The actual way to reach Recap was a plain
-          13px gray text link in the top-right corner (onCompleteVisit,
-          tt("complete_visit")), the same visual weight as a "cancel" link
-          and nowhere near the bottom CTA a first-time user's eye lands on.
-          Same class of regression as the Camera/Card navigation fixes: the
-          handler existed, but nothing made it discoverable. This button
-          doesn't replace the top-corner link (still there, still works) or
-          the Next bar (still the right nudge for continuing to scan) -- it
-          adds a second, equally-visible, always-available way to finish. */}
-      <div className="sticky bottom-0 left-0 right-0 p-3 pb-9 space-y-3 bg-gradient-to-t from-[#FAFAF9] via-[#FAFAF9]/90 to-transparent">
+      {/* The "Next" bar below is still the strongest visual element on this
+          screen and still reads as THE primary action -- that's correct,
+          it's the main nudge to keep scanning. What changed is how loud it
+          is: pure black, a 20px radius, and a 32px-blur shadow read as a
+          promo banner, not a button in this app's own editorial system
+          (compare CardScreen's primary button -- #181714 ink, 14px radius,
+          a much quieter shadow). Same color/radius/shadow tokens as
+          everywhere else now, just still full-width and bottom-anchored so
+          it's not any less reachable. The actual way to reach Recap was
+          ALSO a plain 13px gray text link in the top-right corner
+          (onCompleteVisit, tt("complete_visit")) -- same visual weight as a
+          "cancel" link and nowhere near where a first-time user's eye
+          lands. Same class of regression as the Camera/Card navigation
+          fixes: the handler existed, but nothing made it discoverable.
+          This button doesn't replace the top-corner link (still there,
+          still works) or the Next bar (still the right nudge for
+          continuing to scan) -- it adds a second, equally-visible,
+          always-available way to finish. */}
+      <div className="sticky bottom-0 left-0 right-0 p-3 pb-9 space-y-3 bg-gradient-to-t from-[#F7F3EC] via-[#F7F3EC]/90 to-transparent">
         <button
           type="button"
           onClick={onContinueScanning}
-          className="w-full h-[72px] rounded-[20px] bg-black text-white flex items-center px-5 justify-between shadow-[0_16px_32px_rgba(0,0,0,0.22)]"
+          className="w-full h-[64px] rounded-[14px] flex items-center px-5 justify-between"
+          style={{ background: "#181714", color: "#FAF7F0", boxShadow: "0 6px 16px rgba(16,15,13,0.13)" }}
         >
           <span className="text-left">
-            <span className="block text-[11px] uppercase opacity-60">{tt("next_label", state.locale)}</span>
-            <span className="block text-[15px] font-semibold">
+            <span className="block text-[10px] uppercase opacity-60">{tt("next_label", state.locale)}</span>
+            <span className="block text-[14px] font-medium">
               {nextMission ? missionLabel(nextMission, state.locale) : tt("keep_exploring", state.locale)}
             </span>
           </span>
@@ -220,7 +241,7 @@ export default function ProgressScreen({
         <button
           type="button"
           onClick={onCompleteVisit}
-          className="w-full h-[50px] rounded-full bg-[#F5F5F7] text-[#111] text-[15px] font-semibold tracking-[-0.01em]"
+          className="w-full h-[50px] rounded-[14px] bg-[rgba(24,23,20,0.055)] border border-[rgba(24,23,20,0.06)] text-[#25231F] text-[15px] font-medium tracking-[-0.01em]"
         >
           {tt("complete_visit_button", state.locale)}
         </button>

@@ -7,7 +7,6 @@
    CSS name. Light theme only — the spec explicitly calls for it. */
 :root {
   --elyio-canvas: #FAFAF9;
-  --elyio-ink: #111111;
   --elyio-obsidian: #000000;
   --elyio-stone: #F5F5F7;
   --elyio-billion: #FF3B30;
@@ -17,15 +16,33 @@
   --elyio-muted: #8E8E93;
   --elyio-muted-2: #6E6E73;
   --elyio-success: #30D158;
+
+  /* Visual-match rebuild (auction-catalogue / editorial material) -- warm
+     paper tones replacing the flat white/stone tokens above wherever this
+     rebuild has actually reached a component. Old tokens are left in place
+     rather than deleted since not every screen has been migrated yet. */
+  --color-canvas: #F7F3EC;
+  --color-canvas-light: #FBF8F2;
+  --color-surface: #FDFBF7;
+  --color-paper: #EDE6DA;
+  --color-paper-deep: #E4DACB;
+  --color-ink: #181714;
+  --color-ink-soft: #302E29;
+  --color-secondary: #67635C;
+  --color-tertiary: #8B867E;
+  --hairline: rgba(30, 27, 22, 0.10);
+  --hairline-strong: rgba(30, 27, 22, 0.17);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, "Helvetica Neue", sans-serif;
+  font-family: var(--font-sans);
 }
 
 html, body {
-  background: var(--elyio-canvas);
-  color: var(--elyio-ink);
+  background: var(--color-canvas);
+  color: var(--color-ink);
 }
 
 .scrollbar-none::-webkit-scrollbar { display: none; }
