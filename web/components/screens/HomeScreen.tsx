@@ -1,111 +1,129 @@
 "use client";
 
 import { useState } from "react";
-import ProgressRing from "@/components/ui/ProgressRing";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { MISSIONS, missionLabel } from "@/lib/artworks";
 import { isMissionComplete } from "@/lib/missions";
 import { tt, LOCALES } from "@/lib/i18n";
 import { useMuseumDetection } from "@/lib/geolocation";
+import { proxyImageUrl } from "@/lib/visitPalette";
 import type { AppState } from "@/lib/app-state";
+import type { Artwork } from "@/lib/types";
 
-// "01 MUSEUM HOME" — exact bg/pill/button/mission-card classNames mined from
-// ELYIO-iPhone-WoW-Design-System.html. Missions reuse the REAL localized
-// mission set ported from the old app (data.js) rather than the mockup's
-// placeholder examples ("See 3 Monet" etc.) — those were illustrative, not a
-// content requirement, and inventing new mission copy would violate "don't
-// invent beyond spec" as much as ignoring real content would.
+// Home Screen Redesign -- "the cover of the ELYIO experience", not a
+// dashboard. Rebuilds the visual layer only; three pieces of real logic are
+// carried over unchanged from the previous implementation:
+//   1. useMuseumDetection() (lib/geolocation.ts) -- the 4-state GPS/geofence
+//      hook itself is untouched. Its honesty (green=GPS-detected,
+//      grey=unconfirmed, blue=manually-confirmed, pulsing=locating) now
+//      lives in a small dot next to the static "MUSÉE D'ORSAY" label instead
+//      of a whole colored pill, per explicit instruction not to let a
+//      statically-styled museum name silently read as "confirmed" regardless
+//      of real GPS state.
+//   2. isMissionComplete() (lib/missions.ts) against real state.seen -- only
+//      the numbering (editorial "01/02/03" instead of ProgressRing circles)
+//      and card materials changed.
+//   3. state.visitStarted / state.seen, already tracked by useElyioApp --
+//      "Continue visit" (§17) is a new READ of this existing state, not a
+//      new storage mechanism.
+const HERO_IMAGE_URL =
+  "http://commons.wikimedia.org/wiki/Special:FilePath/Paris%20-%20Mus%C3%A9e%20d'Orsay%20-%20big%20clock%20seen%20from%20the%20interior.jpg";
+
+const MISSION_EYEBROW_KEY: Record<string, string> = {
+  m1: "mission_eyebrow_m1",
+  m2: "mission_eyebrow_m2",
+  m3: "mission_eyebrow_m3",
+};
+
+const editorial = { fontFamily: "var(--font-editorial)" } as const;
+
 export default function HomeScreen({
   state,
+  seenArtworks,
   onStartVisit,
   onSetLocale,
 }: {
   state: AppState;
+  seenArtworks: Artwork[];
   onStartVisit: () => void;
   onSetLocale: (locale: AppState["locale"]) => void;
 }) {
   const { status: museumStatus, confirmManually } = useMuseumDetection();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showMuseumSheet, setShowMuseumSheet] = useState(false);
+
+  const isReturning = state.visitStarted;
+
+  const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
+  const totalHigh = seenArtworks.reduce((s, a) => s + (a.estimate.high || 0), 0);
+  const hasAnyEstimate = seenArtworks.some((a) => a.estimate.high != null);
+  const valueText = hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale);
+  const worksLabel =
+    seenArtworks.length === 1 ? tt("stat_work_one", state.locale) : tt("works_seen_count", state.locale).toLowerCase();
+
+  const statusText =
+    museumStatus === "detected"
+      ? tt("museum_detected", state.locale)
+      : museumStatus === "manual-confirmed"
+        ? tt("museum_confirmed_manual", state.locale)
+        : museumStatus === "manual-prompt"
+          ? tt("museum_select_prompt", state.locale)
+          : tt("museum_locating", state.locale);
+
+  const dotClass =
+    museumStatus === "detected"
+      ? "bg-[#30D158] shadow-[0_0_6px_#30D158]"
+      : museumStatus === "manual-confirmed"
+        ? "bg-[#0A84FF] shadow-[0_0_6px_#0A84FF]"
+        : museumStatus === "manual-prompt"
+          ? "bg-[#8B867E]"
+          : "bg-[#8B867E] animate-pulse";
 
   return (
-    <div className="relative w-full h-full bg-[#F5F5F7] overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,#E8E0D6_0%,#D6DDE8_40%,#C9CED6_100%)]" />
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />
+    <div className="relative w-full h-full bg-[#F7F3EC] overflow-y-auto scrollbar-none">
+      {/* Hero: museum image, warm editorial overlay, subtle grain -- §1 */}
+      <div className="absolute top-0 left-0 right-0 h-[300px] overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={proxyImageUrl(HERO_IMAGE_URL)}
+          alt=""
+          className="w-full h-full object-cover"
+          style={{ filter: "saturate(0.72) contrast(0.92) brightness(0.96)" }}
+        />
+        {/* Legibility scrim -- independent of the photo's own local
+            brightness (this crop has a bright sky behind the clock face
+            right where the wordmark/title sit), guarantees the cream text
+            above always has a dark ground under it instead of hoping the
+            photo happens to be dark there. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(10,9,7,0.62) 0%, rgba(10,9,7,0.44) 35%, rgba(10,9,7,0.22) 70%, rgba(10,9,7,0) 92%)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(20,26,29,0.14) 0%, rgba(29,31,29,0.20) 28%, rgba(247,243,236,0.90) 62%, #F7F3EC 82%)",
+          }}
+        />
       </div>
 
-      <div className="relative z-10 pt-[56px] flex items-center justify-center gap-2">
-        <div className="relative">
-          {/* Chip is only a <button> (tappable) in the "manual-prompt"
-              state -- otherwise it's just a status readout. This is the
-              honest fallback for §4.1's "GPS/geofence OR manual, both
-              valid" -- we never block the app on a missing/denied/out-of-
-              range GPS fix, we just stop claiming we detected something we
-              didn't. "manual-confirmed" gets its own color (not green) so
-              it never reads as a GPS-verified detection it isn't. */}
-          {museumStatus === "manual-prompt" ? (
-            <button
-              type="button"
-              onClick={() => setShowConfirm((v) => !v)}
-              className="h-[28px] px-3 rounded-full bg-black/80 backdrop-blur-xl flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-            >
-              <div className="w-2 h-2 rounded-full bg-white/40" />
-              <span className="text-[12px] font-[600] text-white tracking-[-0.01em]">
-                {tt("museum_select_prompt", state.locale)}
-              </span>
-            </button>
-          ) : (
-            <div className="h-[28px] px-3 rounded-full bg-black/80 backdrop-blur-xl flex items-center gap-2 shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
-              <div
-                className={`w-2 h-2 rounded-full ${
-                  museumStatus === "detected"
-                    ? "bg-[#30D158] shadow-[0_0_8px_#30D158]"
-                    : museumStatus === "manual-confirmed"
-                      ? "bg-[#0A84FF] shadow-[0_0_8px_#0A84FF]"
-                      : "bg-white/40 animate-pulse"
-                }`}
-              />
-              <span className="text-[12px] font-[600] text-white tracking-[-0.01em]">
-                {museumStatus === "detected"
-                  ? tt("museum_detected", state.locale)
-                  : museumStatus === "manual-confirmed"
-                    ? tt("museum_confirmed_manual", state.locale)
-                    : tt("museum_locating", state.locale)}
-              </span>
-            </div>
-          )}
-
-          {showConfirm && (
-            <div className="absolute top-[36px] left-1/2 -translate-x-1/2 w-[220px] rounded-[16px] bg-white shadow-[0_12px_32px_rgba(0,0,0,0.2)] p-3 z-20">
-              <p className="text-[13px] font-semibold text-[#111] text-center leading-[18px]">
-                {tt("museum_confirm_question", state.locale)}
-              </p>
-              <div className="mt-2.5 flex gap-2">
-                <button
-                  type="button"
-                  onClick={() => setShowConfirm(false)}
-                  className="flex-1 h-[32px] rounded-full bg-[#F5F5F7] text-[12px] font-semibold text-black"
-                >
-                  {tt("museum_confirm_not_now", state.locale)}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    confirmManually();
-                    setShowConfirm(false);
-                  }}
-                  className="flex-1 h-[32px] rounded-full bg-black text-[12px] font-semibold text-white"
-                >
-                  {tt("museum_confirm_yes", state.locale)}
-                </button>
-              </div>
-            </div>
-          )}
+      {/* Top navigation -- §3 */}
+      <div className="relative z-10 flex items-center justify-between px-6 pt-[max(20px,env(safe-area-inset-top))]">
+        <div
+          style={{ ...editorial, textShadow: "0 1px 8px rgba(0,0,0,0.45)" }}
+          className="text-[20px] font-medium tracking-[0.18em] text-[#F5EBDD]"
+        >
+          ELYIO
         </div>
         <select
           aria-label="Language"
           value={state.locale}
           onChange={(e) => onSetLocale(e.target.value as AppState["locale"])}
-          className="h-[28px] px-2 rounded-full bg-white/70 backdrop-blur-xl text-[11px] font-semibold text-black/70 border border-black/[0.06]"
+          className="h-[36px] px-3 rounded-[12px] bg-[rgba(247,243,236,0.88)] border border-white/25 text-[12px] font-medium text-[#181714]"
         >
           {LOCALES.map((l) => (
             <option key={l.code} value={l.code}>
@@ -115,45 +133,236 @@ export default function HomeScreen({
         </select>
       </div>
 
-      <div className="relative z-10 flex flex-col items-center mt-[148px]">
+      {/* Museum identity -- static name, honest GPS dot preserved -- §3, requirement 1 */}
+      <div className="relative z-10 mt-[30px] px-6">
+        <button
+          type="button"
+          onClick={() => setShowMuseumSheet(true)}
+          className="flex items-center gap-2"
+        >
+          <span
+            role="button"
+            tabIndex={0}
+            aria-label={statusText}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (museumStatus === "manual-prompt") setShowConfirm((v) => !v);
+            }}
+            className={`w-[7px] h-[7px] rounded-full shrink-0 ${dotClass}`}
+          />
+          <div className="text-left" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
+            <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[rgba(247,241,230,0.92)]">
+              MUSÉE D&apos;ORSAY
+            </div>
+            <div className="text-[11px] font-medium text-[rgba(247,241,230,0.68)]">PARIS</div>
+          </div>
+          <ChevronDown
+            className="w-[14px] h-[14px] text-[rgba(247,241,230,0.68)]"
+            style={{ filter: "drop-shadow(0 1px 4px rgba(0,0,0,0.4))" }}
+          />
+        </button>
+        <span className="sr-only" role="status">
+          {statusText}
+        </span>
+
+        {showConfirm && (
+          <div className="absolute top-[54px] left-6 w-[240px] rounded-[16px] bg-[#FDFBF7] shadow-[0_12px_32px_rgba(0,0,0,0.2)] p-3 z-30">
+            <p className="text-[13px] font-semibold text-[#181714] text-center leading-[18px]">
+              {tt("museum_confirm_question", state.locale)}
+            </p>
+            <div className="mt-2.5 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setShowConfirm(false)}
+                className="flex-1 h-[32px] rounded-full bg-[#EDE6DA] text-[12px] font-semibold text-[#181714]"
+              >
+                {tt("museum_confirm_not_now", state.locale)}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  confirmManually();
+                  setShowConfirm(false);
+                }}
+                className="flex-1 h-[32px] rounded-full bg-[#181714] text-[12px] font-semibold text-white"
+              >
+                {tt("museum_confirm_yes", state.locale)}
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Hero statement -- first-use (§4/§5) or Continue-visit (§17) */}
+      {isReturning ? (
+        // Clears the hero image/scrim entirely rather than overlapping it --
+        // unlike the first-use headline, nothing here needs the cover-page
+        // drama, so it's simpler to guarantee contrast by sitting fully on
+        // the warm canvas below the image.
+        <div className="relative z-10 mt-[160px] px-6 max-w-[330px]">
+          <div
+            style={{ textShadow: "0 1px 2px rgba(0,0,0,0.4), 0 1px 6px rgba(0,0,0,0.25)" }}
+            className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#8B867E]"
+          >
+            {tt("welcome_back_label", state.locale)}
+          </div>
+          <h1
+            style={editorial}
+            className="mt-2 text-[clamp(30px,8vw,38px)] leading-[1.05] font-medium tracking-[-0.03em] text-[#181714]"
+          >
+            {tt("continue_visit_heading", state.locale)}
+          </h1>
+          {seenArtworks.length > 0 && (
+            <p className="mt-2 text-[15px] leading-[21px] text-[#4F4C46]">
+              {tt("continue_visit_stat", state.locale)
+                .replace("{n}", String(seenArtworks.length))
+                .replace("{works}", worksLabel)
+                .replace("{value}", valueText)}
+            </p>
+          )}
+        </div>
+      ) : (
+        <div className="relative z-10 mt-[24px] px-6 max-w-[330px]">
+          <h1
+            style={{ ...editorial, textShadow: "0 2px 16px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.45)" }}
+            className="text-[clamp(42px,11.5vw,56px)] leading-[0.94] font-medium tracking-[-0.035em] text-[#F5EBDD]"
+          >
+            {tt("home_hero_title", state.locale)}
+          </h1>
+          <p
+            style={{ textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 1px 6px rgba(0,0,0,0.35)" }}
+            className="mt-[20px] text-[16px] leading-[23px] text-[rgba(247,241,230,0.86)] max-w-[325px]"
+          >
+            {tt("home_hero_subtitle", state.locale)}
+          </p>
+        </div>
+      )}
+
+      {/* Primary CTA -- §7, no black circle */}
+      <div className="relative z-10 mt-[28px] px-6">
         <button
           type="button"
           onClick={onStartVisit}
-          className="w-[164px] h-[164px] rounded-full bg-black text-white flex flex-col items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.15)] active:scale-[0.98] transition-transform"
+          className="w-full h-[58px] px-5 rounded-[14px] bg-[#181714] text-[#FAF6ED] flex items-center justify-between shadow-[0_9px_24px_rgba(21,18,14,0.16)] active:scale-[0.985] transition-transform"
         >
-          <span className="text-[17px] font-semibold tracking-[-0.02em]">
-            {state.visitStarted ? tt("visit_active_label", state.locale) : tt("start_visit_label", state.locale)}
+          <span className="text-[16px] font-medium tracking-[-0.01em]">
+            {isReturning ? tt("continue_visit_button", state.locale) : tt("start_visit_label", state.locale)}
           </span>
-          <span className="text-[11px] opacity-60 mt-0.5 font-medium">{tt("tap_to_begin", state.locale)}</span>
+          <ArrowRight className="w-[18px] h-[18px]" />
         </button>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 z-10 p-3 pb-[34px] space-y-2.5">
-        {MISSIONS.map((mission, i) => {
-          const done = isMissionComplete(mission.id, state.seen);
-          return (
-            <div
-              key={mission.id}
-              className="h-[64px] rounded-[16px] bg-white/90 backdrop-blur-2xl border border-black/[0.06] shadow-[0_8px_24px_rgba(0,0,0,0.06)] flex items-center px-4 gap-3"
-            >
-              <ProgressRing
-                progress={done ? 1 : 0}
-                radius={13}
-                strokeWidth={3}
-                size={32}
-                progressColor="#111111"
-                centerLabel={done ? "✓" : i + 1}
-              />
-              <div className="flex-1">
-                <div className="text-[14px] font-semibold tracking-[-0.01em] leading-none">
-                  {missionLabel(mission, state.locale)}
-                </div>
-                <div className="text-[12px] text-[#8E8E93] mt-1 font-medium">{done ? "1/1" : "0/1"}</div>
-              </div>
-            </div>
-          );
-        })}
+      {/* Today's visit -- §7 */}
+      <div
+        className="relative z-10 mt-[24px] mx-6 rounded-[18px] px-4 py-3.5 flex items-center justify-between"
+        style={{
+          background: "rgba(247,243,236,0.86)",
+          backdropFilter: "blur(8px)",
+          border: "1px solid rgba(255,255,255,0.32)",
+          boxShadow: "0 12px 30px rgba(25,21,16,0.10)",
+        }}
+      >
+        <div>
+          <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#67635C]">
+            {tt("home_todays_visit_label", state.locale)}
+          </div>
+          <div style={editorial} className="mt-1 text-[19px] font-medium text-[#181714]">
+            Musée d&apos;Orsay
+          </div>
+          <div className="text-[13px] text-[#67635C]">{tt("home_museum_time", state.locale)}</div>
+        </div>
+        <div className="w-[54px] h-[54px] rounded-[10px] overflow-hidden shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={proxyImageUrl(HERO_IMAGE_URL)}
+            alt=""
+            className="w-full h-full object-cover scale-[2.2]"
+            style={{ filter: "saturate(0.72) contrast(0.92) brightness(0.9)" }}
+          />
+        </div>
       </div>
+
+      {/* Today's missions -- §8/§9, one editorial paper block, not 3 cards */}
+      <div className="relative z-10 mt-[42px] px-6 pb-[max(28px,env(safe-area-inset-bottom))]">
+        <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#67635C]">
+          {tt("home_todays_missions_label", state.locale)}
+        </div>
+        <div className="mt-1 text-[14px] leading-[20px] text-[#77736C]">
+          {tt("home_missions_subtitle", state.locale)}
+        </div>
+        <div
+          className="mt-4 rounded-[22px] px-5"
+          style={{
+            background: "#FDFBF7",
+            border: "1px solid rgba(34,29,23,0.08)",
+            boxShadow: "0 12px 32px rgba(32,27,21,0.055)",
+          }}
+        >
+          {MISSIONS.map((mission, i) => {
+            const done = isMissionComplete(mission.id, state.seen);
+            return (
+              <div
+                key={mission.id}
+                className={`py-[18px] flex items-center gap-3 ${
+                  i < MISSIONS.length - 1 ? "border-b border-[rgba(30,27,22,0.09)]" : ""
+                }`}
+              >
+                <div
+                  style={editorial}
+                  className={`text-[23px] leading-[24px] font-medium tabular-nums shrink-0 ${
+                    done ? "text-[#181714]" : "text-[#A19B91]"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-[9px] font-semibold tracking-[0.13em] uppercase text-[#8B867E]">
+                    {tt(MISSION_EYEBROW_KEY[mission.id], state.locale)}
+                  </div>
+                  <div className="mt-0.5 text-[15px] leading-[21px] font-medium tracking-[-0.01em] text-[#272520]">
+                    {missionLabel(mission, state.locale)}
+                  </div>
+                </div>
+                <div className="text-[11px] tabular-nums text-[#8B867E] shrink-0">{done ? "1/1" : "0/1"}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-4 text-[10px] text-[#A19B91]">Photo: R. Eisele · CC BY-SA 4.0</div>
+      </div>
+
+      {/* Museum selector sheet -- §16, new functionality per spec (only Orsay is real) */}
+      {showMuseumSheet && (
+        <div className="fixed inset-0 z-40 flex items-end" onClick={() => setShowMuseumSheet(false)}>
+          <div className="absolute inset-0 bg-black/40" />
+          <div
+            className="relative z-10 w-full rounded-t-[24px] bg-[#FDFBF7] p-5 pb-[max(24px,env(safe-area-inset-bottom))]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#67635C] mb-3">
+              {tt("select_museum_sheet_title", state.locale)}
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowMuseumSheet(false)}
+              className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)]"
+            >
+              <span style={editorial} className="text-[17px] font-medium text-[#181714]">
+                Musée d&apos;Orsay
+              </span>
+              <span className="text-[11px] font-semibold text-[#30D158]">{tt("museum_available_now", state.locale)}</span>
+            </button>
+            {["Musée de l'Orangerie", "Musée du Louvre"].map((name) => (
+              <div key={name} className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)] opacity-50">
+                <span style={editorial} className="text-[17px] font-medium text-[#181714]">
+                  {name}
+                </span>
+                <span className="text-[11px] font-medium text-[#8B867E]">{tt("museum_coming_soon", state.locale)}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -156,8 +156,11 @@ export function paintGrainCanvas(ctx: CanvasRenderingContext2D, width: number, h
  * Wikimedia images outright even with img.crossOrigin set (confirmed live:
  * fetch(url, {mode:"cors"}) against the actual commons.wikimedia.org redirect
  * chain throws), because Wikimedia's CDN doesn't send a CORS header. Our own
- * backend re-serves the same bytes from an origin that does. */
-function proxyImageUrl(url: string): string {
+ * backend re-serves the same bytes from an origin that does. Exported: also
+ * used by HomeScreen.tsx for the hero image, which doesn't need CORS itself
+ * (plain <img>, no canvas) but reuses this endpoint's cache/resize rather
+ * than hotlinking Wikimedia directly on every Home-screen visit. */
+export function proxyImageUrl(url: string): string {
   return `${BACKEND_URL}/v1/image-proxy?url=${encodeURIComponent(url)}`;
 }
 

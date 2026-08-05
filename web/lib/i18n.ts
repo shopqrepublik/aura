@@ -45,9 +45,55 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     fr: "Pas maintenant",
     "zh-Hans": "暂不确认",
   },
-  start_visit_label: { en: "Start visit", fr: "Commencer la visite", "zh-Hans": "开始参观" },
-  visit_active_label: { en: "Visit active", fr: "Visite en cours", "zh-Hans": "参观进行中" },
-  tap_to_begin: { en: "Tap to begin", fr: "Touchez pour commencer", "zh-Hans": "点击开始" },
+  // Home redesign (§7 "Begin your visit" ticket action) -- replaces the old
+  // circular "Start visit" / "Tap to begin" pairing (visit_active_label /
+  // tap_to_begin are no longer read anywhere; the returning-user "Continue
+  // visit" state below covers what visit_active_label used to communicate).
+  start_visit_label: { en: "Begin your visit", fr: "Commencez votre visite", "zh-Hans": "开始您的参观" },
+  home_hero_title: {
+    en: "A different way to see the museum.",
+    fr: "Une autre façon de voir le musée.",
+    "zh-Hans": "用一种新的方式看懂博物馆",
+  },
+  home_hero_subtitle: {
+    en: "Scan the works around you to discover what they are, why they matter and what they could be worth.",
+    fr: "Scannez les œuvres autour de vous pour découvrir leur histoire, leur importance et leur valeur estimée.",
+    "zh-Hans": "扫描眼前的艺术品，了解它是什么、为何重要，以及它可能具有的市场价值。",
+  },
+  home_todays_visit_label: { en: "Today's visit", fr: "Visite du jour", "zh-Hans": "今日参观" },
+  home_museum_time: {
+    en: "Paris · Estimated time 60–90 min",
+    fr: "Paris · Durée estimée 60–90 min",
+    "zh-Hans": "巴黎 · 预计用时 60–90 分钟",
+  },
+  home_todays_missions_label: { en: "Today's missions", fr: "Missions du jour", "zh-Hans": "今日任务" },
+  home_missions_subtitle: {
+    en: "Three discoveries selected for your visit.",
+    fr: "Trois découvertes sélectionnées pour votre visite.",
+    "zh-Hans": "为您的参观精选的三项发现。",
+  },
+  mission_eyebrow_m1: { en: "Follow the brushwork", fr: "Suivez la touche", "zh-Hans": "追寻笔触" },
+  mission_eyebrow_m2: { en: "Meet the artist", fr: "Rencontrez l'artiste", "zh-Hans": "遇见艺术家" },
+  mission_eyebrow_m3: { en: "Discover the masterpiece", fr: "Découvrez le chef-d'œuvre", "zh-Hans": "发现镇馆之作" },
+  // Returning-user "Continue visit" state (§17) -- shown instead of the
+  // first-use hero when state.visitStarted is already true (the user backed
+  // out to Home mid-visit via Camera's back action). Reuses state.seen /
+  // getArtwork, no separate storage.
+  welcome_back_label: { en: "Welcome back", fr: "Bon retour", "zh-Hans": "欢迎回来" },
+  continue_visit_heading: {
+    en: "Continue your Musée d'Orsay visit",
+    fr: "Continuez votre visite du Musée d'Orsay",
+    "zh-Hans": "继续您的奥赛博物馆参观",
+  },
+  continue_visit_stat: {
+    en: "{n} {works} · {value} seen",
+    fr: "{n} {works} vues · {value}",
+    "zh-Hans": "已看 {n} 件{works} · {value}",
+  },
+  continue_visit_button: { en: "Continue visit", fr: "Continuer la visite", "zh-Hans": "继续参观" },
+  museum_available_now: { en: "Available now", fr: "Disponible maintenant", "zh-Hans": "现已开放" },
+  museum_coming_soon: { en: "Coming soon", fr: "Bientôt disponible", "zh-Hans": "即将开放" },
+  select_museum_sheet_title: { en: "Select museum", fr: "Choisir un musée", "zh-Hans": "选择博物馆" },
   frame_artwork_fully: { en: "Frame artwork fully", fr: "Cadrez l'œuvre en entier", "zh-Hans": "请将整件作品置于画面中" },
   hold_steady: { en: "Hold steady • Auto-capture on", fr: "Restez immobile • Capture automatique activée", "zh-Hans": "保持稳定 • 自动拍摄已开启" },
   add_to_my_visit: { en: "Add to my visit", fr: "Ajouter à ma visite", "zh-Hans": "加入我的参观" },

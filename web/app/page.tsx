@@ -26,7 +26,12 @@ export default function AppPage() {
     <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
       <div className="relative w-full h-full sm:max-w-[430px] sm:h-[min(932px,100vh)] sm:rounded-[44px] sm:overflow-hidden bg-[#FAFAF9] sm:shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
         {state.screen === "home" && (
-          <HomeScreen state={state} onStartVisit={actions.startVisit} onSetLocale={actions.setLocale} />
+          <HomeScreen
+            state={state}
+            seenArtworks={seenArtworks}
+            onStartVisit={actions.startVisit}
+            onSetLocale={actions.setLocale}
+          />
         )}
         {state.screen === "camera" && (
           <CameraScreen

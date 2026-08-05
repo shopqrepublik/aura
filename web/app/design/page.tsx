@@ -113,8 +113,28 @@ const SCREEN_DEMOS = [
   {
     id: "home",
     label: "01 — MUSEUM HOME",
-    note: "Haptic: soft impact on detect. Button: 12% scale spring. Missions appear staggered.",
-    node: <HomeScreen state={demoState({})} onStartVisit={noop} onSetLocale={noop} />,
+    note: "First-use state -- editorial exhibition-cover cover, no black circle, honest GPS dot next to the static museum name.",
+    node: (
+      <HomeScreen
+        state={demoState({ seen: [] })}
+        seenArtworks={[]}
+        onStartVisit={noop}
+        onSetLocale={noop}
+      />
+    ),
+  },
+  {
+    id: "home-continue",
+    label: "01b — MUSEUM HOME · CONTINUE VISIT",
+    note: "Returning-user state (§17) -- shown instead of the empty first-use hero once a visit is already in progress.",
+    node: (
+      <HomeScreen
+        state={demoState({ visitStarted: true, seen: DEMO_SEEN_IDS })}
+        seenArtworks={DEMO_SEEN}
+        onStartVisit={noop}
+        onSetLocale={noop}
+      />
+    ),
   },
   {
     id: "camera",
