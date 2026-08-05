@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { useElyioApp } from "@/lib/app-state";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
@@ -22,14 +21,6 @@ import RecapScreen from "@/components/screens/RecapScreen";
 // dev` without a physical device.
 export default function AppPage() {
   const { state, seenArtworks, actions } = useElyioApp();
-
-  // TEMP DEBUG scaffolding -- see debugShowRecap in lib/app-state.ts.
-  useEffect(() => {
-    (window as unknown as { __debugActions?: unknown }).__debugActions = actions;
-    const kind = new URLSearchParams(window.location.search).get("debugRecap");
-    if (kind) actions.debugShowRecap(kind);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">

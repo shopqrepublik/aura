@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import * as api from "./api";
-import { getArtwork, ARTWORKS } from "./artworks";
+import { getArtwork } from "./artworks";
 import type { Artwork, Locale, Mode } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
@@ -127,36 +127,6 @@ export function useElyioApp() {
     setState((s) => ({ ...initialState, locale: s.locale }));
   }, []);
 
-  // TEMP DEBUG: seed a visit and jump to Recap. kind: "3" three works
-  // (>€100M total, no seal), "billion" crosses the real €1B threshold.
-  // Revert before considering this done.
-  const debugShowRecap = useCallback((kind: string) => {
-    setState((s) => {
-      const sorted = ARTWORKS.slice().sort((a, b) => (b.estimate.high ?? 0) - (a.estimate.high ?? 0));
-      let seen: string[];
-      if (kind === "billion") {
-        seen = [];
-        let sum = 0;
-        for (const a of sorted) {
-          seen.push(a.id);
-          sum += a.estimate.high ?? 0;
-          if (sum >= 1000) break;
-        }
-      } else {
-        seen = sorted.slice(2, 5).map((a) => a.id);
-      }
-      return {
-        ...s,
-        seen,
-        favorites: new Set(seen.slice(0, 1)),
-        added: new Set(),
-        visitStarted: true,
-        startTime: Date.now() - 22 * 60000,
-        screen: "recap",
-      };
-    });
-  }, []);
-
   const seenArtworks = useMemo(
     () => state.seen.map((id) => getArtwork(id)).filter((a): a is Artwork => !!a),
     [state.seen]
@@ -165,6 +135,6 @@ export function useElyioApp() {
   return {
     state,
     seenArtworks,
-    actions: { goto, setLocale, setMode, startVisit, recognizeFrame, addToVisit, toggleFavorite, completeVisit, newVisit, debugShowRecap },
+    actions: { goto, setLocale, setMode, startVisit, recognizeFrame, addToVisit, toggleFavorite, completeVisit, newVisit },
   };
 }
