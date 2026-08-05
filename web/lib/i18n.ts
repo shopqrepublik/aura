@@ -173,6 +173,28 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     fr: "Aucune des œuvres vues n'a encore d'estimation de marché.",
     "zh-Hans": "您看到的作品均尚未进行市场估值评审。",
   },
+  // Native share-sheet text (RecapScreen.tsx handleShare) -- was a raw
+  // hardcoded English template literal that never called tt() at all
+  // ("1 works • 1 artists • 1m at Musée d'Orsay — ELYIO"), a separate bug
+  // from the Progress-screen plural fix, not fixed by it. {count}/{works}
+  // are filled in from the SAME worksLabel the on-screen stats row already
+  // computes (singular/plural via stat_work_one/works_seen_count above),
+  // not reimplemented here. Two variants because the value clause's
+  // grammar differs when there's nothing to report yet: with a value, "{n}
+  // works, €X–YM in estimated value"; pending, "{n} works, Pending review"
+  // -- swapping only {value} into the with-value template would have
+  // produced "Pending review in estimated value", which reads as a false
+  // market claim on data that doesn't exist.
+  share_visit_with_value: {
+    en: "You saw {count} {works}, {value} in estimated value — Musée d'Orsay — ELYIO",
+    fr: "Vous avez vu {count} {works}, {value} de valeur estimée — Musée d'Orsay — ELYIO",
+    "zh-Hans": "您看到了{count}件{works}，估值 {value} — 奥赛博物馆 — ELYIO",
+  },
+  share_visit_pending: {
+    en: "You saw {count} {works}, {value} — Musée d'Orsay — ELYIO",
+    fr: "Vous avez vu {count} {works}, {value} — Musée d'Orsay — ELYIO",
+    "zh-Hans": "您看到了{count}件{works}，{value} — 奥赛博物馆 — ELYIO",
+  },
 };
 
 export function tt(key: string, locale: Locale): string {

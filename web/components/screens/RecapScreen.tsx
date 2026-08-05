@@ -141,7 +141,21 @@ export default function RecapScreen({
   async function handleShare() {
     setImageBusy("share");
     try {
-      const text = `${seenArtworks.length} works • ${artists.size} artists • ${timeStr} at Musée d'Orsay — ELYIO`;
+      // Editorial share-sheet caption, not the old debug-log-style stat
+      // dump -- reuses worksLabel (already singular/plural/locale-correct
+      // via stat_work_one/works_seen_count, computed above) rather than
+      // re-deriving that logic here, which is exactly how the old text
+      // ended up ungrammatical in the first place: a second, separate
+      // string nobody wired up to the same fix.
+      const text = hasAnyEstimate
+        ? tt("share_visit_with_value", state.locale)
+            .replace("{count}", String(seenArtworks.length))
+            .replace("{works}", worksLabel)
+            .replace("{value}", headlineText)
+        : tt("share_visit_pending", state.locale)
+            .replace("{count}", String(seenArtworks.length))
+            .replace("{works}", worksLabel)
+            .replace("{value}", tt("pending_review", state.locale));
       const blob = await buildImage();
       const file = blob ? new File([blob], "elyio-visit-recap.png", { type: "image/png" }) : null;
 
