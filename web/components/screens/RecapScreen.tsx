@@ -219,37 +219,81 @@ export default function RecapScreen({
           personalized. Do not "fix" this to match §14 literally in a future
           pass without raising it again; it's a considered exception, not an
           oversight. */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ backgroundImage: visitPaletteBaseBackground() }}>
-        {palette.works.slice(0, 3).map((w, i) => (
-          <img
-            key={w.id}
-            src={w.imageUrl}
-            alt=""
-            aria-hidden="true"
-            className="absolute object-cover"
-            style={{
-              ...COLLAGE_FRAGMENTS[i],
-              maskImage: "radial-gradient(ellipse at center, black 45%, transparent 78%)",
-              WebkitMaskImage: "radial-gradient(ellipse at center, black 45%, transparent 78%)",
-            }}
-            // Purely decorative -- an intermittently-failing Wikimedia fetch
-            // (observed live, same as the thumbnail row) should just leave
-            // one fewer fragment rather than show a broken-image icon at low
-            // opacity, so this hides the element instead of the solid-block
-            // fallback the content thumbnails use.
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
+      {/* min-h-full, not h-full, on the flex column below: h-full was a
+          FIXED height (exactly one viewport), and this poster's own content
+          -- header + headline + stats + thumbnails + most-valuable + footer
+          -- is already taller than that in practice (not just with longer
+          FR/ZH text, confirmed live on EN too). With shrink-0 on every
+          child, a fixed-height flex column can't compress to fit, so it
+          overflowed into the scrollable area below -- but the background
+          div below was ALSO absolute+inset-0 sized against that same fixed
+          one-viewport height (inset-0 sizes to the containing block's own
+          box, never to scrollable content height), so it stopped short
+          exactly where the overflow began. Below that line, the page's own
+          white background showed through, which is why "Save image" (an
+          8%-opacity fill) and "Start a new visit" (65%-opacity text) read
+          as washed out while "Share your visit" (opaque solid cream)
+          stayed fully visible regardless of what was behind it -- the
+          reported bug. min-h-full lets this column grow taller than one
+          viewport when content demands it instead of forcing an overflow;
+          moving the background INSIDE it (as an absolutely-positioned
+          first child, still painted behind everything else in DOM order)
+          means inset-0 now sizes against this same content-driven height,
+          so it always covers exactly as much as there is to scroll. */}
+      {/* isolate (isolation: isolate) is load-bearing, not decorative: it
+          makes this div establish its OWN stacking context, so the
+          background's z-index:-1 below only needs to escape behind THIS
+          div's own static-flow children (header, headline, stats,
+          thumbnails, buttons) -- without it, a negative z-index with no
+          nearby stacking-context boundary bubbles all the way up past
+          this component's own ancestors, painting behind PhoneFrame's
+          opaque white background too (confirmed live: the whole poster
+          rendered as cream-on-white, unreadable, the second half of this
+          same bug). */}
+      <div className="relative isolate flex flex-col min-h-full pt-16 px-[44px] pb-12">
+        {/* z-index: -1 is ALSO load-bearing (see the isolate comment above
+            for why it's scoped correctly now): without it, this positioned
+            (absolute) element paints AFTER all the static-flow siblings
+            below it regardless of DOM order -- CSS stacking groups
+            positioned elements together and paints that whole group on
+            top of static content, so simply listing this div first was not
+            enough once it moved inside the same flex column as those
+            siblings (previously it was a sibling of the whole content
+            block instead, where both sides of that pairing were
+            themselves positioned, so DOM order alone correctly decided
+            paint order). Confirmed live: without z-index:-1, the poster
+            was a solid dark rectangle with every line of text and every
+            button invisible underneath it -- the first half of this bug. */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -1, backgroundImage: visitPaletteBaseBackground() }}>
+          {palette.works.slice(0, 3).map((w, i) => (
+            <img
+              key={w.id}
+              src={w.imageUrl}
+              alt=""
+              aria-hidden="true"
+              className="absolute object-cover"
+              style={{
+                ...COLLAGE_FRAGMENTS[i],
+                maskImage: "radial-gradient(ellipse at center, black 45%, transparent 78%)",
+                WebkitMaskImage: "radial-gradient(ellipse at center, black 45%, transparent 78%)",
+              }}
+              // Purely decorative -- an intermittently-failing Wikimedia fetch
+              // (observed live, same as the thumbnail row) should just leave
+              // one fewer fragment rather than show a broken-image icon at low
+              // opacity, so this hides the element instead of the solid-block
+              // fallback the content thumbnails use.
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+          ))}
+          <div className="absolute inset-0" style={{ backgroundImage: visitPaletteTintOverlayBackground(palette) }} />
+          <div
+            className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+            style={{ backgroundImage: GRAIN_BACKGROUND_IMAGE, backgroundSize: "180px 180px" }}
           />
-        ))}
-        <div className="absolute inset-0" style={{ backgroundImage: visitPaletteTintOverlayBackground(palette) }} />
-        <div
-          className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
-          style={{ backgroundImage: GRAIN_BACKGROUND_IMAGE, backgroundSize: "180px 180px" }}
-        />
-      </div>
+        </div>
 
-      <div className="relative flex flex-col h-full pt-16 px-[44px] pb-12">
         <div className="flex items-center justify-between shrink-0">
           <div>
             <div className="text-[10px] font-bold tracking-[0.18em] uppercase" style={{ color: "rgba(248,242,229,0.88)" }}>
