@@ -1,17 +1,22 @@
 import { tt } from "@/lib/i18n";
-import { paintVisitPaletteCanvas, paintGrainCanvas, paintFragmentsCanvas } from "@/lib/visitPalette";
+import { paintVisitPaletteCanvas, paintGrainCanvas, paintThumbnailBlocksCanvas } from "@/lib/visitPalette";
 import type { Artwork, Locale } from "@/lib/types";
 
 // Generates the actual shareable PNG for the Recap screen — 1080x1920, per
-// the design system's "05 VISIT RECAP VIRAL" spec. This intentionally draws
-// a SUBSET of what's on screen (stats, most-valuable card, branding) and
-// skips the interactive buttons/footer link, the same split the original
-// vanilla-JS canvas recap (frontend/app.js renderRecap()) used — a shared
-// image should show the visit, not a picture of a "Share" button.
+// the visual-match rebuild §14 ("dark editorial collage" poster). This
+// intentionally draws a SUBSET of what's on screen (poster content, not the
+// interactive buttons/footer link) — a shared image should show the visit,
+// not a picture of a "Share" button.
 export const RECAP_IMAGE_WIDTH = 1080;
 export const RECAP_IMAGE_HEIGHT = 1920;
 
-const FONT_STACK = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', Inter, 'Helvetica Neue', sans-serif";
+const SANS_STACK = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', Inter, 'Helvetica Neue', sans-serif";
+// Matches --font-editorial's actual registered family name (next/font
+// self-hosts "Cormorant Garamond" -- confirmed live via document.fonts).
+// Canvas text doesn't understand CSS custom properties, so the literal
+// family name is needed here.
+const SERIF_STACK = "'Cormorant Garamond', Georgia, serif";
+const CREAM = "#F3E8D7";
 
 // Draws `text` centered on `angleCenter` around the circle at (cx, cy) --
 // canvas has no native equivalent of SVG's <textPath>. angle 0 = straight
@@ -32,9 +37,9 @@ const FONT_STACK = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', Inter, 
 // visit could produce (the on-screen version wraps to a 2nd line instead;
 // canvas text wrapping needs manual line-splitting, more code than this
 // headline -- a handful of digits -- actually needs).
-function fitFontSize(ctx: CanvasRenderingContext2D, text: string, weight: number, candidates: number[], maxWidth: number): number {
+function fitFontSize(ctx: CanvasRenderingContext2D, text: string, font: string, weight: number, candidates: number[], maxWidth: number): number {
   for (const size of candidates) {
-    ctx.font = `${weight} ${size}px ${FONT_STACK}`;
+    ctx.font = `${weight} ${size}px ${font}`;
     if (ctx.measureText(text).width <= maxWidth) return size;
   }
   return candidates[candidates.length - 1];
@@ -73,6 +78,11 @@ export interface RecapImageData {
   totalHigh: number;
   mostValuable: Artwork | null;
   mostValuableHasEstimate: boolean;
+  /** Precomputed via lib/artworks.ts's resolveTitle in RecapScreen.tsx --
+   * this file doesn't import that module itself, keeping the same "pass
+   * derived data in, don't recompute it here" convention the other
+   * mostValuable* fields already use. */
+  mostValuableTitle: string;
   isBillion: boolean;
   /** design-direction-v3.md §10 "Visit Palette" -- up to 3 accent hex colors
    * from the visit's most significant seen works (RecapScreen computes this
@@ -81,19 +91,28 @@ export interface RecapImageData {
   paletteAccents: string[];
 }
 
-// The most-valuable card's thumbnail is always a solid accent-color block,
-// never the artwork's real photo — matching both the design system's own
-// "05 VISIT RECAP VIRAL" spec (thumb ... bg #FFD8A8, a color, not a photo)
-// and the original vanilla-JS canvas recap (frontend/app.js), which did the
-// same. This isn't a shortcut: every artwork's imageUrl is an http://
-// commons.wikimedia.org/wiki/Special:FilePath/... redirect chain, and a
-// canvas-safe crossOrigin="anonymous" <img> load of that chain fails in
-// Chrome (verified live — the redirect hops don't carry
-// Access-Control-Allow-Origin, only the final response does, which anonymous
-// CORS mode rejects). A solid color block is the reliable choice, not a
-// fallback for a rare failure.
+// The artwork-thumbnail row and most-valuable block never draw the real
+// photos here — confirmed live via fetch(url, {mode:"cors"}) against the
+// actual commons.wikimedia.org redirect chain these imageUrls use: it
+// throws (CORS-blocked), not just the earlier <img crossOrigin> test this
+// project already knew failed. A canvas-safe load of these URLs isn't
+// possible without either a same-origin proxy or switching this whole
+// export to a DOM-rendering technique (html2canvas et al.) that isn't
+// otherwise part of this app — out of scope for one export feature.
+// paintThumbnailBlocksCanvas draws honest accent-color blocks at the same
+// position/size/radius instead, not a fallback for a rare failure.
 export async function generateRecapImage(data: RecapImageData): Promise<Blob | null> {
   if (typeof document === "undefined") return null;
+
+  // Cormorant Garamond is loaded via next/font on <html>, but canvas text
+  // doesn't trigger font loading itself -- it silently falls back if the
+  // face isn't ready yet. Every other screen in this app already renders
+  // serif text before Recap is reachable, so in practice this resolves
+  // instantly from cache, but awaiting it here makes correctness not
+  // depend on navigation order.
+  if (typeof document.fonts?.load === "function") {
+    await document.fonts.load(`500 60px ${SERIF_STACK}`).catch(() => {});
+  }
 
   const canvas = document.createElement("canvas");
   canvas.width = RECAP_IMAGE_WIDTH;
@@ -105,41 +124,34 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
   const H = RECAP_IMAGE_HEIGHT;
   const marginX = 64;
 
-  // Visit Palette background — same muted accent-tint-over-neutral-base
-  // layering as the on-screen version (lib/visitPalette.ts), plus grain and
-  // abstract accent-color fragments standing in for the on-screen photo
-  // collage (see paintFragmentsCanvas's doc comment for why this path can't
-  // use the real photos).
+  // Visit Palette background — dark accent-tinted gradient + dark overlay +
+  // grain, same layering as the on-screen version (lib/visitPalette.ts).
   paintVisitPaletteCanvas(ctx, data.paletteAccents, W, H);
-  paintFragmentsCanvas(ctx, data.paletteAccents, W, H);
   paintGrainCanvas(ctx, W, H);
 
-  // Header: "MUSÉE D'ORSAY" / "PARIS · date" + black circular "E" mark --
-  // matches the on-screen version's museum-branded masthead (design-
-  // direction-v3.md §10), ELYIO's own brand kept as the small corner mark.
-  ctx.fillStyle = "#8E8E93";
-  ctx.font = `700 30px ${FONT_STACK}`;
+  // Header: "MUSÉE D'ORSAY" / "PARIS · date" + cream circular "E" mark.
+  ctx.fillStyle = "rgba(248,242,229,0.88)";
+  ctx.font = `700 30px ${SANS_STACK}`;
   ctx.textBaseline = "alphabetic";
   ctx.fillText("MUSÉE D'ORSAY", marginX, 150);
-  ctx.fillStyle = "#B4B4B8";
-  ctx.font = `500 26px ${FONT_STACK}`;
+  ctx.fillStyle = "rgba(248,242,229,0.55)";
+  ctx.font = `500 26px ${SANS_STACK}`;
   ctx.fillText(`PARIS · ${data.dateStr}`.toUpperCase(), marginX, 190);
 
   ctx.beginPath();
   ctx.arc(W - marginX - 24, 145, 24, 0, Math.PI * 2);
-  ctx.fillStyle = "#111111";
+  ctx.fillStyle = CREAM;
   ctx.fill();
-  ctx.fillStyle = "#FFFFFF";
-  ctx.font = `700 22px ${FONT_STACK}`;
+  ctx.fillStyle = "#181714";
+  ctx.font = `700 22px ${SANS_STACK}`;
   ctx.textAlign = "center";
   ctx.fillText("E", W - marginX - 24, 153);
   ctx.textAlign = "left";
 
-  // "The Acquisition Poster" headline (§10) -- one big culmination number,
-  // not four identical bordered cells. Kept as the same honest low-high
-  // RANGE the rest of this app always shows (ProvenanceReveal, the old
-  // "Value seen" row) rather than collapsing to a single fabricated point
-  // figure the way the doc's literal "€3.8B" example does.
+  // "The Acquisition Poster" headline (§10/§14/§6) -- one big culmination
+  // number, serif throughout. Kept as the same honest low-high RANGE the
+  // rest of this app always shows rather than collapsing to a single
+  // fabricated point figure the way the doc's literal "€3.8B" example does.
   const valueText = data.hasAnyEstimate
     ? `€${data.totalLow}–${data.totalHigh}M`
     : tt("pending_review", data.locale);
@@ -150,139 +162,162 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
           .replace("{total}", String(data.worksCount))
       : null;
 
-  let y = 280;
-  ctx.fillStyle = "#8E8E93";
-  ctx.font = `700 30px ${FONT_STACK}`;
-  ctx.fillText(tt("you_saw_label", data.locale).toUpperCase(), marginX, y);
+  let y = 290;
+  ctx.fillStyle = "#F4EBDD";
+  ctx.font = `500 48px ${SERIF_STACK}`;
+  ctx.fillText(tt("you_saw_label", data.locale), marginX, y);
 
   const maxHeadlineWidth = W - marginX * 2;
   const headlineSize = data.hasAnyEstimate
-    ? fitFontSize(ctx, valueText, 700, [182, 150, 118, 90], maxHeadlineWidth)
-    : 70;
-  y += headlineSize * 0.85;
-  ctx.fillStyle = "#111111";
-  ctx.font = `700 ${headlineSize}px ${FONT_STACK}`;
+    ? fitFontSize(ctx, valueText, SERIF_STACK, 500, [250, 220, 190, 150], maxHeadlineWidth)
+    : 92;
+  y += headlineSize * 0.82;
+  ctx.fillStyle = CREAM;
+  ctx.font = `500 ${headlineSize}px ${SERIF_STACK}`;
   ctx.fillText(valueText, marginX, y);
 
-  y += 60;
-  ctx.fillStyle = "#6E6E73";
-  ctx.font = `500 32px ${FONT_STACK}`;
+  y += 66;
+  ctx.fillStyle = CREAM;
+  ctx.globalAlpha = 0.92;
+  ctx.font = `500 58px ${SERIF_STACK}`;
   ctx.fillText(
-    (data.hasAnyEstimate ? tt("in_estimated_market_value", data.locale) : tt("recap_value_pending_caption", data.locale)).toUpperCase(),
+    data.hasAnyEstimate ? tt("in_estimated_market_value", data.locale) : tt("recap_value_pending_caption", data.locale),
     marginX,
     y
   );
+  ctx.globalAlpha = 1;
 
   if (valueNote) {
-    y += 38;
-    ctx.fillStyle = "#8E8E93";
-    ctx.font = `500 24px ${FONT_STACK}`;
+    y += 36;
+    ctx.fillStyle = "rgba(243,232,215,0.6)";
+    ctx.font = `500 24px ${SANS_STACK}`;
     ctx.fillText(valueNote, marginX, y);
   }
 
-  // Single stat line -- "N works · N artists · Nm" -- not four bordered
-  // rows, per §10's explicit "не четыре одинаковые клетки". Singular forms
-  // match the on-screen version's fix for "1 works · 1 artists".
+  // Stats: three columns (serif value + sans uppercase label), not one
+  // sentence -- §6 spec's pairing, mirrors the on-screen version.
   const worksLabel = data.worksCount === 1 ? tt("stat_work_one", data.locale) : tt("works_seen_count", data.locale).toLowerCase();
   const artistsLabel = data.artistsCount === 1 ? tt("stat_artist_one", data.locale) : tt("stat_artists", data.locale).toLowerCase();
-  y += 60;
-  ctx.fillStyle = "#6E6E73";
-  ctx.font = `600 32px ${FONT_STACK}`;
-  ctx.fillText(`${data.worksCount} ${worksLabel} · ${data.artistsCount} ${artistsLabel} · ${data.timeStr}`, marginX, y);
+  const statCols: Array<[string, string]> = [
+    [String(data.worksCount), worksLabel],
+    [String(data.artistsCount), artistsLabel],
+    [data.timeStr, tt("stat_time", data.locale).toLowerCase()],
+  ];
+  y += 90;
+  let statX = marginX;
+  for (const [value, label] of statCols) {
+    ctx.fillStyle = CREAM;
+    ctx.font = `500 65px ${SERIF_STACK}`;
+    ctx.fillText(value, statX, y);
+    ctx.fillStyle = "rgba(243,232,215,0.75)";
+    ctx.font = `600 24px ${SANS_STACK}`;
+    ctx.fillText(label.toUpperCase(), statX, y + 34);
+    statX += Math.max(ctx.measureText(value).width, 140) + 60;
+  }
 
-  // Most valuable / featured card.
+  // Artwork thumbnails -- real photos on screen, honest accent-color blocks
+  // here (see this file's own top-level comment on why).
+  y += 70;
+  const thumbHeight = 357; // ~132px on-screen * the ~2.7x export scale ratio this file already uses elsewhere
+  paintThumbnailBlocksCanvas(ctx, data.paletteAccents, marginX, y, thumbHeight);
+  y += thumbHeight;
+
+  // Most valuable work, directly on the poster -- no white card (§14). Text
+  // sits to the right of a small accent-color anchor block -- the export's
+  // honest counterpart to the on-screen version's real-photo thumbnail (see
+  // this file's own top-level comment on why photos can't be canvas-drawn).
   if (data.mostValuable) {
-    const cardY = y + 60;
-    const cardH = 220;
-    const cardX = marginX;
-    const cardW = W - marginX * 2;
-
-    ctx.save();
-    ctx.shadowColor = "rgba(0,0,0,0.08)";
-    ctx.shadowBlur = 24;
-    ctx.shadowOffsetY = 8;
-    ctx.fillStyle = "#FFFFFF";
+    y += 56;
+    const anchorHeight = 194; // ~72px on-screen small thumbnail * this file's ~2.7x export ratio
+    const anchorWidth = anchorHeight * (4 / 5);
+    const anchorGap = 38;
+    const anchorTop = y - 40;
+    const radius = 22;
+    ctx.fillStyle = data.mostValuable.accent || "#3A3A3A";
     ctx.beginPath();
-    ctx.roundRect(cardX, cardY, cardW, cardH, 28);
+    ctx.roundRect(marginX, anchorTop, anchorWidth, anchorHeight, radius);
     ctx.fill();
-    ctx.restore();
-
-    const thumbSize = 148;
-    const thumbX = cardX + 36;
-    const thumbY = cardY + (cardH - thumbSize) / 2;
-    ctx.fillStyle = data.mostValuable.accent || "#FFD8A8";
+    ctx.strokeStyle = "rgba(255,255,255,0.22)";
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.roundRect(thumbX, thumbY, thumbSize, thumbSize, 20);
-    ctx.fill();
+    ctx.roundRect(marginX, anchorTop, anchorWidth, anchorHeight, radius);
+    ctx.stroke();
 
-    const textX = thumbX + thumbSize + 32;
-    ctx.fillStyle = "#8E8E93";
-    ctx.font = `600 24px ${FONT_STACK}`;
+    const textX = marginX + anchorWidth + anchorGap;
+    ctx.fillStyle = "rgba(243,232,215,0.65)";
+    ctx.font = `600 24px ${SANS_STACK}`;
     ctx.fillText(
       (data.mostValuableHasEstimate ? tt("most_valuable_today", data.locale) : tt("featured_today", data.locale)).toUpperCase(),
       textX,
-      cardY + 78
+      y
     );
-
-    ctx.fillStyle = "#111111";
-    ctx.font = `700 34px ${FONT_STACK}`;
+    y += 54;
+    ctx.fillStyle = CREAM;
+    ctx.font = `500 46px ${SERIF_STACK}`;
+    ctx.fillText(data.mostValuable.artist, textX, y);
+    if (data.mostValuableTitle) {
+      y += 42;
+      ctx.fillStyle = "rgba(243,232,215,0.7)";
+      ctx.font = `500 34px ${SERIF_STACK}`;
+      ctx.fillText(data.mostValuableTitle, textX, y);
+    }
+    y += 44;
+    ctx.fillStyle = "rgba(243,232,215,0.92)";
+    ctx.font = `600 30px ${SANS_STACK}`;
     const estText = data.mostValuableHasEstimate
       ? `€${data.mostValuable.estimate.low}–${data.mostValuable.estimate.high}M EST.`
       : tt("estimate_pending", data.locale);
-    ctx.fillText(`${data.mostValuable.artist} • ${estText}`, textX, cardY + 126);
-
-    y = cardY + cardH;
+    ctx.fillText(estText, textX, y);
   }
 
   // Collector's Seal, only when it's genuinely earned (isBillion is computed
   // by the caller from the real summed estimate, not decorative) --
-  // replaces the old flat red pill. Same circular-stamp design as the
-  // on-screen CollectorsSeal component (graphite, double hairline ring, top
-  // arc of circumference text, fixed non-localized stamp text -- see that
-  // component's doc comment for why it isn't run through tt()).
+  // burgundy variant (matches the on-screen CollectorsSeal component, which
+  // switched from graphite once the poster background went dark -- see
+  // that component's doc comment).
   if (data.isBillion) {
     const radius = 110;
     const cx = marginX + radius;
     const cy = H - 250;
 
-    ctx.fillStyle = "#1B1B1D";
+    ctx.fillStyle = "#681E1A";
     ctx.beginPath();
     ctx.arc(cx, cy, radius, 0, Math.PI * 2);
     ctx.fill();
-    ctx.strokeStyle = "rgba(255,255,255,0.16)";
+    ctx.strokeStyle = "rgba(242,213,189,0.22)";
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.arc(cx, cy, radius - 6, 0, Math.PI * 2);
     ctx.stroke();
-    ctx.strokeStyle = "rgba(255,255,255,0.1)";
+    ctx.strokeStyle = "rgba(242,213,189,0.14)";
     ctx.beginPath();
     ctx.arc(cx, cy, radius - 12, 0, Math.PI * 2);
     ctx.stroke();
 
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
-    ctx.font = `600 13px ${FONT_STACK}`;
+    ctx.fillStyle = "rgba(242,213,189,0.85)";
+    ctx.font = `600 13px ${SANS_STACK}`;
     drawCircularText(ctx, "ELYIO · CULTURAL MILESTONE · PARIS", cx, cy, radius - 22, 0);
 
     ctx.textAlign = "center";
-    ctx.fillStyle = "#FFFFFF";
-    ctx.font = `700 30px ${FONT_STACK}`;
+    ctx.fillStyle = "#F2D5BD";
+    ctx.font = `700 30px ${SANS_STACK}`;
     ctx.fillText("€1B+", cx, cy - 6);
-    ctx.fillStyle = "rgba(255,255,255,0.78)";
-    ctx.font = `600 15px ${FONT_STACK}`;
+    ctx.fillStyle = "rgba(242,213,189,0.8)";
+    ctx.font = `600 15px ${SANS_STACK}`;
     ctx.fillText("VISITOR", cx, cy + 20);
     // dateStr is "DD.MM.YYYY" (formatDate in RecapScreen.tsx) -- the seal
     // uses the same short "DD·MM·YY" form as the doc's own example
     // ("04·08·26"), matching the on-screen CollectorsSeal exactly.
     const [dd, mm, yyyy] = data.dateStr.split(".");
-    ctx.fillStyle = "rgba(255,255,255,0.42)";
-    ctx.font = `500 13px ${FONT_STACK}`;
+    ctx.fillStyle = "rgba(242,213,189,0.45)";
+    ctx.font = `500 13px ${SANS_STACK}`;
     if (dd && mm && yyyy) ctx.fillText(`${dd}·${mm}·${yyyy.slice(-2)}`, cx, cy + 46);
     ctx.textAlign = "left";
   }
 
   // Footer tagline.
-  ctx.fillStyle = "rgba(17,17,17,0.35)";
-  ctx.font = `600 26px ${FONT_STACK}`;
+  ctx.fillStyle = "rgba(243,232,215,0.4)";
+  ctx.font = `600 26px ${SANS_STACK}`;
   ctx.fillText("elyio.co / v1.0", marginX, H - 80);
 
   return new Promise((resolve) => {

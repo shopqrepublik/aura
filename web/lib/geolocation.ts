@@ -34,16 +34,25 @@ function haversineDistanceMeters(
 export type MuseumStatus = "checking" | "detected" | "manual-prompt" | "manual-confirmed";
 
 export function useMuseumDetection() {
-  // Lazy initializer resolves capability up front (a read-only check, safe
-  // during render) so the effect body below never needs a synchronous
-  // setState call for the "no geolocation support" case -- every setState
-  // in the effect happens inside the async getCurrentPosition callbacks.
-  const [status, setStatus] = useState<MuseumStatus>(() =>
-    typeof navigator !== "undefined" && "geolocation" in navigator ? "checking" : "manual-prompt"
-  );
+  // Always starts "checking" on BOTH server and client -- a lazy
+  // initializer branching on `typeof navigator !== "undefined"` looked safe
+  // (a read-only check) but isn't: it runs during render on the server
+  // (navigator is undefined there -> "manual-prompt") AND during the
+  // client's first hydration render (navigator always exists in a browser
+  // -> "checking"), producing two different initial trees and a real
+  // hydration mismatch (confirmed live: server rendered the tappable
+  // "manual-prompt" button branch, client's first paint rendered the
+  // non-interactive "checking" pill branch instead). Capability detection
+  // now only happens inside the effect, which never runs during SSR --
+  // same pattern this app already uses for RecapScreen/ProgressScreen's
+  // `now` starting null.
+  const [status, setStatus] = useState<MuseumStatus>("checking");
 
   useEffect(() => {
-    if (typeof navigator === "undefined" || !("geolocation" in navigator)) return;
+    if (typeof navigator === "undefined" || !("geolocation" in navigator)) {
+      setStatus("manual-prompt");
+      return;
+    }
     // Explicit, visible permission request on Home-screen mount (§6 step 2)
     // -- not a silent navigator.permissions.query() precheck. Never blocks
     // the app: any failure (denied, timeout, position unavailable) or an

@@ -11,16 +11,16 @@ import { hexToRgba } from "@/lib/cardReveal";
 export default function ViewingNote({ text, accent }: { text: string; accent: string }) {
   return (
     <div
-      className="mt-5 rounded-[14px] pl-4 pr-3.5 py-3.5 flex gap-3"
+      className="mt-5 flex gap-3"
       style={{
         backgroundColor: hexToRgba(accent, 0.1),
         borderLeft: `2px solid ${hexToRgba(accent, 0.7)}`,
+        borderRadius: "4px 16px 16px 4px",
+        padding: "17px 18px",
       }}
     >
-      <div className="w-6 h-6 rounded-full bg-[#111111]/[0.06] flex items-center justify-center shrink-0 mt-0.5">
-        <Eye className="w-3.5 h-3.5 text-[#111111]" />
-      </div>
-      <p className="text-[13.5px] leading-[19px] tracking-[-0.01em] text-[#3C3C43] font-[500]">{text}</p>
+      <Eye className="w-[18px] h-[18px] shrink-0 mt-0.5 text-[#181714]/60" strokeWidth={1.5} />
+      <p className="text-[15px] leading-[21px] text-[#272622] font-normal">{text}</p>
     </div>
   );
 }

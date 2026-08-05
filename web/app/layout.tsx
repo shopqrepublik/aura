@@ -1,6 +1,20 @@
 import type { Metadata, Viewport } from "next";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+
+// Editorial serif for artwork titles / Reveal price / Recap value -- next/font
+// self-hosts the font files at build time (no runtime request to Google's
+// CDN), so this doesn't add an external dependency or a CSP concern for the
+// PWA. Only the CJK-less latin(-ext) subsets are needed: the font falls
+// through to the system serif in the stack for zh-Hans text, same as any
+// other font missing those glyphs.
+const editorialSerif = Cormorant_Garamond({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-editorial",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "ELYIO — Point. Discover. Understand.",
@@ -34,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col bg-[#FAFAF9] text-[#111111]">
+    <html lang="en" className={`h-full antialiased ${editorialSerif.variable}`}>
+      <body className="min-h-full flex flex-col bg-[#F7F3EC] text-[#181714]">
         {children}
         <ServiceWorkerRegister />
       </body>

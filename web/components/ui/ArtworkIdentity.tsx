@@ -49,13 +49,22 @@ export default function ArtworkIdentity({
 
   return (
     <div>
-      <div className="text-[11px] font-semibold tracking-[0.12em] uppercase text-[#8A8A90]">
+      <div className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#696763]">
         {artist.toUpperCase()}
       </div>
-      <h1 className="mt-1 text-[22px] font-bold leading-[24px] tracking-[-0.03em] text-[#111111]">{title}</h1>
-      <p className="mt-1 text-[14px] text-[#626267] font-[450] tabular-nums">{year}</p>
+      {/* Editorial serif title -- catalogue-entry weight, not an app
+          screen title. Falls through to Georgia/serif for zh-Hans (Cormorant
+          Garamond has no CJK glyphs), which is the expected/accepted
+          degradation, not a bug. */}
+      <h1
+        className="mt-1 font-medium leading-[0.98] tracking-[-0.025em] text-[#181714]"
+        style={{ fontFamily: "var(--font-editorial)", fontSize: "clamp(28px, 7.3vw, 34px)" }}
+      >
+        {title}
+      </h1>
+      <p className="mt-1.5 text-[13px] leading-[18px] text-[#68665f]">{year}</p>
       <p
-        className="mt-4 text-[16px] leading-[24px] tracking-[-0.011em] text-[#1D1D1F] font-[450] transition-opacity duration-300 ease-out"
+        className="mt-4 text-[17px] leading-[25px] tracking-[-0.01em] text-[#272622] font-normal transition-opacity duration-300 ease-out"
         style={{ opacity: hookVisible ? 1 : 0 }}
       >
         {hookText}

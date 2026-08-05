@@ -65,7 +65,7 @@ export default function CardScreen({
   const revealKey = `${artwork.id}-${state.locale}`;
 
   return (
-    <div className="w-full h-full bg-[#FAFAF8] flex flex-col overflow-y-auto scrollbar-none">
+    <div className="w-full h-full bg-[#F7F3EC] flex flex-col overflow-y-auto scrollbar-none">
       <div className="shrink-0 relative">
         <div className="aspect-[4/3] w-full overflow-hidden bg-[#EDE8E1]">
           {!imgError ? (
@@ -96,7 +96,13 @@ export default function CardScreen({
         <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full bg-black/15" />
       </div>
 
-      <div className="bg-white rounded-t-[24px] -mt-4 relative z-10 flex-1 px-5 pt-7 pb-[32px]">
+      <div
+        className="rounded-t-[30px] -mt-4 relative z-10 flex-1 px-5 pt-7 pb-[32px]"
+        style={{
+          backgroundColor: "#FBF8F2",
+          boxShadow: "0 -16px 45px rgba(22,19,15,0.09), inset 0 1px 0 rgba(255,255,255,0.80)",
+        }}
+      >
         <SegmentControl mode={state.mode} locale={state.locale} onChange={onSetMode} />
 
         <ArtworkIdentity
@@ -129,7 +135,7 @@ export default function CardScreen({
           <button
             type="button"
             onClick={onAddToVisit}
-            className="w-full h-[50px] rounded-full text-[15px] font-semibold tracking-[-0.01em] bg-black text-white shadow-[0_8px_20px_rgba(0,0,0,0.18)] active:scale-[0.98] transition-transform"
+            className="w-full h-[54px] rounded-[14px] text-[16px] font-medium tracking-[-0.01em] bg-[#181714] text-[#FAF7F0] shadow-[0_7px_18px_rgba(20,18,15,0.12)] active:scale-[0.98] transition-transform"
           >
             {isAdded ? tt("added_check", state.locale) : tt("add_to_my_visit", state.locale)}
           </button>
@@ -139,9 +145,9 @@ export default function CardScreen({
               type="button"
               onClick={onToggleFavorite}
               aria-pressed={isFavorite}
-              className="w-[44px] h-[44px] rounded-full bg-[#F5F5F7] flex items-center justify-center"
+              className="w-[44px] h-[44px] rounded-full bg-[rgba(24,23,20,0.055)] border border-[rgba(24,23,20,0.06)] flex items-center justify-center"
             >
-              <Heart className={`w-4 h-4 ${isFavorite ? "fill-black text-black" : "text-black"}`} />
+              <Heart className={`w-4 h-4 ${isFavorite ? "fill-[#181714] text-[#181714]" : "text-[#181714]"}`} />
             </button>
           </div>
           {/* The only other way off this screen is the small back-arrow
@@ -152,7 +158,7 @@ export default function CardScreen({
           <button
             type="button"
             onClick={onBack}
-            className="w-full h-[50px] rounded-full bg-[#F5F5F7] text-[#111] text-[15px] font-semibold tracking-[-0.01em]"
+            className="w-full h-[50px] rounded-[14px] bg-[rgba(24,23,20,0.055)] border border-[rgba(24,23,20,0.06)] text-[#25231F] text-[15px] font-medium tracking-[-0.01em]"
           >
             {tt("scan_next_artwork", state.locale)}
           </button>
@@ -161,7 +167,7 @@ export default function CardScreen({
           <button
             type="button"
             onClick={onGoProgress}
-            className="w-full text-center text-[13px] font-semibold text-[#8E8E93] pt-1"
+            className="w-full text-center text-[13px] font-semibold text-[#67635C] pt-1"
           >
             {tt("view_visit_progress", state.locale)}
           </button>

@@ -19,15 +19,28 @@ export function pickPaletteWorks(seenArtworks: Artwork[]): Artwork[] {
   return ranked.slice(0, 3);
 }
 
-const BASE_STOPS = ["#FFFFFF", "#F5F5F7", "#EDEEF2"];
+// Visual-match rebuild §14: "тёмный editorial collage", not the earlier
+// light 3-stop gradient. Base is a near-black warm charcoal (not pure
+// black -- the brief's own dark-mode tokens elsewhere in this app use a
+// slightly warm off-black, e.g. --color-ink #181714, so this stays
+// consistent with that choice rather than reaching for neutral #000).
+const DARK_BASE_STOPS = ["#1A1D21", "#131518", "#0D0E10"];
 
-// Deliberately restrained opacities -- design-direction-v3.md explicitly
-// rules out a vivid poster background for Recap ("Ни Bank Statement, ни
-// яркий Spotify Wrapped"), the same anti-vividness constraint Phase 1
-// applied to the Provenance Reveal tint (5-9%). These run a little higher
-// (10-18%) since the Visit Palette is a full-bleed background rather than
-// a small card, but stay far short of a saturated poster wash.
-const TINT_OPACITIES = [0.18, 0.14, 0.1];
+// Accent tint opacities run much higher than the old light-background
+// version (was 10-18%) -- muted colors need more presence to read at all
+// against a near-black ground. Still nowhere near a saturated wash: these
+// are layered UNDER the dark overlay below, which itself fades to 94%
+// opaque by the bottom of the frame.
+const DARK_TINT_OPACITIES = [0.4, 0.28, 0.16];
+
+// §14's own overlay spec, verbatim: transparent at the top (lets the
+// artwork-derived tint/imagery read) to near-opaque at the bottom (keeps
+// stats/thumbnails/buttons legible over whatever's behind them).
+const DARK_OVERLAY_STOPS: Array<[number, string]> = [
+  [0, "rgba(10,19,28,0.10)"],
+  [0.5, "rgba(18,20,20,0.55)"],
+  [1, "rgba(21,20,18,0.94)"],
+];
 
 export interface VisitPalette {
   /** Up to 3 accent hex colors, in significance order. Empty when nothing seen. */
@@ -46,25 +59,36 @@ export function buildVisitPalette(seenArtworks: Artwork[]): VisitPalette {
   return { accents: filled, works };
 }
 
-/** CSS background-image value: a muted accent-tint gradient layered over the
- * existing neutral 3-stop base (same base RecapScreen always used), as two
- * comma-separated linear-gradient layers -- no per-pixel color math needed
- * on the CSS side. */
-export function visitPaletteCssBackground(palette: VisitPalette): string {
-  const base = `linear-gradient(180deg, ${BASE_STOPS[0]} 0%, ${BASE_STOPS[1]} 55%, ${BASE_STOPS[2]} 100%)`;
-  if (palette.accents.length === 0) return base;
-  const [a, b, c] = palette.accents;
-  const [oa, ob, oc] = TINT_OPACITIES;
-  const tint = `linear-gradient(160deg, ${hexToRgba(a, oa)} 0%, ${hexToRgba(b, ob)} 46%, ${hexToRgba(c, oc)} 100%)`;
-  return `${tint}, ${base}`;
+/** CSS background-image value for just the near-black base gradient -- no
+ * tint, no overlay. Split out from the old combined
+ * `visitPaletteCssBackground` so the on-screen version can sandwich the real
+ * photo-fragment collage (RecapScreen.tsx) between this base and the tint
+ * overlay below; the canvas export (paintVisitPaletteCanvas) has no such
+ * photo layer and keeps painting all three in one pass. */
+export function visitPaletteBaseBackground(): string {
+  return `linear-gradient(180deg, ${DARK_BASE_STOPS[0]} 0%, ${DARK_BASE_STOPS[1]} 55%, ${DARK_BASE_STOPS[2]} 100%)`;
 }
 
-/** Canvas equivalent of the two CSS gradient layers above -- same stops,
- * same opacities, drawn as two sequential fillRect passes so the exported
- * PNG's background matches the on-screen version. Takes the accent list
- * directly (not a full VisitPalette) since the canvas export path never
- * touches the works' photos -- see FRAGMENT_LAYOUT's doc comment below for
- * why. */
+/** CSS background-image value for the accent tint + §14 dark overlay only
+ * (no base) -- painted on screen on top of the photo-fragment collage so the
+ * fragments read as tinted/legible rather than full-color cutouts pasted on
+ * the poster. */
+export function visitPaletteTintOverlayBackground(palette: VisitPalette): string {
+  const overlay = `linear-gradient(180deg, ${DARK_OVERLAY_STOPS.map(([p, c]) => `${c} ${p * 100}%`).join(", ")})`;
+  if (palette.accents.length === 0) return overlay;
+  const [a, b, c] = palette.accents;
+  const [oa, ob, oc] = DARK_TINT_OPACITIES;
+  const tint = `linear-gradient(180deg, ${hexToRgba(a, oa)} 0%, ${hexToRgba(b, ob)} 45%, ${hexToRgba(c, oc)} 100%)`;
+  return `${overlay}, ${tint}`;
+}
+
+/** Canvas equivalent of the three CSS gradient layers above -- same stops,
+ * same opacities, drawn as sequential fillRect passes (base first, overlay
+ * painted LAST so it's the topmost layer, matching the CSS stacking order)
+ * so the exported PNG's background matches the on-screen version. Takes
+ * the accent list directly (not a full VisitPalette) since the canvas
+ * export path never touches the works' photos -- see
+ * paintThumbnailBlocksCanvas's doc comment below for why. */
 export function paintVisitPaletteCanvas(
   ctx: CanvasRenderingContext2D,
   accents: string[],
@@ -72,20 +96,26 @@ export function paintVisitPaletteCanvas(
   height: number
 ): void {
   const base = ctx.createLinearGradient(0, 0, 0, height);
-  base.addColorStop(0, BASE_STOPS[0]);
-  base.addColorStop(0.55, BASE_STOPS[1]);
-  base.addColorStop(1, BASE_STOPS[2]);
+  base.addColorStop(0, DARK_BASE_STOPS[0]);
+  base.addColorStop(0.55, DARK_BASE_STOPS[1]);
+  base.addColorStop(1, DARK_BASE_STOPS[2]);
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, width, height);
 
-  if (accents.length === 0) return;
-  const [a, b, c] = accents;
-  const [oa, ob, oc] = TINT_OPACITIES;
-  const tint = ctx.createLinearGradient(width * 0.15, 0, width * 0.85, height);
-  tint.addColorStop(0, hexToRgba(a, oa));
-  tint.addColorStop(0.46, hexToRgba(b, ob));
-  tint.addColorStop(1, hexToRgba(c, oc));
-  ctx.fillStyle = tint;
+  if (accents.length > 0) {
+    const [a, b, c] = accents;
+    const [oa, ob, oc] = DARK_TINT_OPACITIES;
+    const tint = ctx.createLinearGradient(0, 0, 0, height);
+    tint.addColorStop(0, hexToRgba(a, oa));
+    tint.addColorStop(0.45, hexToRgba(b, ob));
+    tint.addColorStop(1, hexToRgba(c, oc));
+    ctx.fillStyle = tint;
+    ctx.fillRect(0, 0, width, height);
+  }
+
+  const overlay = ctx.createLinearGradient(0, 0, 0, height);
+  DARK_OVERLAY_STOPS.forEach(([p, c]) => overlay.addColorStop(p, c));
+  ctx.fillStyle = overlay;
   ctx.fillRect(0, 0, width, height);
 }
 
@@ -105,7 +135,7 @@ export function paintGrainCanvas(ctx: CanvasRenderingContext2D, width: number, h
     imageData.data[i] = v;
     imageData.data[i + 1] = v;
     imageData.data[i + 2] = v;
-    imageData.data[i + 3] = 14; // ~5.5% alpha, matches the on-screen grain's 0.05 opacity
+    imageData.data[i + 3] = 8; // ~3% alpha, matches §14's "grain: 2-3%"
   }
   tctx.putImageData(imageData, 0, 0);
   const pattern = ctx.createPattern(tile, "repeat");
@@ -119,31 +149,38 @@ export function paintGrainCanvas(ctx: CanvasRenderingContext2D, width: number, h
   ctx.restore();
 }
 
-/** Canvas stand-in for the on-screen "cropped photo fragments" collage --
- * abstract translucent rotated rounded rects in each work's accent color,
- * NOT real photos. See this file's export comment on FRAGMENT_LAYOUT: the
- * PNG export already can't canvas-load these artworks' commons.wikimedia.org
- * images (crossOrigin fails partway through their redirect chain), so this
- * reuses generateRecapImage's existing solid-accent-color-block technique
- * rather than inventing a new one. */
-export function paintFragmentsCanvas(ctx: CanvasRenderingContext2D, accents: string[], width: number, height: number): void {
-  const shapes: Array<{ x: number; y: number; w: number; h: number; rotate: number }> = [
-    { x: width * 0.72, y: height * 0.06, w: 340, h: 430, rotate: 8 },
-    { x: -80, y: height * 0.4, w: 300, h: 400, rotate: -6 },
-    { x: width * 0.78, y: height * 0.7, w: 280, h: 360, rotate: 4 },
-  ];
+/** Canvas stand-in for the on-screen artwork-thumbnail row (§14: "три
+ * изображения, 120-150px высотой, ratio ~4:5, radius 8-10px"): real photos
+ * on screen (see RecapScreen.tsx), solid accent-color blocks here, at the
+ * SAME position/size/radius/border the real thumbnails use -- tested live
+ * via fetch(url, {mode:"cors"}) against the actual commons.wikimedia.org
+ * redirect chain: it throws (confirmed CORS-blocked, not just the earlier
+ * <img crossorigin> test), so this remains the honest choice, not a
+ * shortcut. Returns the row's height so the caller's y-accumulator can
+ * continue past it. */
+export function paintThumbnailBlocksCanvas(
+  ctx: CanvasRenderingContext2D,
+  accents: string[],
+  x: number,
+  y: number,
+  thumbHeight: number
+): number {
+  const thumbWidth = thumbHeight * (4 / 5);
+  const gap = 14;
+  const radius = 22; // canvas-scale equivalent of the on-screen 8-10px at ~2.7x export ratio
   accents.slice(0, 3).forEach((accent, i) => {
-    const shape = shapes[i];
-    if (!shape) return;
-    ctx.save();
-    ctx.translate(shape.x + shape.w / 2, shape.y + shape.h / 2);
-    ctx.rotate((shape.rotate * Math.PI) / 180);
-    ctx.fillStyle = hexToRgba(accent, 0.1);
+    const thumbX = x + i * (thumbWidth + gap);
+    ctx.fillStyle = hexToRgba(accent, 0.9);
     ctx.beginPath();
-    ctx.roundRect(-shape.w / 2, -shape.h / 2, shape.w, shape.h, 32);
+    ctx.roundRect(thumbX, y, thumbWidth, thumbHeight, radius);
     ctx.fill();
-    ctx.restore();
+    ctx.strokeStyle = "rgba(255,255,255,0.22)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(thumbX, y, thumbWidth, thumbHeight, radius);
+    ctx.stroke();
   });
+  return thumbHeight;
 }
 
 // Self-contained SVG fractal-noise grain, inlined as a data URI -- no
@@ -156,19 +193,3 @@ const GRAIN_SVG =
   "<rect width='100%' height='100%' filter='url(%23n)'/></svg>";
 
 export const GRAIN_BACKGROUND_IMAGE = `url("data:image/svg+xml,${GRAIN_SVG}")`;
-
-// design-direction-v3.md §10.5: "2-3 cropped fragments картин как музейный
-// коллаж". On-screen this uses the works' real imageUrl (plain <img>
-// elements, no canvas pixel read involved). The PNG export path
-// (recap-image.ts) deliberately does NOT do the same with real photos: this
-// codebase already established, in generateRecapImage's own most-valuable
-// thumbnail, that a canvas-safe crossOrigin="anonymous" load of these
-// commons.wikimedia.org URLs fails (the redirect chain doesn't carry
-// Access-Control-Allow-Origin on every hop) -- so the export instead reuses
-// that file's existing solid-accent-color-block technique for its
-// "fragments", not a new workaround.
-export const FRAGMENT_LAYOUT: Array<{ top: string; left?: string; right?: string; width: number; height: number; rotate: number }> = [
-  { top: "4%", right: "-8%", width: 220, height: 280, rotate: 8 },
-  { top: "38%", left: "-10%", width: 200, height: 260, rotate: -6 },
-  { top: "68%", right: "-6%", width: 180, height: 230, rotate: 4 },
-];

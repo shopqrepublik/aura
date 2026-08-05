@@ -17,10 +17,12 @@ function formatSealDate(ts: number | null): string {
 
 // design-direction-v3.md §11 "Billion Euro Visitor: Collector's Seal" --
 // replaces the old flat red pill badge. Circular stamp, double thin
-// hairline, graphite fill (the doc's "основной вариант" / primary variant;
-// the burgundy variant it also mentions has no stated trigger distinct from
-// graphite, so this implements the one the spec actually gives selection
-// criteria for, rather than inventing a rule for a second variant).
+// hairline. Originally shipped in graphite (the doc's "основной вариант");
+// switched to the doc's burgundy variant (--seal-dark #681E1A, text
+// #F2D5BD) once the Recap poster itself went dark (visual-match rebuild
+// §14) -- graphite-on-near-black has too little contrast to read as a
+// distinct object, while burgundy is explicitly permitted for exactly this
+// milestone context (§12) and was always the doc's second named option.
 //
 // The seal's own text ("ELYIO · CULTURAL MILESTONE · PARIS", "€1B+
 // VISITOR") is fixed, not run through tt() -- the doc gives no localized
@@ -83,27 +85,26 @@ export default function CollectorsSeal({ timestamp, locale }: { timestamp: numbe
 
         {/* Base fill + double thin hairline ring, approximating the doc's
             "blind emboss/deboss" as a soft two-tone edge rather than a
-            bright fill -- no red per §12 (graphite is not a milestone-red
-            context, burgundy is reserved and unused here). */}
-        <circle cx="44" cy="44" r="42" fill="#1B1B1D" />
+            bright fill. */}
+        <circle cx="44" cy="44" r="42" fill="#681E1A" />
         <circle cx="44" cy="44" r="42" fill="none" stroke="rgba(0,0,0,0.35)" strokeWidth="1" />
-        <circle cx="44" cy="44" r="37.5" fill="none" stroke="rgba(255,255,255,0.16)" strokeWidth="1" />
-        <circle cx="44" cy="44" r="34" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
+        <circle cx="44" cy="44" r="37.5" fill="none" stroke="rgba(242,213,189,0.22)" strokeWidth="1" />
+        <circle cx="44" cy="44" r="34" fill="none" stroke="rgba(242,213,189,0.14)" strokeWidth="1" />
 
-        <text fill="rgba(255,255,255,0.8)" fontSize="5.4" fontWeight="600" letterSpacing="1.4">
+        <text fill="rgba(242,213,189,0.85)" fontSize="5.4" fontWeight="600" letterSpacing="1.4">
           <textPath href={`#${pathId}`} startOffset="50%" textAnchor="middle">
             ELYIO · CULTURAL MILESTONE · PARIS
           </textPath>
         </text>
 
-        <text x="44" y="41" textAnchor="middle" fill="#FFFFFF" fontSize="10.5" fontWeight="700" letterSpacing="-0.02em">
+        <text x="44" y="41" textAnchor="middle" fill="#F2D5BD" fontSize="10.5" fontWeight="700" letterSpacing="-0.02em">
           €1B+
         </text>
-        <text x="44" y="52" textAnchor="middle" fill="rgba(255,255,255,0.78)" fontSize="6" fontWeight="600" letterSpacing="0.08em">
+        <text x="44" y="52" textAnchor="middle" fill="rgba(242,213,189,0.8)" fontSize="6" fontWeight="600" letterSpacing="0.08em">
           VISITOR
         </text>
         {dateStr && (
-          <text x="44" y="65" textAnchor="middle" fill="rgba(255,255,255,0.42)" fontSize="5" fontWeight="500" letterSpacing="0.03em">
+          <text x="44" y="65" textAnchor="middle" fill="rgba(242,213,189,0.45)" fontSize="5" fontWeight="500" letterSpacing="0.03em">
             {dateStr}
           </text>
         )}

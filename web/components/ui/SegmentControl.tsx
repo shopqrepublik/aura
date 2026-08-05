@@ -28,7 +28,15 @@ export default function SegmentControl({
   ];
 
   return (
-    <div className="flex p-1 rounded-full bg-[#F5F5F7] mb-5">
+    <div
+      className="flex mb-5"
+      style={{
+        background: "rgba(37, 33, 28, 0.055)",
+        border: "1px solid rgba(37, 33, 28, 0.055)",
+        borderRadius: 15,
+        padding: 3,
+      }}
+    >
       {options.map((opt) => {
         const active = mode === opt.value;
         return (
@@ -40,9 +48,12 @@ export default function SegmentControl({
               if (opt.value !== mode) haptics.segmentSwitch();
               onChange(opt.value);
             }}
-            className={`flex-1 h-7 rounded-full text-[12px] font-semibold transition-all ${
-              active ? "bg-black text-white shadow" : "text-[#8E8E93]"
-            }`}
+            className="flex-1 h-[38px] text-[12px] font-semibold transition-all"
+            style={
+              active
+                ? { background: "#1A1916", color: "#F8F4EC", borderRadius: 12, boxShadow: "0 4px 10px rgba(0,0,0,0.09)" }
+                : { color: "#8B867E" }
+            }
           >
             {tt(opt.key, locale)}
           </button>
