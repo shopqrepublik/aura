@@ -7,6 +7,7 @@ import { isMissionComplete } from "@/lib/missions";
 import { tt, LOCALES } from "@/lib/i18n";
 import { useMuseumDetection } from "@/lib/geolocation";
 import { proxyImageUrl } from "@/lib/visitPalette";
+import AuthModal from "@/components/ui/AuthModal";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
 
@@ -40,17 +41,27 @@ const editorial = { fontFamily: "var(--font-editorial)" } as const;
 export default function HomeScreen({
   state,
   seenArtworks,
+  isAuthenticated,
   onStartVisit,
   onSetLocale,
+  onSignInWithEmail,
+  onSignInWithGoogle,
 }: {
   state: AppState;
   seenArtworks: Artwork[];
+  // Real registration (email magic link + Google; Apple deferred) gates
+  // Begin/Continue -- a Visit now requires a real user_id server-side
+  // (backend/app/models.py), so this isn't just a UI nicety.
+  isAuthenticated: boolean;
   onStartVisit: () => void;
   onSetLocale: (locale: AppState["locale"]) => void;
+  onSignInWithEmail: (email: string) => Promise<void>;
+  onSignInWithGoogle: () => Promise<void>;
 }) {
   const { status: museumStatus, confirmManually } = useMuseumDetection();
   const [showConfirm, setShowConfirm] = useState(false);
   const [showMuseumSheet, setShowMuseumSheet] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const isReturning = state.visitStarted;
 
@@ -238,11 +249,13 @@ export default function HomeScreen({
         </div>
       )}
 
-      {/* Primary CTA -- §7, no black circle */}
+      {/* Primary CTA -- §7, no black circle. Gated behind real sign-in
+          (§17 spec's registration requirement) rather than calling
+          onStartVisit directly when no session exists yet. */}
       <div className="relative z-10 mt-[28px] px-6">
         <button
           type="button"
-          onClick={onStartVisit}
+          onClick={() => (isAuthenticated ? onStartVisit() : setShowAuthModal(true))}
           className="w-full h-[58px] px-5 rounded-[14px] bg-[#181714] text-[#FAF6ED] flex items-center justify-between shadow-[0_9px_24px_rgba(21,18,14,0.16)] active:scale-[0.985] transition-transform"
         >
           <span className="text-[16px] font-medium tracking-[-0.01em]">
@@ -251,6 +264,15 @@ export default function HomeScreen({
           <ArrowRight className="w-[18px] h-[18px]" />
         </button>
       </div>
+
+      {showAuthModal && (
+        <AuthModal
+          locale={state.locale}
+          onClose={() => setShowAuthModal(false)}
+          signInWithEmail={onSignInWithEmail}
+          signInWithGoogle={onSignInWithGoogle}
+        />
+      )}
 
       {/* Today's visit -- §7 */}
       <div

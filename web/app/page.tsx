@@ -1,6 +1,7 @@
 "use client";
 
 import { useElyioApp } from "@/lib/app-state";
+import { useAuth } from "@/lib/useAuth";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
 import CardScreen from "@/components/screens/CardScreen";
@@ -21,6 +22,7 @@ import RecapScreen from "@/components/screens/RecapScreen";
 // dev` without a physical device.
 export default function AppPage() {
   const { state, seenArtworks, actions } = useElyioApp();
+  const { user, signInWithEmail, signInWithGoogle } = useAuth();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
@@ -29,8 +31,11 @@ export default function AppPage() {
           <HomeScreen
             state={state}
             seenArtworks={seenArtworks}
+            isAuthenticated={!!user}
             onStartVisit={actions.startVisit}
             onSetLocale={actions.setLocale}
+            onSignInWithEmail={signInWithEmail}
+            onSignInWithGoogle={signInWithGoogle}
           />
         )}
         {state.screen === "camera" && (

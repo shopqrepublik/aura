@@ -46,12 +46,21 @@ from datetime import datetime, timezone
 from typing import Optional, List
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
 
 load_dotenv()  # reads .env from the repo root if present; no-op otherwise
+
+# Real user accounts (email magic link + Google; Apple deferred until an
+# Apple Developer account exists) replace the old anonymous in-memory
+# VISITS dict below -- every /v1/visits* endpoint now requires a verified
+# Supabase JWT and persists to real Postgres (see app/db.py, app/auth.py).
+from .auth import get_current_user  # noqa: E402
+from .db import get_db  # noqa: E402
+from .models import User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -79,8 +88,6 @@ RECOGNITION_MODEL = "gpt-4o"  # Stage 1 (open recognition) — drives accuracy, 
 VISUAL_VERIFY_MODEL = "gpt-4o"
 
 
-# ---- In-memory demo store (replace with Supabase/Postgres session) --------
-VISITS: dict = {}
 
 DEMO_ARTWORKS = [
     {"id": "orsay_rf_1995_10", "artist": "Gustave Courbet", "title": "L'Origine du monde", "year": "1866", "hall": None, "inventory_number": "RF 1995 10", "image_url": "http://commons.wikimedia.org/wiki/Special:FilePath/Origin-of-the-World.jpg", "estimate_low": 14, "estimate_high": 22, "needs_editorial_review": True},
@@ -711,37 +718,64 @@ def image_proxy(url: str):
     )
 
 
-# ---- Visits (§12) --------------------------------------------------------
+# ---- Visits (§12) — real Supabase-backed, requires a signed-in user ------
+# Registration (email magic link + Google; Apple deferred) now happens on
+# Home before "Begin your visit" is reachable at all, so every one of these
+# requires a verified JWT (get_current_user, app/auth.py) — a Visit can no
+# longer exist without a real user_id, matching models.py's Visit.user_id
+# being NOT NULL now (it used to default anonymous=True).
+def _get_owned_visit(visit_id: str, current_user: User, db: Session) -> Visit:
+    # 404 (not 403) whether the visit doesn't exist or belongs to someone
+    # else — doesn't confirm to a caller which case it is.
+    visit = db.get(Visit, visit_id)
+    if not visit or visit.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="visit not found")
+    return visit
+
+
 @app.post("/v1/visits")
-def create_visit(body: VisitCreate):
-    visit_id = str(uuid.uuid4())
-    VISITS[visit_id] = {
-        "id": visit_id,
-        "museum_id": body.museum_id,
-        "locale": body.locale,
-        "started_at": datetime.now(timezone.utc).isoformat(),
+def create_visit(
+    body: VisitCreate,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    visit = Visit(id=str(uuid.uuid4()), user_id=current_user.id, museum_id=body.museum_id, locale=body.locale)
+    db.add(visit)
+    db.commit()
+    db.refresh(visit)
+    return {
+        "id": visit.id,
+        "museum_id": visit.museum_id,
+        "locale": visit.locale,
+        "started_at": visit.started_at.isoformat(),
         "completed_at": None,
         "artworks": [],
     }
-    return VISITS[visit_id]
 
 
 @app.post("/v1/visits/{visit_id}/artworks")
-def add_visit_artwork(visit_id: str, body: VisitArtworkAdd):
-    visit = VISITS.get(visit_id)
-    if not visit:
-        raise HTTPException(status_code=404, detail="visit not found")
-    visit["artworks"].append(body.model_dump())
-    return {"ok": True, "count": len(visit["artworks"])}
+def add_visit_artwork(
+    visit_id: str,
+    body: VisitArtworkAdd,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    visit = _get_owned_visit(visit_id, current_user, db)
+    db.add(VisitArtwork(visit_id=visit.id, artwork_id=body.artwork_id, confidence=body.confidence, added=body.added))
+    db.commit()
+    count = db.query(VisitArtwork).filter(VisitArtwork.visit_id == visit.id).count()
+    return {"ok": True, "count": count}
 
 
 @app.get("/v1/visits/{visit_id}/progress")
-def visit_progress(visit_id: str):
-    visit = VISITS.get(visit_id)
-    if not visit:
-        raise HTTPException(status_code=404, detail="visit not found")
+def visit_progress(
+    visit_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    visit = _get_owned_visit(visit_id, current_user, db)
 
-    seen_ids = {va["artwork_id"] for va in visit["artworks"]}
+    seen_ids = {va.artwork_id for va in visit.artworks}
     seen = [a for a in DEMO_ARTWORKS if a["id"] in seen_ids]
     artists = {a["artist"] for a in seen}
     # estimate_low/high are null until an editor reviews them (§8.4, §11) — most
@@ -759,12 +793,15 @@ def visit_progress(visit_id: str):
 
 
 @app.post("/v1/visits/{visit_id}/complete")
-def complete_visit(visit_id: str):
-    visit = VISITS.get(visit_id)
-    if not visit:
-        raise HTTPException(status_code=404, detail="visit not found")
-    visit["completed_at"] = datetime.now(timezone.utc).isoformat()
-    return {"ok": True, "completed_at": visit["completed_at"]}
+def complete_visit(
+    visit_id: str,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+):
+    visit = _get_owned_visit(visit_id, current_user, db)
+    visit.completed_at = datetime.now(timezone.utc)
+    db.commit()
+    return {"ok": True, "completed_at": visit.completed_at.isoformat()}
 
 
 @app.get("/health")

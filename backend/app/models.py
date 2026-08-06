@@ -10,6 +10,7 @@ never silently overwrite reviewed editorial content.
 from sqlalchemy import (
     Column, String, Integer, Float, ForeignKey, DateTime, Boolean, JSON, Text
 )
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base, relationship
 from datetime import datetime, timezone
 
@@ -103,6 +104,25 @@ class ArtworkEmbedding(Base):
     artwork = relationship("Artwork", back_populates="embeddings")
 
 
+class User(Base):
+    """Mirrors Supabase Auth's auth.users (email + Sign in with Apple/Google,
+    Apple deferred until an Apple Developer account exists) -- id is the SAME
+    uuid as auth.users.id, kept in sync by an app-level upsert on first
+    verified request (see app/auth.py's get_current_user) rather than a
+    Postgres trigger, so the sync logic lives in one place (Python) instead
+    of being split across a trigger function only visible in the DB. A real
+    FK constraint against auth.users(id) is added separately in
+    scripts/init_db.py (SQLAlchemy can't easily declare a FK into another
+    schema without a shadow table for it)."""
+    __tablename__ = "users"
+    id = Column(UUID(as_uuid=True), primary_key=True)
+    email = Column(String)
+    auth_provider = Column(String)  # "email" | "google" | "apple"
+    created_at = Column(DateTime, default=now)
+
+    visits = relationship("Visit", back_populates="user")
+
+
 class Mission(Base):
     __tablename__ = "missions"
     id = Column(String, primary_key=True)
@@ -114,12 +134,17 @@ class Mission(Base):
 class Visit(Base):
     __tablename__ = "visits"
     id = Column(String, primary_key=True)              # uuid
+    # Real registration (email magic link + Google, §17 Continue-visit state
+    # reads this) replaces the old anonymous=True default -- a Visit can no
+    # longer exist without a signed-in user, so this is NOT NULL rather than
+    # the optional field it would be if anonymous visits were still allowed.
+    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     museum_id = Column(String, ForeignKey("museums.id"))
     locale = Column(String, default="en")
     started_at = Column(DateTime, default=now)
     completed_at = Column(DateTime, nullable=True)
-    anonymous = Column(Boolean, default=True)
 
+    user = relationship("User", back_populates="visits")
     artworks = relationship("VisitArtwork", back_populates="visit")
 
 
@@ -127,7 +152,11 @@ class VisitArtwork(Base):
     __tablename__ = "visit_artworks"
     id = Column(Integer, primary_key=True, autoincrement=True)
     visit_id = Column(String, ForeignKey("visits.id"), nullable=False)
-    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=False)
+    # No FK into artworks(id): the catalog is still served from main.py's
+    # in-memory DEMO_ARTWORKS (unchanged by this task -- migrating it to
+    # real rows is separate, larger scope), so the artworks table stays
+    # empty and a real FK here would reject every insert.
+    artwork_id = Column(String, nullable=False)
     confidence = Column(Float)
     added = Column(Boolean, default=False)
     favorited = Column(Boolean, default=False)

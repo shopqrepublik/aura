@@ -72,6 +72,7 @@ const PALETTE = [
 ];
 
 const noop = () => {};
+const noopAsync = async () => {};
 
 // This module is evaluated once on the server and once again on the client,
 // at genuinely different (if close) wall-clock moments, so DEMO_NOW itself
@@ -129,8 +130,11 @@ const SCREEN_DEMOS = [
       <HomeScreen
         state={demoState({ seen: [] })}
         seenArtworks={[]}
+        isAuthenticated={true}
         onStartVisit={noop}
         onSetLocale={noop}
+        onSignInWithEmail={noopAsync}
+        onSignInWithGoogle={noopAsync}
       />
     ),
   },
@@ -142,8 +146,11 @@ const SCREEN_DEMOS = [
       <HomeScreen
         state={demoState({ visitStarted: true, seen: DEMO_SEEN_IDS })}
         seenArtworks={DEMO_SEEN}
+        isAuthenticated={true}
         onStartVisit={noop}
         onSetLocale={noop}
+        onSignInWithEmail={noopAsync}
+        onSignInWithGoogle={noopAsync}
       />
     ),
   },

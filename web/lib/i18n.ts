@@ -94,6 +94,32 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   museum_available_now: { en: "Available now", fr: "Disponible maintenant", "zh-Hans": "现已开放" },
   museum_coming_soon: { en: "Coming soon", fr: "Bientôt disponible", "zh-Hans": "即将开放" },
   select_museum_sheet_title: { en: "Select museum", fr: "Choisir un musée", "zh-Hans": "选择博物馆" },
+
+  // Real registration (email magic link + Google; Apple deferred), shown
+  // on Home before "Begin your visit" is reachable at all -- free for
+  // everyone, no paywall, just a real identity behind the visit.
+  auth_modal_title: { en: "Sign in to begin", fr: "Connectez-vous pour commencer", "zh-Hans": "登录后开始" },
+  auth_modal_subtitle: {
+    en: "Free, always. We just need to know it's you.",
+    fr: "Gratuit, toujours. Nous avons juste besoin de savoir que c'est vous.",
+    "zh-Hans": "永久免费。我们只需要确认是您本人。",
+  },
+  auth_email_label: { en: "Email", fr: "E-mail", "zh-Hans": "电子邮箱" },
+  auth_send_link: { en: "Send magic link", fr: "Envoyer le lien magique", "zh-Hans": "发送登录链接" },
+  auth_or_divider: { en: "or", fr: "ou", "zh-Hans": "或" },
+  auth_continue_google: { en: "Continue with Google", fr: "Continuer avec Google", "zh-Hans": "使用 Google 继续" },
+  auth_check_email_title: { en: "Check your email", fr: "Vérifiez vos e-mails", "zh-Hans": "请查收邮件" },
+  auth_check_email_body: {
+    en: "We sent a sign-in link to {email}.",
+    fr: "Nous avons envoyé un lien de connexion à {email}.",
+    "zh-Hans": "登录链接已发送至 {email}。",
+  },
+  auth_error_generic: {
+    en: "Something went wrong. Please try again.",
+    fr: "Une erreur est survenue. Veuillez réessayer.",
+    "zh-Hans": "出了点问题，请重试。",
+  },
+  auth_close: { en: "Not now", fr: "Pas maintenant", "zh-Hans": "暂不登录" },
   frame_artwork_fully: { en: "Frame artwork fully", fr: "Cadrez l'œuvre en entier", "zh-Hans": "请将整件作品置于画面中" },
   hold_steady: { en: "Hold steady • Auto-capture on", fr: "Restez immobile • Capture automatique activée", "zh-Hans": "保持稳定 • 自动拍摄已开启" },
   add_to_my_visit: { en: "Add to my visit", fr: "Ajouter à ma visite", "zh-Hans": "加入我的参观" },
