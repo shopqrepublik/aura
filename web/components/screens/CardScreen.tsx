@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowLeft, Heart } from "lucide-react";
 import SegmentControl from "@/components/ui/SegmentControl";
 import ArtworkIdentity from "@/components/ui/ArtworkIdentity";
@@ -9,6 +9,7 @@ import ViewingNote from "@/components/ui/ViewingNote";
 import ListenButton from "@/components/ui/ListenButton";
 import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
 import { tt } from "@/lib/i18n";
+import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
 
 // "The Curated Reveal" (design-direction-v3.md) -- Observe -> Reveal stages
@@ -49,6 +50,26 @@ export default function CardScreen({
   // Normal-mode script in another mode would leak content that mode is
   // meant to avoid.
   const audioUrl = state.mode === "normal" ? artwork?.audioUrl?.[state.locale] : undefined;
+
+  // artwork_card_opened / artwork_card_read_time (§13) -- read_time_ms is
+  // this project's north-star "meaningful attention time" metric (§3).
+  // Uses state.cardOpenedAt (set once, in app-state.ts's recognizeFrame) as
+  // the start time rather than a fresh Date.now() here, so this agrees with
+  // ProgressScreen's live "focus minutes" stat, which reads the same field.
+  // The cleanup fires exactly when this artwork's card stops being
+  // rendered -- back to camera, on to progress, or a different artwork
+  // replacing it -- so it measures actual mounted time, not a guess at
+  // when the user "left".
+  useEffect(() => {
+    if (!artwork || state.cardOpenedAt == null) return;
+    const artworkId = artwork.id;
+    const openedAt = state.cardOpenedAt;
+    track("artwork_card_opened", { artwork_id: artworkId });
+    return () => {
+      track("artwork_card_read_time", { artwork_id: artworkId, read_time_ms: Date.now() - openedAt });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [artwork?.id, state.cardOpenedAt]);
 
   if (!artwork) return null;
 
@@ -140,7 +161,14 @@ export default function CardScreen({
             {isAdded ? tt("added_check", state.locale) : tt("add_to_my_visit", state.locale)}
           </button>
           <div className="flex gap-3">
-            {audioUrl && <ListenButton key={`${artwork.id}-${state.locale}`} audioUrl={audioUrl} locale={state.locale} />}
+            {audioUrl && (
+              <ListenButton
+                key={`${artwork.id}-${state.locale}`}
+                audioUrl={audioUrl}
+                locale={state.locale}
+                artworkId={artwork.id}
+              />
+            )}
             <button
               type="button"
               onClick={onToggleFavorite}

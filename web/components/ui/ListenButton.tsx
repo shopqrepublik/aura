@@ -3,13 +3,22 @@
 import { useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { tt } from "@/lib/i18n";
+import { track } from "@/lib/analytics";
 import type { Locale } from "@/lib/types";
 
 // Mount this keyed by `${artwork.id}-${locale}` from the parent so React
 // remounts (and therefore resets play/loading/error state, and stops any
 // in-flight playback) on artwork or locale change, instead of needing an
 // effect that resets state synchronously.
-export default function ListenButton({ audioUrl, locale }: { audioUrl: string; locale: Locale }) {
+export default function ListenButton({
+  audioUrl,
+  locale,
+  artworkId,
+}: {
+  audioUrl: string;
+  locale: Locale;
+  artworkId: string;
+}) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,9 +53,13 @@ export default function ListenButton({ audioUrl, locale }: { audioUrl: string; l
         onPlay={() => {
           setIsPlaying(true);
           setIsLoading(false);
+          track("audio_started", { artwork_id: artworkId, locale });
         }}
         onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
+        onEnded={() => {
+          setIsPlaying(false);
+          track("audio_completed", { artwork_id: artworkId, locale });
+        }}
         onWaiting={() => setIsLoading(true)}
         onCanPlay={() => setIsLoading(false)}
         onError={() => {

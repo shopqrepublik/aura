@@ -8,6 +8,7 @@ import { tt, LOCALES } from "@/lib/i18n";
 import { useMuseumDetection } from "@/lib/geolocation";
 import { proxyImageUrl } from "@/lib/visitPalette";
 import AuthModal from "@/components/ui/AuthModal";
+import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
 
@@ -133,7 +134,11 @@ export default function HomeScreen({
         <select
           aria-label="Language"
           value={state.locale}
-          onChange={(e) => onSetLocale(e.target.value as AppState["locale"])}
+          onChange={(e) => {
+            const locale = e.target.value as AppState["locale"];
+            track("language_selected", { locale });
+            onSetLocale(locale);
+          }}
           className="h-[36px] px-3 rounded-[12px] bg-[rgba(247,243,236,0.88)] border border-white/25 text-[12px] font-medium text-[#181714]"
         >
           {LOCALES.map((l) => (
@@ -351,6 +356,7 @@ export default function HomeScreen({
           })}
         </div>
         <div className="mt-4 text-[10px] text-[#A19B91]">Photo: R. Eisele · CC BY-SA 4.0</div>
+        <div className="mt-1.5 text-[10px] text-[#A19B91]">{tt("privacy_footer_note", state.locale)}</div>
       </div>
 
       {/* Museum selector sheet -- §16, new functionality per spec (only Orsay is real) */}

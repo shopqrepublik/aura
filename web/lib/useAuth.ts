@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
+import { track } from "./analytics";
 
 // Real registration (email magic link + Google; Apple deferred until an
 // Apple Developer account exists) -- separate from useElyioApp's
@@ -24,8 +25,19 @@ export function useAuth() {
     // sign-out, and token refresh -- this is what makes "don't ask to log in
     // again" work: supabase-js persists + auto-refreshes the session in
     // localStorage on its own, this listener just keeps React in sync.
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, newSession) => {
+    //
+    // onboarding_completed (§13): there's no separate tutorial/onboarding
+    // screen in this app (Home + language picker + sign-in *is* the whole
+    // first-run flow), so this fires on the "SIGNED_IN" event specifically
+    // -- a real completed sign-in (magic-link/Google redirect finishing) --
+    // not on "INITIAL_SESSION" (an existing session merely being restored on
+    // page load), which is what makes this a one-time-per-registration
+    // signal rather than firing on every return visit.
+    const { data: listener } = supabase.auth.onAuthStateChange((event, newSession) => {
       setSession(newSession);
+      if (event === "SIGNED_IN" && newSession) {
+        track("onboarding_completed", { auth_provider: newSession.user.app_metadata?.provider ?? "email" });
+      }
     });
     return () => listener.subscription.unsubscribe();
   }, []);

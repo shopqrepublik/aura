@@ -95,6 +95,18 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   museum_coming_soon: { en: "Coming soon", fr: "Bientôt disponible", "zh-Hans": "即将开放" },
   select_museum_sheet_title: { en: "Select museum", fr: "Choisir un musée", "zh-Hans": "选择博物馆" },
 
+  // Replaces an earlier, inaccurate "Private · No personal data stored"
+  // framing: once §13 analytics (PostHog, anonymized events, no
+  // autocapture/session recording -- see lib/analytics.ts) ship, "no data"
+  // is no longer literally true, so this says what actually happens instead
+  // of a blanket claim that would be false the moment the app sends its
+  // first event.
+  privacy_footer_note: {
+    en: "Anonymized visit analytics · No data sold or shared",
+    fr: "Statistiques de visite anonymisées · Aucune donnée vendue ou partagée",
+    "zh-Hans": "匿名参观统计 · 不出售或共享任何数据",
+  },
+
   // Real registration (email magic link + Google; Apple deferred), shown
   // on Home before "Begin your visit" is reachable at all -- free for
   // everyone, no paywall, just a real identity behind the visit.

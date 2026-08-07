@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import { useElyioApp } from "@/lib/app-state";
 import { useAuth } from "@/lib/useAuth";
+import { identify } from "@/lib/analytics";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
 import CardScreen from "@/components/screens/CardScreen";
@@ -23,6 +25,15 @@ import RecapScreen from "@/components/screens/RecapScreen";
 export default function AppPage() {
   const { state, seenArtworks, actions } = useElyioApp();
   const { user, signInWithEmail, signInWithGoogle } = useAuth();
+
+  // Links every event fired after this point (visit_started onward, per
+  // useAuth's SIGNED_IN-gated onboarding_completed) to the real Supabase
+  // user_id. posthog-js merges the pre-login anonymous distinct_id (used
+  // for e.g. language_selected on Home before sign-in) into this identity
+  // automatically -- see lib/analytics.ts.
+  useEffect(() => {
+    if (user) identify(user.id);
+  }, [user]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">

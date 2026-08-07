@@ -5,6 +5,7 @@ import { tt } from "@/lib/i18n";
 import { resolveTitle } from "@/lib/artworks";
 import { generateRecapImage } from "@/lib/recap-image";
 import { buildVisitPalette, visitPaletteBaseBackground, visitPaletteTintOverlayBackground, GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
+import { track } from "@/lib/analytics";
 import CollectorsSeal from "@/components/ui/CollectorsSeal";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
@@ -70,6 +71,16 @@ export default function RecapScreen({
   const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
   const totalHigh = seenArtworks.reduce((s, a) => s + (a.estimate.high || 0), 0);
   const hasAnyEstimate = seenArtworks.some((a) => a.estimate.high != null);
+
+  // recap_generated (§13): fires once per mount, i.e. once per completed
+  // visit that reaches this screen -- RecapScreen only ever mounts fresh
+  // (page.tsx renders it conditionally on state.screen === "recap", and
+  // newVisit() resets state entirely), so an empty deps array is correct
+  // here, not a staleness risk.
+  useEffect(() => {
+    track("recap_generated", { works_count: seenArtworks.length, artists_count: artists.size });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const mins = now && state.startTime ? Math.max(1, Math.round((now - state.startTime) / 60000)) : 0;
   const timeStr = mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`;
@@ -141,6 +152,7 @@ export default function RecapScreen({
 
   async function handleShare() {
     setImageBusy("share");
+    track("share_started");
     try {
       // Editorial share-sheet caption, not the old debug-log-style stat
       // dump -- reuses worksLabel (already singular/plural/locale-correct
@@ -166,6 +178,7 @@ export default function RecapScreen({
       if (file && navigator.canShare?.({ files: [file] })) {
         try {
           await navigator.share({ files: [file], title: "My ELYIO visit", text });
+          track("share_completed", { method: "web_share_files" });
         } catch {
           // user cancelled the native share sheet — nothing to do
         }
@@ -175,6 +188,7 @@ export default function RecapScreen({
       if (navigator.share) {
         try {
           await navigator.share({ title: "My ELYIO visit", text });
+          track("share_completed", { method: "web_share_text" });
         } catch {
           // user cancelled — nothing to do
         }
@@ -183,7 +197,10 @@ export default function RecapScreen({
 
       // No Web Share support at all (most desktop browsers): fall back to
       // the same download flow as the explicit "Save image" button.
-      if (blob) downloadBlob(blob);
+      if (blob) {
+        downloadBlob(blob);
+        track("share_completed", { method: "download_fallback" });
+      }
     } finally {
       setImageBusy(null);
     }
