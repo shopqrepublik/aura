@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 import { track } from "./analytics";
@@ -15,6 +15,11 @@ export function useAuth() {
   // typeof window here) so the first client render matches SSR -- same
   // hydration-mismatch avoidance as useMuseumDetection's "checking" state.
   const [loading, setLoading] = useState(true);
+  // Supabase's implicit OAuth/magic-link flow completing on this page can
+  // emit more than one "SIGNED_IN" event for the same login (observed live:
+  // 3 for one Google sign-in) -- this guards onboarding_completed to fire
+  // at most once per page load rather than trusting SIGNED_IN's count.
+  const onboardingTrackedRef = useRef(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -36,7 +41,21 @@ export function useAuth() {
     const { data: listener } = supabase.auth.onAuthStateChange((event, newSession) => {
       setSession(newSession);
       if (event === "SIGNED_IN" && newSession) {
-        track("onboarding_completed", { auth_provider: newSession.user.app_metadata?.provider ?? "email" });
+        // Strip a magic-link/OAuth hash (#access_token=...&...) from the URL
+        // bar right here, inside the SIGNED_IN handler -- this event only
+        // fires once supabase-js has already parsed the hash itself, so
+        // there's no race with its own internal read of it (stripping any
+        // earlier risks deleting the hash before the SDK gets to read it).
+        // Caught live: PostHog was capturing $current_url with the raw
+        // access_token still in it, because track() below read
+        // window.location before this cleanup existed.
+        if (typeof window !== "undefined" && window.location.hash.includes("access_token")) {
+          window.history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+        if (!onboardingTrackedRef.current) {
+          onboardingTrackedRef.current = true;
+          track("onboarding_completed", { auth_provider: newSession.user.app_metadata?.provider ?? "email" });
+        }
       }
     });
     return () => listener.subscription.unsubscribe();
