@@ -21,8 +21,19 @@ function ensureInit() {
     // of clicks/inputs, no session replay, no page-leave heuristics. This is
     // what makes the "anonymized visit analytics" framing in HomeScreen's
     // footer copy (i18n key: privacy_footer_note) actually true.
+    //
+    // autocapture only covers DOM click/change capture -- heatmaps, dead-click
+    // detection and Web Vitals are separate opt-in channels that otherwise
+    // fall back to the PostHog project's own remote dashboard toggles (caught
+    // live: production was fetching web-vitals.js and dead-clicks-autocapture.js
+    // with autocapture already off). All three are disabled explicitly here so
+    // this doesn't depend on the project's dashboard settings staying a
+    // particular way.
     autocapture: false,
     capture_pageview: false,
+    capture_heatmaps: false,
+    capture_dead_clicks: false,
+    capture_performance: false,
     disable_session_recording: true,
     // A distinct_id exists (auto-generated, anonymous) from first load for
     // pre-auth events like language_selected, but no Person profile is
