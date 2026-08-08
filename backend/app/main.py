@@ -46,7 +46,7 @@ from datetime import datetime, timezone
 from typing import Optional, List
 
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from pydantic import BaseModel
@@ -482,16 +482,23 @@ def _validate_proxy_url(url: str) -> None:
         raise HTTPException(status_code=400, detail="host not allowed")
 
 
-def _fetch_proxy_image_bytes(url: str) -> bytes:
+def _fetch_proxy_image_bytes(url: str, width: int = 512) -> bytes:
     """Same fetch/resize pipeline as _fetch_reference_image_b64 above (same
-    512px target, same Wikimedia-thumbnail-first strategy, same size guards
-    against the 717MB-original case) -- keyed by a hash of the URL instead of
-    a catalog id, since this serves the Recap poster's photo thumbnails, a
-    different caller from the recognition-verification path. Returns raw
-    JPEG bytes (this is served directly as an image response) rather than
-    the other function's base64 (embedded in a vision-model prompt)."""
+    Wikimedia-thumbnail-first strategy, same size guards against the 717MB-
+    original case) -- keyed by a hash of the URL instead of a catalog id,
+    since this serves the Recap poster's photo thumbnails (and, since the
+    desktop shell work, the atmospheric Orsay clock backdrop) rather than
+    the recognition-verification path. Returns raw JPEG bytes (this is
+    served directly as an image response) rather than the other function's
+    base64 (embedded in a vision-model prompt).
+
+    `width` is part of the cache key (not just the URL) -- the same source
+    URL now legitimately needs two different rendered sizes for two
+    different callers (512px thumbnails vs. a larger desktop backdrop), and
+    keying on URL alone would let whichever size got requested first
+    silently poison the cache for every other caller of the same URL."""
     os.makedirs(IMAGE_PROXY_CACHE_DIR, exist_ok=True)
-    cache_key = hashlib.sha256(url.encode("utf-8")).hexdigest()
+    cache_key = hashlib.sha256(f"{url}|w={width}".encode("utf-8")).hexdigest()
     cache_path = os.path.join(IMAGE_PROXY_CACHE_DIR, f"{cache_key}.jpg")
     if os.path.exists(cache_path):
         with open(cache_path, "rb") as f:
@@ -500,7 +507,7 @@ def _fetch_proxy_image_bytes(url: str) -> bytes:
     import urllib.request
 
     raw = None
-    thumb_url = _wikimedia_thumbnail_url(url, width=512)
+    thumb_url = _wikimedia_thumbnail_url(url, width=width)
     if thumb_url:
         try:
             req = urllib.request.Request(thumb_url, headers={"User-Agent": REFERENCE_IMAGE_UA})
@@ -513,7 +520,7 @@ def _fetch_proxy_image_bytes(url: str) -> bytes:
     if raw is None:
         raw = _fetch_reference_image_original_bytes(url)
 
-    img = _decode_and_resize(raw, target_w=512)
+    img = _decode_and_resize(raw, target_w=width)
     img.save(cache_path, format="JPEG", quality=85)
     with open(cache_path, "rb") as f:
         return f.read()
@@ -694,17 +701,25 @@ def get_artwork(artwork_id: str, locale: str = "en", mode: str = "normal"):
 
 
 @app.get("/v1/image-proxy")
-def image_proxy(url: str):
-    """Server-side fetch + resize (512px, same as the recognition reference
-    cache) + on-disk cache for a Wikimedia image URL, re-served with our own
-    CORS header (via the CORSMiddleware configured above) so the frontend's
-    canvas export can draw it -- see _fetch_proxy_image_bytes's doc comment
-    for why this exists at all. Allowlisted to Wikimedia hosts only: this is
-    a public, unauthenticated GET, so it must not become a general-purpose
-    open proxy."""
+def image_proxy(url: str, width: int = Query(512, ge=64, le=2048)):
+    """Server-side fetch + resize + on-disk cache for a Wikimedia image URL,
+    re-served with our own CORS header (via the CORSMiddleware configured
+    above) so the frontend's canvas export can draw it -- see
+    _fetch_proxy_image_bytes's doc comment for why this exists at all.
+    Allowlisted to Wikimedia hosts only: this is a public, unauthenticated
+    GET, so it must not become a general-purpose open proxy.
+
+    `width` defaults to 512 (existing callers -- Recap thumbnails, the
+    mobile Home hero -- are unaffected) and is clamped to [64, 2048]: the
+    lower bound keeps this a real thumbnail proxy rather than an arbitrary
+    pixel-fetch primitive, the upper bound stays under the Orsay clock
+    source's real 2048px height (3072x2048, checked directly against
+    Wikimedia's API) so no caller can force an upscale, and more generally
+    caps how much cache-bloat/Wikimedia bandwidth an unauthenticated width
+    value can cause."""
     _validate_proxy_url(url)
     try:
-        image_bytes = _fetch_proxy_image_bytes(url)
+        image_bytes = _fetch_proxy_image_bytes(url, width=width)
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"image proxy fetch failed: {e}")
     return Response(

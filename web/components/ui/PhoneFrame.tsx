@@ -7,19 +7,40 @@ export default function PhoneFrame({
   children,
   label,
   note,
+  maxHeight,
 }: {
   children: React.ReactNode;
   label?: string;
   note?: string;
+  // Overrides the default md:max-h-[calc(100vh-135px)] below -- that
+  // default assumes the frame lives in a roughly full-viewport-tall
+  // context. The desktop hero (deliberately compressed to
+  // clamp(640px,72vh,760px), not ~100vh) is shorter than that, so a caller
+  // there needs to pass the ACTUAL available height or the 100vh-based
+  // default won't bind tightly enough to prevent clipping. Plain inline
+  // style, so it wins over the Tailwind class below without touching it.
+  maxHeight?: string;
 }) {
   return (
     <div className="group flex flex-col items-center w-full max-w-[390px]">
       <div
-        className="relative w-full max-w-[390px] aspect-[390/852] h-auto min-h-[640px] md:h-[852px] md:aspect-auto rounded-[54px] bg-black p-[10px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25),0_20px_40px_-20px_rgba(0,0,0,0.3)] transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:shadow-[0_60px_120px_-20px_rgba(0,0,0,0.35),0_30px_60px_-20px_rgba(0,0,0,0.25)]"
+        // md:h-[852px] (fixed, unconditional) used to be here -- on a
+        // desktop hero shorter than 852+135px tall (e.g. 1440x900) that
+        // guaranteed bottom clipping no matter how much room the layout
+        // otherwise had. aspect-[390/852] + md:max-h caps BOTH dimensions
+        // from a single constraint (whichever binds first, per CSS's own
+        // aspect-ratio sizing algorithm) so the frame shrinks to fit a
+        // short viewport instead of overflowing it.
+        // Round-4 art-direction pass: bezel thinned from p-[10px]/rounded-54
+        // to p-[7px]/rounded-48 (still a real device frame, not the
+        // "grubby oversized emulator" the thicker bezel read as), shadow
+        // softened to the new warmer-toned spec.
+        className="relative w-full max-w-[390px] aspect-[390/852] h-auto min-h-[640px] md:min-h-0 md:max-h-[calc(100vh-135px)] rounded-[48px] bg-[#090909] p-[7px] shadow-[0_36px_85px_rgba(46,36,25,0.17),0_12px_28px_rgba(46,36,25,0.12)] transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2"
+        style={maxHeight ? { maxHeight } : undefined}
       >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[96px] h-[28px] bg-black rounded-b-[16px] z-30" />
-        <div className="absolute top-[11px] left-1/2 -translate-x-1/2 w-[56px] h-[6px] bg-[#1a1a1a] rounded-full z-30 opacity-60" />
-        <div className="w-full h-full rounded-[44px] overflow-hidden bg-white relative flex flex-col">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[92px] h-[26px] bg-black rounded-b-[15px] z-30" />
+        <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-[54px] h-[6px] bg-[#1a1a1a] rounded-full z-30 opacity-60" />
+        <div className="w-full h-full rounded-[41px] overflow-hidden bg-white relative flex flex-col">
           {children}
         </div>
         <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[128px] h-[5px] bg-white rounded-full z-30 mix-blend-difference opacity-80" />

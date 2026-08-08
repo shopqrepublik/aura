@@ -36,7 +36,19 @@ function formatSealDate(ts: number | null): string {
 // this component at all when isBillion is true, and only mounts once per
 // visit, so "once per mount" already satisfies the doc's "без пульса после
 // появления" (no repeat pulse after the initial stamp).
-export default function CollectorsSeal({ timestamp, locale }: { timestamp: number | null; locale: Locale }) {
+export default function CollectorsSeal({
+  timestamp,
+  locale,
+  size = 88,
+}: {
+  timestamp: number | null;
+  locale: Locale;
+  // Optional override of the default 88px -- added for the desktop Recap
+  // strip (round-4 art-direction pass wants 92-100px there); the SVG's
+  // own viewBox stays 0-88 either way, so this just scales the rendered
+  // <svg> element, not a redraw.
+  size?: number;
+}) {
   const reducedMotion = usePrefersReducedMotion();
   const [stamped, setStamped] = useState(reducedMotion);
 
@@ -51,8 +63,6 @@ export default function CollectorsSeal({ timestamp, locale }: { timestamp: numbe
     }, 30);
     return () => clearTimeout(t);
   }, [reducedMotion]);
-
-  const size = 88;
   const pathId = "collectors-seal-ring";
   const dateStr = formatSealDate(timestamp);
 

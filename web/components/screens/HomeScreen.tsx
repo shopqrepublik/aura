@@ -7,6 +7,7 @@ import { isMissionComplete } from "@/lib/missions";
 import { tt, LOCALES } from "@/lib/i18n";
 import { useMuseumDetection } from "@/lib/geolocation";
 import { proxyImageUrl } from "@/lib/visitPalette";
+import { ORSAY_CLOCK_IMAGE_URL as HERO_IMAGE_URL } from "@/lib/museumTheme";
 import AuthModal from "@/components/ui/AuthModal";
 import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
@@ -28,9 +29,6 @@ import type { Artwork } from "@/lib/types";
 //   3. state.visitStarted / state.seen, already tracked by useElyioApp --
 //      "Continue visit" (§17) is a new READ of this existing state, not a
 //      new storage mechanism.
-const HERO_IMAGE_URL =
-  "http://commons.wikimedia.org/wiki/Special:FilePath/Paris%20-%20Mus%C3%A9e%20d'Orsay%20-%20big%20clock%20seen%20from%20the%20interior.jpg";
-
 const MISSION_EYEBROW_KEY: Record<string, string> = {
   m1: "mission_eyebrow_m1",
   m2: "mission_eyebrow_m2",

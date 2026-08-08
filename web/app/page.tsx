@@ -1,30 +1,107 @@
 "use client";
 
 import { useEffect } from "react";
-import { useElyioApp } from "@/lib/app-state";
+import { useElyioApp, type AppState } from "@/lib/app-state";
 import { useAuth } from "@/lib/useAuth";
 import { identify } from "@/lib/analytics";
+import { useIsDesktop } from "@/lib/useIsDesktop";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
 import CardScreen from "@/components/screens/CardScreen";
 import ProgressScreen from "@/components/screens/ProgressScreen";
 import RecapScreen from "@/components/screens/RecapScreen";
+import DesktopShell from "@/components/desktop/DesktopShell";
+import type { Artwork } from "@/lib/types";
+import type { User } from "@supabase/supabase-js";
 
 // The real, working ELYIO app — state-machine driven, talks to the existing
 // backend (lib/api.ts), same 5-screen flow and nav map as the old PWA
 // (frontend/index.html data-nav attributes): Camera <-> Progress/Home,
 // Card -> Camera, Progress -> Camera/Recap, Recap -> new visit.
 //
+// Extracted out of AppPage (desktop rebuild spec §22/§41/§42) so the exact
+// same live screens/state render two ways from ONE tree: full-viewport on
+// mobile, inside PhoneFrame.tsx on desktop -- never a forked copy of the
+// business logic.
+function AppScreens({
+  state,
+  seenArtworks,
+  actions,
+  user,
+  signInWithEmail,
+  signInWithGoogle,
+}: {
+  state: AppState;
+  seenArtworks: Artwork[];
+  actions: ReturnType<typeof useElyioApp>["actions"];
+  user: User | null;
+  signInWithEmail: (email: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+}) {
+  return (
+    <>
+      {state.screen === "home" && (
+        <HomeScreen
+          state={state}
+          seenArtworks={seenArtworks}
+          isAuthenticated={!!user}
+          onStartVisit={actions.startVisit}
+          onSetLocale={actions.setLocale}
+          onSignInWithEmail={signInWithEmail}
+          onSignInWithGoogle={signInWithGoogle}
+        />
+      )}
+      {state.screen === "camera" && (
+        <CameraScreen
+          state={state}
+          onCapture={actions.recognizeFrame}
+          onGoProgress={() => actions.goto("progress")}
+          onGoHome={() => actions.goto("home")}
+        />
+      )}
+      {state.screen === "card" && (
+        <CardScreen
+          state={state}
+          onSetMode={actions.setMode}
+          onBack={() => actions.goto("camera")}
+          onAddToVisit={actions.addToVisit}
+          onToggleFavorite={actions.toggleFavorite}
+          onGoProgress={() => actions.goto("progress")}
+        />
+      )}
+      {state.screen === "progress" && (
+        <ProgressScreen
+          state={state}
+          seenArtworks={seenArtworks}
+          onBack={() => actions.goto("camera")}
+          onContinueScanning={() => actions.goto("camera")}
+          onCompleteVisit={actions.completeVisit}
+        />
+      )}
+      {state.screen === "recap" && (
+        <RecapScreen state={state} seenArtworks={seenArtworks} onNewVisit={actions.newVisit} />
+      )}
+    </>
+  );
+}
+
 // Lives at "/" (root) so an installed icon or a bare domain visit lands
 // visitors straight in the working app, not the developer-facing design
 // system — that one moved to /design (app/design/page.tsx).
 //
-// Rendered edge-to-edge on a phone; centered in a fixed mobile frame on
-// wider viewports so it's testable from a desktop browser during `npm run
-// dev` without a physical device.
+// Below the desktop breakpoint (spec §39: <1100px, which covers today's
+// mobile AND the not-yet-designed tablet range unchanged): the original
+// full-viewport-on-phone / boxed-on-black-on-wider-screens behavior,
+// byte-for-byte. At >=1100px: DesktopShell (desktop rebuild spec §68 Phase
+// 1) instead of the black box. isDesktop starts `null` (see useIsDesktop)
+// and the mobile branch is the fallback during that window, so a real
+// mobile visitor never sees any flash of desktop layout — only a real
+// desktop visitor briefly sees the old boxed layout for one paint before
+// this resolves true.
 export default function AppPage() {
   const { state, seenArtworks, actions } = useElyioApp();
   const { user, signInWithEmail, signInWithGoogle } = useAuth();
+  const isDesktop = useIsDesktop();
 
   // Links every event fired after this point (visit_started onward, per
   // useAuth's SIGNED_IN-gated onboarding_completed) to the real Supabase
@@ -35,51 +112,38 @@ export default function AppPage() {
     if (user) identify(user.id);
   }, [user]);
 
+  const screens = (
+    <AppScreens
+      state={state}
+      seenArtworks={seenArtworks}
+      actions={actions}
+      user={user}
+      signInWithEmail={signInWithEmail}
+      signInWithGoogle={signInWithGoogle}
+    />
+  );
+
+  // display:contents -- a landmark for the accessibility tree only. It
+  // generates no box of its own, so it changes nothing about either
+  // branch's actual layout (fixed/inset-0 sizing below, DesktopShell's own
+  // layout) -- pixel-identical either way, just now reachable as <main>.
+  if (isDesktop) {
+    return (
+      <main style={{ display: "contents" }}>
+        <DesktopShell locale={state.locale} onSetLocale={actions.setLocale}>
+          {screens}
+        </DesktopShell>
+      </main>
+    );
+  }
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
-      <div className="relative w-full h-full sm:max-w-[430px] sm:h-[min(932px,100vh)] sm:rounded-[44px] sm:overflow-hidden bg-[#FAFAF9] sm:shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
-        {state.screen === "home" && (
-          <HomeScreen
-            state={state}
-            seenArtworks={seenArtworks}
-            isAuthenticated={!!user}
-            onStartVisit={actions.startVisit}
-            onSetLocale={actions.setLocale}
-            onSignInWithEmail={signInWithEmail}
-            onSignInWithGoogle={signInWithGoogle}
-          />
-        )}
-        {state.screen === "camera" && (
-          <CameraScreen
-            state={state}
-            onCapture={actions.recognizeFrame}
-            onGoProgress={() => actions.goto("progress")}
-            onGoHome={() => actions.goto("home")}
-          />
-        )}
-        {state.screen === "card" && (
-          <CardScreen
-            state={state}
-            onSetMode={actions.setMode}
-            onBack={() => actions.goto("camera")}
-            onAddToVisit={actions.addToVisit}
-            onToggleFavorite={actions.toggleFavorite}
-            onGoProgress={() => actions.goto("progress")}
-          />
-        )}
-        {state.screen === "progress" && (
-          <ProgressScreen
-            state={state}
-            seenArtworks={seenArtworks}
-            onBack={() => actions.goto("camera")}
-            onContinueScanning={() => actions.goto("camera")}
-            onCompleteVisit={actions.completeVisit}
-          />
-        )}
-        {state.screen === "recap" && (
-          <RecapScreen state={state} seenArtworks={seenArtworks} onNewVisit={actions.newVisit} />
-        )}
+    <main style={{ display: "contents" }}>
+      <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
+        <div className="relative w-full h-full sm:max-w-[430px] sm:h-[min(932px,100vh)] sm:rounded-[44px] sm:overflow-hidden bg-[#FAFAF9] sm:shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
+          {screens}
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

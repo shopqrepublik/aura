@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+/* Desktop rebuild breakpoints (spec §39/§68 Phase 1) -- registering these in
+   the --breakpoint-* namespace makes Tailwind generate real `desktop:` /
+   `desktop-lg:` variants (min-width media queries), the same mechanism as
+   the built-in sm:/md:/lg:. Named rather than reusing lg:/xl: so the
+   desktop-shell code reads as intentional (1100/1440, the spec's own
+   numbers) instead of coincidentally matching Tailwind's defaults (1024/1280).
+   Mobile (<=767) and the yet-undesigned tablet range (768-1099) are
+   deliberately NOT given named breakpoints yet -- Phase 1 only ships the
+   desktop shell; existing sm: usage (app/page.tsx's mobile box) is
+   untouched. */
+@theme {
+  --breakpoint-desktop: 1100px;
+  --breakpoint-desktop-lg: 1440px;
+}
+
 /* ELYIO design tokens — see D:\AURA\design\ELYIO-FINAL-PROMPT.md.
    Values are used mostly via Tailwind arbitrary syntax (bg-[#FAFAF9] etc.)
    to match the reference build exactly; these CSS vars exist for the few
@@ -34,6 +49,24 @@
   --hairline-strong: rgba(30, 27, 22, 0.17);
 
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+
+  /* Desktop rebuild palette (spec §11) -- layout/atmosphere tokens for the
+     desktop shell only (app/page.tsx's mobile branch keeps using the
+     --color-* and --elyio-* tokens above, untouched). Deliberately a
+     separate namespace, not a replacement: mobile and desktop are allowed
+     to want slightly different warm-paper values without one silently
+     drifting the other. */
+  --desktop-canvas: #F6F2EA;
+  --desktop-paper: #FBF8F2;
+  --desktop-paper-deep: #EDE6DA;
+
+  --desktop-ink: #181714;
+  --desktop-ink-soft: #302E29;
+
+  --desktop-secondary: #67635C;
+  --desktop-tertiary: #8B867E;
+
+  --desktop-line: rgba(30, 27, 22, 0.10);
 }
 
 * {

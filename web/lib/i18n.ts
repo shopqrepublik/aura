@@ -107,6 +107,59 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     "zh-Hans": "匿名参观统计 · 不出售或共享任何数据",
   },
 
+  // Desktop shell (desktop-rebuild spec, hero refinement pass) -- header
+  // nav labels and the phone-handoff row. "How it works" / "Experience" /
+  // "Your visits" are rendered as inert labels (not links) in
+  // DesktopHeader.tsx: there's nothing to point them at yet (no Journey/
+  // Recap sections on desktop), so this is honest visual completeness for
+  // the header composition, not a promise of working navigation.
+  desktop_nav_how_it_works: { en: "How it works", fr: "Comment ça marche", "zh-Hans": "使用方法" },
+  desktop_nav_experience: { en: "Experience", fr: "L'expérience", "zh-Hans": "体验" },
+  desktop_nav_your_visits: { en: "Your visits", fr: "Vos visites", "zh-Hans": "我的参观" },
+  desktop_install_elyio: { en: "Install ELYIO", fr: "Installer ELYIO", "zh-Hans": "安装 ELYIO" },
+  desktop_open_on_phone: { en: "Open on your phone", fr: "Ouvrir sur votre téléphone", "zh-Hans": "在手机上打开" },
+  desktop_scan_to_continue: { en: "Scan to continue", fr: "Scannez pour continuer", "zh-Hans": "扫码继续" },
+  desktop_available_platforms: { en: "Available on iOS & Android", fr: "Disponible sur iOS et Android", "zh-Hans": "支持 iOS 和安卓" },
+
+  // Desktop Journey section (hero-refinement round 3) -- reuses the exact
+  // three-chapter structure/copy already established in the desktop spec
+  // (§30 of the original brief): Scan / Understand / Reveal.
+  desktop_journey_eyebrow: { en: "From looking to understanding", fr: "Du regard à la compréhension", "zh-Hans": "从观看到理解" },
+  desktop_journey_scan_title: { en: "Scan", fr: "Scanner", "zh-Hans": "扫描" },
+  desktop_journey_scan_body: {
+    en: "Point your phone at a work of art. ELYIO identifies it in seconds.",
+    fr: "Pointez votre téléphone vers une œuvre. ELYIO l'identifie en quelques secondes.",
+    "zh-Hans": "用手机对准一件艺术品，ELYIO 几秒内即可识别。",
+  },
+  desktop_journey_understand_title: { en: "Understand", fr: "Comprendre", "zh-Hans": "理解" },
+  desktop_journey_understand_body: {
+    en: "Learn the story, the artist and the historical context behind the work.",
+    fr: "Découvrez l'histoire, l'artiste et le contexte historique de l'œuvre.",
+    "zh-Hans": "了解作品背后的故事、艺术家与历史背景。",
+  },
+  desktop_journey_reveal_title: { en: "Reveal", fr: "Révéler", "zh-Hans": "揭示" },
+  desktop_journey_reveal_body: {
+    en: "Discover researched market context based on comparable public sales.",
+    fr: "Découvrez un contexte de marché documenté, basé sur des ventes publiques comparables.",
+    "zh-Hans": "基于可比公开拍卖记录，了解经过研究的市场行情。",
+  },
+
+  // Desktop Recap strip -- deliberately reuses real demo catalog data
+  // (see components/desktop/RecapStrip.tsx) instead of the reference
+  // mockup's literal "€3.8B" -- this project has never shown an invented
+  // number anywhere else (RecapScreen.tsx, ProvenanceReveal, etc. all
+  // compute real sums or show "pending review"), so the desktop marketing
+  // strip doesn't get an exception.
+  desktop_recap_eyebrow: { en: "Your visit recap", fr: "Le récapitulatif de votre visite", "zh-Hans": "参观回顾" },
+  desktop_recap_you_saw: { en: "You saw", fr: "Vous avez vu", "zh-Hans": "您已欣赏" },
+  desktop_recap_of_art: { en: "of art.", fr: "d'œuvres d'art.", "zh-Hans": "的艺术品。" },
+  desktop_recap_sub: {
+    en: "Every visit becomes a record of what you discovered.",
+    fr: "Chaque visite devient la trace de ce que vous avez découvert.",
+    "zh-Hans": "每一次参观，都会成为您发现的记录。",
+  },
+  desktop_recap_view: { en: "View your recap", fr: "Voir votre récapitulatif", "zh-Hans": "查看您的回顾" },
+
   // Real registration (email magic link + Google; Apple deferred), shown
   // on Home before "Begin your visit" is reachable at all -- free for
   // everyone, no paywall, just a real identity behind the visit.

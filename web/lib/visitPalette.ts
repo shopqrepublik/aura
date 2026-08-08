@@ -151,7 +151,7 @@ export function paintGrainCanvas(ctx: CanvasRenderingContext2D, width: number, h
 }
 
 /** Routes a Wikimedia image URL through our own backend's /v1/image-proxy
- * (server-side fetch + 512px resize + on-disk cache, see backend/app/main.py)
+ * (server-side fetch + resize + on-disk cache, see backend/app/main.py)
  * instead of loading it directly -- canvas.drawImage() refuses cross-origin
  * Wikimedia images outright even with img.crossOrigin set (confirmed live:
  * fetch(url, {mode:"cors"}) against the actual commons.wikimedia.org redirect
@@ -159,9 +159,16 @@ export function paintGrainCanvas(ctx: CanvasRenderingContext2D, width: number, h
  * backend re-serves the same bytes from an origin that does. Exported: also
  * used by HomeScreen.tsx for the hero image, which doesn't need CORS itself
  * (plain <img>, no canvas) but reuses this endpoint's cache/resize rather
- * than hotlinking Wikimedia directly on every Home-screen visit. */
-export function proxyImageUrl(url: string): string {
-  return `${BACKEND_URL}/v1/image-proxy?url=${encodeURIComponent(url)}`;
+ * than hotlinking Wikimedia directly on every Home-screen visit.
+ *
+ * `width` is omitted by default (backend defaults to its existing 512px),
+ * so every pre-existing caller is unaffected -- pass it explicitly for a
+ * larger render (e.g. the desktop atmospheric backdrop, which needs up to
+ * 1200px; the backend clamps to [64, 2048], see image_proxy()'s own doc
+ * comment for why). */
+export function proxyImageUrl(url: string, width?: number): string {
+  const base = `${BACKEND_URL}/v1/image-proxy?url=${encodeURIComponent(url)}`;
+  return width ? `${base}&width=${width}` : base;
 }
 
 /** Generic crossOrigin-anonymous image loader with a hard timeout -- the
