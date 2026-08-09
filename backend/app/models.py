@@ -123,6 +123,28 @@ class User(Base):
     visits = relationship("Visit", back_populates="user")
 
 
+class UncatalogedSighting(Base):
+    """Tier 2 recognition log (Phase 2 multi-museum §2) -- every time Stage 1
+    open recognition names a real artist/title that fuzzy_match_catalog
+    can't place in DEMO_ARTWORKS, this records it. One row per distinct
+    (artist, title) pair (upserted, not one row per scan) -- this is a
+    prioritization signal for which uncataloged works are actually being
+    photographed often enough to be worth reviewing into the real catalog,
+    not a per-visit analytics log (that's visit_artworks' job, and only
+    covers works that ARE in the catalog)."""
+    __tablename__ = "uncataloged_sightings"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    artist = Column(String, nullable=False)
+    title = Column(String, nullable=False)
+    # Nullable: recognize() has no auth/visit context, so museum_id is only
+    # ever what the caller's own RecognizeRequest.museum_id claims -- honest
+    # best-effort provenance, not a verified location.
+    museum_id = Column(String, ForeignKey("museums.id"), nullable=True)
+    count = Column(Integer, default=1, nullable=False)
+    first_seen_at = Column(DateTime, default=now)
+    last_seen_at = Column(DateTime, default=now, onupdate=now)
+
+
 class Mission(Base):
     __tablename__ = "missions"
     id = Column(String, primary_key=True)

@@ -77,7 +77,7 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 # Supabase JWT and persists to real Postgres (see app/db.py, app/auth.py).
 from .auth import get_current_user  # noqa: E402
 from .db import get_db  # noqa: E402
-from .models import User, Visit, VisitArtwork  # noqa: E402
+from .models import Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -693,6 +693,43 @@ class VisitArtworkAdd(BaseModel):
     added: bool = False
 
 
+def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museum_id: Optional[str]) -> None:
+    """Tier 2 (Phase 2 §2): best-effort, upserted by (artist, title) -- never
+    raises, and never requires DATABASE_URL to be set. recognize() has
+    always worked without a database configured (recognition itself has no
+    DB dependency, unlike /v1/visits*), and this logging is a nice-to-have
+    prioritization signal for the catalog team, not something that should
+    turn "DB not configured" into "recognition is now broken" -- same
+    "degrade, don't crash" convention as OPENAI_API_KEY's mock fallback and
+    the frontend's best-effort visit tracking (lib/app-state.ts's
+    startVisit)."""
+    if not artist or not title:
+        return
+    from .db import SessionLocal
+
+    if SessionLocal is None:
+        return
+    db = SessionLocal()
+    try:
+        row = (
+            db.query(UncatalogedSighting)
+            .filter(UncatalogedSighting.artist == artist, UncatalogedSighting.title == title)
+            .first()
+        )
+        if row:
+            row.count += 1
+            row.last_seen_at = datetime.now(timezone.utc)
+            if museum_id and not row.museum_id:
+                row.museum_id = museum_id
+        else:
+            db.add(UncatalogedSighting(artist=artist, title=title, museum_id=museum_id))
+        db.commit()
+    except Exception:
+        db.rollback()
+    finally:
+        db.close()
+
+
 # ---- Recognition (§12, §8.3 confidence policy) -------------------------
 @app.post("/v1/recognize", response_model=RecognizeResponse)
 def recognize(req: RecognizeRequest):
@@ -711,6 +748,11 @@ def recognize(req: RecognizeRequest):
         recognized_but_not_cataloged = result.get("recognized_but_not_cataloged")
 
         if not artwork_id or artwork_id not in {a["id"] for a in DEMO_ARTWORKS}:
+            if recognized_but_not_cataloged:
+                _log_uncataloged_sighting(
+                    recognized_but_not_cataloged.get("artist"),
+                    recognized_but_not_cataloged.get("title"), req.museum_id,
+                )
             return RecognizeResponse(status="no_match", confidence=confidence,
                                       recognized_but_not_cataloged=recognized_but_not_cataloged)
         if confidence >= CONFIDENCE_AUTO:
@@ -732,6 +774,28 @@ def recognize(req: RecognizeRequest):
                                   confidence=confidence, alternatives=alts)
     else:
         return RecognizeResponse(status="no_match", confidence=confidence)
+
+
+# ---- Museums (Phase 2 §1: geofence generalization) -----------------------
+class MuseumOut(BaseModel):
+    id: str
+    name: str
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    geofence_radius_m: int
+
+
+@app.get("/v1/museums", response_model=List[MuseumOut])
+def list_museums(db: Session = Depends(get_db)):
+    """Public, unauthenticated (like /v1/artworks) -- the frontend's
+    useMuseumDetection (lib/geolocation.ts) fetches this ONCE on mount and
+    checks the visitor's GPS position against every row's own
+    (lat, lng, geofence_radius_m), instead of a single hardcoded museum's
+    coordinates. Adding a second real museum is then a DATABASE row (see
+    backend/scripts/init_db.py's seed block), not a code change on either
+    side -- this endpoint and the frontend loop over it are what make that
+    true, no other wiring needed."""
+    return db.query(Museum).all()
 
 
 # ---- Artworks -----------------------------------------------------------
