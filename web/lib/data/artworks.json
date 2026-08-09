@@ -124,6 +124,7 @@
       "fr": "Refusé par le Salon officiel en 1863, il devient le scandale fondateur de la peinture moderne.",
       "zh-Hans": "1863年被官方沙龙拒绝展出，此后却成为现代绘画开端的标志性丑闻。"
     },
+    "contentFlag": "Full frontal nude woman seated among two fully-dressed men in a park, plus a second, semi-nude woman bathing in the background -- verified by viewing the actual image, not assumed from the title. Comparable in explicitness to Cabanel's Birth of Venus (contentFlag: idealized nude, resolved, stays unrestricted), and arguably the single most historically significant nude in the catalog (the 1863 Salon scandal often cited as modern painting's founding moment). Product decision (resolved): stays in Kids mode; Kids why/where/rarity already redirect to the still-life detail (the spilled picnic basket) and the Salon-rejection history rather than describing the body -- see whyKids/whereKids/rarityKids.",
     "whySimple": {
       "en": "Manet painted a nude woman sitting with dressed men in a real park, not in a myth. This shocked Paris — art was only supposed to look like this for gods and heroes, not ordinary life.",
       "fr": "Manet peint une femme nue assise parmi des hommes habillés, dans un vrai parc et non dans un mythe. Cela choqua Paris — on pensait que l'art ne devait montrer cela que pour des dieux ou des héros, pas pour la vie ordinaire.",
@@ -839,6 +840,7 @@
       "fr": "L'une des œuvres les plus vastes et personnelles de Courbet, sous-titrée « allégorie réelle déterminant une phase de sept années de ma vie artistique ».",
       "zh-Hans": "这是库尔贝规模最大、最具个人色彩的作品之一，副标题为“概括我七年艺术生涯的一则真实寓言”。"
     },
+    "contentFlag": "A partially-draped nude female model stands beside Courbet's easel, one figure among roughly twenty fully-clothed critics/collectors/friends in a large allegorical crowd scene -- verified by viewing the actual image. The nude is present but not the composition's sole subject (unlike Olympia/Birth of Venus/The Source). Product decision (resolved): stays in Kids mode; Kids why/where/rarity already redirect to the painting-within-a-painting detail and Courbet's own 'seven years of my artistic life' framing rather than the model -- see whyKids/whereKids/rarityKids.",
     "whySimple": {
       "en": "Courbet paints himself in the middle of French society — critics, art buyers, a model, and even the country's history all fit inside his studio.",
       "fr": "Courbet se peint au centre de la société française — critiques, collectionneurs, un modèle et même l'histoire du pays tiennent tous dans son atelier.",
@@ -1017,6 +1019,7 @@
       "fr": "Commencé dans les années 1820 et achevé seulement des décennies plus tard, il devint l'un des nus les plus copiés de l'art occidental.",
       "zh-Hans": "此画始于19世纪20年代，数十年后才最终完成，后来成为西方艺术中被临摹最多的裸体画之一。"
     },
+    "contentFlag": "Single full-frontal standing nude figure, the entire subject of the painting -- verified by viewing the actual image. Same category as Cabanel's Birth of Venus / Bouguereau's Oreads (idealized nude as sole subject, no narrative to redirect to). Product decision (resolved, reviewed per-case with the user): stays in Kids mode; Kids why/where/rarity already focus entirely on Ingres's 25-year pursuit of a single continuous line as a technical exercise, not the body -- see whyKids/whereKids/rarityKids.",
     "whySimple": {
       "en": "Ingres spent more than 25 years perfecting this one idealized figure. For him, a perfect line and perfect proportions mattered more than telling a story.",
       "fr": "Ingres a passé plus de 25 ans à parfaire cette unique figure idéalisée. Pour lui, une ligne parfaite et des proportions parfaites comptaient plus que le récit.",
@@ -2758,6 +2761,7 @@
       "fr": "Courbet retravailla ce tableau sur environ une décennie, transformant une scène tendre avec sa compagne en cet autoportrait symbolique de douleur affective après qu'elle l'eut quitté.",
       "zh-Hans": "库尔贝花了大约十年时间反复修改这幅画，把一幕与伴侣的温情场景，逐渐转变成了这幅象征着她离开后内心伤痛的自画像。"
     },
+    "contentFlag": "Self-portrait, fully clothed, eyes closed, calm/serene expression, with a small non-graphic bloodstain on the shirt near the chest -- verified by viewing the actual image, no visible wound or weapon depicted. Milder than the nudity cluster; closer in kind to the already-reviewed heavy-but-not-explicit cases (Camille Monet's deathbed, Hopital Saint-Paul). Product decision (resolved, reviewed per-case with the user): stays in Kids mode, no rewrite needed -- existing whyKids/whereKids already frame it as calm/peaceful with a hidden-secret hook and never mention blood or injury at all.",
     "whySimple": {
       "en": "Courbet painted himself looking wounded, resting against a tree with his eyes closed and a small bloodstain on his shirt. But it's not really about a battle — he originally painted a woman next to him and changed it years later after they broke up.",
       "fr": "Courbet s'est peint lui-même avec l'air blessé, reposant contre un arbre, les yeux fermés, avec une petite tache de sang sur sa chemise. Mais ce n'est pas vraiment une histoire de bataille — il avait d'abord peint une femme à côté de lui, puis a changé le tableau des années plus tard après leur rupture.",
