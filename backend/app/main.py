@@ -14,17 +14,34 @@ full history with numbers):
      text similarity alone can't be both permissive (to recover legitimate
      translations/paraphrases) and safe (to reject a model that confidently
      misidentifies a photo as a *different real* catalog painting) — see (4).
-  4. Current — hybrid: open recognition -> fuzzy_match_catalog() (candidate
-     screen, not a final answer) -> visual_verify_single_candidate() (ONE
-     reference image, only when a candidate was actually found). Two fast
-     paths skip the vision call entirely: nothing recognized, or nothing
-     catalog-adjacent by text. Text matching's job is now recall (find
-     plausible candidates, tolerate false positives like the model saying
-     "Study of Olympia" scoring high against our "Olympia" entry); the
-     visual step's job is precision (reject same-title/same-artist
+  4. Hybrid, single candidate: open recognition -> fuzzy_match_catalog()
+     (candidate screen, not a final answer) -> visual_verify_single_candidate()
+     (ONE reference image, only when a candidate was actually found). Two
+     fast paths skip the vision call entirely: nothing recognized, or
+     nothing catalog-adjacent by text. Text matching's job is now recall
+     (find plausible candidates, tolerate false positives like the model
+     saying "Study of Olympia" scoring high against our "Olympia" entry);
+     the visual step's job is precision (reject same-title/same-artist
      look-alikes that don't actually match on pixels — this is what catches
      a Cézanne still life confidently misidentified as a different, real
      Cézanne still life, which pure text similarity structurally cannot).
+  5. Current — hybrid, runner-up retry: a full 101-image self-recognition
+     audit found 23/26 no-matches were the TOP text candidate being
+     correctly rejected at the visual stage because it was the WRONG
+     catalog entry (fuzzy_match_catalog only ever tried its single best
+     text match, and a same-artist decoy can coincidentally out-score the
+     true match when the model answers in a different title language —
+     rapidfuzz's char-level ratio doesn't know French from noise, and
+     "Manet"/"Monet" are one Levenshtein edit apart). Now retries
+     visual_verify_single_candidate() against fuzzy_match_catalog()'s
+     runner-up when the top candidate fails — one extra vision call, only
+     on an already-rejected top candidate, so this can't slow down an
+     already-successful match and doesn't touch the confident-wrong
+     guarantee (Stage 2 is still the only path to a returned artwork_id).
+     A real but partial fix: recovers some of the 23 (confirmed against
+     Régates à Argenteuil, Vue de toits, Portrait of the Artist with the
+     Yellow Christ) but not all of them (Luncheon on the Grass, Lola de
+     Valence still fail — their true match wasn't the runner-up either).
 
 Requires OPENAI_API_KEY in the environment (or a .env file, see
 .env.example). Falls back to the old random mock if the key is missing, so
@@ -571,15 +588,34 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
 def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional[str]) -> dict:
     """
     Hybrid: open recognition (no candidate list) -> fuzzy text match against
-    DEMO_ARTWORKS -> ONE visual verification call, but only when a candidate
-    was actually found. Two fast paths skip the visual call entirely (model
-    recognized nothing, or nothing in the catalog is even textually close);
-    only a real candidate pays the extra latency. See FUZZY_CANDIDATE_THRESHOLD
-    and visual_verify_single_candidate() for why both stages are necessary —
-    neither alone can be both safe and accurate. Layer 2 editorial content
-    (estimates, why/where/rarity) is still only ever pulled from our reviewed
-    database after a confirmed match — the model never generates it, at
-    either stage.
+    DEMO_ARTWORKS -> up to TWO visual verification calls, but only when a
+    candidate was actually found. Two fast paths skip the visual call
+    entirely (model recognized nothing, or nothing in the catalog is even
+    textually close); only a real candidate pays the extra latency. See
+    FUZZY_CANDIDATE_THRESHOLD and visual_verify_single_candidate() for why
+    both stages are necessary — neither alone can be both safe and
+    accurate. Layer 2 editorial content (estimates, why/where/rarity) is
+    still only ever pulled from our reviewed database after a confirmed
+    match — the model never generates it, at either stage.
+
+    Runner-up retry (full-catalog audit, 2026-08): on a full 101-image
+    self-recognition run, 23/26 no-matches had visual_verify correctly
+    reject the TOP text candidate -- because it was the WRONG catalog
+    entry, not the true source. Cause: fuzzy_match_catalog only ever tried
+    its single best-scoring candidate; when the model answers in French (or
+    another non-catalog title variant), its text score against the TRUE
+    match can end up lower than a same-artist decoy's coincidental score
+    (rapidfuzz's character-level ratio doesn't know French from noise, and
+    "Manet"/"Monet" are one Levenshtein edit apart, which can tip the
+    artist-similarity component too). Spot-checking runner_up against those
+    same cases: it recovers the true match in some (Régates à Argenteuil,
+    Vue de toits, Portrait of the Artist with the Yellow Christ) but not
+    all (Luncheon on the Grass, Lola de Valence) -- a real, partial
+    improvement, not a full fix. Trying the runner-up costs one extra
+    visual_verify call, and ONLY when the top candidate was already
+    rejected, so it can't make an already-fast match slower, and Stage 2 is
+    still the only thing that can ever return an artwork_id either way --
+    this doesn't loosen the confident-wrong guarantee at all.
     """
     ident = recognize_open(image_base64, museum_id)
     artist, title = ident.get("artist"), ident.get("title")
@@ -598,18 +634,27 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
         }
 
     verdict = visual_verify_single_candidate(image_base64, match)  # slow path
-    if not verdict.get("is_match"):
-        return {
-            "artwork_id": None,
-            "confidence": 0.0,
-            "alternatives": [],
-            "recognized_but_not_cataloged": {"artist": artist, "title": title},
-        }
+    if verdict.get("is_match"):
+        visual_confidence = float(verdict.get("confidence", 0) or 0)
+        final_confidence = min(model_confidence, visual_confidence)
+        alternatives = [runner_up["id"]] if runner_up else []
+        return {"artwork_id": match["id"], "confidence": final_confidence, "alternatives": alternatives}
 
-    visual_confidence = float(verdict.get("confidence", 0) or 0)
-    final_confidence = min(model_confidence, visual_confidence)
-    alternatives = [runner_up["id"]] if runner_up else []
-    return {"artwork_id": match["id"], "confidence": final_confidence, "alternatives": alternatives}
+    # Top candidate visually rejected -- try the runner-up (if the text
+    # match considered one plausible enough) before giving up entirely.
+    if runner_up:
+        runner_verdict = visual_verify_single_candidate(image_base64, runner_up)
+        if runner_verdict.get("is_match"):
+            visual_confidence = float(runner_verdict.get("confidence", 0) or 0)
+            final_confidence = min(model_confidence, visual_confidence)
+            return {"artwork_id": runner_up["id"], "confidence": final_confidence, "alternatives": [match["id"]]}
+
+    return {
+        "artwork_id": None,
+        "confidence": 0.0,
+        "alternatives": [],
+        "recognized_but_not_cataloged": {"artist": artist, "title": title},
+    }
 
 
 # ---- Schemas ----------------------------------------------------------
