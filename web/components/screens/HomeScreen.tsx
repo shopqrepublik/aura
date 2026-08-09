@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { preload } from "react-dom";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { MISSIONS, missionLabel } from "@/lib/artworks";
 import { isMissionComplete } from "@/lib/missions";
@@ -62,6 +63,13 @@ export default function HomeScreen({
   const [showMuseumSheet, setShowMuseumSheet] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  // LCP element on mobile (Lighthouse-flagged) -- hoists a <link
+  // rel="preload" as="image" fetchPriority="high"> into <head> via React
+  // 19's resource-preloading API, same URL as the actual hero <img> below
+  // so the browser dedupes the preload against the real fetch instead of
+  // downloading it twice.
+  preload(proxyImageUrl(HERO_IMAGE_URL), { as: "image", fetchPriority: "high" });
+
   const isReturning = state.visitStarted;
 
   const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
@@ -97,6 +105,7 @@ export default function HomeScreen({
         <img
           src={proxyImageUrl(HERO_IMAGE_URL)}
           alt=""
+          fetchPriority="high"
           className="w-full h-full object-cover"
           style={{ filter: "saturate(0.72) contrast(0.92) brightness(0.96)" }}
         />
@@ -154,6 +163,13 @@ export default function HomeScreen({
           onClick={() => setShowMuseumSheet(true)}
           className="flex items-center gap-2"
         >
+          {/* Lighthouse tap-target audit: the visual dot stays 7x7 (it's a
+              status indicator, not meant to look like a button), but the
+              actual hit area grows to the 24x24 WCAG 2.5.8 minimum via
+              negative margin -- the box lays out as if it were still 7x7
+              (same -8.5px margin on all sides pulls the extra 17px back out
+              of the surrounding flex gap), so nothing around it shifts,
+              only the invisible clickable/tappable region grows. */}
           <span
             role="button"
             tabIndex={0}
@@ -162,8 +178,11 @@ export default function HomeScreen({
               e.stopPropagation();
               if (museumStatus === "manual-prompt") setShowConfirm((v) => !v);
             }}
-            className={`w-[7px] h-[7px] rounded-full shrink-0 ${dotClass}`}
-          />
+            className="shrink-0 flex items-center justify-center"
+            style={{ width: 24, height: 24, margin: "-8.5px" }}
+          >
+            <span className={`w-[7px] h-[7px] rounded-full ${dotClass}`} />
+          </span>
           <div className="text-left" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
             <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[rgba(247,241,230,0.92)]">
               MUSÉE D&apos;ORSAY
@@ -244,8 +263,22 @@ export default function HomeScreen({
             {tt("home_hero_title", state.locale)}
           </h1>
           <p
-            style={{ textShadow: "0 1px 2px rgba(0,0,0,0.55), 0 1px 6px rgba(0,0,0,0.35)" }}
-            className="mt-[20px] text-[16px] leading-[23px] text-[rgba(247,241,230,0.86)] max-w-[325px]"
+            // Lighthouse contrast audit flagged this specific paragraph (the
+            // title above is large-text so it clears WCAG's more lenient
+            // 3:1 threshold; this is 16px body text needing 4.5:1). Text-shadow
+            // alone isn't reliably counted by automated contrast checkers --
+            // they measure foreground vs. actual background pixel color -- so
+            // this pairs a stronger shadow with a real solid-ish backdrop
+            // scoped to just this block, not a change to the shared scrim
+            // gradient (which would also shift the title/other hero text).
+            style={{
+              textShadow: "0 1px 3px rgba(0,0,0,0.75), 0 2px 10px rgba(0,0,0,0.55)",
+              background: "rgba(8,7,5,0.34)",
+              borderRadius: 10,
+              padding: "6px 10px",
+              margin: "20px -10px 0",
+            }}
+            className="text-[16px] leading-[23px] text-[rgba(247,241,230,0.86)] max-w-[325px] inline-block"
           >
             {tt("home_hero_subtitle", state.locale)}
           </p>
