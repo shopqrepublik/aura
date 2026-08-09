@@ -1,15 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-// Mirrors backend/app/models.py Museum's real current values (lat/lng
-// aren't set as Python column defaults there, only geofence_radius_m is
-// -- 48.8600, 2.3266 is the actual Musée d'Orsay row). Duplicated here
-// rather than fetched, since there's no shared config layer between web/
-// and backend/ yet and this is a frontend-only feature (§6 step 2) that
-// doesn't touch recognition.
-export const MUSEUM_COORDS = { lat: 48.86, lng: 2.3266 };
-export const GEOFENCE_RADIUS_M = 150;
+import { getMuseums, type Museum } from "./api";
 
 function haversineDistanceMeters(
   a: { lat: number; lng: number },
@@ -33,6 +25,11 @@ function haversineDistanceMeters(
 // under the user's finger mid-tap.
 export type MuseumStatus = "checking" | "detected" | "manual-prompt" | "manual-confirmed";
 
+// Phase 2 §1 -- generalized from a single hardcoded Musée d'Orsay coordinate
+// pair to "nearest museum, in ITS OWN geofence_radius_m, out of whatever the
+// backend's /v1/museums returns". Adding a second real museum is then a
+// database row (backend/scripts/init_db.py's seed block), not a code change
+// here -- this hook and the endpoint it calls are what make that true.
 export function useMuseumDetection() {
   // Always starts "checking" on BOTH server and client -- a lazy
   // initializer branching on `typeof navigator !== "undefined"` looked safe
@@ -47,31 +44,73 @@ export function useMuseumDetection() {
   // same pattern this app already uses for RecapScreen/ProgressScreen's
   // `now` starting null.
   const [status, setStatus] = useState<MuseumStatus>("checking");
+  const [museums, setMuseums] = useState<Museum[]>([]);
+  const [museum, setMuseum] = useState<Museum | null>(null);
 
   useEffect(() => {
-    if (typeof navigator === "undefined" || !("geolocation" in navigator)) {
-      setStatus("manual-prompt");
-      return;
-    }
-    // Explicit, visible permission request on Home-screen mount (§6 step 2)
-    // -- not a silent navigator.permissions.query() precheck. Never blocks
-    // the app: any failure (denied, timeout, position unavailable) or an
-    // in-range-but-too-far result both just fall back to manual
-    // confirmation (§4.1 -- GPS/geofence OR manual, both valid paths).
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const distance = haversineDistanceMeters(
-          { lat: position.coords.latitude, lng: position.coords.longitude },
-          MUSEUM_COORDS
+    let cancelled = false;
+
+    getMuseums()
+      .then((list) => {
+        if (cancelled) return;
+        setMuseums(list);
+
+        if (typeof navigator === "undefined" || !("geolocation" in navigator)) {
+          setStatus("manual-prompt");
+          return;
+        }
+        // Explicit, visible permission request on Home-screen mount (§6 step 2)
+        // -- not a silent navigator.permissions.query() precheck. Never blocks
+        // the app: any failure (denied, timeout, position unavailable) or a
+        // position that isn't within ANY known museum's own radius both just
+        // fall back to manual confirmation (§4.1 -- GPS/geofence OR manual,
+        // both valid paths).
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            if (cancelled) return;
+            const here = { lat: position.coords.latitude, lng: position.coords.longitude };
+            // Nearest-within-its-own-radius, not just nearest overall -- a
+            // visitor 2km from museum A and 3km from museum B is inside
+            // neither's geofence and should still get "manual-prompt", not
+            // a false "detected" for whichever happens to be closer.
+            let nearest: { m: Museum; distance: number } | null = null;
+            for (const m of list) {
+              if (m.lat == null || m.lng == null) continue;
+              const distance = haversineDistanceMeters(here, { lat: m.lat, lng: m.lng });
+              if (distance <= m.geofence_radius_m && (!nearest || distance < nearest.distance)) {
+                nearest = { m, distance };
+              }
+            }
+            if (nearest) {
+              setMuseum(nearest.m);
+              setStatus("detected");
+            } else {
+              setStatus("manual-prompt");
+            }
+          },
+          () => setStatus("manual-prompt"),
+          { enableHighAccuracy: true, timeout: 10_000, maximumAge: 60_000 }
         );
-        setStatus(distance <= GEOFENCE_RADIUS_M ? "detected" : "manual-prompt");
-      },
-      () => setStatus("manual-prompt"),
-      { enableHighAccuracy: true, timeout: 10_000, maximumAge: 60_000 }
-    );
+      })
+      .catch(() => {
+        if (!cancelled) setStatus("manual-prompt");
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const confirmManually = () => setStatus("manual-confirmed");
+  // Defaults to the first museum in the list when the sheet doesn't specify
+  // one (today there's only ever one real row, so this matches the old
+  // hardcoded-Orsay behavior exactly) -- a real "which one did you mean"
+  // picker only matters once a second museum actually exists, which is
+  // explicitly a separate decision (not this task's scope).
+  const confirmManually = (museumId?: string) => {
+    const picked = (museumId ? museums.find((m) => m.id === museumId) : undefined) ?? museums[0] ?? null;
+    setMuseum(picked);
+    setStatus("manual-confirmed");
+  };
 
-  return { status, confirmManually };
+  return { status, museums, museum, confirmManually };
 }

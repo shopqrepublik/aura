@@ -9,10 +9,27 @@ import type { Artwork, Locale, Mode } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
 
+// Phase 2 §2 -- Stage 1 open recognition named a real artist/title, but
+// fuzzy_match_catalog couldn't place it in the reviewed catalog. Distinct
+// from "nothing recognized at all" (AppState.scanStatus === "not_identified",
+// stays on Camera) -- this is a real, honest partial result, so it gets its
+// own minimal card instead of a bare failure message. Never has estimate/
+// why/where/rarity/audio/Kids text, because none of that has been reviewed
+// for a work that isn't in the catalog at all.
+export interface UncatalogedSighting {
+  artist: string | null;
+  title: string | null;
+}
+
 export interface AppState {
   screen: Screen;
   locale: Locale;
   mode: Mode;
+  // Phase 2 §1 -- resolved once, when a visit starts (HomeScreen passes the
+  // detected/manually-confirmed museum id from useMuseumDetection), then
+  // reused for every recognize() call during that visit rather than
+  // re-deriving it per scan.
+  museumId: string | null;
   visitId: string | null;
   visitStarted: boolean;
   startTime: number | null;
@@ -20,6 +37,7 @@ export interface AppState {
   favorites: Set<string>;
   added: Set<string>;
   currentArtwork: Artwork | null;
+  uncatalogedSighting: UncatalogedSighting | null;
   lastConfidence: number;
   scanStatus: string | null; // transient message on the camera screen
   cardOpenedAt: number | null; // real wall-clock timestamp, for Deep focus
@@ -29,6 +47,7 @@ const initialState: AppState = {
   screen: "home",
   locale: "en",
   mode: "normal",
+  museumId: null,
   visitId: null,
   visitStarted: false,
   startTime: null,
@@ -36,6 +55,7 @@ const initialState: AppState = {
   favorites: new Set(),
   added: new Set(),
   currentArtwork: null,
+  uncatalogedSighting: null,
   lastConfidence: 0,
   scanStatus: null,
   cardOpenedAt: null,
@@ -48,15 +68,19 @@ export function useElyioApp() {
   const setLocale = useCallback((locale: Locale) => setState((s) => ({ ...s, locale })), []);
   const setMode = useCallback((mode: Mode) => setState((s) => ({ ...s, mode })), []);
 
-  const startVisit = useCallback(async () => {
+  // Phase 2 §1 -- museumId comes from HomeScreen's useMuseumDetection
+  // (detected via GPS or manually confirmed), not a hardcoded constant.
+  // Resolved once here and reused for every recognize() call during this
+  // visit, rather than re-checking geolocation per scan.
+  const startVisit = useCallback(async (museumId: string) => {
     setState((s) => {
       if (s.visitStarted) return s;
       track("visit_started");
-      return { ...s, visitStarted: true, startTime: Date.now() };
+      return { ...s, visitStarted: true, startTime: Date.now(), museumId };
     });
     setState((s) => {
       if (!s.visitId) {
-        api.createVisit(s.locale).then((visit) => {
+        api.createVisit(s.locale, museumId).then((visit) => {
           setState((s2) => ({ ...s2, visitId: visit.id }));
         }).catch(() => {
           // Visit tracking is best-effort — recognition still works without a
@@ -72,10 +96,27 @@ export function useElyioApp() {
     setState((s) => ({ ...s, scanStatus: "scanning" }));
     track("scan_attempt");
     try {
-      const result = await api.recognize(imageBase64, state.locale);
+      const result = await api.recognize(imageBase64, state.locale, state.museumId ?? "");
       const artwork = result.artwork_id ? getArtwork(result.artwork_id) : undefined;
 
       if (!artwork || result.status === "no_match") {
+        // Phase 2 §2 -- Tier 2: Stage 1 recognized a real artist/title, just
+        // not one fuzzy_match_catalog could place in the reviewed catalog.
+        // Gets its own minimal card instead of the bare "not_identified"
+        // failure message -- see UncatalogedSighting's doc comment above.
+        const uncataloged = result.recognized_but_not_cataloged;
+        if (uncataloged && (uncataloged.artist || uncataloged.title)) {
+          track("scan_failed", { reason: "uncataloged" });
+          setState((s) => ({
+            ...s,
+            uncatalogedSighting: uncataloged,
+            currentArtwork: null,
+            scanStatus: null,
+            screen: "card",
+            cardOpenedAt: Date.now(),
+          }));
+          return;
+        }
         track("scan_failed", { reason: result.status });
         setState((s) => ({ ...s, scanStatus: "not_identified" }));
         return;
@@ -109,6 +150,7 @@ export function useElyioApp() {
         return {
           ...s,
           currentArtwork: artwork,
+          uncatalogedSighting: null,
           lastConfidence: result.confidence,
           seen: alreadySeen ? s.seen : [...s.seen, artwork.id],
           scanStatus: null,
@@ -120,7 +162,7 @@ export function useElyioApp() {
       track("scan_failed", { reason: "error" });
       setState((s) => ({ ...s, scanStatus: "not_identified" }));
     }
-  }, [state.locale]);
+  }, [state.locale, state.museumId]);
 
   const addToVisit = useCallback(() => {
     setState((s) => {

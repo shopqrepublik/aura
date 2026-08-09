@@ -8,6 +8,7 @@ import { useIsDesktop } from "@/lib/useIsDesktop";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
 import CardScreen from "@/components/screens/CardScreen";
+import UncatalogedCardScreen from "@/components/screens/UncatalogedCardScreen";
 import ProgressScreen from "@/components/screens/ProgressScreen";
 import RecapScreen from "@/components/screens/RecapScreen";
 import DesktopShell from "@/components/desktop/DesktopShell";
@@ -59,13 +60,25 @@ function AppScreens({
           onGoHome={() => actions.goto("home")}
         />
       )}
-      {state.screen === "card" && (
+      {/* Phase 2 §2 -- Tier 1 (real catalog match) vs Tier 2 (recognized but
+          not cataloged) are two different screens sharing the "card" slot,
+          branched on which of currentArtwork/uncatalogedSighting app-state.ts
+          set -- never the same component with fields blanked out (see
+          UncatalogedCardScreen's doc comment for why). */}
+      {state.screen === "card" && state.currentArtwork && (
         <CardScreen
           state={state}
           onSetMode={actions.setMode}
           onBack={() => actions.goto("camera")}
           onAddToVisit={actions.addToVisit}
           onToggleFavorite={actions.toggleFavorite}
+          onGoProgress={() => actions.goto("progress")}
+        />
+      )}
+      {state.screen === "card" && !state.currentArtwork && state.uncatalogedSighting && (
+        <UncatalogedCardScreen
+          state={state}
+          onBack={() => actions.goto("camera")}
           onGoProgress={() => actions.goto("progress")}
         />
       )}

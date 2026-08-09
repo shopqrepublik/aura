@@ -53,12 +53,24 @@ export default function HomeScreen({
   // Begin/Continue -- a Visit now requires a real user_id server-side
   // (backend/app/models.py), so this isn't just a UI nicety.
   isAuthenticated: boolean;
-  onStartVisit: () => void;
+  // Phase 2 §1 -- takes the resolved museum id (detected via GPS or
+  // manually confirmed from useMuseumDetection below) instead of assuming
+  // a single hardcoded museum.
+  onStartVisit: (museumId: string) => void;
   onSetLocale: (locale: AppState["locale"]) => void;
   onSignInWithEmail: (email: string) => Promise<void>;
   onSignInWithGoogle: () => Promise<void>;
 }) {
-  const { status: museumStatus, confirmManually } = useMuseumDetection();
+  const { status: museumStatus, museums, museum, confirmManually } = useMuseumDetection();
+  // Today there's only ever one row in the database, so this resolves
+  // exactly like the old hardcoded "Musée d'Orsay" did visually -- but once
+  // a second museum exists, a real visitor should see THIS museum's name
+  // (detected/confirmed), not silently default to whichever museum happens
+  // to sort first. Deliberately not solved further here: what to show
+  // before any confirmation, in an actual multi-museum world, is a UX
+  // decision explicitly out of scope for this architecture pass.
+  const activeMuseum = museum ?? museums[0] ?? null;
+  const activeMuseumName = activeMuseum?.name ?? "";
   const [showConfirm, setShowConfirm] = useState(false);
   const [showMuseumSheet, setShowMuseumSheet] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
@@ -81,9 +93,9 @@ export default function HomeScreen({
 
   const statusText =
     museumStatus === "detected"
-      ? tt("museum_detected", state.locale)
+      ? tt("museum_detected", state.locale).replace("{museum}", museum?.name ?? "")
       : museumStatus === "manual-confirmed"
-        ? tt("museum_confirmed_manual", state.locale)
+        ? tt("museum_confirmed_manual", state.locale).replace("{museum}", museum?.name ?? "")
         : museumStatus === "manual-prompt"
           ? tt("museum_select_prompt", state.locale)
           : tt("museum_locating", state.locale);
@@ -185,7 +197,7 @@ export default function HomeScreen({
           </span>
           <div className="text-left" style={{ textShadow: "0 1px 6px rgba(0,0,0,0.4)" }}>
             <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[rgba(247,241,230,0.92)]">
-              MUSÉE D&apos;ORSAY
+              {activeMuseumName.toUpperCase()}
             </div>
             <div className="text-[11px] font-medium text-[rgba(247,241,230,0.68)]">PARIS</div>
           </div>
@@ -201,7 +213,7 @@ export default function HomeScreen({
         {showConfirm && (
           <div className="absolute top-[54px] left-6 w-[240px] rounded-[16px] bg-[#FDFBF7] shadow-[0_12px_32px_rgba(0,0,0,0.2)] p-3 z-30">
             <p className="text-[13px] font-semibold text-[#181714] text-center leading-[18px]">
-              {tt("museum_confirm_question", state.locale)}
+              {tt("museum_confirm_question", state.locale).replace("{museum}", activeMuseumName)}
             </p>
             <div className="mt-2.5 flex gap-2">
               <button
@@ -295,7 +307,13 @@ export default function HomeScreen({
       <div className="relative z-10 mt-[28px] px-6">
         <button
           type="button"
-          onClick={() => (isAuthenticated ? onStartVisit() : setShowAuthModal(true))}
+          onClick={() => {
+            if (!isAuthenticated) {
+              setShowAuthModal(true);
+              return;
+            }
+            if (activeMuseum) onStartVisit(activeMuseum.id);
+          }}
           className="w-full h-[58px] px-5 rounded-[14px] bg-[#181714] text-[#FAF6ED] flex items-center justify-between shadow-[0_9px_24px_rgba(21,18,14,0.16)] active:scale-[0.985] transition-transform"
         >
           <span className="text-[16px] font-medium tracking-[-0.01em]">
@@ -329,7 +347,7 @@ export default function HomeScreen({
             {tt("home_todays_visit_label", state.locale)}
           </div>
           <div style={editorial} className="mt-1 text-[19px] font-medium text-[#181714]">
-            Musée d&apos;Orsay
+            {activeMuseumName}
           </div>
           <div className="text-[13px] text-[#67635C]">{tt("home_museum_time", state.locale)}</div>
         </div>
@@ -405,16 +423,32 @@ export default function HomeScreen({
             <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#67635C] mb-3">
               {tt("select_museum_sheet_title", state.locale)}
             </div>
-            <button
-              type="button"
-              onClick={() => setShowMuseumSheet(false)}
-              className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)]"
-            >
-              <span style={editorial} className="text-[17px] font-medium text-[#181714]">
-                Musée d&apos;Orsay
-              </span>
-              <span className="text-[11px] font-semibold text-[#30D158]">{tt("museum_available_now", state.locale)}</span>
-            </button>
+            {/* Real, selectable rows -- driven by whatever /v1/museums
+                actually returns (Phase 2 §1), not a hardcoded single
+                button. Today that's exactly one row (Orsay), so this looks
+                identical to the old hardcoded button; adding a second real
+                museum to the database makes a second row appear here with
+                no code change. */}
+            {museums.map((m) => (
+              <button
+                key={m.id}
+                type="button"
+                onClick={() => {
+                  confirmManually(m.id);
+                  setShowMuseumSheet(false);
+                }}
+                className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)]"
+              >
+                <span style={editorial} className="text-[17px] font-medium text-[#181714]">
+                  {m.name}
+                </span>
+                <span className="text-[11px] font-semibold text-[#30D158]">{tt("museum_available_now", state.locale)}</span>
+              </button>
+            ))}
+            {/* Decorative roadmap teaser, not data-driven -- these aren't
+                real Museum rows, so they stay hardcoded placeholders on
+                purpose (which museums to actually add next is a separate
+                product decision, not this task's scope). */}
             {["Musée de l'Orangerie", "Musée du Louvre"].map((name) => (
               <div key={name} className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)] opacity-50">
                 <span style={editorial} className="text-[17px] font-medium text-[#181714]">

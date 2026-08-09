@@ -10,10 +10,13 @@ import type { Locale, LocalizedText } from "./types";
  * are UI chrome, not factual/curatorial claims.
  */
 const NEW_STRINGS: Record<string, LocalizedText> = {
+  // {museum} interpolated with the real detected/confirmed Museum row's
+  // name (Phase 2 §1) -- was hardcoded to "Musée d'Orsay" before the
+  // geofence logic was generalized to any museum in the database.
   museum_detected: {
-    en: "Musée d'Orsay • Detected",
-    fr: "Musée d'Orsay • Détecté",
-    "zh-Hans": "奥赛博物馆 • 已识别",
+    en: "{museum} • Detected",
+    fr: "{museum} • Détecté",
+    "zh-Hans": "{museum} • 已识别",
   },
   museum_locating: {
     en: "Locating…",
@@ -26,14 +29,14 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     "zh-Hans": "选择您所在的博物馆",
   },
   museum_confirmed_manual: {
-    en: "Musée d'Orsay • Confirmed",
-    fr: "Musée d'Orsay • Confirmé",
-    "zh-Hans": "奥赛博物馆 • 已确认",
+    en: "{museum} • Confirmed",
+    fr: "{museum} • Confirmé",
+    "zh-Hans": "{museum} • 已确认",
   },
   museum_confirm_question: {
-    en: "Are you at Musée d'Orsay?",
-    fr: "Êtes-vous au Musée d'Orsay ?",
-    "zh-Hans": "您现在在奥赛博物馆吗？",
+    en: "Are you at {museum}?",
+    fr: "Êtes-vous au {museum} ?",
+    "zh-Hans": "您现在在{museum}吗？",
   },
   museum_confirm_yes: {
     en: "Yes, I'm here",
@@ -350,6 +353,18 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     fr: "Vous avez vu {count} {works}, {value} — Musée d'Orsay — ELYIO",
     "zh-Hans": "您看到了{count}件{works}，{value} — 奥赛博物馆 — ELYIO",
   },
+
+  // Phase 2 §2 -- Tier 2 minimal card (UncatalogedCardScreen.tsx). Shown
+  // when Stage 1 open recognition named a real artist/title but it isn't in
+  // the reviewed catalog yet -- deliberately does not promise a story or
+  // estimate that doesn't exist.
+  uncataloged_note: {
+    en: "Not yet in our reviewed collection — we don't have its story or estimate yet.",
+    fr: "Pas encore dans notre collection vérifiée — nous n'avons pas encore son histoire ni son estimation.",
+    "zh-Hans": "尚未收录在我们审核过的收藏中——我们还没有它的介绍或估值。",
+  },
+  uncataloged_unknown_artist: { en: "Unknown artist", fr: "Artiste inconnu", "zh-Hans": "未知艺术家" },
+  uncataloged_unknown_title: { en: "Unidentified work", fr: "Œuvre non identifiée", "zh-Hans": "未识别的作品" },
 };
 
 export function tt(key: string, locale: Locale): string {

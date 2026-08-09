@@ -7,7 +7,6 @@
 import { supabase } from "./supabase";
 
 export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8090";
-const MUSEUM_ID = "orsay";
 
 // /v1/visits* now requires a real signed-in user (backend/app/auth.py
 // verifies this as a Supabase JWT) -- getSession() reads from supabase-js's
@@ -25,6 +24,24 @@ export interface RecognizeResponse {
   confidence: number;
   alternatives: string[];
   recognized_but_not_cataloged?: { artist: string | null; title: string | null } | null;
+}
+
+// Phase 2 §1 (geofence generalization) -- one row per real museum in
+// backend/app/models.py's Museum table. Fetched once (see lib/geolocation.ts)
+// instead of a single hardcoded coordinate pair, so adding a second real
+// museum is a database row, not a code change here.
+export interface Museum {
+  id: string;
+  name: string;
+  lat: number | null;
+  lng: number | null;
+  geofence_radius_m: number;
+}
+
+export async function getMuseums(): Promise<Museum[]> {
+  const res = await fetch(`${BACKEND_URL}/v1/museums`);
+  if (!res.ok) throw new Error(`museums fetch failed: ${res.status}`);
+  return res.json();
 }
 
 export interface Visit {
@@ -52,17 +69,22 @@ async function postJSON<T>(path: string, body: unknown, auth = false): Promise<T
   return res.json();
 }
 
-export async function recognize(imageBase64: string, locale: string, hallHint?: string): Promise<RecognizeResponse> {
+export async function recognize(
+  imageBase64: string,
+  locale: string,
+  museumId: string,
+  hallHint?: string
+): Promise<RecognizeResponse> {
   return postJSON<RecognizeResponse>("/v1/recognize", {
     image_base64: imageBase64,
-    museum_id: MUSEUM_ID,
+    museum_id: museumId,
     hall_hint: hallHint ?? null,
     locale,
   });
 }
 
-export async function createVisit(locale: string): Promise<Visit> {
-  return postJSON<Visit>("/v1/visits", { museum_id: MUSEUM_ID, locale }, true);
+export async function createVisit(locale: string, museumId: string): Promise<Visit> {
+  return postJSON<Visit>("/v1/visits", { museum_id: museumId, locale }, true);
 }
 
 export async function addVisitArtwork(visitId: string, artworkId: string, confidence: number): Promise<{ ok: boolean; count: number }> {
