@@ -263,22 +263,26 @@ export default function HomeScreen({
             {tt("home_hero_title", state.locale)}
           </h1>
           <p
-            // Lighthouse contrast audit flagged this specific paragraph (the
-            // title above is large-text so it clears WCAG's more lenient
-            // 3:1 threshold; this is 16px body text needing 4.5:1). Text-shadow
-            // alone isn't reliably counted by automated contrast checkers --
-            // they measure foreground vs. actual background pixel color -- so
-            // this pairs a stronger shadow with a real solid-ish backdrop
-            // scoped to just this block, not a change to the shared scrim
-            // gradient (which would also shift the title/other hero text).
+            // Lighthouse/axe color-contrast audit flagged this paragraph
+            // (title above is large-text, clears WCAG's more lenient 3:1;
+            // this is 16px body text needing 4.5:1). First attempt used a
+            // semi-transparent backdrop (rgba(...,0.34)) -- axe's contrast
+            // checker resolves an element's effective background by walking
+            // CSS `background-color` up the DOM ANCESTOR chain, which can't
+            // see the hero photo (a sibling <img>, not a CSS background on
+            // any ancestor); a translucent backdrop just made axe keep
+            // walking up to <body>'s cream background, so it still failed.
+            // A fully OPAQUE backdrop + fully opaque text color removes that
+            // ambiguity outright -- axe now has a real, unambiguous pair of
+            // solid colors, ~16:1 by the WCAG formula, well past 4.5:1.
             style={{
-              textShadow: "0 1px 3px rgba(0,0,0,0.75), 0 2px 10px rgba(0,0,0,0.55)",
-              background: "rgba(8,7,5,0.34)",
+              textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+              background: "#141210",
               borderRadius: 10,
               padding: "6px 10px",
               margin: "20px -10px 0",
             }}
-            className="text-[16px] leading-[23px] text-[rgba(247,241,230,0.86)] max-w-[325px] inline-block"
+            className="text-[16px] leading-[23px] text-[#F5EBDD] max-w-[325px] inline-block"
           >
             {tt("home_hero_subtitle", state.locale)}
           </p>
