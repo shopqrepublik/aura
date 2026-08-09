@@ -127,12 +127,14 @@ export default function AppPage() {
   // generates no box of its own, so it changes nothing about either
   // branch's actual layout (fixed/inset-0 sizing below, DesktopShell's own
   // layout) -- pixel-identical either way, just now reachable as <main>.
+  // Round 6, Block 5 -- DesktopShell no longer takes the live screens tree
+  // as children; its hero phone now renders HeroPhonePreview (a static
+  // curated Card-screen reveal) instead, so `screens` isn't passed here at
+  // all. Real mobile below is unaffected -- still the live AppScreens tree.
   if (isDesktop) {
     return (
       <main style={{ display: "contents" }}>
-        <DesktopShell locale={state.locale} onSetLocale={actions.setLocale}>
-          {screens}
-        </DesktopShell>
+        <DesktopShell locale={state.locale} onSetLocale={actions.setLocale} />
       </main>
     );
   }

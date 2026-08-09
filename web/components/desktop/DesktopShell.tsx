@@ -3,21 +3,21 @@
 import { Smartphone, Download, ArrowRight } from "lucide-react";
 import PhoneFrame from "@/components/ui/PhoneFrame";
 import HeroMuseumBackdrop from "./HeroMuseumBackdrop";
+import HeroPhonePreview from "./HeroPhonePreview";
 import DesktopHeader from "./DesktopHeader";
 import JourneySection from "./JourneySection";
 import RecapStrip from "./RecapStrip";
 import { tt } from "@/lib/i18n";
 import type { Locale } from "@/lib/types";
 
-// Round 6, Block 3 -- "phone as object" composition pass. Round 4's
-// clamp(560,59vh,650) was tuned to keep Journey+Recap in the same
-// screenshot, but it left the phone stage's own max-height (height minus
-// header) too short to ever reach the stage's own width clamp -- the
-// phone was rendering height-bound, silently well under its intended
-// width. Raising the floor/ceiling here is what actually lets the bigger
-// phone in PHONE_STAGE below render at its real size instead of getting
-// squeezed by a hero that's too short for it.
-const HERO_HEIGHT = "clamp(636px, 62vh, 700px)";
+// Round 6, Block 5 -- "the phone must feel like the center of the
+// museum," including a real ~20% size increase. The phone stage's actual
+// rendered size has been HEIGHT-bound (not width-clamp-bound) since Block
+// 3 -- PHONE_STAGE_MAX_HEIGHT below binds before the width clamp ever
+// does, so growing the phone for real means growing the available height,
+// not just the width clamp number. Raised again here for the same reason
+// Block 3 raised it the first time.
+const HERO_HEIGHT = "clamp(700px, 67vh, 780px)";
 const HEADER_HEIGHT = 72;
 // -8px buffer (was -24px when the phone stage had its own 24px bottom
 // padding) -- round 5 dropped that padding to let the phone's bottom
@@ -28,11 +28,9 @@ const PHONE_STAGE_MAX_HEIGHT = `calc(${HERO_HEIGHT} - ${HEADER_HEIGHT}px - 8px)`
 export default function DesktopShell({
   locale,
   onSetLocale,
-  children,
 }: {
   locale: Locale;
   onSetLocale: (locale: Locale) => void;
-  children: React.ReactNode;
 }) {
   return (
     <div className="relative" style={{ background: "var(--desktop-canvas)" }}>
@@ -209,18 +207,16 @@ export default function DesktopShell({
               </div>
             </div>
 
-            {/* Round 6, Block 3 -- phone as a physical object in the scene,
-                not a screenshot laid on top of the page. Stage width
-                clamp raised ~9% (330-360 -> 360-392) and the taller
-                HERO_HEIGHT above means PHONE_STAGE_MAX_HEIGHT no longer
-                squeezes it back down under that width. A 50px translateY
-                (on top of the existing rightward nudge) drops it further
-                into the clock's spread instead of sitting near the
-                header, and the ambient glow underneath is bigger and
-                warmer (62%->74% of the stage, 0.34->0.48 alpha, 60->80px
-                blur) so it reads as the light the phone is sitting in,
-                not a faint hint of one. */}
-            <div className="relative flex flex-col items-center">
+            {/* Round 6, Block 5 -- the phone is now a static curated
+                preview (HeroPhonePreview, real CardScreen + real reveal
+                data, not the live app-state tree), so it's no longer a
+                functional mini-app -- pointerEvents:none on the whole
+                stage keeps its buttons from looking clickable when they
+                do nothing. Width clamp up ~20% (360-392 -> 432-470); the
+                taller HERO_HEIGHT above is what actually lets that reach
+                the phone (still height-bound at every tested viewport,
+                same lesson as Block 3). */}
+            <div className="relative flex flex-col items-center" style={{ pointerEvents: "none" }}>
               <div
                 aria-hidden="true"
                 className="absolute rounded-full pointer-events-none"
@@ -234,12 +230,14 @@ export default function DesktopShell({
               />
               <div
                 style={{
-                  width: "clamp(360px, 22.3vw, 392px)",
+                  width: "clamp(432px, 26.8vw, 470px)",
                   transform: "translate(30px, 0px)",
                   filter: "drop-shadow(0 38px 90px rgba(42,32,22,0.18)) drop-shadow(0 12px 30px rgba(42,32,22,0.11))",
                 }}
               >
-                <PhoneFrame maxHeight={PHONE_STAGE_MAX_HEIGHT}>{children}</PhoneFrame>
+                <PhoneFrame maxHeight={PHONE_STAGE_MAX_HEIGHT}>
+                  <HeroPhonePreview locale={locale} />
+                </PhoneFrame>
               </div>
             </div>
           </div>

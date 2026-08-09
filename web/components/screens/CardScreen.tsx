@@ -33,6 +33,12 @@ export default function CardScreen({
   onAddToVisit,
   onToggleFavorite,
   onGoProgress,
+  // Desktop hero reuses this real component as a static curated preview
+  // (components/desktop/HeroPhonePreview.tsx) rather than forking its
+  // markup. That preview isn't a real scan/read event, so it opts out of
+  // artwork_card_opened/read_time tracking below -- default true keeps
+  // every real mobile call site's behavior byte-for-byte unchanged.
+  trackingEnabled = true,
 }: {
   state: AppState;
   onSetMode: (mode: AppState["mode"]) => void;
@@ -40,6 +46,7 @@ export default function CardScreen({
   onAddToVisit: () => void;
   onToggleFavorite: () => void;
   onGoProgress: () => void;
+  trackingEnabled?: boolean;
 }) {
   const [imgError, setImgError] = useState(false);
   const artwork = state.currentArtwork;
@@ -61,7 +68,7 @@ export default function CardScreen({
   // replacing it -- so it measures actual mounted time, not a guess at
   // when the user "left".
   useEffect(() => {
-    if (!artwork || state.cardOpenedAt == null) return;
+    if (!trackingEnabled || !artwork || state.cardOpenedAt == null) return;
     const artworkId = artwork.id;
     const openedAt = state.cardOpenedAt;
     track("artwork_card_opened", { artwork_id: artworkId });
@@ -69,7 +76,7 @@ export default function CardScreen({
       track("artwork_card_read_time", { artwork_id: artworkId, read_time_ms: Date.now() - openedAt });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [artwork?.id, state.cardOpenedAt]);
+  }, [artwork?.id, state.cardOpenedAt, trackingEnabled]);
 
   if (!artwork) return null;
 

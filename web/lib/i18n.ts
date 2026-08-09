@@ -107,19 +107,28 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     "zh-Hans": "匿名参观统计 · 不出售或共享任何数据",
   },
 
-  // Desktop shell (desktop-rebuild spec, hero refinement pass) -- header
-  // nav labels and the phone-handoff row. "How it works" / "Experience" /
-  // "Your visits" are rendered as inert labels (not links) in
-  // DesktopHeader.tsx: there's nothing to point them at yet (no Journey/
-  // Recap sections on desktop), so this is honest visual completeness for
-  // the header composition, not a promise of working navigation.
+  // Desktop shell -- header nav labels and the phone-handoff row.
+  // "How it works" / "Experience" now scroll to the real Journey section
+  // (DesktopHeader.tsx); "Your visits" stays inert with a "coming soon"
+  // tooltip -- there's no real visit-history view on desktop yet, and an
+  // honest disabled label beats a dead link.
   desktop_nav_how_it_works: { en: "How it works", fr: "Comment ça marche", "zh-Hans": "使用方法" },
   desktop_nav_experience: { en: "Experience", fr: "L'expérience", "zh-Hans": "体验" },
   desktop_nav_your_visits: { en: "Your visits", fr: "Vos visites", "zh-Hans": "我的参观" },
+  desktop_coming_soon: { en: "Coming soon", fr: "Bientôt disponible", "zh-Hans": "即将推出" },
   desktop_install_elyio: { en: "Install ELYIO", fr: "Installer ELYIO", "zh-Hans": "安装 ELYIO" },
   desktop_open_on_phone: { en: "Open on your phone", fr: "Ouvrir sur votre téléphone", "zh-Hans": "在手机上打开" },
   desktop_scan_to_continue: { en: "Scan to continue", fr: "Scannez pour continuer", "zh-Hans": "扫码继续" },
   desktop_available_platforms: { en: "Available on iOS & Android", fr: "Disponible sur iOS et Android", "zh-Hans": "支持 iOS 和安卓" },
+  // Shown instead of the real install prompt when the browser doesn't
+  // support beforeinstallprompt (Safari, Firefox) or has already fired
+  // it once this session -- an honest fallback, not a fake button.
+  desktop_install_hint_title: { en: "Install ELYIO", fr: "Installer ELYIO", "zh-Hans": "安装 ELYIO" },
+  desktop_install_hint_body: {
+    en: "Look for the install icon in your address bar (Chrome, Edge). Safari and Firefox on desktop don't support this yet — open elyio.co on your phone instead.",
+    fr: "Repérez l'icône d'installation dans votre barre d'adresse (Chrome, Edge). Safari et Firefox sur ordinateur ne le prennent pas encore en charge — ouvrez plutôt elyio.co sur votre téléphone.",
+    "zh-Hans": "请在地址栏中查找安装图标（Chrome、Edge）。桌面版 Safari 和 Firefox 暂不支持此功能——请改为在手机上打开 elyio.co。",
+  },
 
   // Desktop Journey section (hero-refinement round 3) -- reuses the exact
   // three-chapter structure/copy already established in the desktop spec

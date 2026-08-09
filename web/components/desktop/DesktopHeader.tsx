@@ -1,9 +1,19 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Download } from "lucide-react";
 import { LOCALES, tt } from "@/lib/i18n";
 import { track } from "@/lib/analytics";
 import type { Locale } from "@/lib/types";
+
+// Chrome/Edge fire this before the browser's own native install UI would
+// otherwise appear; calling preventDefault() defers it so this button can
+// trigger the SAME native prompt on click instead of a separate custom one.
+// Not in any lib.dom.d.ts version yet, hence the manual interface.
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+}
 
 // Desktop rebuild spec §15, hero-refinement round 3 (§7) -- explicit 3-col
 // grid (wordmark / nav / controls) so the nav is genuinely centered against
@@ -12,11 +22,13 @@ import type { Locale } from "@/lib/types";
 // wordmark-to-controls span -- looked slightly off once the controls
 // grew wider with the Install button).
 //
-// Nav labels ("How it works" / "Experience" / "Your visits") and "Install
-// ELYIO" are still inert (no href/onClick): no Journey/Recap anchor
-// targets to scroll to yet from the nav specifically, and no real
-// beforeinstallprompt wiring (spec §21, later work). Honest placeholders,
-// not broken links.
+// Final wiring pass -- "How it works"/"Experience" scroll to the real
+// Journey section (id="journey", JourneySection.tsx); "Install ELYIO"
+// triggers the real beforeinstallprompt (spec §21) when the browser
+// supports it, falling back to a short honest instructions popover
+// otherwise (Safari/Firefox never fire that event at all); "Your visits"
+// stays a disabled label with a "coming soon" tooltip -- there's no real
+// visit-history view on desktop yet.
 export default function DesktopHeader({
   locale,
   onSetLocale,
@@ -24,9 +36,53 @@ export default function DesktopHeader({
   locale: Locale;
   onSetLocale: (locale: Locale) => void;
 }) {
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showInstallHint, setShowInstallHint] = useState(false);
+  const installWrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onBeforeInstallPrompt = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e as BeforeInstallPromptEvent);
+    };
+    window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+    return () => window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
+  }, []);
+
+  useEffect(() => {
+    if (!showInstallHint) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (installWrapRef.current && !installWrapRef.current.contains(e.target as Node)) {
+        setShowInstallHint(false);
+      }
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [showInstallHint]);
+
+  const scrollToJourney = () => {
+    document.getElementById("journey")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleInstallClick = async () => {
+    if (installPrompt) {
+      setShowInstallHint(false);
+      await installPrompt.prompt();
+      await installPrompt.userChoice;
+      setInstallPrompt(null);
+      return;
+    }
+    setShowInstallHint((v) => !v);
+  };
+
   return (
+    // z-20, not z-10 -- DesktopShell's phone-stage row is ALSO z-10 and
+    // comes later in DOM order, so at equal z-index it was painting on
+    // top of this header's own popover (the install-hint fallback was
+    // rendering partially behind the phone). Header needs to win that
+    // stacking fight since its own dropdown content lives here now.
     <header
-      className="relative z-10 mx-auto grid items-center"
+      className="relative z-20 mx-auto grid items-center"
       style={{
         width: "min(1480px, calc(100vw - 80px))",
         height: 72,
@@ -41,9 +97,24 @@ export default function DesktopHeader({
       </div>
 
       <nav className="flex items-center gap-9 text-[13px] text-[#2E2B27]">
-        <span>{tt("desktop_nav_how_it_works", locale)}</span>
-        <span>{tt("desktop_nav_experience", locale)}</span>
-        <span>{tt("desktop_nav_your_visits", locale)}</span>
+        <button type="button" onClick={scrollToJourney} className="hover:opacity-70 transition-opacity">
+          {tt("desktop_nav_how_it_works", locale)}
+        </button>
+        <button type="button" onClick={scrollToJourney} className="hover:opacity-70 transition-opacity">
+          {tt("desktop_nav_experience", locale)}
+        </button>
+        {/* Disabled, not removed -- an honest "not built yet" beats a
+            link that goes nowhere. title= gives every browser a native
+            tooltip for free; aria-disabled keeps it out of the tab order
+            semantics without literally hiding it from screen readers. */}
+        <span
+          aria-disabled="true"
+          title={tt("desktop_coming_soon", locale)}
+          className="cursor-default select-none"
+          style={{ opacity: 0.55 }}
+        >
+          {tt("desktop_nav_your_visits", locale)}
+        </span>
       </nav>
 
       <div className="flex items-center justify-end gap-3">
@@ -64,13 +135,38 @@ export default function DesktopHeader({
             </option>
           ))}
         </select>
-        <button
-          type="button"
-          className="h-[38px] px-4 rounded-[12px] bg-[var(--desktop-ink)] text-[#FAF6ED] text-[13px] font-medium flex items-center gap-1.5"
-        >
-          {tt("desktop_install_elyio", locale)}
-          <Download className="w-[13px] h-[13px]" />
-        </button>
+        <div ref={installWrapRef} className="relative">
+          <button
+            type="button"
+            onClick={handleInstallClick}
+            className="h-[38px] px-4 rounded-[12px] bg-[var(--desktop-ink)] text-[#FAF6ED] text-[13px] font-medium flex items-center gap-1.5"
+          >
+            {tt("desktop_install_elyio", locale)}
+            <Download className="w-[13px] h-[13px]" />
+          </button>
+          {/* Fallback for browsers that never fire beforeinstallprompt
+              (Safari, Firefox) -- honest instructions, not a fake
+              install action. */}
+          {showInstallHint && (
+            <div
+              role="tooltip"
+              className="absolute top-full right-0 mt-2 rounded-[12px] p-4"
+              style={{
+                width: 260,
+                background: "#FFFDF8",
+                border: "1px solid rgba(30,27,22,0.12)",
+                boxShadow: "0 18px 40px rgba(28,23,17,0.14)",
+              }}
+            >
+              <div className="text-[12px] font-semibold text-[var(--desktop-ink)]">
+                {tt("desktop_install_hint_title", locale)}
+              </div>
+              <p className="mt-1.5 text-[11.5px] leading-[1.5]" style={{ color: "#5E584F" }}>
+                {tt("desktop_install_hint_body", locale)}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

@@ -103,7 +103,10 @@ export default function JourneySection({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <section style={{ padding: "48px 0 24px", borderTop: "1px solid rgba(28,26,22,0.08)" }}>
+    // id: real scroll target for the header nav's "How it works"/
+    // "Experience" links (DesktopHeader.tsx) -- both point here, there's
+    // no separate section for either label yet.
+    <section id="journey" style={{ padding: "48px 0 24px", borderTop: "1px solid rgba(28,26,22,0.08)" }}>
       <div className="mx-auto" style={{ width: "min(1200px, calc(100vw - 128px))" }}>
         <div className="text-[10px] font-semibold tracking-[0.18em] uppercase" style={{ color: "#9C9284", marginBottom: 40 }}>
           {tt("desktop_journey_eyebrow", locale)}

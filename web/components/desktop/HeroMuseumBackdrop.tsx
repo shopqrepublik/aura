@@ -32,25 +32,26 @@ export default function HeroMuseumBackdrop() {
         className="absolute select-none"
         style={{
           right: "-8vw",
-          top: "-14vh",
+          top: "-6vh",
           width: "min(118vw, 2150px)",
           height: "auto",
           opacity: 1,
-          filter: "sepia(0.35) brightness(1.08) contrast(0.82) blur(13px)",
-          // Round 6, Block 3c -- "the bridge is atmospheric light only,
-          // there's no architectural presence in the middle third." The
-          // glow layer in DesktopShell.tsx is untouched; this mask curve
-          // is the only change, retuned to sit at the midpoint of each
-          // named band (0-20%:0.05, 20-40%:0.08, 40-55%:0.11, 55-70%:0.18,
-          // 70-100%:0.29) with stops placed at each band's center so CSS's
-          // linear interpolation between them tracks those targets across
-          // the full band, not just at one point in it -- a smooth ramp,
-          // not a step function, so it reads as spatial continuity rather
-          // than added detail or contrast.
+          filter: "sepia(0.35) brightness(1.08) contrast(0.82) blur(11px)",
+          // Round 6, Block 5 -- the source photo's dial is centered
+          // roughly where the phone itself now sits (confirmed by
+          // inspecting the raw asset), so the phone already covers the
+          // dial's hub -- correct per "clock's visual center behind the
+          // phone." What was missing is the RING around that hub staying
+          // visible past the phone's edges: it's a thin band once the
+          // phone is this big, and at the old 13px blur it dissolved into
+          // indistinct haze instead of reading as a clock. Blur eased to
+          // 9px for more ring definition, and the 40-70% band (directly
+          // flanking/above the phone) boosted well past the other rounds'
+          // values so that ring actually registers.
           WebkitMaskImage:
-            "linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 10%, rgba(0,0,0,0.08) 30%, rgba(0,0,0,0.11) 47.5%, rgba(0,0,0,0.18) 62.5%, rgba(0,0,0,0.29) 85%, rgba(0,0,0,0.29) 100%)",
+            "linear-gradient(to right, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.07) 10%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.18) 47.5%, rgba(0,0,0,0.26) 62.5%, rgba(0,0,0,0.34) 85%, rgba(0,0,0,0.34) 100%)",
           maskImage:
-            "linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 10%, rgba(0,0,0,0.08) 30%, rgba(0,0,0,0.11) 47.5%, rgba(0,0,0,0.18) 62.5%, rgba(0,0,0,0.29) 85%, rgba(0,0,0,0.29) 100%)",
+            "linear-gradient(to right, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.07) 10%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.18) 47.5%, rgba(0,0,0,0.26) 62.5%, rgba(0,0,0,0.34) 85%, rgba(0,0,0,0.34) 100%)",
         }}
       />
     </div>
