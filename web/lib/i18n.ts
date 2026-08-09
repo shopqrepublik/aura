@@ -101,10 +101,19 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   // is no longer literally true, so this says what actually happens instead
   // of a blanket claim that would be false the moment the app sends its
   // first event.
+  //
+  // "(processed in the US)" added 2026-08 -- live network traffic confirmed
+  // events go to us.i.posthog.com, not the eu.i.posthog.com the analytics.ts
+  // default implies. Product decision (resolved, reviewed with the user):
+  // consciously stay on US Cloud rather than migrate for the Paris museum
+  // launch (PostHog can't move an existing project's region in place --
+  // would need a new EU project and losing all historical events, or a
+  // support-assisted migration) -- but the footer must say where data
+  // actually goes, not where the code comments originally assumed.
   privacy_footer_note: {
-    en: "Anonymized visit analytics · No data sold or shared",
-    fr: "Statistiques de visite anonymisées · Aucune donnée vendue ou partagée",
-    "zh-Hans": "匿名参观统计 · 不出售或共享任何数据",
+    en: "Anonymized visit analytics (processed in the US) · No data sold or shared",
+    fr: "Statistiques de visite anonymisées (traitées aux États-Unis) · Aucune donnée vendue ou partagée",
+    "zh-Hans": "匿名参观统计（数据在美国处理）· 不出售或共享任何数据",
   },
 
   // Desktop shell -- header nav labels and the phone-handoff row.

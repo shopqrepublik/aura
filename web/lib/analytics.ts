@@ -2,14 +2,24 @@
 
 import posthog from "posthog-js";
 
-// PostHog EU Cloud (§13). Keeps analytics data in the EU -- relevant for the
-// Musée d'Orsay pilot / GDPR -- and is the tool the original product spec
-// names directly ("PostHog or equivalent", §13). No-ops entirely (init and
-// every track/identify call become cheap no-ops) when
-// NEXT_PUBLIC_POSTHOG_KEY isn't set, so local dev without a key, and any
-// environment that hasn't opted in yet, never sends anything.
+// PostHog (§13) -- the tool the original product spec names directly
+// ("PostHog or equivalent", §13). No-ops entirely (init and every
+// track/identify call become cheap no-ops) when NEXT_PUBLIC_POSTHOG_KEY
+// isn't set, so local dev without a key, and any environment that hasn't
+// opted in yet, never sends anything.
+//
+// Region: the actual PostHog project backing production is on US Cloud
+// (NEXT_PUBLIC_POSTHOG_HOST in Vercel is us.i.posthog.com, confirmed live
+// via network traffic) -- the code default below used to be eu.i.posthog.com
+// on the assumption this would run on EU Cloud for the Paris museum pilot's
+// GDPR posture, but that was never actually true in production and nobody
+// caught the mismatch. Product decision (resolved, 2026-08, reviewed with
+// the user): stay on US Cloud rather than migrate (PostHog can't move an
+// existing project's region in place) -- but the default here now matches
+// where data actually goes instead of where it was originally assumed to
+// go, and HomeScreen's privacy_footer_note (lib/i18n.ts) says so too.
 const KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-const HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://eu.i.posthog.com";
+const HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
 
 let initialized = false;
 
