@@ -38,10 +38,15 @@ Base.metadata.create_all(engine)
 # instant real (non-mock) visits start getting written. Coordinates match
 # web/lib/geolocation.ts's MUSEUM_COORDS/GEOFENCE_RADIUS_M exactly (same
 # museum, don't want the two to silently drift apart).
-print("Seeding the museum row (idempotent)...")
+print("Seeding the museum rows (idempotent)...")
 with Session(engine) as session:
     if session.get(Museum, "orsay") is None:
         session.add(Museum(id="orsay", name="Musée d'Orsay", lat=48.86, lng=2.3266, geofence_radius_m=150))
+        session.commit()
+    # Phase 3 pilot (Étape 1) — coordinates from Wikidata Q726781 (P625),
+    # not eyeballed off a map, same rigor as the Orsay row above.
+    if session.get(Museum, "orangerie") is None:
+        session.add(Museum(id="orangerie", name="Musée de l'Orangerie", lat=48.86384535145145, lng=2.322538337460585, geofence_radius_m=150))
         session.commit()
 
 print("Adding users.id -> auth.users(id) FK (idempotent)...")

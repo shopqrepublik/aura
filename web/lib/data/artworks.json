@@ -8972,5 +8972,1206 @@
       "fr": "/audio/orsay_rf_2006_fr.mp3",
       "zh-Hans": "/audio/orsay_rf_2006_zh-Hans.mp3"
     }
+  },
+  {
+    "id": "orangerie_rf_1960_44",
+    "artist": "Amedeo Modigliani",
+    "year": "1915",
+    "hall": null,
+    "inventoryNumber": "RF 1960-44",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Modigliani%2C%20Amedeo%20-%20Paul%20Guillaume.%20Nova%20Pilota.jpg",
+    "accent": "#8B5A2B",
+    "priority": "featured",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Portrait of Paul Guillaume, Novo Pilota",
+      "fr": "Paul Guillaume, Novo Pilota",
+      "zh-Hans": "保罗·纪尧姆肖像（新领航员）"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 7.4,
+      "high": 13.8,
+      "logic": "FACT: Modigliani's auction record for a portrait (as opposed to one of his reclining nudes) is Elvire en buste, sold for €27M (~$31.3M) at Sotheby's Paris — the highest price ever paid for a Modigliani in France. EDITORIAL JUDGMENT: This portrait of Paul Guillaume is smaller and more informal than the fully resolved Elvire en buste, and depicts a private dealer-friend rather than a professionally exhibited sitter; real Modigliani portraits at this more modest scale have historically sold well under the record. Like every Orangerie work, this painting has never been sold and never can be (French national collection) -- the range is a hypothetical, low-confidence anchor only.",
+      "comparableSales": [
+        "Elvire en buste, Amedeo Modigliani — sold for €27M (~$31.3M) at Sotheby's Paris — Modigliani's auction record for a portrait in France."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Modigliani flattens Guillaume's face into elongated, mask-like planes borrowed from the African and Cycladic sculpture he studied obsessively, but keeps this a real likeness of a real dealer, not an anonymous type.",
+      "fr": "Modigliani aplatit le visage de Guillaume en plans allongés, presque des masques, empruntés à la sculpture africaine et cycladique qu'il étudiait avec obsession — mais il s'agit toujours d'un vrai portrait d'un vrai marchand d'art, pas d'un type anonyme.",
+      "zh-Hans": "莫迪利亚尼将纪尧姆的面部简化为细长如面具般的平面，这源自他痴迷研究的非洲雕塑与基克拉泽斯雕塑——但这仍是一幅真实画商的真实肖像，而非泛泛之作。"
+    },
+    "where": {
+      "en": "Look for the hand-painted words \"PAUL GUILLAUME\" and \"NOVO PILOTA\" worked directly into the canvas like a signboard, and the two eyes rendered differently — one with a dark pupil, one left almost blank — Modigliani's signature device for suggesting an inner, unreadable gaze.",
+      "fr": "Repérez les mots peints à la main « PAUL GUILLAUME » et « NOVO PILOTA », intégrés à la toile comme une enseigne, et les deux yeux traités différemment — l'un avec une pupille sombre, l'autre presque vide — la signature de Modigliani pour suggérer un regard intérieur, illisible.",
+      "zh-Hans": "留意画面中直接手绘的文字“PAUL GUILLAUME”和“NOVO PILOTA”，如同招牌一般融入画面；再看这双眼睛的处理方式并不相同——一只有深色瞳孔，另一只几乎空白，这是莫迪利亚尼标志性的手法，暗示一种难以读懂的内在目光。"
+    },
+    "rarity": {
+      "en": "Guillaume was the young dealer who first championed Modigliani in Paris; decades later, Guillaume's own collection — assembled with the artists he discovered — became the founding core of this museum, so this portrait shows the dealer painted by the very circle that built the room you're standing in.",
+      "fr": "Guillaume était le jeune marchand qui défendit le premier Modigliani à Paris ; des décennies plus tard, sa propre collection, réunie avec les artistes qu'il avait découverts, est devenue le noyau fondateur de ce musée — ce portrait montre donc le marchand peint par le cercle même qui a bâti la salle où vous vous trouvez.",
+      "zh-Hans": "纪尧姆是巴黎最早支持莫迪利亚尼的年轻画商；数十年后，他与自己发掘的艺术家们共同收藏的作品，成为了这座博物馆最初的核心藏品——因此这幅肖像画的，正是那个建立起你此刻所在展厅的圈子中的画商本人。"
+    },
+    "whySimple": {
+      "en": "Modigliani paints Guillaume's face with long, simple, mask-like shapes, inspired by African and Cycladic sculpture — but it's still a real portrait of a real person, not a generic face.",
+      "fr": "Modigliani peint le visage de Guillaume avec des formes longues et simples, comme un masque, inspirées de la sculpture africaine et cycladique — mais c'est toujours le portrait d'une vraie personne, pas un visage générique.",
+      "zh-Hans": "莫迪利亚尼用细长、简洁、如面具般的形状描绘纪尧姆的脸，灵感来自他研究的非洲和基克拉泽斯雕塑——但这仍然是一幅真实人物的肖像，不是泛泛的脸孔。"
+    },
+    "whereSimple": {
+      "en": "Look for the words \"PAUL GUILLAUME\" and \"NOVO PILOTA\" painted right onto the canvas like a sign, and notice the two eyes are painted differently — one has a dark pupil, the other is almost blank.",
+      "fr": "Cherchez les mots « PAUL GUILLAUME » et « NOVO PILOTA » peints directement sur la toile comme une enseigne, et remarquez que les deux yeux sont peints différemment — l'un a une pupille sombre, l'autre est presque vide.",
+      "zh-Hans": "找找画面上直接画出的文字“PAUL GUILLAUME”和“NOVO PILOTA”，像招牌一样；再注意两只眼睛画法不同——一只有深色瞳孔，另一只几乎是空白的。"
+    },
+    "raritySimple": {
+      "en": "Paul Guillaume was the young art dealer who first supported Modigliani in Paris. His own collection later became the core of this museum — so this portrait shows the person who helped build the room you're standing in.",
+      "fr": "Paul Guillaume était le jeune marchand d'art qui a soutenu Modigliani à Paris. Sa collection est devenue plus tard le cœur de ce musée — ce portrait montre donc la personne qui a aidé à construire la salle où vous êtes.",
+      "zh-Hans": "保罗·纪尧姆是最早在巴黎支持莫迪利亚尼的年轻画商。他的收藏后来成为了这座博物馆的核心——所以这幅肖像画的，正是帮助建立起你所在这个展厅的人。"
+    },
+    "whyKids": {
+      "en": "Modigliani paints his friend Paul Guillaume with a long face and simple shapes — no wrinkles, no fuss, just clean lines like a mask.",
+      "fr": "Modigliani peint son ami Paul Guillaume avec un visage long et des formes simples — pas de rides, pas de détails compliqués, juste des lignes nettes comme un masque.",
+      "zh-Hans": "莫迪利亚尼给他的朋友保罗·纪尧姆画了一张长长的脸，形状很简单——没有皱纹，没有多余的细节，只有像面具一样干净的线条。"
+    },
+    "whereKids": {
+      "en": "Can you find the words painted right onto the picture, like a sign? And look closely — one eye has a dark centre, but the other one is almost empty!",
+      "fr": "Arrives-tu à trouver les mots peints directement sur le tableau, comme une enseigne ? Et regarde bien : un œil a un centre sombre, mais l'autre est presque vide !",
+      "zh-Hans": "你能找到直接画在画面上、像招牌一样的文字吗？再仔细看看——一只眼睛有深色的中心，但另一只几乎是空的！"
+    },
+    "rarityKids": {
+      "en": "Paul Guillaume was a real person — a young art dealer who was friends with Modigliani. His art collection later became this whole museum, so in a way, he helped build the building you're standing in right now.",
+      "fr": "Paul Guillaume était une vraie personne — un jeune marchand d'art ami de Modigliani. Sa collection est devenue tout ce musée, donc, d'une certaine façon, il a aidé à construire le bâtiment où tu te trouves maintenant.",
+      "zh-Hans": "保罗·纪尧姆是一个真实存在的人——他是莫迪利亚尼的朋友，也是一位年轻的画商。他的收藏后来变成了整座博物馆，所以从某种意义上说，是他帮忙建起了你现在所在的这栋建筑。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1960_25",
+    "artist": "Henri Rousseau",
+    "year": "1905",
+    "hall": null,
+    "inventoryNumber": "RF 1960-25",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Henri%20Rousseau%2C%20dit%20le%20Douanier%20-%20The%20Wedding%20Party%20-%20Google%20Art%20Project.jpg",
+    "accent": "#4A5D3A",
+    "priority": "featured",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "The Wedding Party",
+      "fr": "La Noce",
+      "zh-Hans": "婚礼"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 9.2,
+      "high": 18.4,
+      "logic": "FACT: Henri Rousseau's overall auction record is $43,535,000 (~€40.1M) for Les Flamants (Christie's New York, 2023), a jungle scene -- his most prized genre. A portrait-type work, Portrait of Joseph Brummer, sold for approximately $4.4M (~€4.0M) in 1993. EDITORIAL JUDGMENT: The Wedding Party is a far more ambitious, multi-figure composition than a single portrait -- nine figures plus a dog, one of Rousseau's largest and most complete non-jungle works -- so it should sit meaningfully above the single-portrait comparable, but well under the jungle-scene record, since jungle scenes are what the market prizes most in his output. A wide, low-confidence band.",
+      "comparableSales": [
+        "Les Flamants, Henri Rousseau — sold for $43,535,000 (~€40.1M) at Christie's New York, 2023 — Rousseau's overall auction record (jungle scene, his most sought genre).",
+        "Portrait of Joseph Brummer, Henri Rousseau — sold for approximately $4.4M (~€4.0M) in 1993 — closer genre comparable (portrait, not jungle)."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Rousseau, entirely self-taught, poses this wedding party as stiffly and frontally as a studio photograph — the flattened space and even light are not naivety by accident, but his own consistent, deliberate style.",
+      "fr": "Rousseau, entièrement autodidacte, pose ce cortège de mariage aussi raide et frontal qu'une photographie de studio — l'espace aplati et la lumière égale ne sont pas de la maladresse, mais son style propre et délibéré.",
+      "zh-Hans": "完全自学成才的卢梭，把这场婚礼队伍摆得像照相馆合影一样僵直、正面——画面的平面感和均匀光线并非笨拙的失误，而是他一贯而刻意的个人风格。"
+    },
+    "where": {
+      "en": "Notice how every guest stares straight at you rather than at the couple, and how the trees behind them are rendered as flat, decorative shapes rather than receding into real depth — then find the small black dog sitting calmly in the grass, the one clearly informal note in an otherwise formal scene.",
+      "fr": "Remarquez que chaque invité regarde droit vers vous plutôt que vers les mariés, et que les arbres derrière eux sont rendus comme des formes plates et décoratives plutôt que par une vraie profondeur — puis repérez le petit chien noir assis calmement dans l'herbe, la seule note informelle d'une scène par ailleurs très formelle.",
+      "zh-Hans": "留意每位宾客都直视着你，而不是看着新人；他们身后的树木被处理成扁平的装饰性形状，而非具有真实纵深感——再找找安静坐在草地上的那只小黑狗，这是整幅正式场景中唯一一处轻松随意的细节。"
+    },
+    "rarity": {
+      "en": "Rousseau had no academic training and worked as a customs toll collector for most of his life, painting only on Sundays — critics mocked his flat, \"childlike\" style for years, yet Picasso himself became an early admirer and threw a now-famous banquet in Rousseau's honor in 1908.",
+      "fr": "Rousseau n'avait aucune formation académique et a travaillé comme douanier la majeure partie de sa vie, ne peignant que le dimanche — la critique s'est moquée pendant des années de son style plat et « enfantin », mais Picasso lui-même devint un admirateur précoce et organisa en 1908 un banquet aujourd'hui célèbre en son honneur.",
+      "zh-Hans": "卢梭没有受过任何学院训练，一生大部分时间以海关收税员为业，只在星期天作画——多年来评论界嘲笑他“孩子气”的扁平风格，但毕加索本人却成为他的早期崇拜者，并在1908年为他举办了一场如今广为人知的宴会。"
+    },
+    "whySimple": {
+      "en": "Rousseau taught himself to paint. Here he poses a wedding party as stiffly as an old photograph — the flat space and even light aren't mistakes, they're his own personal style.",
+      "fr": "Rousseau était autodidacte. Ici, il pose ce cortège de mariage aussi raide qu'une vieille photographie — l'espace plat et la lumière égale ne sont pas des erreurs, c'est son style personnel.",
+      "zh-Hans": "卢梭是自学成才的画家。在这里，他把婚礼队伍摆得像一张老照片一样僵直——画面的平面感和均匀的光线不是失误，而是他自己的风格。"
+    },
+    "whereSimple": {
+      "en": "Notice how every guest looks straight at you instead of at the couple, and how the trees behind them look flat, like paper cutouts. Then find the small black dog sitting calmly in the grass.",
+      "fr": "Remarquez que chaque invité regarde droit vers vous plutôt que vers les mariés, et que les arbres derrière eux semblent plats, comme découpés dans du papier. Puis repérez le petit chien noir assis calmement dans l'herbe.",
+      "zh-Hans": "注意每位宾客都直视着你，而不是看着新人，他们身后的树木看起来很扁平，像纸剪出来的一样。再找找安静坐在草地上的那只小黑狗。"
+    },
+    "raritySimple": {
+      "en": "Rousseau had no art training — he worked as a toll collector and painted only on Sundays. People mocked his flat, \"childlike\" style for years, but Picasso admired him and even held a famous dinner in his honor.",
+      "fr": "Rousseau n'avait aucune formation artistique — il travaillait comme douanier et ne peignait que le dimanche. On s'est moqué de son style plat et « enfantin » pendant des années, mais Picasso l'admirait et organisa même un dîner célèbre en son honneur.",
+      "zh-Hans": "卢梭没有受过美术训练——他的工作是收税员，只在星期天画画。多年来人们嘲笑他“孩子气”的扁平风格，但毕加索很欣赏他，甚至为他举办过一场著名的宴会。"
+    },
+    "whyKids": {
+      "en": "Rousseau taught himself to paint, with no teacher at all. He lines up this whole wedding party like a photograph, with everyone looking straight at you.",
+      "fr": "Rousseau a appris à peindre tout seul, sans aucun professeur. Il aligne tout ce cortège de mariage comme sur une photo, avec tout le monde qui te regarde droit dans les yeux.",
+      "zh-Hans": "卢梭完全靠自己学会画画，没有老师教过他。他把整个婚礼队伍排得像拍照片一样，每个人都直直地看着你。"
+    },
+    "whereKids": {
+      "en": "Count how many people are looking right at you! Then look at the trees behind them — they look flat, almost like paper cutouts. Can you spot the little black dog sitting quietly in the grass?",
+      "fr": "Compte combien de personnes te regardent directement ! Puis regarde les arbres derrière eux — ils ont l'air plats, presque comme découpés dans du papier. Arrives-tu à repérer le petit chien noir assis tranquillement dans l'herbe ?",
+      "zh-Hans": "数一数有多少人正看着你！再看看他们身后的树——是不是看起来很扁，像纸剪出来的？你能找到安静坐在草地上的小黑狗吗？"
+    },
+    "rarityKids": {
+      "en": "Rousseau wasn't a trained artist — his real job was checking bags at the edge of Paris! He only painted on Sundays. People laughed at his simple style at first, but the famous painter Picasso loved his work so much he threw a big dinner party just for him.",
+      "fr": "Rousseau n'était pas un artiste formé — son vrai travail était de contrôler les sacs à l'entrée de Paris ! Il ne peignait que le dimanche. Les gens se moquaient d'abord de son style simple, mais le célèbre peintre Picasso a tellement aimé son travail qu'il a organisé un grand dîner rien que pour lui.",
+      "zh-Hans": "卢梭不是受过训练的画家——他真正的工作是在巴黎边境检查行李！他只有星期天才画画。一开始人们嘲笑他简单的画风，但大画家毕加索非常喜欢他的作品，还专门为他办了一场热闹的晚宴。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1960_46",
+    "artist": "Amedeo Modigliani",
+    "year": "1915",
+    "hall": null,
+    "inventoryNumber": "RF 1960-46",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Amedeo%20Modigliani%20-%20Fille%20rousse.jpg",
+    "accent": "#A64B2A",
+    "priority": "featured",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Red-Haired Girl",
+      "fr": "Fille rousse",
+      "zh-Hans": "红发少女"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 4.6,
+      "high": 9.2,
+      "logic": "FACT: same Modigliani portrait record as the Paul Guillaume portrait -- Elvire en buste sold for €27M (~$31.3M) at Sotheby's Paris. EDITORIAL JUDGMENT: An unnamed 'type' study like this one typically trades well below a named, exhibited sitter's portrait -- real anonymous Modigliani heads at this scale have historically sold in a noticeably lower range than his documented, named sitters. Hypothetical only; the painting has never been sold and never can be (national collection).",
+      "comparableSales": [
+        "Elvire en buste, Amedeo Modigliani — sold for €27M (~$31.3M) at Sotheby's Paris — Modigliani's portrait record, included here for context though this is a lower-tier, unnamed-sitter work by comparison."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Painted the same year as the Guillaume portrait, with the same simplified mask-like language, but here Modigliani softens the geometry for a younger, more informal sitter — the girl's identity was never recorded, one of several \"types\" Modigliani painted without naming his models.",
+      "fr": "Peint la même année que le portrait de Guillaume, avec le même langage simplifié en forme de masque, mais Modigliani adoucit ici la géométrie pour un modèle plus jeune et plus informel — l'identité de la jeune fille n'a pas été conservée, l'un des nombreux « types » que Modigliani peignait sans nommer ses modèles.",
+      "zh-Hans": "这幅画与纪尧姆肖像画于同一年，采用了同样简化的面具般语言，但莫迪利亚尼在此为这位更年轻、更随性的模特柔化了几何造型——这位女孩的身份没有留下记录，是莫迪利亚尼众多未具名“类型”人物之一。"
+    },
+    "where": {
+      "en": "Compare the loose, patchwork background — blocks of ochre, brown and dark blue laid in flat rectangles behind her — with the smooth modelling of her face; notice her hair is built from short, energetic strokes rather than the calm outline used everywhere else.",
+      "fr": "Comparez le fond en patchwork — des blocs plats d'ocre, de brun et de bleu sombre — avec le modelé lisse de son visage ; remarquez que ses cheveux sont construits à partir de touches courtes et énergiques, contrairement au contour calme utilisé partout ailleurs.",
+      "zh-Hans": "比较一下背景的拼接感——赭色、棕色和深蓝色的扁平色块——与她面部光滑的塑造方式；再留意她的头发是用短促而富有活力的笔触构成的，不同于画面其他地方那种平静的轮廓线。"
+    },
+    "rarity": {
+      "en": "Painted the same year as his Guillaume portrait, this is one of many \"anonymous\" heads Modigliani produced during his most productive Montparnasse years — sitters he never named, unlike the dealers, poets and artists he portrayed by name.",
+      "fr": "Peinte la même année que son portrait de Guillaume, c'est l'une des nombreuses têtes « anonymes » que Modigliani a produites durant ses années les plus productives à Montparnasse — des modèles qu'il n'a jamais nommés, contrairement aux marchands, poètes et artistes qu'il portraiturait nommément.",
+      "zh-Hans": "这幅画与纪尧姆肖像创作于同一年，是莫迪利亚尼在蒙帕纳斯创作最旺盛的岁月里所画众多“无名”头像之一——与他为画商、诗人、艺术家朋友们所作的具名肖像不同，这些模特的姓名从未被记录下来。"
+    },
+    "whySimple": {
+      "en": "Painted the same year as the Guillaume portrait, but here Modigliani softens his geometric style for a younger, more informal face — we don't know exactly who this girl was, unlike his portraits of named friends.",
+      "fr": "Peint la même année que le portrait de Guillaume, mais ici Modigliani adoucit son style géométrique pour un visage plus jeune et plus informel — on ne sait pas exactement qui était cette jeune fille, contrairement à ses portraits d'amis nommés.",
+      "zh-Hans": "这幅画与纪尧姆肖像画于同一年，但莫迪利亚尼在这里为一位更年轻、更随性的面孔柔化了他的几何风格——我们不确切知道这个女孩是谁，这与他为朋友们所作的具名肖像不同。"
+    },
+    "whereSimple": {
+      "en": "Compare the patchwork background — blocks of ochre, brown and dark blue — with the smooth, calm painting of her face. Notice her hair is made of short, quick strokes, different from the calm lines everywhere else.",
+      "fr": "Comparez le fond en patchwork — des blocs d'ocre, de brun et de bleu sombre — avec le modelé lisse et calme de son visage. Remarquez que ses cheveux sont faits de touches courtes et rapides, différentes des lignes calmes du reste du tableau.",
+      "zh-Hans": "比较一下拼接般的背景——赭色、棕色和深蓝色色块——与她面部光滑而平静的画法。再注意她的头发是用短促快速的笔触画成的，与画面其他部分平静的线条不同。"
+    },
+    "raritySimple": {
+      "en": "This is one of several unnamed young women Modigliani painted during his most productive years in Montparnasse — unlike the dealers and poets he portrayed by name, he never recorded who she was.",
+      "fr": "C'est l'une des nombreuses jeunes femmes anonymes que Modigliani a peintes durant ses années les plus productives à Montparnasse — contrairement aux marchands et poètes qu'il portraiturait nommément, il n'a jamais noté qui elle était.",
+      "zh-Hans": "这是莫迪利亚尼在蒙帕纳斯创作最旺盛的岁月里所画的众多无名年轻女性之一——与他为画商、诗人具名作画不同，他从未记下她是谁。"
+    },
+    "whyKids": {
+      "en": "Modigliani painted this girl the same year as his friend Paul Guillaume, but her face is softer and rounder — he didn't tell us her name!",
+      "fr": "Modigliani a peint cette fille la même année que son ami Paul Guillaume, mais son visage est plus doux et plus rond — il ne nous a pas dit son nom !",
+      "zh-Hans": "莫迪利亚尼画这个女孩的时间和他画朋友保罗·纪尧姆是同一年，但她的脸更柔和、更圆润——他没有告诉我们她叫什么名字！"
+    },
+    "whereKids": {
+      "en": "Look at the background — can you count the different colour blocks, like patches on a quilt? Now look at her hair — it's painted with quick little strokes, not smooth lines like the rest of the picture.",
+      "fr": "Regarde le fond — arrives-tu à compter les différents blocs de couleur, comme les pièces d'un patchwork ? Maintenant regarde ses cheveux — ils sont peints avec de petites touches rapides, pas des lignes lisses comme le reste du tableau.",
+      "zh-Hans": "看看背景——你能数出像被子上的补丁一样的不同色块吗？现在看看她的头发——是用又快又短的笔触画的，跟画面其他地方平滑的线条不一样。"
+    },
+    "rarityKids": {
+      "en": "Modigliani painted lots of pictures of young women whose names he never wrote down — a bit of a mystery! We know the names of his friends, like Paul Guillaume, but not hers.",
+      "fr": "Modigliani a peint beaucoup de tableaux de jeunes femmes dont il n'a jamais écrit le nom — un vrai mystère ! On connaît les noms de ses amis, comme Paul Guillaume, mais pas le sien.",
+      "zh-Hans": "莫迪利亚尼画了很多年轻女性的画像，却从没写下她们的名字——真是个小谜团！我们知道他朋友的名字，比如保罗·纪尧姆，但不知道她的名字。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1960_36",
+    "artist": "André Derain",
+    "year": "1928",
+    "hall": null,
+    "inventoryNumber": "RF 1960-36",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20de%20Madame%20Paul%20Guillaume%20au%20grand%20chapeau.jpg",
+    "accent": "#7A2E2E",
+    "priority": "featured",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Portrait of Madame Paul Guillaume with a Large Hat",
+      "fr": "Portrait de Madame Paul Guillaume au grand chapeau",
+      "zh-Hans": "戴大帽子的保罗·纪尧姆夫人肖像"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 0.3,
+      "high": 1.1,
+      "logic": "FACT: Derain's overall auction record is £16.3M (~$24.17M / ~€22.2M) for Arbres à Collioure (1905), Sotheby's London, 2010. EDITORIAL JUDGMENT: That record belongs to his radical 1905 Fauve period, which the market prizes far above his later, more classical-realist work like this 1928 portrait -- Derain portraits from this later period have historically sold for a small fraction of the Fauve record. A genuinely low-confidence estimate given how wide that stylistic/market gap is.",
+      "comparableSales": [
+        "Arbres à Collioure, André Derain — sold for £16.3M (~$24.17M / ~€22.2M) at Sotheby's London, 2010 — Derain's overall auction record, but from his radical 1905 Fauve period, a very different and far more sought-after style than this 1928 portrait."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "By 1928 Derain had abandoned the radical Fauve colour of his youth for a cooler, museum-schooled realism — this portrait shows off that later style: careful modelling, restrained palette, and a pose borrowed from centuries of formal portraiture rather than the wild brushwork that made him famous twenty years earlier.",
+      "fr": "En 1928, Derain avait abandonné les couleurs radicales de sa jeunesse fauve pour un réalisme plus froid, nourri par l'étude des musées — ce portrait montre bien ce style tardif : un modelé soigné, une palette retenue, et une pose empruntée à des siècles de portrait formel plutôt qu'à la touche sauvage qui l'avait rendu célèbre vingt ans plus tôt.",
+      "zh-Hans": "到1928年，德兰已经放弃了年轻时野兽派那种大胆狂放的色彩，转向一种更冷静、深受博物馆研习影响的写实风格——这幅肖像正体现了他后期的这种风格：细致的塑形、克制的色调，以及借鉴数百年正式肖像传统的姿态，而非二十年前令他成名的那种狂野笔触。"
+    },
+    "where": {
+      "en": "Notice the wide-brimmed straw hat that frames her face like a halo, the loosely draped satin wrap slipping off one shoulder, and the small wristwatch on her lowered arm — a distinctly modern, 1920s detail inside an otherwise old-master pose.",
+      "fr": "Remarquez le large chapeau de paille qui encadre son visage comme une auréole, le drapé de satin lâche glissant sur une épaule, et la petite montre-bracelet à son poignet baissé — un détail résolument moderne, des années 1920, au sein d'une pose autrement héritée des maîtres anciens.",
+      "zh-Hans": "留意那顶宽檐草帽如光环般环绕着她的脸庞，松松披落、滑下一侧肩膀的绸缎披肩，以及她垂下手臂上的小巧腕表——在这幅整体承袭古典肖像姿态的画面中，这是一处鲜明的1920年代现代细节。"
+    },
+    "rarity": {
+      "en": "Domenica Guillaume — Paul Guillaume's wife — later remarried collector Jean Walter after Guillaume's death, and the couple's combined collection became the founding gift of this museum; this portrait shows the woman whose two marriages, to two different collectors, are the reason this building exists as a museum at all.",
+      "fr": "Domenica Guillaume — épouse de Paul Guillaume — s'est remariée après sa mort avec le collectionneur Jean Walter, et la collection réunie du couple est devenue le don fondateur de ce musée ; ce portrait montre la femme dont les deux mariages, avec deux collectionneurs différents, sont la raison pour laquelle ce bâtiment est aujourd'hui un musée.",
+      "zh-Hans": "多米尼卡·纪尧姆是保罗·纪尧姆的妻子，纪尧姆去世后，她改嫁给收藏家让·瓦尔特；这对夫妇合并后的收藏成为了这座博物馆最初的奠基捐赠——这幅肖像画的正是这位女性，她的两段婚姻，分别嫁给两位收藏家，正是这座建筑今天成为博物馆的原因。"
+    },
+    "whySimple": {
+      "en": "By 1928 Derain had left behind the wild colours of his younger years for a calmer, more traditional style — careful shading, muted colours, and a formal pose, closer to old master portraits than to his famous early work.",
+      "fr": "En 1928, Derain avait abandonné les couleurs vives de sa jeunesse pour un style plus calme et plus traditionnel — un modelé soigné, des couleurs sobres, et une pose formelle, plus proche des maîtres anciens que de son œuvre de jeunesse.",
+      "zh-Hans": "到1928年，德兰已经放弃了年轻时野兽派那种鲜艳狂放的色彩，转向更平静、更传统的风格——细致的明暗处理、克制的色调，以及正式的姿态，比起他早年成名的作品，更接近古典肖像画。"
+    },
+    "whereSimple": {
+      "en": "Notice the wide straw hat framing her face, the loose satin wrap slipping off one shoulder, and the small wristwatch on her arm — a modern, 1920s detail inside an otherwise traditional pose.",
+      "fr": "Remarquez le large chapeau de paille qui encadre son visage, le drapé de satin lâche glissant sur une épaule, et la petite montre-bracelet à son poignet — un détail moderne, des années 1920, au sein d'une pose plutôt traditionnelle.",
+      "zh-Hans": "留意那顶环绕她脸庞、如光环般的宽檐草帽，松松滑落一侧肩膀的绸缎披肩，以及她手臂上的小腕表——在这幅偏传统的姿态画面中，这是一处现代的1920年代细节。"
+    },
+    "raritySimple": {
+      "en": "Domenica Guillaume — Paul Guillaume's wife — later remarried the collector Jean Walter after Guillaume died, and their combined art collection became the founding gift of this museum. This portrait shows the woman whose two marriages are the reason this museum exists.",
+      "fr": "Domenica Guillaume — épouse de Paul Guillaume — s'est remariée après sa mort avec le collectionneur Jean Walter, et leur collection réunie est devenue le don fondateur de ce musée. Ce portrait montre la femme dont les deux mariages sont la raison pour laquelle ce musée existe.",
+      "zh-Hans": "多米尼卡·纪尧姆是保罗·纪尧姆的妻子。纪尧姆去世后，她改嫁给收藏家让·瓦尔特，两人合并的收藏成为了这座博物馆最初的捐赠。这幅肖像画的正是这位女性，她的两段婚姻正是这座博物馆存在的原因。"
+    },
+    "whyKids": {
+      "en": "By the time Derain painted this, he'd stopped using the wild, bright colours he was famous for when he was young — here everything is calmer and more careful.",
+      "fr": "Quand Derain a peint ce tableau, il avait arrêté d'utiliser les couleurs vives et sauvages qui l'avaient rendu célèbre quand il était jeune — ici, tout est plus calme et plus soigné.",
+      "zh-Hans": "德兰画这幅画的时候，已经不再使用他年轻时那种鲜艳狂野、让他成名的颜色了——这里的一切都显得更平静、更细致。"
+    },
+    "whereKids": {
+      "en": "Look at her big straw hat — it frames her face like a halo! Can you spot the little wristwatch on her arm? That's a very modern detail for such an old-fashioned pose.",
+      "fr": "Regarde son grand chapeau de paille — il encadre son visage comme une auréole ! Arrives-tu à repérer la petite montre à son poignet ? C'est un détail très moderne pour une pose aussi traditionnelle.",
+      "zh-Hans": "看看她那顶大大的草帽——是不是像光环一样围着她的脸？你能找到她手腕上那只小小的手表吗？在这么一幅传统姿态的画里，这可是个非常“现代”的小细节！"
+    },
+    "rarityKids": {
+      "en": "This is a picture of Madame Guillaume. After her husband died, she married another art collector — and together, their two families' art collections became this whole museum! So in a way, she's one of the reasons this building is a museum today.",
+      "fr": "C'est un portrait de Madame Guillaume. Après la mort de son mari, elle a épousé un autre collectionneur d'art — et ensemble, les collections de leurs deux familles sont devenues ce musée tout entier ! Donc, d'une certaine façon, c'est grâce à elle que ce bâtiment est un musée aujourd'hui.",
+      "zh-Hans": "这是纪尧姆夫人的画像。她丈夫去世后，她嫁给了另一位艺术收藏家——他们两个家庭的收藏合在一起，就变成了这整座博物馆！所以从某种意义上说，正是因为有她，这栋建筑今天才成为了一座博物馆。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1963_30",
+    "artist": "Henri Rousseau",
+    "year": "1905",
+    "hall": null,
+    "inventoryNumber": "RF 1963 30",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Rousseau%20-%20Promeneurs%20dans%20un%20parc%2C%20entre%201900%20et%201910%2C%20RF%201963%2030.jpg",
+    "accent": "#3E5C3E",
+    "priority": "featured",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Walkers in a Park",
+      "fr": "Promeneurs dans un parc",
+      "zh-Hans": "公园中的散步者"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 2.8,
+      "high": 6.4,
+      "logic": "FACT: same Rousseau comparables as The Wedding Party -- overall record $43,535,000 for the jungle scene Les Flamants (Christie's New York, 2023); Portrait of Joseph Brummer sold for approximately $4.4M (~€4.0M) in 1993. EDITORIAL JUDGMENT: This is a modest, single-scene townscape -- smaller and less ambitious than the multi-figure Wedding Party -- closer in scale to the single-portrait comparable than to any jungle scene.",
+      "comparableSales": [
+        "Portrait of Joseph Brummer, Henri Rousseau — sold for approximately $4.4M (~€4.0M) in 1993 — closer genre comparable (non-jungle) than the artist's overall record."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Rousseau paints a quiet suburban street with the same flat, deliberate precision he gave his famous jungle scenes — proof that his \"naive\" style was a consistent way of seeing, not a limitation tied to exotic subjects.",
+      "fr": "Rousseau peint une rue de banlieue tranquille avec la même précision plate et délibérée qu'il donnait à ses célèbres scènes de jungle — preuve que son style « naïf » était une façon cohérente de voir, non une limite liée à des sujets exotiques.",
+      "zh-Hans": "卢梭用他描绘著名丛林场景时同样扁平、审慎精确的手法，描绘了一条安静的郊区街道——这证明他那种“稚拙”风格是一种一以贯之的观察方式，而不是局限于异域题材的技巧短板。"
+    },
+    "where": {
+      "en": "Follow the road as it curves past the stone archway on the left, then look at how small and evenly spaced the pedestrians are — each one a simple silhouette, placed like a piece on a board rather than caught mid-stride.",
+      "fr": "Suivez la route qui longe l'arche de pierre à gauche, puis observez combien les passants sont petits et régulièrement espacés — chacun une simple silhouette, placée comme un pion sur un plateau plutôt que saisie en pleine marche.",
+      "zh-Hans": "顺着道路望去，它绕过左侧的石拱门蜿蜒而去；再看看行人是多么娇小、间距多么均匀——每个人都只是一个简单的剪影，像棋盘上的棋子一样被摆放，而非被定格在行走的瞬间。"
+    },
+    "rarity": {
+      "en": "Rousseau painted very few straightforward townscapes compared to his famous jungle scenes — most of his surviving works either invent exotic settings he never visited or, like this one, record the real, unremarkable outskirts of Paris where he actually lived.",
+      "fr": "Rousseau a peint très peu de scènes urbaines directes comparé à ses célèbres scènes de jungle — la plupart de ses œuvres conservées inventent des décors exotiques qu'il n'a jamais visités, ou bien, comme ici, enregistrent la réalité sans éclat de la banlieue parisienne où il vivait vraiment.",
+      "zh-Hans": "与他著名的丛林场景相比，卢梭画的纯粹城镇景观非常少——他现存的大多数作品，要么虚构了他从未去过的异域场景，要么就像这幅一样，记录了他真实生活的、毫不起眼的巴黎郊区。"
+    },
+    "whySimple": {
+      "en": "Rousseau paints a quiet suburban street with the same flat, careful style he used for his famous jungle paintings — proof that his simple style was just how he saw things, not something tied only to exotic scenes.",
+      "fr": "Rousseau peint une rue de banlieue tranquille avec le même style plat et soigné qu'il utilisait pour ses célèbres peintures de jungle — preuve que son style simple était juste sa façon de voir les choses, pas quelque chose lié seulement aux scènes exotiques.",
+      "zh-Hans": "卢梭用他画著名丛林画作时同样扁平、细致的风格，描绘了一条安静的郊区街道——这证明他简单的风格只是他看待事物的方式，并不只局限于异域场景。"
+    },
+    "whereSimple": {
+      "en": "Follow the road as it curves past the stone archway on the left, then look at how small and evenly spaced the people are — each one a simple shape, placed like a piece on a board rather than caught mid-step.",
+      "fr": "Suivez la route qui longe l'arche de pierre à gauche, puis regardez comme les passants sont petits et régulièrement espacés — chacun une simple forme, placée comme un pion sur un plateau plutôt que surprise en pleine marche.",
+      "zh-Hans": "顺着道路看，它绕过左边的石拱门；再看看行人是多么娇小、间距多么均匀——每个人都只是一个简单的形状，像棋盘上的棋子一样被摆放，而不是走路时的瞬间抓拍。"
+    },
+    "raritySimple": {
+      "en": "Rousseau painted very few plain street scenes compared to his famous jungle paintings — most of his surviving works show invented exotic places he never actually visited.",
+      "fr": "Rousseau a peint très peu de scènes de rue simples comparé à ses célèbres peintures de jungle — la plupart de ses œuvres conservées montrent des lieux exotiques inventés qu'il n'a en réalité jamais visités.",
+      "zh-Hans": "与他著名的丛林画作相比，卢梭画的普通街景非常少——他现存的大多数作品都展示了他从未真正去过的、想象出来的异域场景。"
+    },
+    "whyKids": {
+      "en": "Rousseau paints an ordinary street the exact same careful way he painted his famous jungles — flat shapes, calm colours, nothing rushed.",
+      "fr": "Rousseau peint une rue ordinaire exactement de la même façon soignée qu'il peignait ses célèbres jungles — des formes plates, des couleurs calmes, rien de précipité.",
+      "zh-Hans": "卢梭用画他那些著名丛林画作时同样认真的方式，画了一条普通的街道——扁平的形状，安静的颜色，一点也不匆忙。"
+    },
+    "whereKids": {
+      "en": "Follow the road as it curves past the stone archway. Now look at the people walking — can you see how they're all spaced out evenly, almost like game pieces on a board?",
+      "fr": "Suis la route qui longe l'arche de pierre. Maintenant regarde les gens qui marchent — vois-tu comme ils sont tous espacés régulièrement, presque comme des pions sur un plateau de jeu ?",
+      "zh-Hans": "顺着道路看，它绕过了石拱门。现在看看走路的人——你能看出他们的间隔是不是很均匀，像棋盘上的棋子一样吗？"
+    },
+    "rarityKids": {
+      "en": "Rousseau is most famous for painting jungles full of tigers and giant leaves — even though he never once left France! This picture is different: it shows a real, ordinary street near where he actually lived.",
+      "fr": "Rousseau est surtout connu pour ses jungles pleines de tigres et de feuilles géantes — alors qu'il n'a jamais quitté la France une seule fois ! Ce tableau est différent : il montre une vraie rue ordinaire, près de l'endroit où il vivait réellement.",
+      "zh-Hans": "卢梭最有名的是画满老虎和巨大叶子的丛林——可是他其实一次都没有离开过法国！这幅画不一样：它画的是他真正生活过的地方附近，一条普普通通的街道。"
+    }
+  },
+  {
+    "id": "orangerie_inv_20100",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20100",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20The%20Clouds%20-%20Google%20Art%20Project.jpg",
+    "accent": "#5A7A8C",
+    "priority": "featured",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: The Clouds",
+      "fr": "Les Nymphéas : Les Nuages",
+      "zh-Hans": "睡莲：云"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 23.0,
+      "high": 41.4,
+      "logic": "FACT: Monet's Water Lilies auction record is $84.7M (~€77.9M) for Nymphéas en fleur (Rockefeller Collection), Christie's New York, 2018; more recently $65.5M (~€60.3M) for a Nymphéas from the Sydell Miller collection, Sotheby's New York, November 2024. EDITORIAL JUDGMENT: Those are auction results for smaller, single-canvas Water Lilies Monet made for private sale -- fundamentally different from this panel, one of eight in a 91-metre in-situ cycle Monet gave directly to the French state in 1922 and personally designed for this specific room; it has never been for sale and, as a permanent architectural installation, never legally could be. Treating the record sales as a rough ceiling reference only, with a real discount for this particular panel's quieter, flower-sparse composition relative to the denser, more colourful record-sale canvases.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record, for a smaller free-standing canvas, not a permanent in-situ panel like this one."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Monet paints only the water's surface, no bank, no horizon — sky and clouds exist here purely as reflections, floating just beneath the paint rather than above it.",
+      "fr": "Monet ne peint que la surface de l'eau, sans berge ni horizon — le ciel et les nuages n'existent ici que comme reflets, flottant juste sous la peinture plutôt qu'au-dessus.",
+      "zh-Hans": "莫奈在这里只描绘水面本身，没有河岸，没有地平线——天空和云朵在此只以倒影的形式存在，仿佛漂浮在颜料之下，而非之上。"
+    },
+    "where": {
+      "en": "Follow the pale, luminous cloud-shapes drifting left to right, and notice the darker mass gathering at the right edge — the only hint of solid vegetation breaking into an otherwise weightless field of reflected light.",
+      "fr": "Suivez les formes pâles et lumineuses des nuages qui dérivent de gauche à droite, et remarquez la masse plus sombre qui se rassemble sur le bord droit — le seul indice d'une végétation solide dans un champ par ailleurs sans poids, fait de lumière réfléchie.",
+      "zh-Hans": "顺着从左向右飘移的、淡雅而透亮的云影形状看去，再留意画面右侧边缘聚集的一片较暗色块——这是整幅几乎失重、由倒影之光构成的画面中，唯一能看出实体植物的线索。"
+    },
+    "rarity": {
+      "en": "This is one of eight panels Monet designed specifically for these two oval rooms, painted at his home in Giverny in his final years and installed here — following his own instructions — just months after his death in 1926; the panels have never been separated or lent out since.",
+      "fr": "Ceci est l'un des huit panneaux que Monet a conçus spécifiquement pour ces deux salles ovales, peints dans sa maison de Giverny durant ses dernières années et installés ici, selon ses propres instructions, quelques mois seulement après sa mort en 1926 ; les panneaux n'ont jamais été séparés ni prêtés depuis.",
+      "zh-Hans": "这是莫奈专为这两间椭圆形展厅设计的八幅巨作之一，创作于他晚年在吉维尼的家中，并按照他本人的遗愿，在他1926年去世后仅几个月便安装于此——这些画作自那以后从未被拆分或外借过。"
+    },
+    "whySimple": {
+      "en": "Monet paints only the surface of the water — no riverbank, no horizon. The sky and clouds only exist here as reflections, floating just under the paint.",
+      "fr": "Monet ne peint que la surface de l'eau — pas de berge, pas d'horizon. Le ciel et les nuages n'existent ici que comme des reflets, flottant juste sous la peinture.",
+      "zh-Hans": "莫奈在这里只画水面本身——没有河岸，没有地平线。天空和云朵在这里只作为倒影存在，仿佛漂浮在颜料之下。"
+    },
+    "whereSimple": {
+      "en": "Follow the pale, glowing cloud shapes drifting across the canvas, and notice the darker area gathering at the right edge — the only hint of solid plants in an otherwise weightless field of light.",
+      "fr": "Suivez les formes pâles et lumineuses des nuages qui dérivent sur la toile, et remarquez la zone plus sombre à droite — le seul indice de végétation solide dans un champ de lumière autrement sans poids.",
+      "zh-Hans": "顺着画面上从左向右飘移的、淡雅发光的云影形状看去，再留意右侧边缘聚集的较暗区域——这是整幅几乎失重的光影画面中，唯一能看出实体植物的痕迹。"
+    },
+    "raritySimple": {
+      "en": "This is one of eight panels Monet designed specifically for these two oval rooms. He painted them at his home in Giverny near the end of his life, and they were installed here, following his own instructions, just months after he died in 1926.",
+      "fr": "C'est l'un des huit panneaux que Monet a conçus spécialement pour ces deux salles ovales. Il les a peints chez lui à Giverny vers la fin de sa vie, et ils ont été installés ici, selon ses propres instructions, quelques mois seulement après sa mort en 1926.",
+      "zh-Hans": "这是莫奈专为这两间椭圆形展厅设计的八幅画作之一。他在晚年于吉维尼的家中完成了这些作品，并按照他本人的遗愿，在他1926年去世后仅几个月便安装于此。"
+    },
+    "whyKids": {
+      "en": "Monet only paints the very top of the water here — no riverbank, no sky above, just clouds floating as reflections right on the surface.",
+      "fr": "Ici, Monet ne peint que le tout haut de l'eau — pas de berge, pas de ciel au-dessus, juste des nuages qui flottent comme des reflets à la surface.",
+      "zh-Hans": "莫奈在这幅画里只画了水面最上面的部分——没有河岸，头顶也没有天空，只有像倒影一样漂浮在水面上的云朵。"
+    },
+    "whereKids": {
+      "en": "Can you follow the pale, glowing clouds drifting across the picture? Now find the darker patch at the right edge — that's the only bit of solid plant in the whole painting!",
+      "fr": "Arrives-tu à suivre les nuages pâles et lumineux qui dérivent sur le tableau ? Maintenant trouve la tache plus sombre sur le bord droit — c'est le seul petit bout de plante solide dans tout le tableau !",
+      "zh-Hans": "你能顺着画面上淡淡发光、飘来飘去的云影看下去吗？现在找找右边角落里比较暗的那一块——那是整幅画里唯一看得出是实实在在植物的地方！"
+    },
+    "rarityKids": {
+      "en": "Monet made eight giant paintings like this one, just for these two round rooms. He painted them at his home in his garden, and they were put up here right after he died — and they've never once been taken down or moved since!",
+      "fr": "Monet a fait huit tableaux géants comme celui-ci, juste pour ces deux salles rondes. Il les a peints chez lui, dans son jardin, et ils ont été installés ici juste après sa mort — et depuis, ils n'ont jamais été décrochés ni déplacés !",
+      "zh-Hans": "莫奈一共画了八幅像这样的巨型画作，专门为这两间圆形展厅而作。他是在自己家的花园里画的这些画，画作在他去世后不久就被挂在了这里——而且从那以后，从来没有被摘下来或搬动过！"
+    }
+  },
+  {
+    "id": "orangerie_inv_20106",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20106",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20Clear%20Morning%20with%20Willows%20-%20Google%20Art%20Project.jpg",
+    "accent": "#4F7C7C",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: Clear Morning with Willows",
+      "fr": "Les Nymphéas - Matin Clair avec Saules",
+      "zh-Hans": "睡莲：柳树下的清晨"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 18.4,
+      "high": 35.0,
+      "logic": "FACT: same Monet Water Lilies auction comparables as The Clouds -- $84.7M (~€77.9M; Nymphéas en fleur, Christie's New York, 2018) and $65.5M (~€60.3M; Sotheby's New York, 2024). EDITORIAL JUDGMENT: This panel, like all eight, is a permanent architectural installation gifted to the French state in 1922 and never for sale, so any figure is a hypothetical low-confidence anchor. The willow branches add more incident to the composition than the plainer Clouds panel, but still lean toward the lower half of the auction comparables' range, which reward the most flower-dense, brightly coloured canvases.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record, for a smaller free-standing canvas, not a permanent in-situ panel like this one."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "In this second room, Monet introduces something absent from the first: solid, dark willow trunks anchoring each side of the canvas, so for the first time in the cycle something other than water actually breaks the surface of the picture.",
+      "fr": "Dans cette seconde salle, Monet introduit un élément absent de la première : des troncs de saule sombres et solides, ancrant chaque côté de la toile — pour la première fois dans le cycle, autre chose que l'eau vient rompre la surface du tableau.",
+      "zh-Hans": "在第二个展厅中，莫奈引入了第一个展厅所没有的元素：画面两侧各有一株深色、坚实的柳树树干作为支撑——这是整个系列中第一次，除了水面之外，还有别的东西真正打破了画面的表层。"
+    },
+    "where": {
+      "en": "Follow the thin, trailing willow branches as they hang down from the top of the canvas, brushing the pale, hazy water below almost like a curtain; then find the handful of pale lily pads gathered at the lower left, small and quiet compared to the willows' scale.",
+      "fr": "Suivez les fines branches de saule qui pendent depuis le haut de la toile, effleurant l'eau pâle et brumeuse en dessous, presque comme un rideau ; puis repérez la poignée de nénuphars pâles rassemblés en bas à gauche, petits et discrets face à l'échelle des saules.",
+      "zh-Hans": "顺着从画面上方垂下的细长柳枝看去，它们几乎像帘子一样轻拂着下方朦胧的浅色水面；再找找聚集在左下角的几片浅色睡莲叶，与柳树的巨大尺度相比显得小巧而安静。"
+    },
+    "rarity": {
+      "en": "This panel and its neighbours in the second oval room were designed to contrast deliberately with the first — where Monet lets the visitor look straight down onto open water, here the view is broken up and framed by growth at the water's edge, as if you had walked around to the far side of the pond.",
+      "fr": "Ce panneau et ceux qui l'entourent dans la seconde salle ovale ont été conçus pour contraster délibérément avec la première — là où Monet laisse le visiteur regarder droit vers une eau dégagée, ici la vue est fragmentée et encadrée par la végétation au bord de l'eau, comme si vous aviez fait le tour jusqu'à l'autre rive de l'étang.",
+      "zh-Hans": "这幅画和第二间椭圆形展厅中的其他画作，都是刻意与第一个展厅形成对比而设计的——在第一个展厅里，莫奈让观者的视线可以直接望向开阔的水面，而在这里，视野被水边生长的枝叶打断、框住，仿佛你已经绕到了池塘的另一侧。"
+    },
+    "whySimple": {
+      "en": "In this second room, Monet adds something the first room doesn't have: dark, solid willow trunks on each side of the canvas — the first time in the whole cycle that anything but water breaks the surface of the picture.",
+      "fr": "Dans cette seconde salle, Monet ajoute un élément absent de la première : des troncs de saule sombres et solides de chaque côté de la toile — la première fois, dans tout le cycle, qu'autre chose que l'eau vient rompre la surface du tableau.",
+      "zh-Hans": "在第二个展厅里，莫奈加入了第一个展厅没有的元素：画面两侧深色、坚实的柳树树干——这是整个系列中第一次，除了水以外的东西打破了画面。"
+    },
+    "whereSimple": {
+      "en": "Follow the thin willow branches hanging down from the top, almost like a curtain over the pale water below. Then find the small group of pale lily pads at the lower left.",
+      "fr": "Suivez les fines branches de saule qui pendent depuis le haut, presque comme un rideau au-dessus de l'eau pâle. Puis repérez le petit groupe de nénuphars pâles en bas à gauche.",
+      "zh-Hans": "顺着从上方垂下的细柳枝看去，它们几乎像帘子一样盖在下方浅色的水面上。再找找左下角那一小簇浅色的睡莲叶。"
+    },
+    "raritySimple": {
+      "en": "This panel was designed to contrast with the first room — instead of open water, the view here is framed by plants at the water's edge, as if you'd walked around to the other side of the pond.",
+      "fr": "Ce panneau a été conçu pour contraster avec la première salle — au lieu d'une eau dégagée, la vue ici est encadrée par des plantes au bord de l'eau, comme si vous aviez fait le tour jusqu'à l'autre rive de l'étang.",
+      "zh-Hans": "这幅画的设计意图是与第一个展厅形成对比——这里的画面不再是开阔的水面，而是被水边的植物所框住，仿佛你已经走到了池塘的另一边。"
+    },
+    "whyKids": {
+      "en": "This is the first painting in the second room, and it has something new: real willow tree trunks on both sides!",
+      "fr": "C'est le premier tableau de la deuxième salle, et il a quelque chose de nouveau : de vrais troncs de saule des deux côtés !",
+      "zh-Hans": "这是第二个展厅里的第一幅画，它有一些新东西：两边都有真正的柳树树干！"
+    },
+    "whereKids": {
+      "en": "Can you see the thin willow branches hanging down like a curtain? Now look for the little lily pads floating in the bottom left corner.",
+      "fr": "Vois-tu les fines branches de saule qui pendent comme un rideau ? Maintenant cherche les petits nénuphars qui flottent en bas à gauche.",
+      "zh-Hans": "你能看到那些像帘子一样垂下来的细柳枝吗？现在找找左下角漂浮着的小小睡莲叶。"
+    },
+    "rarityKids": {
+      "en": "This room feels different from the first one — instead of looking straight down at open water, it's like you've walked around to the shady side of the pond, under the trees.",
+      "fr": "Cette salle est différente de la première — au lieu de regarder l'eau dégagée d'en haut, c'est comme si tu avais fait le tour jusqu'au côté ombragé de l'étang, sous les arbres.",
+      "zh-Hans": "这个展厅给人的感觉和第一个不一样——你不再是俯视开阔的水面，而是像走到了池塘的树荫那一侧。"
+    }
+  },
+  {
+    "id": "orangerie_inv_20107",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20107",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20Tree%20Reflections%20-%20Google%20Art%20Project.jpg",
+    "accent": "#3D6B6B",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: Tree Reflections",
+      "fr": "Les Nymphéas : Reflets d'arbres",
+      "zh-Hans": "睡莲：树影"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 16.6,
+      "high": 32.2,
+      "logic": "FACT: same Monet Water Lilies auction comparables as the other panels -- $84.7M (~€77.9M; 2018) and $65.5M (~€60.3M; 2024). EDITORIAL JUDGMENT: A permanent, never-for-sale installation panel, so any figure is a hypothetical low-confidence anchor. This panel's darker, more shadowed palette and sparser blossoms place it toward the lower-middle of the range relative to the brighter, flower-dense record-sale canvases.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record, for a smaller free-standing canvas, not a permanent in-situ panel like this one."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Monet turns the whole canvas over to shadow here — tree trunks reflected as dark, near-vertical bands cutting down through the water, with only a scatter of pink and white blossoms breaking the gloom.",
+      "fr": "Monet livre ici toute la toile à l'ombre — des troncs d'arbres se reflètent en bandes sombres, presque verticales, traversant l'eau, avec seulement quelques touches de fleurs roses et blanches pour rompre l'obscurité.",
+      "zh-Hans": "在这幅画中，莫奈把整个画面都交给了阴影——树干的倒影化作深色、近乎垂直的条带，向下贯穿水面，只有零星的粉白色花朵打破这片幽暗。"
+    },
+    "where": {
+      "en": "Trace one of the dark vertical bands from top to bottom and notice it never quite reads as a solid object — it dissolves into the surrounding blues and violets the closer you look; then find the small clusters of pink blossoms scattered unevenly across the surface, brighter than anything else in the panel.",
+      "fr": "Suivez une des bandes sombres verticales de haut en bas et remarquez qu'elle ne se lit jamais tout à fait comme un objet solide — elle se dissout dans les bleus et violets environnants plus vous regardez de près ; puis repérez les petits bouquets de fleurs roses dispersés inégalement sur la surface, plus lumineux que tout le reste du panneau.",
+      "zh-Hans": "顺着一条深色的竖直条带从上到下看去，你会发现它从未真正呈现为一个实体——越靠近看，它就越消融于周围的蓝色与紫色之中；再找找散布在水面上、分布并不均匀的粉色花簇，它们是整幅画中最明亮的部分。"
+    },
+    "rarity": {
+      "en": "Of the seven panels from this cycle in the collection, this is the darkest and most sombre — a reminder that Monet painted the whole series through the final, painful years of his failing eyesight and the loss of his stepdaughter and close friend Georges Clemenceau's political battles, not as an untroubled celebration of his garden.",
+      "fr": "Parmi les sept panneaux du cycle présents dans la collection, celui-ci est le plus sombre — un rappel que Monet a peint toute la série durant ses dernières années, marquées par la douleur, sa vue déclinante et le deuil de sa belle-fille, et non comme une célébration insouciante de son jardin.",
+      "zh-Hans": "在收藏中的这七幅系列画作中，这一幅是色调最深沉、最忧郁的——这提醒着人们，莫奈创作整个系列时正处于人生最后、饱受病痛的岁月，视力日渐衰退，又痛失继女，这并非一场对自家花园的无忧无虑的礼赞。"
+    },
+    "whySimple": {
+      "en": "Monet gives this whole canvas over to shadow — tree trunks reflected as dark bands cutting down through the water, with only a few pink and white blossoms breaking the gloom.",
+      "fr": "Monet livre ici toute la toile à l'ombre — des troncs d'arbres se reflètent en bandes sombres traversant l'eau, avec seulement quelques fleurs roses et blanches pour rompre l'obscurité.",
+      "zh-Hans": "莫奈把整幅画面都交给了阴影——树干的倒影化作深色条带贯穿水面，只有几朵粉白色的花朵打破了这片幽暗。"
+    },
+    "whereSimple": {
+      "en": "Trace one of the dark vertical bands from top to bottom — it never quite looks like a solid object, it dissolves into the blues and violets around it. Then find the small clusters of pink blossoms, brighter than anything else here.",
+      "fr": "Suivez une des bandes sombres verticales de haut en bas — elle ne ressemble jamais tout à fait à un objet solide, elle se dissout dans les bleus et violets alentour. Puis repérez les petits bouquets de fleurs roses, plus lumineux que tout le reste.",
+      "zh-Hans": "顺着一条深色的竖直条带从上到下看——它从未真正像一个实体，而是消融在周围的蓝紫色之中。再找找那些粉色的小花簇，它们是这里最明亮的部分。"
+    },
+    "raritySimple": {
+      "en": "This is the darkest of the panels in the collection — a reminder that Monet painted the whole series during his difficult final years, not as a carefree celebration of his garden.",
+      "fr": "C'est le plus sombre des panneaux de la collection — un rappel que Monet a peint toute la série durant ses dernières années difficiles, et non comme une célébration insouciante de son jardin.",
+      "zh-Hans": "这是馆藏中色调最深沉的一幅——它提醒着人们，莫奈创作整个系列时正处于艰难的晚年，而非无忧无虑地礼赞自己的花园。"
+    },
+    "whyKids": {
+      "en": "This one is much darker and more shadowy than the others — Monet paints tree trunks as dark stripes reflected in the water.",
+      "fr": "Celui-ci est bien plus sombre et ombragé que les autres — Monet peint des troncs d'arbres comme des rayures sombres reflétées dans l'eau.",
+      "zh-Hans": "这一幅比其他几幅都要暗、更有阴影感——莫奈把树干画成了倒映在水中的深色条纹。"
+    },
+    "whereKids": {
+      "en": "Try to follow one of the dark stripes from top to bottom — it's tricky, because it keeps blurring into the blue water! Now find the little pink flowers — they're the brightest thing in the whole painting.",
+      "fr": "Essaie de suivre une des rayures sombres de haut en bas — c'est difficile, parce qu'elle n'arrête pas de se fondre dans l'eau bleue ! Maintenant trouve les petites fleurs roses — ce sont les choses les plus lumineuses de tout le tableau.",
+      "zh-Hans": "试着从上到下顺着一条深色条纹看下去——这有点难，因为它总是和蓝色的水融在一起！现在找找那些小小的粉色花朵——它们是整幅画里最亮的东西。"
+    },
+    "rarityKids": {
+      "en": "This is the darkest, moodiest painting of the whole group — Monet was going through some hard years when he painted it, not just enjoying a sunny afternoon in his garden.",
+      "fr": "C'est le tableau le plus sombre et le plus mélancolique de tout le groupe — Monet traversait des années difficiles quand il l'a peint, pas seulement une après-midi ensoleillée dans son jardin.",
+      "zh-Hans": "这是整组画作里色调最深、情绪最低沉的一幅——莫奈画这幅画的时候正经历着一段艰难的岁月，而不只是在花园里享受一个晴朗的下午。"
+    }
+  },
+  {
+    "id": "orangerie_inv_20102",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20102",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20Green%20Reflections%20-%20Google%20Art%20Project.jpg",
+    "accent": "#4C7A4C",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: Green Reflections",
+      "fr": "Les Nymphéas : Reflets verts",
+      "zh-Hans": "睡莲：绿色倒影"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 25.8,
+      "high": 44.2,
+      "logic": "FACT: same Monet Water Lilies auction comparables -- $84.7M (~€77.9M; 2018) and $65.5M (~€60.3M; 2024), both flower-dense canvases. EDITORIAL JUDGMENT: A permanent, never-for-sale installation panel, so any figure is a hypothetical low-confidence anchor. This is the densest, most flower-filled and most saturated in colour of the panels reviewed so far, closer in character to the record-sale canvases than the sparser or darker panels -- placed toward the upper end of this catalog's Nymphéas range on that basis.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record; unusually close in density and colour saturation to this particular panel among the seven in this collection."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Green dominates here more than in any other panel in the cycle — Monet lets the reflected foliage take over almost the whole surface, so the water reads less as a mirror and more as a dense, planted field.",
+      "fr": "Le vert domine ici plus que dans tout autre panneau du cycle — Monet laisse le feuillage réfléchi envahir presque toute la surface, si bien que l'eau se lit moins comme un miroir que comme un champ dense et planté.",
+      "zh-Hans": "在整个系列中，这一幅比任何其他画面都更以绿色为主导——莫奈让倒映的绿叶几乎占据了整个画面，于是水面看起来不再像一面镜子，反倒更像一片茂密的种植地。"
+    },
+    "where": {
+      "en": "Look at the bottom two corners, where clusters of lily pads and blossoms are painted with more defined, individual brushstrokes than the hazier green mass filling the centre — Monet gives you somewhere solid to land your eye before releasing you back into pure reflection.",
+      "fr": "Regardez les deux coins inférieurs, où des bouquets de nénuphars et de fleurs sont peints avec des touches plus définies, individuelles, que la masse verte plus floue qui remplit le centre — Monet vous donne un endroit solide où poser le regard avant de vous relâcher dans le pur reflet.",
+      "zh-Hans": "看看画面下方的两个角落，那里成簇的睡莲叶和花朵是用比中央那片朦胧绿色更清晰、更具体的独立笔触画成的——莫奈先给你的视线一个可以落脚的实处，然后才把你重新释放回纯粹的倒影之中。"
+    },
+    "rarity": {
+      "en": "Monet worked on these panels in a purpose-built studio at Giverny large enough to hold canvases this size, moving between several at once — this density of colour and detail is the result of years of returning to the same motif, not a single sitting in front of the pond.",
+      "fr": "Monet a travaillé sur ces panneaux dans un atelier construit à Giverny spécialement assez grand pour accueillir des toiles de cette taille, passant de l'une à l'autre — cette densité de couleur et de détail est le résultat d'années de retour sur le même motif, non d'une seule séance devant l'étang.",
+      "zh-Hans": "莫奈是在吉维尼专门建造的、足以容纳这种尺寸画布的画室里创作这些画作的，他会同时在几幅之间来回创作——这种色彩与细节的密度，是他多年反复回到同一景物前创作的结果，而非在池塘边一次性完成的写生。"
+    },
+    "whySimple": {
+      "en": "Green dominates more here than in any other panel — Monet lets the reflected leaves take over almost the whole surface, so the water looks less like a mirror and more like a dense field of plants.",
+      "fr": "Le vert domine plus ici que dans tout autre panneau — Monet laisse le feuillage réfléchi envahir presque toute la surface, si bien que l'eau ressemble moins à un miroir et plus à un champ dense de plantes.",
+      "zh-Hans": "这一幅比其他画面都更以绿色为主——莫奈让倒映的树叶几乎铺满整个画面，让水面看起来不像一面镜子，更像一片茂密的植物地。"
+    },
+    "whereSimple": {
+      "en": "Look at the two bottom corners, where clusters of lily pads and flowers are painted more clearly than the hazier green in the middle — a solid place to rest your eye before it drifts back into pure reflection.",
+      "fr": "Regardez les deux coins inférieurs, où des bouquets de nénuphars et de fleurs sont peints plus clairement que le vert plus flou au centre — un endroit solide où reposer le regard avant qu'il ne se perde à nouveau dans le pur reflet.",
+      "zh-Hans": "看看下方两个角落，那里的睡莲叶和花朵画得比中间朦胧的绿色更清楚——这是一处可以让视线稍作停留的地方，然后再重新沉入纯粹的倒影。"
+    },
+    "raritySimple": {
+      "en": "Monet worked on these panels in a huge studio built specially at Giverny, moving between several canvases at once — this density of colour comes from years of returning to the same view, not one sitting by the pond.",
+      "fr": "Monet a travaillé sur ces panneaux dans un immense atelier construit spécialement à Giverny, passant de plusieurs toiles à l'autre à la fois — cette densité de couleur vient d'années de retour sur la même vue, pas d'une seule séance au bord de l'étang.",
+      "zh-Hans": "莫奈是在吉维尼专门建造的巨大画室里创作这些画作的，他会同时在好几幅画布之间来回工作——这种浓郁的色彩来自多年反复回到同一景致，而非一次性的池边写生。"
+    },
+    "whyKids": {
+      "en": "This one is the greenest of them all — Monet fills almost the whole painting with reflected leaves, so it looks more like a carpet of plants than a mirror of water.",
+      "fr": "C'est le plus vert de tous — Monet remplit presque tout le tableau de feuilles reflétées, si bien que ça ressemble plus à un tapis de plantes qu'à un miroir d'eau.",
+      "zh-Hans": "这一幅是所有画里最绿的——莫奈用倒映的树叶几乎填满了整幅画，看起来更像一片植物地毯，而不是水的镜子。"
+    },
+    "whereKids": {
+      "en": "Look in the two bottom corners — can you spot the lily pads and flowers painted more clearly there than in the hazy green middle of the painting?",
+      "fr": "Regarde dans les deux coins du bas — arrives-tu à repérer les nénuphars et les fleurs peints plus clairement que dans le vert flou du milieu du tableau ?",
+      "zh-Hans": "看看画面下方的两个角落——你能找到那些画得比画面中间朦胧绿色更清楚的睡莲叶和花朵吗？"
+    },
+    "rarityKids": {
+      "en": "Monet had a giant art studio built just for painting these huge canvases, and he worked on several at the same time — this painting took years of visits to the same pond, not just one afternoon.",
+      "fr": "Monet a fait construire un atelier géant rien que pour peindre ces immenses toiles, et il travaillait sur plusieurs en même temps — ce tableau lui a demandé des années de visites au même étang, pas juste un après-midi.",
+      "zh-Hans": "莫奈专门建了一间巨大的画室来画这些超大的画布，而且他会同时创作好几幅——这幅画花了他好几年时间反复造访同一个池塘，而不只是一个下午。"
+    }
+  },
+  {
+    "id": "orangerie_inv_20101",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20101",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20Morning%20-%20Google%20Art%20Project.jpg",
+    "accent": "#6B7BA6",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: Morning",
+      "fr": "Les Nymphéas : Matin",
+      "zh-Hans": "睡莲：清晨"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 20.2,
+      "high": 36.8,
+      "logic": "FACT: same Monet Water Lilies auction comparables -- $84.7M (~€77.9M; 2018) and $65.5M (~€60.3M; 2024). EDITORIAL JUDGMENT: A permanent, never-for-sale installation panel, so any figure is a hypothetical low-confidence anchor. This panel sits in the middle of this catalog's Nymphéas range -- more incident (reeds, several lily clusters) than the plainest panels, but calmer and less saturated than the greenest ones.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record, for a smaller free-standing canvas, not a permanent in-situ panel like this one."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Monet frames this panel with reeds and tall grass along both edges, a rare moment in the cycle where the water's border is visible at all, giving Morning a calmer, more grounded feeling than the panels that show open water reaching edge to edge.",
+      "fr": "Monet encadre ce panneau de roseaux et de hautes herbes le long des deux bords, un rare moment du cycle où la rive de l'eau est visible, donnant à Matin une sensation plus calme et plus ancrée que les panneaux montrant une eau dégagée d'un bord à l'autre.",
+      "zh-Hans": "莫奈在这幅画的两侧边缘都以芦苇和高高的水草作为画面边框，这是整个系列中难得能看到水岸边界的一刻，因此《清晨》比那些水面一望无际、贯穿画面两端的画作，显得更加平静、更有依托感。"
+    },
+    "where": {
+      "en": "Follow the pale lavender-blue water toward the centre and find the two loose clusters of white lily blossoms, one lower-left and one lower-centre — notice how much softer and mistier the light feels here than in the sharper-edged panels nearby.",
+      "fr": "Suivez l'eau bleu-lavande pâle vers le centre et repérez les deux bouquets de fleurs blanches, l'un en bas à gauche, l'autre en bas au centre — remarquez à quel point la lumière semble plus douce et plus brumeuse ici que dans les panneaux voisins aux contours plus nets.",
+      "zh-Hans": "顺着淡淡的薰衣草蓝色水面望向画面中央，找找那两簇松散的白色睡莲花丛，一簇在左下方，一簇在正下方偏中央——留意这里的光线比旁边轮廓更分明的画作显得更加柔和、朦胧。"
+    },
+    "rarity": {
+      "en": "Monet, in his seventies and eighties by the time he painted this cycle, worked despite advancing cataracts that distorted his sense of colour — late in his life he described painting almost from memory as much as from sight, which makes the softness of a panel like this one as much a record of his failing eyes as of the morning light itself.",
+      "fr": "Monet, âgé de soixante-dix à quatre-vingts ans lorsqu'il peignait ce cycle, travaillait malgré une cataracte avancée qui déformait sa perception des couleurs — vers la fin de sa vie, il décrivait peindre presque autant de mémoire que par la vue, ce qui fait de la douceur d'un panneau comme celui-ci autant un témoignage de sa vue déclinante que de la lumière du matin elle-même.",
+      "zh-Hans": "莫奈创作这一系列时已年届七旬到八旬，白内障日益严重，扭曲了他对色彩的感知——晚年他曾说，作画时几乎和凭记忆一样多地依靠视觉，这也让这样一幅画面的柔和感，既是清晨光线的记录，也同样是他日渐衰退的视力所留下的印记。"
+    },
+    "whySimple": {
+      "en": "Monet frames this panel with reeds and tall grass along both edges — a rare moment in the cycle where you can actually see the water's edge, making Morning feel calmer than panels with open water reaching edge to edge.",
+      "fr": "Monet encadre ce panneau de roseaux et de hautes herbes le long des deux bords — un rare moment du cycle où l'on voit vraiment la rive, ce qui rend Matin plus calme que les panneaux montrant une eau dégagée d'un bord à l'autre.",
+      "zh-Hans": "莫奈在这幅画的两侧都以芦苇和高高的水草作为边框——这是整个系列中难得能真正看到水岸的一刻，这让《清晨》比那些水面贯穿两端的画面显得更平静。"
+    },
+    "whereSimple": {
+      "en": "Follow the pale lavender-blue water toward the centre and find the two clusters of white lily blossoms. Notice how much softer and mistier the light feels here than in nearby panels.",
+      "fr": "Suivez l'eau bleu-lavande pâle vers le centre et repérez les deux bouquets de fleurs blanches. Remarquez à quel point la lumière semble plus douce et plus brumeuse ici que dans les panneaux voisins.",
+      "zh-Hans": "顺着淡淡的薰衣草蓝色水面看向中央，找找那两簇白色睡莲花丛。留意这里的光线比周围画作显得更柔和、更朦胧。"
+    },
+    "raritySimple": {
+      "en": "Monet was in his seventies and eighties when he painted this cycle, working despite failing eyesight from cataracts — late in life he said he painted almost as much from memory as from what he could actually see.",
+      "fr": "Monet avait soixante-dix à quatre-vingts ans quand il a peint ce cycle, travaillant malgré une vue déclinante à cause de la cataracte — vers la fin de sa vie, il disait peindre presque autant de mémoire que de ce qu'il voyait réellement.",
+      "zh-Hans": "莫奈创作这一系列时已年届七旬到八旬，尽管白内障导致视力日渐衰退，他仍坚持作画——晚年他曾说，自己作画几乎和凭记忆一样多地依靠实际所见。"
+    },
+    "whyKids": {
+      "en": "This panel has reeds and tall grass along both sides — a rare chance in this whole series to actually see the edge of the pond.",
+      "fr": "Ce panneau a des roseaux et de hautes herbes des deux côtés — une rare occasion, dans toute la série, de vraiment voir le bord de l'étang.",
+      "zh-Hans": "这幅画的两侧都有芦苇和高高的水草——在整个系列里，这是难得能真正看到池塘边缘的一次机会。"
+    },
+    "whereKids": {
+      "en": "Find the two clusters of white flowers floating on the water. Doesn't the light in this one feel softer and mistier than the others?",
+      "fr": "Trouve les deux bouquets de fleurs blanches qui flottent sur l'eau. La lumière dans celui-ci ne te semble-t-elle pas plus douce et plus brumeuse que les autres ?",
+      "zh-Hans": "找找漂浮在水面上的那两簇白花。你有没有觉得这幅画的光线比其他几幅更柔和、更朦胧？"
+    },
+    "rarityKids": {
+      "en": "By the time Monet painted this, he was a very old man and his eyesight was getting worse and worse — some of the softness and haziness you see might be as much about his eyes as about the actual morning light.",
+      "fr": "Quand Monet a peint ceci, il était très âgé et sa vue empirait de plus en plus — une partie de la douceur et du flou que tu vois vient peut-être autant de ses yeux que de la vraie lumière du matin.",
+      "zh-Hans": "莫奈画这幅画的时候已经很老了，视力也越来越差——你看到的这种柔和与朦胧，或许既来自清晨真实的光线，也来自他逐渐衰退的双眼。"
+    }
+  },
+  {
+    "id": "orangerie_inv_20104",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20104",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20The%20Two%20Willows%20-%20Google%20Art%20Project.jpg",
+    "accent": "#5C7A5C",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: The Two Willows",
+      "fr": "Les Nymphéas : Les Deux Saules",
+      "zh-Hans": "睡莲：两棵柳树"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 18.4,
+      "high": 35.0,
+      "logic": "FACT: same Monet Water Lilies auction comparables -- $84.7M (~€77.9M; 2018) and $65.5M (~€60.3M; 2024). EDITORIAL JUDGMENT: A permanent, never-for-sale installation panel, so any figure is a hypothetical low-confidence anchor, in the same middling band as the other willow-framed panels in this collection.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record, for a smaller free-standing canvas, not a permanent in-situ panel like this one."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Monet builds this panel almost symmetrically, a willow trunk anchoring each edge like a pair of curtains drawn back to reveal the pond between them — a far more formal, deliberate composition than the freer, edge-to-edge water in most of the other panels.",
+      "fr": "Monet construit ce panneau de façon presque symétrique, un tronc de saule ancrant chaque bord comme une paire de rideaux tirés pour révéler l'étang entre eux — une composition bien plus formelle et délibérée que l'eau plus libre, d'un bord à l'autre, de la plupart des autres panneaux.",
+      "zh-Hans": "莫奈几乎以对称的方式构建这幅画面，两侧边缘各有一株柳树树干作为支点，就像一对被拉开的帷幕，揭示出中间的池塘——比起其他大多数画作中那种自由延展、贯穿画面两端的水面，这是一幅明显更为正式、更加刻意经营的构图。"
+    },
+    "where": {
+      "en": "Compare the two willow trunks framing left and right — Monet paints them as near mirror images, both curving gently inward — then follow their trailing branches down into the pale, creamy-lavender water, and find the small lily cluster tucked into the lower left, the panel's only real note of colour.",
+      "fr": "Comparez les deux troncs de saule qui encadrent la gauche et la droite — Monet les peint presque comme des images en miroir, tous deux courbés doucement vers l'intérieur — puis suivez leurs branches retombant dans l'eau pâle, couleur lavande crémeuse, et repérez le petit bouquet de nénuphars niché en bas à gauche, la seule vraie touche de couleur du panneau.",
+      "zh-Hans": "比较一下左右两侧作为画框的柳树树干——莫奈几乎把它们画成了镜像，两株都微微向内弯曲——再顺着它们垂落的枝条望向下方那片浅淡、如奶油薰衣草色的水面，找找藏在左下角的那一小簇睡莲，这是整幅画中唯一真正带有色彩的地方。"
+    },
+    "rarity": {
+      "en": "Its formal symmetry makes The Two Willows one of the more architectural compositions in the whole cycle, closer in spirit to a doorway or a stage curtain than to the open, boundaryless water of panels like The Clouds — a reminder that Monet was designing these as much for the curved walls of a specific room as for the pond itself.",
+      "fr": "Sa symétrie formelle fait des Deux Saules l'une des compositions les plus architecturales de tout le cycle, plus proche dans l'esprit d'un portail ou d'un rideau de scène que de l'eau ouverte et sans limites de panneaux comme Les Nuages — un rappel que Monet concevait ces œuvres autant pour les murs courbes d'une salle précise que pour l'étang lui-même.",
+      "zh-Hans": "这种正式的对称性，让《两棵柳树》成为整个系列中最具建筑感的构图之一，其气质更接近一道门廊或舞台帷幕，而非像《云》那样开阔、无边界的水面——这提醒着我们，莫奈在设计这些画作时，考虑的不只是池塘本身，同样也在考量特定展厅那弯曲的墙面。"
+    },
+    "whySimple": {
+      "en": "Monet builds this panel almost symmetrically, with a willow trunk on each edge like a pair of curtains drawn back to reveal the pond between them — a more formal composition than the freer water in most of the other panels.",
+      "fr": "Monet construit ce panneau de façon presque symétrique, avec un tronc de saule sur chaque bord comme un rideau tiré pour révéler l'étang entre eux — une composition plus formelle que l'eau plus libre de la plupart des autres panneaux.",
+      "zh-Hans": "莫奈几乎以对称的方式构建这幅画，两侧各有一株柳树树干，像一对被拉开的帷幕，露出中间的池塘——比起其他大多数画作中更自由的水面，这是一幅更为正式的构图。"
+    },
+    "whereSimple": {
+      "en": "Compare the two willow trunks on the left and right — Monet paints them almost as mirror images. Then find the small cluster of lilies in the lower left, the panel's only real spot of colour.",
+      "fr": "Comparez les deux troncs de saule à gauche et à droite — Monet les peint presque comme des images en miroir. Puis repérez le petit bouquet de nénuphars en bas à gauche, la seule vraie touche de couleur du panneau.",
+      "zh-Hans": "比较一下左右两侧的柳树树干——莫奈几乎把它们画成了镜像。再找找左下角那一小簇睡莲，这是整幅画中唯一真正带有色彩的地方。"
+    },
+    "raritySimple": {
+      "en": "Its formal symmetry makes The Two Willows feel more like a doorway or stage curtain than the open water in panels like The Clouds — Monet was designing these for the curved walls of this specific room, not just for the pond.",
+      "fr": "Sa symétrie formelle fait que Les Deux Saules ressemble davantage à un portail ou un rideau de scène qu'à l'eau ouverte de panneaux comme Les Nuages — Monet concevait ces œuvres pour les murs courbes de cette salle précise, pas seulement pour l'étang.",
+      "zh-Hans": "这种对称性让《两棵柳树》看起来更像一道门廊或舞台帷幕，而不是像《云》那样开阔的水面——莫奈设计这些画作时，考虑的是这个特定展厅弯曲的墙面，而不只是池塘本身。"
+    },
+    "whyKids": {
+      "en": "This one looks almost like a matching pair — a willow tree on the left and another on the right, like curtains pulled open to show you the pond.",
+      "fr": "Celui-ci ressemble presque à une paire assortie — un saule à gauche et un autre à droite, comme des rideaux ouverts pour te montrer l'étang.",
+      "zh-Hans": "这幅画看起来几乎像一对成双成对的柳树——左边一棵，右边一棵，就像被拉开的帘子，向你展示中间的池塘。"
+    },
+    "whereKids": {
+      "en": "Compare the tree on the left with the tree on the right — can you see how similar they are? Now find the tiny cluster of lily pads tucked in the bottom left corner.",
+      "fr": "Compare l'arbre de gauche avec celui de droite — vois-tu comme ils se ressemblent ? Maintenant trouve le tout petit bouquet de nénuphars niché dans le coin en bas à gauche.",
+      "zh-Hans": "比较一下左边的树和右边的树——你能看出它们有多相似吗？现在找找藏在左下角的那一小簇睡莲叶。"
+    },
+    "rarityKids": {
+      "en": "Monet didn't just paint whatever he saw at the pond — he carefully designed this one to look balanced, almost like a doorway framing the water in the middle.",
+      "fr": "Monet ne peignait pas juste ce qu'il voyait à l'étang — il a soigneusement conçu celui-ci pour qu'il paraisse équilibré, presque comme un portail encadrant l'eau au milieu.",
+      "zh-Hans": "莫奈并不是随手画下他在池塘边看到的景象——他精心设计了这幅画，让它看起来很对称，几乎就像一道门框，把中间的水面框了起来。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1960_47",
+    "artist": "Alfred Sisley",
+    "year": "1875",
+    "hall": null,
+    "inventoryNumber": "RF 1960-47",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Sisley%20Orangerie%2002.jpg",
+    "accent": "#8C7A5A",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "The Road from Montbuisson to Louveciennes",
+      "fr": "La Route de Montbuisson à Louveciennes",
+      "zh-Hans": "从蒙比松到卢韦谢讷的道路"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 3.7,
+      "high": 7.4,
+      "logic": "FACT: Sisley's auction record is $9,064,733 (~€8.3M) for Effet de neige à Louveciennes (1874), Sotheby's London, 2017 -- a snow scene painted in the very same stretch of countryside as this work. EDITORIAL JUDGMENT: Sisley's snow scenes carry a real, well-documented premium in the market over his more common clear-weather landscapes; this is an ordinary daylight road scene from the same place and year, so it should sit meaningfully below the record rather than at it.",
+      "comparableSales": [
+        "Effet de neige à Louveciennes, Alfred Sisley — sold for $9,064,733 (~€8.3M) at Sotheby's London, 2017 — Sisley's auction record, painted in the same stretch of countryside near Louveciennes as this work, though a snow scene, a subject that commands a market premium over his ordinary daylight views."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Sisley paints the road itself as the real subject — its pale, sun-bleached surface takes up nearly half the canvas, with the figures and carriage reduced to small, loosely brushed incidents along its edge.",
+      "fr": "Sisley peint la route elle-même comme véritable sujet — sa surface pâle, blanchie par le soleil, occupe presque la moitié de la toile, tandis que les personnages et la voiture sont réduits à de petits accidents peints librement le long de son bord.",
+      "zh-Hans": "西斯莱把道路本身当作真正的主题来描绘——它那被阳光晒得发白的路面几乎占据了画面的一半，而人物与马车则被简化为路边几处松散笔触勾勒的小细节。"
+    },
+    "where": {
+      "en": "Follow the road as it recedes into a soft, hazy view of the river valley and hills beyond, then notice how thinly and quickly the horse, carriage and walking figures are painted — a few economical strokes are enough to suggest people going about an ordinary day.",
+      "fr": "Suivez la route qui s'enfonce vers une vue douce et brumeuse de la vallée du fleuve et des collines au loin, puis remarquez avec quelle légèreté et quelle rapidité le cheval, la voiture et les personnages qui marchent sont peints — quelques touches économes suffisent à suggérer des gens vaquant à une journée ordinaire.",
+      "zh-Hans": "顺着道路望去，它渐渐隐入远处河谷与丘陵朦胧柔和的景色之中；再留意马匹、马车和行人是多么轻薄、迅疾的笔触画成的——寥寥几笔便足以让人感受到这是寻常一天里往来的人们。"
+    },
+    "rarity": {
+      "en": "This is the same stretch of countryside near Louveciennes, west of Paris, where Sisley painted many of his best-known works, including his auction-record snow scene — proof of how attached he stayed to this one small, unglamorous corner of the Seine valley.",
+      "fr": "C'est le même coin de campagne près de Louveciennes, à l'ouest de Paris, où Sisley a peint nombre de ses œuvres les plus connues, y compris sa scène de neige record aux enchères — preuve de son attachement à ce petit coin sans éclat de la vallée de la Seine.",
+      "zh-Hans": "这正是巴黎西郊卢韦谢讷附近的同一片乡野，西斯莱在这里创作了许多他最著名的作品，也包括他那幅创下拍卖纪录的雪景画——这足以证明他对塞纳河谷这个毫不起眼的小角落有着怎样深厚的眷恋。"
+    },
+    "whySimple": {
+      "en": "Sisley paints the road itself as the real subject — its pale, sun-bleached surface takes up nearly half the canvas, while the figures and carriage are just small, loose brushstrokes along the edge.",
+      "fr": "Sisley peint la route elle-même comme véritable sujet — sa surface pâle, blanchie par le soleil, occupe presque la moitié de la toile, tandis que les personnages et la voiture ne sont que de petites touches légères le long du bord.",
+      "zh-Hans": "西斯莱把道路本身当作真正的主题——它那被阳光晒得发白的路面几乎占据了画面的一半，而人物和马车只是路边几笔松散的笔触。"
+    },
+    "whereSimple": {
+      "en": "Follow the road as it fades into a soft, hazy view of the valley and hills beyond, then notice how quickly the horse, carriage and walking figures are painted — just a few strokes are enough to show people going about an ordinary day.",
+      "fr": "Suivez la route qui s'estompe vers une vue douce et brumeuse de la vallée et des collines au loin, puis remarquez avec quelle rapidité le cheval, la voiture et les personnages sont peints — quelques touches suffisent à montrer des gens dans une journée ordinaire.",
+      "zh-Hans": "顺着道路看，它渐渐淡入远处河谷与丘陵的朦胧景色；再留意马匹、马车和行人是多么迅速的笔触画成的——寥寥几笔就足以表现出寻常一天里往来的人们。"
+    },
+    "raritySimple": {
+      "en": "This is the same area near Louveciennes, west of Paris, where Sisley painted many of his best-known works, including his auction-record snow scene — he kept returning to this one small, unglamorous corner of the Seine valley.",
+      "fr": "C'est le même endroit près de Louveciennes, à l'ouest de Paris, où Sisley a peint nombre de ses œuvres les plus connues, y compris sa scène de neige record aux enchères — il n'a cessé de revenir à ce petit coin sans éclat de la vallée de la Seine.",
+      "zh-Hans": "这正是巴黎西郊卢韦谢讷附近的同一片区域，西斯莱在这里创作了许多他最著名的作品，包括他那幅创下拍卖纪录的雪景画——他一次又一次地回到塞纳河谷这个毫不起眼的小角落。"
+    },
+    "whyKids": {
+      "en": "The road is really the star of this painting — it takes up nearly half the picture! The people and the horse-drawn carriage are just quick, small brushstrokes.",
+      "fr": "La route est vraiment la vedette de ce tableau — elle occupe presque la moitié de l'image ! Les gens et la voiture à cheval ne sont que de petites touches rapides.",
+      "zh-Hans": "这幅画里真正的主角其实是那条路——它几乎占了整幅画的一半！画中的人和马车只是几笔又快又小的笔触而已。"
+    },
+    "whereKids": {
+      "en": "Follow the road with your eyes until it disappears into the hazy hills far away. Can you spot the horse and carriage? They're painted with just a few quick dabs of paint.",
+      "fr": "Suis la route des yeux jusqu'à ce qu'elle disparaisse dans les collines brumeuses au loin. Arrives-tu à repérer le cheval et la voiture ? Ils sont peints avec juste quelques petites touches rapides.",
+      "zh-Hans": "用眼睛顺着道路看下去，直到它消失在远处朦胧的山丘中。你能找到马和马车吗？它们只用了几笔快速的小点点画成。"
+    },
+    "rarityKids": {
+      "en": "Sisley loved this one little area near Louveciennes so much that he painted it again and again — including a famous snow-covered version of almost the same view.",
+      "fr": "Sisley aimait tellement ce petit coin près de Louveciennes qu'il l'a peint encore et encore — y compris une célèbre version couverte de neige de presque la même vue.",
+      "zh-Hans": "西斯莱非常喜欢卢韦谢讷附近这个小地方，一遍又一遍地画它——其中就包括一幅著名的、几乎是同一景色的雪景画。"
+    }
+  },
+  {
+    "id": "orangerie_inv_20103",
+    "artist": "Claude Monet",
+    "year": "1920",
+    "hall": null,
+    "inventoryNumber": "INV 20103",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Claude%20Monet%20-%20The%20Water%20Lilies%20-%20Setting%20Sun%20-%20Google%20Art%20Project.jpg",
+    "accent": "#B5654A",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Water Lilies: Setting Sun",
+      "fr": "Les Nymphéas : Soleil couchant",
+      "zh-Hans": "睡莲：落日"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 23.0,
+      "high": 41.4,
+      "logic": "FACT: same Monet Water Lilies auction comparables -- $84.7M (~€77.9M; 2018) and $65.5M (~€60.3M; 2024). EDITORIAL JUDGMENT: A permanent, never-for-sale installation panel, so any figure is a hypothetical low-confidence anchor. Its dramatic, saturated dusk palette is the most distinctive in this room, closer to the boldest record-sale canvases than the calmer panels reviewed earlier, so placed toward the upper half of this catalog's Nymphéas range.",
+      "comparableSales": [
+        "Nymphéas en fleur, Claude Monet (Rockefeller Collection) — sold for $84.7M (~€77.9M) at Christie's New York, 2018 — Monet's Water Lilies auction record, for a smaller free-standing canvas, not a permanent in-situ panel like this one."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Monet closes the first oval room with the most dramatic light in the whole cycle — warm gold and violet replace the cooler blues and greens of the other panels, turning the pond into something closer to fire than water.",
+      "fr": "Monet clôt la première salle ovale avec la lumière la plus spectaculaire de tout le cycle — un or chaud et un violet remplacent les bleus et verts plus froids des autres panneaux, transformant l'étang en quelque chose qui tient plus du feu que de l'eau.",
+      "zh-Hans": "莫奈用整个系列中最富戏剧性的光线，为第一个椭圆形展厅画下句点——温暖的金色与紫色取代了其他画作中偏冷的蓝色与绿色，让池塘看起来更像燃烧的火焰，而非静止的水面。"
+    },
+    "where": {
+      "en": "Find the tall, golden-yellow grasses silhouetted at the lower left, the closest thing to a solid foreground shape anywhere in the cycle, then follow the warm colour as it bleeds across the water toward the darker, cooler tones on the right — dusk moving across the whole canvas in one continuous gradient.",
+      "fr": "Repérez les hautes herbes jaune doré silhouettées en bas à gauche, la forme la plus proche d'un premier plan solide dans tout le cycle, puis suivez la couleur chaude qui se diffuse sur l'eau vers les tons plus sombres et plus froids à droite — le crépuscule traversant toute la toile en un dégradé continu.",
+      "zh-Hans": "找找左下角那片剪影般的金黄色高草丛，这是整个系列中最接近实体前景形状的部分；再顺着这暖色调看它如何蔓延过水面，逐渐过渡到画面右侧更深、更冷的色调——暮色以一种连贯的渐变，笼罩了整幅画面。"
+    },
+    "rarity": {
+      "en": "This panel ends the sequence Monet designed to move the visitor through a full day, from the pale morning light of Room 1's other panels to this final blaze of dusk — a structure only fully visible by walking the room as he intended, not by viewing any single canvas in isolation.",
+      "fr": "Ce panneau clôt la séquence que Monet a conçue pour faire traverser au visiteur une journée entière, de la lumière pâle du matin dans les autres panneaux de la première salle jusqu'à cet embrasement final du crépuscule — une structure que l'on ne perçoit pleinement qu'en parcourant la salle comme il l'avait prévu, non en regardant une seule toile isolément.",
+      "zh-Hans": "这幅画为莫奈精心设计的整体序列画下句点——他希望让观者仿佛走过完整的一天，从第一展厅其他画作中淡淡的晨光，一直走到这最后一抹绚烂的暮色——这种结构，只有按照他的设计走遍整个展厅才能完全体会，而非孤立地观看某一幅画作。"
+    },
+    "whySimple": {
+      "en": "Monet closes the first room with the most dramatic light of the whole cycle — warm gold and violet replace the cooler blues and greens of the other panels, making the pond look more like fire than water.",
+      "fr": "Monet clôt la première salle avec la lumière la plus spectaculaire de tout le cycle — un or chaud et un violet remplacent les bleus et verts plus froids des autres panneaux, donnant à l'étang l'aspect du feu plutôt que de l'eau.",
+      "zh-Hans": "莫奈用整个系列中最具戏剧性的光线，为第一个展厅画下句点——温暖的金色与紫色取代了其他画作偏冷的蓝绿色，让池塘看起来更像火焰，而不是水。"
+    },
+    "whereSimple": {
+      "en": "Find the tall golden-yellow grasses at the lower left, then follow the warm colour as it spreads across the water toward the cooler, darker tones on the right — dusk moving across the whole canvas.",
+      "fr": "Repérez les hautes herbes jaune doré en bas à gauche, puis suivez la couleur chaude qui se répand sur l'eau vers les tons plus froids et plus sombres à droite — le crépuscule traversant toute la toile.",
+      "zh-Hans": "找找左下角那片金黄色的高草丛，再顺着暖色调看它如何蔓延过水面，过渡到右侧更冷、更暗的色调——暮色笼罩了整个画面。"
+    },
+    "raritySimple": {
+      "en": "This panel ends the sequence Monet designed to carry visitors through a full day, from the pale morning light of the room's other panels to this final blaze of dusk — best seen by walking through the room as he planned.",
+      "fr": "Ce panneau clôt la séquence que Monet a conçue pour faire traverser au visiteur une journée entière, depuis la lumière pâle du matin des autres panneaux jusqu'à cet embrasement final du crépuscule — à voir en parcourant la salle comme il l'avait prévu.",
+      "zh-Hans": "这幅画为莫奈设计的整体序列画下句点——他希望带领观者走过完整的一天，从展厅其他画作淡淡的晨光，走到这最后绚烂的暮色，最适合按照他的设计走遍整个展厅来欣赏。"
+    },
+    "whyKids": {
+      "en": "This is the most fiery, colourful panel in the whole room — warm gold and purple instead of the cool blues and greens in the others.",
+      "fr": "C'est le panneau le plus flamboyant et le plus coloré de toute la salle — de l'or chaud et du violet, au lieu des bleus et verts froids des autres.",
+      "zh-Hans": "这是整个展厅里色彩最热烈、最绚丽的一幅——温暖的金色和紫色，而不是其他画里那种冷冷的蓝绿色。"
+    },
+    "whereKids": {
+      "en": "Find the tall golden grass shapes in the bottom left corner. Then watch how the warm colour spreads across the water and slowly turns cooler and darker toward the right.",
+      "fr": "Trouve les hautes herbes dorées dans le coin en bas à gauche. Puis observe comment la couleur chaude se répand sur l'eau et devient peu à peu plus froide et plus sombre vers la droite.",
+      "zh-Hans": "找找左下角那片金黄色的高草丛。然后看看这暖色调是怎么蔓延过水面，慢慢变得更冷、更暗，一直延伸到右边。"
+    },
+    "rarityKids": {
+      "en": "Monet planned this whole room like a story about one day — you start with soft morning light in the other pictures, and this one is the ending: a bright, blazing sunset.",
+      "fr": "Monet a conçu toute cette salle comme l'histoire d'une seule journée — tu commences avec la douce lumière du matin dans les autres tableaux, et celui-ci est la fin : un coucher de soleil éclatant et flamboyant.",
+      "zh-Hans": "莫奈把整个展厅设计成了讲述一天时光的故事——你从其他画里柔和的晨光开始，而这一幅就是结尾：一场明亮、绚烂的日落。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1963_10",
+    "artist": "Paul Cézanne",
+    "year": "1873",
+    "hall": null,
+    "inventoryNumber": "RF 1963-10",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Nature%20morte%2C%20poire%20et%20pommes%20vertes.JPG",
+    "accent": "#6B7A3D",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Still Life, Pears and Green Apples",
+      "fr": "Nature morte, poires et pommes vertes",
+      "zh-Hans": "静物：梨与青苹果"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 7.4,
+      "high": 16.6,
+      "logic": "FACT: Cézanne's still-life auction record is $60.5M (~€55.7M) for Rideau, Cruchon et Compotier (1893-94), sold at Sotheby's in 1999 -- a large, elaborate mature composition with a curtain, jug and fruit bowl. EDITORIAL JUDGMENT: This is a small, plain, early (1873) study of just a few pieces of fruit, decades earlier and far simpler in ambition than the record-holding mature masterwork, so it should sit well below that ceiling.",
+      "comparableSales": [
+        "Rideau, Cruchon et Compotier, Paul Cézanne — sold for $60.5M (~€55.7M) at Sotheby's, 1999 — Cézanne's still-life auction record, but a large, elaborate mature composition, very different in scale and ambition from this small, early four-piece study."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Painted in 1873, this is an early instance of a lifelong obsession — Cézanne would return to arrangements of apples and pears for the next three decades, treating them not as a simple genre subject but as a controlled problem: how to build solid form out of colour alone.",
+      "fr": "Peinte en 1873, cette toile est un exemple précoce d'une obsession qui durera toute sa vie — Cézanne reviendra sans cesse à des compositions de pommes et de poires pendant les trois décennies suivantes, les traitant non comme un simple sujet de genre mais comme un problème maîtrisé : comment construire une forme solide à partir de la seule couleur.",
+      "zh-Hans": "这幅画创作于1873年，是塞尚终生痴迷的一个早期例证——在接下来的三十年里，他会不断回到苹果与梨的组合，将其视为的不是简单的风俗题材，而是一个可控的课题：如何仅凭色彩来构建出坚实的形体。"
+    },
+    "where": {
+      "en": "Notice how each piece of fruit is built from small, distinct patches of colour rather than smooth shading, and how the table's rumpled cloth is treated with the same weight and attention as the fruit itself — nothing in a Cézanne still life is just background.",
+      "fr": "Remarquez que chaque fruit est construit à partir de petites touches de couleur distinctes plutôt que par un dégradé lisse, et que la nappe froissée sur la table est traitée avec le même poids et la même attention que les fruits eux-mêmes — rien, dans une nature morte de Cézanne, n'est un simple arrière-plan.",
+      "zh-Hans": "留意每一颗水果都是由细小、独立的色块拼构而成，而非平滑的明暗过渡；再看桌上那块褶皱的桌布，其处理方式与水果本身同样厚重、同样用心——在塞尚的静物画中，没有什么只是“背景”。"
+    },
+    "rarity": {
+      "en": "Cézanne is said to have declared he would \"astonish Paris with an apple\" — a small, everyday object he treated as seriously as any grand historical subject, and this early still life shows that ambition already fully formed, decades before his more famous, more elaborate apple compositions of the 1890s.",
+      "fr": "Cézanne aurait déclaré vouloir « étonner Paris avec une pomme » — un objet petit et quotidien qu'il traitait avec autant de sérieux que n'importe quel grand sujet historique, et cette nature morte précoce montre déjà cette ambition pleinement formée, des décennies avant ses compositions de pommes plus célèbres et plus élaborées des années 1890.",
+      "zh-Hans": "据说塞尚曾宣称，他要“用一颗苹果震撼巴黎”——他把这样一件微小、日常的物品，当作与任何宏大历史题材同等严肃的对象来对待，而这幅早期静物画中，这份雄心早已完整成形，比他1890年代那些更著名、更繁复的苹果组画早了几十年。"
+    },
+    "whySimple": {
+      "en": "Painted in 1873, this is an early example of something Cézanne kept doing for the next thirty years — painting apples and pears not as a simple everyday subject, but as a way to work out how to build solid shapes using only colour.",
+      "fr": "Peinte en 1873, cette toile est un exemple précoce de quelque chose que Cézanne a fait pendant les trente années suivantes — peindre des pommes et des poires non comme un simple sujet quotidien, mais comme une façon de comprendre comment construire des formes solides avec seulement de la couleur.",
+      "zh-Hans": "这幅画创作于1873年，是塞尚接下来三十年间不断重复的一件事的早期例子——他画苹果和梨，不是把它们当作简单的日常题材，而是把它们当作一种方式，去探索如何仅凭色彩构建出坚实的形状。"
+    },
+    "whereSimple": {
+      "en": "Notice how each piece of fruit is built from small patches of colour instead of smooth shading, and how the rumpled tablecloth gets just as much care and attention as the fruit itself.",
+      "fr": "Remarquez que chaque fruit est construit à partir de petites touches de couleur plutôt que par un dégradé lisse, et que la nappe froissée reçoit autant de soin et d'attention que les fruits eux-mêmes.",
+      "zh-Hans": "留意每一颗水果都是由一小块一小块的色彩拼成的，而不是平滑的明暗渐变；再看那块皱巴巴的桌布，画得和水果本身一样用心、一样仔细。"
+    },
+    "raritySimple": {
+      "en": "Cézanne is said to have declared he would \"astonish Paris with an apple\" — he treated a small, ordinary object as seriously as any grand subject, and this early still life already shows that ambition, decades before his more famous apple paintings of the 1890s.",
+      "fr": "Cézanne aurait déclaré vouloir « étonner Paris avec une pomme » — il traitait un objet petit et ordinaire avec autant de sérieux qu'un grand sujet, et cette nature morte précoce montre déjà cette ambition, des décennies avant ses tableaux de pommes plus célèbres des années 1890.",
+      "zh-Hans": "据说塞尚曾宣称，他要“用一颗苹果震撼巴黎”——他把一件普通的小物品，当作和宏大题材同样严肃的对象来对待，而这幅早期静物画中已经展现出这份雄心，比他1890年代更著名的苹果画作早了几十年。"
+    },
+    "whyKids": {
+      "en": "Cézanne loved painting apples and pears so much that he did it again and again for thirty years! This is one of his early tries.",
+      "fr": "Cézanne aimait tellement peindre des pommes et des poires qu'il l'a fait encore et encore pendant trente ans ! Voici l'un de ses premiers essais.",
+      "zh-Hans": "塞尚太喜欢画苹果和梨了，他画了整整三十年，一遍又一遍！这是他早期的一次尝试。"
+    },
+    "whereKids": {
+      "en": "Look closely at the fruit — can you see it's made of lots of little colour patches instead of one smooth colour? Even the wrinkly tablecloth gets just as much careful painting as the fruit does.",
+      "fr": "Regarde bien les fruits — vois-tu qu'ils sont faits de plein de petites touches de couleur au lieu d'une seule couleur lisse ? Même la nappe toute froissée est peinte avec autant de soin que les fruits.",
+      "zh-Hans": "仔细看看这些水果——你能看出它们是由好多小小的色块拼成的，而不是一种平滑的颜色吗？就连那块皱皱的桌布，也画得跟水果一样用心呢！"
+    },
+    "rarityKids": {
+      "en": "Cézanne once said he wanted to \"astonish Paris with an apple\" — just a plain apple! He thought ordinary fruit was just as interesting to paint as huge, dramatic scenes.",
+      "fr": "Cézanne aurait dit qu'il voulait « étonner Paris avec une pomme » — juste une pomme toute simple ! Il pensait qu'un fruit ordinaire était tout aussi intéressant à peindre qu'une immense scène spectaculaire.",
+      "zh-Hans": "塞尚曾经说过，他想“用一颗苹果震撼巴黎”——就是一颗普普通通的苹果！他觉得画一个普通的水果，和画一幅宏大壮观的场景一样有意思。"
+    }
+  },
+  {
+    "id": "orangerie_rf_1963_104",
+    "artist": "Maurice Utrillo",
+    "year": "1905",
+    "hall": null,
+    "inventoryNumber": "RF 1963 104",
+    "image": "🖼️",
+    "imageUrl": "http://commons.wikimedia.org/wiki/Special:FilePath/Maurice%20Utrillo%20-%20Butte%20Pinson%20%281905-1908%29.jpg",
+    "accent": "#6B6B7A",
+    "priority": "standard",
+    "needsEditorialReview": true,
+    "editorialStatus": "draft",
+    "museumId": "orangerie",
+    "title": {
+      "en": "Butte Pinson",
+      "fr": "Butte Pinson",
+      "zh-Hans": "皮松山丘"
+    },
+    "titleNeedsReview": {
+      "en": false,
+      "fr": false,
+      "zh-Hans": true
+    },
+    "estimate": {
+      "low": 0.4,
+      "high": 0.9,
+      "logic": "FACT: Utrillo's auction record is $1,089,534 (~€1.0M) for Le paravent de Maurice Utrillo (4), Artcurial, 2010; his well-known Le Lapin Agile sold for approximately $1.2M (~€1.1M). EDITORIAL JUDGMENT: This is a plain, unpeopled landscape rather than one of Utrillo's more sought-after Montmartre street scenes with recognisable landmarks -- likely priced at or below the modest overall market for his work.",
+      "comparableSales": [
+        "Le Lapin Agile, Maurice Utrillo — sold for approximately $1.2M (~€1.1M) — near the top of Utrillo's modest auction market, for one of his more sought-after, landmark-featuring Montmartre street scenes."
+      ],
+      "editorialConfidence": "low",
+      "estimateConfidence": "low",
+      "reviewedBy": null
+    },
+    "why": {
+      "en": "Utrillo paints this tangle of bare winter trees almost like a screen or veil in front of the scene, letting only fragments of the huts and rooftops behind show through the branches.",
+      "fr": "Utrillo peint cet enchevêtrement d'arbres nus d'hiver presque comme un écran devant la scène, ne laissant apparaître que des fragments des cabanes et des toits derrière, à travers les branches.",
+      "zh-Hans": "于特里洛把这片冬日光秃秃的树木画得几乎像一道遮挡在画面前的屏障，只让人透过枝条看到后面小屋与屋顶的零星片段。"
+    },
+    "where": {
+      "en": "Follow the thin trunks up through the canvas, painted with quick, individual strokes of yellow, orange and dark green rather than a single flat brown — then find the small red-roofed hut and the teal-green building glimpsed between the branches, the only solid colour anchors in an otherwise tangled scene.",
+      "fr": "Suivez les troncs fins qui montent à travers la toile, peints par touches rapides et individuelles de jaune, d'orange et de vert sombre plutôt que d'un simple brun uni — puis repérez la petite cabane au toit rouge et le bâtiment vert-bleu entraperçu entre les branches, les seuls points d'ancrage de couleur solide dans une scène par ailleurs enchevêtrée.",
+      "zh-Hans": "顺着细长的树干向上看，它们是用黄色、橙色和深绿色的快速、独立笔触画成的，而非单一平涂的棕色——再找找透过枝条隐约可见的红顶小屋和青绿色的建筑，这是整幅错综纠结的画面中，唯二真正扎实的色彩落点。"
+    },
+    "rarity": {
+      "en": "Painted in 1905, before the pale, plaster-white Montmartre street scenes that made him famous, this work shows Utrillo still working in a looser, more Impressionist-influenced style — Butte Pinson, a modest hillside north of Paris, was a real place he returned to more than once, far from the postcard version of Montmartre most visitors expect from him.",
+      "fr": "Peinte en 1905, avant les scènes de rues de Montmartre pâles et couleur plâtre qui l'ont rendu célèbre, cette œuvre montre Utrillo travaillant encore dans un style plus libre, plus marqué par l'impressionnisme — la Butte Pinson, une modeste colline au nord de Paris, était un lieu réel où il est retourné plus d'une fois, bien loin de la carte postale de Montmartre que la plupart des visiteurs attendent de lui.",
+      "zh-Hans": "这幅画创作于1905年，早于让他成名的那种苍白、灰泥质感的蒙马特街景系列，画中的于特里洛仍在使用一种更松散、更受印象派影响的风格——皮松山丘是巴黎以北一处不起眼的小山，他曾不止一次回到这里，与大多数游客所期待的、明信片式的蒙马特形象相去甚远。"
+    },
+    "whySimple": {
+      "en": "Utrillo paints this tangle of bare winter trees almost like a screen in front of the scene, so you only see small pieces of the huts and rooftops behind through the branches.",
+      "fr": "Utrillo peint cet enchevêtrement d'arbres nus d'hiver presque comme un écran devant la scène, si bien qu'on ne voit que des petits morceaux des cabanes et des toits derrière, à travers les branches.",
+      "zh-Hans": "于特里洛把这片冬日光秃秃的树木画得几乎像一道屏障挡在画面前，让人只能透过枝条看到后面小屋和屋顶的零星片段。"
+    },
+    "whereSimple": {
+      "en": "Follow the thin tree trunks up the canvas — they're painted with quick strokes of yellow, orange and dark green, not just one flat brown. Then find the small red-roofed hut peeking through the branches.",
+      "fr": "Suivez les troncs fins qui montent le long de la toile — ils sont peints par touches rapides de jaune, d'orange et de vert sombre, pas juste un brun uni. Puis repérez la petite cabane au toit rouge qui apparaît entre les branches.",
+      "zh-Hans": "顺着细细的树干往上看——它们是用黄色、橙色和深绿色的快速笔触画成的，而不是单一的棕色。再找找透过枝条露出来的那间红顶小屋。"
+    },
+    "raritySimple": {
+      "en": "Painted in 1905, before the pale, white-walled Montmartre streets that made him famous, this shows Utrillo working in a looser, more Impressionist style, in a real spot north of Paris he returned to more than once.",
+      "fr": "Peinte en 1905, avant les rues de Montmartre pâles et couleur plâtre qui l'ont rendu célèbre, cette œuvre montre Utrillo dans un style plus libre, plus impressionniste, dans un vrai lieu au nord de Paris où il est retourné plus d'une fois.",
+      "zh-Hans": "这幅画创作于1905年，早于让他成名的那种苍白灰泥墙面的蒙马特街景，画中的于特里洛使用的是一种更松散、更接近印象派的风格，画的是巴黎以北一个他曾多次前往的真实地方。"
+    },
+    "whyKids": {
+      "en": "Utrillo paints so many branches and twigs that they almost hide everything behind them, like a curtain made of trees!",
+      "fr": "Utrillo peint tellement de branches et de brindilles qu'elles cachent presque tout ce qu'il y a derrière, comme un rideau fait d'arbres !",
+      "zh-Hans": "于特里洛画了好多好多树枝，几乎把后面的东西全都挡住了，就像一整面用树做成的帘子！"
+    },
+    "whereKids": {
+      "en": "Can you spot the little house with the red roof peeking through the branches? Look at the tree trunks too — they're painted with lots of different colours, not just plain brown.",
+      "fr": "Arrives-tu à repérer la petite maison au toit rouge qui apparaît entre les branches ? Regarde aussi les troncs d'arbres — ils sont peints avec plein de couleurs différentes, pas juste du marron uni.",
+      "zh-Hans": "你能找到透过树枝露出来的那间红顶小房子吗？再看看那些树干——它们是用好多不同的颜色画的，不只是普通的棕色哦。"
+    },
+    "rarityKids": {
+      "en": "This was painted before Utrillo became famous for his paintings of pale, whitewashed streets — here he's using a looser, more colourful style, in a real place just outside Paris.",
+      "fr": "Ce tableau a été peint avant qu'Utrillo devienne célèbre pour ses peintures de rues pâles et blanchies à la chaux — ici, il utilise un style plus libre et plus coloré, dans un vrai endroit juste à côté de Paris.",
+      "zh-Hans": "这幅画是在于特里洛因为画苍白、刷了石灰的街道而出名之前画的——在这里，他用的是一种更自由、更多彩的风格，画的是巴黎郊外一个真实的地方。"
+    }
   }
 ]
