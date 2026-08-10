@@ -1836,7 +1836,17 @@
       "fr": "Van Gogh a peint environ 35 tableaux de son propre visage au cours de sa vie — surtout parce qu'il était trop pauvre pour payer d'autres personnes pour poser pour lui ! Celui-ci pourrait être le tout dernier qu'il ait jamais peint.",
       "zh-Hans": "梵高一生中画了大约35幅自己的脸——主要是因为他太穷了，付不起钱请别人当模特！这幅可能是他画的最后一幅呢。"
     },
-    "isSelfPortrait": true
+    "isSelfPortrait": true,
+    "audioScript": {
+      "en": "Van Gogh painted this in September 1889, at the asylum in Saint-Rémy, and it might be the very last self-portrait he ever made. Look at his eyes — steady, direct, almost calm. Now look at everything around him: turquoise brushstrokes swirling and churning like water, like weather, like a mind that won't sit still. That contrast is the whole painting. He holds himself together while the space around him seems to breathe and twist. He painted roughly thirty-five self-portraits in his life, mostly because he couldn't afford to hire models. This one feels different — quieter, more resolved, like a man taking one last honest look at himself before deciding he'd seen enough.",
+      "fr": "Van Gogh peint ce tableau en septembre 1889, à l'asile de Saint-Rémy — c'est peut-être son tout dernier autoportrait. Regardez ses yeux : calmes, directs, presque sereins. Puis regardez tout ce qui l'entoure : des touches turquoise qui tourbillonnent et s'agitent comme de l'eau, comme un temps qui change, comme un esprit qui ne tient pas en place. C'est tout le tableau, ce contraste-là. Il se tient immobile pendant que l'espace autour de lui semble respirer et se tordre. Il a peint une trentaine d'autoportraits dans sa vie, surtout parce qu'il n'avait pas les moyens de payer des modèles. Celui-ci semble différent — plus calme, plus résolu, comme un homme qui pose un dernier regard honnête sur lui-même avant de décider qu'il en a assez vu.",
+      "zh-Hans": "这幅画作于1889年9月，梵高在圣雷米疗养院所画，很可能是他一生中最后一幅自画像。看他的眼神——平静、笃定，几乎显得安然。再看看他周围的一切：绿松石色的笔触盘旋翻涌，像水流，像变幻的天气，像一颗无法安定下来的心。这份对比，就是整幅画的核心。他让自己静止不动，任由周围的空间仿佛在呼吸、在扭动。他一生画过大约三十五幅自画像，多半是因为付不起模特的费用。而这一幅感觉不同——更平静，更释然，像一个人在决定「够了」之前，最后一次诚实地凝视自己。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1949_17_en.mp3",
+      "fr": "/audio/orsay_rf_1949_17_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1949_17_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1992",
@@ -1916,6 +1926,16 @@
       "en": "Grown-up art judges didn't like this painting at first and said no to it! But a writer named Émile Zola loved it so much he wrote articles telling everyone they were wrong.",
       "fr": "Les juges d'art n'ont d'abord pas aimé ce tableau et l'ont refusé ! Mais un écrivain nommé Émile Zola l'a tellement aimé qu'il a écrit des articles pour dire à tout le monde qu'ils avaient tort.",
       "zh-Hans": "大人评审一开始不喜欢这幅画，还拒绝了它！可是一位叫埃米尔·左拉的作家非常喜欢它，还写文章告诉大家评审错了。"
+    },
+    "audioScript": {
+      "en": "Manet painted this young army fifer flat against a bare grey background — almost no shadow, almost no depth, just blocks of red, black, and white sitting there like a cutout pasted on the wall. It looks simple now, but in 1866 it was radical enough that the Salon jury rejected it outright. One young critic disagreed loudly in print: Émile Zola, a novelist nobody had heard of yet, who publicly defended Manet when almost everyone else was mocking him. That defense became a real friendship — one that later produced Manet's own portrait of Zola. So this quiet little painting of a boy with a flute is really the start of something bigger: the moment modern art found its first real champion.",
+      "fr": "Manet peint ce jeune fifre de l'armée à plat sur un fond gris uni — presque pas d'ombre, presque pas de profondeur, juste des blocs de rouge, de noir et de blanc posés comme un découpage collé au mur. Cela paraît simple aujourd'hui, mais en 1866, c'était assez radical pour que le jury du Salon le rejette sans appel. Un jeune critique n'était pas d'accord, et l'a écrit haut et fort : Émile Zola, un romancier que personne ne connaissait encore, qui défendit publiquement Manet quand presque tout le monde le moquait. Cette défense devint une véritable amitié — qui produisit plus tard le portrait que Manet fit de Zola lui-même. Ce petit tableau tranquille d'un garçon à la flûte marque donc, en réalité, le début de quelque chose de bien plus grand.",
+      "zh-Hans": "马奈把这个年轻的军乐队笛手画得毫无立体感——几乎没有阴影，几乎没有纵深，只有红、黑、白几大色块，像剪纸一样贴在墙上。今天看来很简单，但在1866年，这种画法激进到沙龙评委直接拒绝了它。一位当时还默默无闻的年轻小说家却站出来公开为马奈辩护，他就是左拉。这份支持后来变成了真正的友谊——马奈后来还为左拉画了一幅肖像。所以这幅看似安静的吹笛男孩，其实标志着一段更大故事的开端。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1992_en.mp3",
+      "fr": "/audio/orsay_rf_1992_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1992_zh-Hans.mp3"
     }
   },
   {
@@ -1995,6 +2015,16 @@
       "en": "Millet got the idea from his own grandmother, who used to make him stop working in the fields every time the church bells rang!",
       "fr": "Millet a eu l'idée grâce à sa propre grand-mère, qui le faisait arrêter de travailler aux champs chaque fois que les cloches de l'église sonnaient !",
       "zh-Hans": "米勒的这个想法来自他自己的祖母——每次教堂钟声响起，她都会让他停下田里的活儿呢！"
+    },
+    "audioScript": {
+      "en": "Two peasants, pausing in a potato field at dusk. Their heads are bowed, their tools dropped exactly where they stopped working — a wheelbarrow, a half-filled basket, right there in the dirt. Somewhere in the distance, a church bell is ringing, calling them to prayer, and that's the whole scene: an ordinary moment of stillness in an ordinary working day. Millet said the idea came from his grandmother, who always made him stop in the fields when the bell rang, to say a prayer for the dead. Notice how small these two figures are against that huge, flat plain, and yet how monumental they feel — Millet gives farm laborers the same quiet dignity painters usually saved for saints.",
+      "fr": "Deux paysans, arrêtés dans un champ de pommes de terre, au crépuscule. La tête baissée, leurs outils lâchés exactement là où ils travaillaient — une brouette, un panier à moitié rempli, posés dans la terre. Au loin, une cloche d'église sonne, les appelant à la prière, et c'est toute la scène : un instant ordinaire de recueillement dans une journée de travail ordinaire. Millet disait que l'idée lui venait de sa grand-mère, qui l'arrêtait toujours dans les champs quand la cloche sonnait, pour prier pour les morts. Remarquez comme ces deux silhouettes semblent minuscules dans cette vaste plaine, et pourtant si monumentales — Millet donne à des ouvriers agricoles la même dignité tranquille que les peintres réservaient d'habitude aux saints.",
+      "zh-Hans": "黄昏时分，两个农民在马铃薯地里停下了手中的活。他们低着头，农具就丢在原地——一辆手推车，一个装了一半的篮子，散落在泥土里。远处，教堂的钟声响起，召唤他们祈祷，这就是整幅画的全部：平凡劳作的一天里，一个宁静的停顿瞬间。米勒说这个念头来自他的祖母，每次钟声响起，她总会让他停下手中的农活，为逝者祈祷。留意这两个身影在辽阔平原中显得多么渺小，却又如此庄严——米勒把画家们通常只留给圣徒的那种静穆尊严，给了普通的农民。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_051804048_en.mp3",
+      "fr": "/audio/orsay_rf_051804048_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_051804048_zh-Hans.mp3"
     }
   },
   {
@@ -2075,7 +2105,17 @@
       "fr": "Degas a passé des années à travailler sur ce tableau après avoir rendu visite à sa famille en Italie — c'est l'un des portraits de famille les plus ambitieux jamais peints, et beaucoup disent que c'est là que sa carrière de grand artiste a vraiment commencé.",
       "zh-Hans": "德加在意大利探望完家人后，花了好几年时间打磨这幅画——这是有史以来最具野心的全家福画作之一，很多人都说，德加成为伟大画家的旅程，正是从这幅画真正开始的。"
     },
-    "contentFlag": "Group portrait: Degas's aunt Laura is shown in mourning black for her recently-deceased father (whose portrait hangs behind her), and her husband sits visibly estranged at his desk -- a heavy-but-not-explicit theme (grief/loss, marital estrangement), reviewed with the user per-case, same standing rule as Camille Monet on her deathbed / Hopital Saint-Paul (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus on the composition-as-storytelling technique without naming the death or the marital tension -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "Group portrait: Degas's aunt Laura is shown in mourning black for her recently-deceased father (whose portrait hangs behind her), and her husband sits visibly estranged at his desk -- a heavy-but-not-explicit theme (grief/loss, marital estrangement), reviewed with the user per-case, same standing rule as Camille Monet on her deathbed / Hopital Saint-Paul (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus on the composition-as-storytelling technique without naming the death or the marital tension -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "This is Degas's aunt, Laura Bellelli, with her husband and two daughters, painted in Florence. But look closer, because this isn't just a family portrait — it's a story about a family coming apart. Laura is dressed in mourning black, standing beside a portrait of her father, who had just died. Her daughters cluster close beside her. And her husband? He's pushed off to the side, seated at his desk, turned mostly away from the rest of them, almost out of the frame entirely. Nobody's smiling, nobody's touching. Degas didn't need to write any of this down — the composition itself tells you exactly who's close to whom, and who isn't. It took him years to finish, and it's often called the true beginning of his career as a serious painter.",
+      "fr": "Voici la tante de Degas, Laura Bellelli, avec son mari et ses deux filles, peints à Florence. Mais regardez de plus près, car ce n'est pas seulement un portrait de famille — c'est l'histoire d'une famille qui se délite. Laura porte le deuil, debout près d'un portrait de son père, qui venait de mourir. Ses filles se serrent contre elle. Et son mari ? Il est relégué sur le côté, assis à son bureau, presque tourné le dos au reste de la famille, presque hors du cadre. Personne ne sourit, personne ne se touche. Degas n'a eu besoin d'écrire aucun mot — la composition seule vous dit exactement qui est proche de qui, et qui ne l'est pas. Il lui fallut des années pour l'achever, et l'on considère souvent ce tableau comme le vrai commencement de sa carrière de peintre sérieux.",
+      "zh-Hans": "这是德加的姨妈劳拉·贝勒利，与她的丈夫和两个女儿，画于佛罗伦萨。但请仔细看，这不只是一幅家庭肖像——这是一个正在破裂的家庭的故事。劳拉身着丧服，站在她刚去世的父亲的画像旁。两个女儿紧紧依偎在她身边。而她的丈夫呢？被推到了画面一侧，坐在书桌前，几乎背对着家人，几乎要走出画框。没有人微笑，没有人有肢体接触。德加不需要写下任何文字——构图本身就告诉你，谁与谁亲近，谁又疏远了谁。他花了数年才完成这幅画，人们常说，这才是他作为一位严肃画家生涯真正的起点。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2210_en.mp3",
+      "fr": "/audio/orsay_rf_2210_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2210_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1984_164",
@@ -2154,6 +2194,16 @@
       "en": "This painting was turned away from a big official art show because the judges thought painting snow with colourful shadows was too strange.",
       "fr": "Ce tableau fut refusé par un grand salon officiel car les juges trouvaient que peindre la neige avec des ombres colorées était trop étrange.",
       "zh-Hans": "这幅画曾被一场重要的官方美术展拒之门外，因为评委们觉得把雪的阴影画得如此多彩太奇怪了。"
+    },
+    "audioScript": {
+      "en": "At first glance, this is just a black-and-white bird sitting on a gate in the snow. But look at that snow again — it isn't white at all. Monet fills it with pale blues, soft violets, the faintest greys, all the colors that plain white snow actually holds if you really look at it. That shadow the fence throws across the ground? Built from blue and violet, not grey. This was painted right before Monet turned fully toward Impressionism, and the Salon rejected it specifically because those shadows didn't look 'realistic' enough to the jury. Turns out Monet was just seeing more accurately than they were.",
+      "fr": "Au premier regard, ce n'est qu'un oiseau noir et blanc posé sur une barrière dans la neige. Mais regardez cette neige de plus près — elle n'est pas blanche du tout. Monet y glisse des bleus pâles, de tendres violets, les gris les plus discrets, toutes les couleurs que la neige blanche contient réellement quand on l'observe vraiment. Cette ombre que projette la barrière sur le sol ? Construite en bleu et violet, pas en gris. Ce tableau fut peint juste avant que Monet ne se tourne pleinement vers l'impressionnisme, et le Salon le rejeta précisément parce que ces ombres ne paraissaient pas assez « réalistes » au jury. Il s'avère que Monet voyait tout simplement plus juste qu'eux.",
+      "zh-Hans": "乍看之下，这只是一只栖息在雪地栅栏上的黑白喜鹊。但请再仔细看看那片雪——它其实一点也不是纯白色的。莫奈在其中注入了淡蓝、柔紫，还有极淡的灰色——这些才是你真正凝视时，白雪本身所蕴含的色彩。栅栏投在地面上的那片阴影？是用蓝色和紫色画成的，而不是灰色。这幅画作于莫奈全面转向印象派之前，官方沙龙拒绝了它，理由正是这些阴影在评委看来不够「真实」。事实证明，莫奈只是看得比他们更准确。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1984_164_en.mp3",
+      "fr": "/audio/orsay_rf_1984_164_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1984_164_zh-Hans.mp3"
     }
   },
   {
@@ -2233,6 +2283,16 @@
       "en": "Some judges thought this painting wasn't fancy enough to show in the big official art show, because it showed regular workers doing sweaty, ordinary jobs! Today, it's considered one of the most important paintings of its whole art movement.",
       "fr": "Certains juges ont trouvé que ce tableau n'était pas assez chic pour être montré dans la grande exposition d'art officielle, parce qu'il montrait des ouvriers ordinaires en train de faire un travail fatigant ! Aujourd'hui, il est considéré comme l'un des tableaux les plus importants de tout ce mouvement artistique.",
       "zh-Hans": "有些评委觉得这幅画不够「高雅」，配不上放进那场官方大型艺术展，因为它画的是普通工人干着又累又出汗的活儿！可如今，它却被认为是整个艺术运动中最重要的画作之一。"
+    },
+    "audioScript": {
+      "en": "Three shirtless workmen, down on their knees, scraping the floor of a Paris apartment — their bodies twisted into matching poses of hard physical labor. Caillebotte painted them with the same seriousness academic painters usually reserved for gods and kings, and Paris didn't know what to do with that. The Salon rejected it in 1875, reportedly because sweating, bare-chested workers were considered too vulgar a subject for serious art. Look at the floorboards, the curling wood shavings, the light pouring in from that tall window — Caillebotte trained as an engineer before he became a painter, and you can feel that exacting eye in every line. He showed it with the Impressionists instead, and today it's one of their masterpieces.",
+      "fr": "Trois ouvriers torse nu, à genoux, grattant le parquet d'un appartement parisien — leurs corps tordus dans des poses identiques d'effort physique. Caillebotte les peint avec le même sérieux que les peintres académiques réservaient d'habitude aux dieux et aux rois, et Paris ne sut pas quoi en faire. Le Salon le refusa en 1875, sous prétexte, dit-on, que des ouvriers en sueur et torse nu étaient un sujet trop vulgaire pour l'art sérieux. Regardez les lames du parquet, les copeaux de bois qui s'enroulent, la lumière qui tombe de cette haute fenêtre — Caillebotte avait étudié l'ingénierie avant de devenir peintre, et ce regard d'une précision presque géométrique se sent dans chaque ligne. Il l'exposa plutôt chez les impressionnistes, où c'est aujourd'hui considéré comme l'un de leurs chefs-d'œuvre.",
+      "zh-Hans": "三个赤裸上身的工人跪在地上，正在刮磨巴黎公寓的地板——他们的身体因为繁重的体力劳动而扭成相似的姿势。卡耶博特以学院派画家通常只留给神明与君王的那种严肃态度描绘他们，而巴黎当时对此毫无准备。1878年沙龙拒绝了这幅画，据说是因为汗流浃背、赤裸上身的工人被认为是过于粗俗的题材，不配登上严肃艺术的殿堂。看看那地板、卷起的木屑，还有从高高的窗户倾泻而入的光线——卡耶博特学过工程学后才转向绘画，这种近乎精确的眼光，在每一根线条里都能感受到。他转而在印象派画展上展出了这幅画，如今，它已被视为印象派的杰作之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2718_en.mp3",
+      "fr": "/audio/orsay_rf_2718_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2718_zh-Hans.mp3"
     }
   },
   {
@@ -2314,7 +2374,17 @@
       "fr": "Malheureusement, Seurat a terminé ce tableau et est mort seulement quelques jours plus tard, alors qu'il n'avait que 31 ans — ce tableau s'est donc retrouvé être son tout dernier grand tableau.",
       "zh-Hans": "很遗憾，修拉画完这幅画没几天就去世了，那时他只有31岁——所以这幅画，最终成了他最后一幅重要的大画作。"
     },
-    "techniqueTag": "pointillism"
+    "techniqueTag": "pointillism",
+    "audioScript": {
+      "en": "A circus performer balances on a galloping horse, and if you look closely, none of it is actually painted with brushstrokes at all — it's built from thousands of tiny dots of pure color. Seurat called this Divisionism, based on real science about how our eyes blend color on their own, without the painter ever mixing a single shade on the palette. You can still see, faintly, the blue grid lines and bare canvas he used to plan the whole composition — because he never got to fully finish it. Seurat died just days after this was shown, at only thirty-one. So this isn't just a painting of a circus act — it's the last thing one of the most radical colorists in art history ever made.",
+      "fr": "Une acrobate de cirque tient en équilibre sur un cheval au galop, et si vous regardez de près, rien n'est peint au pinceau à proprement parler — tout est construit à partir de milliers de petits points de couleur pure. Seurat appelait cela le Divisionnisme, fondé sur une véritable science de la manière dont nos yeux mélangent eux-mêmes les couleurs, sans que le peintre n'en mêle jamais une seule sur sa palette. On distingue encore, discrètement, les lignes de quadrillage bleues et la toile nue qu'il utilisait pour préparer toute la composition — car il n'eut jamais le temps de la terminer complètement. Seurat mourut à peine quelques jours après son exposition, à seulement trente et un ans. Ce n'est donc pas seulement le tableau d'un numéro de cirque — c'est la dernière œuvre de l'un des coloristes les plus radicaux de l'histoire de l'art.",
+      "zh-Hans": "一位马戏演员正在飞驰的骏马上保持平衡，如果你仔细看，会发现整幅画竟然完全不是靠笔触画成的——而是由成千上万个纯色的小点构成。修拉称这种技法为「分割主义」，其依据是关于我们双眼如何自行调和色彩的真实科学原理，画家本人从未在调色板上调过一滴颜色。你依然能隐约看到他用来规划整幅构图的蓝色网格线和裸露的画布——因为他其实从未真正完成这幅画。这幅画展出后仅几天，修拉就去世了，年仅三十一岁。所以，这不只是一幅马戏表演的画作——它是这位艺术史上最激进的色彩大师留下的最后一件作品。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2511_en.mp3",
+      "fr": "/audio/orsay_rf_2511_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2511_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1978_13",
@@ -2393,6 +2463,16 @@
       "en": "The woman who posed for this painting grew up to become a famous painter herself, even though she started out just modeling for other artists.",
       "fr": "La femme qui a posé pour ce tableau est devenue elle-même une peintre célèbre en grandissant, même si elle a commencé par simplement poser pour d'autres artistes.",
       "zh-Hans": "为这幅画当模特的女子，后来自己也成了一位著名画家，尽管她一开始只是给别的画家当模特。"
+    },
+    "audioScript": {
+      "en": "This elegant couple gliding across a ballroom is really one half of a pair — its twin hangs nearby, called Dance in the Country, and it uses the exact same two models. Here, though, they're dressed for a formal Parisian ball instead of a relaxed outdoor party, and everything about the woman feels cooler, more composed — look at how carefully Renoir paints the sheen on her pale satin gown. That model, by the way, was Suzanne Valadon, who started out working as an artist's model for Renoir and Toulouse-Lautrec — and later became a genuinely celebrated painter herself. So the woman being painted here would go on to pick up the brush and become one of them.",
+      "fr": "Ce couple élégant qui glisse sur une piste de bal fait en réalité partie d'une paire — son pendant est accroché tout près, intitulé Danse à la campagne, et utilise exactement les deux mêmes modèles. Ici, pourtant, ils sont habillés pour un bal parisien formel plutôt que pour une fête décontractée en plein air, et tout, chez la femme, semble plus froid, plus maîtrisé — regardez avec quel soin Renoir peint le chatoiement de sa robe de satin pâle. Ce modèle, d'ailleurs, s'appelait Suzanne Valadon, qui commença comme modèle pour Renoir et Toulouse-Lautrec — avant de devenir elle-même une peintre véritablement célébrée. Ainsi, la femme peinte ici allait un jour prendre le pinceau et devenir l'une des leurs.",
+      "zh-Hans": "这对在舞厅中翩翩起舞的优雅男女，其实是一对姊妹画作中的一幅——另一幅名为《乡村之舞》，就挂在附近，用的是完全相同的两位模特。不过在这幅画里，他们穿着正式礼服，出席巴黎的一场盛大舞会，而不是轻松的户外聚会，女子整个人显得更冷静、更端庄——看雷诺阿如何细腻地描绘她那件浅色缎裙上的光泽。顺带一提，这位模特名叫苏珊·瓦拉东，她最初是雷诺阿和图卢兹-劳特累克的模特，后来却成为了一位真正声名卓著的画家。也就是说，画中这位被描绘的女子，日后自己也拿起了画笔，成为了他们中的一员。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1978_13_en.mp3",
+      "fr": "/audio/orsay_rf_1978_13_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1978_13_zh-Hans.mp3"
     }
   },
   {
@@ -2472,6 +2552,16 @@
       "en": "Years before they got married, Renoir painted his future wife dancing in this very painting — a fun little secret hiding in plain sight!",
       "fr": "Des années avant leur mariage, Renoir a peint sa future épouse en train de danser, juste ici, dans ce tableau — un petit secret amusant caché à la vue de tous !",
       "zh-Hans": "在结婚的好多年前，雷诺阿就把自己未来的妻子画进了这幅跳舞的画里——这是个藏在画里、悄悄等你发现的小秘密！"
+    },
+    "audioScript": {
+      "en": "This is the warmer half of a matched pair — its twin, Dance in the City, hangs nearby, painted in the same year with the same two dancers. But here, everything is looser, sun-warmed, joyful — an open-air party instead of a formal ball. And here's the real story hiding in plain sight: the woman is Aline Charigot, dancing with Renoir's friend Paul Lhote. Aline would soon become Renoir's own wife. This is one of the only times he painted her before their relationship was public, simply labeled 'a dancer' — years before she became Madame Renoir. Look at her flushed cheeks, her relaxed laugh. He was already in love, and you can feel it.",
+      "fr": "Voici la version la plus chaleureuse d'une paire assortie — son pendant, Danse à la ville, est accroché tout près, peint la même année avec les deux mêmes danseurs. Mais ici, tout est plus détendu, baigné de soleil, joyeux — une fête en plein air plutôt qu'un bal formel. Et voici l'histoire véritable, cachée à la vue de tous : la femme est Aline Charigot, dansant avec l'ami de Renoir, Paul Lhote. Aline allait bientôt devenir l'épouse de Renoir lui-même. C'est l'une des rares fois où il la peignit avant que leur relation ne soit publique, simplement désignée comme « une danseuse » — des années avant qu'elle ne devienne Madame Renoir. Regardez ses joues rougies, son rire détendu. Il était déjà amoureux, et cela se sent.",
+      "zh-Hans": "这是一对姊妹画作中更为温暖明快的一幅——另一幅《城市之舞》就挂在附近，同年所绘，用的是同样两位舞者。但在这里，一切都更松弛、更明媚、更快乐——是户外聚会，而非正式舞会。而真正的故事，就藏在画面之中：这位女子是阿琳·夏里戈，正与雷诺阿的朋友保罗·洛特跳舞。阿琳后来成为了雷诺阿的妻子。这是他们关系公开之前，雷诺阿为数不多为她作画的时刻之一，画中只简单标注「一位舞者」——那时距她成为「雷诺阿夫人」还有好几年。看她泛红的双颊、放松的笑容。那时他其实已经爱上了她，画面里也能感受到这份心意。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1979_64_en.mp3",
+      "fr": "/audio/orsay_rf_1979_64_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1979_64_zh-Hans.mp3"
     }
   },
   {
@@ -2552,6 +2642,16 @@
       "en": "Berthe Morisot wasn't just a model — she became a famous painter herself, and later she even became part of Manet's own family!",
       "fr": "Berthe Morisot n'était pas seulement un modèle — elle est elle-même devenue une peintre célèbre, et plus tard elle a même rejoint la famille de Manet !",
       "zh-Hans": "贝尔特·莫里索可不只是个模特——她后来自己也成了一位著名画家，甚至还成了莫奈家族的一员！"
+    },
+    "audioScript": {
+      "en": "Berthe Morisot was a painter herself, one of Manet's closest friends, and this is one of about a dozen portraits he made of her — widely considered the most striking of them all. Look at her eyes: dark, wide, fixed straight on you. Manet barely bothers finishing anything else in the painting — no fussy detail in the dress, no polished background — because none of that matters. Her gaze carries the entire portrait. A few years after this was painted, Morisot became a founding member of the Impressionists, and she married Manet's own younger brother, Eugène, tying the two painters' families together for good.",
+      "fr": "Berthe Morisot était elle-même peintre, l'une des plus proches amies de Manet, et voici l'un des quelque douze portraits qu'il fit d'elle — largement considéré comme le plus saisissant de tous. Regardez ses yeux : sombres, grands ouverts, fixés droit sur vous. Manet ne se soucie guère de finir quoi que ce soit d'autre dans le tableau — aucun détail méticuleux dans la robe, aucun arrière-plan léché — parce que rien de tout cela n'a d'importance. Son regard porte à lui seul tout le portrait. Quelques années après ce tableau, Morisot devint l'une des fondatrices du mouvement impressionniste, et elle épousa le propre frère cadet de Manet, Eugène, liant pour toujours les familles des deux peintres.",
+      "zh-Hans": "贝尔特·莫里索本人也是一位画家，是马奈最亲密的朋友之一，这是马奈为她所作的约十二幅肖像画之一——也被公认为其中最摄人心魄的一幅。看她的眼睛：深邃、睁大，径直望向你。马奈几乎没有花心思去完成画中其他部分——裙子上没有繁复的细节，背景也不加修饰——因为那些都不重要。她的目光独自撑起了整幅肖像。这幅画完成几年后，莫里索成为印象派的创始成员之一，并嫁给了马奈的弟弟欧仁——从此，两位画家的家族永远联系在了一起。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1998_30_en.mp3",
+      "fr": "/audio/orsay_rf_1998_30_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1998_30_zh-Hans.mp3"
     }
   },
   {
@@ -2631,6 +2731,16 @@
       "en": "This painting was once so enormous that Monet couldn't even fit it through a normal doorway — today, only two big pieces of it still exist.",
       "fr": "Ce tableau était autrefois si immense que Monet ne pouvait même pas le faire passer par une porte normale — aujourd'hui, il n'en reste que deux grands morceaux.",
       "zh-Hans": "这幅画曾经巨大到连莫奈都没法把它搬过普通的门——如今，它只剩下两大块残片留存了下来。"
+    },
+    "audioScript": {
+      "en": "Before Manet made his own famous 'Luncheon on the Grass' — the one that scandalized Paris — the young Monet had already attempted an even bigger version of the same idea: an enormous outdoor picnic scene, proving that everyday modern life deserved the grand scale usually reserved for history painting. Notice the dappled sunlight falling through the trees onto the picnickers — Monet, even this early, cared more about outdoor light than finishing every face. The canvas was so huge that Monet couldn't pay his rent and had to leave part of it behind as collateral. Only two large fragments survive today — this is one of art history's great almost-lost paintings.",
+      "fr": "Avant que Manet ne peigne son propre « Déjeuner sur l'herbe », celui qui scandalisa Paris, le jeune Monet avait déjà tenté une version encore plus vaste de la même idée : une immense scène de pique-nique en plein air, pour prouver que la vie moderne du quotidien méritait l'ampleur habituellement réservée à la peinture d'histoire. Remarquez la lumière tachetée qui tombe à travers les arbres sur les pique-niqueurs — Monet, dès cette époque, se souciait déjà plus de la lumière extérieure que de finir chaque visage. La toile était si immense que Monet, incapable de payer son loyer, dut en laisser une partie en garantie. Seuls deux grands fragments de l'original ont survécu — c'est l'une des grandes œuvres presque perdues de l'histoire de l'art.",
+      "zh-Hans": "在马奈画出那幅震惊巴黎的《草地上的午餐》之前，年轻的莫奈其实已经尝试过一幅规模更宏大的同题材作品：一场巨大的户外野餐场景，用以证明日常的现代生活，也配得上历史画作才有的宏大尺幅。留意阳光透过树叶洒在野餐者身上的斑驳光影——即便在如此早期，莫奈在意的已经是户外光线，而非画好每一张面孔。这幅画布巨大到莫奈付不起房租，只能把画作的一部分留下抵押。如今，原作只有两大块残片存世——这是艺术史上最令人惋惜的「几乎失传」的杰作之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1957_7_en.mp3",
+      "fr": "/audio/orsay_rf_1957_7_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1957_7_zh-Hans.mp3"
     }
   },
   {
@@ -2711,6 +2821,16 @@
       "en": "Zola later joked that the painting was almost more about Manet than about him — Zola isn't even looking at us, he's busy reading a book!",
       "fr": "Zola plaisantera plus tard en disant que le tableau parlait presque plus de Manet que de lui-même — Zola ne nous regarde même pas, il est occupé à lire un livre !",
       "zh-Hans": "左拉后来开玩笑说，这幅画讲的好像更多是莫奈，而不是他自己——左拉甚至都没有看向我们，他正忙着读书呢！"
+    },
+    "audioScript": {
+      "en": "Manet painted the novelist Émile Zola partly as a thank-you — two years earlier, Zola had publicly defended Manet in print when almost every critic in Paris was mocking him. Look closely at the desk behind Zola: a Japanese print, an engraving after Velázquez, and, pinned to the wall, a small reproduction of Manet's own scandalous painting, Olympia. Manet is quietly signing this portrait with a nod to his most controversial work, tucked into his friend's own study. Zola himself later admitted the painting captured Manet's tastes more than it captured him — he's shown absorbed in a book, barely looking at us at all.",
+      "fr": "Manet peint le romancier Émile Zola en partie pour le remercier — deux ans plus tôt, Zola avait publiquement défendu Manet dans la presse alors que presque tous les critiques de Paris le raillaient. Regardez de près le bureau derrière Zola : une estampe japonaise, une gravure d'après Vélasquez, et, épinglée au mur, une petite reproduction du tableau le plus scandaleux de Manet, Olympia. Manet signe discrètement ce portrait d'un clin d'œil à son œuvre la plus controversée, glissée dans le bureau même de son ami. Zola lui-même admit plus tard que le tableau capturait davantage les goûts de Manet que sa propre personne — on le voit plongé dans un livre, nous regardant à peine.",
+      "zh-Hans": "马奈画这幅左拉肖像，某种程度上是为了表达感谢——两年前，几乎整个巴黎的评论界都在嘲讽马奈时，左拉曾公开在文章中为他辩护。仔细看左拉身后的书桌：一幅日本版画、一幅仿委拉斯开兹的版画，还有钉在墙上的一张小小的复制品——正是马奈那幅引发争议的《奥林匹亚》。马奈悄悄地在这幅肖像里，署上了自己最具争议的代表作，藏进了朋友的书房。左拉后来也承认，这幅画捕捉到的更多是马奈本人的趣味，而非他自己——画中的他正沉浸在一本书里，几乎没有看向我们。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2205_en.mp3",
+      "fr": "/audio/orsay_rf_2205_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2205_zh-Hans.mp3"
     }
   },
   {
@@ -2791,6 +2911,16 @@
       "en": "Courbet actually painted something completely different in this same spot at first, then changed his mind years later and painted what we see now!",
       "fr": "Courbet a en fait peint quelque chose de complètement différent à cet endroit au début, puis a changé d'avis des années plus tard et a peint ce que nous voyons maintenant !",
       "zh-Hans": "库尔贝一开始其实在这个位置画的是完全不同的东西，好多年后他改变了主意，才画成了我们现在看到的样子！"
+    },
+    "audioScript": {
+      "en": "Courbet paints himself resting against a tree, eyes closed, a small bloodstain on his shirt near his heart — but this isn't really a battle scene at all. X-rays reveal something quietly remarkable: he originally painted a woman leaning on his shoulder in this exact spot, and only added the wound years later, after their relationship ended. Look at how calm and serene his face looks despite the supposed injury — Courbet paints heartbreak as a kind of noble, romantic wound, not anything frightening. He reworked this painting over roughly a decade, slowly transforming a tender scene with his companion into this symbolic self-portrait of emotional pain after she left him.",
+      "fr": "Courbet se peint reposant contre un arbre, les yeux fermés, une petite tache de sang sur sa chemise près du cœur — mais ce n'est pas du tout une scène de bataille. Les radiographies révèlent quelque chose de discrètement remarquable : il avait d'abord peint une femme appuyée sur son épaule à cet endroit précis, et n'ajouta la blessure que des années plus tard, après la fin de leur relation. Regardez comme son visage paraît calme et serein malgré la blessure supposée — Courbet peint le chagrin d'amour comme une sorte de blessure noble et romantique, non comme quelque chose d'effrayant. Il retravailla ce tableau sur environ une décennie, transformant peu à peu une scène tendre avec sa compagne en cet autoportrait symbolique de douleur affective après son départ.",
+      "zh-Hans": "库尔贝把自己画成靠在树上休息的样子，双眼紧闭，白衬衫心脏附近有一小片血迹——但这其实完全不是什么战场场景。X光扫描揭示了一个悄然动人的秘密：他最初在这个位置画的，其实是一个女子靠在他肩上，直到多年后两人关系结束，他才补上了这道「伤口」。看尽管画面暗示着伤势，他的面容却是如此平静、安详——库尔贝把这份心碎，描绘成了一种高贵而浪漫的伤痛，而非任何令人害怕的东西。他花了大约十年时间反复修改这幅画，慢慢把一幕与伴侣相依的温情场景，转变成了她离开后，这幅象征内心伤痛的自画像。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_338_en.mp3",
+      "fr": "/audio/orsay_rf_338_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_338_zh-Hans.mp3"
     }
   },
   {
@@ -2870,6 +3000,16 @@
       "en": "This painting won a big prize when Bonheur was young, and helped her become one of the most famous painters of her whole century!",
       "fr": "Ce tableau a remporté un grand prix quand Bonheur était jeune, et l'a aidée à devenir l'une des peintres les plus célèbres de tout son siècle !",
       "zh-Hans": "邦赫尔年轻时，这幅画为她赢得了一项大奖，帮助她成为了整个世纪里最著名的画家之一！"
+    },
+    "audioScript": {
+      "en": "Twelve powerful oxen, straining as they pull heavy ploughs through a French field — and they're the real stars of this painting, not the small human figures walking behind them. Rosa Bonheur studied real cattle anatomy in slaughterhouses and on working farms just to get every muscle and strain right. This painting was commissioned by the French government, and it won her a First Medal at the 1849 Salon — launching her into becoming one of the most famous, most successful female painters of the entire nineteenth century, in a field almost completely closed to women at the time.",
+      "fr": "Douze puissants bœufs, tendus par l'effort, tirant de lourdes charrues à travers un champ français — et ce sont eux, les véritables héros de ce tableau, pas les petites silhouettes humaines qui marchent derrière eux. Rosa Bonheur étudiait l'anatomie réelle du bétail dans les abattoirs et les fermes en activité, rien que pour saisir chaque muscle et chaque tension avec exactitude. Ce tableau fut commandé par le gouvernement français, et il valut à Bonheur une première médaille au Salon de 1849 — la propulsant parmi les peintres les plus célèbres et les plus reconnus du dix-neuvième siècle tout entier, dans un domaine alors presque entièrement fermé aux femmes.",
+      "zh-Hans": "十二头健硕的公牛，正吃力地拉着沉重的犁具，穿过法国的田野——它们才是这幅画真正的主角，而不是身后那些渺小的人影。罗莎·邦赫为了精准描绘每一处肌肉与力量的张弛，特意跑去屠宰场和真正的农场研究牛的解剖结构。这幅画由法国政府委托创作，并为她赢得了1849年沙龙的一等奖章——让她一跃成为整个十九世纪最著名、最成功的女性画家之一，而当时，这个领域几乎完全对女性关闭大门。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_64_en.mp3",
+      "fr": "/audio/orsay_rf_64_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_64_zh-Hans.mp3"
     }
   },
   {
@@ -2950,7 +3090,17 @@
       "fr": "Ce tableau a rendu Gérôme célèbre presque du jour au lendemain lorsqu'il fut montré pour la première fois lors d'une grande exposition d'art — le début d'une longue et brillante carrière !",
       "zh-Hans": "这幅画在一场大型艺术展上首次亮相时，几乎让热罗姆一夜成名——这是他漫长而成功的职业生涯的开端！"
     },
-    "contentFlag": "A nude young man and a topless young woman kneeling together over two fighting roosters, blood visible on the ground and pedestal -- verified by viewing the actual image, not assumed from the title. The pre-flagged item from the original content-policy list. Unlike prior nudity cases, this combines nudity with depicted animal violence (a cockfight, blood visible) -- a new combination. No myth narrative available (a Neo-Grec genre scene, not a specific mythological story). Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the Neo-Grec technique, the ancient setting, and the Sphinx statue, without describing the bodies or the fight/blood -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "A nude young man and a topless young woman kneeling together over two fighting roosters, blood visible on the ground and pedestal -- verified by viewing the actual image, not assumed from the title. The pre-flagged item from the original content-policy list. Unlike prior nudity cases, this combines nudity with depicted animal violence (a cockfight, blood visible) -- a new combination. No myth narrative available (a Neo-Grec genre scene, not a specific mythological story). Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the Neo-Grec technique, the ancient setting, and the Sphinx statue, without describing the bodies or the fight/blood -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "Two young people in ancient Greek dress, crouched beside a fountain, completely absorbed in setting two roosters against each other — a small, everyday moment from antiquity, painted with a crisp, almost porcelain-like polish. That smooth finish was the whole point: it's called the Neo-Grec style, and it made Gérôme instantly popular. Look at the crumbling ancient Sphinx statue behind the two figures — Gérôme loved setting youthful freshness against the weathered stone of a much older civilization. This ambitious painting was Gérôme's breakthrough at the 1847 Salon, launching the career of an artist who'd go on to become one of the era's most celebrated academic painters.",
+      "fr": "Deux jeunes gens en tenue de la Grèce antique, accroupis près d'une fontaine, totalement absorbés à monter deux coqs l'un contre l'autre — un petit moment du quotidien antique, peint avec un fini net, presque comme de la porcelaine. Cette finition lisse était tout l'enjeu : on appelle ce style le « néo-grec », et il rendit Gérôme immédiatement populaire. Regardez la statue antique du Sphinx, à moitié effritée, derrière les deux personnages — Gérôme aimait opposer la fraîcheur de la jeunesse à la pierre usée d'une civilisation bien plus ancienne. Ce tableau ambitieux fut la percée de Gérôme au Salon de 1847, lançant la carrière d'un artiste qui allait devenir l'un des peintres académiques les plus célébrés de son époque.",
+      "zh-Hans": "两位身着古希腊服饰的年轻人蹲在喷泉旁，正全神贯注地驱使两只公鸡互相争斗——这是古代日常生活中一个微小的瞬间，被画得如瓷器般光洁精致。这种细腻的画法正是关键所在：这被称为「新希腊风格」，也让热罗姆迅速声名鹊起。看看两位年轻人身后那尊风化剥落的古老斯芬克斯雕像——热罗姆喜欢用青春的鲜活，去对照一个更古老文明所留下的斑驳石迹。这幅雄心勃勃的作品让热罗姆在1847年沙龙一举成名，也开启了他日后成为那个时代最受推崇的学院派画家之一的艺术生涯。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_88_en.mp3",
+      "fr": "/audio/orsay_rf_88_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_88_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_2450",
@@ -3029,6 +3179,16 @@
       "en": "Bazille was only 23 years old when he painted this — and at the time, he was actually studying to become a doctor, not a full-time painter yet!",
       "fr": "Bazille n'avait que 23 ans quand il a peint ce tableau — et à l'époque, il étudiait en réalité pour devenir médecin, pas encore peintre à temps plein !",
       "zh-Hans": "巴齐耶画这幅画的时候只有23岁——而且当时他其实还在学医，还没有成为一名全职画家呢！"
+    },
+    "audioScript": {
+      "en": "Bazille painted his cousin Thérèse seated on a stone ledge at his family's country estate near Montpellier — dark trees framing her on either side, pushing your eye toward a sunlit village glowing in the distance. He was only twenty-three, still officially training as a medical student in Paris, home for the summer. Notice how carefully he balances that shadowed foreground against the bright landscape beyond — a lighting trick borrowed from the earlier Barbizon landscape painters. It's one of Bazille's earliest surviving paintings, made years before he'd help define Impressionism alongside Monet and Renoir — you can already see him working out the kind of outdoor light that would define the whole movement.",
+      "fr": "Bazille peint sa cousine Thérèse assise sur un muret de pierre, dans la propriété familiale près de Montpellier — des arbres sombres l'encadrant de part et d'autre, poussant le regard vers un village ensoleillé qui brille au loin. Il n'avait alors que vingt-trois ans, encore officiellement étudiant en médecine à Paris, rentré pour l'été. Remarquez avec quel soin il équilibre ce premier plan dans l'ombre face au paysage lumineux plus loin — un jeu de lumière emprunté aux peintres paysagistes de l'école de Barbizon. C'est l'une des plus anciennes toiles de Bazille qui nous soient parvenues, peinte des années avant qu'il n'aide à définir l'impressionnisme aux côtés de Monet et Renoir — on le sent déjà chercher ce type de lumière extérieure qui allait définir tout le mouvement.",
+      "zh-Hans": "巴齐耶把表妹泰蕾兹画在蒙彼利埃附近家族庄园的一处石台上——两侧幽深的树影将她框在中间，引导视线望向远处那座沐浴在阳光中的村庄。那时他才二十三岁，名义上还是巴黎的医学院学生，只是回乡度暑假。留意他如何精心平衡阴影中的前景与远处明亮的风景——这种光影手法借鉴自更早的巴比松画派风景画家。这是巴齐耶现存最早的画作之一，早在他与莫奈、雷诺阿一同奠定印象派风格之前多年就已画成——你已经能看出，他正在摸索日后将定义整个印象派运动的那种户外光线。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2450_en.mp3",
+      "fr": "/audio/orsay_rf_2450_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2450_zh-Hans.mp3"
     }
   },
   {
@@ -3108,6 +3268,16 @@
       "en": "Monet painted this in a riverside town called Argenteuil, which became famous for exactly this kind of sunny, sailboat-filled Impressionist painting.",
       "fr": "Monet a peint ce tableau dans une ville au bord de l'eau appelée Argenteuil, devenue célèbre pour ce genre de peinture impressionniste ensoleillée et remplie de voiliers.",
       "zh-Hans": "莫奈是在一座名叫阿让特伊的河畔小镇画下这幅画的，这座小镇后来因这类阳光明媚、满是帆船的印象派画作而闻名。"
+    },
+    "audioScript": {
+      "en": "Sailboats, and their reflections rippling beneath them — but here's the thing, Monet isn't really painting the boats at all. He's painting water. Look at a sharp white sail, then follow it straight down to its reflection: the same shape, painted twice, once crisp and solid, once completely dissolved and rippling. That's the real subject of this whole scene. This was painted at Argenteuil, the riverside town just outside Paris where Monet more or less invented the Impressionist boating picture — a whole genre of paintings built around sailboats, reflections, and afternoon light on the water.",
+      "fr": "Des voiliers, et leurs reflets qui ondulent sous eux — mais voilà l'essentiel : Monet ne peint pas vraiment les bateaux. Il peint l'eau. Regardez une voile blanche bien nette, puis suivez-la droit vers son reflet : la même forme, peinte deux fois, une fois nette et solide, une fois entièrement dissoute et ondoyante. C'est là le vrai sujet de toute cette scène. Ce tableau fut peint à Argenteuil, cette ville au bord de l'eau juste à côté de Paris où Monet a plus ou moins inventé la scène de voile impressionniste — tout un genre de peinture construit autour des voiliers, des reflets et de la lumière de l'après-midi sur l'eau.",
+      "zh-Hans": "帆船，以及它们在水面下荡漾的倒影——但关键在于，莫奈其实根本不是在画船。他画的是水。看那道鲜明的白色船帆，再顺着它望向水中的倒影：同一个形状，被画了两遍，一次清晰坚实，一次完全溶解、荡漾开来。这才是整幅画真正的主题。这幅画作于阿让特伊——巴黎近郊的一座河畔小镇，莫奈几乎是在那里独自开创了印象派的帆船题材——一整个以帆船、倒影和午后水光为核心的绘画类型，由此诞生。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2778_en.mp3",
+      "fr": "/audio/orsay_rf_2778_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2778_zh-Hans.mp3"
     }
   },
   {
@@ -3187,6 +3357,16 @@
       "en": "Monet grew this garden himself, just so he would always have something beautiful nearby to paint whenever he wanted.",
       "fr": "Monet a lui-même cultivé ce jardin, simplement pour avoir toujours quelque chose de beau à peindre à proximité, quand il le souhaitait.",
       "zh-Hans": "这座花园是莫奈亲手栽种的，为的是无论他什么时候想画画，身边总有美丽的景色可供描绘。"
+    },
+    "audioScript": {
+      "en": "This is Monet's own garden at Giverny — flower beds he designed and planted himself, painted here as rivers of pure color rather than precise botany. By this point in his life, Monet had become wealthy enough to build and maintain an entire garden purely as something to paint, which almost no artist before him could ever afford to do. Follow the diagonal path of flowers running from the top of the canvas down to the bottom — that single sweeping line is what the whole composition is built around. He's not showing you a garden anymore. He's showing you what it felt like to stand inside one.",
+      "fr": "Voici le propre jardin de Monet à Giverny — des parterres de fleurs qu'il a lui-même dessinés et plantés, peints ici comme des rivières de couleur pure plutôt que comme une botanique précise. À ce stade de sa vie, Monet était devenu assez riche pour créer et entretenir tout un jardin dans le seul but de le peindre, ce que presque aucun artiste avant lui n'avait pu se permettre. Suivez l'allée en diagonale de fleurs qui court du haut de la toile jusqu'en bas — c'est cette unique ligne, ample et fluide, autour de laquelle toute la composition est bâtie. Il ne vous montre plus un jardin. Il vous montre ce que ça faisait de se tenir à l'intérieur.",
+      "zh-Hans": "这是莫奈在吉维尼的私家花园——花坛都是他亲手设计栽种的，在这幅画里，它们被描绘成一条条纯色的河流，而非精确的植物写生。此时的莫奈，已经富裕到可以专门为了作画而营造并维护一整座花园，这是他之前几乎没有画家能够负担得起的事。顺着画布顶端一直延伸到底部的那条斜向花径望去——整幅构图，正是围绕这一道流畅的曲线展开的。他画的已经不再是一座花园本身，而是站在花园之中的那种感受。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1983_6_en.mp3",
+      "fr": "/audio/orsay_rf_1983_6_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1983_6_zh-Hans.mp3"
     }
   },
   {
@@ -3266,6 +3446,16 @@
       "en": "The teacher in this painting was a real, very famous ballet master named Jules Perrot — Degas painted him even though the real Mr. Perrot had already stopped teaching by then!",
       "fr": "Le professeur de ce tableau était un véritable et très célèbre maître de ballet nommé Jules Perrot — Degas l'a peint alors même que le vrai monsieur Perrot avait déjà arrêté d'enseigner !",
       "zh-Hans": "这幅画里的老师，是一位真实存在、非常有名的芭蕾大师，名叫朱尔·佩罗——德加画他的时候，佩罗先生其实已经不教课啦！"
+    },
+    "audioScript": {
+      "en": "This isn't the poised, finished ballet performance — it's the tired, restless moment right at the end of a private lesson. The real ballet master Jules Perrot stands watching, and his young pupils are barely paying attention to him at all: they're stretching, scratching their backs, fixing their hair. Notice how few of them are actually dancing — most are caught mid-fidget, adjusting a ribbon or an earring, which is exactly the unglamorous backstage moment Degas found far more interesting than any finished performance. Perrot had already retired by the time this was painted, so Degas worked from memory and old photographs to get him right.",
+      "fr": "Ce n'est pas le spectacle de ballet, fini et parfaitement maîtrisé — c'est ce moment fatigué et fébrile, tout à la fin d'une leçon privée. Le véritable maître de ballet, Jules Perrot, se tient là à observer, et ses jeunes élèves ne lui prêtent presque aucune attention : elles s'étirent, se grattent le dos, arrangent leurs cheveux. Remarquez comme peu d'entre elles dansent réellement — la plupart sont surprises en train de s'agiter, ajustant un ruban ou une boucle d'oreille, exactement ce moment sans éclat des coulisses que Degas trouvait bien plus intéressant que n'importe quelle représentation achevée. Perrot était déjà à la retraite quand ce tableau fut peint, si bien que Degas travailla de mémoire et à partir de vieilles photographies pour le représenter fidèlement.",
+      "zh-Hans": "这幅画呈现的不是那种优雅完美的芭蕾舞台表演，而是一堂私人课接近尾声时，那种疲惫、松懈的瞬间。真正的芭蕾大师朱尔·佩罗站在一旁看着，可年轻的学生们几乎没人在意他——她们伸着懒腰，挠着后背，整理着头发。留意画中真正在跳舞的人少之又少——大多数人都被定格在扭动、调整发带或耳环的瞬间，而这种毫不体面的后台时刻，正是德加认为远比任何完整演出都更有意思的地方。这幅画创作时，佩罗其实早已退休，德加是凭记忆和旧照片，才把他准确地画了出来。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1976_en.mp3",
+      "fr": "/audio/orsay_rf_1976_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1976_zh-Hans.mp3"
     }
   },
   {
@@ -3345,6 +3535,16 @@
       "en": "When people first saw this painting, they found it really puzzling, because it was so different from what they expected — Gérôme liked doing things his own way!",
       "fr": "Quand les gens ont vu ce tableau pour la première fois, ils l'ont trouvé vraiment déconcertant, parce qu'il était si différent de ce à quoi ils s'attendaient — Gérôme aimait faire les choses à sa façon !",
       "zh-Hans": "人们第一次看到这幅画的时候，都觉得非常困惑，因为它和大家预想的完全不一样——热罗姆就是喜欢按自己的方式来！"
+    },
+    "audioScript": {
+      "en": "Look carefully, and you'll realize something strange: Jesus isn't in this painting at all. Neither are the two thieves crucified beside him. Gérôme paints the ground at Golgotha in the aftermath of the Crucifixion — just the long shadows of three crosses stretching across bare rock, and a small crowd walking away in the distance. Everything is implied, nothing is shown directly. That was a genuinely radical choice for a subject painters usually tackled head-on, and when this was shown at the 1868 Salon, critics found it baffling — an image built almost entirely around what it deliberately leaves out of the frame.",
+      "fr": "Regardez attentivement, et vous remarquerez quelque chose d'étrange : Jésus n'apparaît nulle part dans ce tableau. Ni les deux voleurs crucifiés à ses côtés. Gérôme peint le sol du Golgotha au lendemain de la Crucifixion — seulement les longues ombres de trois croix s'étirant sur la roche nue, et une petite foule s'éloignant au loin. Tout est suggéré, rien n'est montré directement. C'était un choix véritablement radical pour un sujet que les peintres traitaient d'ordinaire de front, et lorsque ce tableau fut exposé au Salon de 1868, les critiques le trouvèrent déconcertant — une image construite presque entièrement autour de ce qu'elle exclut délibérément du cadre.",
+      "zh-Hans": "仔细看，你会发现一件奇怪的事：这幅画里根本没有耶稣的身影，就连被钉在他两侧的两个盗贼也不见踪影。热罗姆画的是各各他山上，钉刑之后的地面——只有三具十字架投下的长长阴影，斜斜地铺在裸露的岩石上，还有远处一小群渐渐走远的人群。一切都是暗示，没有任何直接呈现。对于一个画家们通常正面描绘的题材来说，这是一个真正大胆的选择。1868年这幅画在沙龙展出时，评论家们对此困惑不已——一幅几乎完全建立在「刻意省略」之上的画作。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1990_7_en.mp3",
+      "fr": "/audio/orsay_rf_1990_7_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1990_7_zh-Hans.mp3"
     }
   },
   {
@@ -3424,6 +3624,16 @@
       "en": "This is one of the only paintings that shows this whole group of future-famous painters together, all in one room, before anyone knew how famous they'd become.",
       "fr": "C'est l'un des seuls tableaux qui montre tout ce groupe de futurs peintres célèbres réunis, tous dans une même pièce, avant que personne ne sache à quel point ils deviendraient célèbres.",
       "zh-Hans": "这是极少数能看到这整群未来的著名画家们，全都聚在同一间屋子里的画作之一——那时候，谁都还不知道他们日后会有多出名。"
+    },
+    "audioScript": {
+      "en": "Look around this crowded studio and you're looking at the future of art before anyone knew it yet: Bazille painted himself and his closest friends gathered in his own Paris studio, and Manet, Renoir, Zola, and Monet all appear together in this single room. That tall figure standing at the easel is Bazille himself — though his friend Manet actually painted that figure into the canvas for him. This is one of the only paintings that shows the future Impressionists together before they became famous. Bazille would be killed in battle just months later, so without meaning to, this became an unplanned farewell portrait of the whole group.",
+      "fr": "Regardez autour de cet atelier bondé, et vous contemplez l'avenir de l'art avant que personne ne le sache encore : Bazille se peint lui-même avec ses amis les plus proches réunis dans son propre atelier parisien, et Manet, Renoir, Zola et Monet apparaissent tous ensemble dans cette unique pièce. Cette grande silhouette debout devant le chevalet, c'est Bazille lui-même — bien que ce soit en réalité son ami Manet qui ait peint ce personnage pour lui sur la toile. C'est l'un des seuls tableaux qui montre les futurs impressionnistes réunis avant qu'ils ne deviennent célèbres. Bazille allait être tué au combat quelques mois plus tard seulement, si bien que ce tableau devint, sans le vouloir, un portrait d'adieu improvisé de tout le groupe.",
+      "zh-Hans": "环顾这间拥挤的画室，你正望向一段尚无人知晓的艺术未来：巴齐耶把自己和最亲密的朋友们画在了他位于巴黎的画室里，马奈、雷诺阿、左拉和莫奈，全都同处这一个房间之中。站在画架前那个高大的身影，正是巴齐耶本人——不过实际上，那个人物形象是他的朋友马奈替他画上去的。这是极少数几幅在印象派画家们成名之前，把他们聚在一起的画作之一。几个月后，巴齐耶就在战场上牺牲了，于是，这幅画在无意中，成了整个画家群体的一幅告别肖像。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_lux_1439_en.mp3",
+      "fr": "/audio/orsay_lux_1439_fr.mp3",
+      "zh-Hans": "/audio/orsay_lux_1439_zh-Hans.mp3"
     }
   },
   {
@@ -3503,6 +3713,16 @@
       "en": "Caillebotte painted this by just looking out of his own apartment window — no need to travel anywhere fancy!",
       "fr": "Caillebotte a peint ce tableau simplement en regardant par la fenêtre de son propre appartement — pas besoin d'aller où que ce soit de chic !",
       "zh-Hans": "卡耶博特画这幅画，只是望着自己公寓的窗外——完全不需要跑去什么特别高级的地方！"
+    },
+    "audioScript": {
+      "en": "Not the Eiffel Tower, not Notre-Dame — Caillebotte painted a rooftop view over snow-covered Paris, looking down from a high window onto a jumble of chimneys and rooflines. It's a modern, almost accidental-feeling view of the city, the kind only an apartment dweller would think to paint. Look closely at what seems like plain white snow — Caillebotte finds soft pinks and muted grays hiding in there, a quiet study of how a grey winter sky changes the color of everything beneath it. He showed this alongside more than twenty other works at the fourth Impressionist exhibition in 1879, part of a whole series of rooftop views he made from his own apartment.",
+      "fr": "Ni la tour Eiffel, ni Notre-Dame — Caillebotte peint une vue de toits sur le Paris enneigé, en plongée depuis une fenêtre haute, sur un enchevêtrement de cheminées et de pans de toiture. C'est une vision moderne de la ville, presque accidentelle, celle qu'un habitant d'appartement serait le seul à songer à peindre. Regardez de près cette neige qui semble au premier abord d'un blanc uni — Caillebotte y déniche des roses discrets et des gris estompés, une étude tranquille de la manière dont un ciel d'hiver gris change la couleur de tout ce qui se trouve en dessous. Il l'exposa aux côtés de plus de vingt autres œuvres lors de la quatrième exposition impressionniste, en 1879, dans le cadre de toute une série de vues de toits peintes depuis son propre appartement.",
+      "zh-Hans": "画中既不是埃菲尔铁塔，也不是巴黎圣母院——卡耶博特画的是白雪覆盖下的巴黎屋顶景象，从一扇高高的窗户俯瞰下去，是一片错落的烟囱与屋脊。这是一种现代的、近乎随意瞥见的城市景象，只有真正住在公寓里的人，才会想到把它画下来。仔细看那片看似纯白的积雪——卡耶博特在其中发现了柔和的粉色与朦胧的灰色，静静地研究着灰蒙蒙的冬日天空，如何改变了地面上一切事物的色彩。1879年第四届印象派画展上，他与其他二十余幅作品一同展出了这幅画，那也是他从自家公寓窗口所绘的一系列屋顶景象之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_876_en.mp3",
+      "fr": "/audio/orsay_rf_876_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_876_zh-Hans.mp3"
     }
   },
   {
@@ -3582,6 +3802,16 @@
       "en": "This painting wasn't made for a museum at first — it was painted to decorate the living room of a rich Parisian's own home!",
       "fr": "Ce tableau n'a pas été fait pour un musée au départ — il a été peint pour décorer le salon de la propre maison d'un riche Parisien !",
       "zh-Hans": "这幅画一开始其实不是为博物馆画的——它是用来装饰一位富有巴黎人自己家客厅的呢！"
+    },
+    "audioScript": {
+      "en": "Two graceful, wind-swept women sweep across the sky holding a great blue veil between them, a young tambourine player beside them — this is Bouguereau's allegory of Dance itself, painted purely to bring movement and joy into a Paris drawing room. Look at how the huge, unfurling veil and the loose, flowing robes all seem to catch the wind, giving this flat, static canvas a genuine sense of weightless motion. This was actually commissioned to decorate a private Paris mansion, not for public exhibition — a rare case of a major Bouguereau made purely for a wealthy patron's home, before it ever entered a museum collection at all.",
+      "fr": "Deux femmes gracieuses, portées par le vent, glissent à travers le ciel en tenant entre elles un grand voile bleu, avec un jeune joueur de tambourin à leurs côtés — voici l'allégorie de la Danse elle-même selon Bouguereau, peinte dans le seul but d'apporter mouvement et joie dans un salon parisien. Regardez comme ce vaste voile déployé et les robes amples et fluides semblent tous capter le vent, donnant à cette toile plate et statique un véritable sentiment de mouvement apesanti. Ce tableau fut en réalité commandé pour décorer un hôtel particulier parisien, non pour une exposition publique — un cas rare d'une œuvre majeure de Bouguereau réalisée uniquement pour la demeure d'un riche mécène, bien avant d'entrer un jour dans une collection de musée.",
+      "zh-Hans": "两位随风飘举的曼妙女子在天空中共同托起一幅巨大的蓝色薄纱，身旁还有一位年轻的手鼓乐手——这是布格罗对「舞蹈」这一主题的寓言式描绘，纯粹是为了给巴黎某间会客厅带去动感与欢愉。看那随风翻卷的巨幅薄纱和飘逸的长袍，仿佛都被风卷起，让这幅原本平面静止的画布，产生了一种真正轻盈灵动的感觉。这幅画其实是受托专为装饰一座巴黎私人宅邸而作，并非为公开展览而画——这是布格罗少见的一幅重要作品，纯粹为一位富有赞助人的私宅而创作，之后才辗转进入博物馆收藏。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1981_33_en.mp3",
+      "fr": "/audio/orsay_rf_1981_33_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1981_33_zh-Hans.mp3"
     }
   },
   {
@@ -3662,7 +3892,17 @@
       "fr": "Rousseau n'a jamais voyagé dans une vraie jungle — il a puisé toutes ses idées dans des jardins botaniques et des livres illustrés, et a imaginé le reste !",
       "zh-Hans": "卢梭一次都没去过真正的丛林——他所有的灵感都来自植物园和图画书，剩下的全靠想象！"
     },
-    "contentFlag": "A nude female figure rendered as a near-black silhouette against moonlight (body form visible, no anatomical detail), snakes wrapped around her. Reviewed with the user per-case for consistency (an adult nude figure, even though heavily abstracted by the silhouette treatment) -- not decided by analogy to the non-sexualized child/putto case in Bazille's Dance. Decision: stays in Kids mode; Kids why/where/rarity focus on the moonlit jungle mood, the mysterious silhouette, and the animals/plants, not the figure's body."
+    "contentFlag": "A nude female figure rendered as a near-black silhouette against moonlight (body form visible, no anatomical detail), snakes wrapped around her. Reviewed with the user per-case for consistency (an adult nude figure, even though heavily abstracted by the silhouette treatment) -- not decided by analogy to the non-sexualized child/putto case in Bazille's Dance. Decision: stays in Kids mode; Kids why/where/rarity focus on the moonlit jungle mood, the mysterious silhouette, and the animals/plants, not the figure's body.",
+    "audioScript": {
+      "en": "A dark silhouette plays a flute in a moonlit jungle, snakes uncoiling toward her from the surrounding leaves — and every bit of this scene is entirely imagined, because Henri Rousseau never once left France, never saw a real jungle in his life. Look at how impossibly lush the leaves are, layered on top of each other, and that huge pale moon glowing behind them — he built this entire dreamlike world from botanical gardens, illustrated books, and pure imagination. Rousseau was self-taught, working as a customs officer for most of his life, painting only in his spare time — and critics mocked his simple style for years before anyone recognized it as genuinely visionary.",
+      "fr": "Une silhouette sombre joue de la flûte dans une jungle éclairée par la lune, tandis que des serpents se déroulent vers elle depuis le feuillage environnant — et chaque parcelle de cette scène est entièrement imaginée, car Henri Rousseau ne quitta jamais la France, ne vit jamais une véritable jungle de sa vie. Regardez à quel point ce feuillage est impossiblement luxuriant, superposé en couches, et cette immense lune pâle qui rayonne derrière — il a bâti tout ce monde onirique à partir de jardins botaniques, de livres illustrés et de sa pure imagination. Rousseau était autodidacte, employé comme douanier pendant la majeure partie de sa vie, ne peignant que sur son temps libre — et les critiques se moquèrent de son style naïf pendant des années avant que quiconque ne le reconnaisse comme véritablement visionnaire.",
+      "zh-Hans": "月光下的丛林中，一道黑色的剪影正在吹奏长笛，蛇群从四周的枝叶间朝她游来——而这整个场景，完全出自想象，因为亨利·卢梭一生从未离开过法国，也从未见过真正的丛林。看那层层叠叠、繁茂得近乎不真实的树叶，还有背后那轮巨大而苍白的月亮——他完全依靠植物园、插图书籍和纯粹的想象力，构筑出了这个梦境般的世界。卢梭是自学成才的画家，一生大部分时间都在做海关职员，只在业余时间作画——多年来，评论家一直嘲笑他那种质朴的画风，直到很久以后，人们才认识到，这份质朴其实是真正的远见。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1937_7_en.mp3",
+      "fr": "/audio/orsay_rf_1937_7_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1937_7_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1952_17",
@@ -3741,6 +3981,16 @@
       "en": "Van Gogh loved this other artist's black-and-white pictures so much that he repainted several of them in his own colorful style — like adding color to a coloring book, but with paint!",
       "fr": "Van Gogh aimait tellement les tableaux en noir et blanc de cet autre artiste qu'il en a repeint plusieurs dans son propre style coloré — un peu comme colorier un livre de coloriage, mais avec de la peinture !",
       "zh-Hans": "梵高特别喜欢另一位画家的黑白画，所以他把好几幅都用自己色彩缤纷的风格重新画了一遍——就像给一本涂色书上色一样，只不过用的是颜料！"
+    },
+    "audioScript": {
+      "en": "This quiet scene of two farm workers napping at midday isn't entirely Van Gogh's own invention — it's his colorful 'translation' of a black-and-white print by the artist he admired most, Jean-François Millet. Van Gogh said he used color the way Millet used light and shadow. Look at those golden haystacks suggesting real midday heat, and the deep blue shade the couple rests in — a simple nap becomes a study in how color itself can feel like temperature. He made several paintings this way, treating another artist's composition almost like a musical score to reinterpret entirely in his own vivid palette.",
+      "fr": "Cette scène paisible de deux paysans faisant la sieste à midi n'est pas entièrement une invention de Van Gogh — c'est sa « traduction » en couleur d'une gravure en noir et blanc de l'artiste qu'il admirait le plus, Jean-François Millet. Van Gogh disait utiliser la couleur comme Millet utilisait la lumière et l'ombre. Regardez ces meules dorées qui suggèrent la vraie chaleur de midi, et cette ombre d'un bleu profond où repose le couple — une simple sieste devient une étude sur la façon dont la couleur elle-même peut évoquer une température. Il réalisa plusieurs tableaux de cette manière, traitant la composition d'un autre artiste presque comme une partition musicale à réinterpréter entièrement dans sa propre palette éclatante.",
+      "zh-Hans": "这幅描绘两位农民正午小憩的宁静画面，并非完全出自梵高自己的构思——它其实是他对自己最崇敬的画家让-弗朗索瓦·米勒一幅黑白版画的「彩色翻译」。梵高说，他用色彩来做米勒用光影所做的事。看那金黄的干草堆，暗示着正午的酷热，还有那对夫妇歇息所在的深蓝色阴影——一场简单的午睡，就此变成了一次关于色彩本身如何传达温度的研究。他曾多次以这种方式作画，几乎把别的画家的构图当作乐谱一样，用自己浓烈的调色板重新诠释一遍。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1952_17_en.mp3",
+      "fr": "/audio/orsay_rf_1952_17_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1952_17_zh-Hans.mp3"
     }
   },
   {
@@ -3820,6 +4070,16 @@
       "en": "Gauguin loved this painting so much that he bought it back just for himself before he left Europe forever!",
       "fr": "Gauguin a tellement aimé ce tableau qu'il l'a racheté rien que pour lui avant de quitter l'Europe pour toujours !",
       "zh-Hans": "高更太喜欢这幅画了，在永远离开欧洲之前，他特意把它买了回来，留给自己！"
+    },
+    "audioScript": {
+      "en": "Two Tahitian women at leisure — one wrapped in a traditional pareo, the other in a dress introduced by missionaries, a small, quiet detail marking the collision between island tradition and colonial influence. Behind them, Gauguin imagines a giant sacred statue and a ceremony that never actually happened. Notice the small red dog crossing the foreground, which mocking critics singled out when this was first shown — and how flat Gauguin paints the sky, in bands of green, yellow and red, instead of anything realistic. Gauguin considered this one of his own best paintings — he liked it enough to buy it back for himself in 1895, right before he left Europe for Tahiti for good.",
+      "fr": "Deux femmes tahitiennes au repos — l'une drapée dans un paréo traditionnel, l'autre vêtue d'une robe introduite par les missionnaires, un détail discret qui marque la rencontre entre tradition insulaire et influence coloniale. Derrière elles, Gauguin imagine une statue sacrée géante et une cérémonie qui n'a jamais réellement eu lieu. Remarquez le petit chien rouge qui traverse le premier plan, que des critiques moqueurs pointèrent du doigt lors de la première présentation du tableau — et la façon dont Gauguin aplatit le ciel, en bandes de vert, de jaune et de rouge, plutôt que de le peindre de façon réaliste. Gauguin considérait ce tableau comme l'un de ses meilleurs — il l'aimait assez pour le racheter lui-même en 1895, juste avant de quitter l'Europe pour Tahiti, définitivement.",
+      "zh-Hans": "两位悠然自得的塔希提女子——一位裹着传统的帕蕾欧，另一位则穿着由传教士带来的连衣裙，这个不经意的细节，正标志着岛屿传统与殖民影响的碰撞。在她们身后，高更想象出了一座巨大的圣像和一场从未真正举行过的仪式。留意前景中穿行而过的那只小红狗——这幅画首次展出时，曾遭到评论家们的嘲讽点名——再看高更如何把天空平涂成绿、黄、红几条色带，而非写实地描绘天色。高更认为这是自己最好的作品之一——他甚至在1895年，也就是永远离开欧洲、动身前往塔希提之前，把这幅画又买了回来，留给自己。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1961_6_en.mp3",
+      "fr": "/audio/orsay_rf_1961_6_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1961_6_zh-Hans.mp3"
     }
   },
   {
@@ -3899,6 +4159,16 @@
       "en": "Bazille worked on this painting for over a year, and it got accepted into a big, important art show — even though his friends' paintings kept getting turned down!",
       "fr": "Bazille a travaillé sur ce tableau pendant plus d'un an, et il a été accepté dans une grande exposition d'art importante — même si les tableaux de ses amis se faisaient sans cesse refuser !",
       "zh-Hans": "巴齐耶为这幅画忙了一年多，最后它被一场重要的大型艺术展接纳了——尽管他朋友们的画却总是被拒绝！"
+    },
+    "audioScript": {
+      "en": "Ten of Bazille's own relatives, gathered on the shaded terrace of his family's country estate — and he paints each one as a careful, individual portrait rather than a generic crowd, nearly everyone looking straight out at the viewer, almost like a group photograph before photography could really do this. Notice how the deep shade of the tree overhead makes the sunlit landscape beyond feel even more vivid — a contrast between shadow and southern French light that Bazille genuinely loved. He reworked this ambitious painting for over a year, and it was accepted into the official Paris Salon of 1868 — a real success, at a time when his friends Monet and Renoir were still being rejected.",
+      "fr": "Dix membres de la propre famille de Bazille, réunis sur la terrasse ombragée de la propriété familiale — et il peint chacun d'eux comme un portrait individuel et soigné plutôt que comme une foule anonyme, presque tous regardant droit vers le spectateur, presque comme une photo de groupe avant même que la photographie ne puisse vraiment faire cela. Remarquez comme l'ombre profonde de l'arbre au-dessus rend le paysage ensoleillé plus loin encore plus vif — un contraste entre ombre et lumière du sud de la France que Bazille aimait sincèrement. Il retravailla ce tableau ambitieux pendant plus d'un an, et il fut accepté au Salon officiel de Paris en 1868 — un véritable succès, à une époque où ses amis Monet et Renoir se faisaient encore refuser.",
+      "zh-Hans": "巴齐耶把家族的十位亲人聚集在自家乡间庄园的一处树荫露台上——他没有把他们画成一群面目模糊的人群，而是把每个人都当作独立的肖像来认真描绘，几乎所有人都直视着观者，仿佛是摄影技术尚未成熟之前的一张「全家福」。留意头顶浓密的树荫，如何让远处那片阳光普照的风景显得更加鲜明——这种阴影与法国南方阳光之间的对比，正是巴齐耶真心喜爱的效果。他花了一年多时间反复打磨这幅雄心勃勃的作品，最终被1868年巴黎官方沙龙接受展出——在他的朋友莫奈和雷诺阿还屡屡遭拒的年代，这称得上是一次真正的成功。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2749_en.mp3",
+      "fr": "/audio/orsay_rf_2749_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2749_zh-Hans.mp3"
     }
   },
   {
@@ -3979,6 +4249,16 @@
       "en": "This cozy family painting was kept privately for a very long time before it finally came to live in this museum.",
       "fr": "Ce tableau familial et douillet est resté longtemps chez des particuliers avant de venir enfin vivre dans ce musée.",
       "zh-Hans": "这幅温馨的家庭画作被私人收藏了很长很长时间，最后才终于「搬进」了这座博物馆。"
+    },
+    "audioScript": {
+      "en": "Manet's wife Suzanne, in a flowing white summer dress, their son Léon reading quietly behind her — but this domestic scene is really just an excuse for something else Manet was after: studying white light on white fabric against a pale curtain. Look at how many different whites he finds in a single dress — cream, grey-white, blue-white — all placed right next to each other with no outline separating them at all. This painting disappeared from public view for over a century, passing through a private collection, then hanging in the Louvre for decades, before it finally joined the Musée d'Orsay's own collection in 1986.",
+      "fr": "L'épouse de Manet, Suzanne, dans une robe d'été blanche et fluide, leur fils Léon lisant tranquillement derrière elle — mais cette scène domestique n'est en réalité qu'un prétexte pour autre chose que Manet recherchait : étudier la lumière blanche sur un tissu blanc devant un rideau pâle. Regardez combien de blancs différents il trouve dans une seule robe — crème, blanc grisé, blanc bleuté — tous posés côte à côte sans le moindre contour pour les séparer. Ce tableau disparut de la vue du public pendant plus d'un siècle, passant par une collection privée, puis accroché au Louvre pendant des décennies, avant de rejoindre enfin la collection du musée d'Orsay en 1986.",
+      "zh-Hans": "马奈的妻子苏珊娜身着一袭飘逸的白色夏裙，他们的儿子莱昂在她身后静静读书——但这幅家庭场景，其实只是马奈追求另一种效果的借口：研究白色布料在浅色窗帘映衬下所呈现的白色光影。看他在一件裙子上找出了多少种不同的白——奶白、灰白、蓝白——彼此紧挨着排列，之间甚至没有一丝轮廓线分隔。这幅画曾在公众视野中消失超过一个世纪，先是流转于私人收藏，后来又在卢浮宫悬挂了数十年，直到1986年才最终加入奥赛博物馆的馆藏。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1944_17_en.mp3",
+      "fr": "/audio/orsay_rf_1944_17_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1944_17_zh-Hans.mp3"
     }
   },
   {
@@ -4058,6 +4338,16 @@
       "en": "This was the very first painting Morisot ever made about being a mother — and mothers and babies became one of her favorite things to paint!",
       "fr": "Ce fut le tout premier tableau que Morisot ait jamais peint sur la maternité — et les mamans et leurs bébés sont devenus l'un de ses sujets préférés à peindre !",
       "zh-Hans": "这是莫里索创作的第一幅以「当妈妈」为主题的画——从此，妈妈和宝宝成了她最喜欢画的题材之一！"
+    },
+    "audioScript": {
+      "en": "Morisot's sister Edma gazes tenderly down at her sleeping infant daughter, the cradle veiled by a sheer curtain that softens the whole scene into something quiet and private. Look at the quick, loose brushstrokes Morisot uses for that translucent netting over the cradle — almost breathing, catching the light the way real gauze would. This was the first painting of motherhood Morisot ever made, a subject that became one of her favorites throughout her career, and it was shown at the very first Impressionist exhibition in 1874 — a genuinely tender subject, exhibited alongside some of the most radical, controversial paintings of the era.",
+      "fr": "La sœur de Morisot, Edma, contemple tendrement sa fille endormie dans son berceau, voilé d'un rideau transparent qui adoucit toute la scène en quelque chose de calme et d'intime. Regardez les touches rapides et légères que Morisot emploie pour cette mousseline translucide au-dessus du berceau — presque vivante, captant la lumière comme le ferait une vraie gaze. C'est le tout premier tableau sur la maternité que Morisot ait jamais peint, un sujet qui devint l'un de ses préférés tout au long de sa carrière, et il fut exposé lors de la toute première exposition impressionniste, en 1874 — un sujet d'une tendresse véritable, présenté aux côtés de quelques-uns des tableaux les plus radicaux et controversés de l'époque.",
+      "zh-Hans": "莫里索的姐姐艾德玛温柔地望着熟睡的女儿，摇篮被一层薄纱轻轻遮掩，让整个画面显得静谧而私密。看莫里索用怎样迅捷、松弛的笔触描绘摇篮上方那层透明的纱帐——仿佛在轻轻呼吸，捕捉着真实薄纱应有的光泽。这是莫里索一生中第一幅以「母性」为主题的画作，此后这个题材也成为她终生钟爱的方向之一。这幅画曾在1874年首届印象派画展上展出——在那些最激进、最具争议的画作之间，这份真挚的温情，显得格外动人。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2849_en.mp3",
+      "fr": "/audio/orsay_rf_2849_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2849_zh-Hans.mp3"
     }
   },
   {
@@ -4138,7 +4428,17 @@
       "fr": "L'une des personnes qui a posé pour ce tableau est plus tard devenue membre de la propre famille de Renoir — elle a épousé son fils Jean, qui est devenu un cinéaste célèbre !",
       "zh-Hans": "为这幅画当模特的一个人，后来成为了雷诺阿家族的一员——她嫁给了雷诺阿的儿子让，让长大后成了一位有名的电影导演！"
     },
-    "contentFlag": "Multiple full nude bathers (2 foreground, 3 background), no mythological narrative (unlike Cabanel/Bouguereau) -- Renoir's late-period homage to the Titian/Rubens nude tradition, painted in the last two years of his life. Product decision (resolved, reviewed per-case with the user -- explicitly NOT decided by analogy to prior nudity cases): stays in Kids mode; Kids why/where/rarity rewritten to focus on Renoir's late-life arthritis and the family connection (a model married Renoir's son Jean) instead of the nudity -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "Multiple full nude bathers (2 foreground, 3 background), no mythological narrative (unlike Cabanel/Bouguereau) -- Renoir's late-period homage to the Titian/Rubens nude tradition, painted in the last two years of his life. Product decision (resolved, reviewed per-case with the user -- explicitly NOT decided by analogy to prior nudity cases): stays in Kids mode; Kids why/where/rarity rewritten to focus on Renoir's late-life arthritis and the family connection (a model married Renoir's son Jean) instead of the nudity -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "Painted in the last two years of Renoir's life, when arthritis had crippled his hands so badly that assistants had to strap a brush to his fingers — this large composition of bathers was his own chosen final artistic statement, an unabashed homage to the nude tradition of Titian and Rubens, with no reference to the modern world at all. Look at the warm, glowing color, the soft, rounded fullness he gives every figure — a deliberate return to an old-master ideal of the body, painted at the very end of a life spent studying how light falls on skin. One of the models here, Andrée Hessling, went on to marry Renoir's own son Jean — who later became a celebrated film director.",
+      "fr": "Peint dans les deux dernières années de la vie de Renoir, alors que l'arthrite avait tant paralysé ses mains qu'on devait lui attacher un pinceau aux doigts — cette vaste composition de baigneuses fut sa propre déclaration artistique finale, un hommage assumé à la tradition du nu de Titien et de Rubens, sans aucune référence au monde moderne. Regardez la couleur chaude et rayonnante, la plénitude douce et arrondie qu'il donne à chaque figure — un retour délibéré à un idéal du corps hérité des grands maîtres anciens, peint tout à la fin d'une vie passée à étudier comment la lumière tombe sur la peau. L'un des modèles ici, Andrée Hessling, épousa plus tard le propre fils de Renoir, Jean — devenu par la suite un célèbre réalisateur de cinéma.",
+      "zh-Hans": "这幅浴女群像创作于雷诺阿生命的最后两年，那时关节炎已经严重损害了他的双手，助手甚至要把画笔绑在他的手指上才能作画——这幅大型构图，是他自己选择留给世界的最后艺术宣言，是对提香与鲁本斯裸体传统毫不掩饰的致敬，画面里没有任何现代世界的痕迹。看那温暖发光的色彩，看他赋予每个人物那种柔和丰盈的形体——这是对古典大师理想化人体的一次刻意回归，创作于他用一生研究光如何落在皮肤上的最后时刻。画中一位模特安德蕾·赫斯林，后来嫁给了雷诺阿的儿子让——他日后成为一位著名的电影导演。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2795_en.mp3",
+      "fr": "/audio/orsay_rf_2795_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2795_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_729",
@@ -4217,6 +4517,16 @@
       "en": "One of the young men in this painting, Bazille, sadly died in a battle just months after this painting was shown — so this is one of the last pictures ever made of him.",
       "fr": "L'un des jeunes hommes de ce tableau, Bazille, est malheureusement mort au combat quelques mois seulement après que ce tableau ait été montré — c'est donc l'une des dernières images jamais faites de lui.",
       "zh-Hans": "这幅画里的一位年轻人巴齐耶，很不幸地在这幅画展出后仅仅几个月，就在战场上牺牲了——所以这是留存至今、为数不多描绘他的画像之一。"
+    },
+    "audioScript": {
+      "en": "Édouard Manet sits at his easel, surrounded by the young painters and writers who gathered around him at the Café Guerbois — Renoir, Monet, Bazille, and the novelist Émile Zola are all here, crowded into one room. Fantin-Latour is presenting Manet as the acknowledged leader of an entire new generation. Count how many now-famous names fit into this single painting — this one canvas captures a whole artistic movement before almost anyone outside their own circle had even heard of it. Frédéric Bazille, shown here tall and clean-shaven near the back, would be killed in battle just months after this was exhibited — making this one of the very last images anyone ever made of him.",
+      "fr": "Édouard Manet est assis devant son chevalet, entouré des jeunes peintres et écrivains qui se réunissaient autour de lui au Café Guerbois — Renoir, Monet, Bazille et le romancier Émile Zola sont tous là, réunis dans une même pièce. Fantin-Latour présente Manet comme le chef reconnu de toute une nouvelle génération. Comptez le nombre de noms aujourd'hui célèbres réunis dans ce seul tableau — cette unique toile capture tout un mouvement artistique avant que presque personne, en dehors de leur cercle, n'en ait entendu parler. Frédéric Bazille, représenté ici grand et glabre au fond, allait être tué au combat quelques mois seulement après l'exposition de ce tableau — faisant de cette image l'une des toutes dernières jamais faites de lui.",
+      "zh-Hans": "爱德华·马奈坐在画架前，身边围绕着一群常在盖尔布瓦咖啡馆聚会的年轻画家与作家——雷诺阿、莫奈、巴齐耶，还有小说家左拉，都挤在这同一个房间里。方丹-拉图尔把马奈塑造成了这整整一代新艺术家公认的领袖。数数看，这一幅画里究竟藏了多少个后来声名显赫的名字——在几乎没有人在他们的圈子之外听说过这群人之前，这一整个艺术运动，就已经被这一幅画悄悄记录了下来。画面后方那位身材高挑、面容清爽的年轻人是弗雷德里克·巴齐耶——这幅画展出仅仅几个月后，他就战死沙场，这也成了留存至今、为数极少的巴齐耶影像之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_729_en.mp3",
+      "fr": "/audio/orsay_rf_729_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_729_zh-Hans.mp3"
     }
   },
   {
@@ -4296,6 +4606,16 @@
       "en": "This was the very first painting Cézanne ever managed to sell! Another famous painter, Claude Monet, even helped convince someone to buy it.",
       "fr": "Ce fut le tout premier tableau que Cézanne ait jamais réussi à vendre ! Un autre peintre célèbre, Claude Monet, a même aidé à convaincre quelqu'un de l'acheter.",
       "zh-Hans": "这是塞尚第一次成功卖出的画作！另一位著名画家克劳德·莫奈，还帮忙说服了别人把它买下来呢！"
+    },
+    "audioScript": {
+      "en": "Despite the unsettling name — 'The House of the Hanged Man' — this is simply a quiet village house near Auvers-sur-Oise. The nickname was already attached to the house before Cézanne ever painted it, and has nothing at all to do with the picture itself. Notice how empty and still the whole composition is — no people appear anywhere — and how deliberately imperfect the perspective feels, an early sign of Cézanne pulling away from realistic depth toward the more structural way of painting he'd spend the rest of his life developing. This was the very first painting Cézanne ever sold to a collector, and Claude Monet personally wrote a letter urging someone to buy it — a rare, early vote of confidence in a painter almost nobody believed in yet.",
+      "fr": "Malgré son nom inquiétant — « La Maison du pendu » — il s'agit simplement d'une paisible maison de village près d'Auvers-sur-Oise. Le surnom était déjà attaché à cette maison avant même que Cézanne ne la peigne, et n'a strictement rien à voir avec le tableau lui-même. Remarquez à quel point toute la composition est vide et immobile — aucun personnage n'apparaît nulle part — et combien la perspective semble délibérément imparfaite, un signe précoce de Cézanne s'éloignant de la profondeur réaliste vers cette manière plus structurelle de peindre qu'il allait passer le reste de sa vie à développer. Ce fut le tout premier tableau que Cézanne vendit jamais à un collectionneur, et Claude Monet écrivit personnellement une lettre pour convaincre quelqu'un de l'acheter — un rare vote de confiance précoce envers un peintre en qui presque personne ne croyait encore.",
+      "zh-Hans": "尽管名字听起来令人不安——「上吊者之屋」——但这其实只是欧韦尔-苏尔-瓦兹附近一栋普普通通的乡村住宅。这个绰号早在塞尚动笔之前就已经附着在这栋房子上，与画作本身其实毫无关系。留意整幅构图是多么空荡、静止——画面中没有出现任何人物——透视也刻意显得不太准确，这正是塞尚早期开始远离写实透视、转向他将用一生去发展的那种更具结构感的绘画方式的信号。这是塞尚生平卖出的第一幅画，莫奈还曾亲笔写信力荐买家购买——在几乎没人相信这位画家的年代，这是一份难得的、来自同行的早期信任。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1970_en.mp3",
+      "fr": "/audio/orsay_rf_1970_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1970_zh-Hans.mp3"
     }
   },
   {
@@ -4375,6 +4695,16 @@
       "en": "Sadly, Bazille died when he was only 28, just a few years after this was painted — so this picture is a rare, close-up look at him actually at work.",
       "fr": "Malheureusement, Bazille est mort à seulement 28 ans, quelques années à peine après que ce tableau fut peint — ce tableau est donc un rare aperçu rapproché de lui réellement au travail.",
       "zh-Hans": "很遗憾，这幅画完成没几年，巴齐耶就在28岁那年去世了——所以这幅画，成了我们能近距离看到他工作时模样的珍贵画面之一。"
+    },
+    "audioScript": {
+      "en": "Renoir painted his friend and fellow painter Frédéric Bazille at work at his own easel, in the Paris studio the two shared with several other future Impressionists — and this was really a direct reply, a friendly answer to a portrait Bazille had painted of Renoir that same year. Look closely at what Bazille is actually painting within the picture — Renoir includes it as a painting-within-a-painting, a small private joke between two friends who constantly painted each other. Bazille was killed in battle just three years later, at only twenty-eight — making this a rare, direct record of him at work, painted by a friend who'd go on to help found Impressionism without him.",
+      "fr": "Renoir peint son ami et confrère peintre Frédéric Bazille au travail devant son propre chevalet, dans l'atelier parisien que les deux hommes partageaient avec plusieurs autres futurs impressionnistes — et c'était en réalité une réponse directe, amicale, à un portrait que Bazille avait peint de Renoir cette même année. Regardez de près ce que Bazille est en train de peindre dans le tableau lui-même — Renoir l'inclut comme un tableau dans le tableau, une petite plaisanterie privée entre deux amis qui se peignaient constamment l'un l'autre. Bazille fut tué au combat trois ans plus tard seulement, à seulement vingt-huit ans — faisant de cette œuvre un rare témoignage direct de lui au travail, peint par un ami qui allait contribuer à fonder l'impressionnisme sans lui.",
+      "zh-Hans": "雷诺阿画的是他的朋友兼同行画家弗雷德里克·巴齐耶，正在巴黎画室的画架前专心作画——那间画室，是他与几位日后成为印象派画家的朋友们共用的。这幅画其实是一次友好的「回信」，是对巴齐耶同年为雷诺阿所作肖像的一次回应。仔细看画中巴齐耶正在画架上画着什么——雷诺阿把它处理成了「画中画」，是两位习惯互相描绘对方的挚友之间，一个小小的私人玩笑。仅仅三年后，年仅二十八岁的巴齐耶就战死沙场——这使得这幅画，成了记录他工作状态的珍贵直接影像，作者正是那位日后在他缺席的情况下，参与开创了印象派的挚友。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_d2006_3_5_en.mp3",
+      "fr": "/audio/orsay_d2006_3_5_fr.mp3",
+      "zh-Hans": "/audio/orsay_d2006_3_5_zh-Hans.mp3"
     }
   },
   {
@@ -4454,6 +4784,16 @@
       "en": "This is one of the most famous and most copied paintings in the whole world.",
       "fr": "C'est l'un des tableaux les plus célèbres et les plus copiés du monde entier.",
       "zh-Hans": "这是全世界最著名、被临摹最多的画作之一。"
+    },
+    "audioScript": {
+      "en": "A hillside dotted with pure red poppies against green grass — and Monet doesn't mix these colors into some duller, more 'realistic' shade. He lets red and green sit right next to each other, using their natural contrast to make the whole field seem to vibrate. Look near the top of the hill: two figures walking through the poppies echo the pair in the foreground — Monet repeats the same walk twice, at two different distances, like an echo across the landscape. This is one of the most reproduced Impressionist paintings in the world, and one of the clearest, earliest examples of the dot-like brushwork that would define his whole career.",
+      "fr": "Une colline parsemée de coquelicots d'un rouge pur sur l'herbe verte — et Monet ne mélange pas ces couleurs en une teinte plus terne, plus « réaliste ». Il laisse le rouge et le vert se côtoyer directement, utilisant leur contraste naturel pour faire vibrer tout le champ. Regardez près du sommet de la colline : deux silhouettes marchant à travers les coquelicots font écho au couple du premier plan — Monet répète la même promenade deux fois, à deux distances différentes, comme un écho à travers le paysage. C'est l'un des tableaux impressionnistes les plus reproduits au monde, et l'un des exemples les plus clairs et les plus précoces de la touche en pointillé qui allait définir toute sa carrière.",
+      "zh-Hans": "一片绿草如茵的山坡上，点缀着纯红色的罂粟花——莫奈并没有把这些颜色调和成某种更暗淡、更「写实」的色调。他让红色与绿色直接并置，利用二者天然的对比，让整片田野仿佛在震颤。看山坡顶部附近：两个穿行在罂粟花丛中的身影，与前景中的一对人影相互呼应——莫奈把同一段散步重复了两次，置于不同的距离，如同风景中的一次回声。这是世界上被复制次数最多的印象派画作之一，也是莫奈标志性点彩笔触最早、最鲜明的例证之一，这种笔法日后定义了他的整个艺术生涯。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1676_en.mp3",
+      "fr": "/audio/orsay_rf_1676_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1676_zh-Hans.mp3"
     }
   },
   {
@@ -4534,6 +4874,16 @@
       "en": "Gauguin tried to pay off money he owed with this painting — but the people he gave it to didn't like it and wouldn't take it!",
       "fr": "Gauguin a essayé de rembourser une dette avec ce tableau — mais les gens à qui il l'a offert ne l'aimaient pas et n'ont pas voulu le prendre !",
       "zh-Hans": "高更想用这幅画来还债——可是收到画的人却不喜欢它，根本不肯收下！"
+    },
+    "audioScript": {
+      "en": "Gauguin painted Angèle Satre, a Pont-Aven innkeeper, framed inside her own circular medallion — like a Japanese print, or a devotional icon, far from any conventional portrait. Look at that flat, deep blue background pressing right up against her traditional Breton costume — Gauguin uses bold, unshaded blocks of color instead of realistic shading, in a style historians now call Synthetism. And here's the part that always surprises people: Gauguin gave this portrait to Angèle and her husband to settle a debt at their café. They disliked it so much, they refused to accept it.",
+      "fr": "Gauguin peint Angèle Satre, une aubergiste de Pont-Aven, encadrée dans son propre médaillon circulaire — comme une estampe japonaise, ou une icône de dévotion, bien loin d'un portrait conventionnel. Regardez ce fond bleu profond et plat, plaqué directement contre son costume traditionnel breton — Gauguin utilise des aplats de couleur audacieux et non modulés plutôt qu'une ombre réaliste, dans un style que les historiens appellent aujourd'hui le Synthétisme. Et voici la partie qui surprend toujours : Gauguin offrit ce portrait à Angèle et son mari pour éponger une dette au café. Ils le détestèrent tant qu'ils refusèrent de l'accepter.",
+      "zh-Hans": "高更笔下的安杰勒·萨特是蓬塔旺一位客栈老板娘，被框在一枚圆形勋章式的构图之中——就像日本版画，又像宗教圣像，与传统肖像画大相径庭。看那平涂的深蓝色背景，紧紧贴着她身上的传统布列塔尼服饰——高更用大胆、不加渐变的色块，取代了写实的明暗处理，这种风格后来被艺术史学家称为「综合主义」。而最让人意外的是：高更把这幅肖像送给了安杰勒夫妇，以抵消他在他们咖啡馆欠下的债务。可他们实在太不喜欢这幅画了，甚至拒绝收下它。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2617_en.mp3",
+      "fr": "/audio/orsay_rf_2617_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2617_zh-Hans.mp3"
     }
   },
   {
@@ -4613,6 +4963,16 @@
       "en": "There's a bigger painting of a whole bunch of asparagus in a museum far away in Germany — this cheeky single stalk is its funny little sequel.",
       "fr": "Il existe un plus grand tableau montrant toute une botte d'asperges, dans un musée situé loin, en Allemagne — cette tige unique et espiègle en est la drôle de petite suite.",
       "zh-Hans": "在遥远的德国，有一座博物馆收藏着画有一整捆芦笋的大画——而这根调皮的单根芦笋，就是它有趣的小小「续集」。"
+    },
+    "audioScript": {
+      "en": "This tiny painting of a single asparagus stalk is basically a joke. A collector named Charles Ephrussi had commissioned a full still life from Manet — 'A Bundle of Asparagus' — for 800 francs, but accidentally sent 1,000 instead. So Manet painted this one extra stalk, and mailed it back with a note explaining that a stalk had slipped out of the bundle. Look at how much he does with almost nothing — a few confident strokes of grey, mauve, and green describe the whole thing resting on a marble ledge. The 'real' bundle now hangs in a museum in Cologne, while this single joking stalk stayed behind in Paris.",
+      "fr": "Ce minuscule tableau d'une simple tige d'asperge est essentiellement une plaisanterie. Un collectionneur nommé Charles Ephrussi avait commandé à Manet une nature morte complète — « Une botte d'asperges » — pour 800 francs, mais lui en envoya 1 000 par erreur. Alors Manet peignit cette tige supplémentaire, et la lui renvoya avec un mot expliquant qu'une tige s'était échappée de la botte. Regardez tout ce qu'il accomplit avec presque rien — quelques touches assurées de gris, de mauve et de vert décrivent l'ensemble, posé sur un rebord de marbre. La « vraie » botte est aujourd'hui accrochée dans un musée de Cologne, tandis que cette simple tige facétieuse est restée à Paris.",
+      "zh-Hans": "这幅只画了一根芦笋的小画，本质上是一个玩笑。收藏家夏尔·埃夫吕西曾向马奈订购了一幅完整的静物画——《一束芦笋》，谈定800法郎，却误付了1000法郎。于是马奈又画了这单独一根芦笋，附上一张字条寄了回去，说是这根芦笋从那捆芦笋里滑落了出来。看他仅用寥寥几笔——灰、紫罗兰、绿——就把这根搁在大理石台面上的芦笋描绘得如此生动。如今，那幅「正牌」的芦笋静物挂在科隆的一家博物馆里，而这根开玩笑的芦笋，则留在了巴黎。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1959_18_en.mp3",
+      "fr": "/audio/orsay_rf_1959_18_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1959_18_zh-Hans.mp3"
     }
   },
   {
@@ -4693,6 +5053,16 @@
       "en": "The poet wanted his poem written right on the picture frame! The museum keeps it close by instead, on a little sign next to the painting.",
       "fr": "Le poète voulait que son poème soit écrit directement sur le cadre du tableau ! Le musée le garde plutôt tout près, sur une petite pancarte à côté du tableau.",
       "zh-Hans": "这位诗人本想把他的诗直接写在画框上！博物馆最后把它放在了画旁边的一块小牌子上。"
+    },
+    "audioScript": {
+      "en": "When a Spanish dance troupe performed in Paris in 1862, Manet painted one of its stars, Lola Melea, in her full stage costume — a subject that let him indulge his fascination with Spanish art without ever having actually visited Spain. Look at how confident and direct her pose is. Manet's friend, the poet Charles Baudelaire, was so struck by this painting that he wrote a short poem about it, comparing Lola to 'an unexpected pink and black jewel.' The museum displays the poem on a nearby label rather than on the frame itself, as Baudelaire wanted — but the pairing remains one of the best-known collaborations between a painter and a poet of the whole era.",
+      "fr": "Lorsqu'une troupe de danse espagnole se produisit à Paris en 1862, Manet peignit l'une de ses vedettes, Lola Melea, dans son costume de scène complet — un sujet qui lui permit d'indulgencer sa fascination pour l'art espagnol sans jamais avoir mis les pieds en Espagne. Regardez à quel point sa pose est assurée et directe. L'ami de Manet, le poète Charles Baudelaire, fut si frappé par ce tableau qu'il écrivit un court poème à son sujet, comparant Lola à « un bijou rose et noir inattendu ». Le musée présente le poème sur une étiquette voisine plutôt que sur le cadre lui-même, comme le souhaitait Baudelaire — mais cette association reste l'une des collaborations les plus connues entre un peintre et un poète de toute l'époque.",
+      "zh-Hans": "1862年，一支西班牙舞团来巴黎演出，马奈为其中一位明星舞者洛拉·梅莱亚画下了这幅身着全套舞台戏服的肖像——这个题材，让他得以尽情释放自己对西班牙艺术的痴迷，尽管他从未真正踏足过西班牙。看她那自信而直接的姿态。马奈的朋友、诗人夏尔·波德莱尔，深受这幅画打动，特意为它写了一首短诗，把洛拉比作「一颗出人意料的粉黑色宝石」。博物馆并未按波德莱尔的心愿把诗句刻在画框上，而是放在旁边的说明牌上——但这幅画与那首诗的组合，至今仍是那个时代画家与诗人之间最著名的一次合作。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1991_en.mp3",
+      "fr": "/audio/orsay_rf_1991_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1991_zh-Hans.mp3"
     }
   },
   {
@@ -4773,6 +5143,16 @@
       "en": "It worked! This was one of the very first paintings that helped Manet become known as a real artist.",
       "fr": "Ça a marché ! Ce fut l'un des tout premiers tableaux qui ont aidé Manet à se faire connaître comme un vrai artiste.",
       "zh-Hans": "成功啦！这正是帮助莫奈第一次被大家认可为真正艺术家的作品之一。"
+    },
+    "audioScript": {
+      "en": "Manet painted his own parents here — his father Auguste, a magistrate, seated stiffly in dark formal clothes, his mother Eugénie-Désirée standing beside him with a basket of flowers. And this restrained, conservative style was deliberate: it was calculated to please the Salon jury, a much safer bet than his more daring work. Compare this sober, dark palette to the paintings Manet made just a few years later — this careful, old-master style, indebted to Spanish painting, was a real gamble that paid off. This was one of two paintings that made up Manet's true public debut at the 1861 Salon, alongside The Spanish Singer, which won an honorable mention.",
+      "fr": "Manet peint ici ses propres parents — son père Auguste, magistrat, assis raidement dans des vêtements sombres et formels, sa mère Eugénie-Désirée debout à ses côtés avec un panier de fleurs. Et ce style sobre et conservateur était délibéré : il était calculé pour plaire au jury du Salon, un pari bien plus sûr que ses œuvres les plus audacieuses. Comparez cette palette sombre et sage aux tableaux que Manet peindra quelques années plus tard seulement — ce style prudent, hérité des maîtres anciens, redevable à la peinture espagnole, fut un véritable pari qui porta ses fruits. Ce fut l'un des deux tableaux constituant les véritables débuts publics de Manet au Salon de 1861, aux côtés du Chanteur espagnol, qui reçut une mention honorable.",
+      "zh-Hans": "马奈在这幅画中描绘的是他自己的父母——父亲奥古斯特是一位法官，身着深色正装，端坐得一丝不苟；母亲欧仁妮-德西蕾站在他身旁，手中提着一篮鲜花。这种克制、保守的画风，是马奈刻意为之：为的是讨好沙龙评委，比起他后来那些更大胆的作品，这无疑是更稳妥的选择。把这幅画沉稳暗淡的色调，与马奈几年后的作品相比——这种借鉴西班牙绘画传统、审慎的古典风格，是一场真正的赌注，而他赌赢了。这幅画正是马奈1861年沙龙真正意义上公开亮相的两幅作品之一，另一幅是《西班牙歌手》，还获得了荣誉提名。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1977_12_en.mp3",
+      "fr": "/audio/orsay_rf_1977_12_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1977_12_zh-Hans.mp3"
     }
   },
   {
@@ -4853,6 +5233,16 @@
       "en": "Van Gogh actually used to hang his own paintings on the walls of the café this woman ran — kind of like his own tiny art gallery!",
       "fr": "Van Gogh avait pour habitude d'accrocher ses propres tableaux sur les murs du café que tenait cette femme — un peu comme sa propre petite galerie d'art !",
       "zh-Hans": "梵高其实曾经把自己的画挂在这位女士经营的咖啡馆墙上——就像他自己的一间小小美术馆一样！"
+    },
+    "audioScript": {
+      "en": "Van Gogh painted Agostina Segatori, an Italian former artist's model who ran a Paris café he liked to frequent — striking pose, flat yellow background, a personal blend of Japanese print style and the color theory he was absorbing during his time in Paris. Look at that unshaded yellow field behind her, and the confident dark outline around her whole figure — borrowed directly from the Japanese woodblock prints Van Gogh collected and genuinely loved. Segatori and Van Gogh are believed to have had a brief romantic relationship not long before this was painted, in her own café — where Van Gogh also displayed his paintings on the walls.",
+      "fr": "Van Gogh peint Agostina Segatori, une ancienne modèle d'artiste italienne qui tenait un café parisien qu'il aimait fréquenter — pose affirmée, fond jaune plat, mélange personnel du style de l'estampe japonaise et de la théorie des couleurs qu'il absorbait durant son séjour à Paris. Regardez ce champ jaune sans ombre derrière elle, et le contour sombre et assuré qui cerne toute sa silhouette — emprunté directement aux estampes japonaises sur bois que Van Gogh collectionnait et aimait sincèrement. On pense que Segatori et Van Gogh eurent une brève relation amoureuse peu avant que ce portrait ne soit peint, dans son propre café — où Van Gogh exposait également ses toiles sur les murs.",
+      "zh-Hans": "梵高笔下的阿戈斯蒂娜·塞加托里，曾是意大利的模特，后来在巴黎经营一家咖啡馆，梵高常去光顾——鲜明的姿态、平涂的黄色背景，融合了他在巴黎接触到的日本版画风格与色彩理论，带有强烈的个人印记。看她身后那片没有阴影渐变的黄色背景，还有环绕整个人物、笔触坚定的深色轮廓——这些手法直接借鉴自梵高一直收藏、也真心热爱的日本浮世绘版画。据信，就在这幅肖像画成之前不久，塞加托里与梵高曾有过一段短暂的恋情，地点正是她自己经营的咖啡馆——梵高的画作，也曾一度挂在那家咖啡馆的墙上。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1965_14_en.mp3",
+      "fr": "/audio/orsay_rf_1965_14_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1965_14_zh-Hans.mp3"
     }
   },
   {
@@ -4933,7 +5323,17 @@
       "fr": "Degas a réalisé environ 200 images de personnes en train de se baigner tout au long de sa carrière — ça fait BEAUCOUP de tableaux de baignoire !",
       "zh-Hans": "德加一辈子画了大约200幅描绘人们沐浴的画——那可真是好多好多浴缸画呀！"
     },
-    "contentFlag": "A woman bathing, seen from a high, flattened angle -- part of Degas's acclaimed bather pastel series, no narrative beyond the pose/technique itself. Reviewed with the user per-case, same standing rule as Renoir's Torse/Bathers and Camille Monet (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus on the unusual bird's-eye viewpoint and the Japanese-print influence (technique/history) rather than the body -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "A woman bathing, seen from a high, flattened angle -- part of Degas's acclaimed bather pastel series, no narrative beyond the pose/technique itself. Reviewed with the user per-case, same standing rule as Renoir's Torse/Bathers and Camille Monet (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus on the unusual bird's-eye viewpoint and the Japanese-print influence (technique/history) rather than the body -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "A woman bathes herself in a shallow tub, seen from an unusually high, tilted angle that flattens the whole scene almost like a diagram. This is part of a series of bather pastels Degas made, pushing his lifelong interest in private, unposed movement to its furthest point. Notice that strange, almost bird's-eye view looking down into the tub — Degas borrows this flattened perspective directly from Japanese prints, giving an intimate scene an unexpectedly modern, abstract structure. He made around two hundred pastels on this theme over his career; this one, shown at the final Impressionist exhibition in 1886, is considered one of the most technically daring of the entire series.",
+      "fr": "Une femme se baigne dans une baignoire peu profonde, vue selon un angle inhabituellement haut et incliné qui aplatit toute la scène presque comme un diagramme. Ceci fait partie d'une série de pastels de baigneuses que Degas réalisa, poussant à son point le plus extrême son intérêt de toujours pour le mouvement privé et non posé. Remarquez cette perspective étrange, presque à vol d'oiseau, plongeant dans la baignoire — Degas emprunte ce point de vue aplati directement aux estampes japonaises, donnant à une scène intime une structure étonnamment moderne et abstraite. Il réalisa environ deux cents pastels sur ce thème au cours de sa carrière ; celui-ci, montré lors de la dernière exposition impressionniste en 1886, est considéré comme l'un des plus audacieux techniquement de toute la série.",
+      "zh-Hans": "一位女子正在浅浅的浴盆中沐浴，画面采用了一个异常高且倾斜的俯视角度，使整个场景几乎被压缩成一张平面图。这属于德加创作的一系列浴女粉彩画之一，他终生痴迷于捕捉私密、未经摆拍的自然姿态，而这幅画把这种追求推向了极致。留意这个奇特的、近乎鸟瞰式的俯视角度——德加直接借鉴了日本版画的构图方式，让这个私密的场景，呈现出一种出人意料的现代感与抽象结构。他一生大约创作了两百幅以此为主题的粉彩画；这一幅曾在1886年最后一届印象派画展上展出，被认为是整个系列中技法最大胆的作品之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_4046_en.mp3",
+      "fr": "/audio/orsay_rf_4046_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_4046_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_2010_7",
@@ -5013,7 +5413,17 @@
       "fr": "Bouguereau a peint ce tableau alors qu'il n'avait que 23 ans, tout juste au moment où il débutait comme artiste — et ça l'a rendu célèbre !",
       "zh-Hans": "布格罗画这幅画的时候只有23岁，那时他才刚刚开始自己的艺术生涯——而这幅画，让他一举成名！"
     },
-    "contentFlag": "A nude, winged allegorical figure (Death) carries the nude body of a dead young man on a white shroud. Combines two flagged categories at once: an actual depicted death (like Camille Monet/Bellelli Family/Hopital Saint-Paul) and nudity (both figures). Verified by viewing the actual image (not assumed from the title) -- calm, non-graphic, allegorical treatment, not violent or injured. Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the allegorical idea and Bouguereau's youth/ambition as a debut Salon piece, without naming or explaining the death directly -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "A nude, winged allegorical figure (Death) carries the nude body of a dead young man on a white shroud. Combines two flagged categories at once: an actual depicted death (like Camille Monet/Bellelli Family/Hopital Saint-Paul) and nudity (both figures). Verified by viewing the actual image (not assumed from the title) -- calm, non-graphic, allegorical treatment, not violent or injured. Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the allegorical idea and Bouguereau's youth/ambition as a debut Salon piece, without naming or explaining the death directly -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "A solemn winged figure sweeps a dead young man up in a great white shroud — not a scene of violence or suffering, but a symbolic reminder that death eventually claims everyone equally, no matter their rank or fortune. This was Bouguereau's ambitious Salon debut, painted when he was only twenty-three, fresh out of art school. Look at how calm and untroubled the young man's face looks, how gently the angel gathers him up — Bouguereau paints this as a dignified passage, not a tragedy. This single, ambitious work launched Bouguereau's entire career.",
+      "fr": "Une figure ailée et solennelle enveloppe un jeune homme mort dans un grand linceul blanc — non pas une scène de violence ou de souffrance, mais un rappel symbolique que la mort finit par frapper tout le monde de manière égale, quel que soit le rang ou la fortune. Ce fut les débuts ambitieux de Bouguereau au Salon, peint alors qu'il n'avait que vingt-trois ans, tout juste sorti de l'école d'art. Regardez à quel point le visage du jeune homme paraît calme et serein, avec quelle douceur l'ange le recueille — Bouguereau peint cela comme un passage digne, non comme une tragédie. Cette seule œuvre ambitieuse a lancé toute la carrière de Bouguereau.",
+      "zh-Hans": "一位庄严的有翼天使，正用一块巨大的白色裹尸布，将一位年轻男子的遗体轻轻托起——这不是一幕暴力或痛苦的场景，而是一个象征性的提醒：死亡终将平等地降临每一个人，无论他的身份或财富。这是布格罗野心勃勃的沙龙首秀，创作于他只有二十三岁、刚从艺术学校毕业之时。看那年轻人的面容是多么平静、毫无痛苦，天使又是何等温柔地将他托起——布格罗把这一幕处理成一场庄重的过渡，而非一出悲剧。正是凭借这幅雄心之作，布格罗开启了他的整个艺术生涯。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2010_7_en.mp3",
+      "fr": "/audio/orsay_rf_2010_7_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2010_7_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_3666",
@@ -5092,6 +5502,16 @@
       "en": "When people first saw this painting, some art critics admitted it was really impressively painted — even though they didn't always like this new \"Impressionist\" style.",
       "fr": "Quand les gens ont vu ce tableau pour la première fois, certains critiques d'art ont admis qu'il était vraiment impressionnant — même s'ils n'aimaient pas toujours ce nouveau style « impressionniste ».",
       "zh-Hans": "人们第一次看到这幅画的时候，一些艺术评论家都不得不承认，这幅画画得真的很棒——尽管他们并不总是喜欢这种全新的「印象派」风格。"
+    },
+    "audioScript": {
+      "en": "Renoir paints his close friend and fellow painter Claude Monet relaxed at home, reading with a pipe in hand — one of several affectionate portraits the Impressionist painters made of each other during the years they were too poor and too unknown to find many other willing sitters. Notice the leafy branch arching over Monet's head in the background — some historians read it as a gentle, joking crown that Renoir gave his friend. When this was shown at the 1876 Impressionist exhibition, critics singled it out as proof that Renoir could paint with the skill of an old master, even while working in this then-controversial new style.",
+      "fr": "Renoir peint son ami proche et confrère peintre Claude Monet, détendu chez lui, lisant une pipe à la main — l'un des nombreux portraits affectueux que les peintres impressionnistes faisaient les uns des autres durant les années où ils étaient trop pauvres et trop inconnus pour trouver beaucoup d'autres modèles volontaires. Remarquez la branche feuillue qui s'arque au-dessus de la tête de Monet en arrière-plan — certains historiens y voient une couronne douce et facétieuse que Renoir offrait à son ami. Lorsque ce tableau fut montré à l'exposition impressionniste de 1876, les critiques le citèrent en exemple comme preuve que Renoir pouvait peindre avec l'habileté d'un vieux maître, même en travaillant dans ce style encore controversé.",
+      "zh-Hans": "雷诺阿画的是他的挚友兼同行画家克劳德·莫奈，在家中悠然自得，手持烟斗读书——这是印象派画家们在那些贫困潦倒、籍籍无名、几乎找不到其他愿意坐下来当模特的人的年代里，彼此互相描绘的众多深情肖像之一。留意背景中那根拱在莫奈头顶上方的枝叶——一些历史学家认为，这是雷诺阿送给朋友的一顶温柔而带点戏谑的「桂冠」。这幅画在1876年印象派画展上展出时，评论家们特意点名称赞，认为它证明了雷诺阿即便运用当时备受争议的新画风，依然拥有堪比古典大师的高超技艺。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_3666_en.mp3",
+      "fr": "/audio/orsay_rf_3666_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_3666_zh-Hans.mp3"
     }
   },
   {
@@ -5171,6 +5591,16 @@
       "en": "This is still the most famous painting ever made of Pasteur — and it even won Edelfelt a special award when people first saw it!",
       "fr": "C'est toujours le tableau le plus célèbre jamais réalisé de Pasteur — et il a même valu à Edelfelt une récompense spéciale quand les gens l'ont vu pour la première fois !",
       "zh-Hans": "这至今仍是有史以来最著名的巴斯德画像——人们第一次看到它的时候，这幅画甚至还为埃德费尔特赢得了一项特别的奖项呢！"
+    },
+    "audioScript": {
+      "en": "Louis Pasteur, surrounded by his own laboratory equipment, holding up a jar containing tissue from an animal infected with rabies — the very research he used to develop his life-saving rabies vaccine. Notice how the cluttered glass bottles and equipment around him are painted with the same careful precision as his face — Edelfelt wanted viewers to understand this was a working scientist, caught mid-discovery, not a posed dignitary sitting for a formal portrait. This painting earned Edelfelt France's Legion of Honour when it was shown at the 1886 Salon, and it remains the single most famous image of Pasteur ever painted.",
+      "fr": "Louis Pasteur, entouré de son propre matériel de laboratoire, tenant un bocal contenant du tissu prélevé sur un animal infecté par la rage — la recherche même qu'il utilisa pour développer son vaccin salvateur contre la rage. Remarquez comme les bocaux de verre et le matériel en désordre autour de lui sont peints avec la même précision minutieuse que son visage — Edelfelt voulait que les spectateurs comprennent qu'il s'agissait d'un scientifique au travail, saisi en pleine découverte, et non d'un dignitaire posant pour un portrait formel. Ce tableau valut à Edelfelt la Légion d'honneur française lors de sa présentation au Salon de 1886, et il demeure la représentation la plus célèbre jamais peinte de Pasteur.",
+      "zh-Hans": "路易·巴斯德被自己的实验室器材环绕着，手中举着一个玻璃罐，里面装着感染狂犬病的动物组织——正是这项研究，最终催生了那支拯救无数生命的狂犬病疫苗。留意画中散落在他周围的玻璃瓶与实验器材，被描绘得与他的面容一样精细——埃德尔费特希望观者明白，这是一位正处于发现瞬间的、真正在工作的科学家，而非摆拍留影的显要人物。这幅画在1886年沙龙展出时，为埃德尔费特赢得了法国荣誉军团勋章，至今仍是巴斯德留存于世最著名的一幅肖像画。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_do_1986_16_en.mp3",
+      "fr": "/audio/orsay_do_1986_16_fr.mp3",
+      "zh-Hans": "/audio/orsay_do_1986_16_zh-Hans.mp3"
     }
   },
   {
@@ -5251,6 +5681,16 @@
       "en": "Gauguin liked hiding pictures of himself inside his other artworks — sneaky, right?",
       "fr": "Gauguin aimait cacher des images de lui-même à l'intérieur de ses autres œuvres — malin, non ?",
       "zh-Hans": "高更喜欢把自己的形象藏在他其他的作品里——是不是有点调皮呀？"
+    },
+    "audioScript": {
+      "en": "Gauguin sandwiches himself between two of his own artworks — his painting 'The Yellow Christ' and a strange ceramic self-portrait jug — creating a triple self-portrait right before leaving for Tahiti, at a genuine low point: his wife had left him, and his art remained widely misunderstood. Look at that intense, direct stare he gives himself — painted while broke and struggling for recognition, this is less a likeness than a declaration of stubborn artistic purpose. Gauguin often used images of Christ as a stand-in for his own suffering and sacrifice as an artist — so this painting is essentially three self-portraits folded into one.",
+      "fr": "Gauguin se place entre deux de ses propres œuvres — son tableau « Le Christ jaune » et une étrange cruche en céramique représentant son propre visage — créant un triple autoportrait juste avant son départ pour Tahiti, à un moment particulièrement bas de sa vie : sa femme l'avait quitté, et son art restait largement incompris. Regardez ce regard intense et direct qu'il pose sur lui-même — peint alors qu'il était démuni et luttait pour être reconnu, c'est moins une ressemblance qu'une déclaration d'obstination artistique. Gauguin utilisait souvent des images du Christ comme substitut à sa propre souffrance et à son sacrifice d'artiste — ce tableau est donc, en réalité, trois autoportraits repliés en un seul.",
+      "zh-Hans": "高更把自己夹在两件自己的作品之间——一幅是他的画作《黄色基督》，另一件是一个造型古怪的陶罐自画像——创作出这幅三重自画像，正值他即将启程前往塔希提、人生跌至低谷之时：妻子已经离他而去，他的艺术也依旧不被世人理解。看他凝视自己的目光是何等炽热而直接——这幅画作于他身无分文、苦苦渴求认可的时期，与其说是一幅肖像，不如说是一份倔强的艺术宣言。高更常常借用基督的形象，来隐喻自己作为艺术家所承受的苦难与牺牲——所以这幅画，本质上是三重自画像叠合成的一幅作品。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1994_2_en.mp3",
+      "fr": "/audio/orsay_rf_1994_2_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1994_2_zh-Hans.mp3"
     }
   },
   {
@@ -5331,7 +5771,17 @@
       "fr": "Bouguereau a peint cette immense et complexe image alors qu'il avait 76 ans — beaucoup de gens disent que c'est le meilleur tableau qu'il ait jamais fait !",
       "zh-Hans": "布格罗画这幅巨大又复杂的画时，已经76岁了——很多人都说，这是他一生中画得最好的一幅画！"
     },
-    "contentFlag": "Dozens of fully nude female nymphs (Oreads, mountain nymphs of Greek myth) in a dynamic aerial mass, watched at close range by three nude male satyrs explicitly ogling them -- verified by viewing the actual image, not assumed from description. The pre-flagged item from the original content-policy list. Unlike Cabanel's Birth of Venus or Vairumati, there is a real mythological figure-type (Oreads) but no single narrative story, and the satyrs'-gaze dynamic is compositionally central rather than incidental. Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the Oreads as a Greek-myth nymph type and the technical/compositional achievement of painting dozens of figures in motion, without describing the bodies or the satyrs' gaze -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "Dozens of fully nude female nymphs (Oreads, mountain nymphs of Greek myth) in a dynamic aerial mass, watched at close range by three nude male satyrs explicitly ogling them -- verified by viewing the actual image, not assumed from description. The pre-flagged item from the original content-policy list. Unlike Cabanel's Birth of Venus or Vairumati, there is a real mythological figure-type (Oreads) but no single narrative story, and the satyrs'-gaze dynamic is compositionally central rather than incidental. Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity focus on the Oreads as a Greek-myth nymph type and the technical/compositional achievement of painting dozens of figures in motion, without describing the bodies or the satyrs' gaze -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "Dozens of figures caught mid-leap, swirling weightlessly across the sky — these are the Oreads, mountain nymphs from Greek mythology, and Bouguereau built this entire late-career showpiece around the sheer technical challenge of painting so many bodies in motion at once. Follow the sweeping diagonal rhythm running through the whole composition — he links dozens of figures together into one continuous flow, like a single gust of wind made visible. Bouguereau was seventy-six when he painted this, near the very end of his life, and many art historians consider this enormous, technically demanding composition the crowning achievement of his entire career.",
+      "fr": "Des dizaines de figures saisies en plein bond, tourbillonnant en apesanteur à travers le ciel — voici les Oréades, nymphes des montagnes de la mythologie grecque, et Bouguereau a bâti toute cette pièce maîtresse de fin de carrière autour du pur défi technique de peindre autant de corps en mouvement à la fois. Suivez le rythme diagonal et ample qui traverse toute la composition — il relie des dizaines de figures en un seul flux continu, comme une rafale de vent rendue visible. Bouguereau avait soixante-seize ans lorsqu'il peignit ceci, tout à la fin de sa vie, et de nombreux historiens de l'art considèrent cette composition immense et techniquement exigeante comme le couronnement de toute sa carrière.",
+      "zh-Hans": "数十个身影在空中腾跃、盘旋，呈现出一种失重般的动感——这是希腊神话中的山林仙女俄瑞阿得斯，布格罗在晚年创作了这幅巨作，几乎完全是为了挑战同时描绘如此多运动中人体的技法极限。顺着贯穿整幅构图的那道恢弘对角线望去——他把数十个人物连成一股连绵不断的动势，如同一阵疾风被凝固成了可见的形态。布格罗画这幅画时已经七十六岁，正处于他生命的尾声，许多艺术史学家都认为，这幅规模宏大、技法极为苛刻的作品，正是他毕生艺术生涯的巅峰之作。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2010_4_en.mp3",
+      "fr": "/audio/orsay_rf_2010_4_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2010_4_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1994",
@@ -5411,6 +5861,16 @@
       "en": "Manet was so cross about his friend Degas's painting of Suzanne that he cut part of it up! You can still see the cut-up piece in another museum today.",
       "fr": "Manet était tellement fâché contre le tableau que son ami Degas avait fait de Suzanne qu'il en a découpé une partie ! Tu peux encore voir le morceau découpé dans un autre musée aujourd'hui.",
       "zh-Hans": "莫奈对朋友德加画的苏珊娜那幅画气坏了，居然把它剪掉了一部分！那被剪下来的一小块，如今还能在另一座博物馆里看到哦。"
+    },
+    "audioScript": {
+      "en": "Manet's wife Suzanne, a genuinely skilled pianist who had once been his own piano teacher, seated at the keyboard in quiet profile. This painting has an unusual backstory: it was reportedly Manet's reaction to a version his friend Edgar Degas had painted of the same scene — a version Manet disliked so intensely that he actually cut part of that canvas away. Look at how calm and uncluttered Manet's own composition is, stripping away distraction to focus entirely on Suzanne's concentration at the keys. The Degas version Manet mutilated survives today only as a fragment, in a different museum — making this Manet's own, more flattering answer to it.",
+      "fr": "L'épouse de Manet, Suzanne, une pianiste véritablement talentueuse qui avait autrefois été son propre professeur de piano, assise au clavier de profil, tranquille. Ce tableau a une histoire singulière : ce serait la réaction de Manet à une version que son ami Edgar Degas avait peinte de la même scène — une version que Manet détesta si intensément qu'il en découpa réellement une partie de la toile. Regardez à quel point la composition de Manet lui-même est calme et dépouillée, écartant toute distraction pour se concentrer entièrement sur la concentration de Suzanne au clavier. La version de Degas, mutilée par Manet, ne survit aujourd'hui que sous forme de fragment, dans un autre musée — faisant de celle-ci la réponse plus flatteuse de Manet lui-même.",
+      "zh-Hans": "马奈的妻子苏珊娜，一位真正技艺娴熟的钢琴家，甚至曾是马奈本人的钢琴老师，此刻正侧身端坐在琴前。这幅画背后有一段不寻常的故事：据说这是马奈对朋友德加所画同一场景版本的一种回应——马奈对那幅画极度不满，甚至亲手把那幅画布的一部分裁掉了。看马奈自己这幅构图是多么宁静、不加雕饰，摒弃了一切分散注意力的元素，把全部焦点都留给了苏珊娜专注弹琴的神情。被马奈毁掉的那幅德加版本，如今只剩下一块残片，收藏在另一家博物馆——而这幅画，正是马奈自己给出的、更为讨喜的答案。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1994_en.mp3",
+      "fr": "/audio/orsay_rf_1994_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1994_zh-Hans.mp3"
     }
   },
   {
@@ -5477,7 +5937,17 @@
       "zh-Hans": "这位模特很可能是卡门·戈丹——罗特列克最钟爱的模特之一，他在整个职业生涯中多次描绘过她。"
     },
     "kidsModeExcluded": true,
-    "contentFlag": "A woman stripped to the waist, seated on the floor, seen from behind, before/after bathing -- an intimate, candid style explicitly borrowed from Degas (whom Lautrec deeply admired). Near-identical in spirit to Degas's The Tub, which was resolved to stay in Kids mode with a technique-focused rewrite. Asked fresh for this work rather than assuming that resolution carried over. Decision this time: EXCLUDE from Kids mode (kidsModeExcluded: true), using the generic kids_mode_excluded message (same mechanism as L'Origine du monde) -- no custom kidsExclusionMessage or Kids why/where/rarity written."
+    "contentFlag": "A woman stripped to the waist, seated on the floor, seen from behind, before/after bathing -- an intimate, candid style explicitly borrowed from Degas (whom Lautrec deeply admired). Near-identical in spirit to Degas's The Tub, which was resolved to stay in Kids mode with a technique-focused rewrite. Asked fresh for this work rather than assuming that resolution carried over. Decision this time: EXCLUDE from Kids mode (kidsModeExcluded: true), using the generic kids_mode_excluded message (same mechanism as L'Origine du monde) -- no custom kidsExclusionMessage or Kids why/where/rarity written.",
+    "audioScript": {
+      "en": "A woman seated on the floor, her back to us, caught in a private, unposed moment before or after washing. Toulouse-Lautrec deeply admired Edgar Degas, and this loose, almost 'keyhole' style of observation is a conscious echo of him — an intimate glimpse rather than a formal, posed portrait. Notice the high, slightly overhead viewpoint, and the quick, unblended brushwork — Lautrec is catching a fleeting private moment, not composing a careful likeness. The model was likely Carmen Gaudin, one of Lautrec's favorite red-haired models, whom he painted again and again throughout his career, giving this particular work the simple exhibition title 'Redhead.'",
+      "fr": "Une femme assise à même le sol, nous tournant le dos, saisie dans un instant privé et non posé, avant ou après sa toilette. Toulouse-Lautrec admirait profondément Edgar Degas, et ce style d'observation libre, presque « en coulisses », en est un écho conscient — un aperçu intime plutôt qu'un portrait formel et posé. Remarquez le point de vue légèrement surplombant et la touche rapide, non fondue — Lautrec saisit un instant privé et fugace, plutôt qu'il ne compose une ressemblance soignée. Le modèle était probablement Carmen Gaudin, l'une des modèles rousses préférées de Lautrec, qu'il peignit encore et encore tout au long de sa carrière, donnant à cette œuvre le titre d'exposition tout simple de « Rousse ».",
+      "zh-Hans": "一位女子背对着我们，坐在地板上，被定格在梳洗前后的一个私密、未经摆拍的瞬间。图卢兹-劳特累克深深崇拜德加，这种松弛、近乎「窥视」般的观察方式，正是他对德加有意识的呼应——是一次私密的窥见，而非一幅正式摆拍的肖像。留意画面略带俯视的视角，以及那迅疾、未经调和的笔触——劳特累克捕捉的是一个转瞬即逝的私人瞬间，而非精心雕琢的相似度。这位模特很可能是卡门·戈丹，劳特累克最钟爱的红发模特之一，他在整个艺术生涯中反复描绘过她，这幅作品的展览标题也简单地定为「红发女子」。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2242_en.mp3",
+      "fr": "/audio/orsay_rf_2242_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2242_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_2817",
@@ -5557,6 +6027,16 @@
       "en": "Cézanne loved painting things like onions and bottles because they never got bored and never had to take a break — perfect models!",
       "fr": "Cézanne adorait peindre des choses comme des oignons et des bouteilles parce qu'ils ne s'ennuyaient jamais et n'avaient jamais besoin de faire une pause — des modèles parfaits !",
       "zh-Hans": "塞尚特别喜欢画洋葱、瓶子这样的东西，因为它们永远不会觉得无聊，也永远不需要休息——简直是完美的模特！"
+    },
+    "audioScript": {
+      "en": "Onions, a knife, a bottle, a glass, arranged on a table only half-covered by a white cloth. Cézanne used still life the way he used every subject late in life — as a problem of pure form, weight, and color, not a display of everyday objects. Look closely and you'll notice the tabletop doesn't quite line up — Cézanne paints the same scene from several slightly different angles at once, decades before Cubist painters would push that same idea much further. He painted still lifes obsessively throughout his career because, unlike people, onions and bottles never got tired of sitting still — giving him unlimited time to study exactly how light falls on form.",
+      "fr": "Des oignons, un couteau, une bouteille, un verre, disposés sur une table à moitié recouverte d'un linge blanc. Cézanne utilisait la nature morte comme il utilisait tout sujet à la fin de sa vie — comme un problème de pure forme, de poids et de couleur, non comme la mise en scène d'objets du quotidien. Regardez de près, et vous remarquerez que le plateau de la table ne s'aligne pas tout à fait — Cézanne peint la même scène sous plusieurs angles légèrement différents à la fois, des décennies avant que les peintres cubistes ne poussent cette même idée bien plus loin. Il peignit des natures mortes de façon obsessionnelle tout au long de sa carrière car, contrairement aux gens, les oignons et les bouteilles ne se lassaient jamais de rester immobiles — lui offrant un temps illimité pour étudier précisément comment la lumière tombe sur la forme.",
+      "zh-Hans": "洋葱、一把刀、一只瓶子、一只玻璃杯，摆放在一张只铺了一半白布的桌子上。塞尚晚年对待所有题材的方式都是如此——他把静物当作一个关于纯粹形式、重量与色彩的问题去研究，而不是单纯展示日常物品。仔细看，你会发现桌面其实并没有完全对齐——塞尚同时从几个略微不同的角度描绘同一个场景，比立体派画家把这个理念推向极致，早了几十年。他一生痴迷于描绘静物，因为不像人物模特，洋葱和瓶子永远不会厌倦静止不动——这给了他无限的时间，去细细研究光线究竟如何落在物体的形态之上。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2817_en.mp3",
+      "fr": "/audio/orsay_rf_2817_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2817_zh-Hans.mp3"
     }
   },
   {
@@ -5637,7 +6117,17 @@
       "fr": "Quand les gens ont vu ce tableau pour la première fois, un critique grincheux a dit des choses méchantes sur les couleurs que Renoir avait utilisées. Aujourd'hui, on pense que Renoir avait en fait raison depuis le début sur la façon dont la lumière fonctionne !",
       "zh-Hans": "人们第一次看到这幅画的时候，一位脾气很坏的评论家，说了很多关于雷诺阿用色的坏话。可是今天，大家都认为雷诺阿其实一直都是对的——他真的说对了光线是怎么运作的！"
     },
-    "contentFlag": "Partial nude torso (bust-length, breasts exposed), a technical light-and-color study with no narrative beyond the scientific demonstration itself (skin reflecting filtered sunlight). Product decision (resolved, reviewed per-case with the user -- explicitly NOT decided by analogy to prior nudity cases): stays in Kids mode; Kids why/where/rarity rewritten to focus on the light-science experiment and the infamous hostile contemporary review instead of the body -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "Partial nude torso (bust-length, breasts exposed), a technical light-and-color study with no narrative beyond the scientific demonstration itself (skin reflecting filtered sunlight). Product decision (resolved, reviewed per-case with the user -- explicitly NOT decided by analogy to prior nudity cases): stays in Kids mode; Kids why/where/rarity rewritten to focus on the light-science experiment and the infamous hostile contemporary review instead of the body -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "This close, sunlit study of a young model named Anna was Renoir's attempt to prove a scientific idea about light — that skin in dappled shade reflects the colors of its surroundings — and it became one of the most viciously mocked paintings at the second Impressionist exhibition in 1876. Look at the patches of green, violet, and blue Renoir lets fall across her skin wherever sunlight filters through leaves overhead — deliberately unnatural-looking color choices that were, at the time, genuinely radical evidence for how outdoor light actually behaves. A hostile critic compared the mottled skin tones to a decomposing corpse. Today, the same painting is considered one of the boldest and most technically important works of early Impressionism.",
+      "fr": "Cette étude rapprochée et ensoleillée d'un jeune modèle nommée Anna fut la tentative de Renoir de démontrer une idée scientifique sur la lumière — que la peau, dans une ombre tachetée, reflète les couleurs de son environnement — et elle devint l'un des tableaux les plus violemment moqués de la deuxième exposition impressionniste, en 1876. Regardez les touches de vert, de violet et de bleu que Renoir laisse tomber sur sa peau partout où la lumière filtre à travers les feuilles au-dessus — des choix de couleurs délibérément peu naturels qui constituaient, à l'époque, une preuve véritablement radicale du comportement réel de la lumière extérieure. Un critique hostile compara ces tons de peau tachetés à un cadavre en décomposition. Aujourd'hui, ce même tableau est considéré comme l'une des œuvres les plus audacieuses et les plus importantes techniquement du premier impressionnisme.",
+      "zh-Hans": "这幅近景阳光习作，画的是一位名叫安娜的年轻模特，雷诺阿试图借此证明一个关于光线的科学观点——斑驳树荫下的皮肤，会映照出周围环境的色彩——而这幅画在1876年第二届印象派画展上，遭到了最猛烈的嘲讽。看阳光透过树叶洒落时，雷诺阿如何让绿色、紫色、蓝色斑驳地落在她的皮肤上——这些刻意显得「不自然」的色彩选择，在当时其实是关于户外光线真实运作方式的一次大胆而真实的证明。一位心怀敌意的评论家，甚至把这些斑驳的肤色比作腐烂的尸体。而今天，这幅画却被视为早期印象派最大胆、技法上最重要的作品之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2740_en.mp3",
+      "fr": "/audio/orsay_rf_2740_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2740_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_2011",
@@ -5716,6 +6206,16 @@
       "en": "This is one of the very first winter paintings Monet ever made, long before he became famous.",
       "fr": "C'est l'un des tout premiers tableaux d'hiver que Monet ait jamais peints, bien avant de devenir célèbre.",
       "zh-Hans": "这是莫奈最早创作的冬季画作之一，那时他还远远没有成名。"
+    },
+    "audioScript": {
+      "en": "A grey winter sky, a muddy, snow-covered road — and Monet paints this dull, ordinary weather with just as much seriousness as he'd later paint brilliant sunlight, proving early on that even the dreariest weather could be a real subject for a real painting. Look at the thick, dragged brushstrokes making up the road itself — Monet builds up the mud and slush almost like sculpture, not just flat, thin paint. This is one of Monet's earliest surviving winter landscapes, painted years before Impressionism even had a name — a young painter already deciding that nothing in nature was too plain to paint seriously.",
+      "fr": "Un ciel gris d'hiver, une route boueuse couverte de neige — et Monet peint ce temps terne et ordinaire avec tout autant de sérieux qu'il peindra plus tard la lumière éclatante du soleil, prouvant dès le début que même le temps le plus morne pouvait être un vrai sujet pour un vrai tableau. Regardez les touches épaisses et traînées qui composent la route elle-même — Monet construit la boue et la neige fondue presque comme une sculpture, et non comme une simple couche de peinture fine et plate. C'est l'un des plus anciens paysages hivernaux de Monet qui nous soient parvenus, peint des années avant même que l'impressionnisme n'ait un nom — un jeune peintre décidant déjà que rien, dans la nature, n'était trop banal pour être peint sérieusement.",
+      "zh-Hans": "灰蒙蒙的冬日天空，一条泥泞的积雪道路——莫奈以后来描绘灿烂阳光时同样的认真态度，去描绘这片阴沉平淡的天气，早早证明了即便是最沉闷的天气，也足以成为一幅真正画作的题材。看构成这条道路的厚重、拖曳的笔触——莫奈把泥泞与融雪几乎堆砌成了雕塑般的质感，而非仅仅是薄薄一层平涂的颜料。这是莫奈现存最早的冬季风景画之一，创作于「印象派」这个名称尚未诞生的年代——一位年轻的画家，早已下定决心：大自然中没有任何景象，是平凡到不值得认真描绘的。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2011_en.mp3",
+      "fr": "/audio/orsay_rf_2011_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2011_zh-Hans.mp3"
     }
   },
   {
@@ -5793,6 +6293,16 @@
       "en": "Every single person in this giant painting is a real person who was really there — Dubufe had to find out exactly what each person looked like before he could even start painting!",
       "fr": "Chaque personne de ce tableau géant est une vraie personne qui était vraiment présente — Dubufe a dû découvrir exactement à quoi ressemblait chaque personne avant même de pouvoir commencer à peindre !",
       "zh-Hans": "这幅巨大画作里的每一个人，都是真实存在、真的到场的人——杜比夫必须先弄清楚每个人到底长什么样，才能开始动笔画画！"
+    },
+    "audioScript": {
+      "en": "Dozens of diplomats, gathered to formally end the Crimean War, arranged around a table in strict order of official rank and protocol — every single figure in this enormous painting is an accurate portrait of a real statesman who actually attended. Dubufe had to carefully research and match each man's face and rank before he could even begin arranging the composition. Notice the small bust of Emperor Napoleon the Third on the mantelpiece — even though he wasn't present at the actual signing, Dubufe includes him as a symbolic presence overseeing this historic agreement, made in his own city.",
+      "fr": "Des dizaines de diplomates, réunis pour mettre officiellement fin à la guerre de Crimée, disposés autour d'une table dans un ordre strict de rang officiel et de protocole — chaque personnage de cet immense tableau est un portrait exact d'un véritable homme d'État qui participa réellement à l'événement. Dubufe dut soigneusement rechercher et faire correspondre le visage et le rang de chaque homme avant même de pouvoir commencer à organiser la composition. Remarquez le petit buste de l'empereur Napoléon III sur la cheminée — même s'il n'était pas présent lors de la signature elle-même, Dubufe l'inclut comme une présence symbolique veillant sur cet accord historique, conclu dans sa propre ville.",
+      "zh-Hans": "数十位外交官齐聚一堂，正式终结克里米亚战争，他们按照严格的官方等级与礼仪次序，围坐在一张桌子旁——这幅巨作中的每一位人物，都是当时真实在场的政治家的精确肖像。杜比费必须先仔细考证每个人的相貌与身份地位，才能着手安排整幅构图。留意壁炉台上那尊拿破仑三世皇帝的小雕像——尽管他本人并未出席这场签约仪式，杜比费依然把他作为一种象征性的存在纳入画面，仿佛在这座属于他的城市里，注视着这份历史性协议的达成。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_inv_10168_en.mp3",
+      "fr": "/audio/orsay_inv_10168_fr.mp3",
+      "zh-Hans": "/audio/orsay_inv_10168_zh-Hans.mp3"
     }
   },
   {
@@ -5873,7 +6383,17 @@
       "fr": "Gauguin a peint ce même personnage légendaire à nouveau dans l'un de ses plus grands et plus importants tableaux jamais réalisés — peint cette même année-là !",
       "zh-Hans": "高更在他有史以来最大、最重要的一幅画里，又一次画了这个传说中的人物——而且就在同一年画的呢！"
     },
-    "contentFlag": "A bare-chested Tahitian woman depicting Vairaumati, a named figure in Tahitian mythology (the 'original mother' of the Maohi people, whose union with the god 'Oro founded the Arioi society). Unlike Renoir's Torse/Bathers or Degas's Tub, this has a genuine mythological narrative available, similar in kind to Cabanel's Birth of Venus but drawn from Tahitian rather than Greco-Roman mythology, in the context of Gauguin's colonial-era depiction of Tahiti (see also Tahitian Women on the Beach's contentFlag for the general Tahiti-period colonial-context policy). Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity retell the Vairaumati/'Oro origin story and the bird/lizard symbolism instead of describing the body -- see whyKids/whereKids/rarityKids."
+    "contentFlag": "A bare-chested Tahitian woman depicting Vairaumati, a named figure in Tahitian mythology (the 'original mother' of the Maohi people, whose union with the god 'Oro founded the Arioi society). Unlike Renoir's Torse/Bathers or Degas's Tub, this has a genuine mythological narrative available, similar in kind to Cabanel's Birth of Venus but drawn from Tahitian rather than Greco-Roman mythology, in the context of Gauguin's colonial-era depiction of Tahiti (see also Tahitian Women on the Beach's contentFlag for the general Tahiti-period colonial-context policy). Reviewed with the user per-case, not decided by analogy. Decision: stays in Kids mode; Kids why/where/rarity retell the Vairaumati/'Oro origin story and the bird/lizard symbolism instead of describing the body -- see whyKids/whereKids/rarityKids.",
+    "audioScript": {
+      "en": "Vairumati, a legendary figure from Tahitian mythology sometimes called the islands' first mother — her union with the god 'Oro was said to have founded an entire sacred Tahitian society, making her a figure as central to Tahitian myth as Eve is to the Bible. Look at the white bird and the dark lizard beside her — Gauguin fills the scene with symbolic creatures rather than realistic detail, using flat red and gold to suggest something sacred and timeless rather than any specific place. Vairumati reappears in Gauguin's largest and most ambitious painting, made the same year, connecting this work directly to what he considered his own life's masterpiece.",
+      "fr": "Vairumati, figure légendaire de la mythologie tahitienne parfois appelée la première mère des îles — son union avec le dieu 'Oro aurait fondé toute une société sacrée tahitienne, faisant d'elle une figure aussi centrale dans le mythe tahitien qu'Ève l'est dans la Bible. Regardez l'oiseau blanc et le lézard sombre à ses côtés — Gauguin remplit la scène de créatures symboliques plutôt que de détails réalistes, utilisant du rouge et de l'or plats pour suggérer quelque chose de sacré et d'intemporel plutôt qu'un lieu précis. Vairumati réapparaît dans le tableau le plus vaste et le plus ambitieux de Gauguin, réalisé la même année, reliant directement cette œuvre à ce qu'il considérait comme le chef-d'œuvre de sa vie.",
+      "zh-Hans": "瓦伊鲁马蒂，塔希提神话中一位传奇人物，有时被称为岛屿的「第一位母亲」——传说她与神灵奥罗结合，创立了整个塔希提的圣祭社会，她在塔希提神话中的地位，正如夏娃之于圣经。看她身旁那只白鸟与那条深色蜥蜴——高更用这些象征性的生物填满画面，而非写实的细节，用平涂的红与金，暗示某种神圣而超越时空的存在，而非某个具体地点。瓦伊鲁马蒂这个形象，还出现在高更同年创作、也是他规模最大、最雄心勃勃的一幅画作之中——这幅画由此，也与他自己心目中一生的代表作，紧密相连。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1959_5_en.mp3",
+      "fr": "/audio/orsay_rf_1959_5_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1959_5_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1664",
@@ -5952,6 +6472,16 @@
       "en": "Fantin-Latour actually painted himself into this picture too — look for the artist holding paintbrushes standing right next to Delacroix's portrait.",
       "fr": "Fantin-Latour s'est en fait peint lui-même dans ce tableau aussi — cherche l'artiste tenant des pinceaux, debout juste à côté du portrait de Delacroix.",
       "zh-Hans": "方丹-拉图尔其实也把自己画进了这幅画里——找找看那个手持画笔、站在德拉克罗瓦画像旁边的艺术家吧。"
+    },
+    "audioScript": {
+      "en": "Ten painters and writers stand solemnly around a portrait of the recently deceased painter Eugène Delacroix — including Manet, the poet Baudelaire, and the painter Whistler — honoring an artist they all deeply admired rather than mourning him with obvious sadness. Notice how still and formal everyone looks, almost like a photograph — critics at the time actually complained this group portrait felt too stiff and dark. Look for Fantin-Latour himself, palette in hand, standing right beside the very portrait of Delacroix he's paying tribute to — he includes himself among the mourners.",
+      "fr": "Dix peintres et écrivains se tiennent solennellement autour d'un portrait du peintre récemment décédé Eugène Delacroix — parmi eux Manet, le poète Baudelaire et le peintre Whistler — rendant hommage à un artiste qu'ils admiraient tous profondément plutôt que de le pleurer avec une tristesse ostensible. Remarquez à quel point tout le monde semble immobile et formel, presque comme sur une photographie — les critiques de l'époque se plaignirent d'ailleurs que ce portrait de groupe paraissait trop raide et sombre. Cherchez Fantin-Latour lui-même, palette à la main, se tenant juste à côté du portrait de Delacroix auquel il rend hommage — il s'inclut lui-même parmi les personnes en deuil.",
+      "zh-Hans": "十位画家与作家庄严地围站在刚刚去世的画家欧仁·德拉克洛瓦的肖像旁——其中包括马奈、诗人波德莱尔和画家惠斯勒——他们并非以明显的悲伤来哀悼，而是以此致敬这位他们都深深敬仰的艺术家。留意画中每个人是多么静止、拘谨，几乎像一张照片——当时的评论家甚至抱怨这幅群像显得太过僵硬、色调太暗。仔细找找方丹-拉图尔本人——他手持调色板，就站在他所致敬的那幅德拉克洛瓦肖像旁边——他把自己也画进了这群悼念者之中。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1664_en.mp3",
+      "fr": "/audio/orsay_rf_1664_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1664_zh-Hans.mp3"
     }
   },
   {
@@ -6033,7 +6563,17 @@
       "fr": "Gauguin a peint ce tableau après que les gens de Paris n'étaient pas aussi enthousiastes qu'il l'espérait à propos de ses tableaux de Tahiti — c'est donc un peu un autoportrait d'un « jour difficile ».",
       "zh-Hans": "高更画这幅画的时候，巴黎人对他塔希提画作的反应并没有他期望的那么热烈——所以这算是一幅「不太顺心的日子」的自画像。"
     },
-    "isSelfPortrait": true
+    "isSelfPortrait": true,
+    "audioScript": {
+      "en": "Gauguin painted himself freshly back in Paris after his first stay in Tahiti, his face half-shadowed by a wide-brimmed hat, with his own painting 'Spirit of the Dead Watching' visible behind him — a defiant re-introduction of himself to a Paris art world that had mostly ignored his Tahitian work. Look at the bold, unrealistic colors and heavy outlines around his face — the same flattened style he used to paint Tahiti, now turned on himself back in a French studio. He painted this shortly after a genuinely disappointing exhibition of his Tahitian paintings — a moody, defiant self-portrait made at a real low point in his career.",
+      "fr": "Gauguin se peint fraîchement de retour à Paris après son premier séjour à Tahiti, le visage à moitié dans l'ombre d'un large chapeau, avec son propre tableau « L'Esprit des morts veille » visible derrière lui — une réintroduction de lui-même, défiante, dans un monde de l'art parisien qui avait largement ignoré son œuvre tahitienne. Regardez les couleurs audacieuses et peu réalistes, et les épais contours autour de son visage — ce même style aplati qu'il utilisait pour peindre Tahiti, désormais retourné sur lui-même dans un atelier français. Il peignit ceci peu après une exposition véritablement décevante de ses tableaux tahitiens — un autoportrait sombre et provocateur, peint à un moment réellement bas de sa carrière.",
+      "zh-Hans": "高更把自己画成刚从塔希提第一次归来、重返巴黎的样子，宽檐帽在他脸上投下一半阴影，身后还能看到他自己的画作《幽灵在窥视》——这是他向巴黎艺术界发出的一次挑衅式重新登场，因为此前巴黎几乎无视了他在塔希提的创作。看他脸部大胆而不写实的色彩，以及那圈厚重的轮廓线——正是他描绘塔希提时那种平涂的风格，如今转而用在了自己身上，画于一间法国画室之中。这幅画作于他那批塔希提画作在巴黎展出、却反响惨淡之后不久——这是一幅情绪低沉、带着倔强意味的自画像，创作于他艺术生涯真正的低谷时期。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1966_7_en.mp3",
+      "fr": "/audio/orsay_rf_1966_7_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1966_7_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_2173",
@@ -6112,6 +6652,16 @@
       "en": "This was the last big \"friends group\" picture Fantin-Latour ever painted — after this, he mostly painted pretty flowers instead!",
       "fr": "C'est le dernier grand tableau « groupe d'amis » que Fantin-Latour ait jamais peint — après celui-ci, il a surtout peint de jolies fleurs à la place !",
       "zh-Hans": "这是方丹-拉图尔画的最后一幅大型「朋友聚会」画——在这之后，他大多改画漂亮的花朵啦！"
+    },
+    "audioScript": {
+      "en": "A circle of musicians and music-lovers gathered around the composer Emmanuel Chabrier at the piano — a calmer, later companion to Fantin-Latour's earlier group portraits of painters, this time honoring the Paris music scene he loved just as much as painting. Notice how he arranges everyone's attention toward the piano, using posture and glances to lead your eye exactly where his own focus was. This was the last in a whole series of large group portraits Fantin-Latour made celebrating different circles of friends — after this one, he mostly turned to painting flowers instead.",
+      "fr": "Un cercle de musiciens et d'amateurs de musique réunis autour du compositeur Emmanuel Chabrier au piano — un pendant plus calme et plus tardif aux précédents portraits de groupe de peintres de Fantin-Latour, rendant hommage cette fois à la scène musicale parisienne qu'il aimait tout autant que la peinture. Remarquez comme il oriente l'attention de chacun vers le piano, utilisant postures et regards pour guider votre œil exactement là où se portait le sien. Ce fut le dernier d'une longue série de grands portraits de groupe que Fantin-Latour réalisa pour célébrer différents cercles d'amis — après celui-ci, il se tourna surtout vers la peinture de fleurs.",
+      "zh-Hans": "一群音乐家与音乐爱好者，围坐在正弹奏钢琴的作曲家埃马纽埃尔·夏布里埃身边——这是方丹-拉图尔早年那些画家群像的一幅更为平静、更晚创作的姊妹之作，这一次，他致敬的是自己同样热爱的巴黎音乐圈。留意他如何通过每个人的姿态与目光，把注意力都引向钢琴，精确地引导你的视线，落在他自己当时关注的焦点上。这是方丹-拉图尔一系列描绘不同友人圈子的大型群像画中的最后一幅——此后，他便大多转向了花卉题材的创作。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2173_en.mp3",
+      "fr": "/audio/orsay_rf_2173_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2173_zh-Hans.mp3"
     }
   },
   {
@@ -6189,6 +6739,16 @@
       "en": "Manet almost never painted nighttime scenes or the sea — so this glowing, moonlit harbor is a rare treat among his paintings.",
       "fr": "Manet ne peignait presque jamais de scènes nocturnes ou la mer — ce port brillant, éclairé par la lune, est donc une rareté parmi ses tableaux.",
       "zh-Hans": "莫奈几乎从不画夜景或大海——所以这幅在月光下闪闪发亮的港口画，在他的作品中算是一份难得的惊喜。"
+    },
+    "audioScript": {
+      "en": "Fishermen's wives wait on a moonlit quay for a boat's return — painted from a hotel window in the port town of Boulogne-sur-Mer, and astronomers have actually worked out the exact night this depicts: August the third to fourth, 1868. Follow the pool of moonlight breaking across the dark water — Manet borrows the mysterious, glowing light of seventeenth-century Dutch night scenes, but paints an ordinary, unposed moment instead of a biblical one. True nocturnes and marine subjects are genuinely rare in Manet's body of work, which makes this quiet, moonlit harbor one of the more unusual paintings he ever made.",
+      "fr": "Des femmes de pêcheurs attendent sur un quai éclairé par la lune le retour d'un bateau — peint depuis une fenêtre d'hôtel dans le port de Boulogne-sur-Mer, et des astronomes ont même déterminé la nuit exacte que ce tableau représente : du 3 au 4 août 1868. Suivez la nappe de lumière lunaire qui se brise sur l'eau sombre — Manet emprunte la lumière mystérieuse et rayonnante des scènes nocturnes hollandaises du dix-septième siècle, mais peint un instant ordinaire et non posé plutôt qu'une scène biblique. Les véritables nocturnes et sujets marins sont réellement rares dans l'œuvre de Manet, ce qui fait de ce port paisible et clair de lune l'un des tableaux les plus singuliers qu'il ait jamais réalisés.",
+      "zh-Hans": "渔妇们伫立在月光下的码头上，等待渔船归来——这幅画是马奈从滨海布洛涅一家旅馆的窗口所绘，天文学家甚至推算出了画中所描绘的确切夜晚：1868年8月3日至4日之夜。顺着那片洒落在幽暗水面上的月光望去——马奈借鉴了十七世纪荷兰夜景画中那种神秘、幽微的光线，但他画的不是圣经场景，而是一个平凡、未经摆拍的真实瞬间。真正的夜景与海景题材，在马奈的作品中其实相当罕见，这也让这幅静谧的月夜港湾，成为他创作生涯中格外与众不同的一幅画。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1993_en.mp3",
+      "fr": "/audio/orsay_rf_1993_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1993_zh-Hans.mp3"
     }
   },
   {
@@ -6268,6 +6828,16 @@
       "en": "Monet usually painted outside, so this quiet, indoor family scene is a rare peek into his everyday home life.",
       "fr": "Monet peignait habituellement en extérieur, donc cette scène familiale calme et intérieure est un rare aperçu de sa vie quotidienne à la maison.",
       "zh-Hans": "莫奈通常都在户外作画，所以这幅安静的室内家庭场景，是难得一见的、走进他日常家庭生活的一瞥。"
+    },
+    "audioScript": {
+      "en": "A quiet family meal in Monet's own garden — and look closely at the table: a small straw hat and toys, left behind by his own son, who's clearly just run off. Monet includes them as carefully as the fruit and dishes, small traces of a child who was here a moment ago. This is a rare, intimate interior scene from an artist far better known for painting outdoors — Monet treating his own private, domestic life at Argenteuil as worthy of the same careful eye he gave his landscapes, capturing his home at its most peaceful.",
+      "fr": "Un repas familial tranquille dans le propre jardin de Monet — et regardez de près la table : un petit chapeau de paille et des jouets, laissés par son propre fils, qui vient manifestement de filer. Monet les inclut avec autant de soin que les fruits et la vaisselle, petites traces d'un enfant qui était là il y a un instant. C'est une scène d'intérieur rare et intime, venant d'un artiste bien mieux connu pour ses peintures en plein air — Monet traitant sa propre vie domestique et privée à Argenteuil avec le même regard soigneux qu'il portait à ses paysages, saisissant son foyer dans ce qu'il a de plus paisible.",
+      "zh-Hans": "这是莫奈自家花园中一顿宁静的家庭午餐——仔细看那张桌子：一顶小草帽和几件玩具，是他的儿子留下的，显然是刚跑开不久。莫奈把这些小物件描绘得与水果、餐具一样细致——这是一个孩子刚刚还在此处的小小痕迹。对于一位以户外风景画闻名的画家来说，这是一幅难得的私密室内场景——莫奈用描绘风景时同样细腻的目光，捕捉了自己在阿让特伊家中最为平和的一刻。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2774_en.mp3",
+      "fr": "/audio/orsay_rf_2774_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2774_zh-Hans.mp3"
     }
   },
   {
@@ -6347,6 +6917,16 @@
       "en": "A little while later, Renoir painted an even bigger painting of Madame Charpentier with her kids, and that one became one of his biggest successes ever!",
       "fr": "Un peu plus tard, Renoir a peint un tableau encore plus grand de Madame Charpentier avec ses enfants, et celui-là est devenu l'un de ses plus grands succès !",
       "zh-Hans": "过了一阵子，雷诺阿又画了一幅更大的、夏庞蒂埃夫人和孩子们的画，那幅画后来成为了他一生中最成功的作品之一！"
+    },
+    "audioScript": {
+      "en": "Marguerite Charpentier, wife of the publisher Georges Charpentier, whose glamorous Paris salon connected Renoir to the wealthy patrons who would transform his entire career. Look at the soft, flattering brushwork Renoir uses for her face and dress — a more polished, society-portrait style than his rougher outdoor scenes, tailored precisely to please an elegant, influential sitter. A few years after this, Renoir painted a much larger group portrait of Madame Charpentier with her children, which became his first major Salon success — making this smaller, solo portrait the opening chapter of one of the most important relationships of his professional life.",
+      "fr": "Marguerite Charpentier, épouse de l'éditeur Georges Charpentier, dont le salon parisien fastueux mit Renoir en contact avec les riches mécènes qui allaient transformer toute sa carrière. Regardez la touche douce et flatteuse que Renoir emploie pour son visage et sa robe — un style de portrait mondain plus soigné que ses scènes extérieures plus rudes, calculé précisément pour plaire à une modèle élégante et influente. Quelques années après ce tableau, Renoir peignit un portrait de groupe bien plus grand de Madame Charpentier et de ses enfants, qui devint son premier grand succès au Salon — faisant de ce portrait plus modeste et solitaire le premier chapitre de l'une des relations les plus importantes de sa vie professionnelle.",
+      "zh-Hans": "玛格丽特·夏庞蒂埃，出版商乔治·夏庞蒂埃的妻子，她在巴黎举办的沙龙极为风光，正是通过这个圈子，雷诺阿结识了那些日后彻底改变他艺术生涯的富有赞助人。看雷诺阿如何用柔和讨喜的笔触描绘她的面容与裙装——比起他那些更粗犷的户外场景，这幅肖像画风更为精致考究，正是为了取悦一位优雅而有影响力的模特。几年后，雷诺阿又为夏庞蒂埃夫人与她的孩子们绘制了一幅规模大得多的群像，那幅画成为他在沙龙上取得的第一次重大成功——而这幅较小的独立肖像，正是这段对他职业生涯至关重要的关系的开篇之作。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2244_en.mp3",
+      "fr": "/audio/orsay_rf_2244_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2244_zh-Hans.mp3"
     }
   },
   {
@@ -6427,7 +7007,17 @@
       "fr": "Gervex était connu pour peindre des scènes réalistes et quotidiennes avec une grande attention portée à la lumière et aux détails, comme dans ce tableau.",
       "zh-Hans": "热尔韦克斯以描绘写实的日常场景著称，非常注重光线和细节，就像这幅画一样。"
     },
-    "contentFlag": "The pre-flagged item from the original content-policy list. Verified by viewing the image: a fully nude young woman asleep on a bed, a man dressing by the window; discarded clothes/corset on the floor make the prostitution/mistress context visually explicit. The underlying story (Musset's poem) has the man about to poison himself after this last night, though the suicide itself is not depicted. No technique-only or narrative angle exists that isn't itself mature -- reviewed with the user, not decided by analogy. Decision: stays in Kids mode with a MINIMAL redirect -- Kids why/where/rarity describe only generic morning light/brushwork, with no reference to the story, the two figures' relationship, or any hint that invites a follow-up question about what's really happening."
+    "contentFlag": "The pre-flagged item from the original content-policy list. Verified by viewing the image: a fully nude young woman asleep on a bed, a man dressing by the window; discarded clothes/corset on the floor make the prostitution/mistress context visually explicit. The underlying story (Musset's poem) has the man about to poison himself after this last night, though the suicide itself is not depicted. No technique-only or narrative angle exists that isn't itself mature -- reviewed with the user, not decided by analogy. Decision: stays in Kids mode with a MINIMAL redirect -- Kids why/where/rarity describe only generic morning light/brushwork, with no reference to the story, the two figures' relationship, or any hint that invites a follow-up question about what's really happening.",
+    "audioScript": {
+      "en": "The morning after: a wealthy young man and his mistress, the night now over. Gervex based this on a poem by Alfred de Musset about a man who has spent his last money on pleasure before taking his own life. Look at the still life of clothing tossed on the chair — a top hat, a walking stick, a hastily undone corset. Reportedly, those very details were suggested by Gervex's friend Edgar Degas, so that viewers would understand exactly who this woman was and what had happened here. Gervex tells the whole story through these abandoned objects, not through any dramatic gesture from the two figures themselves. The painting was banned from the 1878 Salon before it even opened — these details made its subject unmistakable, and the jury simply wouldn't allow it.",
+      "fr": "Le lendemain matin : un jeune homme fortuné et sa maîtresse, la nuit désormais terminée. Gervex s'inspira d'un poème d'Alfred de Musset racontant un homme qui a dépensé son dernier argent dans le plaisir avant de mettre fin à ses jours. Regardez cette nature morte de vêtements jetés sur la chaise — un haut-de-forme, une canne, un corset défait à la hâte. Ces détails auraient été suggérés par l'ami de Gervex, Edgar Degas, afin que les spectateurs comprennent exactement qui était cette femme et ce qui s'était passé. Gervex raconte toute l'histoire à travers ces objets abandonnés, non par un quelconque geste dramatique des deux personnages eux-mêmes. Le tableau fut interdit au Salon de 1878 avant même son ouverture — ces détails rendaient le sujet trop évident, et le jury refusa tout simplement de l'accepter.",
+      "zh-Hans": "清晨时分：一位富家青年与他的情人，一夜已然过去。热尔韦克斯的创作灵感来自阿尔弗雷德·德·缪塞的一首诗，诗中描绘了一个把最后一点钱都花在享乐上、随后了结自己性命的男人。看椅子上随意扔着的那些衣物——一顶礼帽、一根手杖，还有一件匆忙解开的紧身胸衣，构成了一幅静物。据说，正是热尔韦克斯的朋友德加建议加入了这些细节，好让观者一眼看懂这位女子的身份，以及这里究竟发生了什么。热尔韦克斯没有借助任何戏剧性的动作，而是通过这些被随意丢弃的物件，讲述了整个故事。这幅画在1878年沙龙开幕之前，就已被禁止展出——正是这些细节，让画作的主题变得不容误解，评委会索性直接拒绝了它。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_bx_d_18_en.mp3",
+      "fr": "/audio/orsay_bx_d_18_fr.mp3",
+      "zh-Hans": "/audio/orsay_bx_d_18_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1967_5",
@@ -6506,6 +7096,16 @@
       "en": "When Monet got hurt, Bazille was one of the only friends nearby, so he dropped everything to help take care of him — what a good friend!",
       "fr": "Quand Monet s'est blessé, Bazille était l'un des seuls amis à proximité, alors il a tout laissé tomber pour l'aider et prendre soin de lui — quel bon ami !",
       "zh-Hans": "莫奈受伤的时候，巴齐耶正好是附近为数不多的朋友之一，于是他放下一切去照顾莫奈——真是个好朋友！"
+    },
+    "audioScript": {
+      "en": "Bazille had studied medicine before turning to painting, and here that training becomes real: he built a makeshift pulley system out of rope and a weighted bucket to keep his friend Claude Monet's injured leg raised in bed — then painted the whole improvised setup. Look at that homemade contraption suspended over the bed — Bazille used his half-finished medical training to rig up real, practical care for his friend, not just imagine a sickroom scene from nowhere. Monet had injured his leg on a painting trip in the forest near Chailly; Bazille, one of the only people he knew nearby, dropped everything to look after him — a small act of real friendship, now preserved in paint.",
+      "fr": "Bazille avait étudié la médecine avant de se tourner vers la peinture, et ici cette formation devient bien réelle : il construisit un système de poulie improvisé avec une corde et un seau lesté pour maintenir surélevée la jambe blessée de son ami Claude Monet, alité — puis peignit toute cette installation de fortune. Regardez ce dispositif artisanal suspendu au-dessus du lit — Bazille utilisa sa formation médicale inachevée pour bricoler des soins réels et pratiques pour son ami, et non pour simplement imaginer une scène de malade sortie de nulle part. Monet s'était blessé la jambe lors d'un voyage de peinture dans la forêt près de Chailly ; Bazille, l'un des seuls proches qu'il connaissait dans les environs, laissa tout tomber pour s'occuper de lui — un petit acte d'amitié véritable, désormais conservé dans la peinture.",
+      "zh-Hans": "巴齐耶转向绘画之前曾学过医，而在这幅画中，那段学医经历真正派上了用场：他用绳索和一只装了重物的水桶，搭出了一套简易滑轮装置，好让卧床的朋友莫奈能把受伤的腿抬高——随后，他把整套临时装置也画了下来。看那悬在床铺上方的自制装置——巴齐耶用他那段未完成的医学训练，为朋友搭建了真正实用的护理设施，而不只是凭空想象一幅病房场景。莫奈是在沙伊附近的森林里外出写生时伤了腿；而巴齐耶，作为他在附近为数不多相识的人之一，放下一切前来照料他——一段微小而真实的友情，就这样被永远定格在了画布之上。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1967_5_en.mp3",
+      "fr": "/audio/orsay_rf_1967_5_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1967_5_zh-Hans.mp3"
     }
   },
   {
@@ -6585,6 +7185,16 @@
       "en": "This was one of the very first paintings Degas ever showed to the public — the start of his lifelong love of painting ballet dancers!",
       "fr": "Ce fut l'un des tout premiers tableaux que Degas ait jamais montrés au public — le début de son amour de toute une vie pour la peinture des danseuses de ballet !",
       "zh-Hans": "这是德加最早向公众展示的画作之一——从此开启了他一生对描绘芭蕾舞者的热爱！"
+    },
+    "audioScript": {
+      "en": "Degas paints a ballet rehearsal from an unusual high, off-center angle, as if we're peeking in from a box seat — the dancers on stage seem to float weightlessly, while others, waiting their turn, slouch and stretch off to the side. Look at how pale and ghostly the whole scene feels — Degas paints almost entirely in shades of grey, letting the harsh stage footlights bleach out color the way they really would in an actual theater. This was one of the very first paintings Degas ever exhibited publicly, shown at the first Impressionist exhibition in 1874 — the beginning of a lifelong fascination with the Paris Opera that would define much of his career.",
+      "fr": "Degas peint une répétition de ballet selon un angle inhabituel, en hauteur et décentré, comme si nous jetions un œil depuis une loge — les danseuses sur scène semblent flotter en apesanteur, tandis que d'autres, attendant leur tour, s'affaissent et s'étirent sur le côté. Remarquez à quel point toute la scène paraît pâle et fantomatique — Degas peint presque entièrement en nuances de gris, laissant les feux de la rampe blanchir la couleur comme ils le feraient réellement dans un vrai théâtre. Ce fut l'un des tout premiers tableaux que Degas exposa publiquement, montré lors de la première exposition impressionniste en 1874 — le début d'une fascination de toute une vie pour l'Opéra de Paris qui allait définir une grande partie de sa carrière.",
+      "zh-Hans": "德加以一个不寻常的高处、偏离中心的角度描绘了一场芭蕾排练，仿佛我们正从包厢座位偷偷窥视——舞台上的舞者仿佛失重般轻盈飘浮，而一旁等待上场的其他人，则或懒散地倚靠，或伸展着身体。留意整个画面是多么苍白、如幽灵般虚幻——德加几乎全用灰色调作画，让刺眼的舞台脚灯，像在真实剧院中那样，把色彩漂洗得所剩无几。这是德加最早公开展出的作品之一，展出于1874年首届印象派画展——从此开启了他对巴黎歌剧院长达一生的痴迷，这份痴迷也定义了他此后大半的艺术生涯。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1978_en.mp3",
+      "fr": "/audio/orsay_rf_1978_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1978_zh-Hans.mp3"
     }
   },
   {
@@ -6665,6 +7275,16 @@
       "en": "Van Gogh didn't have to travel far to paint this — he just walked from his home in Paris to this little riverside town nearby!",
       "fr": "Van Gogh n'a pas eu besoin de voyager loin pour peindre ce tableau — il a simplement marché depuis sa maison à Paris jusqu'à cette petite ville voisine au bord de l'eau !",
       "zh-Hans": "梵高画这幅画根本不用跑远——他只是从巴黎的家走到了附近这个小小的河边小镇！"
+    },
+    "audioScript": {
+      "en": "Van Gogh painted the outside of a riverside restaurant in Asnières, just outside Paris — and chose to show its sun-bleached, empty facade rather than the lively crowds actually eating and drinking inside. Look at the thick, confident white brushstrokes he uses for those sunlit walls — pushed brighter and whiter here than in most of his other paintings from this period. Unlike most Impressionists, who traveled out to the countryside for summer, Van Gogh simply walked to nearby riverside towns like Asnières — this quiet restaurant was practically in his own neighborhood.",
+      "fr": "Van Gogh peint l'extérieur d'un restaurant au bord de la rivière à Asnières, juste à côté de Paris — et choisit de montrer sa façade délavée par le soleil, vide, plutôt que les foules animées qui mangeaient et buvaient réellement à l'intérieur. Regardez les touches blanches épaisses et assurées qu'il emploie pour ces murs ensoleillés — poussées ici plus claires et plus blanches que dans la plupart de ses autres tableaux de cette période. Contrairement à la plupart des impressionnistes, qui partaient à la campagne l'été, Van Gogh se contentait de marcher jusqu'aux villes voisines au bord de l'eau, comme Asnières — ce restaurant tranquille se trouvait pratiquement dans son propre quartier.",
+      "zh-Hans": "梵高画的是巴黎近郊阿涅尔一家河畔餐厅的外观——他选择呈现的是那被阳光晒得发白、空无一人的外墙，而不是餐厅内正热闹用餐饮酒的人群。看他用怎样厚重、坚定的白色笔触描绘那被阳光照亮的墙面——比他这一时期大多数其他作品，色调更亮、更接近纯白。与大多数夏天前往乡间写生的印象派画家不同，梵高只是步行前往附近的河畔小镇，比如阿涅尔——这家安静的餐厅，几乎就在他自己的街区附近。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2325_en.mp3",
+      "fr": "/audio/orsay_rf_2325_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2325_zh-Hans.mp3"
     }
   },
   {
@@ -6744,6 +7364,16 @@
       "en": "Van Gogh gave this painting a nickname — he called it \"The Poet\"!",
       "fr": "Van Gogh a donné un surnom à ce tableau — il l'appelait « Le Poète » !",
       "zh-Hans": "梵高还给这幅画取了个小名——他叫它「诗人」！"
+    },
+    "audioScript": {
+      "en": "Van Gogh painted his friend, the Belgian painter Eugène Boch, against a deep blue background scattered with tiny points of light — he wanted it to feel like 'the infinite,' turning an ordinary portrait into something closer to a man standing under the night sky. Look at how the blue behind Boch's head seems to shimmer, almost like starlight — Van Gogh called this his attempt to paint 'a star in the depths of an azure sky.' He nicknamed this painting 'The Poet,' even though he considered it just a quick study — he liked it enough, though, to give it its own frame anyway.",
+      "fr": "Van Gogh peint son ami, le peintre belge Eugène Boch, sur un fond bleu profond parsemé de minuscules points de lumière — il voulait que cela évoque « l'infini », transformant un portrait ordinaire en quelque chose de plus proche d'un homme debout sous le ciel nocturne. Regardez comme le bleu derrière la tête de Boch semble scintiller, presque comme la lumière des étoiles — Van Gogh appelait cela sa tentative de peindre « une étoile dans les profondeurs d'un ciel d'azur ». Il surnomma ce tableau « Le Poète », même s'il le considérait comme une simple étude rapide — il l'aimait tout de même assez pour lui offrir son propre cadre.",
+      "zh-Hans": "梵高画的是他的朋友、比利时画家欧仁·博赫，背景是深邃的蓝色，点缀着无数细小的光点——他希望画面能传达出「无限」之感，把一幅普通的肖像，变成了一个仿佛伫立在夜空之下的人。看博赫头部背后的那片蓝色，是如何微微闪烁的，几乎像星光一样——梵高称这是他试图描绘「湛蓝夜空深处的一颗星」的尝试。他给这幅画取了个绰号叫「诗人」，尽管他自己认为这只是一幅速写习作——但他显然还是很喜欢它，特意为它配了一个专属画框。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1944_9_en.mp3",
+      "fr": "/audio/orsay_rf_1944_9_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1944_9_zh-Hans.mp3"
     }
   },
   {
@@ -6823,6 +7453,16 @@
       "en": "The person who first bought this painting was a doctor who later became friends with the painter Vincent van Gogh!",
       "fr": "La première personne à avoir acheté ce tableau était un médecin qui est devenu plus tard ami avec le peintre Vincent van Gogh !",
       "zh-Hans": "第一个买下这幅画的人是一位医生，他后来还成为了画家文森特·梵高的朋友呢！"
+    },
+    "audioScript": {
+      "en": "A quiet, sunlit view of the Canal Saint-Martin in Paris — not a grand monument, just an ordinary, calm corner of the city. Sisley uses short, flickering brushstrokes to capture clouds and light reflected on the water's surface. Notice how much of the canvas he gives to the sky and its reflection in the canal — nearly half the painting is water and cloud, an early sign of his fascination with capturing changing light. This particular painting was once owned by Dr. Paul Gachet, the same physician and art collector famously connected to Van Gogh's final months — he bought it directly from Sisley for a modest sum.",
+      "fr": "Une vue paisible et ensoleillée du canal Saint-Martin à Paris — non pas un grand monument, juste un coin calme et ordinaire de la ville. Sisley emploie des touches courtes et scintillantes pour capter les nuages et la lumière reflétés à la surface de l'eau. Remarquez la part que Sisley accorde au ciel et à son reflet dans le canal — près de la moitié du tableau n'est que ciel et eau, signe précoce de sa fascination pour la lumière changeante. Ce tableau en particulier appartint autrefois au docteur Paul Gachet, ce même médecin et collectionneur d'art fameusement lié aux derniers mois de la vie de Van Gogh — il l'acheta directement à Sisley pour une somme modeste.",
+      "zh-Hans": "这是巴黎圣马丁运河一处宁静、洒满阳光的景色——不是什么宏伟地标，只是这座城市中一个平凡而安宁的角落。西斯莱用短促、闪烁的笔触，捕捉云朵与光线在水面上的倒影。留意画面中天空与运河倒影所占的比例——几乎一半的画布，都是天空与流云，这正是他早期对光线变化痴迷的一个印证。这幅画曾属于保罗·加谢医生所有——正是那位与梵高生命最后时光紧密相关的医生兼艺术收藏家，他以一笔不算高的价钱，直接从西斯莱手中买下了这幅画。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1951_40_en.mp3",
+      "fr": "/audio/orsay_rf_1951_40_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1951_40_zh-Hans.mp3"
     }
   },
   {
@@ -6903,7 +7543,17 @@
       "fr": "Ce n'est qu'un des nombreux tableaux que Van Gogh a peints de ce même jardin — il adorait vraiment cet endroit !",
       "zh-Hans": "这只是梵高为这同一座花园所画的好几幅画中的一幅——他真的非常喜欢这个地方！"
     },
-    "contentFlag": "Depicts the grounds (a pine tree and garden) of the hospital in Saint-Remy where Van Gogh was voluntarily a patient -- a heavy-but-not-explicit theme (mental illness/hospitalization), reviewed with the user per-case following the same standing rule established for Camille Monet on her deathbed (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus entirely on the pine tree and Van Gogh's habit of repainting this same garden, without naming or explaining the hospital's nature."
+    "contentFlag": "Depicts the grounds (a pine tree and garden) of the hospital in Saint-Remy where Van Gogh was voluntarily a patient -- a heavy-but-not-explicit theme (mental illness/hospitalization), reviewed with the user per-case following the same standing rule established for Camille Monet on her deathbed (not decided by analogy). Decision: stays in Kids mode; Kids why/where/rarity focus entirely on the pine tree and Van Gogh's habit of repainting this same garden, without naming or explaining the hospital's nature.",
+    "audioScript": {
+      "en": "A tall pine tree dominates this quiet garden view — Van Gogh painted the grounds of the hospital in Saint-Rémy-de-Provence where he was staying at the time, choosing to focus on the tree and the surrounding garden rather than the building itself. Look at how the pine's dark, twisting branches take over the whole composition — Van Gogh turned to trees and plants in this same garden again and again during this period, since it was nearly the only outdoor scenery available to him. This is one of a whole series of views he painted of these grounds, the same pine returning in canvas after canvas.",
+      "fr": "Un grand pin domine cette vue tranquille de jardin — Van Gogh peint les abords de l'hôpital de Saint-Rémy-de-Provence, où il séjournait à l'époque, choisissant de se concentrer sur l'arbre et le jardin environnant plutôt que sur le bâtiment lui-même. Regardez comme les branches sombres et tordues du pin envahissent toute la composition — Van Gogh revenait sans cesse, durant cette période, aux arbres et aux plantes de ce même jardin, puisque c'était presque le seul paysage extérieur qui lui était accessible. C'est l'une de toute une série de vues qu'il peignit de ces lieux, ce même pin réapparaissant toile après toile.",
+      "zh-Hans": "一棵高大的松树主宰着这幅宁静的花园景致——梵高画的是他当时寄居的圣雷米疗养院的庭院，他选择聚焦于这棵树与周围的花园，而非建筑本身。看这棵松树那阴郁、扭曲的枝干，如何占据了整幅构图——在这段时期，梵高一次又一次地回到这同一座花园，描绘那些树木与植物，因为这几乎是他当时唯一能接触到的户外景致。这只是他为这片庭院所画的一系列画作之一，同一棵松树，在一幅又一幅画布上反复出现。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1973_25_en.mp3",
+      "fr": "/audio/orsay_rf_1973_25_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1973_25_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1955_20",
@@ -6982,6 +7632,16 @@
       "en": "This painting is extra sunny and sparkly for Cézanne — he usually painted in a more solid, blocky way, so this one feels like a rare treat.",
       "fr": "Ce tableau est particulièrement ensoleillé et scintillant pour Cézanne — il peignait habituellement d'une manière plus solide et plus massive, alors celui-ci fait l'effet d'une rareté.",
       "zh-Hans": "对塞尚来说，这幅画特别阳光、特别闪亮——他平时画画的风格更加厚重、方块感更强，所以这一幅感觉就像是难得一见的惊喜。"
+    },
+    "audioScript": {
+      "en": "A small wooden footbridge crosses a quiet, wooded river near Melun — and this is unusually light and airy for Cézanne, painted with long, crosshatched brushstrokes that let sunlight scatter and flicker across the water. Watch how the reflections break the bridge and trees into overlapping patches of color — Cézanne is as interested in the water's surface here as in anything actually standing above it. By this point in his career, Cézanne was already pulling away from Impressionism's fleeting effects toward his own, more solid, geometric style — which makes this luminous, almost dreamy moment a rare and fleeting glimpse backward.",
+      "fr": "Un petit pont de bois enjambe une rivière boisée et tranquille près de Melun — et c'est inhabituellement léger et aérien pour Cézanne, peint avec de longues touches croisées qui laissent la lumière du soleil se disperser et scintiller sur l'eau. Observez comme les reflets brisent le pont et les arbres en taches de couleur superposées — Cézanne s'intéresse ici autant à la surface de l'eau qu'à tout ce qui se dresse réellement au-dessus. À ce stade de sa carrière, Cézanne s'éloignait déjà des effets fugaces de l'impressionnisme vers son propre style, plus solide et géométrique — ce qui fait de ce moment lumineux, presque rêveur, un rare et fugace regard en arrière.",
+      "zh-Hans": "一座小小的木桥横跨在默伦附近一条宁静的林间河流上——这幅画对塞尚而言异常轻盈灵动，他用长长的交叉笔触，让阳光在水面上零散跳跃、闪烁不定。看那些倒影如何把桥梁和树木打散成层层叠叠、互相交织的色块——塞尚对水面本身的兴趣，丝毫不亚于对水面之上任何真实景物的兴趣。在这个创作阶段，塞尚其实已经逐渐远离印象派那种转瞬即逝的光影效果，转向了他自己更为坚实、几何化的风格——这也让这幅明亮、近乎梦幻的画作，成为他艺术生涯中一次难得而短暂的回望。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1955_20_en.mp3",
+      "fr": "/audio/orsay_rf_1955_20_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1955_20_zh-Hans.mp3"
     }
   },
   {
@@ -7061,6 +7721,16 @@
       "en": "Désiré actually asked Degas to paint this for him — and he's the one who first showed Degas backstage at the Opera, which Degas ended up loving so much he painted it again and again!",
       "fr": "Désiré a en fait demandé à Degas de peindre ce tableau pour lui — et c'est lui qui a fait découvrir à Degas les coulisses de l'Opéra, que Degas a fini par tellement aimer qu'il les a peintes encore et encore !",
       "zh-Hans": "其实是德西雷请德加为他画了这幅画——也正是他，第一个带德加去看了歌剧院的后台，德加从此爱上了那里，一遍又一遍地把它画了下来！"
+    },
+    "audioScript": {
+      "en": "Degas painted his friend, the bassoonist Désiré Dihau, and deliberately moved him to the front of the orchestra pit — not where he actually sat during a real performance — so his portrait would stand out among the other musicians. Look up at the very top of the canvas: dancers' legs and tutus, glimpsed and cropped off by the edge of the stage. Degas gives us the orchestra's own view, where the performance itself is almost an afterthought. Dihau actually commissioned this painting himself — and it was Dihau who first introduced Degas to the whole backstage world of the Paris Opera that became one of his lifelong subjects.",
+      "fr": "Degas peint son ami, le bassoniste Désiré Dihau, et le place délibérément à l'avant de la fosse d'orchestre — pas là où il était réellement assis lors d'une véritable représentation — afin que son portrait se détache parmi les autres musiciens. Regardez tout en haut de la toile : des jambes de danseuses et des tutus, aperçus et coupés par le bord de la scène. Degas nous offre le point de vue de l'orchestre lui-même, où la représentation en elle-même devient presque secondaire. Dihau commanda en réalité ce tableau lui-même — et c'est lui qui introduisit Degas dans tout l'univers des coulisses de l'Opéra de Paris, qui allait devenir l'un de ses sujets de prédilection pour le reste de sa vie.",
+      "zh-Hans": "德加画的是他的朋友、巴松管演奏家德西雷·迪奥，并刻意把他安排在乐池的最前方——而不是他在真实演出中实际所坐的位置——好让他的形象在众多乐手中脱颖而出。抬头看画布最顶端：几条舞者的腿和芭蕾裙摆，被舞台边缘裁切出一角，若隐若现。德加给了我们乐池视角，演出本身反倒成了几乎无关紧要的背景。这幅画其实是迪奥本人亲自委托创作的——也正是他，最早把德加引入了巴黎歌剧院的后台世界，而这个世界，后来成为了德加毕生钟情的题材之一。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2417_en.mp3",
+      "fr": "/audio/orsay_rf_2417_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2417_zh-Hans.mp3"
     }
   },
   {
@@ -7140,6 +7810,16 @@
       "en": "This is one of the only pictures Degas ever made of his very own dad!",
       "fr": "C'est l'un des seuls tableaux que Degas ait jamais faits de son propre papa !",
       "zh-Hans": "这是德加为自己亲爱的爸爸所画的、极少数的几幅画像之一！"
+    },
+    "audioScript": {
+      "en": "Degas painted his own father listening intently to the Spanish tenor Lorenzo Pagans, singing and playing guitar — a quiet, affectionate glimpse into the private musical evenings the Degas family loved hosting at home. Notice how the light falls on Pagans in the center, while Degas's father sits further back in shadow, completely absorbed in listening — Degas gives the performer center stage even inside his own family's living room. This intimate double portrait is one of the few surviving images Degas ever made of his own father, who died just a couple of years after it was painted.",
+      "fr": "Degas peint son propre père, écoutant attentivement le ténor espagnol Lorenzo Pagans chanter en jouant de la guitare — un aperçu tranquille et affectueux des soirées musicales privées que la famille Degas aimait organiser chez elle. Remarquez comme la lumière tombe sur Pagans au centre, tandis que le père de Degas reste en retrait dans l'ombre, totalement absorbé par l'écoute — Degas donne au musicien le premier rôle, même à l'intérieur du salon familial. Ce double portrait intime est l'une des rares images survivantes que Degas ait jamais faites de son propre père, mort à peine deux ans après que ce tableau fut peint.",
+      "zh-Hans": "德加画的是自己的父亲，正全神贯注地聆听西班牙男高音洛伦佐·帕甘斯边弹吉他边歌唱——这是德加一家钟爱在家中举办私人音乐晚会的一个温馨而深情的瞬间剪影。留意光线是如何落在画面中央的帕甘斯身上的，而德加的父亲则退居后方阴影之中，完全沉浸在聆听之中——即便是在自家客厅里，德加也把舞台中心留给了这位表演者。这幅亲密的双人肖像，是德加为父亲留下的为数不多的画像之一，画成后仅仅两年，他的父亲便与世长辞。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_3736_en.mp3",
+      "fr": "/audio/orsay_rf_3736_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_3736_zh-Hans.mp3"
     }
   },
   {
@@ -7220,6 +7900,16 @@
       "en": "Cézanne painted this near the end of his life, and lots of people think it's one of his very best paintings ever.",
       "fr": "Cézanne a peint ce tableau vers la fin de sa vie, et beaucoup de gens pensent que c'est l'un de ses tout meilleurs tableaux.",
       "zh-Hans": "塞尚是在生命快要走到尽头时画下了这幅画，很多人都认为，这是他一生中画得最好的作品之一。"
+    },
+    "audioScript": {
+      "en": "Apples and oranges, piled across a rumpled white cloth and patterned fabric — but look closer and nothing quite matches up. The table and the fruit bowl tilt at angles that don't align with reality; the fruit bowl looks like it's tipping forward, and the tablecloth's folds seem to push and pull against each other. Cézanne builds the whole composition out of color and shape rather than realistic space, all in service of the painting's own internal balance rather than physical accuracy. Painted near the end of his life, this is considered one of Cézanne's most ambitious and successful still lifes — a summary of everything he'd spent decades trying to work out about form and color.",
+      "fr": "Des pommes et des oranges, empilées sur un tissu blanc froissé et une étoffe à motifs — mais regardez de plus près, et rien ne s'accorde vraiment. La table et la coupe de fruits penchent selon des angles qui ne correspondent pas à la réalité ; la coupe semble basculer vers l'avant, et les plis de la nappe semblent se pousser et se tirer les uns les autres. Cézanne construit toute la composition à partir de la couleur et de la forme plutôt que de l'espace réaliste, tout cela au service de l'équilibre propre du tableau plutôt que d'une exactitude physique. Peinte vers la fin de sa vie, cette œuvre est considérée comme l'une des natures mortes les plus ambitieuses et les plus abouties de Cézanne — une somme de tout ce qu'il avait passé des décennies à chercher à résoudre sur la forme et la couleur.",
+      "zh-Hans": "苹果与橙子，堆叠在一块皱褶的白布和一块印花织物上——但仔细看，一切都对不上。桌子和果盘的倾斜角度，与现实完全不符；果盘看起来仿佛正向前倾倒，桌布的褶皱似乎也在彼此推挤、拉扯。塞尚用色彩与形状构建起整幅画面，而非依靠写实的空间关系，一切都是为了画面本身的内在平衡，而非物理上的精确。这幅画创作于塞尚晚年，被认为是他最具野心、也最成功的静物画之一——是他用数十年时间反复钻研形式与色彩问题的一次集大成总结。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1972_en.mp3",
+      "fr": "/audio/orsay_rf_1972_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1972_zh-Hans.mp3"
     }
   },
   {
@@ -7299,6 +7989,16 @@
       "en": "This is one of the only pictures ever made of that famous poet when he was still just a teenager.",
       "fr": "C'est l'une des seules images jamais faites de ce célèbre poète alors qu'il n'était encore qu'un adolescent.",
       "zh-Hans": "这是那位后来成名的诗人还是个少年时，留存至今为数不多的画像之一。"
+    },
+    "audioScript": {
+      "en": "Eight young poets gathered around a table — and on the far left, a seventeen-year-old Arthur Rimbaud sits beside his mentor Paul Verlaine, just as Rimbaud, soon to become one of France's most influential poets, was arriving on the Paris literary scene. Look for the bouquet of flowers on the right side of the table — Fantin-Latour placed it there to fill the space of a poet who refused to sit for the portrait after an argument with Rimbaud. This painting is one of the only images that shows the teenage Rimbaud from life — a face that would become legendary in French poetry, captured almost by chance in a group portrait.",
+      "fr": "Huit jeunes poètes réunis autour d'une table — et tout à gauche, un Arthur Rimbaud de dix-sept ans est assis à côté de son mentor Paul Verlaine, tout juste au moment où Rimbaud, bientôt l'un des poètes les plus influents de France, faisait son entrée sur la scène littéraire parisienne. Cherchez le bouquet de fleurs à droite de la table — Fantin-Latour l'a placé là pour combler la place d'un poète qui refusa de poser pour le portrait après une dispute avec Rimbaud. Ce tableau est l'une des seules images montrant le jeune Rimbaud d'après nature — un visage qui deviendrait légendaire dans la poésie française, capturé presque par hasard dans un portrait de groupe.",
+      "zh-Hans": "八位年轻诗人围坐在一张桌子旁——最左边，年仅十七岁的阿尔蒂尔·兰波，正坐在他的导师保罗·魏尔伦身边，那正是兰波即将成为法国最具影响力的诗人之一、初入巴黎文坛的时刻。找找桌子右侧那束鲜花——方丹-拉图尔把它放在那里，是为了填补一位诗人的空位，那位诗人因为与兰波发生争执，拒绝为这幅肖像画摆拍。这幅画是极少数以写生方式记录下少年兰波真实容貌的画作之一——这张日后将在法国诗坛封神的面孔，几乎是偶然地，被定格在了这幅群像之中。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1959_en.mp3",
+      "fr": "/audio/orsay_rf_1959_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1959_zh-Hans.mp3"
     }
   },
   {
@@ -7379,7 +8079,17 @@
       "fr": "Ce tableau géant a fait sensation quand les gens l'ont vu pour la première fois — il était en fait censé donner une leçon sur le fait de ne pas exagérer avec les fêtes et l'amusement !",
       "zh-Hans": "这幅巨大的画作在人们第一次看到它的时候引起了巨大轰动——它其实是想传达一个道理：玩乐要适度，别太过火！"
     },
-    "contentFlag": "The pre-flagged item from the original content-policy list. Verified by viewing the image: a huge multi-figure scene of reclining, partly nude revelers exhausted after a night of excess, watched by dignified nude classical statues in the background. No sex acts depicted, but heavy nudity throughout a large crowd. Couture's own stated intent was moral allegory (criticizing his own era's decadence via ancient Rome, quoting Juvenal). Reviewed with the user; decision: stays in Kids mode; Kids why/where/rarity focus on the moral-lesson idea and the contrast between the stern statues and the tired revelers, not the bodies."
+    "contentFlag": "The pre-flagged item from the original content-policy list. Verified by viewing the image: a huge multi-figure scene of reclining, partly nude revelers exhausted after a night of excess, watched by dignified nude classical statues in the background. No sex acts depicted, but heavy nudity throughout a large crowd. Couture's own stated intent was moral allegory (criticizing his own era's decadence via ancient Rome, quoting Juvenal). Reviewed with the user; decision: stays in Kids mode; Kids why/where/rarity focus on the moral-lesson idea and the contrast between the stern statues and the tired revelers, not the bodies.",
+    "audioScript": {
+      "en": "A huge, crowded party of ancient Romans, lounging in exhaustion after a night of excess — and deliberately contrasted with the dignified stone statues of their own ancestors, looking sternly down on them from above. Notice how those solemn old statues in the background seem to judge the scene below — Couture uses this contrast to turn a huge crowd scene into a genuine moral lesson, not just a party painting. This enormous canvas was the sensation of the 1847 Salon, and Couture meant it as a coded criticism of his own society in Paris, using ancient Rome as a not-so-subtle stand-in for the decadence he saw around him.",
+      "fr": "Une immense fête romaine antique, bondée de convives alanguis d'épuisement après une nuit d'excès — délibérément mise en contraste avec les dignes statues de pierre de leurs propres ancêtres, les toisant sévèrement de haut. Remarquez comme ces vieilles statues solennelles, en arrière-plan, semblent juger la scène en dessous — Couture utilise ce contraste pour transformer une immense scène de foule en une véritable leçon morale, non en simple tableau de fête. Cette toile immense fit sensation au Salon de 1847, et Couture la voulait comme une critique voilée de sa propre société parisienne, utilisant la Rome antique comme un substitut à peine déguisé de la décadence qu'il observait autour de lui.",
+      "zh-Hans": "一场规模宏大、人声鼎沸的古罗马宴会，众人在纵情狂欢一夜之后，疲惫不堪地瘫倒在各处——画面刻意与他们祖先那些庄严的石像形成对比，那些雕像正从高处严厉地俯视着他们。留意背景中那些肃穆的古老雕像，仿佛在审视着下方的场景——库退尔正是借助这种对比，把一幅庞大的群像场景，变成了一堂真正的道德训诫课，而不仅仅是一幅宴饮图。这幅巨作是1847年沙龙的轰动之作，库退尔实际上是借古罗马之名，暗中批判他所处的巴黎社会——用古代的堕落，毫不隐晦地影射着他身边的现实。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_inv_3451_en.mp3",
+      "fr": "/audio/orsay_inv_3451_fr.mp3",
+      "zh-Hans": "/audio/orsay_inv_3451_zh-Hans.mp3"
+    }
   },
   {
     "id": "orsay_rf_1956_13",
@@ -7458,6 +8168,16 @@
       "en": "Nobody actually knows who this woman was — Cézanne never wrote her name down anywhere, and it's still a mystery today!",
       "fr": "Personne ne sait vraiment qui était cette femme — Cézanne n'a jamais écrit son nom nulle part, et cela reste un mystère aujourd'hui !",
       "zh-Hans": "其实没人知道这位女子到底是谁——塞尚从来没有在任何地方写下过她的名字，直到今天，这依然是个谜！"
+    },
+    "audioScript": {
+      "en": "A woman — likely a household servant rather than a formal sitter — seated bolt upright beside a coffeepot. Cézanne reduces her entire figure to simplified blocks of color arranged in strict verticals and horizontals, more interested in her shape than her personality. Notice how the tilted tabletop and her rigid, column-like posture echo each other — Cézanne treats a person with the same geometric structure he gave to apples or bottles, decades before Cubist painters would take that same idea even further. He never identified her by name, and even her exact identity remains uncertain today — unusual for a painting this large and ambitious.",
+      "fr": "Une femme — probablement une domestique plutôt qu'un modèle formel — assise bien droite près d'une cafetière. Cézanne réduit toute sa silhouette à des blocs de couleur simplifiés, disposés en strictes verticales et horizontales, plus intéressé par sa forme que par sa personnalité. Remarquez comme le plateau incliné de la table et sa posture rigide, presque en colonne, se font écho — Cézanne traite une personne avec la même structure géométrique qu'il donnait aux pommes ou aux bouteilles, des décennies avant que les peintres cubistes ne poussent cette même idée bien plus loin. Il ne l'identifia jamais par son nom, et son identité exacte demeure incertaine aujourd'hui encore — chose inhabituelle pour un tableau d'une telle ampleur et ambition.",
+      "zh-Hans": "一位女子——很可能是家中的女仆，而非正式邀请的模特——笔直端坐在一只咖啡壶旁。塞尚把她整个身形简化成排列严整、横平竖直的色块，他更关心的是她的形态，而非她的个性。留意那倾斜的桌面与她如立柱般僵直的姿态，如何彼此呼应——塞尚用描绘苹果或瓶子时同样的几何结构来处理一个人物，比立体派画家把这个理念推向更远，早了几十年。他始终没有透露过她的名字，直到今天，她的真实身份依然是个谜——对于一幅如此宏大、用心的画作而言，这实属罕见。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1956_13_en.mp3",
+      "fr": "/audio/orsay_rf_1956_13_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1956_13_zh-Hans.mp3"
     }
   },
   {
@@ -7537,6 +8257,16 @@
       "en": "Monet loved this bridge so much he painted it several times — one of his paintings of it is one of the most expensive he ever made.",
       "fr": "Monet aimait tellement ce pont qu'il l'a peint plusieurs fois — l'un de ses tableaux le représentant est l'un des plus chers qu'il ait jamais peints.",
       "zh-Hans": "莫奈非常喜欢这座桥，画了好几次——他画的其中一幅，成为他所有作品中最昂贵的画作之一。"
+    },
+    "audioScript": {
+      "en": "A modern iron railway bridge, a plume of steam trailing behind a passing train — and Monet paints this with the same reverence earlier painters gave cathedrals, treating industrial progress as a genuinely beautiful subject worth painting seriously. Follow that trail of steam as it dissolves into the sky — Monet paints smoke with exactly the same loose brushwork he uses for clouds, no difference between man-made and natural at all. He painted this exact bridge motif several times throughout his career; a related version later sold for over forty-one million dollars at auction, making this one of his most sought-after subjects.",
+      "fr": "Un pont ferroviaire moderne en fer, un panache de fumée traînant derrière un train qui passe — et Monet peint cela avec la même révérence que les peintres d'autrefois réservaient aux cathédrales, traitant le progrès industriel comme un sujet véritablement beau, digne d'être peint sérieusement. Suivez ce panache de fumée qui se dissout dans le ciel — Monet peint la fumée avec exactement la même touche légère qu'il emploie pour les nuages, sans aucune distinction entre ce qui est fait par l'homme et ce qui est naturel. Il peignit ce même motif de pont à plusieurs reprises au cours de sa carrière ; une version apparentée s'est plus tard vendue pour plus de quarante et un millions de dollars aux enchères, faisant de ce motif l'un des plus recherchés parmi ses sujets.",
+      "zh-Hans": "一座现代化的铁桥，一缕蒸汽尾随着驶过的火车——莫奈以早期画家描绘大教堂时同样的崇敬之心，来描绘这一幕，把工业进步视为一个真正值得认真描绘的美丽题材。顺着那缕逐渐消散在天空中的蒸汽望去——莫奈用画云朵时同样松弛的笔触来画烟雾，人造之物与自然之物，在他笔下毫无分别。他一生曾多次描绘这座桥的题材；一幅相关的版本，后来在拍卖会上以超过四千一百万美元的价格成交，足见这一题材在他众多作品中，是多么受追捧。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1937_41_en.mp3",
+      "fr": "/audio/orsay_rf_1937_41_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1937_41_zh-Hans.mp3"
     }
   },
   {
@@ -7616,6 +8346,16 @@
       "en": "Monet painted women holding parasols outdoors many times — it became one of his favourite subjects to capture wind and light together.",
       "fr": "Monet a peint plusieurs fois des femmes tenant une ombrelle en plein air — c'est devenu l'un de ses sujets préférés pour capturer le vent et la lumière ensemble.",
       "zh-Hans": "莫奈多次描绘户外撑伞的女子——这成了他最喜欢的题材之一，能同时捕捉风与光。"
+    },
+    "audioScript": {
+      "en": "A woman outdoors, seen from a low angle against the sky — and the real subject here isn't really her at all, it's the wind. Monet paints the way it catches her dress and parasol, moving through the fabric, and that movement becomes just as important as the woman herself. Notice you can barely make out her face — Monet deliberately turns her away from the sun and into the wind, more interested in light and motion than in any kind of likeness. This is one of several 'woman with a parasol' figures Monet painted outdoors, a motif so closely tied to him that a related 1875 version is now considered essentially priceless.",
+      "fr": "Une femme en plein air, vue selon un angle bas contre le ciel — et le véritable sujet ici n'est pas vraiment elle, c'est le vent. Monet peint la façon dont il saisit sa robe et son ombrelle, traversant le tissu, et ce mouvement devient tout aussi important que la femme elle-même. Remarquez que l'on distingue à peine son visage — Monet la tourne délibérément loin du soleil et face au vent, davantage intéressé par la lumière et le mouvement que par une quelconque ressemblance. C'est l'une des nombreuses figures de « femme à l'ombrelle » que Monet peignit en plein air, un motif si étroitement lié à lui qu'une version apparentée de 1875 est aujourd'hui considérée comme pratiquement inestimable.",
+      "zh-Hans": "一位女子伫立户外，以低角度仰望天空的视角呈现——但这幅画真正的主角，其实并不是她，而是风。莫奈描绘的是风如何拂过她的裙摆与阳伞，穿透布料，而这份动态本身，与这位女子同样重要。留意她的面容几乎难以辨认——莫奈刻意让她背对阳光、迎风而立，比起画出一个具体的相貌，他更关心的是光线与动态本身。这是莫奈众多户外「持伞女子」题材中的一幅，这个主题与他紧密相连，以至于一幅1875年的相关版本，如今几乎被视为无价之宝。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2621_en.mp3",
+      "fr": "/audio/orsay_rf_2621_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2621_zh-Hans.mp3"
     }
   },
   {
@@ -7696,6 +8436,16 @@
       "en": "Mallarmé loved this little painting so much he kept it hanging in his own house for the rest of his life!",
       "fr": "Mallarmé a tellement aimé ce petit tableau qu'il l'a gardé accroché chez lui jusqu'à la fin de sa vie !",
       "zh-Hans": "马拉美太喜欢这幅小画了，一辈子都把它挂在自己家里！"
+    },
+    "audioScript": {
+      "en": "Manet's close friend, the poet Stéphane Mallarmé, relaxed and informal, a cigar in hand — a portrait of genuine friendship rather than a formal commission, small in scale but warm in feeling. Notice how loosely and quickly it's painted compared to Manet's grander, more official portraits — the casual brushwork matches the casual, easy pose of a friend simply stopping by for a visit. Mallarmé kept this portrait in his own home for the rest of his life, a small but telling sign of how much the friendship behind it, not just the painting itself, actually meant to him.",
+      "fr": "Le proche ami de Manet, le poète Stéphane Mallarmé, détendu et informel, un cigare à la main — un portrait de véritable amitié plutôt qu'une commande officielle, modeste par la taille mais chaleureux par le sentiment. Remarquez comme il est peint avec légèreté et rapidité, comparé aux portraits plus grandioses et plus officiels de Manet — la touche décontractée reflète la pose détendue et naturelle d'un ami simplement de passage. Mallarmé conserva ce portrait chez lui jusqu'à la fin de sa vie, un signe modeste mais révélateur de l'importance que revêtait pour lui non seulement le tableau, mais l'amitié qu'il représentait.",
+      "zh-Hans": "马奈的挚友、诗人斯特凡·马拉美，神态松弛随意，手中夹着一支雪茄——这是一幅出于真挚友谊而作的肖像，而非正式委托之作，尺幅虽小，情感却格外温暖。留意这幅画的笔触是多么轻快随性，与马奈那些更为隆重、正式的肖像画风格迥然不同——这种随意的笔法，恰好呼应了一位友人随性来访、轻松自在的姿态。马拉美把这幅肖像留在家中，珍藏了一生——这个小小的细节，足以说明对他而言，这份友情本身，与这幅画同样珍贵，甚至更加珍贵。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2661_en.mp3",
+      "fr": "/audio/orsay_rf_2661_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2661_zh-Hans.mp3"
     }
   },
   {
@@ -7765,6 +8515,16 @@
       "en": "This is a uniquely personal painting. Monet later said he regretted painting it at all, and there is nothing else quite like it in his work.",
       "fr": "C'est un tableau d'une intimité unique. Monet dira plus tard regretter de l'avoir peint, et rien d'autre dans son œuvre ne lui ressemble vraiment.",
       "zh-Hans": "这是一幅极其私密、独一无二的画作。莫奈后来说他后悔画了它，在他的作品中再也没有与之相似的画作。"
+    },
+    "audioScript": {
+      "en": "Monet painted his own wife Camille in the moments right after her death — and he later admitted something he found genuinely unsettling about himself: he caught himself observing the changing colors of her face even as he grieved. It's a strange, honest confession about how completely painting had taken over the way he saw the world. Look at the loose, rapid brushwork across her face — this was painted quickly, in a single sitting, by a man documenting an unbearable moment almost against his own will. Monet later said he regretted having painted this at all — there's no comparable subject anywhere else in his entire body of work.",
+      "fr": "Monet peint sa propre épouse Camille dans les instants qui suivirent immédiatement sa mort — et il admit plus tard quelque chose qu'il trouvait lui-même véritablement troublant : il s'était surpris à observer les couleurs changeantes de son visage, même en plein deuil. C'est une confession étrange et sincère sur la façon dont la peinture avait totalement pris possession de son regard sur le monde. Regardez la touche rapide et légère sur son visage — ceci fut peint vite, en une seule séance, par un homme documentant un moment insupportable presque malgré lui. Monet dit plus tard regretter d'avoir peint cela — aucun sujet comparable n'existe nulle part ailleurs dans toute son œuvre.",
+      "zh-Hans": "莫奈画的是妻子卡米耶刚刚离世那一刻——他后来坦承了一件令他自己也感到不安的事：即便在悲痛之中，他还是不由自主地观察着她面容上渐渐变化的色彩。这是一个奇特而诚实的自白，说明绘画已经完全接管了他看待世界的方式。看他在她面容上留下的那些迅疾、轻快的笔触——这幅画是一气呵成、迅速完成的，出自一个近乎身不由己、只能用画笔记录这个难以承受的瞬间的男人之手。莫奈后来说，他后悔画了这幅画——在他毕生的作品中，再也没有任何一幅与此相似的题材。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_1963_3_en.mp3",
+      "fr": "/audio/orsay_rf_1963_3_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_1963_3_zh-Hans.mp3"
     }
   },
   {
@@ -7844,6 +8604,16 @@
       "en": "Pissarro painted this while working right alongside his friend, another painter named Cézanne — they were painting the same countryside together!",
       "fr": "Pissarro a peint ce tableau en travaillant juste à côté de son ami, un autre peintre nommé Cézanne — ils peignaient la même campagne ensemble !",
       "zh-Hans": "毕沙罗画这幅画的时候，就在他的朋友、另一位叫塞尚的画家旁边工作——他们一起描绘着同一片乡间景色呢！"
+    },
+    "audioScript": {
+      "en": "A cluster of red-roofed houses on a hillside near Pontoise — Pissarro loads his brush thickly, echoing the same warm orange-red tones across the roofs, the fields, and the distant hill, tying the whole scene together with color alone. Notice how the thick paint itself seems to catch real light right on the canvas surface — Pissarro is building texture as much as color, giving the whole scene a vibrating, energetic feel. He painted this around the same time he and his friend Paul Cézanne were working side by side on similar countryside scenes near Pontoise, each one quietly influencing how the other saw the landscape.",
+      "fr": "Un groupement de maisons aux toits rouges sur une colline près de Pontoise — Pissarro charge son pinceau généreusement, faisant écho aux mêmes tons chauds d'orange et de rouge à travers les toits, les champs et la colline lointaine, unissant toute la scène par la seule couleur. Remarquez comme la peinture épaisse elle-même semble capter une vraie lumière à même la surface de la toile — Pissarro construit autant de texture que de couleur, donnant à toute la scène une sensation vibrante et énergique. Il peignit ceci à peu près à l'époque où lui et son ami Paul Cézanne travaillaient côte à côte sur des paysages campagnards similaires près de Pontoise, chacun influençant discrètement la façon dont l'autre voyait le paysage.",
+      "zh-Hans": "蓬图瓦兹附近，山坡上一片红瓦屋顶聚落——毕沙罗厚厚地涂抹颜料，让屋顶、田野与远山，都呼应着同一种温暖的橙红色调，仅凭色彩本身，就把整幅画面统一了起来。留意那厚重的颜料本身，仿佛在画布表面真的捕捉到了光线——毕沙罗在构建色彩的同时，也在构建质感，让整个画面充满了一种震颤、跃动的能量感。这幅画创作的时期，正是他与好友塞尚在蓬图瓦兹附近并肩作画、描绘相似乡村景致的日子，两人彼此之间，也在悄然影响着对方观看风景的方式。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_lux_367_en.mp3",
+      "fr": "/audio/orsay_lux_367_fr.mp3",
+      "zh-Hans": "/audio/orsay_lux_367_zh-Hans.mp3"
     }
   },
   {
@@ -7923,6 +8693,16 @@
       "en": "Sisley loved this flooded street so much that he painted it seven whole times that year!",
       "fr": "Sisley a tellement aimé cette rue inondée qu'il l'a peinte sept fois cette année-là !",
       "zh-Hans": "西斯莱太喜欢这条被淹没的街道了，那一年他一共画了整整七次呢！"
+    },
+    "audioScript": {
+      "en": "Rowboats glide past half-submerged buildings, a wine merchant's sign still hanging just above the waterline — Sisley painted the aftermath of a severe flood that swallowed the streets of Port-Marly in early 1876. But notice what he chose to paint: not chaos or disaster, but a strange, still beauty in the flooded street, reflections doubling every building and boat in perfectly calm water. Sisley was so struck by this flood that he painted the very same street seven different times that year — this painting is one of a closely watched series, now scattered across museums around the world.",
+      "fr": "Des barques glissent devant des bâtiments à moitié submergés, l'enseigne d'un marchand de vin pendant encore juste au-dessus de la ligne d'eau — Sisley peint les conséquences d'une inondation sévère qui engloutit les rues de Port-Marly au début de 1876. Mais remarquez ce qu'il a choisi de peindre : non pas le chaos ou le désastre, mais une beauté étrange et paisible dans la rue inondée, les reflets doublant chaque bâtiment et chaque bateau dans une eau parfaitement calme. Sisley fut si frappé par cette inondation qu'il peignit cette même rue sept fois différentes cette année-là — ce tableau fait partie d'une série suivie de près, aujourd'hui dispersée dans des musées à travers le monde.",
+      "zh-Hans": "小船在半淹的建筑物间缓缓划过，一家酒商的招牌，依然挂在水面之上——西斯莱画的是1876年初一场严重洪水淹没马尔利港街道后的景象。但请注意他选择呈现的方式：画面没有混乱或灾难感，反而在这条被淹没的街道上，捕捉到一种奇异而静谧的美感，平静的水面把每一栋建筑、每一艘小船的倒影都清晰地映照出来。西斯莱对这场洪水印象极深，那一年，他七次描绘同一条街道——这幅画正是这组备受关注的系列作品之一，如今分散收藏在世界各地的博物馆中。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2020_en.mp3",
+      "fr": "/audio/orsay_rf_2020_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2020_zh-Hans.mp3"
     }
   },
   {
@@ -8002,6 +8782,16 @@
       "en": "Monet painted this on one of France's biggest holiday celebrations, capturing a party that happened only once, on that exact day.",
       "fr": "Monet a peint ce tableau lors de l'une des plus grandes fêtes de France, capturant une célébration qui n'a eu lieu qu'une seule fois, exactement ce jour-là.",
       "zh-Hans": "莫奈是在法国最盛大的节日庆典之一时画下这幅画的，定格了一场只在那一天发生过一次的欢庆。"
+    },
+    "audioScript": {
+      "en": "A Paris street entirely covered in French flags, everything dissolving into rapid strokes of red, white and blue — Monet isn't trying to capture any individual building or person here, just the pure movement and celebration of the crowd itself. Try to find a single clear face in that crowd below — you can't, because Monet wants you to feel the density and energy of the celebration, not recognize anyone in particular. This was painted on France's very first official national holiday celebrating the Republic, capturing a specific, once-only moment of citywide celebration that would never happen in quite the same way again.",
+      "fr": "Une rue de Paris entièrement recouverte de drapeaux français, tout se dissolvant en touches rapides de rouge, de blanc et de bleu — Monet ne cherche pas ici à saisir un bâtiment ou une personne en particulier, seulement le pur mouvement et l'exaltation de la foule elle-même. Essayez de trouver un seul visage net dans cette foule en contrebas — impossible, car Monet veut vous faire ressentir la densité et l'énergie de la fête, non reconnaître qui que ce soit en particulier. Ce tableau fut peint lors de la toute première fête nationale officielle célébrant la République en France, saisissant un instant précis et unique de liesse à l'échelle de toute la ville, qui ne se reproduirait plus jamais tout à fait de la même façon.",
+      "zh-Hans": "一条完全被法国国旗覆盖的巴黎街道，一切都溶解成红、白、蓝交织的迅疾笔触——莫奈在这里并非想捕捉某一栋具体的建筑或某一个具体的人，他要的只是人群本身那份纯粹的律动与欢腾。试着在下方的人群中找出一张清晰的面孔——你找不到，因为莫奈希望你感受到的，是这场庆典的密度与energy，而不是认出画中的某个具体的人。这幅画作于法国第一个官方共和国国庆日，记录下了一个独一无二、全城同庆的历史瞬间，那样的场景，从此再也不会以完全相同的方式重现。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_8048_en.mp3",
+      "fr": "/audio/orsay_8048_fr.mp3",
+      "zh-Hans": "/audio/orsay_8048_zh-Hans.mp3"
     }
   },
   {
@@ -8081,6 +8871,16 @@
       "en": "This painting was once owned by another painter, Gustave Caillebotte, who gave his whole art collection to France — that's actually how a lot of famous Impressionist paintings ended up in French museums!",
       "fr": "Ce tableau a un jour appartenu à un autre peintre, Gustave Caillebotte, qui a donné toute sa collection d'art à la France — c'est en fait comme ça que beaucoup de célèbres tableaux impressionnistes se sont retrouvés dans des musées français !",
       "zh-Hans": "这幅画曾经归另一位画家古斯塔夫·卡耶博特所有，他把自己全部的艺术收藏都送给了法国——很多著名的印象派画作，其实就是这样才进入了法国各大博物馆的！"
+    },
+    "audioScript": {
+      "en": "A lively boat race on the River Thames near Hampton Court in England — small flags snapping in the breeze — a rare glimpse of English river life Sisley captured during a four-month painting trip funded by a wealthy patron. Look at how loosely and quickly Sisley paints those flags and the rippling water — he's chasing a fleeting breeze and a moment of pure movement, not composing some carefully posed scene. This painting later belonged to fellow painter and collector Gustave Caillebotte, who left his entire art collection to the French state — which is exactly how so many Impressionist masterpieces, including this one, ended up in French museums at all.",
+      "fr": "Une régate animée sur la Tamise, près de Hampton Court en Angleterre — de petits drapeaux claquant dans la brise — un rare aperçu de la vie fluviale anglaise, capturé par Sisley lors d'un voyage de peinture de quatre mois financé par un riche mécène. Regardez comme Sisley peint ces drapeaux et l'eau ondoyante avec légèreté et rapidité — il poursuit une brise fugace et un instant de pur mouvement, sans composer une scène soigneusement posée. Ce tableau appartint plus tard au peintre et collectionneur Gustave Caillebotte, qui légua toute sa collection d'art à l'État français — c'est exactement ainsi que tant de chefs-d'œuvre impressionnistes, celui-ci compris, se retrouvèrent dans les musées français.",
+      "zh-Hans": "英格兰汉普顿宫附近的泰晤士河上，一场热闹的赛船盛会正在进行——小旗在微风中猎猎作响——这是西斯莱在一位富有赞助人资助下，为期四个月的英国写生之旅中，捕捉到的一幕难得的英伦河畔生活景象。看西斯莱是如何轻快、迅捷地描绘那些旗帜与荡漾的水波——他追逐的是一阵转瞬即逝的微风，一个纯粹动态的瞬间，而非精心摆拍的场景。这幅画后来归画家兼收藏家卡耶博特所有，他把自己全部的艺术收藏都遗赠给了法国政府——而这，正是包括这幅画在内，众多印象派杰作最终得以进入法国各大博物馆的真正原因。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2787_en.mp3",
+      "fr": "/audio/orsay_rf_2787_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2787_zh-Hans.mp3"
     }
   },
   {
@@ -8161,6 +8961,16 @@
       "en": "Monet painted this in a small riverside village called Vétheuil, where he lived before he moved to the garden at Giverny that made him famous.",
       "fr": "Monet a peint ce tableau dans un petit village au bord de l'eau appelé Vétheuil, où il vivait avant de s'installer dans le jardin de Giverny qui le rendra célèbre.",
       "zh-Hans": "莫奈是在一座名叫维特伊的小河畔村庄画下这幅画的，那是他搬到后来让他成名的吉维尼花园之前居住的地方。"
+    },
+    "audioScript": {
+      "en": "The sun dissolves into the Seine at Vétheuil — and Monet lets the sky and its reflection blur into nearly the same mass of color, so the whole canvas seems to glow from within. Try to find the exact line where the riverbank ends and the water begins — you can't, because Monet blurs it on purpose, letting sky, land, and reflection all melt together into one continuous glow. This was painted at Vétheuil, the smaller riverside town where Monet lived for several quiet years before Giverny would eventually make him famous — a hint of the light and atmosphere he'd spend the rest of his life chasing.",
+      "fr": "Le soleil se dissout dans la Seine à Vétheuil — et Monet laisse le ciel et son reflet se fondre en une masse de couleur presque identique, si bien que toute la toile semble rayonner de l'intérieur. Essayez de trouver la ligne exacte où la berge se termine et où l'eau commence — impossible, car Monet la brouille délibérément, laissant le ciel, la terre et le reflet se fondre tous ensemble en une seule lueur continue. Ce tableau fut peint à Vétheuil, la petite ville au bord de l'eau où Monet vécut plusieurs années tranquilles avant que Giverny ne le rende finalement célèbre — un avant-goût de cette lumière et de cette atmosphère qu'il allait passer le reste de sa vie à poursuivre.",
+      "zh-Hans": "夕阳在维特伊的塞纳河中缓缓消融——莫奈让天空与它的倒影几乎融为同一片色彩，让整幅画布仿佛从内部散发着微光。试着找出河岸与河水之间那条确切的分界线——你找不到，因为莫奈是故意把它模糊化的，让天空、大地与倒影，全都交融成一片连续不断的光晕。这幅画作于维特伊，一座莫奈在成名前、于吉维尼定居之前，曾安静生活过几年的河畔小镇——从中已能窥见，他此后一生都在追逐的那种光影与氛围。"
+    },
+    "audioUrl": {
+      "en": "/audio/orsay_rf_2006_en.mp3",
+      "fr": "/audio/orsay_rf_2006_fr.mp3",
+      "zh-Hans": "/audio/orsay_rf_2006_zh-Hans.mp3"
     }
   }
 ]
