@@ -606,6 +606,9 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
     because by this point fuzzy_match_catalog() has already narrowed it to
     one specific claim to check, not a shortlist to pick from.
     """
+    if not candidate.get("image_url"):
+        return {"is_match": False, "confidence": 0.0, "reason": "missing_reference_image"}
+
     from openai import OpenAI
 
     client = OpenAI(api_key=OPENAI_API_KEY)
