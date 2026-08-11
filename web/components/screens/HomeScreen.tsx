@@ -8,6 +8,7 @@ import { isMissionComplete } from "@/lib/missions";
 import { tt, LOCALES } from "@/lib/i18n";
 import { useMuseumDetection } from "@/lib/geolocation";
 import { proxyImageUrl } from "@/lib/visitPalette";
+import { formatVisitValueHeadline, summarizeVisitValue } from "@/lib/valueReveal";
 import { ORSAY_CLOCK_IMAGE_URL as HERO_IMAGE_URL } from "@/lib/museumTheme";
 import AuthModal from "@/components/ui/AuthModal";
 import { track } from "@/lib/analytics";
@@ -84,10 +85,7 @@ export default function HomeScreen({
 
   const isReturning = state.visitStarted;
 
-  const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
-  const totalHigh = seenArtworks.reduce((s, a) => s + (a.estimate.high || 0), 0);
-  const hasAnyEstimate = seenArtworks.some((a) => a.estimate.high != null);
-  const valueText = hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale);
+  const valueText = formatVisitValueHeadline(summarizeVisitValue(seenArtworks), state.locale);
   const worksLabel =
     seenArtworks.length === 1 ? tt("stat_work_one", state.locale) : tt("works_seen_count", state.locale).toLowerCase();
 

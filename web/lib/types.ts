@@ -27,6 +27,54 @@ export interface Estimate {
   reviewedBy?: string | null;
 }
 
+export type ValueMode = "ESTIMATED_VALUE" | "MARKET_CONTEXT" | "BEYOND_MARKET";
+
+export interface EstimatedValueReveal {
+  mode: "ESTIMATED_VALUE";
+  aggregateValueEligible: true;
+  estimatedValue: {
+    low: number;
+    high: number;
+    currency: string;
+    confidence?: string;
+    asOfDate?: string;
+    methodology?: string;
+    disclaimer?: string;
+  };
+}
+
+export interface MarketContextReveal {
+  mode: "MARKET_CONTEXT";
+  aggregateValueEligible: false;
+  marketContext: {
+    headlineNumber?: number | string | { low: number; high: number };
+    currency?: string;
+    label: string;
+    explanation: string;
+    relationshipToArtwork: string;
+    contextType: string;
+    sourceReference?: string;
+    date?: string | null;
+    confidence?: string;
+    disclaimer?: string;
+  };
+}
+
+export interface BeyondMarketReveal {
+  mode: "BEYOND_MARKET";
+  aggregateValueEligible: false;
+  beyondMarket: {
+    headline: string;
+    explanation: string;
+    institutionalLegalContext?: string;
+    optionalContext?: string;
+    disclaimer?: string;
+    confidence?: string;
+  };
+}
+
+export type ValueReveal = EstimatedValueReveal | MarketContextReveal | BeyondMarketReveal;
+
 export interface Artwork {
   id: string;
   artist: string | null;
@@ -42,6 +90,7 @@ export interface Artwork {
   title: LocalizedText;
   titleNeedsReview: TitleNeedsReview;
   estimate: Estimate;
+  valueReveal?: ValueReveal | null;
   why: LocalizedText;
   where: LocalizedText;
   rarity: LocalizedText;

@@ -16,11 +16,13 @@ export default function MarketMethodologySheet({
   onClose,
   locale,
   salesCount,
+  body,
 }: {
   open: boolean;
   onClose: () => void;
   locale: Locale;
   salesCount?: number;
+  body?: string;
 }) {
   return (
     <BottomSheet open={open} onClose={onClose}>
@@ -35,7 +37,7 @@ export default function MarketMethodologySheet({
           )}
         </p>
       )}
-      <p className="text-[15px] leading-[22px] text-[#1D1D1F]">{tt("methodology_sheet_body", locale)}</p>
+      <p className="text-[15px] leading-[22px] text-[#1D1D1F]">{body || tt("methodology_sheet_body", locale)}</p>
     </BottomSheet>
   );
 }

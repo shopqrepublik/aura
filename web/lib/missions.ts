@@ -1,4 +1,5 @@
 import { ARTWORKS } from "./artworks";
+import { getAggregateEligibleValue } from "./valueReveal";
 import type { Artwork } from "./types";
 
 /**
@@ -31,8 +32,8 @@ import type { Artwork } from "./types";
  * copy updated to match, room reference removed) rather than a "priciest
  * thing scanned this visit" self-comparison, which would be vacuously true
  * the instant any single work with a real estimate is scanned and wouldn't
- * actually be a mission. Computed as argmax(estimate.high) over the catalog,
- * EXCLUDING ids already claimed by m1/m2 -- without that exclusion this
+ * actually be a mission. Computed through the central aggregate-eligible
+ * value rule, EXCLUDING ids already claimed by m1/m2 -- without that exclusion this
  * resolves to Seurat's The Circus (EUR140M, the catalog's actual highest
  * estimate), the same work as m1, which would let one scan silently
  * complete two of the three missions at once.
@@ -46,9 +47,11 @@ const claimedByOtherMissions = new Set<string>([...POINTILLISM_IDS, ...SELF_PORT
 function computeMostValuableId(): string | null {
   let best: Artwork | null = null;
   for (const a of ARTWORKS) {
-    if (a.estimate.high == null) continue;
+    const aggregate = getAggregateEligibleValue(a);
+    if (!aggregate) continue;
     if (claimedByOtherMissions.has(a.id)) continue;
-    if (!best || a.estimate.high > (best.estimate.high as number)) best = a;
+    const bestAggregate = best ? getAggregateEligibleValue(best) : null;
+    if (!bestAggregate || aggregate.high > bestAggregate.high) best = a;
   }
   return best?.id ?? null;
 }

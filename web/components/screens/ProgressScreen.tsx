@@ -5,6 +5,7 @@ import { ArrowLeft, Check } from "lucide-react";
 import ProgressRing from "@/components/ui/ProgressRing";
 import { ARTWORKS, MISSIONS, missionLabel } from "@/lib/artworks";
 import { isMissionComplete } from "@/lib/missions";
+import { formatVisitValueHeadline, formatVisitValueSubtitle, summarizeVisitValue } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
@@ -65,10 +66,9 @@ export default function ProgressScreen({
     };
   }, []);
 
-  const totalLow = seenArtworks.reduce((sum, a) => sum + (a.estimate.low || 0), 0);
-  const totalHigh = seenArtworks.reduce((sum, a) => sum + (a.estimate.high || 0), 0);
-  const hasEstimate = seenArtworks.length > 0 && totalHigh > 0;
-  const valueSeen = hasEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale);
+  const valueSummary = summarizeVisitValue(seenArtworks);
+  const valueSeen = formatVisitValueHeadline(valueSummary, state.locale);
+  const valueSubtitle = formatVisitValueSubtitle(valueSummary, state.locale);
 
   const mins = now && state.startTime ? Math.max(1, Math.round((now - state.startTime) / 60000)) : 0;
   const pct = ARTWORKS.length ? Math.min(100, Math.round((seenArtworks.length / ARTWORKS.length) * 100)) : 0;
@@ -133,7 +133,7 @@ export default function ProgressScreen({
           >
             {valueSeen}
           </div>
-          <div className="mt-1.5 text-[13px] text-[#67635C]">{tt("stat_value_seen", state.locale).toLowerCase()}</div>
+          <div className="mt-1.5 text-[13px] text-[#67635C]">{valueSubtitle}</div>
           <div className="mt-3 text-[14px] font-medium text-[#302E29] tabular-nums">
             {seenArtworks.length} {worksLabel} · {mins}m
           </div>

@@ -77,8 +77,12 @@ export interface RecapImageData {
   reviewedCount: number;
   totalLow: number;
   totalHigh: number;
+  marketContextCount: number;
+  beyondMarketCount: number;
+  unvaluedCount: number;
   mostValuable: Artwork | null;
   mostValuableHasEstimate: boolean;
+  mostValuableValueText: string | null;
   /** Precomputed via lib/artworks.ts's resolveTitle in RecapScreen.tsx --
    * this file doesn't import that module itself, keeping the same "pass
    * derived data in, don't recompute it here" convention the other
@@ -161,9 +165,12 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
   // number, serif throughout. Kept as the same honest low-high RANGE the
   // rest of this app always shows rather than collapsing to a single
   // fabricated point figure the way the doc's literal "€3.8B" example does.
+  const contextCount = data.marketContextCount + data.beyondMarketCount;
   const valueText = data.hasAnyEstimate
     ? `€${data.totalLow}–${data.totalHigh}M`
-    : tt("pending_review", data.locale);
+    : contextCount > 0
+      ? tt(contextCount === 1 ? "value_context_work_one" : "value_context_work_other", data.locale).replace("{n}", String(contextCount))
+      : tt("pending_review", data.locale);
   const valueNote =
     data.hasAnyEstimate && data.reviewedCount < data.worksCount
       ? tt("value_seen_partial_note", data.locale)
@@ -195,8 +202,19 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
   // fitFontSize actually picked, instead of assuming one.
   const headlineDescent = ctx.measureText(valueText).actualBoundingBoxDescent || headlineSize * 0.08;
   const subtitleText = data.hasAnyEstimate
-    ? tt("in_estimated_market_value", data.locale)
-    : tt("recap_value_pending_caption", data.locale);
+    ? contextCount > 0
+      ? tt("mixed_value_recap_subtitle", data.locale)
+          .replace("{n}", String(data.reviewedCount))
+          .replace("{total}", String(data.worksCount))
+          .replace("{context}", String(contextCount))
+      : tt("in_estimated_market_value", data.locale)
+    : data.beyondMarketCount > 0 && data.marketContextCount > 0
+      ? tt("context_and_beyond_market_seen", data.locale)
+      : data.beyondMarketCount > 0
+        ? tt("beyond_market_icons_seen", data.locale)
+        : data.marketContextCount > 0
+          ? tt("market_context_seen", data.locale)
+          : tt("recap_value_pending_caption", data.locale);
   const subtitleFontSize = 58;
   ctx.font = `500 ${subtitleFontSize}px ${SERIF_STACK}`;
   const subtitleAscent = ctx.measureText(subtitleText).actualBoundingBoxAscent || subtitleFontSize * 0.75;
@@ -284,8 +302,8 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
     y += 44;
     ctx.fillStyle = "rgba(243,232,215,0.92)";
     ctx.font = `600 30px ${SANS_STACK}`;
-    const estText = data.mostValuableHasEstimate
-      ? `€${data.mostValuable.estimate.low}–${data.mostValuable.estimate.high}M EST.`
+    const estText = data.mostValuableHasEstimate && data.mostValuableValueText
+      ? `${data.mostValuableValueText} EST.`
       : tt("estimate_pending", data.locale);
     ctx.fillText(estText, textX, y);
   }

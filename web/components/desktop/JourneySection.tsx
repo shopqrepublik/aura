@@ -1,5 +1,6 @@
 import { getArtwork, resolveTitle } from "@/lib/artworks";
 import { proxyImageUrl } from "@/lib/visitPalette";
+import { getArtworkValueReveal } from "@/lib/valueReveal";
 import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
 import { tt } from "@/lib/i18n";
 import { artworkArtistDisplayName } from "@/lib/artist-display";
@@ -89,8 +90,7 @@ export default function JourneySection({ locale }: { locale: Locale }) {
         <div style={{ width: REVEAL_SOURCE_W, transform: `scale(${REVEAL_SCALE})`, transformOrigin: "top left", filter: "saturate(0.85)" }}>
           <div style={{ marginTop: -60 }}>
             <ProvenanceReveal
-              low={artwork.estimate.low}
-              high={artwork.estimate.high}
+              valueReveal={getArtworkValueReveal(artwork)}
               accent={artwork.accent}
               comparableSalesCount={artwork.estimate.comparableSales?.length}
               inventoryNumber={artwork.inventoryNumber}

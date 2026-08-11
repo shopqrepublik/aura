@@ -1,0 +1,150 @@
+import fs from "node:fs";
+import path from "node:path";
+
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+function valueRevealFromEstimate(estimate) {
+  if (estimate?.low == null || estimate.high == null) return null;
+  return {
+    mode: "ESTIMATED_VALUE",
+    aggregateValueEligible: true,
+    estimatedValue: {
+      low: estimate.low,
+      high: estimate.high,
+      currency: "EUR",
+    },
+  };
+}
+
+function getArtworkValueReveal(artwork) {
+  return artwork.valueReveal ?? valueRevealFromEstimate(artwork.estimate);
+}
+
+function getAggregateEligibleValue(artwork) {
+  const reveal = getArtworkValueReveal(artwork);
+  if (reveal?.mode !== "ESTIMATED_VALUE" || reveal.aggregateValueEligible !== true) return null;
+  return reveal.estimatedValue;
+}
+
+function summarizeVisitValue(artworks) {
+  return artworks.reduce(
+    (summary, artwork) => {
+      const reveal = getArtworkValueReveal(artwork);
+      const value = getAggregateEligibleValue(artwork);
+      summary.totalArtworkCount += 1;
+      if (value) {
+        summary.estimatedValueLow += value.low;
+        summary.estimatedValueHigh += value.high;
+        summary.estimatedValueArtworkCount += 1;
+        summary.hasEstimatedValue = true;
+      } else if (reveal?.mode === "MARKET_CONTEXT") {
+        summary.marketContextCount += 1;
+      } else if (reveal?.mode === "BEYOND_MARKET") {
+        summary.beyondMarketCount += 1;
+      } else {
+        summary.unvaluedCount += 1;
+      }
+      return summary;
+    },
+    {
+      estimatedValueLow: 0,
+      estimatedValueHigh: 0,
+      estimatedValueArtworkCount: 0,
+      marketContextCount: 0,
+      beyondMarketCount: 0,
+      unvaluedCount: 0,
+      totalArtworkCount: 0,
+      hasEstimatedValue: false,
+    }
+  );
+}
+
+function getMostValuableArtwork(artworks) {
+  let best = null;
+  let bestHigh = Number.NEGATIVE_INFINITY;
+  for (const artwork of artworks) {
+    const value = getAggregateEligibleValue(artwork);
+    if (!value) continue;
+    if (value.high > bestHigh) {
+      best = artwork;
+      bestHigh = value.high;
+    }
+  }
+  return best;
+}
+
+const estimated = { id: "estimated", estimate: { low: 80, high: 120 }, valueReveal: null };
+const billion = { id: "billion", estimate: { low: 900, high: 1000 }, valueReveal: null };
+const marketContext = {
+  id: "mona-context",
+  estimate: { low: null, high: null },
+  valueReveal: {
+    mode: "MARKET_CONTEXT",
+    aggregateValueEligible: false,
+    marketContext: {
+      headlineNumber: 450.3,
+      currency: "USD_MILLION",
+      label: "Leonardo auction record",
+      explanation: "Context only.",
+      relationshipToArtwork: "Not an estimate of this artwork.",
+      contextType: "ARTIST_AUCTION_RECORD",
+    },
+  },
+};
+const beyondMarket = {
+  id: "beyond",
+  estimate: { low: null, high: null },
+  valueReveal: {
+    mode: "BEYOND_MARKET",
+    aggregateValueEligible: false,
+    beyondMarket: {
+      headline: "No ordinary market price.",
+      explanation: "Outside the normal art market.",
+    },
+  },
+};
+const unvalued = { id: "pending", estimate: { low: null, high: null }, valueReveal: null };
+
+let summary = summarizeVisitValue([estimated]);
+assert(summary.estimatedValueLow === 80 && summary.estimatedValueHigh === 120, "ESTIMATED_VALUE must contribute to totals");
+assert(getMostValuableArtwork([estimated, marketContext])?.id === "estimated", "ESTIMATED_VALUE must be eligible for most valuable");
+assert(summarizeVisitValue([billion]).estimatedValueHigh >= 1000, "ESTIMATED_VALUE must contribute to Billion Euro progress");
+
+summary = summarizeVisitValue([marketContext]);
+assert(summary.estimatedValueHigh === 0, "MARKET_CONTEXT must contribute zero to totals");
+assert(summary.marketContextCount === 1, "MARKET_CONTEXT count must be tracked");
+assert(getMostValuableArtwork([marketContext]) === null, "MARKET_CONTEXT cannot be most valuable");
+
+summary = summarizeVisitValue([beyondMarket]);
+assert(summary.estimatedValueHigh === 0, "BEYOND_MARKET must contribute zero to totals");
+assert(summary.beyondMarketCount === 1, "BEYOND_MARKET count must be tracked");
+assert(getMostValuableArtwork([beyondMarket]) === null, "BEYOND_MARKET cannot be most valuable");
+
+summary = summarizeVisitValue([estimated, marketContext, beyondMarket, unvalued]);
+assert(summary.estimatedValueLow === 80 && summary.estimatedValueHigh === 120, "Mixed visit totals must include only eligible estimates");
+assert(summary.estimatedValueArtworkCount === 1, "Mixed visit estimated count must be correct");
+assert(summary.marketContextCount === 1, "Mixed visit market context count must be correct");
+assert(summary.beyondMarketCount === 1, "Mixed visit beyond-market count must be correct");
+assert(summary.unvaluedCount === 1, "Mixed visit unvalued count must be correct");
+
+summary = summarizeVisitValue([marketContext, beyondMarket, unvalued]);
+assert(summary.hasEstimatedValue === false, "No estimated values must not create a fake zero-value estimate");
+assert(getMostValuableArtwork([marketContext, beyondMarket, unvalued]) === null, "No estimated values must not create a fake most valuable artwork");
+
+const artworksPath = path.join(process.cwd(), "lib", "data", "artworks.json");
+const artworks = JSON.parse(fs.readFileSync(artworksPath, "utf8"));
+const orangerieCount = artworks.filter((artwork) => artwork.museumId === "orangerie" || artwork.museum_id === "orangerie").length;
+const orsayCount = artworks.length - orangerieCount;
+assert(orsayCount === 101, `Expected 101 Orsay legacy records, got ${orsayCount}`);
+assert(orangerieCount === 15, `Expected 15 Orangerie legacy records, got ${orangerieCount}`);
+for (const artwork of artworks) {
+  const legacyHasEstimate = artwork.estimate?.low != null && artwork.estimate?.high != null;
+  const aggregate = getAggregateEligibleValue(artwork);
+  assert(Boolean(aggregate) === legacyHasEstimate, `Legacy estimate mapping mismatch for ${artwork.id}`);
+}
+
+console.log("value reveal regression: PASS");

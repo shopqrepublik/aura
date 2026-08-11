@@ -103,6 +103,7 @@ class Artwork(Base):
 
     localizations = relationship("ArtworkLocalization", back_populates="artwork")
     estimates = relationship("ArtworkEstimate", back_populates="artwork")
+    value_reveals = relationship("ArtworkValueReveal", back_populates="artwork")
     embeddings = relationship("ArtworkEmbedding", back_populates="artwork")
     louvre_image_references = relationship("LouvreImageReference", back_populates="artwork")
     recognition_assets = relationship("RecognitionAsset", back_populates="artwork")
@@ -163,6 +164,56 @@ class ArtworkEstimate(Base):
     updated_at = Column(DateTime, default=now, onupdate=now)
 
     artwork = relationship("Artwork", back_populates="estimates")
+
+
+class ArtworkValueReveal(Base):
+    """Canonical visitor-facing value model.
+
+    Supersedes the old binary "estimate or pending" UI contract without
+    deleting artwork_estimates. Existing reviewed Orsay/Orangerie estimates
+    continue to map into ESTIMATED_VALUE until explicit rows are backfilled.
+    """
+    __tablename__ = "artwork_value_reveals"
+    __table_args__ = (
+        UniqueConstraint("artwork_id", "catalog_version", name="uq_artwork_value_reveal_version"),
+        Index("idx_artwork_value_reveals_artwork_id", "artwork_id"),
+        Index("idx_artwork_value_reveals_mode", "mode"),
+        Index("idx_artwork_value_reveals_review_status", "review_status"),
+    )
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=False)
+    catalog_version = Column(String, nullable=True)
+    mode = Column(String, nullable=False)  # ESTIMATED_VALUE | MARKET_CONTEXT | BEYOND_MARKET
+    aggregate_value_eligible = Column(Boolean, nullable=False, default=False)
+
+    estimated_value_low = Column(Float, nullable=True)
+    estimated_value_high = Column(Float, nullable=True)
+    estimated_value_currency = Column(String, nullable=True)
+
+    market_context_headline_number = Column(JSON, nullable=True)
+    market_context_currency = Column(String, nullable=True)
+    market_context_label = Column(String, nullable=True)
+    market_context_explanation = Column(Text, nullable=True)
+    relationship_to_artwork = Column(Text, nullable=True)
+    context_type = Column(String, nullable=True)
+    source_reference = Column(String, nullable=True)
+    context_date = Column(String, nullable=True)
+
+    beyond_market_headline = Column(String, nullable=True)
+    beyond_market_explanation = Column(Text, nullable=True)
+    institutional_legal_context = Column(Text, nullable=True)
+    optional_context = Column(Text, nullable=True)
+
+    confidence = Column(String, nullable=True)
+    methodology = Column(Text, nullable=True)
+    sources = Column(JSON, nullable=True)
+    disclaimer = Column(Text, nullable=True)
+    review_status = Column(String, nullable=False, default="DRAFT")
+    generated_at = Column(DateTime, nullable=True)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+    artwork = relationship("Artwork", back_populates="value_reveals")
 
 
 class ArtworkEmbedding(Base):

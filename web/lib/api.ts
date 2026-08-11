@@ -58,6 +58,10 @@ export interface VisitProgress {
   artists_count: number;
   value_low_eur_m: number;
   value_high_eur_m: number;
+  estimated_value_artwork_count?: number;
+  market_context_count?: number;
+  beyond_market_count?: number;
+  unvalued_count?: number;
   route_completion_pct: number;
 }
 

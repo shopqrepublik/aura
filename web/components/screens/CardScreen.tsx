@@ -8,6 +8,7 @@ import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
 import ViewingNote from "@/components/ui/ViewingNote";
 import ListenButton from "@/components/ui/ListenButton";
 import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
+import { getArtworkValueReveal } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
 import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
@@ -83,6 +84,7 @@ export default function CardScreen({
   const excluded = isExcludedInKids(artwork, state.mode);
   const { why, where, rarity } = resolveCardText(artwork, state.mode, state.locale);
   const title = resolveTitle(artwork, state.locale);
+  const valueReveal = getArtworkValueReveal(artwork);
   const isAdded = state.added.has(artwork.id);
   const isFavorite = state.favorites.has(artwork.id);
 
@@ -144,8 +146,7 @@ export default function CardScreen({
 
         <ProvenanceReveal
           key={`reveal-${revealKey}`}
-          low={artwork.estimate.low}
-          high={artwork.estimate.high}
+          valueReveal={valueReveal}
           accent={artwork.accent}
           comparableSalesCount={artwork.estimate.comparableSales?.length}
           inventoryNumber={artwork.inventoryNumber}

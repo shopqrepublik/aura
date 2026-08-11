@@ -1,5 +1,6 @@
 import { hexToRgba } from "./cardReveal";
 import { BACKEND_URL } from "./api";
+import { getAggregateEligibleValue } from "./valueReveal";
 import type { Artwork } from "./types";
 
 // design-direction-v3.md §10 "Recap v3 / Visit Palette": the Recap poster's
@@ -7,14 +8,14 @@ import type { Artwork } from "./types";
 // SAME existing `accent` catalog field Phase 1's Provenance Reveal already
 // uses -- not a new dominant-color-extraction system.
 //
-// "Significant" reuses the ranking RecapScreen already computes for its
-// "Most valuable work" card: estimate.high descending, works without a
-// reviewed estimate ranked after those with one, scan order as tiebreaker.
+// "Significant" reuses the value architecture's aggregate eligibility rule:
+// only ESTIMATED_VALUE records can outrank the scan order. Market-context
+// numbers are intentionally not treated as artwork values here.
 export function pickPaletteWorks(seenArtworks: Artwork[]): Artwork[] {
-  const withEstimate = seenArtworks.filter((a) => a.estimate.high != null);
-  const withoutEstimate = seenArtworks.filter((a) => a.estimate.high == null);
+  const withEstimate = seenArtworks.filter((a) => getAggregateEligibleValue(a)?.high != null);
+  const withoutEstimate = seenArtworks.filter((a) => getAggregateEligibleValue(a)?.high == null);
   const ranked = [
-    ...withEstimate.slice().sort((a, b) => (b.estimate.high ?? 0) - (a.estimate.high ?? 0)),
+    ...withEstimate.slice().sort((a, b) => (getAggregateEligibleValue(b)?.high ?? 0) - (getAggregateEligibleValue(a)?.high ?? 0)),
     ...withoutEstimate,
   ];
   return ranked.slice(0, 3);

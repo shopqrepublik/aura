@@ -5,9 +5,10 @@ import { haptics } from "@/lib/haptics";
 import { hexToRgba, getPriceTier, usePrefersReducedMotion } from "@/lib/cardReveal";
 import { GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
 import { resolveScaleComparisonSentence, resolveKidsScaleComparison } from "@/lib/scaleComparison";
+import { formatValueRevealHeadline } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
 import MarketMethodologySheet from "./MarketMethodologySheet";
-import type { Locale, Mode } from "@/lib/types";
+import type { Locale, Mode, ValueReveal } from "@/lib/types";
 
 // Visual-match rebuild: sizes now sit in the editorial-serif clamp range
 // the brief specifies (48-62px) instead of the earlier sans-serif 42-52px
@@ -46,24 +47,23 @@ const EVIDENCE_MS = 120;
 const EXCEPTIONAL_PAUSE_BONUS_MS = 200;
 
 export default function ProvenanceReveal({
-  low,
-  high,
+  valueReveal,
   accent,
   comparableSalesCount,
   inventoryNumber,
   locale,
   mode,
 }: {
-  low: number | null;
-  high: number | null;
+  valueReveal: ValueReveal | null;
   accent: string;
   comparableSalesCount?: number;
   inventoryNumber: string;
   locale: Locale;
   mode: Mode;
 }) {
-  const hasEstimate = low != null && high != null;
-  const tier = getPriceTier(high);
+  const hasEstimate = valueReveal?.mode === "ESTIMATED_VALUE" && valueReveal.aggregateValueEligible;
+  const estimate = hasEstimate ? valueReveal.estimatedValue : null;
+  const tier = getPriceTier(estimate?.high ?? null);
   const reducedMotion = usePrefersReducedMotion();
   const [methodologyOpen, setMethodologyOpen] = useState(false);
 
@@ -104,18 +104,45 @@ export default function ProvenanceReveal({
   const kidsBump = mode === "kids" ? 0.02 : 0;
   const tintOpacity = (tier ? TINT_OPACITY[tier] : TINT_OPACITY.standard) + kidsBump;
 
-  const analogy = !hasEstimate
+  const analogy = !estimate
     ? null
     : mode === "kids"
-      ? resolveKidsScaleComparison(low, high, locale)
-      : resolveScaleComparisonSentence(low, high, locale, mode === "simple" ? "simple" : "normal");
+      ? resolveKidsScaleComparison(estimate.low, estimate.high, locale)
+      : resolveScaleComparisonSentence(estimate.low, estimate.high, locale, mode === "simple" ? "simple" : "normal");
 
   const priceSize = tier ? PRICE_SIZE_PX[tier] : PRICE_SIZE_PX.standard;
-  const priceText = hasEstimate
+  const priceText = estimate
     ? priceStage === "low"
-      ? `€${low}M`
-      : `€${low}–${high}M`
-    : tt("pending_review", locale);
+      ? `€${estimate.low}M`
+      : formatValueRevealHeadline(valueReveal, locale)
+    : formatValueRevealHeadline(valueReveal, locale);
+  const revealLabel = valueReveal?.mode === "ESTIMATED_VALUE"
+    ? tt("estimated_value_label", locale)
+    : valueReveal?.mode === "MARKET_CONTEXT"
+      ? tt("market_context_label", locale)
+      : valueReveal?.mode === "BEYOND_MARKET"
+        ? tt("beyond_market_label", locale)
+        : tt("market_context_label", locale);
+  const supportingText = valueReveal?.mode === "ESTIMATED_VALUE"
+    ? tt("estimated_market_range", locale)
+    : valueReveal?.mode === "MARKET_CONTEXT"
+      ? valueReveal.marketContext.explanation
+      : valueReveal?.mode === "BEYOND_MARKET"
+        ? valueReveal.beyondMarket.explanation
+        : tt("reveal_pending_review_note", locale);
+  const disclaimerText = valueReveal?.mode === "ESTIMATED_VALUE"
+    ? valueReveal.estimatedValue.disclaimer || tt("estimate_disclaimer", locale)
+    : valueReveal?.mode === "MARKET_CONTEXT"
+      ? valueReveal.marketContext.disclaimer || tt("market_context_disclaimer", locale)
+      : valueReveal?.mode === "BEYOND_MARKET"
+        ? valueReveal.beyondMarket.disclaimer || tt("beyond_market_disclaimer", locale)
+        : tt("reveal_pending_review_note", locale);
+  const methodBody = valueReveal?.mode === "MARKET_CONTEXT"
+    ? valueReveal.marketContext.relationshipToArtwork
+    : valueReveal?.mode === "BEYOND_MARKET"
+      ? valueReveal.beyondMarket.institutionalLegalContext
+      : undefined;
+  const optionalContext = valueReveal?.mode === "BEYOND_MARKET" ? valueReveal.beyondMarket.optionalContext : null;
 
   return (
     <div
@@ -151,7 +178,7 @@ export default function ProvenanceReveal({
         }}
       >
       <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#65625d]">
-        {tt("market_context_label", locale)}
+        {revealLabel}
       </div>
 
       {hasEstimate && !!comparableSalesCount && comparableSalesCount > 0 && (
@@ -180,13 +207,25 @@ export default function ProvenanceReveal({
                 letterSpacing: "-0.055em",
                 fontVariantNumeric: "lining-nums tabular-nums",
               }
-            : { fontFamily: "var(--font-sans)", fontSize: 22, letterSpacing: "-0.01em" }
+            : valueReveal?.mode === "MARKET_CONTEXT"
+              ? {
+                  fontFamily: "var(--font-editorial)",
+                  fontSize: "clamp(42px, 12vw, 62px)",
+                  letterSpacing: "-0.035em",
+                  fontVariantNumeric: "lining-nums tabular-nums",
+                }
+              : { fontFamily: "var(--font-sans)", fontSize: 22, letterSpacing: "-0.01em" }
         }
       >
         {priceText}
       </div>
-      {hasEstimate && <p className="mt-2.5 text-[12px] leading-[16px] text-[#68655f]">{tt("estimated_market_range", locale)}</p>}
-      {!hasEstimate && <p className="mt-2.5 text-[12px] leading-[16px] text-[#68655f]">{tt("reveal_pending_review_note", locale)}</p>}
+      <p className="mt-2.5 text-[12px] leading-[16px] text-[#68655f]">{supportingText}</p>
+      {valueReveal?.mode === "MARKET_CONTEXT" && (
+        <p className="mt-2 text-[11px] leading-[15px] font-semibold uppercase tracking-[0.08em] text-[#6B211D]">
+          {tt("not_artwork_value_label", locale)}
+        </p>
+      )}
+      {optionalContext && <p className="mt-2 text-[11px] leading-[15px] text-[#77736d]">{optionalContext}</p>}
 
       {tier === "exceptional" && (
         <div className="mt-4 py-2 border-t border-b border-[rgba(45,39,31,0.14)] flex items-center justify-between">
@@ -206,13 +245,13 @@ export default function ProvenanceReveal({
         )}
 
         <p className="mt-[18px] text-[11px] leading-[16px] text-[#66635e]">
-          {tt("estimate_disclaimer", locale)}{" "}
+          {disclaimerText}{" "}
           <button
             type="button"
             onClick={() => setMethodologyOpen(true)}
             className="underline underline-offset-2 text-[#181714] font-medium"
           >
-            {tt("view_methodology", locale)} →
+            {tt(hasEstimate ? "view_methodology" : "view_value_context", locale)} →
           </button>
         </p>
       </div>
@@ -223,6 +262,7 @@ export default function ProvenanceReveal({
         onClose={() => setMethodologyOpen(false)}
         locale={locale}
         salesCount={hasEstimate ? comparableSalesCount : undefined}
+        body={methodBody}
       />
     </div>
   );

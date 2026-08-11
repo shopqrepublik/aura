@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { getArtwork } from "@/lib/artworks";
 import { proxyImageUrl } from "@/lib/visitPalette";
+import { formatVisitValueHeadline, summarizeVisitValue } from "@/lib/valueReveal";
 import CollectorsSeal from "@/components/ui/CollectorsSeal";
 import { tt } from "@/lib/i18n";
 import { artworkArtistDisplayName } from "@/lib/artist-display";
@@ -29,8 +30,8 @@ export default function RecapStrip({ locale }: { locale: Locale }) {
   if (works.length === 0) return null;
 
   const artists = new Set(works.map((w) => artworkArtistDisplayName(w, locale)));
-  const totalLow = works.reduce((s, w) => s + (w.estimate.low || 0), 0);
-  const totalHigh = works.reduce((s, w) => s + (w.estimate.high || 0), 0);
+  const valueSummary = summarizeVisitValue(works);
+  const valueHeadline = formatVisitValueHeadline(valueSummary, locale);
   const heroWork = works[0];
 
   return (
@@ -60,7 +61,7 @@ export default function RecapStrip({ locale }: { locale: Locale }) {
               {tt("desktop_recap_eyebrow", locale)}
             </div>
             <div style={{ fontFamily: "var(--font-editorial)", fontSize: 42, lineHeight: 0.95, color: "#EFE2CE" }}>
-              {tt("desktop_recap_you_saw", locale)} €{totalLow}–{totalHigh}M {tt("desktop_recap_of_art", locale)}
+              {tt("desktop_recap_you_saw", locale)} {valueHeadline} {tt("desktop_recap_of_art", locale)}
             </div>
             <p className="mt-1 text-[13px]" style={{ color: "rgba(243,232,215,0.72)" }}>
               {tt("desktop_recap_sub", locale)}

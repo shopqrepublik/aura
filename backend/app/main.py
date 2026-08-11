@@ -86,6 +86,7 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 from .auth import get_current_user  # noqa: E402
 from .catalog import (  # noqa: E402
     CatalogUnavailableError,
+    aggregate_eligible_value,
     count_catalog_artworks,
     get_catalog_artwork,
     get_catalog_artworks_by_ids,
@@ -981,16 +982,22 @@ def visit_progress(
     except CatalogUnavailableError as e:
         raise HTTPException(status_code=503, detail=str(e))
     artists = {a["artist"] for a in seen if a.get("artist")}
-    # estimate_low/high are null until an editor reviews them (§8.4, §11) — most
-    # of the catalog has none yet, so unreviewed works simply don't add to the total.
-    value_low = sum(a["estimate_low"] for a in seen if a["estimate_low"] is not None)
-    value_high = sum(a["estimate_high"] for a in seen if a["estimate_high"] is not None)
+    aggregate_values = [value for a in seen if (value := aggregate_eligible_value(a)) is not None]
+    value_low = sum(value["low"] for value in aggregate_values)
+    value_high = sum(value["high"] for value in aggregate_values)
+    market_context_count = sum(1 for a in seen if (a.get("value_reveal") or {}).get("mode") == "MARKET_CONTEXT")
+    beyond_market_count = sum(1 for a in seen if (a.get("value_reveal") or {}).get("mode") == "BEYOND_MARKET")
+    unvalued_count = len(seen) - len(aggregate_values) - market_context_count - beyond_market_count
 
     return {
         "works_count": len(seen),
         "artists_count": len(artists),
         "value_low_eur_m": value_low,
         "value_high_eur_m": value_high,
+        "estimated_value_artwork_count": len(aggregate_values),
+        "market_context_count": market_context_count,
+        "beyond_market_count": beyond_market_count,
+        "unvalued_count": unvalued_count,
         "route_completion_pct": round(100 * len(seen) / catalog_count, 1) if catalog_count else 0.0,
     }
 

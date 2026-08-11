@@ -6,6 +6,7 @@ import { artworkArtistDisplayName } from "@/lib/artist-display";
 import { resolveTitle } from "@/lib/artworks";
 import { generateRecapImage } from "@/lib/recap-image";
 import { buildVisitPalette, visitPaletteBaseBackground, visitPaletteTintOverlayBackground, GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
+import { formatEstimatedValueRange, formatVisitValueHeadline, formatVisitValueSubtitle, getAggregateEligibleValue, getMostValuableArtwork, summarizeVisitValue } from "@/lib/valueReveal";
 import { track } from "@/lib/analytics";
 import CollectorsSeal from "@/components/ui/CollectorsSeal";
 import type { AppState } from "@/lib/app-state";
@@ -70,9 +71,10 @@ export default function RecapScreen({
   }, []);
 
   const artists = new Set(seenArtworks.map((a) => artworkArtistDisplayName(a, state.locale)));
-  const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
-  const totalHigh = seenArtworks.reduce((s, a) => s + (a.estimate.high || 0), 0);
-  const hasAnyEstimate = seenArtworks.some((a) => a.estimate.high != null);
+  const valueSummary = summarizeVisitValue(seenArtworks);
+  const totalLow = valueSummary.estimatedValueLow;
+  const totalHigh = valueSummary.estimatedValueHigh;
+  const hasAnyEstimate = valueSummary.hasEstimatedValue;
 
   // recap_generated (§13): fires once per mount, i.e. once per completed
   // visit that reaches this screen -- RecapScreen only ever mounts fresh
@@ -87,11 +89,8 @@ export default function RecapScreen({
   const mins = now && state.startTime ? Math.max(1, Math.round((now - state.startTime) / 60000)) : 0;
   const timeStr = mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`;
 
-  const favArt = seenArtworks.find((a) => state.favorites.has(a.id)) ?? seenArtworks[0] ?? null;
-  const withEstimate = seenArtworks.filter((a) => a.estimate.high != null);
-  const mostValuable = withEstimate.length
-    ? withEstimate.slice().sort((a, b) => (b.estimate.high ?? 0) - (a.estimate.high ?? 0))[0]
-    : favArt;
+  const mostValuable = getMostValuableArtwork(seenArtworks);
+  const mostValuableAggregate = mostValuable ? getAggregateEligibleValue(mostValuable) : null;
 
   const visitTimestamp = state.startTime ?? now;
   const dateStr = visitTimestamp ? formatDate(visitTimestamp) : "";
@@ -115,16 +114,17 @@ export default function RecapScreen({
   // reviewed subset (`.reduce` treats null as 0) — this makes that visible
   // instead of letting the number read as "everything you scanned".
   const valueNote =
-    hasAnyEstimate && withEstimate.length < seenArtworks.length
+    hasAnyEstimate && valueSummary.estimatedValueArtworkCount < seenArtworks.length
       ? tt("value_seen_partial_note", state.locale)
-          .replace("{n}", String(withEstimate.length))
+          .replace("{n}", String(valueSummary.estimatedValueArtworkCount))
           .replace("{total}", String(seenArtworks.length))
       : null;
 
   const worksLabel = seenArtworks.length === 1 ? tt("stat_work_one", state.locale) : tt("works_seen_count", state.locale).toLowerCase();
   const artistsLabel = artists.size === 1 ? tt("stat_artist_one", state.locale) : tt("stat_artists", state.locale).toLowerCase();
 
-  const headlineText = hasAnyEstimate ? `€${totalLow}–${totalHigh}M` : tt("pending_review", state.locale);
+  const headlineText = formatVisitValueHeadline(valueSummary, state.locale);
+  const headlineSubtitle = formatVisitValueSubtitle(valueSummary, state.locale);
   // Discrete size steps, shifted into §6's "Recap value" clamp range
   // (70-92px) -- bigger than the Card-level Provenance Reveal price since
   // this is the poster's own culmination number, not a compact card figure.
@@ -140,11 +140,15 @@ export default function RecapScreen({
       artistsCount: artists.size,
       timeStr,
       hasAnyEstimate,
-      reviewedCount: withEstimate.length,
+      reviewedCount: valueSummary.estimatedValueArtworkCount,
       totalLow,
       totalHigh,
+      marketContextCount: valueSummary.marketContextCount,
+      beyondMarketCount: valueSummary.beyondMarketCount,
+      unvaluedCount: valueSummary.unvaluedCount,
       mostValuable,
-      mostValuableHasEstimate: mostValuable?.estimate.high != null,
+      mostValuableHasEstimate: mostValuableAggregate != null,
+      mostValuableValueText: mostValuableAggregate ? formatEstimatedValueRange(mostValuableAggregate) : null,
       mostValuableTitle: mostValuable ? resolveTitle(mostValuable, state.locale) : "",
       isBillion,
       paletteAccents: palette.accents,
@@ -170,7 +174,7 @@ export default function RecapScreen({
         : tt("share_visit_pending", state.locale)
             .replace("{count}", String(seenArtworks.length))
             .replace("{works}", worksLabel)
-            .replace("{value}", tt("pending_review", state.locale));
+            .replace("{value}", headlineText);
       const blob = await buildImage();
       const file = blob ? new File([blob], "elyio-visit-recap.png", { type: "image/png" }) : null;
 
@@ -362,7 +366,7 @@ export default function RecapScreen({
             {headlineText}
           </div>
           <div className="mt-2 font-medium" style={{ fontFamily: "var(--font-editorial)", fontSize: 22, letterSpacing: "-0.01em", color: "#F3E8D7", opacity: 0.92 }}>
-            {hasAnyEstimate ? tt("in_estimated_market_value", state.locale) : tt("recap_value_pending_caption", state.locale)}
+            {headlineSubtitle}
           </div>
           {valueNote && (
             <div className="text-[11px] mt-1.5" style={{ color: "rgba(243,232,215,0.6)" }}>
@@ -419,7 +423,7 @@ export default function RecapScreen({
             <RecapThumbnail artwork={mostValuable} size="small" />
             <div>
               <div className="text-[10px] font-semibold tracking-[0.13em] uppercase" style={{ color: "rgba(243,232,215,0.65)" }}>
-                {mostValuable.estimate.high != null ? tt("most_valuable_today", state.locale) : tt("featured_today", state.locale)}
+                {tt("most_valuable_today", state.locale)}
               </div>
               <div className="mt-1.5 font-medium" style={{ fontFamily: "var(--font-editorial)", fontSize: 20, color: CREAM }}>
                 {artworkArtistDisplayName(mostValuable, state.locale)}
@@ -428,9 +432,7 @@ export default function RecapScreen({
                 {resolveTitle(mostValuable, state.locale)}
               </div>
               <div className="mt-1 text-[13px] font-medium tabular-nums" style={{ color: "rgba(243,232,215,0.92)" }}>
-                {mostValuable.estimate.high != null
-                  ? `€${mostValuable.estimate.low}–${mostValuable.estimate.high}M EST.`
-                  : tt("estimate_pending", state.locale)}
+                {mostValuableAggregate ? `${formatEstimatedValueRange(mostValuableAggregate)} EST.` : tt("estimate_pending", state.locale)}
               </div>
             </div>
           </div>

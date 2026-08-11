@@ -218,6 +218,11 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   live_progress: { en: "Live Progress", fr: "Progression en direct", "zh-Hans": "实时进度" },
   missions_label: { en: "Missions", fr: "Missions", "zh-Hans": "任务" },
   stat_value_seen: { en: "Value seen", fr: "Valeur découverte", "zh-Hans": "已发现价值" },
+  value_context_work_one: { en: "1 context work", fr: "1 œuvre avec contexte", "zh-Hans": "1件有价值背景的作品" },
+  value_context_work_other: { en: "{n} context works", fr: "{n} œuvres avec contexte", "zh-Hans": "{n}件有价值背景的作品" },
+  market_context_seen: { en: "financial context, not estimated value", fr: "contexte financier, pas valeur estimée", "zh-Hans": "金融背景，不是估值" },
+  beyond_market_icons_seen: { en: "beyond-market icons", fr: "icônes hors marché", "zh-Hans": "超出市场的名作" },
+  context_and_beyond_market_seen: { en: "context and beyond-market works", fr: "œuvres avec contexte et hors marché", "zh-Hans": "价值背景与超出市场的作品" },
   stat_works: { en: "Works", fr: "Œuvres", "zh-Hans": "作品数" },
   stat_time: { en: "Time", fr: "Durée", "zh-Hans": "用时" },
   stat_museum: { en: "Museum", fr: "Musée", "zh-Hans": "馆内进度" },
@@ -264,7 +269,11 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   generating_image: { en: "Preparing image…", fr: "Préparation de l'image…", "zh-Hans": "正在生成图片…" },
 
   // Design-direction-v3 "The Curated Reveal", ProvenanceReveal component.
+  estimated_value_label: { en: "Estimated value", fr: "Valeur estimée", "zh-Hans": "估算价值" },
   market_context_label: { en: "Market context", fr: "Contexte de marché", "zh-Hans": "市场背景" },
+  beyond_market_label: { en: "Beyond the market", fr: "Au-delà du marché", "zh-Hans": "超出市场价格" },
+  not_artwork_value_label: { en: "Not this artwork's estimated value", fr: "Pas l'estimation de cette œuvre", "zh-Hans": "不是这件作品的估值" },
+  view_value_context: { en: "View context", fr: "Voir le contexte", "zh-Hans": "查看背景" },
   // Exact fr/zh wording from design-direction-v3.md §9's own multilingual
   // example -- used verbatim rather than re-translated.
   estimated_market_range: {
@@ -301,6 +310,21 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     en: "Each range is an editorial estimate, drafted by comparing this work to real public auction results for comparable artists, periods, subjects, sizes and provenance, then reviewed for museum significance. It reflects public market data, not a private valuation of this specific museum-held work — which is not for sale and has no formal appraisal.",
     fr: "Chaque fourchette est une estimation éditoriale, établie en comparant cette œuvre à des résultats de ventes aux enchères publiques pour des artistes, périodes, sujets, tailles et provenances comparables, puis réexaminée au regard de son importance muséale. Elle reflète des données de marché public, non une expertise privée de cette œuvre précise conservée au musée — laquelle n'est pas à vendre et n'a fait l'objet d'aucune expertise formelle.",
     "zh-Hans": "每个估值区间都是编辑性估算，通过将该作品与可比艺术家、年代、主题、尺寸及来源的真实公开拍卖结果进行比较后得出，并结合其博物馆重要性进行复核。该区间反映的是公开市场数据，而非对这件博物馆藏品本身的私人估价——该作品并非用于出售，也未经过正式鉴定。",
+  },
+  market_context_disclaimer: {
+    en: "This is financial context around the work, not an appraisal, insurance value, or sale estimate for this museum object.",
+    fr: "Il s'agit d'un contexte financier autour de l'œuvre, non d'une expertise, d'une valeur d'assurance ou d'une estimation de vente de cet objet de musée.",
+    "zh-Hans": "这是围绕作品的金融背景，不是对这件博物馆藏品的鉴定、保险价值或出售估价。",
+  },
+  beyond_market_disclaimer: {
+    en: "This work is outside ordinary private-market valuation and is not represented by a sale estimate.",
+    fr: "Cette œuvre échappe à l'évaluation ordinaire du marché privé et n'est pas représentée par une estimation de vente.",
+    "zh-Hans": "这件作品不适合用普通私人市场估值来表示，也不以出售估价呈现。",
+  },
+  mixed_value_recap_subtitle: {
+    en: "{n} of {total} works included in estimated value, plus {context} context/icon works",
+    fr: "{n} sur {total} œuvres incluses dans la valeur estimée, plus {context} œuvres de contexte ou hors marché",
+    "zh-Hans": "{total}件中有{n}件计入估值，另有{context}件为背景或超出市场作品",
   },
   reveal_pending_review_note: {
     en: "This work hasn't been reviewed for a market estimate yet.",
