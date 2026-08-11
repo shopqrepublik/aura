@@ -3,6 +3,7 @@ import { getArtwork } from "@/lib/artworks";
 import { proxyImageUrl } from "@/lib/visitPalette";
 import CollectorsSeal from "@/components/ui/CollectorsSeal";
 import { tt } from "@/lib/i18n";
+import { artworkArtistDisplayName } from "@/lib/artist-display";
 import type { Locale } from "@/lib/types";
 
 // Same real 11-work set app/design/page.tsx's own showcase already uses to
@@ -27,7 +28,7 @@ export default function RecapStrip({ locale }: { locale: Locale }) {
   const works = RECAP_DEMO_IDS.map((id) => getArtwork(id)).filter((w): w is NonNullable<typeof w> => !!w);
   if (works.length === 0) return null;
 
-  const artists = new Set(works.map((w) => w.artist));
+  const artists = new Set(works.map((w) => artworkArtistDisplayName(w, locale)));
   const totalLow = works.reduce((s, w) => s + (w.estimate.low || 0), 0);
   const totalHigh = works.reduce((s, w) => s + (w.estimate.high || 0), 0);
   const heroWork = works[0];

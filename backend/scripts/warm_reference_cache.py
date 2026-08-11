@@ -4,7 +4,7 @@ Pre-fetches and caches every catalog work's reference image to
 backend/.reference_cache/, so the first real scan of each work doesn't pay
 for a live Wikimedia Commons download inside visual_verify_single_candidate().
 
-Run once after deploy / whenever DEMO_ARTWORKS changes:
+Run once after deploy / whenever the DB-backed catalog changes:
     python backend/scripts/warm_reference_cache.py
 
 Sequential with a delay between requests — Wikimedia Commons rate-limits
@@ -25,15 +25,39 @@ fall back to a live, now-safe-by-construction fetch at request time).
 import os
 import sys
 import time
+import argparse
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+from app.catalog import get_recognition_candidates
+from app.db import SessionLocal
 from app.main import DEMO_ARTWORKS, REFERENCE_CACHE_DIR, _fetch_reference_image_b64
 
+
+def _load_db_catalog(museum_ids: list[str]) -> list[dict]:
+    if SessionLocal is None:
+        raise SystemExit("DATABASE_URL not set; refusing to warm from DEMO_ARTWORKS without --demo-reference")
+    with SessionLocal() as session:
+        rows: list[dict] = []
+        for museum_id in museum_ids:
+            rows.extend(get_recognition_candidates(session, museum_id))
+        return rows
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--museum-id", action="append")
+    parser.add_argument(
+        "--demo-reference",
+        action="store_true",
+        help="warm from DEMO_ARTWORKS instead of the DB catalog; rollback/reference use only",
+    )
+    args = parser.parse_args()
+
+    museum_ids = args.museum_id or ["orsay", "orangerie"]
+    catalog = DEMO_ARTWORKS if args.demo_reference else _load_db_catalog(museum_ids)
     os.makedirs(REFERENCE_CACHE_DIR, exist_ok=True)
-    total = len(DEMO_ARTWORKS)
+    total = len(catalog)
     failed = []
-    for i, artwork in enumerate(DEMO_ARTWORKS, 1):
+    for i, artwork in enumerate(catalog, 1):
         cache_path = os.path.join(REFERENCE_CACHE_DIR, f'{artwork["id"]}.jpg')
         if os.path.exists(cache_path):
             print(f"[{i}/{total}] {artwork['id']} already cached, skip")

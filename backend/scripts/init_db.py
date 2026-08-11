@@ -1,9 +1,7 @@
 """
 One-time (and safe to re-run) setup against the real Supabase Postgres
 database: creates every table declared in app/models.py (§9.2's canonical
-schema -- most of it, e.g. artworks/museums, stays unused for now since the
-catalog is still served from DEMO_ARTWORKS in main.py; only users/visits/
-visit_artworks are actually read/written yet), then adds the one constraint
+schema), then adds the one constraint
 SQLAlchemy can't express on its own: users.id -> auth.users(id), a
 cross-schema FK into Supabase Auth's own table.
 
@@ -48,6 +46,9 @@ with Session(engine) as session:
     if session.get(Museum, "orangerie") is None:
         session.add(Museum(id="orangerie", name="Musée de l'Orangerie", lat=48.86384535145145, lng=2.322538337460585, geofence_radius_m=150))
         session.commit()
+    # Louvre is intentionally not seeded by this generic setup path. It is
+    # introduced by the separate approved Louvre import phase, after the
+    # DB-backed catalog migration has proven Orsay/Orangerie parity.
 
 print("Adding users.id -> auth.users(id) FK (idempotent)...")
 with engine.begin() as conn:

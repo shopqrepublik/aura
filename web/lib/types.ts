@@ -29,7 +29,7 @@ export interface Estimate {
 
 export interface Artwork {
   id: string;
-  artist: string;
+  artist: string | null;
   year: string;
   hall: string | null;
   inventoryNumber: string;

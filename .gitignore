@@ -41,3 +41,11 @@ aura-mvp.zip
 # Point-in-time output of backend/scripts/latency_test.py -- rerun the
 # script for current numbers rather than trusting a stale committed copy.
 /latency_test_results.json
+
+# Louvre importer test-run output (raw/normalized records, checkpoints,
+# error logs) -- regenerable from the live source via
+# backend/scripts/louvre_import.py, not itself source data. Explicitly NOT
+# committed while this pilot is still test-scale and un-reviewed.
+/backend/data/louvre/
+
+.vercel

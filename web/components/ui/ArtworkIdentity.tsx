@@ -25,11 +25,13 @@ import { usePrefersReducedMotion } from "@/lib/cardReveal";
 // text) does that job AFTER the reveal instead, so nothing is shown twice.
 export default function ArtworkIdentity({
   artist,
+  artistFallback,
   title,
   year,
   hookText,
 }: {
-  artist: string;
+  artist: string | null;
+  artistFallback: string;
   title: string;
   year: string;
   hookText: string;
@@ -50,7 +52,7 @@ export default function ArtworkIdentity({
   return (
     <div>
       <div className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#696763]">
-        {artist.toUpperCase()}
+        {(artist || artistFallback).toUpperCase()}
       </div>
       {/* Editorial serif title -- catalogue-entry weight, not an app
           screen title. Falls through to Georgia/serif for zh-Hans (Cormorant

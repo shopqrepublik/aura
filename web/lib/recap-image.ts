@@ -1,4 +1,5 @@
 import { tt } from "@/lib/i18n";
+import { artworkArtistDisplayName } from "@/lib/artist-display";
 import { paintVisitPaletteCanvas, paintGrainCanvas, paintThumbnailsCanvas, paintAnchorThumbnailCanvas } from "@/lib/visitPalette";
 import type { Artwork, Locale } from "@/lib/types";
 
@@ -273,7 +274,7 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
     y += 54;
     ctx.fillStyle = CREAM;
     ctx.font = `500 46px ${SERIF_STACK}`;
-    ctx.fillText(data.mostValuable.artist, textX, y);
+    ctx.fillText(artworkArtistDisplayName(data.mostValuable, data.locale), textX, y);
     if (data.mostValuableTitle) {
       y += 42;
       ctx.fillStyle = "rgba(243,232,215,0.7)";

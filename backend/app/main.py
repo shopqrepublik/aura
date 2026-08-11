@@ -84,7 +84,14 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 # VISITS dict below -- every /v1/visits* endpoint now requires a verified
 # Supabase JWT and persists to real Postgres (see app/db.py, app/auth.py).
 from .auth import get_current_user  # noqa: E402
-from .db import get_db  # noqa: E402
+from .catalog import (  # noqa: E402
+    CatalogUnavailableError,
+    count_catalog_artworks,
+    get_catalog_artwork,
+    get_catalog_artworks_by_ids,
+    get_recognition_candidates,
+)
+from .db import SessionLocal, get_db  # noqa: E402
 from .models import Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
@@ -339,11 +346,13 @@ FUZZY_CANDIDATE_THRESHOLD = 0.55
 FUZZY_ARTIST_GATE = 0.5  # candidates below this artist-name similarity are never considered
 
 
-def fuzzy_match_catalog(artist: Optional[str], title: Optional[str], museum_id: Optional[str] = None):
-    """Matches a freely-stated (artist, title) against DEMO_ARTWORKS, scoped to
-    a single museum's works -- without this, a photo taken at one museum could
-    fuzzy-match a same-titled or similarly-named work cataloged for a
-    different museum. Returns (best_match_or_None, best_score, runner_up_or_None)."""
+def fuzzy_match_catalog(artist: Optional[str], title: Optional[str], candidates: List[dict]):
+    """Rank caller-supplied museum-scoped candidates by artist/title text.
+
+    Museum scoping intentionally happens before this function, in the DB
+    catalog query. The matcher must not fetch or filter a global catalog on
+    its own.
+    """
     from rapidfuzz import fuzz  # imported lazily, same rationale as the openai import above
 
     if not title:
@@ -352,19 +361,21 @@ def fuzzy_match_catalog(artist: Optional[str], title: Optional[str], museum_id: 
     title_n = _normalize_for_matching(title)
     artist_n = _normalize_for_matching(artist or "")
 
-    candidates = [a for a in DEMO_ARTWORKS if a.get("museum_id") == museum_id] if museum_id else DEMO_ARTWORKS
-
     scored = []
     for a in candidates:
-        artist_score = fuzz.token_sort_ratio(artist_n, _normalize_for_matching(a["artist"])) / 100
-        if artist_score < FUZZY_ARTIST_GATE:
-            continue
+        candidate_artist_n = _normalize_for_matching(a.get("artist") or "")
+        if artist_n and candidate_artist_n:
+            artist_score = fuzz.token_sort_ratio(artist_n, candidate_artist_n) / 100
+            if artist_score < FUZZY_ARTIST_GATE:
+                continue
+        else:
+            artist_score = None
         cat_title_n = _normalize_for_matching(a["title"])
         title_score = max(
             fuzz.token_sort_ratio(title_n, cat_title_n),
             fuzz.partial_ratio(title_n, cat_title_n),
         ) / 100
-        combined = 0.35 * artist_score + 0.65 * title_score
+        combined = title_score if artist_score is None else 0.35 * artist_score + 0.65 * title_score
         scored.append((combined, a))
 
     if not scored:
@@ -599,13 +610,14 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
 
     client = OpenAI(api_key=OPENAI_API_KEY)
     ref_b64 = _fetch_reference_image_b64(candidate)
+    candidate_artist = candidate.get("artist") or "creator not specified"
 
     system_prompt = (
         "You are verifying whether a museum visitor's photo shows the SAME specific artwork as "
         "a reference image — not just a similar or same-artist work, and not just a work with a "
         "similar-sounding title. A different painting by the same artist, or a different work that "
         "happens to share a generic title, does NOT count as a match — only the same physical "
-        f'object counts. The reference image is: {candidate["artist"]} — "{candidate["title"]}" '
+        f'object counts. The reference image is: {candidate_artist} — "{candidate["title"]}" '
         f'({candidate["year"]}).\n\n'
         'Respond with a single valid json object only, no prose, no markdown fences: '
         '{"is_match": true or false, "confidence": <0-1 float, how confident you are in this judgment>}.'
@@ -629,10 +641,10 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
     return json.loads(resp.choices[0].message.content)
 
 
-def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional[str]) -> dict:
+def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional[str], candidates: List[dict]) -> dict:
     """
     Hybrid: open recognition (no candidate list) -> fuzzy text match against
-    DEMO_ARTWORKS -> up to TWO visual verification calls, but only when a
+    the DB-backed, museum-scoped catalog -> up to TWO visual verification calls, but only when a
     candidate was actually found. Two fast paths skip the visual call
     entirely (model recognized nothing, or nothing in the catalog is even
     textually close); only a real candidate pays the extra latency. See
@@ -668,7 +680,7 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
     if not title:
         return {"artwork_id": None, "confidence": 0.0, "alternatives": []}  # fast path: nothing recognized
 
-    match, match_score, runner_up = fuzzy_match_catalog(artist, title, museum_id)
+    match, match_score, runner_up = fuzzy_match_catalog(artist, title, candidates)
     if not match or match_score < FUZZY_CANDIDATE_THRESHOLD:
         return {  # fast path: recognized something, but nothing catalog-adjacent
             "artwork_id": None,
@@ -749,7 +761,6 @@ def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museu
     startVisit)."""
     if not artist or not title:
         return
-    from .db import SessionLocal
 
     if SessionLocal is None:
         return
@@ -776,13 +787,18 @@ def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museu
 
 # ---- Recognition (§12, §8.3 confidence policy) -------------------------
 @app.post("/v1/recognize", response_model=RecognizeResponse)
-def recognize(req: RecognizeRequest):
+def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
     if not req.image_base64:
         raise HTTPException(status_code=400, detail="image_base64 required")
 
+    try:
+        candidates = get_recognition_candidates(db, req.museum_id)
+    except CatalogUnavailableError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+
     if OPENAI_API_KEY:
         try:
-            result = recognize_with_vision(req.image_base64, req.museum_id, req.hall_hint)
+            result = recognize_with_vision(req.image_base64, req.museum_id, req.hall_hint, candidates)
         except Exception as e:
             raise HTTPException(status_code=502, detail=f"recognition failed: {e}")
 
@@ -790,8 +806,9 @@ def recognize(req: RecognizeRequest):
         confidence = float(result.get("confidence", 0))
         alternatives = result.get("alternatives", [])
         recognized_but_not_cataloged = result.get("recognized_but_not_cataloged")
+        candidate_ids = {a["id"] for a in candidates}
 
-        if not artwork_id or artwork_id not in {a["id"] for a in DEMO_ARTWORKS}:
+        if not artwork_id or artwork_id not in candidate_ids:
             if recognized_but_not_cataloged:
                 _log_uncataloged_sighting(
                     recognized_but_not_cataloged.get("artist"),
@@ -808,12 +825,14 @@ def recognize(req: RecognizeRequest):
             return RecognizeResponse(status="no_match", confidence=confidence)
 
     # Fallback mock — lets frontend/UI work run without an API key.
-    candidate = random.choice(DEMO_ARTWORKS)
+    if not candidates:
+        return RecognizeResponse(status="no_match", confidence=0.0)
+    candidate = random.choice(candidates)
     confidence = round(random.uniform(0.75, 0.99), 3)
     if confidence >= CONFIDENCE_AUTO:
         return RecognizeResponse(status="matched", artwork_id=candidate["id"], confidence=confidence)
     elif confidence >= CONFIDENCE_REVIEW:
-        alts = [a["id"] for a in random.sample(DEMO_ARTWORKS, k=min(2, len(DEMO_ARTWORKS)))]
+        alts = [a["id"] for a in random.sample(candidates, k=min(2, len(candidates)))]
         return RecognizeResponse(status="needs_confirmation", artwork_id=candidate["id"],
                                   confidence=confidence, alternatives=alts)
     else:
@@ -844,8 +863,11 @@ def list_museums(db: Session = Depends(get_db)):
 
 # ---- Artworks -----------------------------------------------------------
 @app.get("/v1/artworks/{artwork_id}")
-def get_artwork(artwork_id: str, locale: str = "en", mode: str = "normal"):
-    art = next((a for a in DEMO_ARTWORKS if a["id"] == artwork_id), None)
+def get_artwork_detail(artwork_id: str, locale: str = "en", mode: str = "normal", db: Session = Depends(get_db)):
+    try:
+        art = get_catalog_artwork(db, artwork_id)
+    except CatalogUnavailableError as e:
+        raise HTTPException(status_code=503, detail=str(e))
     if not art:
         raise HTTPException(status_code=404, detail="artwork not found")
     # Real implementation joins artworks + artwork_localizations(locale, mode)
@@ -929,6 +951,12 @@ def add_visit_artwork(
     db: Session = Depends(get_db),
 ):
     visit = _get_owned_visit(visit_id, current_user, db)
+    try:
+        artwork = get_catalog_artwork(db, body.artwork_id)
+    except CatalogUnavailableError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+    if not artwork or artwork.get("museum_id") != visit.museum_id:
+        raise HTTPException(status_code=404, detail="artwork not found")
     db.add(VisitArtwork(visit_id=visit.id, artwork_id=body.artwork_id, confidence=body.confidence, added=body.added))
     db.commit()
     count = db.query(VisitArtwork).filter(VisitArtwork.visit_id == visit.id).count()
@@ -944,8 +972,12 @@ def visit_progress(
     visit = _get_owned_visit(visit_id, current_user, db)
 
     seen_ids = {va.artwork_id for va in visit.artworks}
-    seen = [a for a in DEMO_ARTWORKS if a["id"] in seen_ids]
-    artists = {a["artist"] for a in seen}
+    try:
+        seen = get_catalog_artworks_by_ids(db, visit.museum_id, seen_ids)
+        catalog_count = count_catalog_artworks(db, visit.museum_id)
+    except CatalogUnavailableError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+    artists = {a["artist"] for a in seen if a.get("artist")}
     # estimate_low/high are null until an editor reviews them (§8.4, §11) — most
     # of the catalog has none yet, so unreviewed works simply don't add to the total.
     value_low = sum(a["estimate_low"] for a in seen if a["estimate_low"] is not None)
@@ -956,7 +988,7 @@ def visit_progress(
         "artists_count": len(artists),
         "value_low_eur_m": value_low,
         "value_high_eur_m": value_high,
-        "route_completion_pct": round(100 * len(seen) / len(DEMO_ARTWORKS), 1),
+        "route_completion_pct": round(100 * len(seen) / catalog_count, 1) if catalog_count else 0.0,
     }
 
 

@@ -9,6 +9,7 @@ import CardScreen from "@/components/screens/CardScreen";
 import ProgressScreen from "@/components/screens/ProgressScreen";
 import RecapScreen from "@/components/screens/RecapScreen";
 import { getArtwork } from "@/lib/artworks";
+import { artworkArtistDisplayName } from "@/lib/artist-display";
 import { tt } from "@/lib/i18n";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
@@ -237,7 +238,7 @@ const TYPE_ROWS = [
   { label: "Body 16px", sample: DEMO_ARTWORK.why.en, meta: "-0.011em / 450", size: "text-[16px] leading-[24px] font-[450] max-w-[520px]" },
   {
     label: "Caption 13px Upper",
-    sample: `${DEMO_ARTWORK.artist.toUpperCase()} • ${tt("frame_artwork_fully", "en").toUpperCase()}`,
+    sample: `${artworkArtistDisplayName(DEMO_ARTWORK, "en").toUpperCase()} • ${tt("frame_artwork_fully", "en").toUpperCase()}`,
     meta: "0.12em / 600",
     size: "text-[11px] font-semibold tracking-[0.12em] uppercase",
   },

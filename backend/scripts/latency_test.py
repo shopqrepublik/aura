@@ -82,7 +82,8 @@ def run_one(image_b64: str, museum_id: str = "orsay") -> dict:
     _last["verify_latency"] = None
     t0 = time.perf_counter()
     try:
-        result = backend.recognize_with_vision(image_b64, museum_id, None)
+        candidates = [a for a in backend.DEMO_ARTWORKS if a.get("museum_id") == museum_id]
+        result = backend.recognize_with_vision(image_b64, museum_id, None, candidates)
         err = None
     except Exception as e:  # rate limits, transient API errors -- recorded, not fatal to the run
         result = None

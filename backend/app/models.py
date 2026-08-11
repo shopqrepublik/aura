@@ -8,7 +8,8 @@ explicit via separate tables rather than flattened columns, so imports
 never silently overwrite reviewed editorial content.
 """
 from sqlalchemy import (
-    Column, String, Integer, Float, ForeignKey, DateTime, Boolean, JSON, Text
+    Column, String, Integer, Float, ForeignKey, DateTime, Boolean, JSON, Text,
+    Index, UniqueConstraint
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base, relationship
@@ -31,12 +32,27 @@ class Museum(Base):
 
 
 class Artwork(Base):
-    """Layer 1 — factual, imported from CMS workbook (§16)."""
+    """Layer 1 — factual, imported from CMS workbook (§16) or, since the
+    Louvre pilot, directly from a museum's own source-of-record API. See
+    docs/louvre-schema.md for the full design rationale behind the columns
+    added for that pilot (source/display-status/recognition-readiness)."""
     __tablename__ = "artworks"
+    __table_args__ = (
+        UniqueConstraint("source", "source_record_id", name="uq_artworks_source_record"),
+        Index("idx_artworks_museum_id", "museum_id"),
+        Index("idx_artworks_department", "department"),
+        Index("idx_artworks_display_status", "display_status"),
+        Index("idx_artworks_artist", "artist"),
+        Index("idx_artworks_creator_wikidata_qid", "creator_wikidata_qid"),
+        Index("idx_artworks_hall", "hall"),
+        Index("idx_artworks_object_type", "object_type"),
+    )
+
     id = Column(String, primary_key=True)           # e.g. "orsay_rf_1990"
     museum_id = Column(String, ForeignKey("museums.id"), nullable=False)
-    artist = Column(String, nullable=False)
+    artist = Column(String, nullable=True)
     title_original = Column(String, nullable=False)
+    title_complement = Column(String, nullable=True)
     year = Column(String)
     inventory_number = Column(String)
     hall = Column(String)
@@ -47,9 +63,69 @@ class Artwork(Base):
     tags = Column(JSON, default=list)
     source_urls = Column(JSON, default=list)
 
+    # --- Source provenance (Louvre pilot onward) ------------------------
+    # Every fact must be traceable back to where it came from -- never
+    # inferred or silently fabricated. Null for museums imported before
+    # this existed (Orsay/Orangerie's original Wikidata-based build).
+    source = Column(String, nullable=True)            # e.g. "louvre", "demo_artworks", "wikidata_cirrus"
+    source_record_id = Column(String, nullable=True)  # e.g. Louvre ARK id "cl010066107"
+    source_url = Column(String, nullable=True)
+    last_source_sync = Column(DateTime, nullable=True)
+    raw_json = Column(JSON, nullable=True)             # unmodified source payload, never partially overwritten
+
+    # --- Louvre-specific facts (nullable for other museums) ------------
+    department = Column(String, nullable=True)         # Louvre's curatorial-department field
+    collection = Column(String, nullable=True)
+    object_type = Column(String, nullable=True)
+    materials_and_techniques = Column(Text, nullable=True)
+    description = Column(Text, nullable=True)
+    provenance = Column(Text, nullable=True)
+    object_history = Column(Text, nullable=True)
+    historical_context = Column(Text, nullable=True)
+    current_location_raw = Column(Text, nullable=True)  # verbatim currentLocation, kept even after classification
+    room = Column(String, nullable=True)
+    creator_wikidata_qid = Column(String, nullable=True)
+    creator_raw = Column(JSON, nullable=True)
+    creator_labels = Column(JSON, nullable=True)
+
+    # --- Three INDEPENDENT classification dimensions, evidence-based
+    # (never guessed from "has an image" or "belongs to this museum") --
+    # see docs/louvre-schema.md. Deliberately kept as three separate
+    # columns, never collapsed into one enum: an object must be able to be
+    # ON_DISPLAY + READY metadata + NEEDS_ASSET all at once.
+    display_status = Column(String, nullable=True)               # ON_DISPLAY | NOT_ON_DISPLAY | UNKNOWN
+    display_status_confidence = Column(String, nullable=True)    # HIGH | MEDIUM | LOW | UNKNOWN
+    display_status_reason = Column(Text, nullable=True)
+    metadata_status = Column(String, nullable=True)               # READY | PARTIAL | INSUFFICIENT
+    recognition_status = Column(String, nullable=True)            # READY | NEEDS_ASSET | NO_USABLE_ASSET | RIGHTS_REVIEW | RIGHTS_RESTRICTED
+    rights_status = Column(String, nullable=True)                 # evidence-only status for artwork-level rights metadata
+    rights_review_required = Column(Boolean, nullable=True)
+
     localizations = relationship("ArtworkLocalization", back_populates="artwork")
     estimates = relationship("ArtworkEstimate", back_populates="artwork")
     embeddings = relationship("ArtworkEmbedding", back_populates="artwork")
+    louvre_image_references = relationship("LouvreImageReference", back_populates="artwork")
+    recognition_assets = relationship("RecognitionAsset", back_populates="artwork")
+
+
+class SourceRecordIndex(Base):
+    """Enumeration layer only: known source records that may or may not have
+    fetched metadata. This is not an artwork catalog table."""
+    __tablename__ = "source_record_index"
+    __table_args__ = (
+        Index("idx_source_record_index_source", "source"),
+        Index("idx_source_record_index_ingestion_status", "ingestion_status"),
+    )
+
+    source = Column(String, primary_key=True)            # e.g. "louvre"
+    source_record_id = Column(String, primary_key=True)  # e.g. Louvre ARK id
+    source_url = Column(String, nullable=False)
+    sitemap_id = Column(String, nullable=True)
+    position_in_sitemap = Column(Integer, nullable=True)
+    prefix = Column(String, nullable=True)
+    discovered_at = Column(DateTime, nullable=True)
+    metadata_ingested_at = Column(DateTime, nullable=True)
+    ingestion_status = Column(String, nullable=True)
 
 
 class ArtworkLocalization(Base):
@@ -102,6 +178,68 @@ class ArtworkEmbedding(Base):
     created_at = Column(DateTime, default=now)
 
     artwork = relationship("Artwork", back_populates="embeddings")
+
+
+class LouvreImageReference(Base):
+    """Louvre's own published image URLs + per-image copyright strings --
+    METADATA ONLY. `fetched` is always False for every row this project's
+    Louvre importer creates: no image byte is ever downloaded, cached, or
+    proxied through our infrastructure in this phase (see
+    docs/louvre-source-audit.md §12-13 for why -- ADAGP's explicit AI/TDM
+    prohibition and robots.txt's named block on Anthropic/Claude bots on
+    image files). Deliberately a SEPARATE table from RecognitionAsset below
+    -- an artwork's Louvre-sourced metadata must never be conflated with
+    where its (future, independently-sourced) recognition image comes from.
+    """
+    __tablename__ = "louvre_image_references"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=False)
+    url_image = Column(String, nullable=False)
+    url_thumbnail = Column(String)
+    image_copyright = Column(String)          # verbatim Louvre copyright/credit string
+    image_credit = Column(String, nullable=True)
+    # Conservative, evidence-only classification -- NOT a creator-name/ADAGP
+    # heuristic (removed; that was a guess, not evidence). rights_status
+    # reflects only what the source record literally states;
+    # rights_review_required is True for every Louvre-sourced row in this
+    # phase (none have been cleared by an actual rights pipeline yet).
+    rights_status = Column(String)             # "museum_asserted_copyright" | "unknown"
+    rights_review_required = Column(Boolean, default=True)
+    rights_reason = Column(Text, nullable=True)
+    image_source = Column(String, default="louvre_collections")
+    image_type = Column(String)                # Louvre's own "type" field (angle/detail description)
+    position = Column(Integer)
+    fetched = Column(Boolean, default=False)   # ALWAYS False here -- documents intent, not just absent data
+
+    artwork = relationship("Artwork", back_populates="louvre_image_references")
+
+
+class RecognitionAsset(Base):
+    """Independent image layer for actual visual recognition -- deliberately
+    decoupled from wherever an artwork's factual metadata came from. The
+    Louvre importer NEVER writes to this table; it exists as the seam a
+    later, separately-vetted pipeline (Wikimedia Commons, Wikidata media,
+    our own photography, a future Rmn-GP license) attaches to once the
+    image-rights question has an actual answer. ai_tdm_eligible and
+    embedding_eligible are separate explicit booleans, never derived from
+    rights_status or from the underlying artwork's public-domain status --
+    "public domain artwork" says nothing about a specific photograph's
+    license."""
+    __tablename__ = "recognition_assets"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=False)
+    source = Column(String, nullable=False)     # e.g. "wikimedia_commons", "wikidata", "own_photograph", "rmn_gp_licensed"
+    source_url = Column(String, nullable=False)
+    license = Column(String)                     # e.g. "CC0", "CC-BY-SA-4.0", "PD-old-100", "proprietary_licensed"
+    attribution = Column(Text)
+    rights_status = Column(String)                # "public_domain" | "cc_licensed" | "proprietary_licensed" | "unknown"
+    ai_tdm_eligible = Column(Boolean, default=False)
+    embedding_eligible = Column(Boolean, default=False)
+    local_storage_status = Column(String, default="not_fetched")  # "not_fetched" | "cached" | "cache_expired"
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+    artwork = relationship("Artwork", back_populates="recognition_assets")
 
 
 class User(Base):
@@ -174,10 +312,10 @@ class VisitArtwork(Base):
     __tablename__ = "visit_artworks"
     id = Column(Integer, primary_key=True, autoincrement=True)
     visit_id = Column(String, ForeignKey("visits.id"), nullable=False)
-    # No FK into artworks(id): the catalog is still served from main.py's
-    # in-memory DEMO_ARTWORKS (unchanged by this task -- migrating it to
-    # real rows is separate, larger scope), so the artworks table stays
-    # empty and a real FK here would reject every insert.
+    # No DB-level FK into artworks(id) yet, to avoid invalidating any
+    # historic visit rows written before the catalog lived in Postgres. The
+    # API validates current writes against the DB-backed, museum-scoped
+    # catalog before inserting.
     artwork_id = Column(String, nullable=False)
     confidence = Column(Float)
     added = Column(Boolean, default=False)

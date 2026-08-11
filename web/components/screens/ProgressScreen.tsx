@@ -56,9 +56,13 @@ export default function ProgressScreen({
   const [now, setNow] = useState<number | null>(null);
 
   useEffect(() => {
-    setNow(Date.now());
-    const id = setInterval(() => setNow(Date.now()), 30000);
-    return () => clearInterval(id);
+    const tick = () => setNow(Date.now());
+    const initialId = window.setTimeout(tick, 0);
+    const intervalId = window.setInterval(tick, 30000);
+    return () => {
+      window.clearTimeout(initialId);
+      window.clearInterval(intervalId);
+    };
   }, []);
 
   const totalLow = seenArtworks.reduce((sum, a) => sum + (a.estimate.low || 0), 0);
@@ -197,8 +201,8 @@ export default function ProgressScreen({
               <div className="text-[11px] uppercase tracking-[0.1em] text-[#67635C]">{tt("deep_focus", state.locale)}</div>
               <div className="text-[14px] font-medium text-[#181714] mt-1">
                 {focusMins < 1
-                  ? `< 1 min · ${state.currentArtwork.artist}`
-                  : `${focusMins.toFixed(1)} min · ${state.currentArtwork.artist}`}
+                  ? `< 1 min · ${state.currentArtwork.artist || tt("uncataloged_unknown_artist", state.locale)}`
+                  : `${focusMins.toFixed(1)} min · ${state.currentArtwork.artist || tt("uncataloged_unknown_artist", state.locale)}`}
               </div>
             </div>
             <div className="w-10 h-10 rounded-full bg-[#EDE6DA] shrink-0" />

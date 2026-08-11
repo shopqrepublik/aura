@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type CSSProperties } from "react";
 import { tt } from "@/lib/i18n";
+import { artworkArtistDisplayName } from "@/lib/artist-display";
 import { resolveTitle } from "@/lib/artworks";
 import { generateRecapImage } from "@/lib/recap-image";
 import { buildVisitPalette, visitPaletteBaseBackground, visitPaletteTintOverlayBackground, GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
@@ -64,10 +65,11 @@ export default function RecapScreen({
   // part of the initial SSR paint (the landing page's Screens showcase).
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
-    setNow(Date.now());
+    const id = window.setTimeout(() => setNow(Date.now()), 0);
+    return () => window.clearTimeout(id);
   }, []);
 
-  const artists = new Set(seenArtworks.map((a) => a.artist));
+  const artists = new Set(seenArtworks.map((a) => artworkArtistDisplayName(a, state.locale)));
   const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
   const totalHigh = seenArtworks.reduce((s, a) => s + (a.estimate.high || 0), 0);
   const hasAnyEstimate = seenArtworks.some((a) => a.estimate.high != null);
@@ -420,7 +422,7 @@ export default function RecapScreen({
                 {mostValuable.estimate.high != null ? tt("most_valuable_today", state.locale) : tt("featured_today", state.locale)}
               </div>
               <div className="mt-1.5 font-medium" style={{ fontFamily: "var(--font-editorial)", fontSize: 20, color: CREAM }}>
-                {mostValuable.artist}
+                {artworkArtistDisplayName(mostValuable, state.locale)}
               </div>
               <div className="text-[14px]" style={{ fontFamily: "var(--font-editorial)", color: "rgba(243,232,215,0.7)" }}>
                 {resolveTitle(mostValuable, state.locale)}

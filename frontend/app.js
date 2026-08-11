@@ -24,6 +24,10 @@ function t(key) {
   return (STR[key] && STR[key][state.locale]) || STR[key]?.en || key;
 }
 
+function artistName(artwork) {
+  return artwork.artist || "Unknown artist";
+}
+
 function goto(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -179,7 +183,7 @@ function renderCard(artwork, confidence) {
   document.getElementById("cardImage").textContent = artwork.image;
   document.getElementById("cardTitle").textContent = artwork.title[state.locale] || artwork.title.en;
   document.getElementById("cardArtist").textContent =
-    `${artwork.artist} · ${artwork.year}` + (artwork.hall ? ` · Hall ${artwork.hall}` : "");
+    `${artistName(artwork)} · ${artwork.year}` + (artwork.hall ? ` · Hall ${artwork.hall}` : "");
   document.getElementById("estimateValue").textContent =
     (artwork.estimate.low != null && artwork.estimate.high != null)
       ? `€${artwork.estimate.low}–${artwork.estimate.high}M`
@@ -259,7 +263,7 @@ document.querySelectorAll("[data-nav]").forEach(el => {
 // ---------- Visit Progress ----------
 function renderProgress() {
   const seenArtworks = state.seen.map(id => AURA_ARTWORKS.find(a => a.id === id));
-  const artists = new Set(seenArtworks.map(a => a.artist));
+  const artists = new Set(seenArtworks.map(a => artistName(a)));
   // estimate.low/high are null until an editor reviews them (§8.4, §11) —
   // unreviewed works simply don't add to the total instead of showing NaN.
   const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
@@ -282,7 +286,7 @@ function renderProgress() {
     row.className = "gallery-item";
     row.innerHTML = `<div class="gallery-thumb" style="background:${a.accent}">${a.image}</div>
       <div><div class="gallery-title">${a.title[state.locale] || a.title.en}</div>
-      <div class="gallery-sub">${a.artist}</div></div>`;
+      <div class="gallery-sub">${artistName(a)}</div></div>`;
     list.appendChild(row);
   });
   renderMissions();
@@ -301,7 +305,7 @@ function renderRecap() {
   const W = canvas.width, H = canvas.height;
 
   const seenArtworks = state.seen.map(id => AURA_ARTWORKS.find(a => a.id === id));
-  const artists = new Set(seenArtworks.map(a => a.artist));
+  const artists = new Set(seenArtworks.map(a => artistName(a)));
   // estimate.low/high are null until an editor reviews them (§8.4, §11) —
   // unreviewed works simply don't add to the total instead of showing NaN.
   const totalLow = seenArtworks.reduce((s, a) => s + (a.estimate.low || 0), 0);
@@ -359,7 +363,7 @@ function renderRecap() {
     wrapText(ctx, mostValuable.title[state.locale] || mostValuable.title.en, 100, y + 100, W - 200, 42);
     ctx.font = "500 26px -apple-system, sans-serif";
     ctx.globalAlpha = 0.85;
-    ctx.fillText(mostValuable.artist, 100, y + 150);
+    ctx.fillText(artistName(mostValuable), 100, y + 150);
     ctx.globalAlpha = 1;
     ctx.font = "800 44px -apple-system, sans-serif";
     ctx.fillText(

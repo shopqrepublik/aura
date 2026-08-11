@@ -136,6 +136,7 @@ export default function CardScreen({
         <ArtworkIdentity
           key={`identity-${revealKey}`}
           artist={artwork.artist}
+          artistFallback={tt("uncataloged_unknown_artist", state.locale)}
           title={title}
           year={artwork.year}
           hookText={excluded ? exclusionMessage : why}

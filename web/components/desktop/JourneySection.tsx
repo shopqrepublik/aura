@@ -2,6 +2,7 @@ import { getArtwork, resolveTitle } from "@/lib/artworks";
 import { proxyImageUrl } from "@/lib/visitPalette";
 import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
 import { tt } from "@/lib/i18n";
+import { artworkArtistDisplayName } from "@/lib/artist-display";
 import type { Locale } from "@/lib/types";
 
 // Round 6, Block 4 -- Journey is deliberately NOT hero language. The brief
@@ -49,7 +50,7 @@ export default function JourneySection({ locale }: { locale: Locale }) {
   const artwork = getArtwork(JOURNEY_ARTWORK_ID);
   if (!artwork) return null;
   const title = resolveTitle(artwork, locale);
-  const caption = `${artwork.artist} — ${title}`;
+  const caption = `${artworkArtistDisplayName(artwork, locale)} — ${title}`;
 
   const steps = [
     {
