@@ -112,6 +112,7 @@ function mapGoldenValueReveal(raw: RawValueReveal): ValueReveal | null {
 
 function loadPreviewRecords() {
   const file = path.join(process.cwd(), "..", "exports", "louvre", "content", "louvre_golden20_final.jsonl");
+  if (!fs.existsSync(file)) return [];
   return fs
     .readFileSync(file, "utf8")
     .trim()

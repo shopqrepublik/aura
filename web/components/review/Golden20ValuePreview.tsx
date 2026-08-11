@@ -28,6 +28,12 @@ export default function Golden20ValuePreview({ artworks, locale = "en" }: { artw
           </p>
         </div>
 
+        {artworks.length === 0 && (
+          <div className="rounded-[8px] border border-[rgba(24,23,20,0.10)] bg-[#FBF8F2] p-5 text-[14px] leading-6 text-[#67635C]">
+            Local Golden 20 export files are not present in this deployment. This review-only route is intentionally empty.
+          </div>
+        )}
+
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {artworks.map((artwork) => (
             <article key={artwork.id} className="rounded-[8px] border border-[rgba(24,23,20,0.10)] bg-[#FBF8F2] p-4">
