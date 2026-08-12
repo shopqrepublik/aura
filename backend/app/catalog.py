@@ -129,7 +129,15 @@ def artwork_to_catalog_dict(
     reveal = explicit_value_reveal_to_dict(value_reveal) or estimate_to_value_reveal(estimate)
     recognition_image_url = artwork.image_url
     recognition_asset_id = None
-    if recognition_asset is not None and recognition_asset.embedding_eligible:
+    if (
+        recognition_asset is not None
+        and recognition_asset.embedding_eligible
+        # Louvre RecognitionAssets are currently quarantined at the product
+        # level until the identity audit is reconciled into production state.
+        # Do not let a rights-approved but identity-mismatched asset replace
+        # the authoritative artwork image/reference exposed to recognition/UI.
+        and artwork.museum_id != "louvre"
+    ):
         recognition_image_url = recognition_asset.source_url
         recognition_asset_id = recognition_asset.id
     return {

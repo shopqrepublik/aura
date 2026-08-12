@@ -115,6 +115,7 @@ function demoState(overrides: Partial<AppState>): AppState {
     seen: DEMO_SEEN_IDS,
     favorites: new Set(),
     added: new Set([DEMO_ARTWORK.id]),
+    catalogArtworks: {},
     currentArtwork: null,
     uncatalogedSighting: null,
     lastConfidence: 0.94,

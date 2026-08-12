@@ -52,8 +52,9 @@ full history with numbers):
      not a new failure introduced by scoping).
 
 Requires OPENAI_API_KEY in the environment (or a .env file, see
-.env.example). Falls back to the old random mock if the key is missing, so
-the frontend keeps working without a key during UI development.
+.env.example). The old random mock is available only when
+ALLOW_RECOGNITION_MOCK=true, so production cannot silently return random
+artworks if the AI provider is misconfigured.
 
 Run:
     pip install -r requirements.txt
@@ -66,6 +67,7 @@ import json
 import os
 import random
 import re
+import time
 import uuid
 from datetime import datetime, timezone
 from typing import Optional, List
@@ -109,6 +111,8 @@ app.add_middleware(
 )
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
+MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_BASE64_CHARS", "8000000"))
 RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
 # latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
@@ -266,6 +270,15 @@ CONFIDENCE_AUTO = 0.92
 CONFIDENCE_REVIEW = 0.82
 
 
+def _log_recognition_event(event: str, **properties) -> None:
+    payload = {
+        "event": event,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        **properties,
+    }
+    print(json.dumps(payload, ensure_ascii=False, default=str), flush=True)
+
+
 def recognize_open(image_base64: str, museum_id: str) -> dict:
     """
     Open recognition — no candidate list in the prompt at all. A 13-photo
@@ -301,6 +314,7 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
         '"depicted_subject": "<subject or null>", "inscriptions_visible": ["visible text", "..."], '
         '"dominant_visual_features": ["observable feature", "..."], '
         '"distinctive_features": ["specific distinguishing clue", "..."], '
+        '"visual_search_description": "<one concise evidence-only search phrase, or null>", '
         '"confidence_artist": <0-1 float>, "confidence_title": <0-1 float>, '
         '"confidence": <0-1 float>, '
         '"alternative_candidates": [{"artist": "<artist or null>", "title": "<title or null>", "confidence": <0-1 float>}]}'
@@ -335,7 +349,9 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
     data.setdefault("inscriptions_visible", [])
     data.setdefault("dominant_visual_features", [])
     data.setdefault("distinctive_features", [])
+    data.setdefault("visual_search_description", None)
     data["visual_clues"] = [
+        *[str(x) for x in [data.get("visual_search_description")] if x],
         *[str(x) for x in data.get("visual_clues", []) if x],
         *[str(x) for x in data.get("dominant_visual_features", []) if x],
         *[str(x) for x in data.get("distinctive_features", []) if x],
@@ -348,6 +364,46 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
 
 
 _ARTICLE_RE = re.compile(r"\b(the|a|an|la|le|les|l'|un|une)\b", re.IGNORECASE)
+_RECOGNITION_STOPWORDS = {
+    "and", "with", "from", "dans", "avec", "des", "les", "une", "pour",
+    "the", "this", "that", "work", "artwork", "object", "museum", "ancient",
+    "possibly", "likely", "visible", "small", "large", "round", "oval",
+}
+_RECOGNITION_SYNONYM_GROUPS = [
+    {"painting", "peinture", "tableau", "canvas", "toile", "huile", "oil"},
+    {"sculpture", "statue", "statuette", "relief", "marble", "marbre", "stone", "pierre"},
+    {"antiquity", "antiquities", "antique", "egyptian", "egypt", "egypte", "egyptien", "oriental", "mesopotamian", "mesopotamie"},
+    {"decorative", "decor", "decoration", "ornament", "ornement", "objet"},
+    {"islamic", "islam", "islamique"},
+    {"ceramic", "ceramique", "faience", "porcelain", "porcelaine", "glazed", "glacure", "glacure"},
+    {"metal", "metalwork", "metallic", "metallique", "metal", "bronze", "copper", "cuivre", "alloy", "alliage"},
+    {"wood", "bois", "grenadille"},
+    {"gold", "gilded", "dore", "or"},
+    {"silver", "argent", "inlaid", "inlay", "inlays", "incruste", "incrustation"},
+    {"enamel", "email", "emaux", "grisaille"},
+    {"inscription", "inscriptions", "writing", "script", "text", "texte", "ecriture", "hieroglyph", "hieroglyphic", "hieroglyphs", "hieroglyphe", "scribe"},
+    {"eye", "eyes", "oeil", "yeux", "pupil", "iris", "regard"},
+    {"cubit", "rod", "measuring", "measurement", "measure", "coudee", "regle", "graduation", "markings"},
+    {"plaque", "panel", "plate", "rectangular", "rectangle", "rectangulaire"},
+    {"basin", "bowl", "dish", "vessel", "vase", "recipient", "recipent", "recipient", "bassin", "coupe", "plat", "shallow"},
+    {"automaton", "automate", "mechanical", "paon", "peacock", "bird", "oiseau"},
+    {"animal", "animals", "lion", "bull", "bird", "horse", "serpent", "dragon", "lionne", "taureau", "cheval"},
+    {"female", "woman", "femme", "aphrodite", "venus", "nike", "draped", "drapery", "draperie", "himation", "chiton"},
+    {"missing", "fragment", "incomplete", "manque", "lacune", "fragmentaire", "incomplet"},
+    {"ship", "prow", "navire", "proue", "base", "socle"},
+    {"medallion", "medaillon", "central", "centre"},
+    {"vegetal", "floral", "flower", "plant", "feuillage", "vegetal", "fleur", "palmette"},
+    {"geometric", "geometry", "geometrical", "geometrique", "radial", "pattern", "motif", "patterned"},
+    {"portrait", "face", "visage", "head", "tete", "bust", "buste"},
+    {"battle", "war", "combat", "guerre", "victory", "victoire", "soldier", "soldat"},
+    {"coronation", "couronnement", "napoleon", "ceremony", "ceremonie"},
+    {"raft", "radeau", "shipwreck", "naufrage", "medusa", "meduse"},
+    {"liberty", "liberte", "tricolor", "tricolore", "flag", "drapeau", "barricade"},
+]
+_RECOGNITION_SYNONYMS: dict[str, set[str]] = {}
+for _group in _RECOGNITION_SYNONYM_GROUPS:
+    for _term in _group:
+        _RECOGNITION_SYNONYMS.setdefault(_term.lower(), set()).update(_group)
 
 
 def _normalize_for_matching(s: str) -> str:
@@ -357,6 +413,11 @@ def _normalize_for_matching(s: str) -> str:
     if not s:
         return ""
     s = s.replace("’", "'")
+    try:
+        import unicodedata
+        s = "".join(ch for ch in unicodedata.normalize("NFKD", s) if not unicodedata.combining(ch))
+    except Exception:
+        pass
     s = _ARTICLE_RE.sub(" ", s)
     return re.sub(r"\s+", " ", s).strip()
 
@@ -433,7 +494,11 @@ def _tokens(value: Optional[str]) -> set[str]:
     if not value:
         return set()
     value = _normalize_for_matching(value).lower()
-    return {t for t in re.findall(r"[a-zà-ÿ0-9]{3,}", value) if t not in {"and", "with", "from", "dans", "avec", "des", "les", "une", "pour"}}
+    raw = {t for t in re.findall(r"[a-z0-9]{3,}", value) if t not in _RECOGNITION_STOPWORDS}
+    expanded = set(raw)
+    for token in raw:
+        expanded.update(_RECOGNITION_SYNONYMS.get(token, set()))
+    return {t for t in expanded if len(t) >= 3 and t not in _RECOGNITION_STOPWORDS}
 
 
 def _candidate_search_text(candidate: dict) -> str:
@@ -453,6 +518,9 @@ def _candidate_search_text(candidate: dict) -> str:
         candidate.get("current_location_raw"),
         candidate.get("source_record_id"),
     ]
+    source_urls = candidate.get("source_urls") or []
+    if isinstance(source_urls, list):
+        parts.extend(str(x) for x in source_urls)
     creator_labels = candidate.get("creator_labels") or []
     if isinstance(creator_labels, list):
         parts.extend(str(x) for x in creator_labels)
@@ -494,13 +562,36 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
     clue_tokens = _tokens(" ".join(str(x) for x in visual_clues))
     object_tokens = _tokens(object_type)
     hall_tokens = _tokens(hall_hint)
+    candidate_tokens: dict[str, set[str]] = {}
+    document_frequency: dict[str, int] = {}
+    for candidate in candidates:
+        tokens = _tokens(_candidate_search_text(candidate))
+        candidate_tokens[candidate["id"]] = tokens
+        for token in tokens:
+            document_frequency[token] = document_frequency.get(token, 0) + 1
+
+    def weighted_overlap(query_tokens: set[str], search_tokens: set[str], cap_terms: int = 14) -> float:
+        if not query_tokens:
+            return 0.0
+        import math
+        weighted = [
+            (token, math.log((len(candidates) + 1) / (document_frequency.get(token, 0) + 1)) + 1.0)
+            for token in query_tokens
+        ]
+        weighted.sort(key=lambda item: item[1], reverse=True)
+        weighted = weighted[:cap_terms]
+        denom = sum(weight for _token, weight in weighted)
+        if denom <= 0:
+            return 0.0
+        hit = sum(weight for token, weight in weighted if token in search_tokens)
+        return hit / denom
 
     scored: list[tuple[float, dict, dict]] = []
     for candidate in candidates:
         candidate_title = _normalize_for_matching(candidate.get("title") or "")
         candidate_artist = _normalize_for_matching(candidate.get("artist") or "")
         search_text = _candidate_search_text(candidate)
-        search_tokens = _tokens(search_text)
+        search_tokens = candidate_tokens.get(candidate["id"]) or _tokens(search_text)
 
         title_score = 0.0
         if query_title and confidence_title >= 0.35:
@@ -518,16 +609,16 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
 
         clue_score = 0.0
         if clue_tokens:
-            clue_score = len(clue_tokens & search_tokens) / max(1, min(len(clue_tokens), 8))
+            clue_score = weighted_overlap(clue_tokens, search_tokens)
 
         object_score = 0.0
         if object_tokens:
-            object_score = len(object_tokens & search_tokens) / max(1, len(object_tokens))
+            object_score = weighted_overlap(object_tokens, search_tokens, cap_terms=6)
 
         ocr_tokens = _tokens(" ".join(str(x) for x in vision.get("inscriptions_visible") or []))
         ocr_score = 0.0
         if ocr_tokens:
-            ocr_score = len(ocr_tokens & search_tokens) / max(1, min(len(ocr_tokens), 8))
+            ocr_score = weighted_overlap(ocr_tokens, search_tokens, cap_terms=10)
 
         hall_score = 0.0
         if hall_tokens:
@@ -1232,16 +1323,27 @@ def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museu
 def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
     if not req.image_base64:
         raise HTTPException(status_code=400, detail="image_base64 required")
+    if len(req.image_base64) > MAX_RECOGNITION_IMAGE_BASE64_CHARS:
+        raise HTTPException(status_code=413, detail="image too large")
+    try:
+        base64.b64decode(req.image_base64, validate=True)
+    except Exception:
+        raise HTTPException(status_code=400, detail="image_base64 is not valid base64")
+
+    started = time.perf_counter()
+    _log_recognition_event("recognition_started", museum_id=req.museum_id, locale=req.locale)
 
     try:
         candidates = get_recognition_candidates(db, req.museum_id)
     except CatalogUnavailableError as e:
+        _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="catalog_unavailable")
         raise HTTPException(status_code=503, detail=str(e))
 
     if OPENAI_API_KEY:
         try:
             result = recognize_with_vision(req.image_base64, req.museum_id, req.hall_hint, candidates, benchmark_mode=req.benchmark_mode)
         except Exception as e:
+            _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="ai_error", latency_ms=round((time.perf_counter() - started) * 1000))
             raise HTTPException(status_code=502, detail=f"recognition failed: {e}")
 
         artwork_id = result.get("artwork_id")
@@ -1260,29 +1362,74 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                     recognized_but_not_cataloged.get("artist"),
                     recognized_but_not_cataloged.get("title"), req.museum_id,
                 )
+            _log_recognition_event(
+                "recognition_completed",
+                museum_id=req.museum_id,
+                status="no_match",
+                catalog_match=False,
+                confidence=confidence,
+                ai_candidate=recognized_but_not_cataloged,
+                resolved_artwork_id=None,
+                latency_ms=round((time.perf_counter() - started) * 1000),
+            )
             return RecognizeResponse(status="no_match", confidence=confidence,
                                       recognized_but_not_cataloged=recognized_but_not_cataloged,
                                       vision=vision, top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier)
         if confidence >= CONFIDENCE_AUTO:
+            _log_recognition_event(
+                "recognition_completed",
+                museum_id=req.museum_id,
+                status="matched",
+                catalog_match=True,
+                confidence=confidence,
+                resolved_artwork_id=artwork_id,
+                recognition_mode=recognition_mode,
+                latency_ms=round((time.perf_counter() - started) * 1000),
+            )
             return RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence,
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier)
         elif confidence >= CONFIDENCE_REVIEW:
+            _log_recognition_event(
+                "recognition_completed",
+                museum_id=req.museum_id,
+                status="needs_confirmation",
+                catalog_match=True,
+                confidence=confidence,
+                resolved_artwork_id=artwork_id,
+                recognition_mode=recognition_mode,
+                latency_ms=round((time.perf_counter() - started) * 1000),
+            )
             return RecognizeResponse(status="needs_confirmation", artwork_id=artwork_id,
                                       confidence=confidence, alternatives=alternatives,
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier)
         else:
+            _log_recognition_event(
+                "recognition_completed",
+                museum_id=req.museum_id,
+                status="no_match",
+                catalog_match=False,
+                confidence=confidence,
+                resolved_artwork_id=artwork_id,
+                recognition_mode=recognition_mode,
+                latency_ms=round((time.perf_counter() - started) * 1000),
+            )
             return RecognizeResponse(status="no_match", confidence=confidence,
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier)
 
-    # Fallback mock — lets frontend/UI work run without an API key.
+    # Development-only fallback mock. Production should fail explicitly when
+    # the AI provider is not configured, never return a random artwork.
+    if not ALLOW_RECOGNITION_MOCK:
+        _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="openai_key_missing")
+        raise HTTPException(status_code=503, detail="recognition is not configured")
     if not candidates:
+        _log_recognition_event("recognition_completed", museum_id=req.museum_id, status="no_match", catalog_match=False, confidence=0.0)
         return RecognizeResponse(status="no_match", confidence=0.0)
     candidate = random.choice(candidates)
     confidence = round(random.uniform(0.75, 0.99), 3)

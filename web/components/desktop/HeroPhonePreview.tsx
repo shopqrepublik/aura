@@ -60,6 +60,7 @@ export default function HeroPhonePreview({ locale }: { locale: Locale }) {
     seen: [artwork.id],
     favorites: new Set(),
     added: new Set(),
+    catalogArtworks: {},
     currentArtwork: artwork,
     uncatalogedSighting: null,
     lastConfidence: 0.97,

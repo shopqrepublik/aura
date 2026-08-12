@@ -36,6 +36,7 @@ export interface AppState {
   seen: string[]; // artwork ids, in scan order
   favorites: Set<string>;
   added: Set<string>;
+  catalogArtworks: Record<string, Artwork>;
   currentArtwork: Artwork | null;
   uncatalogedSighting: UncatalogedSighting | null;
   lastConfidence: number;
@@ -54,6 +55,7 @@ const initialState: AppState = {
   seen: [],
   favorites: new Set(),
   added: new Set(),
+  catalogArtworks: {},
   currentArtwork: null,
   uncatalogedSighting: null,
   lastConfidence: 0,
@@ -95,9 +97,28 @@ export function useElyioApp() {
   const recognizeFrame = useCallback(async (imageBase64: string) => {
     setState((s) => ({ ...s, scanStatus: "scanning" }));
     track("scan_attempt");
+    track("recognition_started", { museum_id: state.museumId });
     try {
       const result = await api.recognize(imageBase64, state.locale, state.museumId ?? "");
-      const artwork = result.artwork_id ? getArtwork(result.artwork_id) : undefined;
+      track("recognition_completed", {
+        museum_id: state.museumId,
+        status: result.status,
+        confidence: result.confidence,
+        recognition_mode: result.recognition_mode,
+        resolved_artwork_id: result.artwork_id,
+      });
+      let artwork = result.artwork_id
+        ? getArtwork(result.artwork_id) || state.catalogArtworks[result.artwork_id]
+        : undefined;
+
+      if (!artwork && result.artwork_id && result.status !== "no_match") {
+        try {
+          const raw = await api.getArtworkDetail(result.artwork_id, state.locale, state.mode);
+          artwork = api.artworkFromCatalogDetail(raw);
+        } catch {
+          artwork = undefined;
+        }
+      }
 
       if (!artwork || result.status === "no_match") {
         // Phase 2 §2 -- Tier 2: Stage 1 recognized a real artist/title, just
@@ -107,6 +128,11 @@ export function useElyioApp() {
         const uncataloged = result.recognized_but_not_cataloged;
         if (uncataloged && (uncataloged.artist || uncataloged.title)) {
           track("scan_failed", { reason: "uncataloged" });
+          track("catalog_no_match", {
+            museum_id: state.museumId,
+            confidence: result.confidence,
+            ai_candidate: uncataloged,
+          });
           setState((s) => ({
             ...s,
             uncatalogedSighting: uncataloged,
@@ -118,6 +144,7 @@ export function useElyioApp() {
           return;
         }
         track("scan_failed", { reason: result.status });
+        track("catalog_no_match", { museum_id: state.museumId, confidence: result.confidence });
         setState((s) => ({ ...s, scanStatus: "not_identified" }));
         return;
       }
@@ -132,6 +159,12 @@ export function useElyioApp() {
         track("candidate_confirmed", { artwork_id: artwork.id, confidence: result.confidence });
       }
       track("scan_success", { artwork_id: artwork.id, confidence: result.confidence, status: result.status });
+      track("catalog_match", {
+        museum_id: state.museumId,
+        artwork_id: artwork.id,
+        confidence: result.confidence,
+        recognition_mode: result.recognition_mode,
+      });
 
       setState((s) => {
         const alreadySeen = s.seen.includes(artwork.id);
@@ -149,6 +182,7 @@ export function useElyioApp() {
         }
         return {
           ...s,
+          catalogArtworks: getArtwork(artwork.id) ? s.catalogArtworks : { ...s.catalogArtworks, [artwork.id]: artwork },
           currentArtwork: artwork,
           uncatalogedSighting: null,
           lastConfidence: result.confidence,
@@ -158,11 +192,12 @@ export function useElyioApp() {
           cardOpenedAt: Date.now(),
         };
       });
-    } catch {
+    } catch (error) {
+      track("recognition_failed", { museum_id: state.museumId, reason: error instanceof Error ? error.message : "error" });
       track("scan_failed", { reason: "error" });
       setState((s) => ({ ...s, scanStatus: "not_identified" }));
     }
-  }, [state.locale, state.museumId]);
+  }, [state.catalogArtworks, state.locale, state.mode, state.museumId]);
 
   const addToVisit = useCallback(() => {
     setState((s) => {
@@ -216,8 +251,8 @@ export function useElyioApp() {
   }, []);
 
   const seenArtworks = useMemo(
-    () => state.seen.map((id) => getArtwork(id)).filter((a): a is Artwork => !!a),
-    [state.seen]
+    () => state.seen.map((id) => getArtwork(id) || state.catalogArtworks[id]).filter((a): a is Artwork => !!a),
+    [state.catalogArtworks, state.seen]
   );
 
   return {
