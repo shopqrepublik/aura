@@ -293,6 +293,8 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
         "Describe observable evidence before naming a work. OCR any visible wall-label/frame/inventory text. "
         "Respond with one strict JSON object only, no prose, no markdown fences, with this shape: "
         '{"recognized": true|false, '
+        '"is_artwork_photo": true|false, "image_quality": "<good|partial|label_only|room_only|blank|unusable>", '
+        '"non_artwork_reason": "<reason or null>", '
         '"object_category": "<painting|sculpture|antiquity|decorative art|drawing|object|unknown>", '
         '"likely_artist": "<artist or null>", "likely_title": "<title or null>", '
         '"period_guess": "<period/date clue or null>", "material_guess": "<material or null>", '
@@ -318,6 +320,9 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
     )
     data = json.loads(resp.choices[0].message.content)
     data.setdefault("recognized", bool(data.get("likely_title") or data.get("likely_artist") or data.get("dominant_visual_features") or data.get("distinctive_features")))
+    data.setdefault("is_artwork_photo", bool(data.get("recognized")))
+    data.setdefault("image_quality", "unknown")
+    data.setdefault("non_artwork_reason", None)
     data.setdefault("likely_artist", data.get("artist"))
     data.setdefault("likely_title", data.get("title"))
     data.setdefault("artist", data.get("likely_artist"))
@@ -895,6 +900,8 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
     system_prompt = (
         "You are the final verifier for a museum recognition system. "
         "You are given one visitor image and exactly five database candidates from ELYIO's museum-scoped catalog. "
+        "First decide whether the visitor image actually contains a visible artwork/object. "
+        "A blank wall, room-only image, label-only image with no matching label text, random object, or unusable image must return NO_MATCH. "
         "Use the image evidence and the candidate metadata to choose exactly one candidate only if supported. "
         "If the image is ambiguous, too partial, a room/label-only photo, or none of the candidates fit, return NO_MATCH. "
         "You must not invent IDs. chosen_id must be one of the provided ids or null.\n\n"
@@ -972,6 +979,23 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
     ident = recognize_open(image_base64, museum_id)
     artist, title = ident.get("artist"), ident.get("title")
     model_confidence = float(ident.get("confidence", 0) or 0)
+
+    if ident.get("is_artwork_photo") is False or ident.get("image_quality") in {"blank", "room_only", "unusable"}:
+        return {
+            "artwork_id": None,
+            "confidence": 0.0,
+            "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": artist, "title": title},
+            "vision": ident,
+            "top_candidates": [],
+            "stage2_verifier": {
+                "decision": "NO_MATCH",
+                "chosen_id": None,
+                "confidence": 0.0,
+                "reason": ident.get("non_artwork_reason") or f"image_quality={ident.get('image_quality')}",
+                "observable_evidence": [],
+            },
+        }
 
     if not ident.get("recognized") and not title and not ident.get("visual_clues"):
         return {"artwork_id": None, "confidence": 0.0, "alternatives": []}  # fast path: nothing recognized
