@@ -113,6 +113,7 @@ app.add_middleware(
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
 MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_BASE64_CHARS", "8000000"))
+OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "1"))
 RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
 # latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
@@ -279,6 +280,20 @@ def _log_recognition_event(event: str, **properties) -> None:
     print(json.dumps(payload, ensure_ascii=False, default=str), flush=True)
 
 
+def _openai_chat_completion_with_retries(client, **kwargs):
+    attempts = max(1, OPENAI_RECOGNITION_RETRIES + 1)
+    last_error: Optional[Exception] = None
+    for attempt in range(attempts):
+        try:
+            return client.chat.completions.create(**kwargs)
+        except Exception as exc:
+            last_error = exc
+            if attempt >= attempts - 1:
+                break
+            time.sleep(0.45 * (2 ** attempt))
+    raise last_error or RuntimeError("OpenAI recognition request failed")
+
+
 def recognize_open(image_base64: str, museum_id: str) -> dict:
     """
     Open recognition — no candidate list in the prompt at all. A 13-photo
@@ -320,7 +335,8 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
         '"alternative_candidates": [{"artist": "<artist or null>", "title": "<title or null>", "confidence": <0-1 float>}]}'
     )
 
-    resp = client.chat.completions.create(
+    resp = _openai_chat_completion_with_retries(
+        client,
         model=RECOGNITION_MODEL,
         max_tokens=200,
         response_format={"type": "json_object"},
@@ -949,7 +965,8 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict, allow_rem
         '{"is_match": true or false, "confidence": <0-1 float, how confident you are in this judgment>}.'
     )
 
-    resp = client.chat.completions.create(
+    resp = _openai_chat_completion_with_retries(
+        client,
         model=VISUAL_VERIFY_MODEL,
         max_tokens=50,  # {"is_match": true/false, "confidence": 0.NN} needs ~15-20 tokens; 50 leaves margin
         response_format={"type": "json_object"},
@@ -1022,7 +1039,8 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
         },
         ensure_ascii=False,
     )
-    resp = client.chat.completions.create(
+    resp = _openai_chat_completion_with_retries(
+        client,
         model=VISUAL_VERIFY_MODEL,
         max_tokens=350,
         response_format={"type": "json_object"},
