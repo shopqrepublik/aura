@@ -113,7 +113,7 @@ app.add_middleware(
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
 MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_BASE64_CHARS", "8000000"))
-OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "1"))
+OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "2"))
 RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
 # latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
@@ -1361,8 +1361,15 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
         try:
             result = recognize_with_vision(req.image_base64, req.museum_id, req.hall_hint, candidates, benchmark_mode=req.benchmark_mode)
         except Exception as e:
-            _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="ai_error", latency_ms=round((time.perf_counter() - started) * 1000))
-            raise HTTPException(status_code=502, detail=f"recognition failed: {e}")
+            _log_recognition_event(
+                "recognition_failed",
+                museum_id=req.museum_id,
+                reason="ai_error",
+                error_type=type(e).__name__,
+                error_message=str(e)[:500],
+                latency_ms=round((time.perf_counter() - started) * 1000),
+            )
+            return RecognizeResponse(status="no_match", confidence=0.0)
 
         artwork_id = result.get("artwork_id")
         confidence = float(result.get("confidence", 0))
