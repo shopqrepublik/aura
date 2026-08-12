@@ -64,7 +64,15 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=50)
     parser.add_argument("--api-url", default="https://api.elyio.co")
     parser.add_argument("--apply", action="store_true", help="actually call production recognition; default only writes plan")
+    parser.add_argument("--allow-remote-wikimedia", action="store_true", help="deprecated escape hatch; prefer louvre_local_recognition_benchmark.py")
     args = parser.parse_args()
+
+    if args.apply and not args.allow_remote_wikimedia:
+        raise SystemExit(
+            "BENCHMARK_INVALID_NETWORK_CONTAMINATED: this benchmark depends on live Wikimedia. "
+            "Use backend/scripts/louvre_acquire_approved_assets.py followed by "
+            "backend/scripts/louvre_local_recognition_benchmark.py instead."
+        )
 
     load_dotenv(ROOT / ".env")
     engine = create_engine(os.environ["DATABASE_URL"], pool_pre_ping=True)

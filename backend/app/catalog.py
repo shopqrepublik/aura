@@ -158,6 +158,17 @@ def artwork_to_catalog_dict(
         "recognition_status": artwork.recognition_status,
         "rights_status": artwork.rights_status,
         "rights_review_required": artwork.rights_review_required,
+        "object_type": artwork.object_type,
+        "materials_and_techniques": artwork.materials_and_techniques,
+        "dimensions": artwork.dimensions,
+        "description": artwork.description,
+        "provenance": artwork.provenance,
+        "object_history": artwork.object_history,
+        "historical_context": artwork.historical_context,
+        "current_location_raw": artwork.current_location_raw,
+        "room": artwork.room,
+        "creator_raw": artwork.creator_raw,
+        "creator_labels": artwork.creator_labels,
     }
 
 

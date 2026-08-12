@@ -26,6 +26,7 @@ def _assert(condition: bool, message: str) -> None:
 def _run_recognition_case(candidate: dict, museum_id: str, candidates: list[dict], expected_id: str | None) -> None:
     original_open = backend.recognize_open
     original_verify = backend.visual_verify_single_candidate
+    original_topn = backend.verify_top_candidates_with_openai
     try:
         backend.recognize_open = lambda image_base64, scoped_museum_id: {
             "artist": candidate.get("artist"),
@@ -36,10 +37,19 @@ def _run_recognition_case(candidate: dict, museum_id: str, candidates: list[dict
             "is_match": visual_candidate["id"] == expected_id,
             "confidence": 0.95,
         }
+        backend.verify_top_candidates_with_openai = lambda image_base64, vision, ranked: {
+            "decision": "MATCH" if expected_id else "NO_MATCH",
+            "chosen_id": expected_id,
+            "confidence": 0.95 if expected_id else 0.0,
+            "runner_up": None,
+            "reason": "mocked regression verifier",
+            "observable_evidence": [],
+        }
         result = backend.recognize_with_vision("dummy-image", museum_id, None, candidates)
     finally:
         backend.recognize_open = original_open
         backend.visual_verify_single_candidate = original_verify
+        backend.verify_top_candidates_with_openai = original_topn
 
     if expected_id is None:
         _assert(result.get("artwork_id") is None, f"expected no match for {museum_id}, got {result}")

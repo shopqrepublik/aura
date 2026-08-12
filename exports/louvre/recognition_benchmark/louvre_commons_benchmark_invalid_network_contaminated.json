@@ -1,0 +1,8 @@
+{
+  "benchmark_status": "BENCHMARK_INVALID_NETWORK_CONTAMINATED",
+  "invalidated_result_path": "exports/louvre/recognition_benchmark/louvre_commons_benchmark_results_2026-08-12T103530+0000.jsonl",
+  "reason": "The run depended on live Wikimedia requests and 38/50 samples failed technically: 27 Unicode URL failures and 11 Wikimedia HTTP 429 responses. It must not be used as the Louvre recognition accuracy baseline.",
+  "retained_signal": "Among the 12 valid endpoint results, Top-1 and Top-3 were 8.33%, indicating candidate identification needed improvement even though the 50-sample benchmark itself was invalid.",
+  "replacement_plan": "Use locally acquired rights-approved RecognitionAsset fixtures only, with separate VISION_METADATA_ONLY and hybrid Stage-2 benchmarks.",
+  "louvre_image_bytes_fetched": 0
+}
