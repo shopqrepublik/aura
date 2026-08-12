@@ -65,6 +65,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/palace/hall-mirrors",
         "description": "The ceremonial gallery linking the King's and Queen's Apartments, designed as a political and diplomatic showpiece at the center of the palace visit.",
         "visual": "mirrored arches facing garden windows, painted ceiling, long ceremonial gallery, gilded decoration",
+        "visual_fr": "les arcades de miroirs face aux fenêtres du jardin, le plafond peint, la longue galerie cérémonielle et le décor doré",
+        "visual_zh": "面向花园窗户的镜面拱廊、彩绘天顶、长长的礼仪廊道和镀金装饰",
         "priority": 1,
         "tier": "A",
     },
@@ -79,6 +81,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/palace/gallery-great-battles",
         "description": "A vast gallery created for the Museum of the History of France, bringing together monumental battle paintings as a national historical program.",
         "visual": "long gallery, monumental battle canvases, busts and plaques, state historical display",
+        "visual_fr": "la longue galerie, les grandes toiles de bataille, les bustes et les plaques commémoratives",
+        "visual_zh": "长廊、大型战役画、半身像和纪念铭牌",
         "priority": 2,
         "tier": "A",
     },
@@ -93,6 +97,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/palace/royal-chapel",
         "description": "The palace chapel completed at the end of Louis XIV's reign, built for court ceremony, worship, music, and royal ritual.",
         "visual": "two-level chapel, columns, altar, painted vault, royal gallery",
+        "visual_fr": "la chapelle à deux niveaux, les colonnes, l'autel, la voûte peinte et la tribune royale",
+        "visual_zh": "两层礼拜堂、柱廊、祭坛、彩绘拱顶和皇家看台",
         "priority": 3,
         "tier": "A",
     },
@@ -107,6 +113,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/palace/royal-opera",
         "description": "The palace theater built for court performance and major dynastic ceremony, including the festivities around the marriage of the future Louis XVI and Marie-Antoinette.",
         "visual": "horseshoe-shaped theater, tiers of boxes, painted wood, stage and royal seating",
+        "visual_fr": "la salle en fer à cheval, les rangées de loges, le bois peint, la scène et les places royales",
+        "visual_zh": "马蹄形剧场、层层包厢、彩绘木构、舞台和皇家席位",
         "priority": 4,
         "tier": "B",
     },
@@ -121,6 +129,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/palace/king-state-apartment",
         "description": "The formal sequence of rooms used to stage royal magnificence through mythology, paintings, decoration, and court protocol.",
         "visual": "state rooms, painted ceilings, marble, gilded decoration, mythological program",
+        "visual_fr": "les salons d'apparat, les plafonds peints, le marbre, les dorures et le programme mythologique",
+        "visual_zh": "礼仪厅室、彩绘天顶、大理石、镀金装饰和神话主题",
         "priority": 5,
         "tier": "B",
     },
@@ -135,6 +145,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/kings-apartments",
         "description": "The royal domestic and ceremonial rooms where the king's daily public routine was staged as part of court life.",
         "visual": "royal bedroom, ceremonial furniture, textile hangings, court route",
+        "visual_fr": "la chambre royale, le mobilier cérémoniel, les tentures et le parcours de cour",
+        "visual_zh": "国王寝宫、礼仪家具、织物帷饰和宫廷动线",
         "priority": 6,
         "tier": "B",
     },
@@ -149,6 +161,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/palace/queen-apartments",
         "description": "The principal rooms of the queens of France at Versailles, combining public court ritual with private royal history.",
         "visual": "bedchamber, textile decoration, court furniture, ceremonial doorway",
+        "visual_fr": "la chambre, le décor textile, le mobilier de cour et les portes cérémonielles",
+        "visual_zh": "寝宫、织物装饰、宫廷家具和礼仪门口",
         "priority": 7,
         "tier": "B",
     },
@@ -163,6 +177,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/estate-trianon/queen-hamlet",
         "description": "The rustic-style estate ensemble associated with Marie-Antoinette, built as part of the Trianon landscape.",
         "visual": "small rural buildings, garden setting, lake, rustic architectural details",
+        "visual_fr": "les petits bâtiments ruraux, le jardin, le lac et les détails d'architecture rustique",
+        "visual_zh": "小型乡村建筑、花园环境、湖水和质朴的建筑细节",
         "priority": 8,
         "tier": "B",
     },
@@ -177,6 +193,8 @@ MANUAL_SPACES: list[dict[str, Any]] = [
         "source_url": "https://en.chateauversailles.fr/discover/estate/gardens/fountains",
         "description": "A major garden fountain centered on Apollo, the sun god, reinforcing the solar imagery associated with Louis XIV.",
         "visual": "Apollo in a chariot, horses emerging from water, central garden axis",
+        "visual_fr": "Apollon dans son char, les chevaux surgissant de l'eau et l'axe central du jardin",
+        "visual_zh": "战车中的阿波罗、从水中跃出的马匹和花园中轴线",
         "priority": 9,
         "tier": "B",
     },
@@ -485,6 +503,10 @@ def source_fact(row: dict[str, Any], lang: str = "en") -> str:
 
 
 def visual_cue(row: dict[str, Any], lang: str) -> str:
+    if lang == "fr" and row.get("visual_fr"):
+        return str(row["visual_fr"])
+    if lang == "zh" and row.get("visual_zh"):
+        return str(row["visual_zh"])
     if row.get("visual"):
         return str(row["visual"])
     description = row.get("description") or ""
