@@ -203,6 +203,50 @@ MAJOR_QID_BOOSTS = {
     "Q16333797": 24,  # Rudolf II as Vertumnus
 }
 
+PINNED_WIKIDATA_QIDS = [
+    "Q3937621",
+    "Q2928781",
+    "Q3937618",
+    "Q1282978",
+    "Q2887909",
+    "Q3208312",
+    "Q2887998",
+    "Q3227124",
+    "Q2890107",
+    "Q590000",
+    "Q130633519",
+    "Q3201377",
+    "Q17492872",
+    "Q29901380",
+    "Q18719530",
+    "Q5989258",
+    "Q16333797",
+    "Q65097261",
+    "Q106522737",
+    "Q97143414",
+    "Q65097312",
+    "Q104843025",
+    "Q59248124",
+    "Q65097256",
+    "Q59248127",
+    "Q59248125",
+    "Q111307118",
+    "Q3335950",
+    "Q59248132",
+    "Q58372254",
+    "Q90330582",
+    "Q59248205",
+    "Q59248153",
+    "Q59248211",
+    "Q59339691",
+    "Q59248171",
+    "Q59248168",
+    "Q59248192",
+    "Q2890323",
+    "Q15730349",
+    "Q90330588",
+]
+
 
 def slugify(value: str) -> str:
     normalized = unicodedata.normalize("NFKD", value or "")
@@ -242,6 +286,7 @@ WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en,fr,zh". }
 }
 GROUP BY ?item ?itemLabel ?itemDescription ?labelFr ?labelZh ?image ?date ?inventory
+ORDER BY ?item
 %s
 """ % (subject_clause, limit_clause)
     url = f"{WIKIDATA_ENDPOINT}?{urlencode({'query': query, 'format': 'json'})}"
@@ -388,27 +433,84 @@ def select_wikidata_records(candidates: list[dict[str, Any]], count: int) -> lis
     return selected
 
 
-def source_fact(row: dict[str, Any]) -> str:
-    parts = [
-        row.get("object_type"),
-        row.get("date"),
-        row.get("artist"),
-        row.get("materials"),
-        row.get("inventory_number"),
-    ]
+def pinned_wikidata_records(candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    by_qid = {row["qid"]: row for row in candidates}
+    missing = [qid for qid in PINNED_WIKIDATA_QIDS if qid not in by_qid]
+    if missing:
+        raise SystemExit(f"missing pinned Versailles Wikidata records: {missing}")
+    selected = []
+    for qid in PINNED_WIKIDATA_QIDS:
+        row = by_qid[qid]
+        score, reason = selection_score(row)
+        selected.append({**row, "selection_score": score, "selection_reason": reason})
+    return selected
+
+
+OBJECT_TYPE_LABELS = {
+    "painting": {"en": "painting", "fr": "peinture", "zh": "绘画"},
+    "sculpture": {"en": "sculpture", "fr": "sculpture", "zh": "雕塑"},
+    "portrait": {"en": "portrait", "fr": "portrait", "zh": "肖像"},
+    "clock": {"en": "clock", "fr": "horloge", "zh": "钟表"},
+    "drawing": {"en": "drawing", "fr": "dessin", "zh": "素描"},
+    "tapestry": {"en": "tapestry", "fr": "tapisserie", "zh": "挂毯"},
+    "bust": {"en": "bust", "fr": "buste", "zh": "半身像"},
+    "interior": {"en": "interior", "fr": "espace intérieur", "zh": "室内空间"},
+    "gallery": {"en": "gallery", "fr": "galerie", "zh": "画廊空间"},
+    "chapel": {"en": "chapel", "fr": "chapelle", "zh": "礼拜堂"},
+    "theater": {"en": "theater", "fr": "théâtre", "zh": "剧场"},
+    "state rooms": {"en": "state rooms", "fr": "appartement d'apparat", "zh": "礼仪厅室"},
+    "apartment": {"en": "apartment", "fr": "appartement", "zh": "套间"},
+    "estate ensemble": {"en": "estate ensemble", "fr": "ensemble du domaine", "zh": "园林建筑群"},
+    "fountain": {"en": "fountain", "fr": "fontaine", "zh": "喷泉"},
+    "artwork": {"en": "artwork", "fr": "oeuvre", "zh": "作品"},
+}
+
+
+def localized_object_type(row: dict[str, Any], lang: str) -> str:
+    key = (row.get("object_type") or "artwork").lower()
+    return OBJECT_TYPE_LABELS.get(key, OBJECT_TYPE_LABELS["artwork"])[lang]
+
+
+def source_fact(row: dict[str, Any], lang: str = "en") -> str:
+    parts = [localized_object_type(row, lang)]
+    if row.get("date"):
+        parts.append(str(row["date"]))
+    if row.get("artist"):
+        parts.append(str(row["artist"]))
+    if row.get("materials"):
+        parts.append(str(row["materials"]))
+    if row.get("inventory_number"):
+        parts.append(str(row["inventory_number"]))
     return ", ".join(str(x) for x in parts if x)
+
+
+def visual_cue(row: dict[str, Any], lang: str) -> str:
+    if row.get("visual"):
+        return str(row["visual"])
+    description = row.get("description") or ""
+    if description:
+        if lang == "fr":
+            return f"son sujet, son format et les détails visibles de cette {localized_object_type(row, 'fr')}"
+        if lang == "zh":
+            return f"它的主题、构图和这件{localized_object_type(row, 'zh')}的可见细节"
+        return f"the subject, format, and visible details of this {localized_object_type(row, 'en')}"
+    if lang == "fr":
+        return "sa forme, son sujet et son contexte de visite"
+    if lang == "zh":
+        return "它的形状、主题和参观语境"
+    return "the form, subject, and visitor setting"
 
 
 def normal_content(record: dict[str, Any], lang: str) -> dict[str, str]:
     title = record[f"title_{lang}"] if lang in {"fr", "zh"} else record["title"]
-    source_line = source_fact(record)
+    source_line = source_fact(record, lang)
     room = record.get("room") or record.get("location") or "Chateau de Versailles"
     if lang == "fr":
         return {
             "title": title,
             "analogy": f"{title} situe la visite dans l'histoire et les collections de Versailles.",
             "why_it_matters": f"Cette entrée fait partie du lancement curaté de Versailles dans ELYIO. Les faits disponibles la rattachent à {source_line or 'la collection de Versailles'} et permettent une identification utile sans inventer de récit.",
-            "where_to_look": f"Regardez les éléments visibles qui définissent l'oeuvre: {record.get('visual') or record.get('description') or record.get('object_type') or 'sa forme, son sujet et son contexte'}. Le lieu indiqué pour la visite est {room}.",
+            "where_to_look": f"Regardez les éléments visibles qui définissent l'oeuvre: {visual_cue(record, 'fr')}. Le lieu indiqué pour la visite est {room}.",
             "rarity_note": "Versailles appartient aux collections publiques et au domaine national: ELYIO ne transforme pas cette importance historique en prix de vente.",
         }
     if lang == "zh":
@@ -416,14 +518,14 @@ def normal_content(record: dict[str, Any], lang: str) -> dict[str, str]:
             "title": title,
             "analogy": f"{title}把这次参观带入凡尔赛的历史和收藏语境。",
             "why_it_matters": f"这是 ELYIO 凡尔赛精选目录中的一项。现有资料显示它与{source_line or '凡尔赛收藏'}相关，足以提供清晰识别，而不虚构故事。",
-            "where_to_look": f"请先看能确认身份的可见特征：{record.get('visual') or record.get('description') or record.get('object_type') or '形状、主题和陈列语境'}。参观位置记录为：{room}。",
+            "where_to_look": f"请先看能确认身份的可见特征：{visual_cue(record, 'zh')}。参观位置记录为：{room}。",
             "rarity_note": "凡尔赛属于公共收藏和国家遗产；ELYIO 不把这种历史意义伪装成市场售价。",
         }
     return {
         "title": title,
         "analogy": f"{title} anchors this stop in the history and collections of Versailles.",
         "why_it_matters": f"This is part of ELYIO's focused Versailles launch catalog. The available source facts connect it to {source_line or 'the Versailles collection'}, giving visitors a useful identification without inventing unsupported narrative.",
-        "where_to_look": f"Look for the visible identity cues: {record.get('visual') or record.get('description') or record.get('object_type') or 'the form, subject, and setting'}. The visitor location is recorded as {room}.",
+        "where_to_look": f"Look for the visible identity cues: {visual_cue(record, 'en')}. The visitor location is recorded as {room}.",
         "rarity_note": "Versailles is a public national collection and estate; ELYIO treats its historical importance as beyond an ordinary market price.",
     }
 
@@ -448,20 +550,19 @@ def simple_content(record: dict[str, Any], lang: str) -> dict[str, str]:
 
 def kids_content(record: dict[str, Any], lang: str) -> dict[str, str]:
     title = record[f"title_{lang}"] if lang in {"fr", "zh"} else record["title"]
-    cue = record.get("visual") or record.get("object_type") or "the biggest detail you can see"
     if lang == "fr":
         return {
             "title": title,
-            "analogy": f"Cherche un indice facile a voir: {cue}. Cet indice t'aide a relier {title} a l'histoire de Versailles.",
+            "analogy": f"Cherche un indice facile a voir: {visual_cue(record, 'fr')}. Cet indice t'aide a relier {title} a l'histoire de Versailles.",
         }
     if lang == "zh":
         return {
             "title": title,
-            "analogy": f"先找一个容易看到的线索：{cue}。这个线索能帮助你把{title}和凡尔赛的历史联系起来。",
+            "analogy": f"先找一个容易看到的线索：{visual_cue(record, 'zh')}。这个线索能帮助你把{title}和凡尔赛的历史联系起来。",
         }
     return {
         "title": title,
-        "analogy": f"Start by finding one clear clue: {cue}. That clue helps connect {title} to the story of Versailles.",
+        "analogy": f"Start by finding one clear clue: {visual_cue(record, 'en')}. That clue helps connect {title} to the story of Versailles.",
     }
 
 
@@ -513,12 +614,10 @@ def backup_versailles(session: Session) -> Path:
 def build_records() -> list[dict[str, Any]]:
     candidate_by_qid = {
         row["qid"]: row
-        for row in fetch_wikidata_candidates(qids=list(MAJOR_QID_BOOSTS))
+        for row in fetch_wikidata_candidates(qids=PINNED_WIKIDATA_QIDS)
     }
-    for row in fetch_wikidata_candidates():
-        candidate_by_qid.setdefault(row["qid"], row)
     candidates = list(candidate_by_qid.values())
-    wiki = select_wikidata_records(candidates, 50 - len(MANUAL_SPACES))
+    wiki = pinned_wikidata_records(candidates)
     records: list[dict[str, Any]] = []
     for row in MANUAL_SPACES:
         records.append(
@@ -780,7 +879,7 @@ def main() -> None:
         # Keep this visitor catalog exactly 50 active members without deleting
         # archival Versailles artwork records that may be added in the future.
         for artwork_id, row in existing_memberships.items():
-            if artwork_id not in set(ids):
+            if artwork_id not in set(ids) and row.active:
                 row.active = False
                 counts["memberships_deactivated"] += 1
 
