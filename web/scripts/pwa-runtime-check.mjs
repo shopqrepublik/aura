@@ -91,6 +91,20 @@ async function runtimeChecks() {
     await send(ws, "Page.navigate", { url: targetUrl });
     await delay(5000);
 
+    const preControl = await send(ws, "Runtime.evaluate", {
+      awaitPromise: true,
+      returnByValue: true,
+      expression: `Promise.resolve({
+        controller: Boolean(navigator.serviceWorker.controller),
+        ready: Boolean(navigator.serviceWorker?.ready),
+      })`,
+    });
+
+    if (!preControl.result.value.controller) {
+      await send(ws, "Page.reload", { ignoreCache: false });
+      await delay(3500);
+    }
+
     const manifest = await send(ws, "Page.getAppManifest");
     const installability = await send(ws, "Page.getInstallabilityErrors").catch(() => ({ installabilityErrors: [] }));
     const runtime = await send(ws, "Runtime.evaluate", {
