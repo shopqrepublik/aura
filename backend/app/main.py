@@ -77,6 +77,7 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from pydantic import BaseModel
+from sqlalchemy import case, func, or_
 from sqlalchemy.orm import Session
 
 load_dotenv()  # reads .env from the repo root if present; no-op otherwise
@@ -95,7 +96,7 @@ from .catalog import (  # noqa: E402
     get_recognition_candidates,
 )
 from .db import SessionLocal, get_db  # noqa: E402
-from .models import Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
+from .models import Artwork, Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -1475,19 +1476,105 @@ class MuseumOut(BaseModel):
     lat: Optional[float] = None
     lng: Optional[float] = None
     geofence_radius_m: int
+    external_source: Optional[str] = None
+    external_id: Optional[str] = None
+    slug: Optional[str] = None
+    common_name: Optional[str] = None
+    city: Optional[str] = None
+    department: Optional[str] = None
+    region: Optional[str] = None
+    address: Optional[str] = None
+    postal_code: Optional[str] = None
+    website_url: Optional[str] = None
+    collection_categories: List[str] = []
+    notable_terms: List[str] = []
+    source: Optional[str] = None
+    source_updated_at: Optional[str] = None
+    experience_level: str = "AI_GUIDE"
+    curated_artwork_count: int = 0
 
 
 @app.get("/v1/museums", response_model=List[MuseumOut])
-def list_museums(db: Session = Depends(get_db)):
-    """Public, unauthenticated (like /v1/artworks) -- the frontend's
-    useMuseumDetection (lib/geolocation.ts) fetches this ONCE on mount and
-    checks the visitor's GPS position against every row's own
-    (lat, lng, geofence_radius_m), instead of a single hardcoded museum's
-    coordinates. Adding a second real museum is then a DATABASE row (see
-    backend/scripts/init_db.py's seed block), not a code change on either
-    side -- this endpoint and the frontend loop over it are what make that
-    true, no other wiring needed."""
-    return db.query(Museum).all()
+def list_museums(
+    q: Optional[str] = None,
+    city: Optional[str] = None,
+    region: Optional[str] = None,
+    limit: int = Query(1500, ge=1, le=1500),
+    db: Session = Depends(get_db),
+):
+    """Public museum directory.
+
+    The response stays deliberately lightweight: directory metadata only,
+    never artwork catalogs. CURATED means a museum has ELYIO catalog coverage;
+    AI_GUIDE means recognition can still run and fall back to the AI result.
+    """
+    query = db.query(Museum)
+    if q:
+        needle = f"%{q.lower()}%"
+        query = query.filter(
+            or_(
+                func.lower(Museum.name).like(needle),
+                func.lower(Museum.common_name).like(needle),
+                func.lower(Museum.city).like(needle),
+                func.lower(Museum.external_id).like(needle),
+            )
+        )
+    if city:
+        query = query.filter(func.lower(Museum.city) == city.lower())
+    if region:
+        query = query.filter(func.lower(Museum.region) == region.lower())
+
+    rows = (
+        query.order_by(
+            case((Museum.experience_level == "CURATED", 0), else_=1),
+            case((Museum.id == "louvre", 0), (Museum.id == "orsay", 1), (Museum.id == "orangerie", 2), else_=3),
+            case((Museum.region == "Ile-de-France", 0), else_=1),
+            Museum.city.asc().nullslast(),
+            Museum.name.asc(),
+        )
+        .limit(limit)
+        .all()
+    )
+    museum_ids = [row.id for row in rows]
+    counts = {
+        museum_id: count
+        for museum_id, count in (
+            db.query(Artwork.museum_id, func.count(Artwork.id))
+            .filter(Artwork.museum_id.in_(museum_ids))
+            .group_by(Artwork.museum_id)
+            .all()
+            if museum_ids
+            else []
+        )
+    }
+    if "louvre" in museum_ids:
+        counts["louvre"] = count_catalog_artworks(db, "louvre")
+    return [
+        MuseumOut(
+            id=row.id,
+            name=row.name,
+            lat=row.lat,
+            lng=row.lng,
+            geofence_radius_m=row.geofence_radius_m or 150,
+            external_source=row.external_source,
+            external_id=row.external_id,
+            slug=row.slug,
+            common_name=row.common_name,
+            city=row.city,
+            department=row.department,
+            region=row.region,
+            address=row.address,
+            postal_code=row.postal_code,
+            website_url=row.website_url,
+            collection_categories=row.collection_categories or [],
+            notable_terms=row.notable_terms or [],
+            source=row.source_url,
+            source_updated_at=row.source_updated_at.date().isoformat() if row.source_updated_at else None,
+            experience_level=row.experience_level or "AI_GUIDE",
+            curated_artwork_count=counts.get(row.id, 0),
+        )
+        for row in rows
+    ]
 
 
 # ---- Artworks -----------------------------------------------------------

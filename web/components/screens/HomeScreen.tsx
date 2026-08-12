@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { preload } from "react-dom";
 import { ArrowRight, ChevronDown, Download, X } from "lucide-react";
 import { MISSIONS, missionLabel } from "@/lib/artworks";
@@ -15,6 +15,7 @@ import AuthModal from "@/components/ui/AuthModal";
 import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
+import type { Museum } from "@/lib/api";
 
 // Home Screen Redesign -- "the cover of the ELYIO experience", not a
 // dashboard. Rebuilds the visual layer only; three pieces of real logic are
@@ -40,6 +41,38 @@ const MISSION_EYEBROW_KEY: Record<string, string> = {
 
 const editorial = { fontFamily: "var(--font-editorial)" } as const;
 
+const FEATURED_MUSEUM_IDS = new Set([
+  "louvre",
+  "orsay",
+  "orangerie",
+  "versailles",
+  "museofile_m5044", // Musée Rodin
+  "museofile_m5043", // Musée Picasso Paris
+  "museofile_m5055", // Musée du quai Branly - Jacques Chirac
+  "museofile_m1111", // Petit Palais
+  "museofile_m1104", // Musée Carnavalet
+  "museofile_m5025", // Musée de l'Armée
+  "museofile_m5005", // Musée Guimet
+  "museofile_m5003", // Musée de Cluny
+]);
+
+function normalizedMuseumText(value: string | null | undefined): string {
+  return (value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function museumLocationLabel(museum: Museum | null): string {
+  if (!museum) return "Paris";
+  if (museum.city && museum.region) return `${museum.city} · ${museum.region}`;
+  return museum.city || museum.region || "France";
+}
+
+function museumExperienceKey(museum: Museum | null): string {
+  return museum?.experience_level === "CURATED" ? "museum_curated_label" : "museum_ai_guide_label";
+}
+
 export default function HomeScreen({
   state,
   seenArtworks,
@@ -64,17 +97,11 @@ export default function HomeScreen({
   onSignInWithGoogle: () => Promise<void>;
 }) {
   const { status: museumStatus, museums, museum, confirmManually } = useMuseumDetection();
-  // Today there's only ever one row in the database, so this resolves
-  // exactly like the old hardcoded "Musée d'Orsay" did visually -- but once
-  // a second museum exists, a real visitor should see THIS museum's name
-  // (detected/confirmed), not silently default to whichever museum happens
-  // to sort first. Deliberately not solved further here: what to show
-  // before any confirmation, in an actual multi-museum world, is a UX
-  // decision explicitly out of scope for this architecture pass.
   const activeMuseum = museum ?? museums[0] ?? null;
   const activeMuseumName = activeMuseum?.name ?? "";
   const [showConfirm, setShowConfirm] = useState(false);
   const [showMuseumSheet, setShowMuseumSheet] = useState(false);
+  const [museumSearch, setMuseumSearch] = useState("");
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [iosInstallDismissed, setIosInstallDismissed] = useState(() =>
     typeof window !== "undefined" ? window.localStorage.getItem("elyio-ios-install-dismissed") === "1" : false
@@ -90,6 +117,25 @@ export default function HomeScreen({
 
   const isReturning = state.visitStarted;
   const shouldShowIosInstallHint = isIosSafari && !installed && !iosInstallDismissed;
+  const activeMuseumLocation = museumLocationLabel(activeMuseum);
+  const activeMuseumExperience = tt(museumExperienceKey(activeMuseum), state.locale);
+  const featuredMuseums = useMemo(() => {
+    const featured = museums.filter((m) => FEATURED_MUSEUM_IDS.has(m.id));
+    const idWeight = (id: string) => Array.from(FEATURED_MUSEUM_IDS).indexOf(id);
+    return featured.sort((a, b) => idWeight(a.id) - idWeight(b.id)).slice(0, 12);
+  }, [museums]);
+  const visibleMuseums = useMemo(() => {
+    const query = normalizedMuseumText(museumSearch.trim());
+    const source = query
+      ? museums.filter((m) => {
+          const haystack = normalizedMuseumText(
+            [m.name, m.common_name, m.city, m.department, m.region, m.external_id].filter(Boolean).join(" ")
+          );
+          return haystack.includes(query);
+        })
+      : museums.filter((m) => !FEATURED_MUSEUM_IDS.has(m.id));
+    return source.slice(0, 80);
+  }, [museums, museumSearch]);
 
   useEffect(() => {
     if (shouldShowIosInstallHint) track("pwa_ios_instructions_shown");
@@ -207,7 +253,9 @@ export default function HomeScreen({
             <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[rgba(247,241,230,0.92)]">
               {activeMuseumName.toUpperCase()}
             </div>
-            <div className="text-[11px] font-medium text-[rgba(247,241,230,0.68)]">PARIS</div>
+            <div className="text-[11px] font-medium text-[rgba(247,241,230,0.68)]">
+              {activeMuseumLocation.toUpperCase()}
+            </div>
           </div>
           <ChevronDown
             className="w-[14px] h-[14px] text-[rgba(247,241,230,0.68)]"
@@ -402,7 +450,11 @@ export default function HomeScreen({
           <div style={editorial} className="mt-1 text-[19px] font-medium text-[#181714]">
             {activeMuseumName}
           </div>
-          <div className="text-[13px] text-[#67635C]">{tt("home_museum_time", state.locale)}</div>
+          <div className="text-[13px] text-[#67635C]">
+            {tt("home_museum_context", state.locale)
+              .replace("{city}", activeMuseum?.city || "France")
+              .replace("{experience}", activeMuseumExperience)}
+          </div>
         </div>
         <div className="w-[54px] h-[54px] rounded-[10px] overflow-hidden shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -465,54 +517,89 @@ export default function HomeScreen({
         <div className="mt-1.5 text-[10px] text-[#A19B91]">{tt("privacy_footer_note", state.locale)}</div>
       </div>
 
-      {/* Museum selector sheet -- §16, new functionality per spec (only Orsay is real) */}
+      {/* Museum selector sheet -- scalable France-wide directory. */}
       {showMuseumSheet && (
         <div className="fixed inset-0 z-40 flex items-end" onClick={() => setShowMuseumSheet(false)}>
           <div className="absolute inset-0 bg-black/40" />
           <div
-            className="relative z-10 w-full rounded-t-[24px] bg-[#FDFBF7] p-5 pb-[max(24px,env(safe-area-inset-bottom))]"
+            className="relative z-10 w-full max-h-[82vh] rounded-t-[24px] bg-[#FDFBF7] p-5 pb-[max(24px,env(safe-area-inset-bottom))] overflow-y-auto scrollbar-none"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#67635C] mb-3">
+            <div className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#67635C]">
               {tt("select_museum_sheet_title", state.locale)}
             </div>
-            {/* Real, selectable rows -- driven by whatever /v1/museums
-                actually returns (Phase 2 §1), not a hardcoded single
-                button. Today that's exactly one row (Orsay), so this looks
-                identical to the old hardcoded button; adding a second real
-                museum to the database makes a second row appear here with
-                no code change. */}
-            {museums.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => {
-                  confirmManually(m.id);
-                  setShowMuseumSheet(false);
-                }}
-                className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)]"
-              >
-                <span style={editorial} className="text-[17px] font-medium text-[#181714]">
-                  {m.name}
-                </span>
-                <span className="text-[11px] font-semibold text-[#30D158]">{tt("museum_available_now", state.locale)}</span>
-              </button>
-            ))}
-            {/* Decorative roadmap teaser, not data-driven -- these aren't
-                real Museum rows, so they stay hardcoded placeholders on
-                purpose (which museums to actually add next is a separate
-                product decision, not this task's scope). */}
-            {["Musée de l'Orangerie", "Musée du Louvre"].map((name) => (
-              <div key={name} className="w-full flex items-center justify-between py-3 border-b border-[rgba(30,27,22,0.09)] opacity-50">
-                <span style={editorial} className="text-[17px] font-medium text-[#181714]">
-                  {name}
-                </span>
-                <span className="text-[11px] font-medium text-[#8B867E]">{tt("museum_coming_soon", state.locale)}</span>
+            <input
+              value={museumSearch}
+              onChange={(e) => setMuseumSearch(e.target.value)}
+              placeholder={tt("museum_search_placeholder", state.locale)}
+              className="mt-3 w-full h-[42px] rounded-[14px] bg-[#F3EDE4] border border-[rgba(30,27,22,0.08)] px-3 text-[14px] text-[#181714] outline-none"
+            />
+
+            {!museumSearch.trim() && featuredMuseums.length > 0 && (
+              <div className="mt-5">
+                <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#8B867E] mb-1">
+                  {tt("museum_featured_label", state.locale)}
+                </div>
+                {featuredMuseums.map((m) => (
+                  <MuseumRow
+                    key={m.id}
+                    museum={m}
+                    locale={state.locale}
+                    onSelect={() => {
+                      confirmManually(m.id);
+                      setShowMuseumSheet(false);
+                    }}
+                  />
+                ))}
               </div>
-            ))}
+            )}
+
+            <div className="mt-5">
+              <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#8B867E] mb-1">
+                {tt("museum_results_label", state.locale)}
+              </div>
+              {visibleMuseums.length === 0 ? (
+                <div className="py-5 text-[13px] text-[#67635C]">{tt("museum_no_results", state.locale)}</div>
+              ) : (
+                visibleMuseums.map((m) => (
+                  <MuseumRow
+                    key={m.id}
+                    museum={m}
+                    locale={state.locale}
+                    onSelect={() => {
+                      confirmManually(m.id);
+                      setShowMuseumSheet(false);
+                    }}
+                  />
+                ))
+              )}
+            </div>
           </div>
         </div>
       )}
     </div>
+  );
+}
+
+function MuseumRow({ museum, locale, onSelect }: { museum: Museum; locale: AppState["locale"]; onSelect: () => void }) {
+  const curated = museum.experience_level === "CURATED";
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className="w-full flex items-center justify-between gap-3 py-3 border-b border-[rgba(30,27,22,0.09)] text-left"
+    >
+      <span className="min-w-0">
+        <span style={editorial} className="block text-[16px] leading-[19px] font-medium text-[#181714]">
+          {museum.name}
+        </span>
+        <span className="mt-0.5 block text-[12px] leading-[16px] text-[#67635C]">
+          {[museum.city, museum.department].filter(Boolean).join(" · ") || museum.region || "France"}
+        </span>
+      </span>
+      <span className={`shrink-0 text-[10px] font-semibold ${curated ? "text-[#181714]" : "text-[#0A6A5A]"}`}>
+        {tt(curated ? "museum_curated_label" : "museum_ai_guide_label", locale)}
+      </span>
+    </button>
   );
 }

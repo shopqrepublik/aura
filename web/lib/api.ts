@@ -72,10 +72,32 @@ export interface Museum {
   lat: number | null;
   lng: number | null;
   geofence_radius_m: number;
+  external_source?: string | null;
+  external_id?: string | null;
+  slug?: string | null;
+  common_name?: string | null;
+  city?: string | null;
+  department?: string | null;
+  region?: string | null;
+  address?: string | null;
+  postal_code?: string | null;
+  website_url?: string | null;
+  collection_categories?: string[];
+  notable_terms?: string[];
+  source?: string | null;
+  source_updated_at?: string | null;
+  experience_level?: "CURATED" | "AI_GUIDE" | string;
+  curated_artwork_count?: number;
 }
 
-export async function getMuseums(): Promise<Museum[]> {
-  const res = await fetch(`${BACKEND_URL}/v1/museums`);
+export async function getMuseums(params?: { q?: string; city?: string; region?: string; limit?: number }): Promise<Museum[]> {
+  const search = new URLSearchParams();
+  if (params?.q) search.set("q", params.q);
+  if (params?.city) search.set("city", params.city);
+  if (params?.region) search.set("region", params.region);
+  if (params?.limit) search.set("limit", String(params.limit));
+  const suffix = search.toString() ? `?${search.toString()}` : "";
+  const res = await fetch(`${BACKEND_URL}/v1/museums${suffix}`);
   if (!res.ok) throw new Error(`museums fetch failed: ${res.status}`);
   return res.json();
 }

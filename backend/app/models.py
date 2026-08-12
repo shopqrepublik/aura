@@ -29,6 +29,22 @@ class Museum(Base):
     lat = Column(Float)
     lng = Column(Float)
     geofence_radius_m = Column(Integer, default=150)
+    external_source = Column(String, nullable=True)
+    external_id = Column(String, nullable=True)
+    slug = Column(String, nullable=True)
+    common_name = Column(String, nullable=True)
+    city = Column(String, nullable=True)
+    department = Column(String, nullable=True)
+    region = Column(String, nullable=True)
+    address = Column(Text, nullable=True)
+    postal_code = Column(String, nullable=True)
+    website_url = Column(String, nullable=True)
+    collection_categories = Column(JSON, nullable=True)
+    notable_terms = Column(JSON, nullable=True)
+    source_url = Column(String, nullable=True)
+    source_updated_at = Column(DateTime, nullable=True)
+    raw_json = Column(JSON, nullable=True)
+    experience_level = Column(String, nullable=False, default="AI_GUIDE")
 
 
 class Artwork(Base):

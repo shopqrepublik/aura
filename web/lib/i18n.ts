@@ -97,6 +97,17 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   museum_available_now: { en: "Available now", fr: "Disponible maintenant", "zh-Hans": "现已开放" },
   museum_coming_soon: { en: "Coming soon", fr: "Bientôt disponible", "zh-Hans": "即将开放" },
   select_museum_sheet_title: { en: "Select museum", fr: "Choisir un musée", "zh-Hans": "选择博物馆" },
+  museum_search_placeholder: { en: "Search museum or city", fr: "Rechercher un musée ou une ville", "zh-Hans": "搜索博物馆或城市" },
+  museum_featured_label: { en: "Featured near Paris", fr: "Sélection autour de Paris", "zh-Hans": "巴黎附近精选" },
+  museum_results_label: { en: "France-wide museums", fr: "Musées en France", "zh-Hans": "法国博物馆" },
+  museum_curated_label: { en: "Curated guide", fr: "Guide éditorial", "zh-Hans": "精选导览" },
+  museum_ai_guide_label: { en: "AI Guide available", fr: "Guide IA disponible", "zh-Hans": "AI 导览可用" },
+  museum_no_results: { en: "No museums found", fr: "Aucun musée trouvé", "zh-Hans": "未找到博物馆" },
+  home_museum_context: {
+    en: "{city} · {experience}",
+    fr: "{city} · {experience}",
+    "zh-Hans": "{city} · {experience}",
+  },
 
   // Replaces an earlier, inaccurate "Private · No personal data stored"
   // framing: once §13 analytics (PostHog, anonymized events, no
