@@ -120,6 +120,7 @@ function demoState(overrides: Partial<AppState>): AppState {
     uncatalogedSighting: null,
     lastConfidence: 0.94,
     scanStatus: null,
+    pendingRecognitionImageBase64: null,
     cardOpenedAt: null,
     ...overrides,
   };

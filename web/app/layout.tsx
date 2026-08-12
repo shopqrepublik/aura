@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   // opts out for every locale, not just during testing.
   other: {
     google: "notranslate",
+    "apple-mobile-web-app-capable": "yes",
   },
 };
 

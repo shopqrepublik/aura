@@ -86,7 +86,13 @@ export type EventName =
   | "share_started"
   | "share_completed"
   | "paywall_viewed"
-  | "purchase_completed";
+  | "purchase_completed"
+  | "pwa_install_cta_shown"
+  | "pwa_install_cta_clicked"
+  | "pwa_install_prompt_accepted"
+  | "pwa_install_prompt_dismissed"
+  | "pwa_installed"
+  | "pwa_ios_instructions_shown";
 
 export function track(event: EventName, properties?: Record<string, unknown>) {
   ensureInit();

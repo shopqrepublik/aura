@@ -5,6 +5,7 @@ import * as api from "./api";
 import { getArtwork, MISSIONS } from "./artworks";
 import { isMissionComplete } from "./missions";
 import { track } from "./analytics";
+import { isRecognitionNetworkError } from "./recognitionErrors";
 import type { Artwork, Locale, Mode } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
@@ -41,6 +42,7 @@ export interface AppState {
   uncatalogedSighting: UncatalogedSighting | null;
   lastConfidence: number;
   scanStatus: string | null; // transient message on the camera screen
+  pendingRecognitionImageBase64: string | null;
   cardOpenedAt: number | null; // real wall-clock timestamp, for Deep focus
 }
 
@@ -60,6 +62,7 @@ const initialState: AppState = {
   uncatalogedSighting: null,
   lastConfidence: 0,
   scanStatus: null,
+  pendingRecognitionImageBase64: null,
   cardOpenedAt: null,
 };
 
@@ -95,7 +98,7 @@ export function useElyioApp() {
   }, [goto]);
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
-    setState((s) => ({ ...s, scanStatus: "scanning" }));
+    setState((s) => ({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null }));
     track("scan_attempt");
     track("recognition_started", { museum_id: state.museumId });
     try {
@@ -145,7 +148,7 @@ export function useElyioApp() {
         }
         track("scan_failed", { reason: result.status });
         track("catalog_no_match", { museum_id: state.museumId, confidence: result.confidence });
-        setState((s) => ({ ...s, scanStatus: "not_identified" }));
+        setState((s) => ({ ...s, scanStatus: "not_identified", pendingRecognitionImageBase64: null }));
         return;
       }
 
@@ -188,14 +191,20 @@ export function useElyioApp() {
           lastConfidence: result.confidence,
           seen: alreadySeen ? s.seen : [...s.seen, artwork.id],
           scanStatus: null,
+          pendingRecognitionImageBase64: null,
           screen: "card",
           cardOpenedAt: Date.now(),
         };
       });
     } catch (error) {
       track("recognition_failed", { museum_id: state.museumId, reason: error instanceof Error ? error.message : "error" });
-      track("scan_failed", { reason: "error" });
-      setState((s) => ({ ...s, scanStatus: "not_identified" }));
+      const networkError = isRecognitionNetworkError(error);
+      track("scan_failed", { reason: networkError ? "network_error" : "error" });
+      setState((s) => ({
+        ...s,
+        scanStatus: networkError ? "network_error" : "not_identified",
+        pendingRecognitionImageBase64: networkError ? imageBase64 : null,
+      }));
     }
   }, [state.catalogArtworks, state.locale, state.mode, state.museumId]);
 

@@ -65,6 +65,7 @@ export default function HeroPhonePreview({ locale }: { locale: Locale }) {
     uncatalogedSighting: null,
     lastConfidence: 0.97,
     scanStatus: null,
+    pendingRecognitionImageBase64: null,
     cardOpenedAt: null,
   };
 

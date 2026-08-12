@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:value": "node scripts/value-reveal-regression.mjs"
+    "test:value": "node scripts/value-reveal-regression.mjs",
+    "test:pwa": "node scripts/pwa-runtime-check.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.1",

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { preload } from "react-dom";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Download, X } from "lucide-react";
 import { MISSIONS, missionLabel } from "@/lib/artworks";
 import { isMissionComplete } from "@/lib/missions";
 import { tt, LOCALES } from "@/lib/i18n";
@@ -10,6 +10,7 @@ import { useMuseumDetection } from "@/lib/geolocation";
 import { proxyImageUrl } from "@/lib/visitPalette";
 import { formatVisitValueHeadline, summarizeVisitValue } from "@/lib/valueReveal";
 import { ORSAY_CLOCK_IMAGE_URL as HERO_IMAGE_URL } from "@/lib/museumTheme";
+import { usePwaInstall } from "@/lib/pwaInstall";
 import AuthModal from "@/components/ui/AuthModal";
 import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
@@ -75,6 +76,10 @@ export default function HomeScreen({
   const [showConfirm, setShowConfirm] = useState(false);
   const [showMuseumSheet, setShowMuseumSheet] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [iosInstallDismissed, setIosInstallDismissed] = useState(() =>
+    typeof window !== "undefined" ? window.localStorage.getItem("elyio-ios-install-dismissed") === "1" : false
+  );
+  const { canPromptInstall, installed, isIosSafari, promptInstall } = usePwaInstall();
 
   // LCP element on mobile (Lighthouse-flagged) -- hoists a <link
   // rel="preload" as="image" fetchPriority="high"> into <head> via React
@@ -84,6 +89,11 @@ export default function HomeScreen({
   preload(proxyImageUrl(HERO_IMAGE_URL), { as: "image", fetchPriority: "high" });
 
   const isReturning = state.visitStarted;
+  const shouldShowIosInstallHint = isIosSafari && !installed && !iosInstallDismissed;
+
+  useEffect(() => {
+    if (shouldShowIosInstallHint) track("pwa_ios_instructions_shown");
+  }, [shouldShowIosInstallHint]);
 
   const valueText = formatVisitValueHeadline(summarizeVisitValue(seenArtworks), state.locale);
   const worksLabel =
@@ -320,6 +330,51 @@ export default function HomeScreen({
           <ArrowRight className="w-[18px] h-[18px]" />
         </button>
       </div>
+
+      {(canPromptInstall || shouldShowIosInstallHint) && (
+        <div
+          className="relative z-10 mt-3 mx-6 rounded-[16px] px-4 py-3 flex items-start gap-3"
+          style={{
+            background: "rgba(253,251,247,0.92)",
+            border: "1px solid rgba(34,29,23,0.10)",
+            boxShadow: "0 10px 26px rgba(25,21,16,0.10)",
+          }}
+        >
+          <div className="mt-0.5 w-8 h-8 rounded-[10px] bg-[#181714] text-[#FAF6ED] flex items-center justify-center shrink-0">
+            <Download className="w-4 h-4" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-[13px] font-semibold tracking-[-0.01em] text-[#181714]">
+              {shouldShowIosInstallHint ? tt("pwa_ios_install_title", state.locale) : tt("pwa_install_title", state.locale)}
+            </div>
+            <p className="mt-1 text-[12px] leading-[17px] text-[#67635C]">
+              {shouldShowIosInstallHint ? tt("pwa_ios_install_body", state.locale) : tt("pwa_install_body", state.locale)}
+            </p>
+            {canPromptInstall && (
+              <button
+                type="button"
+                onClick={promptInstall}
+                className="mt-2 h-[32px] px-3 rounded-full bg-[#181714] text-[#FAF6ED] text-[12px] font-semibold active:scale-[0.98] transition-transform"
+              >
+                {tt("pwa_install_action", state.locale)}
+              </button>
+            )}
+          </div>
+          {shouldShowIosInstallHint && (
+            <button
+              type="button"
+              aria-label={tt("pwa_install_dismiss", state.locale)}
+              onClick={() => {
+                window.localStorage.setItem("elyio-ios-install-dismissed", "1");
+                setIosInstallDismissed(true);
+              }}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-[#67635C] active:scale-[0.96] transition-transform"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      )}
 
       {showAuthModal && (
         <AuthModal

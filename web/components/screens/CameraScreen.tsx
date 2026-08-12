@@ -91,6 +91,7 @@ export default function CameraScreen({
   }
 
   const failed = state.scanStatus === "not_identified";
+  const networkError = state.scanStatus === "network_error";
   const scanning = state.scanStatus === "scanning";
 
   return (
@@ -144,7 +145,11 @@ export default function CameraScreen({
           </div>
         ) : (
           <div className="text-[15px] font-[600] text-white tracking-[-0.01em] drop-shadow">
-            {failed ? tt("we_could_not_identify", state.locale) : tt("frame_artwork_fully", state.locale)}
+            {networkError
+              ? tt("recognition_network_error", state.locale)
+              : failed
+                ? tt("we_could_not_identify", state.locale)
+                : tt("frame_artwork_fully", state.locale)}
           </div>
         )}
         <div className="mt-2 flex items-center justify-center gap-1.5 h-3">
@@ -193,6 +198,16 @@ export default function CameraScreen({
       </div>
 
       <canvas ref={canvasRef} className="hidden" />
+
+      {networkError && state.pendingRecognitionImageBase64 && (
+        <button
+          type="button"
+          onClick={() => onCapture(state.pendingRecognitionImageBase64 as string)}
+          className="absolute left-1/2 bottom-[132px] -translate-x-1/2 z-20 h-[38px] px-4 rounded-full bg-[#F5E6B8] text-[#181714] text-[13px] font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.32)] active:scale-[0.98] transition-transform"
+        >
+          {tt("retry_recognition", state.locale)}
+        </button>
+      )}
 
       <div className="absolute bottom-0 left-0 right-0 z-20 pb-[34px] pt-8 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center gap-6">
         <div className="flex items-center gap-12">

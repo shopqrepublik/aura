@@ -4,16 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { Download } from "lucide-react";
 import { LOCALES, tt } from "@/lib/i18n";
 import { track } from "@/lib/analytics";
+import { usePwaInstall } from "@/lib/pwaInstall";
 import type { Locale } from "@/lib/types";
-
-// Chrome/Edge fire this before the browser's own native install UI would
-// otherwise appear; calling preventDefault() defers it so this button can
-// trigger the SAME native prompt on click instead of a separate custom one.
-// Not in any lib.dom.d.ts version yet, hence the manual interface.
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>;
-  userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
-}
 
 // Desktop rebuild spec §15, hero-refinement round 3 (§7) -- explicit 3-col
 // grid (wordmark / nav / controls) so the nav is genuinely centered against
@@ -36,18 +28,9 @@ export default function DesktopHeader({
   locale: Locale;
   onSetLocale: (locale: Locale) => void;
 }) {
-  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallHint, setShowInstallHint] = useState(false);
   const installWrapRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      setInstallPrompt(e as BeforeInstallPromptEvent);
-    };
-    window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
-    return () => window.removeEventListener("beforeinstallprompt", onBeforeInstallPrompt);
-  }, []);
+  const { canPromptInstall, installed, promptInstall } = usePwaInstall();
 
   useEffect(() => {
     if (!showInstallHint) return;
@@ -65,11 +48,9 @@ export default function DesktopHeader({
   };
 
   const handleInstallClick = async () => {
-    if (installPrompt) {
+    if (canPromptInstall) {
       setShowInstallHint(false);
-      await installPrompt.prompt();
-      await installPrompt.userChoice;
-      setInstallPrompt(null);
+      await promptInstall();
       return;
     }
     setShowInstallHint((v) => !v);
@@ -135,7 +116,7 @@ export default function DesktopHeader({
             </option>
           ))}
         </select>
-        <div ref={installWrapRef} className="relative">
+        {!installed && <div ref={installWrapRef} className="relative">
           <button
             type="button"
             onClick={handleInstallClick}
@@ -166,7 +147,7 @@ export default function DesktopHeader({
               </p>
             </div>
           )}
-        </div>
+        </div>}
       </div>
     </header>
   );
