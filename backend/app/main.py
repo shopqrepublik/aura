@@ -475,6 +475,8 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
     artist = vision.get("artist")
     title = vision.get("title")
     object_type = vision.get("object_type") or vision.get("object_category")
+    confidence_title = float(vision.get("confidence_title", vision.get("confidence", 0)) or 0)
+    confidence_artist = float(vision.get("confidence_artist", vision.get("confidence", 0)) or 0)
     visual_clues = vision.get("visual_clues") or []
     extra_clues = [
         vision.get("period_guess"),
@@ -501,7 +503,7 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
         search_tokens = _tokens(search_text)
 
         title_score = 0.0
-        if query_title:
+        if query_title and confidence_title >= 0.35:
             title_score = max(fuzz.token_sort_ratio(query_title, candidate_title), fuzz.partial_ratio(query_title, candidate_title)) / 100
         alt_title_score = 0.0
         for alt in alt_candidates:
@@ -511,7 +513,7 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
         title_score = max(title_score, alt_title_score * 0.92)
 
         artist_score = 0.0
-        if query_artist and candidate_artist:
+        if query_artist and candidate_artist and confidence_artist >= 0.35:
             artist_score = fuzz.token_sort_ratio(query_artist, candidate_artist) / 100
 
         clue_score = 0.0
@@ -536,15 +538,26 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
         if isinstance(priority, (int, float)):
             priority_score = max(0.0, min(0.08, (120 - float(priority)) / 1500))
 
-        score = (
-            0.46 * title_score
-            + 0.20 * artist_score
-            + 0.15 * min(clue_score, 1.0)
-            + 0.10 * min(ocr_score, 1.0)
-            + 0.08 * min(object_score, 1.0)
-            + 0.04 * min(hall_score, 1.0)
-            + priority_score
-        )
+        if candidate.get("artist") is None or candidate_artist in {"anonyme", "anonymous"} or not query_title:
+            score = (
+                0.18 * title_score
+                + 0.06 * artist_score
+                + 0.38 * min(clue_score, 1.0)
+                + 0.14 * min(ocr_score, 1.0)
+                + 0.16 * min(object_score, 1.0)
+                + 0.04 * min(hall_score, 1.0)
+                + priority_score
+            )
+        else:
+            score = (
+                0.42 * title_score
+                + 0.18 * artist_score
+                + 0.19 * min(clue_score, 1.0)
+                + 0.08 * min(ocr_score, 1.0)
+                + 0.08 * min(object_score, 1.0)
+                + 0.03 * min(hall_score, 1.0)
+                + priority_score
+            )
         if title_score >= 0.95:
             score = max(score, 0.72 + 0.08 * artist_score + priority_score)
         elif title_score >= 0.82 and not query_artist:

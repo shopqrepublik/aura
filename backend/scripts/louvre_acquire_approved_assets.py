@@ -103,6 +103,8 @@ def load_rows(limit: int | None) -> list[dict]:
                       a.artist,
                       a.department,
                       a.room,
+                      m.tier,
+                      m.visitor_priority,
                       ra.id as asset_id,
                       ra.source,
                       ra.source_url,
@@ -121,7 +123,11 @@ def load_rows(limit: int | None) -> list[dict]:
                       and ra.ai_tdm_eligible=true
                       and ra.embedding_eligible=true
                       and ra.rights_status in ('public_domain','cc_licensed')
-                    order by m.visitor_priority desc nulls last, a.id asc
+                    order by
+                      case coalesce(m.tier, '') when 'A' then 0 when 'B' then 1 else 2 end,
+                      m.visitor_priority desc nulls last,
+                      a.department asc nulls last,
+                      a.id asc
                     """
                 )
             ).mappings()
@@ -161,8 +167,8 @@ def main() -> None:
             planned_row.update({"fixture_hash": digest, "status": "CACHED"})
             acquired.append(planned_row)
             continue
-        planned.append(planned_row)
         if not args.apply:
+            planned.append(planned_row)
             continue
 
         try:
@@ -188,6 +194,7 @@ def main() -> None:
             if exc.code == 429:
                 retry_after = exc.headers.get("Retry-After")
                 stopped = {"reason": "HTTP_429", "ark_id": row["ark_id"], "retry_after": retry_after, "stopped_at": now()}
+                planned.append(planned_row)
                 break
             skipped.append({"ark_id": row["ark_id"], "asset_id": row["asset_id"], "reason": f"HTTP_{exc.code}"})
         except Exception as exc:

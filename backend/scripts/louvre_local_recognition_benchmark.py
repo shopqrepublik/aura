@@ -12,13 +12,14 @@ import argparse
 import base64
 import hashlib
 import json
+import random
 import statistics
 import time
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-from PIL import Image, ImageEnhance, ImageFilter
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -51,7 +52,6 @@ def select_fixtures(limit: int) -> list[dict]:
     if not rows:
         rows = read_jsonl(ASSETS / "louvre_approved_asset_acquisition_plan.jsonl")
     fixtures = []
-    seen_departments = set()
     for row in rows:
         path = ROOT / row.get("cache_path", "")
         if not path.exists():
@@ -64,17 +64,51 @@ def select_fixtures(limit: int) -> list[dict]:
             "expected_title": row.get("title_original"),
             "expected_artist": row.get("artist"),
             "department": row.get("department"),
+            "tier": row.get("tier"),
             "room": row.get("room"),
             "license": row.get("license"),
             "fixture_path": str(path.relative_to(ROOT)),
             "fixture_hash": sha256(path),
         }
-        if item["department"] not in seen_departments:
-            fixtures.insert(0, item)
-            seen_departments.add(item["department"])
-        else:
-            fixtures.append(item)
-    return fixtures[:limit]
+        fixtures.append(item)
+    if len(fixtures) <= limit:
+        return fixtures
+
+    selected: list[dict] = []
+    used = set()
+
+    def take(predicate, max_count):
+        for item in fixtures:
+            if len(selected) >= limit or len([x for x in selected if predicate(x)]) >= max_count:
+                return
+            if item["artwork_id"] not in used and predicate(item):
+                selected.append(item)
+                used.add(item["artwork_id"])
+
+    take(lambda x: x.get("tier") == "A", min(15, limit))
+    departments = sorted({x.get("department") or "" for x in fixtures})
+    while len(selected) < limit:
+        added = False
+        for dept in departments:
+            if len(selected) >= limit:
+                break
+            for item in fixtures:
+                if item["artwork_id"] in used:
+                    continue
+                if (item.get("department") or "") == dept:
+                    selected.append(item)
+                    used.add(item["artwork_id"])
+                    added = True
+                    break
+        if not added:
+            break
+    for item in fixtures:
+        if len(selected) >= limit:
+            break
+        if item["artwork_id"] not in used:
+            selected.append(item)
+            used.add(item["artwork_id"])
+    return selected[:limit]
 
 
 def create_variants(fixtures: list[dict], variants: list[str]) -> list[dict]:
@@ -106,6 +140,17 @@ def create_variants(fixtures: list[dict], variants: list[str]) -> list[dict]:
                         if abs((x / max(1, mw)) - (y / max(1, mh))) < 0.045:
                             mask.putpixel((x, y), 75)
                 v = Image.composite(overlay, v, mask)
+            elif variant == "partial_occlusion":
+                d = ImageDraw.Draw(v)
+                w, h = v.size
+                d.rectangle((int(w * 0.58), int(h * 0.62), int(w * 0.94), int(h * 0.94)), fill=(34, 33, 31))
+            elif variant == "frame_background":
+                w, h = v.size
+                canvas = Image.new("RGB", (int(w * 1.18), int(h * 1.18)), (214, 208, 194))
+                border = Image.new("RGB", (int(w * 1.08), int(h * 1.08)), (78, 58, 36))
+                canvas.paste(border, (int(w * 0.05), int(h * 0.05)))
+                canvas.paste(v, (int(w * 0.09), int(h * 0.09)))
+                v = canvas
             v.thumbnail((900, 900), Image.LANCZOS)
             v.save(out, format="JPEG", quality=86, optimize=True)
             rows.append({**fixture, "variant": variant, "input_path": str(out.relative_to(ROOT)), "input_hash": sha256(out)})
@@ -144,6 +189,9 @@ def benchmark(api_url: str, rows: list[dict], mode: str) -> list[dict]:
                 "top3": top3[:3],
                 "confidence": payload.get("confidence"),
                 "recognition_mode": payload.get("recognition_mode"),
+                "vision": payload.get("vision"),
+                "top_candidates": payload.get("top_candidates", []),
+                "stage2_verifier": payload.get("stage2_verifier"),
                 "latency_s": round(latency, 3),
                 "top1_correct": top == row["artwork_id"],
                 "top3_correct": row["artwork_id"] in top3[:3],
