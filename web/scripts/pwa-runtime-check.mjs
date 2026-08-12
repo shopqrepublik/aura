@@ -67,7 +67,7 @@ async function runtimeChecks() {
       ws.addEventListener("open", resolve, { once: true });
       ws.addEventListener("error", reject, { once: true });
     });
-    setMaxListeners(100, ws);
+    setMaxListeners(1000, ws);
 
     await send(ws, "Runtime.enable");
     await send(ws, "Page.enable");
@@ -94,15 +94,19 @@ async function runtimeChecks() {
     const preControl = await send(ws, "Runtime.evaluate", {
       awaitPromise: true,
       returnByValue: true,
-      expression: `Promise.resolve({
-        controller: Boolean(navigator.serviceWorker.controller),
-        ready: Boolean(navigator.serviceWorker?.ready),
-      })`,
+      expression: `navigator.serviceWorker.ready.then(() => ({
+        controller: Boolean(navigator.serviceWorker.controller)
+      }))`,
     });
 
     if (!preControl.result.value.controller) {
       await send(ws, "Page.reload", { ignoreCache: false });
-      await delay(3500);
+      await send(ws, "Runtime.evaluate", {
+        awaitPromise: true,
+        returnByValue: true,
+        expression: "navigator.serviceWorker.ready.then(() => true)",
+      });
+      await delay(2500);
     }
 
     const manifest = await send(ws, "Page.getAppManifest");
