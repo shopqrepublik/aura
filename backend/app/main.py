@@ -568,10 +568,11 @@ def _wikimedia_thumbnail_url(image_url: str, width: int = 512) -> Optional[str]:
     parsed = urllib.parse.urlsplit(image_url)
     if "Special:FilePath" not in parsed.path:
         return None
+    safe_path = urllib.parse.quote(urllib.parse.unquote(parsed.path), safe="/:")
     query = dict(urllib.parse.parse_qsl(parsed.query))
     query["width"] = str(width)
     return urllib.parse.urlunsplit(
-        (parsed.scheme, parsed.netloc, parsed.path, urllib.parse.urlencode(query), parsed.fragment)
+        (parsed.scheme, parsed.netloc, safe_path, urllib.parse.urlencode(query), parsed.fragment)
     )
 
 
