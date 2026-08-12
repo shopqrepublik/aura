@@ -14,6 +14,11 @@ class CatalogUnavailableError(RuntimeError):
 
 
 LOUVRE_VISITOR_CATALOG_VERSION = os.environ.get("LOUVRE_VISITOR_CATALOG_VERSION", "2026-08-11-v1")
+VERSAILLES_VISITOR_CATALOG_VERSION = os.environ.get("VERSAILLES_VISITOR_CATALOG_VERSION", "2026-08-12-v1")
+DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM = {
+    "louvre": LOUVRE_VISITOR_CATALOG_VERSION,
+    "versailles": VERSAILLES_VISITOR_CATALOG_VERSION,
+}
 
 
 def _has_membership_table(db: Session) -> bool:
@@ -21,9 +26,19 @@ def _has_membership_table(db: Session) -> bool:
 
 
 def _use_membership_scope(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> bool:
-    # Apply versioned membership where it exists for Louvre. Other museums keep
-    # current behavior until their catalogs are explicitly versioned.
-    return museum_id == "louvre" and bool(catalog_version or LOUVRE_VISITOR_CATALOG_VERSION) and _has_membership_table(db)
+    version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
+    if not museum_id or not version or not _has_membership_table(db):
+        return False
+    return (
+        db.query(ArtworkCatalogMembership)
+        .filter(
+            ArtworkCatalogMembership.museum_id == museum_id,
+            ArtworkCatalogMembership.catalog_version == version,
+            ArtworkCatalogMembership.active.is_(True),
+        )
+        .first()
+        is not None
+    )
 
 
 def estimate_to_value_reveal(estimate: Optional[ArtworkEstimate]) -> Optional[dict]:
@@ -241,7 +256,7 @@ def get_recognition_candidates(db: Session, museum_id: str, catalog_version: Opt
         return []
     try:
         if _use_membership_scope(db, museum_id, catalog_version):
-            version = catalog_version or LOUVRE_VISITOR_CATALOG_VERSION
+            version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
             rows = (
                 db.query(Artwork)
                 .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == Artwork.id)
@@ -288,7 +303,7 @@ def get_catalog_artworks_by_ids(db: Session, museum_id: str, artwork_ids: Iterab
         return []
     try:
         if _use_membership_scope(db, museum_id, catalog_version):
-            version = catalog_version or LOUVRE_VISITOR_CATALOG_VERSION
+            version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
             rows = (
                 db.query(Artwork)
                 .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == Artwork.id)
@@ -322,7 +337,7 @@ def count_catalog_artworks(db: Session, museum_id: str, catalog_version: Optiona
         return 0
     try:
         if _use_membership_scope(db, museum_id, catalog_version):
-            version = catalog_version or LOUVRE_VISITOR_CATALOG_VERSION
+            version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
             return (
                 db.query(ArtworkCatalogMembership)
                 .filter(

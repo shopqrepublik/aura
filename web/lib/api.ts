@@ -60,6 +60,20 @@ export interface CatalogArtworkResponse {
   creator_labels?: unknown;
   locale?: string;
   mode?: string;
+  localizations?: CatalogArtworkLocalizationResponse[];
+}
+
+export interface CatalogArtworkLocalizationResponse {
+  locale: string;
+  mode: string;
+  title?: string | null;
+  analogy?: string | null;
+  why_it_matters?: string | null;
+  where_to_look?: string | null;
+  rarity_note?: string | null;
+  audio_script?: string | null;
+  audio_url?: string | null;
+  editorial_status?: string | null;
 }
 
 // Phase 2 §1 (geofence generalization) -- one row per real museum in
@@ -168,8 +182,45 @@ export async function getArtworkDetail(artworkId: string, locale: string, mode: 
   );
 }
 
-function localized(text: string): Artwork["title"] {
-  return { en: text, fr: text, "zh-Hans": text };
+function mergeLocalized(base: string, values: Record<string, string | null | undefined>): Artwork["title"] {
+  return {
+    en: values.en || base,
+    fr: values.fr || values.en || base,
+    "zh-Hans": values["zh-Hans"] || values.en || base,
+  };
+}
+
+function localizedRows(raw: CatalogArtworkResponse, mode: string): Record<string, CatalogArtworkLocalizationResponse> {
+  const rows = raw.localizations || [];
+  const byLocale: Record<string, CatalogArtworkLocalizationResponse> = {};
+  for (const row of rows) {
+    if (row.mode === mode) byLocale[row.locale] = row;
+  }
+  return byLocale;
+}
+
+function modeText(
+  raw: CatalogArtworkResponse,
+  mode: "normal" | "simple" | "kids",
+  field: "why_it_matters" | "where_to_look" | "rarity_note" | "analogy",
+  fallback: string
+): Artwork["title"] {
+  const rows = localizedRows(raw, mode);
+  const normalRows = mode === "normal" ? rows : localizedRows(raw, "normal");
+  return mergeLocalized(fallback, {
+    en: rows.en?.[field] || normalRows.en?.[field],
+    fr: rows.fr?.[field] || normalRows.fr?.[field] || rows.en?.[field] || normalRows.en?.[field],
+    "zh-Hans": rows["zh-Hans"]?.[field] || normalRows["zh-Hans"]?.[field] || rows.en?.[field] || normalRows.en?.[field],
+  });
+}
+
+function titleText(raw: CatalogArtworkResponse, fallback: string): Artwork["title"] {
+  const normalRows = localizedRows(raw, "normal");
+  return mergeLocalized(fallback, {
+    en: normalRows.en?.title,
+    fr: normalRows.fr?.title,
+    "zh-Hans": normalRows["zh-Hans"]?.title,
+  });
 }
 
 function stringFromUnknown(value: unknown): string | null {
@@ -246,15 +297,37 @@ function louvrePlaceholderImage(): string {
 export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
   const title = raw.title || raw.id;
   const room = raw.room || raw.hall || raw.current_location_raw || raw.department || null;
+  const museumCatalogLabel =
+    raw.museum_id === "louvre"
+      ? "Louvre visitor catalog"
+      : raw.museum_id === "versailles"
+        ? "Versailles visitor catalog"
+        : "ELYIO museum catalog";
   const creatorEvidence = stringFromUnknown(raw.creator_labels) || stringFromUnknown(raw.creator_raw);
   const mediumLine = [raw.object_type, raw.materials_and_techniques].filter(Boolean).join(" · ");
   const dimensionLine = raw.dimensions ? `Dimensions: ${raw.dimensions}` : "";
   const provenanceLine = raw.provenance || raw.object_history || raw.historical_context || "";
-  const why = raw.description || provenanceLine || `${title} is recorded in the Louvre visitor catalog.`;
-  const where = [raw.department, room].filter(Boolean).join(" · ") || "Louvre catalog record";
+  const why = raw.description || provenanceLine || `${title} is recorded in the ${museumCatalogLabel}.`;
+  const where = [raw.department, room].filter(Boolean).join(" · ") || `${museumCatalogLabel} record`;
   const rarity = [mediumLine, dimensionLine, raw.inventory_number ? `Inventory: ${raw.inventory_number}` : ""]
     .filter(Boolean)
     .join(" · ") || "Source metadata is available; editorial content is pending review.";
+  const normalWhy = modeText(raw, "normal", "why_it_matters", why);
+  const normalWhere = modeText(raw, "normal", "where_to_look", where);
+  const normalRarity = modeText(raw, "normal", "rarity_note", rarity);
+  const normalAudioRows = localizedRows(raw, "normal");
+  const audioUrl = mergeLocalized("", {
+    en: normalAudioRows.en?.audio_url,
+    fr: normalAudioRows.fr?.audio_url,
+    "zh-Hans": normalAudioRows["zh-Hans"]?.audio_url,
+  });
+  const audioScript = mergeLocalized("", {
+    en: normalAudioRows.en?.audio_script,
+    fr: normalAudioRows.fr?.audio_script,
+    "zh-Hans": normalAudioRows["zh-Hans"]?.audio_script,
+  });
+  const hasAudioUrl = Boolean(audioUrl.en || audioUrl.fr || audioUrl["zh-Hans"]);
+  const hasAudioScript = Boolean(audioScript.en || audioScript.fr || audioScript["zh-Hans"]);
 
   return {
     id: raw.id,
@@ -263,27 +336,29 @@ export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
     hall: room,
     inventoryNumber: raw.inventory_number || raw.id,
     image: "L",
-    imageUrl: louvrePlaceholderImage(),
+    imageUrl: raw.image_url || louvrePlaceholderImage(),
     accent: "#8C6A4C",
     priority: raw.priority == null ? "" : String(raw.priority),
     needsEditorialReview: raw.needs_editorial_review ?? true,
     editorialStatus: raw.metadata_status || "metadata_only",
-    title: localized(title),
+    title: titleText(raw, title),
     titleNeedsReview: { en: false, fr: false, "zh-Hans": false },
     estimate: {
       low: raw.estimate_low,
       high: raw.estimate_high,
     },
     valueReveal: camelValueReveal(raw.value_reveal || null),
-    why: localized(why),
-    where: localized(where),
-    rarity: localized(rarity),
-    whySimple: localized(why),
-    whereSimple: localized(where),
-    raritySimple: localized(rarity),
-    whyKids: localized(why),
-    whereKids: localized(where),
-    rarityKids: localized(rarity),
+    why: normalWhy,
+    where: normalWhere,
+    rarity: normalRarity,
+    whySimple: modeText(raw, "simple", "analogy", why),
+    whereSimple: modeText(raw, "simple", "where_to_look", normalWhere.en),
+    raritySimple: modeText(raw, "simple", "rarity_note", normalRarity.en),
+    whyKids: modeText(raw, "kids", "analogy", why),
+    whereKids: modeText(raw, "kids", "where_to_look", normalWhere.en),
+    rarityKids: modeText(raw, "kids", "rarity_note", normalRarity.en),
+    ...(hasAudioScript ? { audioScript } : {}),
+    ...(hasAudioUrl ? { audioUrl } : {}),
   };
 }
 

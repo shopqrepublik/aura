@@ -89,6 +89,7 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 from .auth import get_current_user  # noqa: E402
 from .catalog import (  # noqa: E402
     CatalogUnavailableError,
+    DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM,
     aggregate_eligible_value,
     count_catalog_artworks,
     get_catalog_artwork,
@@ -96,7 +97,7 @@ from .catalog import (  # noqa: E402
     get_recognition_candidates,
 )
 from .db import SessionLocal, get_db  # noqa: E402
-from .models import Artwork, Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
+from .models import Artwork, ArtworkLocalization, Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -115,6 +116,7 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
 MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_BASE64_CHARS", "8000000"))
 OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "2"))
+OPENAI_RECOGNITION_TIMEOUT_SECONDS = float(os.environ.get("OPENAI_RECOGNITION_TIMEOUT_SECONDS", "35"))
 RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
 # latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
@@ -125,6 +127,7 @@ RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # regression, not a safety one — but "don't regress accuracy" was the explicit
 # bar, so Stage 2 stays on gpt-4o. See README for the full before/after numbers.
 VISUAL_VERIFY_MODEL = "gpt-4o"
+TOPN_VERIFIER_MUSEUMS = set(DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM)
 
 
 
@@ -307,7 +310,7 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
     """
     from openai import OpenAI  # imported lazily so the module still loads without the package during UI-only dev
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
     museum_context = {
         "louvre": "Musée du Louvre. The final identity must later be resolved against ELYIO's own Louvre visitor catalog; do not invent or output an ARK id.",
         "orsay": "Musée d'Orsay. The final identity must later be resolved against ELYIO's own Orsay catalog.",
@@ -951,7 +954,7 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict, allow_rem
 
     from openai import OpenAI
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
     ref_b64 = _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch)
     candidate_artist = candidate.get("artist") or "creator not specified"
 
@@ -1016,7 +1019,7 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
 
     from openai import OpenAI
 
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
     candidate_summaries = [_candidate_summary(row["candidate"]) for row in ranked[:5]]
     allowed_ids = [c["id"] for c in candidate_summaries if c.get("id")]
     system_prompt = (
@@ -1154,7 +1157,7 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
         }
 
     if not match or match_score < FUZZY_CANDIDATE_THRESHOLD:
-        if museum_id != "louvre":
+        if museum_id not in TOPN_VERIFIER_MUSEUMS:
             return {  # fast path: recognized something, but nothing catalog-adjacent
                 "artwork_id": None,
                 "confidence": 0.0,
@@ -1164,7 +1167,7 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
                 "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:3]],
             }
 
-    if museum_id == "louvre":
+    if museum_id in TOPN_VERIFIER_MUSEUMS:
         topn_verdict = verify_top_candidates_with_openai(image_base64, ident, ranked[:5])
         chosen_id = topn_verdict.get("chosen_id")
         if topn_verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
@@ -1549,6 +1552,8 @@ def list_museums(
     }
     if "louvre" in museum_ids:
         counts["louvre"] = count_catalog_artworks(db, "louvre")
+    if "versailles" in museum_ids:
+        counts["versailles"] = count_catalog_artworks(db, "versailles")
     return [
         MuseumOut(
             id=row.id,
@@ -1586,9 +1591,32 @@ def get_artwork_detail(artwork_id: str, locale: str = "en", mode: str = "normal"
         raise HTTPException(status_code=503, detail=str(e))
     if not art:
         raise HTTPException(status_code=404, detail="artwork not found")
-    # Real implementation joins artworks + artwork_localizations(locale, mode)
-    # + artwork_estimates, with English fallback per §10.
-    return {**art, "locale": locale, "mode": mode}
+    localizations = (
+        db.query(ArtworkLocalization)
+        .filter(ArtworkLocalization.artwork_id == artwork_id)
+        .order_by(ArtworkLocalization.locale.asc(), ArtworkLocalization.mode.asc())
+        .all()
+    )
+    return {
+        **art,
+        "locale": locale,
+        "mode": mode,
+        "localizations": [
+            {
+                "locale": row.locale,
+                "mode": row.mode or "normal",
+                "title": row.title,
+                "analogy": row.analogy,
+                "why_it_matters": row.why_it_matters,
+                "where_to_look": row.where_to_look,
+                "rarity_note": row.rarity_note,
+                "audio_script": row.audio_script,
+                "audio_url": row.audio_url,
+                "editorial_status": row.editorial_status,
+            }
+            for row in localizations
+        ],
+    }
 
 
 @app.get("/v1/image-proxy")
