@@ -1,0 +1,159 @@
+{
+  "model": "facebook/dinov2-small",
+  "verified_cached_reference_count": 25,
+  "original_valid_pristine_rows": 41,
+  "eligible_visual_rows": 17,
+  "independent_query_rows": 0,
+  "same_source_derivative_rows": 17,
+  "configurations": {
+    "metadata_only_verified_ref_corpus": {
+      "original_denominator": {
+        "total": 41,
+        "top1_recall": 0.36585365853658536,
+        "top1_count": 15,
+        "top3_recall": 0.4146341463414634,
+        "top3_count": 17,
+        "top5_recall": 0.4146341463414634,
+        "top5_count": 17,
+        "top20_recall": 0.4146341463414634,
+        "top20_count": 17
+      },
+      "eligible_visual_subset": {
+        "total": 17,
+        "top1_recall": 0.8823529411764706,
+        "top1_count": 15,
+        "top3_recall": 1.0,
+        "top3_count": 17,
+        "top5_recall": 1.0,
+        "top5_count": 17,
+        "top20_recall": 1.0,
+        "top20_count": 17
+      }
+    },
+    "visual_0.7_metadata_0.3": {
+      "original_denominator": {
+        "total": 41,
+        "top1_recall": 0.4146341463414634,
+        "top1_count": 17,
+        "top3_recall": 0.4146341463414634,
+        "top3_count": 17,
+        "top5_recall": 0.4146341463414634,
+        "top5_count": 17,
+        "top20_recall": 0.4146341463414634,
+        "top20_count": 17
+      },
+      "eligible_visual_subset": {
+        "total": 17,
+        "top1_recall": 1.0,
+        "top1_count": 17,
+        "top3_recall": 1.0,
+        "top3_count": 17,
+        "top5_recall": 1.0,
+        "top5_count": 17,
+        "top20_recall": 1.0,
+        "top20_count": 17
+      }
+    },
+    "visual_0.8_metadata_0.2": {
+      "original_denominator": {
+        "total": 41,
+        "top1_recall": 0.4146341463414634,
+        "top1_count": 17,
+        "top3_recall": 0.4146341463414634,
+        "top3_count": 17,
+        "top5_recall": 0.4146341463414634,
+        "top5_count": 17,
+        "top20_recall": 0.4146341463414634,
+        "top20_count": 17
+      },
+      "eligible_visual_subset": {
+        "total": 17,
+        "top1_recall": 1.0,
+        "top1_count": 17,
+        "top3_recall": 1.0,
+        "top3_count": 17,
+        "top5_recall": 1.0,
+        "top5_count": 17,
+        "top20_recall": 1.0,
+        "top20_count": 17
+      }
+    },
+    "visual_0.9_metadata_0.1": {
+      "original_denominator": {
+        "total": 41,
+        "top1_recall": 0.4146341463414634,
+        "top1_count": 17,
+        "top3_recall": 0.4146341463414634,
+        "top3_count": 17,
+        "top5_recall": 0.4146341463414634,
+        "top5_count": 17,
+        "top20_recall": 0.4146341463414634,
+        "top20_count": 17
+      },
+      "eligible_visual_subset": {
+        "total": 17,
+        "top1_recall": 1.0,
+        "top1_count": 17,
+        "top3_recall": 1.0,
+        "top3_count": 17,
+        "top5_recall": 1.0,
+        "top5_count": 17,
+        "top20_recall": 1.0,
+        "top20_count": 17
+      }
+    },
+    "visual_1.0_metadata_0.0": {
+      "original_denominator": {
+        "total": 41,
+        "top1_recall": 0.4146341463414634,
+        "top1_count": 17,
+        "top3_recall": 0.4146341463414634,
+        "top3_count": 17,
+        "top5_recall": 0.4146341463414634,
+        "top5_count": 17,
+        "top20_recall": 0.4146341463414634,
+        "top20_count": 17
+      },
+      "eligible_visual_subset": {
+        "total": 17,
+        "top1_recall": 1.0,
+        "top1_count": 17,
+        "top3_recall": 1.0,
+        "top3_count": 17,
+        "top5_recall": 1.0,
+        "top5_count": 17,
+        "top20_recall": 1.0,
+        "top20_count": 17
+      }
+    },
+    "visual_only_verified_ref_corpus": {
+      "original_denominator": {
+        "total": 41,
+        "top1_recall": 0.4146341463414634,
+        "top1_count": 17,
+        "top3_recall": 0.4146341463414634,
+        "top3_count": 17,
+        "top5_recall": 0.4146341463414634,
+        "top5_count": 17,
+        "top20_recall": 0.4146341463414634,
+        "top20_count": 17
+      },
+      "eligible_visual_subset": {
+        "total": 17,
+        "top1_recall": 1.0,
+        "top1_count": 17,
+        "top3_recall": 1.0,
+        "top3_count": 17,
+        "top5_recall": 1.0,
+        "top5_count": 17,
+        "top20_recall": 1.0,
+        "top20_count": 17
+      }
+    }
+  },
+  "detail_path": "exports\\louvre\\recognition_benchmark\\visual_embedding\\louvre_visual_embedding_benchmark_2026-08-12T130225+0000.jsonl",
+  "network_during_benchmark": 0,
+  "louvre_image_bytes_fetched": 0,
+  "best_configuration": "visual_0.7_metadata_0.3",
+  "failure_path": "exports\\louvre\\recognition_benchmark\\visual_embedding\\louvre_visual_embedding_failures_2026-08-12T130225+0000.jsonl"
+}

@@ -1,0 +1,16 @@
+{
+  "original_valid_pristine_rows": 41,
+  "category_counts": {
+    "no verified reference": 24,
+    "same-source derivative": 17
+  },
+  "asset_status_counts": {
+    "UNRESOLVED": 9,
+    "QUARANTINED_MISMATCH": 15,
+    "VERIFIED": 17
+  },
+  "eligible_visual_rows": 17,
+  "independent_query_rows": 0,
+  "leakage_warning": "Current local positive benchmark uses same-source derivatives from cached reference assets, not independent museum photos. Use it for retrieval plumbing, not launch accuracy claims.",
+  "jsonl": "exports\\louvre\\recognition_benchmark\\louvre_benchmark_integrity_audit.jsonl"
+}

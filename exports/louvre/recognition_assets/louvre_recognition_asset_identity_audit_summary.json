@@ -1,0 +1,13 @@
+{
+  "assets_audited": 180,
+  "status_counts": {
+    "VERIFIED": 60,
+    "UNRESOLVED": 56,
+    "QUARANTINED_MISMATCH": 64
+  },
+  "jsonl": "exports\\louvre\\recognition_assets\\louvre_recognition_asset_identity_audit.jsonl",
+  "csv": "exports\\louvre\\recognition_assets\\louvre_recognition_asset_identity_audit.csv",
+  "root_cause": "Original SPARQL inventory matcher accepted Wikidata P217 matches without constraining the item to Louvre collection/location and without post-validating title/creator/object agreement; inventory-like identifiers can collide across unrelated works.",
+  "production_rows_modified": 0,
+  "assets_deleted": 0
+}
