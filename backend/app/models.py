@@ -107,6 +107,32 @@ class Artwork(Base):
     embeddings = relationship("ArtworkEmbedding", back_populates="artwork")
     louvre_image_references = relationship("LouvreImageReference", back_populates="artwork")
     recognition_assets = relationship("RecognitionAsset", back_populates="artwork")
+    catalog_memberships = relationship("ArtworkCatalogMembership", back_populates="artwork")
+
+
+class ArtworkCatalogMembership(Base):
+    """Versioned visitor-catalog membership.
+
+    `artworks` is museum knowledge. This table defines which subset is active
+    for a specific visitor-facing catalog version, e.g. Louvre Visitor 500 v1.
+    """
+    __tablename__ = "artwork_catalog_memberships"
+    __table_args__ = (
+        UniqueConstraint("artwork_id", "catalog_version", name="uq_artwork_catalog_membership_version"),
+        Index("idx_artwork_catalog_memberships_museum_version_active", "museum_id", "catalog_version", "active"),
+        Index("idx_artwork_catalog_memberships_artwork_id", "artwork_id"),
+    )
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=False)
+    museum_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    catalog_version = Column(String, nullable=False)
+    active = Column(Boolean, nullable=False, default=True)
+    tier = Column(String, nullable=True)
+    visitor_priority = Column(Float, nullable=True)
+    created_at = Column(DateTime, default=now)
+
+    artwork = relationship("Artwork", back_populates="catalog_memberships")
 
 
 class SourceRecordIndex(Base):

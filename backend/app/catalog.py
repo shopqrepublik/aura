@@ -1,15 +1,29 @@
 from __future__ import annotations
 
+import os
 from typing import Iterable, Optional
 
 from sqlalchemy import inspect
 from sqlalchemy.orm import Session
 
-from .models import Artwork, ArtworkEstimate, ArtworkValueReveal
+from .models import Artwork, ArtworkCatalogMembership, ArtworkEstimate, ArtworkValueReveal, RecognitionAsset
 
 
 class CatalogUnavailableError(RuntimeError):
     """Raised when the DB-backed catalog cannot be queried."""
+
+
+LOUVRE_VISITOR_CATALOG_VERSION = os.environ.get("LOUVRE_VISITOR_CATALOG_VERSION", "2026-08-11-v1")
+
+
+def _has_membership_table(db: Session) -> bool:
+    return db.bind is not None and inspect(db.bind).has_table("artwork_catalog_memberships")
+
+
+def _use_membership_scope(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> bool:
+    # Apply versioned membership where it exists for Louvre. Other museums keep
+    # current behavior until their catalogs are explicitly versioned.
+    return museum_id == "louvre" and bool(catalog_version or LOUVRE_VISITOR_CATALOG_VERSION) and _has_membership_table(db)
 
 
 def estimate_to_value_reveal(estimate: Optional[ArtworkEstimate]) -> Optional[dict]:
@@ -109,9 +123,15 @@ def artwork_to_catalog_dict(
     artwork: Artwork,
     estimate: Optional[ArtworkEstimate] = None,
     value_reveal: Optional[ArtworkValueReveal] = None,
+    recognition_asset: Optional[RecognitionAsset] = None,
 ) -> dict:
     """Return the legacy DEMO_ARTWORKS-shaped dict used by recognition/UI APIs."""
     reveal = explicit_value_reveal_to_dict(value_reveal) or estimate_to_value_reveal(estimate)
+    recognition_image_url = artwork.image_url
+    recognition_asset_id = None
+    if recognition_asset is not None and recognition_asset.embedding_eligible:
+        recognition_image_url = recognition_asset.source_url
+        recognition_asset_id = recognition_asset.id
     return {
         "id": artwork.id,
         "museum_id": artwork.museum_id,
@@ -120,7 +140,8 @@ def artwork_to_catalog_dict(
         "year": artwork.year,
         "hall": artwork.hall or artwork.room,
         "inventory_number": artwork.inventory_number,
-        "image_url": artwork.image_url,
+        "image_url": recognition_image_url,
+        "recognition_asset_id": recognition_asset_id,
         "priority": artwork.priority,
         "tags": artwork.tags or [],
         "source_urls": artwork.source_urls or [],
@@ -174,19 +195,57 @@ def _value_reveal_by_artwork_id(db: Session, artwork_ids: Iterable[str]) -> dict
     return by_id
 
 
-def get_recognition_candidates(db: Session, museum_id: str) -> list[dict]:
+def _recognition_asset_by_artwork_id(db: Session, artwork_ids: Iterable[str]) -> dict[str, RecognitionAsset]:
+    ids = list(artwork_ids)
+    if not ids:
+        return {}
+    if db.bind is None or not inspect(db.bind).has_table("recognition_assets"):
+        return {}
+    rows = (
+        db.query(RecognitionAsset)
+        .filter(
+            RecognitionAsset.artwork_id.in_(ids),
+            RecognitionAsset.embedding_eligible.is_(True),
+            RecognitionAsset.ai_tdm_eligible.is_(True),
+        )
+        .order_by(RecognitionAsset.artwork_id.asc(), RecognitionAsset.updated_at.desc())
+        .all()
+    )
+    by_id: dict[str, RecognitionAsset] = {}
+    for row in rows:
+        by_id.setdefault(row.artwork_id, row)
+    return by_id
+
+
+def get_recognition_candidates(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> list[dict]:
     if not museum_id:
         return []
     try:
-        rows = (
-            db.query(Artwork)
-            .filter(Artwork.museum_id == museum_id)
-            .order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc())
-            .all()
-        )
+        if _use_membership_scope(db, museum_id, catalog_version):
+            version = catalog_version or LOUVRE_VISITOR_CATALOG_VERSION
+            rows = (
+                db.query(Artwork)
+                .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == Artwork.id)
+                .filter(
+                    Artwork.museum_id == museum_id,
+                    ArtworkCatalogMembership.museum_id == museum_id,
+                    ArtworkCatalogMembership.catalog_version == version,
+                    ArtworkCatalogMembership.active.is_(True),
+                )
+                .order_by(ArtworkCatalogMembership.visitor_priority.desc().nullslast(), Artwork.priority.asc().nullslast(), Artwork.id.asc())
+                .all()
+            )
+        else:
+            rows = (
+                db.query(Artwork)
+                .filter(Artwork.museum_id == museum_id)
+                .order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc())
+                .all()
+            )
         estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
         value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
-        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id)) for row in rows]
+        recognition_assets = _recognition_asset_by_artwork_id(db, [row.id for row in rows])
+        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id), recognition_assets.get(row.id)) for row in rows]
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog lookup failed for museum_id={museum_id!r}: {exc}") from exc
 
@@ -198,33 +257,62 @@ def get_catalog_artwork(db: Session, artwork_id: str) -> Optional[dict]:
             return None
         estimate = _estimate_by_artwork_id(db, [row.id]).get(row.id)
         value_reveal = _value_reveal_by_artwork_id(db, [row.id]).get(row.id)
-        return artwork_to_catalog_dict(row, estimate, value_reveal)
+        recognition_asset = _recognition_asset_by_artwork_id(db, [row.id]).get(row.id)
+        return artwork_to_catalog_dict(row, estimate, value_reveal, recognition_asset)
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog artwork lookup failed for artwork_id={artwork_id!r}: {exc}") from exc
 
 
-def get_catalog_artworks_by_ids(db: Session, museum_id: str, artwork_ids: Iterable[str]) -> list[dict]:
+def get_catalog_artworks_by_ids(db: Session, museum_id: str, artwork_ids: Iterable[str], catalog_version: Optional[str] = None) -> list[dict]:
     ids = list(artwork_ids)
     if not museum_id or not ids:
         return []
     try:
-        rows = (
-            db.query(Artwork)
-            .filter(Artwork.museum_id == museum_id, Artwork.id.in_(ids))
-            .order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc())
-            .all()
-        )
+        if _use_membership_scope(db, museum_id, catalog_version):
+            version = catalog_version or LOUVRE_VISITOR_CATALOG_VERSION
+            rows = (
+                db.query(Artwork)
+                .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == Artwork.id)
+                .filter(
+                    Artwork.museum_id == museum_id,
+                    Artwork.id.in_(ids),
+                    ArtworkCatalogMembership.museum_id == museum_id,
+                    ArtworkCatalogMembership.catalog_version == version,
+                    ArtworkCatalogMembership.active.is_(True),
+                )
+                .order_by(ArtworkCatalogMembership.visitor_priority.desc().nullslast(), Artwork.priority.asc().nullslast(), Artwork.id.asc())
+                .all()
+            )
+        else:
+            rows = (
+                db.query(Artwork)
+                .filter(Artwork.museum_id == museum_id, Artwork.id.in_(ids))
+                .order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc())
+                .all()
+            )
         estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
         value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
-        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id)) for row in rows]
+        recognition_assets = _recognition_asset_by_artwork_id(db, [row.id for row in rows])
+        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id), recognition_assets.get(row.id)) for row in rows]
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog artwork list lookup failed for museum_id={museum_id!r}: {exc}") from exc
 
 
-def count_catalog_artworks(db: Session, museum_id: str) -> int:
+def count_catalog_artworks(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> int:
     if not museum_id:
         return 0
     try:
+        if _use_membership_scope(db, museum_id, catalog_version):
+            version = catalog_version or LOUVRE_VISITOR_CATALOG_VERSION
+            return (
+                db.query(ArtworkCatalogMembership)
+                .filter(
+                    ArtworkCatalogMembership.museum_id == museum_id,
+                    ArtworkCatalogMembership.catalog_version == version,
+                    ArtworkCatalogMembership.active.is_(True),
+                )
+                .count()
+            )
         return db.query(Artwork).filter(Artwork.museum_id == museum_id).count()
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog count failed for museum_id={museum_id!r}: {exc}") from exc

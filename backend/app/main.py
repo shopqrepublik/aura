@@ -109,7 +109,7 @@ app.add_middleware(
 )
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-RECOGNITION_MODEL = "gpt-4o"  # Stage 1 (open recognition) — drives accuracy, left alone per instructions
+RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
 # latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
 # (2 confirmed false negatives on exact-title-match candidates gpt-4o accepted
@@ -279,15 +279,23 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
     from openai import OpenAI  # imported lazily so the module still loads without the package during UI-only dev
 
     client = OpenAI(api_key=OPENAI_API_KEY)
+    museum_context = {
+        "louvre": "Musée du Louvre. The final identity must later be resolved against ELYIO's own Louvre visitor catalog; do not invent or output an ARK id.",
+        "orsay": "Musée d'Orsay. The final identity must later be resolved against ELYIO's own Orsay catalog.",
+        "orangerie": "Musée de l'Orangerie. The final identity must later be resolved against ELYIO's own Orangerie catalog.",
+    }.get(museum_id, f"{museum_id or 'a museum'}. The final identity must later be resolved against ELYIO's own museum catalog.")
     system_prompt = (
-        "You are an art expert identifying an artwork photographed by a museum visitor "
-        f"(likely at {museum_id or 'a French national museum'}). Identify the artist and title "
-        "exactly as you recognize them, from your own knowledge — do NOT limit yourself to any "
-        "predefined list. If you do not recognize the specific work, say so honestly (title: null) "
-        "rather than guessing. Give the title in English if you know an accepted English title.\n\n"
-        'Respond with a single valid json object only, no prose, no markdown fences: '
-        '{"artist": "<artist name or null>", "title": "<title or null>", '
-        '"confidence": <0-1 float, how confident you are in this identification>}.'
+        "You are the first visual-analysis pass for a museum recognition system. "
+        f"Context: the visitor is likely inside {museum_context}\n\n"
+        "Identify only what is visually and art-historically supportable from the image. "
+        "If uncertain, keep recognized=false or confidence low. Do not fabricate identifiers. "
+        "Do not output an ARK, accession id, database id, or any identifier not visible in the image.\n\n"
+        "Respond with one strict JSON object only, no prose, no markdown fences, with this shape: "
+        '{"recognized": true|false, "artist": "<artist or null>", "title": "<title or null>", '
+        '"object_type": "<painting|sculpture|antiquity|decorative art|drawing|object|unknown>", '
+        '"visual_clues": ["specific visual clue", "..."], '
+        '"confidence": <0-1 float>, '
+        '"alternative_candidates": [{"artist": "<artist or null>", "title": "<title or null>", "confidence": <0-1 float>}]}'
     )
 
     resp = client.chat.completions.create(
@@ -298,11 +306,19 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": [
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
-                {"type": "text", "text": "What artwork is this?"}
+                {"type": "text", "text": "Analyze this museum visitor photo for artwork recognition."}
             ]}
         ]
     )
-    return json.loads(resp.choices[0].message.content)
+    data = json.loads(resp.choices[0].message.content)
+    data.setdefault("recognized", bool(data.get("title") or data.get("artist") or data.get("visual_clues")))
+    data.setdefault("artist", None)
+    data.setdefault("title", None)
+    data.setdefault("object_type", "unknown")
+    data.setdefault("visual_clues", [])
+    data.setdefault("alternative_candidates", [])
+    data.setdefault("confidence", 0.0)
+    return data
 
 
 _ARTICLE_RE = re.compile(r"\b(the|a|an|la|le|les|l'|un|une)\b", re.IGNORECASE)
@@ -385,6 +401,122 @@ def fuzzy_match_catalog(artist: Optional[str], title: Optional[str], candidates:
     best_score, best = scored[0]
     runner_up = scored[1][1] if len(scored) > 1 and scored[1][0] >= 0.5 else None
     return best, best_score, runner_up
+
+
+def _tokens(value: Optional[str]) -> set[str]:
+    if not value:
+        return set()
+    value = _normalize_for_matching(value).lower()
+    return {t for t in re.findall(r"[a-zà-ÿ0-9]{3,}", value) if t not in {"and", "with", "from", "dans", "avec", "des", "les", "une", "pour"}}
+
+
+def _candidate_search_text(candidate: dict) -> str:
+    parts = [
+        candidate.get("title"),
+        candidate.get("artist"),
+        candidate.get("year"),
+        candidate.get("inventory_number"),
+        candidate.get("department"),
+        candidate.get("hall"),
+        candidate.get("object_type"),
+        candidate.get("source_record_id"),
+    ]
+    tags = candidate.get("tags") or []
+    if isinstance(tags, list):
+        parts.extend(str(x) for x in tags)
+    return " ".join(str(x) for x in parts if x)
+
+
+def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Optional[str] = None, limit: int = 5) -> list[dict]:
+    """Hybrid text/clue rank over already museum-scoped DB candidates.
+
+    This deliberately accepts the candidate list from the caller instead of
+    fetching anything globally; museum isolation belongs in get_recognition_candidates().
+    """
+    from rapidfuzz import fuzz
+
+    if not candidates:
+        return []
+    artist = vision.get("artist")
+    title = vision.get("title")
+    object_type = vision.get("object_type")
+    visual_clues = vision.get("visual_clues") or []
+    alt_candidates = vision.get("alternative_candidates") or []
+
+    query_title = _normalize_for_matching(title or "")
+    query_artist = _normalize_for_matching(artist or "")
+    clue_tokens = _tokens(" ".join(str(x) for x in visual_clues))
+    object_tokens = _tokens(object_type)
+    hall_tokens = _tokens(hall_hint)
+
+    scored: list[tuple[float, dict, dict]] = []
+    for candidate in candidates:
+        candidate_title = _normalize_for_matching(candidate.get("title") or "")
+        candidate_artist = _normalize_for_matching(candidate.get("artist") or "")
+        search_text = _candidate_search_text(candidate)
+        search_tokens = _tokens(search_text)
+
+        title_score = 0.0
+        if query_title:
+            title_score = max(fuzz.token_sort_ratio(query_title, candidate_title), fuzz.partial_ratio(query_title, candidate_title)) / 100
+        alt_title_score = 0.0
+        for alt in alt_candidates:
+            alt_title = _normalize_for_matching((alt or {}).get("title") or "")
+            if alt_title:
+                alt_title_score = max(alt_title_score, fuzz.token_sort_ratio(alt_title, candidate_title) / 100, fuzz.partial_ratio(alt_title, candidate_title) / 100)
+        title_score = max(title_score, alt_title_score * 0.92)
+
+        artist_score = 0.0
+        if query_artist and candidate_artist:
+            artist_score = fuzz.token_sort_ratio(query_artist, candidate_artist) / 100
+
+        clue_score = 0.0
+        if clue_tokens:
+            clue_score = len(clue_tokens & search_tokens) / max(1, min(len(clue_tokens), 8))
+
+        object_score = 0.0
+        if object_tokens:
+            object_score = len(object_tokens & search_tokens) / max(1, len(object_tokens))
+
+        hall_score = 0.0
+        if hall_tokens:
+            hall_score = len(hall_tokens & search_tokens) / max(1, len(hall_tokens))
+
+        priority = candidate.get("priority")
+        priority_score = 0.0
+        if isinstance(priority, (int, float)):
+            priority_score = max(0.0, min(0.08, (120 - float(priority)) / 1500))
+
+        score = (
+            0.46 * title_score
+            + 0.20 * artist_score
+            + 0.18 * min(clue_score, 1.0)
+            + 0.08 * min(object_score, 1.0)
+            + 0.04 * min(hall_score, 1.0)
+            + priority_score
+        )
+        if title_score >= 0.95:
+            score = max(score, 0.72 + 0.08 * artist_score + priority_score)
+        elif title_score >= 0.82 and not query_artist:
+            score = max(score, 0.58 + priority_score)
+        # Anonymous Louvre antiquities/decorative objects can be identifiable
+        # without artist/title if visual/object/room metadata line up.
+        if not query_title and not query_artist:
+            score = 0.48 * min(clue_score, 1.0) + 0.22 * min(object_score, 1.0) + 0.12 * min(hall_score, 1.0) + priority_score
+
+        scored.append((score, candidate, {
+            "title_score": round(title_score, 3),
+            "artist_score": round(artist_score, 3),
+            "visual_clue_score": round(min(clue_score, 1.0), 3),
+            "object_type_score": round(min(object_score, 1.0), 3),
+            "room_score": round(min(hall_score, 1.0), 3),
+        }))
+
+    scored.sort(key=lambda item: item[0], reverse=True)
+    ranked = []
+    for score, candidate, signals in scored[:limit]:
+        ranked.append({"candidate": candidate, "score": round(score, 4), "signals": signals})
+    return ranked
 
 
 # One reference image per verified candidate, cached to disk — Wikimedia
@@ -528,6 +660,22 @@ def _fetch_reference_image_b64(artwork: dict) -> str:
         return base64.b64encode(f.read()).decode("ascii")
 
 
+def _reference_verification_allowed(candidate: dict) -> bool:
+    """Only external, rights-cleared reference URLs may be fetched for verifier.
+
+    Louvre/RMN image references are metadata-only and must never be fetched by
+    recognition. Current Orsay/Orangerie verified references are Wikimedia
+    URLs, so this preserves existing behavior while keeping Louvre safe.
+    """
+    image_url = candidate.get("image_url")
+    if not image_url:
+        return False
+    import urllib.parse
+
+    parsed = urllib.parse.urlsplit(image_url)
+    return parsed.hostname in {"commons.wikimedia.org", "upload.wikimedia.org"}
+
+
 # ---- Image proxy (Recap PNG export) ---------------------------------------
 # canvas.drawImage() refuses cross-origin Wikimedia images outright (a real
 # browser security restriction: reading pixels back out via toBlob/toDataURL
@@ -609,6 +757,8 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict) -> dict:
     """
     if not candidate.get("image_url"):
         return {"is_match": False, "confidence": 0.0, "reason": "missing_reference_image"}
+    if not _reference_verification_allowed(candidate):
+        return {"is_match": False, "confidence": 0.0, "reason": "reference_verification_not_allowed_for_url"}
 
     from openai import OpenAI
 
@@ -681,39 +831,90 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
     artist, title = ident.get("artist"), ident.get("title")
     model_confidence = float(ident.get("confidence", 0) or 0)
 
-    if not title:
+    if not ident.get("recognized") and not title and not ident.get("visual_clues"):
         return {"artwork_id": None, "confidence": 0.0, "alternatives": []}  # fast path: nothing recognized
 
-    match, match_score, runner_up = fuzzy_match_catalog(artist, title, candidates)
+    ranked = rank_catalog_candidates(ident, candidates, hall_hint=hall_hint, limit=5)
+    if not ranked:
+        return {
+            "artwork_id": None,
+            "confidence": 0.0,
+            "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": artist, "title": title},
+            "vision": ident,
+        }
+
+    top = ranked[0]
+    match = top["candidate"]
+    match_score = float(top["score"])
+    runner_up = ranked[1]["candidate"] if len(ranked) > 1 and ranked[1]["score"] >= 0.45 else None
+    alternatives = [row["candidate"]["id"] for row in ranked[1:3]]
+
     if not match or match_score < FUZZY_CANDIDATE_THRESHOLD:
         return {  # fast path: recognized something, but nothing catalog-adjacent
             "artwork_id": None,
             "confidence": 0.0,
             "alternatives": [],
             "recognized_but_not_cataloged": {"artist": artist, "title": title},
+            "vision": ident,
+            "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:3]],
         }
 
-    verdict = visual_verify_single_candidate(image_base64, match)  # slow path
-    if verdict.get("is_match"):
-        visual_confidence = float(verdict.get("confidence", 0) or 0)
-        final_confidence = min(model_confidence, visual_confidence)
-        alternatives = [runner_up["id"]] if runner_up else []
-        return {"artwork_id": match["id"], "confidence": final_confidence, "alternatives": alternatives}
+    if _reference_verification_allowed(match):
+        verdict = visual_verify_single_candidate(image_base64, match)  # slow path
+        if verdict.get("is_match"):
+            visual_confidence = float(verdict.get("confidence", 0) or 0)
+            final_confidence = min(max(model_confidence, match_score), visual_confidence)
+            return {
+                "artwork_id": match["id"],
+                "confidence": final_confidence,
+                "alternatives": alternatives,
+                "recognition_mode": "VISION_PLUS_ASSET",
+                "vision": ident,
+                "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
+            }
 
-    # Top candidate visually rejected -- try the runner-up (if the text
-    # match considered one plausible enough) before giving up entirely.
-    if runner_up:
-        runner_verdict = visual_verify_single_candidate(image_base64, runner_up)
-        if runner_verdict.get("is_match"):
-            visual_confidence = float(runner_verdict.get("confidence", 0) or 0)
-            final_confidence = min(model_confidence, visual_confidence)
-            return {"artwork_id": runner_up["id"], "confidence": final_confidence, "alternatives": [match["id"]]}
+        # Top candidate visually rejected -- try the runner-up only if it also
+        # has a rights-allowed external reference image.
+        if runner_up and _reference_verification_allowed(runner_up):
+            runner_verdict = visual_verify_single_candidate(image_base64, runner_up)
+            if runner_verdict.get("is_match"):
+                visual_confidence = float(runner_verdict.get("confidence", 0) or 0)
+                final_confidence = min(max(model_confidence, match_score), visual_confidence)
+                return {
+                    "artwork_id": runner_up["id"],
+                    "confidence": final_confidence,
+                    "alternatives": [match["id"]],
+                    "recognition_mode": "VISION_PLUS_ASSET",
+                    "vision": ident,
+                    "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
+                }
 
+        return {
+            "artwork_id": None,
+            "confidence": 0.0,
+            "alternatives": alternatives,
+            "recognized_but_not_cataloged": {"artist": artist, "title": title},
+            "vision": ident,
+            "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
+        }
+
+    # Louvre/non-asset path: OpenAI visual analysis + museum-scoped catalog
+    # ranking can return an answer without fetching any reference image.
+    # Confidence is intentionally capped below auto-match for weaker catalog
+    # evidence so the existing confirmation UX absorbs ambiguity.
+    final_confidence = min(0.94, max(0.0, (0.55 * model_confidence) + (0.45 * min(match_score, 1.0))))
+    if match_score < 0.68:
+        final_confidence = min(final_confidence, 0.80)
+    elif match_score < 0.78:
+        final_confidence = min(final_confidence, 0.88)
     return {
-        "artwork_id": None,
-        "confidence": 0.0,
-        "alternatives": [],
-        "recognized_but_not_cataloged": {"artist": artist, "title": title},
+        "artwork_id": match["id"],
+        "confidence": final_confidence,
+        "alternatives": alternatives,
+        "recognition_mode": "VISION_READY",
+        "vision": ident,
+        "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
     }
 
 
@@ -735,6 +936,9 @@ class RecognizeResponse(BaseModel):
     artwork_id: Optional[str] = None
     confidence: float
     alternatives: List[str] = []
+    recognition_mode: Optional[str] = None  # VISION_READY | VISION_PLUS_ASSET
+    vision: Optional[dict] = None
+    top_candidates: List[dict] = []
     # Open recognition identified *something* (artist/title), but it didn't
     # fuzzy-match any catalog entry — never shown to the visitor as a full
     # card (no reviewed estimate/editorial text exists for it), but useful
@@ -810,6 +1014,9 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
         confidence = float(result.get("confidence", 0))
         alternatives = result.get("alternatives", [])
         recognized_but_not_cataloged = result.get("recognized_but_not_cataloged")
+        recognition_mode = result.get("recognition_mode")
+        vision = result.get("vision")
+        top_candidates = result.get("top_candidates", [])
         candidate_ids = {a["id"] for a in candidates}
 
         if not artwork_id or artwork_id not in candidate_ids:
@@ -819,14 +1026,21 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                     recognized_but_not_cataloged.get("title"), req.museum_id,
                 )
             return RecognizeResponse(status="no_match", confidence=confidence,
-                                      recognized_but_not_cataloged=recognized_but_not_cataloged)
+                                      recognized_but_not_cataloged=recognized_but_not_cataloged,
+                                      vision=vision, top_candidates=top_candidates)
         if confidence >= CONFIDENCE_AUTO:
-            return RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence)
+            return RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence,
+                                      recognition_mode=recognition_mode, vision=vision,
+                                      top_candidates=top_candidates)
         elif confidence >= CONFIDENCE_REVIEW:
             return RecognizeResponse(status="needs_confirmation", artwork_id=artwork_id,
-                                      confidence=confidence, alternatives=alternatives)
+                                      confidence=confidence, alternatives=alternatives,
+                                      recognition_mode=recognition_mode, vision=vision,
+                                      top_candidates=top_candidates)
         else:
-            return RecognizeResponse(status="no_match", confidence=confidence)
+            return RecognizeResponse(status="no_match", confidence=confidence,
+                                      recognition_mode=recognition_mode, vision=vision,
+                                      top_candidates=top_candidates)
 
     # Fallback mock — lets frontend/UI work run without an API key.
     if not candidates:
