@@ -338,7 +338,7 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
     resp = _openai_chat_completion_with_retries(
         client,
         model=RECOGNITION_MODEL,
-        max_tokens=200,
+        max_tokens=700,
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": system_prompt},
@@ -1042,7 +1042,7 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
     resp = _openai_chat_completion_with_retries(
         client,
         model=VISUAL_VERIFY_MODEL,
-        max_tokens=350,
+        max_tokens=550,
         response_format={"type": "json_object"},
         messages=[
             {"role": "system", "content": system_prompt},
