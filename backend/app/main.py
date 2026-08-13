@@ -1022,13 +1022,24 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
     client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
     candidate_summaries = [_candidate_summary(row["candidate"]) for row in ranked[:5]]
     allowed_ids = [c["id"] for c in candidate_summaries if c.get("id")]
+    has_space_candidate = any(
+        str(c.get("object_type") or "").lower() in {"space", "room", "interior", "gallery", "hall"}
+        for c in candidate_summaries
+    )
+    space_instruction = (
+        "Some provided candidates may be curated rooms or palace spaces. If a room/interior image matches one of those provided space candidates, it may be a valid MATCH. "
+        if has_space_candidate
+        else ""
+    )
     system_prompt = (
         "You are the final verifier for a museum recognition system. "
         "You are given one visitor image and exactly five database candidates from ELYIO's museum-scoped catalog. "
         "First decide whether the visitor image actually contains a visible artwork/object. "
-        "A blank wall, room-only image, label-only image with no matching label text, random object, or unusable image must return NO_MATCH. "
+        f"{space_instruction}"
+        "A blank wall, label-only image with no matching label text, random object, or unusable image must return NO_MATCH. "
+        "A room-only image must return NO_MATCH unless it clearly matches one of the provided curated room/space candidates. "
         "Use the image evidence and the candidate metadata to choose exactly one candidate only if supported. "
-        "If the image is ambiguous, too partial, a room/label-only photo, or none of the candidates fit, return NO_MATCH. "
+        "If the image is ambiguous, too partial, label-only with no matching label text, or none of the candidates fit, return NO_MATCH. "
         "You must not invent IDs. chosen_id must be one of the provided ids or null.\n\n"
         "Return strict JSON only: "
         '{"decision":"MATCH|NEEDS_CONFIRMATION|NO_MATCH","chosen_id":"<one provided id or null>",'
