@@ -69,6 +69,7 @@ function AppScreens({
         <UncatalogedCardScreen
           state={state}
           onBack={() => actions.goto("camera")}
+          onSetMode={actions.setMode}
           onAddToVisit={actions.addUncatalogedToVisit}
           onGoProgress={() => actions.goto("progress")}
         />

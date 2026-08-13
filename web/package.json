@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:value": "node scripts/value-reveal-regression.mjs",
+    "test:result": "node scripts/generated-enrichment-regression.mjs",
     "test:pwa": "node scripts/pwa-runtime-check.mjs"
   },
   "dependencies": {

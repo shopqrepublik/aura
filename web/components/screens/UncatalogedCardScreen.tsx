@@ -1,42 +1,55 @@
 "use client";
 
 import { ArrowLeft } from "lucide-react";
+import SegmentControl from "@/components/ui/SegmentControl";
+import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
 import { tt } from "@/lib/i18n";
+import { generatedScaleSentence, generatedValueReveal, quietNoTrustedContext } from "@/lib/generated-enrichment";
 import type { AppState } from "@/lib/app-state";
+import type { Mode } from "@/lib/types";
 
-// Phase 2 §2 -- Tier 2 minimal card. Stage 1 open recognition named a real
-// artist/title, but it isn't in the reviewed catalog (no estimate, no
-// why/where/rarity, no Kids/Simple text, no audio -- none of that exists
-// for a work nobody has reviewed yet). This is a deliberately honest dead
-// end, not a stripped-down CardScreen: no photo (we don't have one), no
-// SegmentControl (Kids mode requires editorial review to exist at all, so
-// there's nothing to switch to), no ProvenanceReveal/ListenButton/Add-to-
-// visit (none of those have real data here either). Never reuses
-// CardScreen's markup with fields blanked out -- that would risk a half-
-// empty card reading as a bug rather than an honest boundary.
 export default function UncatalogedCardScreen({
   state,
   onBack,
+  onSetMode,
   onAddToVisit,
   onGoProgress,
 }: {
   state: AppState;
   onBack: () => void;
+  onSetMode: (mode: Mode) => void;
   onAddToVisit: () => void;
   onGoProgress: () => void;
 }) {
   const sighting = state.uncatalogedSighting;
   if (!sighting) return null;
 
-  const artist = sighting.artist || tt("uncataloged_unknown_artist", state.locale);
-  const title = sighting.title || tt("uncataloged_unknown_title", state.locale);
+  const enrichment = sighting.enrichment;
+  const localeContent = enrichment.content[state.locale] || enrichment.content.en;
+  const content = localeContent[state.mode] || localeContent.normal;
+  const artist = enrichment.displayArtist || sighting.artist || tt("uncataloged_unknown_artist", state.locale);
+  const title = enrichment.displayTitle || sighting.title || tt("uncataloged_unknown_title", state.locale);
   const isAdded = state.uncatalogedAdded.has(sighting.id);
-  const metaLine = [sighting.date, sighting.objectType].filter(Boolean).join(" · ");
+  const valueReveal = generatedValueReveal(enrichment, state.locale);
+  const scaleSentence = generatedScaleSentence(enrichment, state.locale, state.mode);
+  const metaLine = [enrichment.displayDate, enrichment.objectType, enrichment.movementOrPeriod]
+    .filter(Boolean)
+    .filter((value, index, values) => values.indexOf(value) === index)
+    .join(" · ");
 
   return (
     <div className="w-full h-full bg-[#F7F3EC] flex flex-col overflow-y-auto scrollbar-none">
       <div className="shrink-0 relative aspect-[4/3] w-full overflow-hidden bg-[#EDE8E1]">
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,#E7E1D6_0%,#DAD3C6_50%,#CFC7B8_100%)]" />
+        {sighting.imageUrl ? (
+          <img
+            src={sighting.imageUrl}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-[linear-gradient(105deg,#E7E1D6_0%,#DAD3C6_50%,#CFC7B8_100%)]" />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
         <button
           type="button"
           onClick={onBack}
@@ -45,37 +58,51 @@ export default function UncatalogedCardScreen({
         >
           <ArrowLeft className="w-4 h-4 text-white" />
         </button>
-        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-10 h-1 rounded-full bg-black/15" />
       </div>
 
       <div
-        className="rounded-t-[30px] -mt-4 relative z-10 flex-1 px-5 pt-7 pb-[32px]"
+        className="rounded-t-[30px] -mt-4 relative z-10 flex-1 px-5 pt-5 pb-[32px]"
         style={{
           backgroundColor: "#FBF8F2",
           boxShadow: "0 -16px 45px rgba(22,19,15,0.09), inset 0 1px 0 rgba(255,255,255,0.80)",
         }}
       >
-        <div className="text-[11px] font-semibold tracking-[0.16em] uppercase text-[#696763]">
+        <SegmentControl mode={state.mode} locale={state.locale} onChange={onSetMode} />
+
+        <div className="mt-5 text-[11px] font-semibold tracking-[0.16em] uppercase text-[#696763]">
           {artist.toUpperCase()}
         </div>
         <h1
-          className="mt-1 font-medium leading-[0.98] tracking-[-0.025em] text-[#181714]"
-          style={{ fontFamily: "var(--font-editorial)", fontSize: "clamp(28px, 7.3vw, 34px)" }}
+          className="mt-1 font-medium leading-[0.98] text-[#181714]"
+          style={{ fontFamily: "var(--font-editorial)", fontSize: "clamp(30px, 7.7vw, 38px)", letterSpacing: 0 }}
         >
           {title}
         </h1>
 
-        {metaLine && <p className="mt-1.5 text-[13px] leading-[18px] text-[#68665f]">{metaLine}</p>}
+        {metaLine && <p className="mt-2 text-[13px] leading-[18px] text-[#68665f]">{metaLine}</p>}
 
-        <div className="mt-5 text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">
-          {state.locale === "fr" ? "Ce que vous regardez" : state.locale === "zh-Hans" ? "你看到的是" : "What you're looking at"}
-        </div>
-        <p className="mt-2 text-[16px] leading-[23px] text-[#272622]">{sighting.whatYouAreLookingAt || tt("uncataloged_note", state.locale)}</p>
+        <p className="mt-5 text-[19px] leading-[25px] text-[#24231F] font-medium tracking-[-0.01em]">{content.hook}</p>
 
-        <div className="mt-5 text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">
-          {tt("why_it_matters_label", state.locale)}
-        </div>
-        <p className="mt-2 text-[15px] leading-[21px] text-[#3E3A34]">{sighting.whyItMatters}</p>
+        {valueReveal ? (
+          <div>
+            <ProvenanceReveal
+              valueReveal={valueReveal}
+              accent="#8C6A4C"
+              inventoryNumber={sighting.id}
+              locale={state.locale}
+              mode={state.mode}
+            />
+            {scaleSentence && (
+              <p className="mt-3 text-[13px] leading-[18px] text-[#514D46]">{scaleSentence}</p>
+            )}
+          </div>
+        ) : (
+          <p className="mt-4 text-[12px] leading-[17px] text-[#77736d]">{quietNoTrustedContext(state.locale)}</p>
+        )}
+
+        <Section label={tt("why_it_matters_label", state.locale)}>
+          {content.whyItMatters}
+        </Section>
 
         <div
           className="mt-5 rounded-[16px] px-4 py-3.5"
@@ -84,10 +111,12 @@ export default function UncatalogedCardScreen({
           <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">
             {tt("look_closer_label", state.locale)}
           </div>
-          <p className="mt-1.5 text-[15px] leading-[21px] text-[#272622]">{sighting.lookCloser}</p>
+          <p className="mt-1.5 text-[16px] leading-[22px] text-[#272622]">{content.lookCloser}</p>
         </div>
 
-        <p className="mt-4 text-[12px] leading-[17px] text-[#77736d]">{tt("uncataloged_value_note", state.locale)}</p>
+        <Section label={state.locale === "fr" ? "Contexte" : state.locale === "zh-Hans" ? "背景" : "Context"}>
+          {state.mode === "kids" && content.funFactOrMission ? content.funFactOrMission : content.deeperContext}
+        </Section>
 
         <div className="mt-6 space-y-3">
           <button
@@ -113,6 +142,15 @@ export default function UncatalogedCardScreen({
           </button>
         </div>
       </div>
+    </div>
+  );
+}
+
+function Section({ label, children }: { label: string; children: string }) {
+  return (
+    <div className="mt-5">
+      <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">{label}</div>
+      <p className="mt-2 text-[15px] leading-[21px] text-[#3E3A34]">{children}</p>
     </div>
   );
 }

@@ -6,27 +6,23 @@ import { getArtwork, MISSIONS } from "./artworks";
 import { isMissionComplete } from "./missions";
 import { track } from "./analytics";
 import { isRecognitionNetworkError } from "./recognitionErrors";
+import { buildGeneratedEnrichment, generatedValueReveal, type GeneratedEnrichment } from "./generated-enrichment";
 import type { Artwork, Locale, Mode } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
 
-// Phase 2 §2 -- Stage 1 open recognition named a real artist/title, but
-// fuzzy_match_catalog couldn't place it in the reviewed catalog. Distinct
-// from "nothing recognized at all" (AppState.scanStatus === "not_identified",
-// stays on Camera) -- this is a real, honest partial result, so it gets its
-// own minimal card instead of a bare failure message. Never has estimate/
-// why/where/rarity/audio/Kids text, because none of that has been reviewed
-// for a work that isn't in the catalog at all.
+// AI recognized an artwork/object, but it did not resolve to a full curated
+// ELYIO catalog record. The recognition is still useful: we keep the visitor's
+// scan as the result image and attach a bounded generated enrichment payload.
 export interface UncatalogedSighting {
   id: string;
   artist: string | null;
   title: string | null;
   date?: string | null;
   objectType?: string | null;
-  whatYouAreLookingAt?: string | null;
-  whyItMatters?: string | null;
-  lookCloser?: string | null;
   confidence?: number | null;
+  imageUrl?: string | null;
+  enrichment: GeneratedEnrichment;
 }
 
 export interface AppState {
@@ -150,7 +146,7 @@ export function useElyioApp() {
           });
           setState((s) => ({
             ...s,
-            uncatalogedSighting: buildUncatalogedSighting(uncataloged, result.vision, result.confidence),
+            uncatalogedSighting: buildUncatalogedSighting(uncataloged, result.vision, result.confidence, imageBase64),
             currentArtwork: null,
             scanStatus: null,
             screen: "card",
@@ -332,16 +328,19 @@ function localizedSame(value: string): Record<Locale, string> {
 }
 
 function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Locale): Artwork {
-  const title = sighting.title || "Recognized artwork";
-  const artist = sighting.artist || null;
+  const title = sighting.enrichment.displayTitle || sighting.title || "Recognized artwork";
+  const artist = sighting.enrichment.displayArtist || sighting.artist || null;
+  const normal = sighting.enrichment.content[locale]?.normal || sighting.enrichment.content.en.normal;
+  const simple = sighting.enrichment.content[locale]?.simple || sighting.enrichment.content.en.simple;
+  const kids = sighting.enrichment.content[locale]?.kids || sighting.enrichment.content.en.kids;
   return {
     id: sighting.id,
     artist,
-    year: sighting.date || "",
+    year: sighting.enrichment.displayDate || sighting.date || "",
     hall: null,
     inventoryNumber: sighting.id,
     image: "AI",
-    imageUrl: uncatalogedPlaceholderImage(),
+    imageUrl: sighting.imageUrl || uncatalogedPlaceholderImage(),
     accent: "#8C6A4C",
     priority: "uncataloged",
     needsEditorialReview: true,
@@ -349,32 +348,35 @@ function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Local
     title: localizedSame(title),
     titleNeedsReview: { en: true, fr: true, "zh-Hans": true },
     estimate: { low: null, high: null },
-    valueReveal: null,
-    why: localizedSame(sighting.whyItMatters || "AI recognized this work, but ELYIO has not reviewed it as a curated catalog record yet."),
-    where: localizedSame(sighting.lookCloser || "Look back at the object and compare the visible details with the recognition result."),
-    rarity: localizedSame(locale === "fr" ? "Contexte de marché non vérifié." : locale === "zh-Hans" ? "市场背景尚未审核。" : "Market context not reviewed."),
+    valueReveal: generatedValueReveal(sighting.enrichment, locale),
+    why: localizedSame(normal.whyItMatters),
+    where: localizedSame(normal.lookCloser),
+    rarity: localizedSame(normal.deeperContext),
+    whySimple: localizedSame(simple.whyItMatters),
+    whereSimple: localizedSame(simple.lookCloser),
+    raritySimple: localizedSame(simple.deeperContext),
+    whyKids: localizedSame(kids.whyItMatters),
+    whereKids: localizedSame(kids.lookCloser),
+    rarityKids: localizedSame(kids.funFactOrMission || kids.deeperContext),
   };
-}
-
-function stringArray(value: unknown): string[] {
-  return Array.isArray(value) ? value.filter((x): x is string => typeof x === "string" && x.trim().length > 0) : [];
 }
 
 function buildUncatalogedSighting(
   base: NonNullable<Awaited<ReturnType<typeof api.recognize>>["recognized_but_not_cataloged"]>,
   vision: Record<string, unknown> | null | undefined,
-  confidence: number
+  confidence: number,
+  imageBase64?: string | null
 ): UncatalogedSighting {
-  const clues = [
-    ...(vision ? stringArray(vision.dominant_visual_features) : []),
-    ...(vision ? stringArray(vision.distinctive_features) : []),
-  ];
   const objectType = base.object_type || (typeof vision?.object_type === "string" ? vision.object_type : null);
-  const subject = typeof vision?.depicted_subject === "string" ? vision.depicted_subject : null;
-  const material = typeof vision?.material_guess === "string" ? vision.material_guess : null;
   const period = base.date || (typeof vision?.period_guess === "string" ? vision.period_guess : null);
-  const firstClue = clues[0] || subject || objectType || base.title;
-  const secondClue = clues.find((x) => x !== firstClue) || material || subject;
+  const enrichment = buildGeneratedEnrichment({
+    artist: base.artist,
+    title: base.title,
+    date: period,
+    objectType,
+    vision,
+    confidence: base.confidence ?? confidence,
+  });
 
   return {
     id: `uncataloged:${Date.now()}:${base.artist || ""}:${base.title || ""}`,
@@ -383,22 +385,13 @@ function buildUncatalogedSighting(
     date: period,
     objectType,
     confidence: base.confidence ?? confidence,
-    whatYouAreLookingAt:
-      base.what_you_are_looking_at ||
-      [objectType ? `A ${objectType}` : "An artwork", subject ? `showing ${subject}` : null, material ? `in ${material}` : null]
-        .filter(Boolean)
-        .join(" "),
-    whyItMatters:
-      base.why_it_matters ||
-      (base.artist || base.title
-        ? "The recognition is strong enough to give you a useful starting point, but ELYIO has not yet reviewed this work as a curated catalog record."
-        : "ELYIO can describe what is visible, but this result needs review before we attach a full story."),
-    lookCloser:
-      base.look_closer ||
-      (firstClue && secondClue
-        ? `Look for ${firstClue}, then compare it with ${secondClue}.`
-        : firstClue
-          ? `Start by looking for ${firstClue}.`
-          : "Step back and include the whole object in your next photo."),
+    imageUrl: capturedImageDataUrl(imageBase64),
+    enrichment,
   };
+}
+
+function capturedImageDataUrl(imageBase64: string | null | undefined): string | null {
+  if (!imageBase64) return null;
+  if (imageBase64.startsWith("data:image/")) return imageBase64;
+  return `data:image/jpeg;base64,${imageBase64}`;
 }

@@ -416,19 +416,17 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
     "zh-Hans": "您看到了{count}件{works}，{value} — 奥赛博物馆 — ELYIO",
   },
 
-  // Phase 2 §2 -- Tier 2 minimal card (UncatalogedCardScreen.tsx). Shown
-  // when Stage 1 open recognition named a real artist/title but it isn't in
-  // the reviewed catalog yet -- deliberately does not promise a story or
-  // estimate that doesn't exist.
+  // Reduced result state for a recognized artwork/object without a full
+  // editorial catalog match.
   uncataloged_note: {
-    en: "ELYIO recognized this, but it is not yet one of our reviewed catalog records.",
-    fr: "ELYIO a reconnu cette œuvre, mais elle ne fait pas encore partie de nos fiches révisées.",
-    "zh-Hans": "ELYIO 识别出了这件作品，但它还不是我们已审核的目录记录。",
+    en: "Start with what is visible: the subject, materials, and strongest details in front of you.",
+    fr: "Commencez par ce qui est visible : le sujet, les matières et les détails les plus forts.",
+    "zh-Hans": "先从眼前可见的内容开始：题材、材料和最突出的细节。",
   },
   uncataloged_value_note: {
-    en: "Market context has not been reviewed for this work yet.",
-    fr: "Le contexte de marché n'a pas encore été vérifié pour cette œuvre.",
-    "zh-Hans": "这件作品的市场背景尚未经过审核。",
+    en: "No verified market context is shown for this work.",
+    fr: "Aucun contexte de marché vérifié n'est affiché pour cette œuvre.",
+    "zh-Hans": "此作品暂无经过核验的市场背景。",
   },
   uncataloged_unknown_artist: { en: "Unknown artist", fr: "Artiste inconnu", "zh-Hans": "未知艺术家" },
   uncataloged_unknown_title: { en: "Unidentified work", fr: "Œuvre non identifiée", "zh-Hans": "未识别的作品" },
