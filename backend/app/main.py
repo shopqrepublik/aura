@@ -700,6 +700,33 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
     return ranked
 
 
+def _stage2_artist_match_allowed(vision: dict, candidate: Optional[dict]) -> bool:
+    """Reject verifier overreach when the model confidently names a different artist.
+
+    Stage 2 is allowed to reason visually among scoped catalog candidates, but it
+    should not turn "this resembles a different work by another artist" into a
+    catalog match. This specifically protects cross-museum lookalikes such as
+    different portraits of the same sitter.
+    """
+    if not candidate:
+        return False
+    query_artist = vision.get("artist") or vision.get("likely_artist")
+    candidate_artist = candidate.get("artist")
+    if not query_artist or not candidate_artist:
+        return True
+    confidence_artist = float(vision.get("confidence_artist", vision.get("confidence", 0)) or 0)
+    if confidence_artist < 0.75:
+        return True
+
+    from rapidfuzz import fuzz
+
+    score = fuzz.token_sort_ratio(
+        _normalize_for_matching(str(query_artist)),
+        _normalize_for_matching(str(candidate_artist)),
+    ) / 100
+    return score >= 0.58
+
+
 # One reference image per verified candidate, cached to disk — Wikimedia
 # Commons rate-limits repeated bot traffic (HTTP 429) on re-fetch.
 REFERENCE_CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".reference_cache")
@@ -1191,23 +1218,32 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
         chosen_id = topn_verdict.get("chosen_id")
         if topn_verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
             chosen = next((row["candidate"] for row in ranked if row["candidate"]["id"] == chosen_id), None)
-            has_local_asset = bool(chosen and _reference_verification_allowed(chosen) and _local_reference_available(chosen))
-            return {
-                "artwork_id": chosen_id,
-                "confidence": float(topn_verdict.get("confidence", 0) or 0),
-                "alternatives": [
-                    row["candidate"]["id"]
-                    for row in ranked[:5]
-                    if row["candidate"]["id"] != chosen_id
-                ][:3],
-                "recognition_mode": "VISION_PLUS_ASSET" if has_local_asset else "VISION_READY",
-                "vision": ident,
-                "top_candidates": [
-                    {"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]}
-                    for row in ranked[:5]
-                ],
-                "stage2_verifier": topn_verdict,
-            }
+            if not _stage2_artist_match_allowed(ident, chosen):
+                topn_verdict["decision"] = "NO_MATCH"
+                topn_verdict["chosen_id"] = None
+                topn_verdict["confidence"] = 0.0
+                topn_verdict["reason"] = (
+                    "Rejected catalog attachment because the visual analysis "
+                    "identified a different artist from the scoped candidate."
+                )
+            else:
+                has_local_asset = bool(chosen and _reference_verification_allowed(chosen) and _local_reference_available(chosen))
+                return {
+                    "artwork_id": chosen_id,
+                    "confidence": float(topn_verdict.get("confidence", 0) or 0),
+                    "alternatives": [
+                        row["candidate"]["id"]
+                        for row in ranked[:5]
+                        if row["candidate"]["id"] != chosen_id
+                    ][:3],
+                    "recognition_mode": "VISION_PLUS_ASSET" if has_local_asset else "VISION_READY",
+                    "vision": ident,
+                    "top_candidates": [
+                        {"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]}
+                        for row in ranked[:5]
+                    ],
+                    "stage2_verifier": topn_verdict,
+                }
         return {
             "artwork_id": None,
             "confidence": float(topn_verdict.get("confidence", 0) or 0),
