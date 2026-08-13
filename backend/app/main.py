@@ -1550,10 +1550,9 @@ def list_museums(
             else []
         )
     }
-    if "louvre" in museum_ids:
-        counts["louvre"] = count_catalog_artworks(db, "louvre")
-    if "versailles" in museum_ids:
-        counts["versailles"] = count_catalog_artworks(db, "versailles")
+    for museum_id in museum_ids:
+        if museum_id in DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM:
+            counts[museum_id] = count_catalog_artworks(db, museum_id)
     return [
         MuseumOut(
             id=row.id,

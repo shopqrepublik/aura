@@ -1,0 +1,27 @@
+{
+  "mode": "DRY_RUN",
+  "catalog_version": "2026-08-13-v1",
+  "legacy_records": 116,
+  "new_museums": {
+    "rodin": 30,
+    "picasso": 30,
+    "quai_branly": 30
+  },
+  "counts": {
+    "legacy_localizations_updated": 1044,
+    "legacy_estimates_preserved": 106,
+    "legacy_value_reveals_updated": 116,
+    "legacy_value_reveals_beyond_market": 10,
+    "rodin_artworks_updated": 30,
+    "rodin_memberships_updated": 30,
+    "new_localizations_updated": 810,
+    "rodin_value_reveals_updated": 30,
+    "picasso_artworks_updated": 30,
+    "picasso_memberships_updated": 30,
+    "picasso_value_reveals_updated": 30,
+    "quai_branly_artworks_updated": 30,
+    "quai_branly_memberships_updated": 30,
+    "quai_branly_value_reveals_updated": 30
+  },
+  "backup_path": null
+}
