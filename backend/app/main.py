@@ -1106,7 +1106,15 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
     artist, title = ident.get("artist"), ident.get("title")
     model_confidence = float(ident.get("confidence", 0) or 0)
 
-    if ident.get("is_artwork_photo") is False or ident.get("image_quality") in {"blank", "room_only", "unusable"}:
+    image_quality = ident.get("image_quality")
+    non_artwork_reason = str(ident.get("non_artwork_reason") or "").lower()
+    is_curated_space_photo = (
+        museum_id in TOPN_VERIFIER_MUSEUMS
+        and image_quality == "good"
+        and any(term in non_artwork_reason for term in ["room", "interior", "hall", "gallery"])
+        and bool(ident.get("visual_clues") or ident.get("visual_search_description") or ident.get("distinctive_features"))
+    )
+    if (ident.get("is_artwork_photo") is False and not is_curated_space_photo) or image_quality in {"blank", "room_only", "unusable"}:
         return {
             "artwork_id": None,
             "confidence": 0.0,
