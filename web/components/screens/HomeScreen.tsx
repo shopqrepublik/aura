@@ -83,7 +83,7 @@ export default function HomeScreen({
   // Phase 2 §1 -- takes the resolved museum id (detected via GPS or
   // manually confirmed from useMuseumDetection below) instead of assuming
   // a single hardcoded museum.
-  onStartVisit: (museumId: string) => void;
+  onStartVisit: (museumId: string, museumName?: string | null, museumCity?: string | null) => void;
   onSetLocale: (locale: AppState["locale"]) => void;
 }) {
   const { status: museumStatus, museums, museum, confirmManually } = useMuseumDetection();
@@ -354,7 +354,7 @@ export default function HomeScreen({
         <button
           type="button"
           onClick={() => {
-            if (activeMuseum) onStartVisit(activeMuseum.id);
+            if (activeMuseum) onStartVisit(activeMuseum.id, activeMuseum.name, activeMuseum.city || activeMuseum.region || null);
           }}
           className="w-full h-[58px] px-5 rounded-[14px] bg-[#181714] text-[#FAF6ED] flex items-center justify-between shadow-[0_9px_24px_rgba(21,18,14,0.16)] active:scale-[0.985] transition-transform"
         >

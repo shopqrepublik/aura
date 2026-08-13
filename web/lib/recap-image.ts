@@ -1,130 +1,40 @@
-import { tt } from "@/lib/i18n";
-import { artworkArtistDisplayName } from "@/lib/artist-display";
-import { paintVisitPaletteCanvas, paintGrainCanvas, paintThumbnailsCanvas, paintAnchorThumbnailCanvas } from "@/lib/visitPalette";
+import { paintGrainCanvas, paintVisitPaletteCanvas, proxyImageUrl } from "@/lib/visitPalette";
 import type { Artwork, Locale } from "@/lib/types";
+import type { VisitValueMoment } from "@/lib/visit-game";
 
-// Generates the actual shareable PNG for the Recap screen — 1080x1920, per
-// the visual-match rebuild §14 ("dark editorial collage" poster). This
-// intentionally draws a SUBSET of what's on screen (poster content, not the
-// interactive buttons/footer link) — a shared image should show the visit,
-// not a picture of a "Share" button.
 export const RECAP_IMAGE_WIDTH = 1080;
 export const RECAP_IMAGE_HEIGHT = 1920;
 
 const SANS_STACK = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', Inter, 'Helvetica Neue', sans-serif";
-// Matches --font-editorial's actual registered family name (next/font
-// self-hosts "Cormorant Garamond" -- confirmed live via document.fonts).
-// Canvas text doesn't understand CSS custom properties, so the literal
-// family name is needed here.
 const SERIF_STACK = "'Cormorant Garamond', Georgia, serif";
 const CREAM = "#F3E8D7";
-
-// Draws `text` centered on `angleCenter` around the circle at (cx, cy) --
-// canvas has no native equivalent of SVG's <textPath>. angle 0 = straight
-// up from center (ctx.rotate is clockwise), matching the same top-arc
-// convention CollectorsSeal.tsx's SVG path uses, so the exported PNG and
-// the on-screen component read identically.
-//
-// Spaces each character by its OWN measured width (ctx.measureText), not
-// by an equal angle per character -- an equal-angle version was tried
-// first and produced a visibly uneven gap around "MILESTONE" (narrow
-// letters like I got the same angular slot as wide ones, so the run
-// visually drifted out of alignment with itself once bold+narrow letters
-// mixed together). Real per-glyph widths is what SVG's textPath already
-// does automatically; this just replicates that on canvas.
-// Picks the largest font size (from `candidates`, descending) at which
-// `text` still fits within `maxWidth` -- canvas has no native text-wrap, so
-// this is the shrink-to-fit safety net for cumulative totals a very long
-// visit could produce (the on-screen version wraps to a 2nd line instead;
-// canvas text wrapping needs manual line-splitting, more code than this
-// headline -- a handful of digits -- actually needs).
-function fitFontSize(ctx: CanvasRenderingContext2D, text: string, font: string, weight: number, candidates: number[], maxWidth: number): number {
-  for (const size of candidates) {
-    ctx.font = `${weight} ${size}px ${font}`;
-    if (ctx.measureText(text).width <= maxWidth) return size;
-  }
-  return candidates[candidates.length - 1];
-}
-
-function drawCircularText(ctx: CanvasRenderingContext2D, text: string, cx: number, cy: number, radius: number, angleCenter: number): void {
-  ctx.save();
-  ctx.translate(cx, cy);
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  const chars = [...text];
-  const widths = chars.map((ch) => ctx.measureText(ch).width);
-  const totalAngle = widths.reduce((sum, w) => sum + w, 0) / radius;
-  let angle = angleCenter - totalAngle / 2;
-  for (let i = 0; i < chars.length; i++) {
-    const charAngle = angle + widths[i] / 2 / radius;
-    ctx.save();
-    ctx.rotate(charAngle);
-    ctx.translate(0, -radius);
-    ctx.fillText(chars[i], 0, 0);
-    ctx.restore();
-    angle += widths[i] / radius;
-  }
-  ctx.restore();
-}
+const INK = "#181714";
 
 export interface RecapImageData {
   locale: Locale;
+  museumName: string;
+  museumLocation: string;
+  headline: string;
   dateStr: string;
   worksCount: number;
   artistsCount: number;
   timeStr: string;
-  hasAnyEstimate: boolean;
-  reviewedCount: number;
-  totalLow: number;
-  totalHigh: number;
-  marketContextCount: number;
-  beyondMarketCount: number;
-  unvaluedCount: number;
-  mostValuable: Artwork | null;
-  mostValuableHasEstimate: boolean;
-  mostValuableValueText: string | null;
-  /** Precomputed via lib/artworks.ts's resolveTitle in RecapScreen.tsx --
-   * this file doesn't import that module itself, keeping the same "pass
-   * derived data in, don't recompute it here" convention the other
-   * mostValuable* fields already use. */
-  mostValuableTitle: string;
-  isBillion: boolean;
-  /** design-direction-v3.md §10 "Visit Palette" -- up to 3 accent hex colors
-   * from the visit's most significant seen works (RecapScreen computes this
-   * via lib/visitPalette.ts's buildVisitPalette, same ranking as
-   * mostValuable above). Empty when nothing was seen. */
+  favoriteArtwork: Artwork | null;
+  heroArtwork: Artwork | null;
+  favoriteArtist: string;
+  favoriteTitle: string;
+  valueMoment: VisitValueMoment;
+  achievementTitle: string;
+  achievementIcon: string;
   paletteAccents: string[];
-  /** Same works as paletteAccents is derived from, this time with the
-   * imageUrl each needs to actually draw a real photo via the image proxy
-   * (see visitPalette.ts's paintThumbnailsCanvas) -- a slim {imageUrl,
-   * accent} projection, not the full Artwork, since that's all the canvas
-   * painter needs. */
   paletteWorks: Array<{ imageUrl: string; accent: string }>;
 }
 
-// The artwork-thumbnail row and most-valuable block draw real photos here
-// via our own backend's /v1/image-proxy endpoint (server-side fetch +
-// resize + cache, see backend/app/main.py) -- canvas.drawImage() refuses
-// cross-origin Wikimedia images outright even with img.crossOrigin set
-// (confirmed live: fetch(url, {mode:"cors"}) against the actual
-// commons.wikimedia.org redirect chain throws, because Wikimedia's CDN
-// doesn't send a CORS header), so a same-origin-as-far-as-the-browser-cares
-// proxy was the fix, not a DOM-rendering rewrite (html2canvas et al.) of
-// the whole export. paintThumbnailsCanvas/paintAnchorThumbnailCanvas fall
-// back to the honest accent-color block per item, but only when the proxy
-// itself genuinely fails (network down, this specific image genuinely
-// missing) -- that's the rare edge case now, not the default path.
 export async function generateRecapImage(data: RecapImageData): Promise<Blob | null> {
   if (typeof document === "undefined") return null;
-
-  // Cormorant Garamond is loaded via next/font on <html>, but canvas text
-  // doesn't trigger font loading itself -- it silently falls back if the
-  // face isn't ready yet. Every other screen in this app already renders
-  // serif text before Recap is reachable, so in practice this resolves
-  // instantly from cache, but awaiting it here makes correctness not
-  // depend on navigation order.
   if (typeof document.fonts?.load === "function") {
-    await document.fonts.load(`500 60px ${SERIF_STACK}`).catch(() => {});
+    await document.fonts.load(`500 80px ${SERIF_STACK}`).catch(() => {});
+    await document.fonts.load(`700 36px ${SANS_STACK}`).catch(() => {});
   }
 
   const canvas = document.createElement("canvas");
@@ -135,230 +45,299 @@ export async function generateRecapImage(data: RecapImageData): Promise<Blob | n
 
   const W = RECAP_IMAGE_WIDTH;
   const H = RECAP_IMAGE_HEIGHT;
-  const marginX = 64;
+  const margin = 72;
 
-  // Visit Palette background — dark accent-tinted gradient + dark overlay +
-  // grain, same layering as the on-screen version (lib/visitPalette.ts).
   paintVisitPaletteCanvas(ctx, data.paletteAccents, W, H);
+  await paintHero(ctx, data, W, H);
   paintGrainCanvas(ctx, W, H);
 
-  // Header: "MUSÉE D'ORSAY" / "PARIS · date" + cream circular "E" mark.
+  ctx.fillStyle = "rgba(8,7,6,0.18)";
+  ctx.fillRect(0, 0, W, H);
+
+  drawHeader(ctx, data, margin);
+  drawHeadline(ctx, data, margin);
+  drawStats(ctx, data, margin);
+  drawFavorite(ctx, data, margin);
+  drawValueMoment(ctx, data, margin);
+  drawAchievement(ctx, data, margin);
+  drawFooter(ctx, margin, W, H);
+
+  return new Promise((resolve) => canvas.toBlob((blob) => resolve(blob), "image/png"));
+}
+
+async function paintHero(ctx: CanvasRenderingContext2D, data: RecapImageData, width: number, height: number): Promise<void> {
+  const artwork = data.favoriteArtwork || data.heroArtwork;
+  const heroHeight = 820;
+  if (artwork?.imageUrl) {
+    try {
+      const url = /^https?:\/\/(upload|commons)\.wikimedia\.org\//i.test(artwork.imageUrl)
+        ? proxyImageUrl(artwork.imageUrl, 1600)
+        : artwork.imageUrl;
+      const img = await loadImage(url, 7000);
+      drawCover(ctx, img, 0, 0, width, heroHeight);
+      const gradient = ctx.createLinearGradient(0, 0, 0, height);
+      gradient.addColorStop(0, "rgba(8,7,6,0.08)");
+      gradient.addColorStop(0.38, "rgba(8,7,6,0.25)");
+      gradient.addColorStop(0.58, "rgba(8,7,6,0.76)");
+      gradient.addColorStop(1, "rgba(8,7,6,0.98)");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, width, height);
+      return;
+    } catch {
+      // Fall through to editorial fallback.
+    }
+  }
+
+  const accent = artwork?.accent || data.paletteAccents[0] || "#725E47";
+  const g = ctx.createRadialGradient(width * 0.25, height * 0.12, 40, width * 0.5, height * 0.24, width * 0.8);
+  g.addColorStop(0, accent);
+  g.addColorStop(0.55, "#2E302A");
+  g.addColorStop(1, "#0E0D0B");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, width, height);
+  ctx.strokeStyle = "rgba(243,232,215,0.10)";
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 9; i++) {
+    ctx.beginPath();
+    ctx.ellipse(width * 0.5, 310 + i * 18, 340 - i * 20, 90 + i * 7, -0.08, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+}
+
+function drawHeader(ctx: CanvasRenderingContext2D, data: RecapImageData, margin: number): void {
   ctx.fillStyle = "rgba(248,242,229,0.88)";
-  ctx.font = `700 30px ${SANS_STACK}`;
+  ctx.font = `700 28px ${SANS_STACK}`;
   ctx.textBaseline = "alphabetic";
-  ctx.fillText("MUSÉE D'ORSAY", marginX, 150);
-  ctx.fillStyle = "rgba(248,242,229,0.55)";
-  ctx.font = `500 26px ${SANS_STACK}`;
-  ctx.fillText(`PARIS · ${data.dateStr}`.toUpperCase(), marginX, 190);
+  fillFitText(ctx, data.museumName.toUpperCase(), margin, 130, 760, 28, SANS_STACK, 700);
+  ctx.fillStyle = "rgba(248,242,229,0.58)";
+  ctx.font = `600 23px ${SANS_STACK}`;
+  const location = [data.museumLocation, data.dateStr].filter(Boolean).join(" · ");
+  fillFitText(ctx, location.toUpperCase(), margin, 168, 720, 23, SANS_STACK, 600);
 
   ctx.beginPath();
-  ctx.arc(W - marginX - 24, 145, 24, 0, Math.PI * 2);
+  ctx.arc(RECAP_IMAGE_WIDTH - margin - 28, 128, 28, 0, Math.PI * 2);
   ctx.fillStyle = CREAM;
   ctx.fill();
-  ctx.fillStyle = "#181714";
-  ctx.font = `700 22px ${SANS_STACK}`;
+  ctx.fillStyle = INK;
+  ctx.font = `800 23px ${SANS_STACK}`;
   ctx.textAlign = "center";
-  ctx.fillText("E", W - marginX - 24, 153);
+  ctx.fillText("E", RECAP_IMAGE_WIDTH - margin - 28, 137);
   ctx.textAlign = "left";
+}
 
-  // "The Acquisition Poster" headline (§10/§14/§6) -- one big culmination
-  // number, serif throughout. Kept as the same honest low-high RANGE the
-  // rest of this app always shows rather than collapsing to a single
-  // fabricated point figure the way the doc's literal "€3.8B" example does.
-  const contextCount = data.marketContextCount + data.beyondMarketCount;
-  const valueText = data.hasAnyEstimate
-    ? `€${data.totalLow}–${data.totalHigh}M`
-    : contextCount > 0
-      ? tt(contextCount === 1 ? "value_context_work_one" : "value_context_work_other", data.locale).replace("{n}", String(contextCount))
-      : tt("pending_review", data.locale);
-  const valueNote =
-    data.hasAnyEstimate && data.reviewedCount < data.worksCount
-      ? tt("value_seen_partial_note", data.locale)
-          .replace("{n}", String(data.reviewedCount))
-          .replace("{total}", String(data.worksCount))
-      : null;
-
-  let y = 290;
-  ctx.fillStyle = "#F4EBDD";
-  ctx.font = `500 48px ${SERIF_STACK}`;
-  ctx.fillText(tt("you_saw_label", data.locale), marginX, y);
-
-  const maxHeadlineWidth = W - marginX * 2;
-  const headlineSize = data.hasAnyEstimate
-    ? fitFontSize(ctx, valueText, SERIF_STACK, 500, [250, 220, 190, 150], maxHeadlineWidth)
-    : 92;
-  y += headlineSize * 0.82;
+function drawHeadline(ctx: CanvasRenderingContext2D, data: RecapImageData, margin: number): void {
   ctx.fillStyle = CREAM;
-  ctx.font = `500 ${headlineSize}px ${SERIF_STACK}`;
-  ctx.fillText(valueText, marginX, y);
-
-  // The gap to the next line used to be a flat 66px, which overlapped badly
-  // whenever headlineSize landed on one of fitFontSize's larger candidates
-  // (up to 250px -- this export is scaled ~2.7x vs the on-screen version,
-  // where the equivalent line uses line-height:0.85 and never exceeds
-  // 92px, so a constant tuned for that never worked here). Measuring the
-  // headline's actual descent and the subtitle's actual ascent at their
-  // real draw-time font sizes makes the gap scale with whatever size
-  // fitFontSize actually picked, instead of assuming one.
-  const headlineDescent = ctx.measureText(valueText).actualBoundingBoxDescent || headlineSize * 0.08;
-  const subtitleText = data.hasAnyEstimate
-    ? contextCount > 0
-      ? tt("mixed_value_recap_subtitle", data.locale)
-          .replace("{n}", String(data.reviewedCount))
-          .replace("{total}", String(data.worksCount))
-          .replace("{context}", String(contextCount))
-      : tt("in_estimated_market_value", data.locale)
-    : data.beyondMarketCount > 0 && data.marketContextCount > 0
-      ? tt("context_and_beyond_market_seen", data.locale)
-      : data.beyondMarketCount > 0
-        ? tt("beyond_market_icons_seen", data.locale)
-        : data.marketContextCount > 0
-          ? tt("market_context_seen", data.locale)
-          : tt("recap_value_pending_caption", data.locale);
-  const subtitleFontSize = 58;
-  ctx.font = `500 ${subtitleFontSize}px ${SERIF_STACK}`;
-  const subtitleAscent = ctx.measureText(subtitleText).actualBoundingBoxAscent || subtitleFontSize * 0.75;
-
-  y += headlineDescent + subtitleAscent + 22; // ~22px breathing room, matching the on-screen mt-2 (8px) at this file's ~2.7x export scale
-  ctx.fillStyle = CREAM;
-  ctx.globalAlpha = 0.92;
-  ctx.fillText(subtitleText, marginX, y);
-  ctx.globalAlpha = 1;
-
-  if (valueNote) {
-    y += 36;
-    ctx.fillStyle = "rgba(243,232,215,0.6)";
-    ctx.font = `500 24px ${SANS_STACK}`;
-    ctx.fillText(valueNote, marginX, y);
+  const lines = wrapText(ctx, data.headline.toUpperCase(), RECAP_IMAGE_WIDTH - margin * 2, 84, SERIF_STACK, 500);
+  let y = 310;
+  for (const line of lines.slice(0, 3)) {
+    ctx.font = `500 84px ${SERIF_STACK}`;
+    ctx.fillText(line, margin, y);
+    y += 82;
   }
+}
 
-  // Stats: three columns (serif value + sans uppercase label), not one
-  // sentence -- §6 spec's pairing, mirrors the on-screen version.
-  const worksLabel = data.worksCount === 1 ? tt("stat_work_one", data.locale) : tt("works_seen_count", data.locale).toLowerCase();
-  const artistsLabel = data.artistsCount === 1 ? tt("stat_artist_one", data.locale) : tt("stat_artists", data.locale).toLowerCase();
-  const statCols: Array<[string, string]> = [
-    [String(data.worksCount), worksLabel],
-    [String(data.artistsCount), artistsLabel],
-    [data.timeStr, tt("stat_time", data.locale).toLowerCase()],
+function drawStats(ctx: CanvasRenderingContext2D, data: RecapImageData, margin: number): void {
+  const y = 625;
+  const colW = 290;
+  const stats = [
+    [String(data.worksCount), statLabel("artworks", data.locale, data.worksCount)],
+    [String(data.artistsCount), statLabel("artists", data.locale, data.artistsCount)],
+    [data.timeStr.toUpperCase(), statLabel("time", data.locale, 2)],
   ];
-  y += 90;
-  let statX = marginX;
-  for (const [value, label] of statCols) {
-    ctx.fillStyle = CREAM;
-    ctx.font = `500 65px ${SERIF_STACK}`;
-    ctx.fillText(value, statX, y);
-    ctx.fillStyle = "rgba(243,232,215,0.75)";
-    ctx.font = `600 24px ${SANS_STACK}`;
-    ctx.fillText(label.toUpperCase(), statX, y + 34);
-    statX += Math.max(ctx.measureText(value).width, 140) + 60;
-  }
-
-  // Artwork thumbnails -- real photos, via the image proxy (see this file's
-  // own top-level comment for why that's needed at all).
-  y += 70;
-  const thumbHeight = 357; // ~132px on-screen * the ~2.7x export scale ratio this file already uses elsewhere
-  await paintThumbnailsCanvas(ctx, data.paletteWorks, marginX, y, thumbHeight);
-  y += thumbHeight;
-
-  // Most valuable work, directly on the poster -- no white card (§14). Text
-  // sits to the right of a small real-photo anchor (same image-proxy path
-  // as the thumbnail row above, same accent-color fallback on a genuine
-  // proxy failure).
-  if (data.mostValuable) {
-    y += 56;
-    const anchorHeight = 194; // ~72px on-screen small thumbnail * this file's ~2.7x export ratio
-    const anchorWidth = anchorHeight * (4 / 5);
-    const anchorGap = 38;
-    const anchorTop = y - 40;
-    const radius = 22;
-    await paintAnchorThumbnailCanvas(
-      ctx,
-      { imageUrl: data.mostValuable.imageUrl, accent: data.mostValuable.accent },
-      marginX,
-      anchorTop,
-      anchorWidth,
-      anchorHeight,
-      radius
-    );
-
-    const textX = marginX + anchorWidth + anchorGap;
-    ctx.fillStyle = "rgba(243,232,215,0.65)";
-    ctx.font = `600 24px ${SANS_STACK}`;
-    ctx.fillText(
-      (data.mostValuableHasEstimate ? tt("most_valuable_today", data.locale) : tt("featured_today", data.locale)).toUpperCase(),
-      textX,
-      y
-    );
-    y += 54;
-    ctx.fillStyle = CREAM;
-    ctx.font = `500 46px ${SERIF_STACK}`;
-    ctx.fillText(artworkArtistDisplayName(data.mostValuable, data.locale), textX, y);
-    if (data.mostValuableTitle) {
-      y += 42;
-      ctx.fillStyle = "rgba(243,232,215,0.7)";
-      ctx.font = `500 34px ${SERIF_STACK}`;
-      ctx.fillText(data.mostValuableTitle, textX, y);
-    }
-    y += 44;
-    ctx.fillStyle = "rgba(243,232,215,0.92)";
-    ctx.font = `600 30px ${SANS_STACK}`;
-    const estText = data.mostValuableHasEstimate && data.mostValuableValueText
-      ? `${data.mostValuableValueText} EST.`
-      : tt("estimate_pending", data.locale);
-    ctx.fillText(estText, textX, y);
-  }
-
-  // Collector's Seal, only when it's genuinely earned (isBillion is computed
-  // by the caller from the real summed estimate, not decorative) --
-  // burgundy variant (matches the on-screen CollectorsSeal component, which
-  // switched from graphite once the poster background went dark -- see
-  // that component's doc comment).
-  if (data.isBillion) {
-    const radius = 110;
-    const cx = marginX + radius;
-    const cy = H - 250;
-
-    ctx.fillStyle = "#681E1A";
-    ctx.beginPath();
-    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  for (let i = 0; i < stats.length; i++) {
+    const x = margin + i * colW;
+    ctx.fillStyle = "rgba(243,232,215,0.12)";
+    roundRect(ctx, x, y, colW - 24, 132, 24);
     ctx.fill();
-    ctx.strokeStyle = "rgba(242,213,189,0.22)";
-    ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    ctx.arc(cx, cy, radius - 6, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.strokeStyle = "rgba(242,213,189,0.14)";
-    ctx.beginPath();
-    ctx.arc(cx, cy, radius - 12, 0, Math.PI * 2);
-    ctx.stroke();
-
-    ctx.fillStyle = "rgba(242,213,189,0.85)";
-    ctx.font = `600 13px ${SANS_STACK}`;
-    drawCircularText(ctx, "ELYIO · CULTURAL MILESTONE · PARIS", cx, cy, radius - 22, 0);
-
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#F2D5BD";
-    ctx.font = `700 30px ${SANS_STACK}`;
-    ctx.fillText("€1B+", cx, cy - 6);
-    ctx.fillStyle = "rgba(242,213,189,0.8)";
-    ctx.font = `600 15px ${SANS_STACK}`;
-    ctx.fillText("VISITOR", cx, cy + 20);
-    // dateStr is "DD.MM.YYYY" (formatDate in RecapScreen.tsx) -- the seal
-    // uses the same short "DD·MM·YY" form as the doc's own example
-    // ("04·08·26"), matching the on-screen CollectorsSeal exactly.
-    const [dd, mm, yyyy] = data.dateStr.split(".");
-    ctx.fillStyle = "rgba(242,213,189,0.45)";
-    ctx.font = `500 13px ${SANS_STACK}`;
-    if (dd && mm && yyyy) ctx.fillText(`${dd}·${mm}·${yyyy.slice(-2)}`, cx, cy + 46);
-    ctx.textAlign = "left";
+    ctx.fillStyle = CREAM;
+    ctx.font = `500 58px ${SERIF_STACK}`;
+    ctx.fillText(stats[i][0], x + 24, y + 64);
+    ctx.fillStyle = "rgba(243,232,215,0.70)";
+    ctx.font = `700 20px ${SANS_STACK}`;
+    ctx.fillText(stats[i][1].toUpperCase(), x + 24, y + 102);
   }
+}
 
-  // Footer tagline.
-  ctx.fillStyle = "rgba(243,232,215,0.4)";
+function drawFavorite(ctx: CanvasRenderingContext2D, data: RecapImageData, margin: number): void {
+  if (!data.favoriteArtist && !data.favoriteTitle) return;
+  const y = 835;
+  ctx.fillStyle = "rgba(243,232,215,0.66)";
+  ctx.font = `700 22px ${SANS_STACK}`;
+  ctx.fillText((data.favoriteArtwork ? favoriteLabel(data.locale) : highlightLabel(data.locale)).toUpperCase(), margin, y);
+  ctx.fillStyle = CREAM;
+  ctx.font = `500 50px ${SERIF_STACK}`;
+  fillFitText(ctx, data.favoriteArtist, margin, y + 62, 820, 50, SERIF_STACK, 500);
+  ctx.fillStyle = "rgba(243,232,215,0.72)";
+  ctx.font = `500 36px ${SERIF_STACK}`;
+  fillFitText(ctx, data.favoriteTitle, margin, y + 108, 840, 36, SERIF_STACK, 500);
+}
+
+function drawValueMoment(ctx: CanvasRenderingContext2D, data: RecapImageData, margin: number): void {
+  if (data.valueMoment.kind === "none") return;
+  const y = 1085;
+  ctx.fillStyle = CREAM;
+  roundRect(ctx, margin, y, RECAP_IMAGE_WIDTH - margin * 2, 230, 28);
+  ctx.fill();
+  ctx.fillStyle = INK;
+  ctx.font = `800 21px ${SANS_STACK}`;
+  ctx.fillText(data.valueMoment.label.toUpperCase(), margin + 34, y + 48);
+  ctx.font = `500 86px ${SERIF_STACK}`;
+  fillFitText(ctx, data.valueMoment.valueText, margin + 34, y + 133, RECAP_IMAGE_WIDTH - margin * 2 - 68, 86, SERIF_STACK, 500);
+  ctx.fillStyle = "rgba(24,23,20,0.66)";
+  ctx.font = `600 25px ${SANS_STACK}`;
+  fillFitText(ctx, data.valueMoment.subtitle, margin + 34, y + 179, RECAP_IMAGE_WIDTH - margin * 2 - 68, 25, SANS_STACK, 600);
+}
+
+function drawAchievement(ctx: CanvasRenderingContext2D, data: RecapImageData, margin: number): void {
+  if (!data.achievementTitle) return;
+  const y = 1380;
+  ctx.fillStyle = "rgba(243,232,215,0.10)";
+  roundRect(ctx, margin, y, RECAP_IMAGE_WIDTH - margin * 2, 150, 28);
+  ctx.fill();
+  ctx.strokeStyle = "rgba(243,232,215,0.18)";
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(margin + 64, y + 75, 38, 0, Math.PI * 2);
+  ctx.fillStyle = CREAM;
+  ctx.fill();
+  ctx.fillStyle = INK;
+  ctx.font = `800 28px ${SANS_STACK}`;
+  ctx.textAlign = "center";
+  ctx.fillText(data.achievementIcon || "✓", margin + 64, y + 84);
+  ctx.textAlign = "left";
+  ctx.fillStyle = "rgba(243,232,215,0.65)";
+  ctx.font = `700 20px ${SANS_STACK}`;
+  ctx.fillText(achievementLabel(data.locale).toUpperCase(), margin + 126, y + 60);
+  ctx.fillStyle = CREAM;
+  ctx.font = `700 38px ${SANS_STACK}`;
+  fillFitText(ctx, data.achievementTitle.toUpperCase(), margin + 126, y + 106, 760, 38, SANS_STACK, 700);
+}
+
+function drawFooter(ctx: CanvasRenderingContext2D, margin: number, width: number, height: number): void {
+  ctx.fillStyle = CREAM;
+  ctx.font = `700 24px ${SANS_STACK}`;
+  ctx.fillText("ELYIO", margin, height - 142);
+  ctx.fillStyle = "rgba(243,232,215,0.58)";
   ctx.font = `600 26px ${SANS_STACK}`;
-  ctx.fillText("elyio.co / v1.0", marginX, H - 80);
+  ctx.fillText("Point. Discover. Understand.", margin, height - 104);
+  ctx.fillStyle = "rgba(243,232,215,0.42)";
+  ctx.font = `600 24px ${SANS_STACK}`;
+  ctx.fillText("elyio.co", margin, height - 66);
+  ctx.strokeStyle = "rgba(243,232,215,0.12)";
+  ctx.beginPath();
+  ctx.moveTo(margin, height - 186);
+  ctx.lineTo(width - margin, height - 186);
+  ctx.stroke();
+}
 
-  return new Promise((resolve) => {
-    canvas.toBlob((blob) => resolve(blob), "image/png");
+function statLabel(kind: "artworks" | "artists" | "time", locale: Locale, count: number): string {
+  if (kind === "time") return locale === "fr" ? "exploration" : locale === "zh-Hans" ? "探索" : "exploring";
+  if (kind === "artworks") {
+    if (locale === "fr") return count === 1 ? "œuvre" : "œuvres";
+    if (locale === "zh-Hans") return "作品";
+    return count === 1 ? "artwork" : "artworks";
+  }
+  if (locale === "fr") return count === 1 ? "artiste" : "artistes";
+  if (locale === "zh-Hans") return "艺术家";
+  return count === 1 ? "artist" : "artists";
+}
+
+function favoriteLabel(locale: Locale): string {
+  if (locale === "fr") return "votre favori";
+  if (locale === "zh-Hans") return "你的最爱";
+  return "your favorite";
+}
+
+function highlightLabel(locale: Locale): string {
+  if (locale === "fr") return "moment fort";
+  if (locale === "zh-Hans") return "亮点";
+  return "highlight";
+}
+
+function achievementLabel(locale: Locale): string {
+  if (locale === "fr") return "trophée";
+  if (locale === "zh-Hans") return "成就";
+  return "achievement";
+}
+
+function loadImage(url: string, timeoutMs = 8000): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    const timer = setTimeout(() => reject(new Error("image load timed out")), timeoutMs);
+    img.onload = () => {
+      clearTimeout(timer);
+      resolve(img);
+    };
+    img.onerror = () => {
+      clearTimeout(timer);
+      reject(new Error("image load failed"));
+    };
+    img.src = url;
   });
+}
+
+function drawCover(ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number, y: number, w: number, h: number): void {
+  const srcRatio = img.width / img.height;
+  const dstRatio = w / h;
+  let sx = 0;
+  let sy = 0;
+  let sw = img.width;
+  let sh = img.height;
+  if (srcRatio > dstRatio) {
+    sw = img.height * dstRatio;
+    sx = (img.width - sw) / 2;
+  } else {
+    sh = img.width / dstRatio;
+    sy = (img.height - sh) / 2;
+  }
+  ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+}
+
+function fillFitText(
+  ctx: CanvasRenderingContext2D,
+  text: string,
+  x: number,
+  y: number,
+  maxWidth: number,
+  size: number,
+  font: string,
+  weight: number
+): void {
+  if (!text) return;
+  let fontSize = size;
+  while (fontSize > 18) {
+    ctx.font = `${weight} ${fontSize}px ${font}`;
+    if (ctx.measureText(text).width <= maxWidth) break;
+    fontSize -= 2;
+  }
+  ctx.fillText(text, x, y);
+}
+
+function wrapText(ctx: CanvasRenderingContext2D, text: string, maxWidth: number, size: number, font: string, weight: number): string[] {
+  ctx.font = `${weight} ${size}px ${font}`;
+  const words = text.split(/\s+/);
+  const lines: string[] = [];
+  let line = "";
+  for (const word of words) {
+    const candidate = line ? `${line} ${word}` : word;
+    if (ctx.measureText(candidate).width <= maxWidth || !line) {
+      line = candidate;
+    } else {
+      lines.push(line);
+      line = word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number): void {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
 }

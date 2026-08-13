@@ -54,11 +54,16 @@ export default function HeroPhonePreview({ locale }: { locale: Locale }) {
     locale,
     mode: "normal",
     museumId: null,
+    museumName: "Musée d'Orsay",
+    museumCity: "Paris",
     visitId: null,
     visitStarted: true,
     startTime: null,
+    lastActivityAt: null,
+    completedAt: null,
     seen: [artwork.id],
     favorites: new Set(),
+    favoriteOrder: [],
     added: new Set(),
     catalogArtworks: {},
     currentArtwork: artwork,
@@ -68,6 +73,9 @@ export default function HeroPhonePreview({ locale }: { locale: Locale }) {
     scanStatus: null,
     pendingRecognitionImageBase64: null,
     cardOpenedAt: null,
+    unlockedAchievements: {},
+    achievementToast: null,
+    missionToast: null,
   };
 
   return (

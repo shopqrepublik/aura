@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import SegmentControl from "@/components/ui/SegmentControl";
 import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
 import { tt } from "@/lib/i18n";
@@ -13,12 +13,14 @@ export default function UncatalogedCardScreen({
   onBack,
   onSetMode,
   onAddToVisit,
+  onToggleFavorite,
   onGoProgress,
 }: {
   state: AppState;
   onBack: () => void;
   onSetMode: (mode: Mode) => void;
   onAddToVisit: () => void;
+  onToggleFavorite: () => void;
   onGoProgress: () => void;
 }) {
   const sighting = state.uncatalogedSighting;
@@ -30,6 +32,7 @@ export default function UncatalogedCardScreen({
   const artist = enrichment.displayArtist || sighting.artist || tt("uncataloged_unknown_artist", state.locale);
   const title = enrichment.displayTitle || sighting.title || tt("uncataloged_unknown_title", state.locale);
   const isAdded = state.uncatalogedAdded.has(sighting.id);
+  const isFavorite = state.favorites.has(sighting.id);
   const valueReveal = generatedValueReveal(enrichment, state.locale);
   const metaLine = [enrichment.displayDate, enrichment.objectType, enrichment.movementOrPeriod]
     .filter(Boolean)
@@ -56,6 +59,14 @@ export default function UncatalogedCardScreen({
           className="absolute top-4 left-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur flex items-center justify-center"
         >
           <ArrowLeft className="w-4 h-4 text-white" />
+        </button>
+        <button
+          type="button"
+          onClick={onToggleFavorite}
+          aria-label="Favorite"
+          className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur flex items-center justify-center"
+        >
+          <Heart className={`w-4 h-4 ${isFavorite ? "text-[#F3D5C0] fill-[#F3D5C0]" : "text-white"}`} />
         </button>
       </div>
 

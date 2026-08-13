@@ -12,6 +12,7 @@
     "test:value": "node scripts/value-reveal-regression.mjs",
     "test:result": "node scripts/generated-enrichment-regression.mjs",
     "test:scale": "node scripts/scale-comparison-regression.mjs",
+    "test:visit": "node scripts/visit-game-regression.mjs",
     "test:pwa": "node scripts/pwa-runtime-check.mjs"
   },
   "dependencies": {

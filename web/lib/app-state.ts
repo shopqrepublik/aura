@@ -2,11 +2,11 @@
 
 import { useCallback, useMemo, useState } from "react";
 import * as api from "./api";
-import { getArtwork, MISSIONS } from "./artworks";
-import { isMissionComplete } from "./missions";
+import { getArtwork } from "./artworks";
 import { track } from "./analytics";
 import { isRecognitionNetworkError } from "./recognitionErrors";
 import { buildGeneratedEnrichment, generatedValueReveal, type GeneratedEnrichment } from "./generated-enrichment";
+import { buildVisitGame } from "./visit-game";
 import type { Artwork, Locale, Mode } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
@@ -34,11 +34,16 @@ export interface AppState {
   // reused for every recognize() call during that visit rather than
   // re-deriving it per scan.
   museumId: string | null;
+  museumName: string | null;
+  museumCity: string | null;
   visitId: string | null;
   visitStarted: boolean;
   startTime: number | null;
+  lastActivityAt: number | null;
+  completedAt: number | null;
   seen: string[]; // artwork ids, in scan order
   favorites: Set<string>;
+  favoriteOrder: string[];
   added: Set<string>;
   catalogArtworks: Record<string, Artwork>;
   currentArtwork: Artwork | null;
@@ -48,6 +53,9 @@ export interface AppState {
   scanStatus: string | null; // transient message on the camera screen
   pendingRecognitionImageBase64: string | null;
   cardOpenedAt: number | null; // real wall-clock timestamp, for Deep focus
+  unlockedAchievements: Record<string, number>;
+  achievementToast: string | null;
+  missionToast: string | null;
 }
 
 const initialState: AppState = {
@@ -55,11 +63,16 @@ const initialState: AppState = {
   locale: "en",
   mode: "normal",
   museumId: null,
+  museumName: null,
+  museumCity: null,
   visitId: null,
   visitStarted: false,
   startTime: null,
+  lastActivityAt: null,
+  completedAt: null,
   seen: [],
   favorites: new Set(),
+  favoriteOrder: [],
   added: new Set(),
   catalogArtworks: {},
   currentArtwork: null,
@@ -69,24 +82,36 @@ const initialState: AppState = {
   scanStatus: null,
   pendingRecognitionImageBase64: null,
   cardOpenedAt: null,
+  unlockedAchievements: {},
+  achievementToast: null,
+  missionToast: null,
 };
 
 export function useElyioApp() {
-  const [state, setState] = useState<AppState>(initialState);
+  const [state, setState] = useState<AppState>(() => loadVisitState() || initialState);
 
-  const goto = useCallback((screen: Screen) => setState((s) => ({ ...s, screen })), []);
-  const setLocale = useCallback((locale: Locale) => setState((s) => ({ ...s, locale })), []);
+  const goto = useCallback((screen: Screen) => setState((s) => persistVisitState({ ...s, screen, lastActivityAt: Date.now() })), []);
+  const setLocale = useCallback((locale: Locale) => setState((s) => persistVisitState({ ...s, locale })), []);
   const setMode = useCallback((mode: Mode) => setState((s) => ({ ...s, mode })), []);
 
   // Phase 2 §1 -- museumId comes from HomeScreen's useMuseumDetection
   // (detected via GPS or manually confirmed), not a hardcoded constant.
   // Resolved once here and reused for every recognize() call during this
   // visit, rather than re-checking geolocation per scan.
-  const startVisit = useCallback(async (museumId: string) => {
+  const startVisit = useCallback(async (museumId: string, museumName?: string | null, museumCity?: string | null) => {
     setState((s) => {
       if (s.visitStarted) return s;
       track("visit_started", { museum_id: museumId });
-      return { ...s, visitStarted: true, startTime: Date.now(), museumId };
+      const now = Date.now();
+      return persistVisitState({
+        ...s,
+        visitStarted: true,
+        startTime: now,
+        lastActivityAt: now,
+        museumId,
+        museumName: museumName || null,
+        museumCity: museumCity || null,
+      });
     });
     setState((s) => {
       if (!s.visitId) {
@@ -103,7 +128,7 @@ export function useElyioApp() {
   }, [goto]);
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
-    setState((s) => ({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null }));
+    setState((s) => persistVisitState({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
     track("scan_attempt", { museum_id: state.museumId, seen_count: state.seen.length });
     if (state.seen.length > 0) {
       track("second_scan_started", { museum_id: state.museumId, seen_count: state.seen.length });
@@ -144,14 +169,15 @@ export function useElyioApp() {
             confidence: result.confidence,
             ai_candidate: uncataloged,
           });
-          setState((s) => ({
+          setState((s) => persistVisitState(applyVisitGameUnlocks({
             ...s,
             uncatalogedSighting: buildUncatalogedSighting(uncataloged, result.vision, result.confidence, imageBase64),
             currentArtwork: null,
             scanStatus: null,
             screen: "card",
             cardOpenedAt: Date.now(),
-          }));
+            lastActivityAt: Date.now(),
+          }, s)));
           track("result_viewed", {
             result_type: "uncataloged",
             museum_id: state.museumId,
@@ -162,7 +188,7 @@ export function useElyioApp() {
         }
         track("scan_failed", { reason: result.status });
         track("catalog_no_match", { museum_id: state.museumId, confidence: result.confidence });
-        setState((s) => ({ ...s, scanStatus: "not_identified", pendingRecognitionImageBase64: null }));
+        setState((s) => persistVisitState({ ...s, scanStatus: "not_identified", pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
         return;
       }
 
@@ -191,40 +217,30 @@ export function useElyioApp() {
       });
 
       setState((s) => {
-        const alreadySeen = s.seen.includes(artwork.id);
-        if (!alreadySeen) {
-          // mission_completed (§13): seen is only ever appended to here, so
-          // this is the one place a mission can flip from incomplete to
-          // complete -- compare before/after this specific addition rather
-          // than re-deriving from the post-update state, so a mission whose
-          // target was already scanned earlier in the visit doesn't re-fire.
-          for (const m of MISSIONS) {
-            if (!isMissionComplete(m.id, s.seen) && isMissionComplete(m.id, [...s.seen, artwork.id])) {
-              track("mission_completed", { mission_id: m.id });
-            }
-          }
-        }
-        return {
+        const next: AppState = {
           ...s,
           catalogArtworks: getArtwork(artwork.id) ? s.catalogArtworks : { ...s.catalogArtworks, [artwork.id]: artwork },
           currentArtwork: artwork,
           uncatalogedSighting: null,
           lastConfidence: result.confidence,
-          seen: alreadySeen ? s.seen : [...s.seen, artwork.id],
+          seen: s.seen,
           scanStatus: null,
           pendingRecognitionImageBase64: null,
           screen: "card",
           cardOpenedAt: Date.now(),
+          lastActivityAt: Date.now(),
         };
+        return persistVisitState(applyVisitGameUnlocks(next, s));
       });
     } catch (error) {
       track("recognition_failed", { museum_id: state.museumId, reason: error instanceof Error ? error.message : "error" });
       const networkError = isRecognitionNetworkError(error);
       track("scan_failed", { reason: networkError ? "network_error" : "error" });
-      setState((s) => ({
+      setState((s) => persistVisitState({
         ...s,
         scanStatus: networkError ? "network_error" : "not_identified",
         pendingRecognitionImageBase64: networkError ? imageBase64 : null,
+        lastActivityAt: Date.now(),
       }));
     }
   }, [state.catalogArtworks, state.locale, state.mode, state.museumId, state.seen.length]);
@@ -242,7 +258,9 @@ export function useElyioApp() {
         track("artwork_added", { artwork_id: id });
         if (s.visitId) api.addVisitArtwork(s.visitId, id, s.lastConfidence).catch(() => {});
       }
-      return { ...s, added: nextAdded };
+      const nextSeen = s.seen.filter((seenId) => seenId !== id);
+      if (!wasAdded) nextSeen.push(id);
+      return persistVisitState(applyVisitGameUnlocks({ ...s, added: nextAdded, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
 
@@ -267,7 +285,7 @@ export function useElyioApp() {
           title: s.uncatalogedSighting.title,
         });
       }
-      return { ...s, uncatalogedAdded: nextAdded, catalogArtworks: nextCatalogArtworks, seen: nextSeen };
+      return persistVisitState(applyVisitGameUnlocks({ ...s, uncatalogedAdded: nextAdded, catalogArtworks: nextCatalogArtworks, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
 
@@ -276,13 +294,36 @@ export function useElyioApp() {
       if (!s.currentArtwork) return s;
       const id = s.currentArtwork.id;
       const next = new Set(s.favorites);
+      const favoriteOrder = s.favoriteOrder.filter((favoriteId) => favoriteId !== id);
       if (next.has(id)) {
         next.delete(id);
       } else {
         next.add(id);
+        favoriteOrder.push(id);
         track("artwork_favorited", { artwork_id: id });
+        track("favorite_added", { artwork_id: id });
       }
-      return { ...s, favorites: next };
+      return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, lastActivityAt: Date.now() }, s));
+    });
+  }, []);
+
+  const toggleUncatalogedFavorite = useCallback(() => {
+    setState((s) => {
+      if (!s.uncatalogedSighting) return s;
+      const id = s.uncatalogedSighting.id;
+      const next = new Set(s.favorites);
+      const favoriteOrder = s.favoriteOrder.filter((favoriteId) => favoriteId !== id);
+      const nextCatalogArtworks = { ...s.catalogArtworks };
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+        favoriteOrder.push(id);
+        if (!nextCatalogArtworks[id]) nextCatalogArtworks[id] = uncatalogedArtworkForVisit(s.uncatalogedSighting, s.locale);
+        track("artwork_favorited", { artwork_id: id, result_type: "uncataloged" });
+        track("favorite_added", { artwork_id: id, result_type: "uncataloged" });
+      }
+      return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, catalogArtworks: nextCatalogArtworks, lastActivityAt: Date.now() }, s));
     });
   }, []);
 
@@ -293,8 +334,9 @@ export function useElyioApp() {
     // by the time this actually runs.
     setState((s) => {
       track("visit_completed", { works_count: s.seen.length });
+      track("finish_visit_clicked", { works_count: s.seen.length });
       track("recap_viewed", { works_count: s.seen.length });
-      return s;
+      return persistVisitState({ ...s, completedAt: Date.now(), lastActivityAt: Date.now() });
     });
     if (state.visitId) {
       api.completeVisit(state.visitId).catch(() => {});
@@ -303,7 +345,16 @@ export function useElyioApp() {
   }, [state.visitId, goto]);
 
   const newVisit = useCallback(() => {
+    clearVisitState();
     setState((s) => ({ ...initialState, locale: s.locale }));
+  }, []);
+
+  const dismissAchievementToast = useCallback(() => {
+    setState((s) => persistVisitState({ ...s, achievementToast: null }));
+  }, []);
+
+  const dismissMissionToast = useCallback(() => {
+    setState((s) => persistVisitState({ ...s, missionToast: null }));
   }, []);
 
   const seenArtworks = useMemo(
@@ -314,13 +365,139 @@ export function useElyioApp() {
   return {
     state,
     seenArtworks,
-    actions: { goto, setLocale, setMode, startVisit, recognizeFrame, addToVisit, addUncatalogedToVisit, toggleFavorite, completeVisit, newVisit },
+    actions: {
+      goto,
+      setLocale,
+      setMode,
+      startVisit,
+      recognizeFrame,
+      addToVisit,
+      addUncatalogedToVisit,
+      toggleFavorite,
+      toggleUncatalogedFavorite,
+      completeVisit,
+      newVisit,
+      dismissAchievementToast,
+      dismissMissionToast,
+    },
   };
 }
 
 function uncatalogedPlaceholderImage(): string {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7e1d6"/><stop offset=".55" stop-color="#d6c8b8"/><stop offset="1" stop-color="#8c6a4c"/></linearGradient></defs><rect width="800" height="600" fill="url(#g)"/><text x="400" y="308" text-anchor="middle" font-family="Georgia, serif" font-size="38" fill="rgba(24,23,20,.62)">AI recognized</text></svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+interface StoredVisitState {
+  version: 1;
+  state: Omit<AppState, "favorites" | "added" | "uncatalogedAdded"> & {
+    favorites: string[];
+    added: string[];
+    uncatalogedAdded: string[];
+  };
+}
+
+const VISIT_STORAGE_KEY = "elyio-current-visit-v1";
+
+function loadVisitState(): AppState | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(VISIT_STORAGE_KEY);
+    if (!raw) return null;
+    const stored = JSON.parse(raw) as StoredVisitState;
+    if (stored.version !== 1 || !stored.state?.visitStarted) return null;
+    return {
+      ...stored.state,
+      favorites: new Set(stored.state.favorites || []),
+      added: new Set(stored.state.added || []),
+      uncatalogedAdded: new Set(stored.state.uncatalogedAdded || []),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function persistVisitState(state: AppState): AppState {
+  if (typeof window === "undefined") return state;
+  try {
+    if (!state.visitStarted) {
+      window.localStorage.removeItem(VISIT_STORAGE_KEY);
+      return state;
+    }
+    const stored: StoredVisitState = {
+      version: 1,
+      state: {
+        ...state,
+        favorites: Array.from(state.favorites),
+        added: Array.from(state.added),
+        uncatalogedAdded: Array.from(state.uncatalogedAdded),
+      },
+    };
+    window.localStorage.setItem(VISIT_STORAGE_KEY, JSON.stringify(stored));
+  } catch {
+    // Local persistence is best-effort. The visit remains usable in memory.
+  }
+  return state;
+}
+
+function clearVisitState() {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(VISIT_STORAGE_KEY);
+  } catch {}
+}
+
+function resolveSeenArtworks(state: AppState): Artwork[] {
+  return state.seen.map((id) => getArtwork(id) || state.catalogArtworks[id]).filter((a): a is Artwork => !!a);
+}
+
+function applyVisitGameUnlocks(next: AppState, previous?: AppState): AppState {
+  const now = Date.now();
+  const seenArtworks = resolveSeenArtworks(next);
+  const before = previous
+    ? buildVisitGame({
+        locale: previous.locale,
+        museumName: previous.museumName,
+        museumCity: previous.museumCity,
+        startTime: previous.startTime,
+        now,
+        seenArtworks: resolveSeenArtworks(previous),
+        favoriteIds: previous.favorites,
+        unlockedAchievements: previous.unlockedAchievements,
+      })
+    : null;
+  const game = buildVisitGame({
+    locale: next.locale,
+    museumName: next.museumName,
+    museumCity: next.museumCity,
+    startTime: next.startTime,
+    now,
+    seenArtworks,
+    favoriteIds: next.favorites,
+    unlockedAchievements: next.unlockedAchievements,
+  });
+
+  const unlockedAchievements = { ...next.unlockedAchievements };
+  let achievementToast = next.achievementToast;
+  for (const achievement of game.achievements) {
+    if (achievement.unlocked && !unlockedAchievements[achievement.id]) {
+      unlockedAchievements[achievement.id] = now;
+      achievementToast = achievement.id;
+      track("achievement_unlocked", { achievement_id: achievement.id });
+    }
+  }
+
+  let missionToast = next.missionToast;
+  if (before) {
+    const beforeCompleted = new Set(before.completedMissionIds);
+    const newlyCompleted = game.completedMissionIds.find((id) => !beforeCompleted.has(id));
+    if (newlyCompleted) {
+      missionToast = newlyCompleted;
+      track("mission_completed", { mission_id: newlyCompleted });
+    }
+  }
+
+  return { ...next, unlockedAchievements, achievementToast, missionToast };
 }
 
 function localizedSame(value: string): Record<Locale, string> {

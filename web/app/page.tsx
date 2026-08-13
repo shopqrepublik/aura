@@ -12,6 +12,7 @@ import UncatalogedCardScreen from "@/components/screens/UncatalogedCardScreen";
 import ProgressScreen from "@/components/screens/ProgressScreen";
 import RecapScreen from "@/components/screens/RecapScreen";
 import DesktopShell from "@/components/desktop/DesktopShell";
+import VisitToast from "@/components/ui/VisitToast";
 import type { Artwork } from "@/lib/types";
 
 // The real, working ELYIO app — state-machine driven, talks to the existing
@@ -71,6 +72,7 @@ function AppScreens({
           onBack={() => actions.goto("camera")}
           onSetMode={actions.setMode}
           onAddToVisit={actions.addUncatalogedToVisit}
+          onToggleFavorite={actions.toggleUncatalogedFavorite}
           onGoProgress={() => actions.goto("progress")}
         />
       )}
@@ -86,6 +88,12 @@ function AppScreens({
       {state.screen === "recap" && (
         <RecapScreen state={state} seenArtworks={seenArtworks} onNewVisit={actions.newVisit} />
       )}
+      <VisitToast
+        state={state}
+        seenArtworks={seenArtworks}
+        onDismissAchievement={actions.dismissAchievementToast}
+        onDismissMission={actions.dismissMissionToast}
+      />
     </>
   );
 }
