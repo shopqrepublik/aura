@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import SegmentControl from "@/components/ui/SegmentControl";
 import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
 import { tt } from "@/lib/i18n";
-import { generatedScaleSentence, generatedValueReveal, quietNoTrustedContext } from "@/lib/generated-enrichment";
+import { generatedValueReveal, quietNoTrustedContext } from "@/lib/generated-enrichment";
 import type { AppState } from "@/lib/app-state";
 import type { Mode } from "@/lib/types";
 
@@ -31,7 +31,6 @@ export default function UncatalogedCardScreen({
   const title = enrichment.displayTitle || sighting.title || tt("uncataloged_unknown_title", state.locale);
   const isAdded = state.uncatalogedAdded.has(sighting.id);
   const valueReveal = generatedValueReveal(enrichment, state.locale);
-  const scaleSentence = generatedScaleSentence(enrichment, state.locale, state.mode);
   const metaLine = [enrichment.displayDate, enrichment.objectType, enrichment.movementOrPeriod]
     .filter(Boolean)
     .filter((value, index, values) => values.indexOf(value) === index)
@@ -92,9 +91,6 @@ export default function UncatalogedCardScreen({
               locale={state.locale}
               mode={state.mode}
             />
-            {scaleSentence && (
-              <p className="mt-3 text-[13px] leading-[18px] text-[#514D46]">{scaleSentence}</p>
-            )}
           </div>
         ) : (
           <p className="mt-4 text-[12px] leading-[17px] text-[#77736d]">{quietNoTrustedContext(state.locale)}</p>

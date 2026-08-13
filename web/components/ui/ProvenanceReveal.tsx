@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { haptics } from "@/lib/haptics";
 import { hexToRgba, getPriceTier, usePrefersReducedMotion } from "@/lib/cardReveal";
 import { GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
-import { resolveScaleComparisonSentence, resolveKidsScaleComparison } from "@/lib/scaleComparison";
+import { resolveValueRevealScaleComparison } from "@/lib/scaleComparison";
 import { formatValueRevealHeadline } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
 import MarketMethodologySheet from "./MarketMethodologySheet";
@@ -104,11 +104,7 @@ export default function ProvenanceReveal({
   const kidsBump = mode === "kids" ? 0.02 : 0;
   const tintOpacity = (tier ? TINT_OPACITY[tier] : TINT_OPACITY.standard) + kidsBump;
 
-  const analogy = !estimate
-    ? null
-    : mode === "kids"
-      ? resolveKidsScaleComparison(estimate.low, estimate.high, locale)
-      : resolveScaleComparisonSentence(estimate.low, estimate.high, locale, mode === "simple" ? "simple" : "normal");
+  const analogy = resolveValueRevealScaleComparison(valueReveal, locale, mode);
 
   const priceSize = tier ? PRICE_SIZE_PX[tier] : PRICE_SIZE_PX.standard;
   const priceText = estimate
@@ -227,6 +223,14 @@ export default function ProvenanceReveal({
           {tt("not_artwork_value_label", locale)}
         </p>
       )}
+      {analogy && (
+        <div className="mt-4 rounded-[16px] bg-white/40 px-3.5 py-3 border border-[rgba(45,39,31,0.08)]">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#65625d]">
+            {locale === "fr" ? "Pour situer" : locale === "zh-Hans" ? "作为参照" : "For scale"}
+          </div>
+          <p className="mt-1.5 text-[16px] leading-[21px] font-semibold text-[#24231f]">{analogy.shortSentence}</p>
+        </div>
+      )}
       {optionalContext && (
         <div className="mt-4 rounded-[14px] bg-white/35 px-3 py-2.5 border border-[rgba(45,39,31,0.08)]">
           <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#65625d]">
@@ -246,13 +250,6 @@ export default function ProvenanceReveal({
       )}
 
       <div className="transition-opacity duration-300 ease-out" style={{ opacity: evidenceVisible ? 1 : 0 }}>
-        {analogy && (
-          <>
-            <div className="mt-5 h-px bg-[rgba(45,39,31,0.14)]" />
-            <p className="mt-5 text-[14px] font-medium text-[#24231f] leading-[20px]">{analogy}</p>
-          </>
-        )}
-
         <p className="mt-[18px] text-[11px] leading-[16px] text-[#66635e]">
           {cleanedDisclaimerText}{" "}
           <button

@@ -256,19 +256,6 @@ export function quietNoTrustedContext(locale: Locale): string {
   return "No verified market context is shown for this work.";
 }
 
-export function generatedScaleSentence(enrichment: GeneratedEnrichment, locale: Locale, mode: Mode): string | null {
-  const amount = enrichment.artistMarketContext?.amountMillions;
-  if (!amount) return null;
-  if (mode === "kids") {
-    if (locale === "fr") return amount >= 100 ? "C'est une somme si grande qu'elle se compare à des avions entiers, pas à un simple objet de poche." : "C'est une somme de musée, trop grande pour la comparer à un prix ordinaire.";
-    if (locale === "zh-Hans") return amount >= 100 ? "这是大到可以和整架飞机相比的数字，不是普通物品的价格。" : "这是博物馆级别的巨大数字，不能当作这件作品的价格。";
-    return amount >= 100 ? "That is the kind of number people compare with whole aircraft, not pocket money." : "That is a museum-scale number, far beyond everyday prices.";
-  }
-  if (locale === "fr") return amount >= 100 ? "Pour situer l'ordre de grandeur, ce montant se compare au prix d'un grand avion moderne." : "Pour situer l'ordre de grandeur, on est déjà dans le registre des grandes ventes internationales.";
-  if (locale === "zh-Hans") return amount >= 100 ? "作为量级参照，这样的金额常被拿来和一架大型现代飞机相比。" : "作为量级参照，它已经属于国际顶级艺术市场的范围。";
-  return amount >= 100 ? "For scale, that is the kind of number people compare with a modern wide-body aircraft." : "For scale, this belongs to the level of major international art sales.";
-}
-
 export function validateGeneratedEnrichment(enrichment: GeneratedEnrichment): boolean {
   if (!enrichment.displayTitle.trim()) return false;
   const texts: string[] = [];

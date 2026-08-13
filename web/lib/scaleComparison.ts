@@ -1,185 +1,167 @@
-import type { Locale, LocalizedText } from "./types";
+import type { Locale, Mode, ValueReveal } from "./types";
 
-// "Scale comparison" badge — real logic driven by the artwork's own
-// estimate midpoint, not a hardcoded example. Values below are approximate,
-// sourced reference points (not invented): Paris apartment price/m² from
-// 2025-2026 market data (~€9,700-10,450/m²), Boeing 787-9 list price
-// (~$295M), private jet ranges (Cessna/Gulfstream, $5M-75M), superyacht
-// ranges (€25-50M at 50m new-build, ~€250M+ at 100m+ custom build) — all
-// approximate and meant to be updated as real prices move, same spirit as
-// the artwork estimates themselves: illustrative, not exact.
+export type ScaleAudience = "adult" | "kids";
 
-interface ComparisonObject {
+export interface ScaleReference {
   id: string;
-  valueEur: number; // in EUR, same unit as Artwork.estimate (millions) x1e6 handled by caller
-  label: LocalizedText;
-  // Only needed for locales that actually inflect for plural. English
-  // pluralizes automatically (+s, see pickLabel); zh-Hans never inflects
-  // (Chinese has no grammatical plural) so `label` alone is always correct
-  // there; French DOES inflect, so any object missing labelPlural.fr would
-  // silently render the wrong grammatical number for any count other than
-  // 1 -- this was a real, live bug (surfaced while testing ProvenanceReveal
-  // in French: "2 jet privé long-courrier" instead of "2 jets privés long-
-  // courriers") before labelPlural existed.
-  labelPlural?: LocalizedText;
+  label: Record<Locale, string>;
+  unitValueMillions: { low: number; high: number };
+  currency: "USD_MILLION" | "EUR_MILLION";
+  source: string;
+  methodology: string;
+  lastReviewedDate: string;
+  allowedLocales: Locale[];
+  ageSuitability: ScaleAudience[];
+  usefulAmountMillions: { min: number; max: number };
 }
 
-// Values in EUR millions, matching Artwork.estimate.low/high's unit.
-const ADULT_OBJECTS: ComparisonObject[] = [
-  {
-    id: "paris_apartment",
-    valueEur: 0.5,
-    label: { en: "Paris apartment", fr: "appartement parisien", "zh-Hans": "巴黎公寓" },
-    labelPlural: { en: "", fr: "appartements parisiens", "zh-Hans": "" },
-  },
-  {
-    id: "light_jet",
-    valueEur: 5,
-    label: { en: "light private jet", fr: "jet privé léger", "zh-Hans": "轻型私人飞机" },
-    labelPlural: { en: "", fr: "jets privés légers", "zh-Hans": "" },
-  },
-  {
-    id: "superyacht_50m",
-    valueEur: 35,
-    label: { en: "50-metre superyacht", fr: "superyacht de 50 mètres", "zh-Hans": "50米超级游艇" },
-    labelPlural: { en: "", fr: "superyachts de 50 mètres", "zh-Hans": "" },
-  },
-  {
-    id: "heavy_jet",
-    valueEur: 65,
-    label: { en: "long-range private jet", fr: "jet privé long-courrier", "zh-Hans": "远程私人飞机" },
-    labelPlural: { en: "", fr: "jets privés long-courriers", "zh-Hans": "" },
-  },
-  {
-    id: "superyacht_100m",
-    valueEur: 250,
-    label: { en: "100-metre superyacht", fr: "superyacht de 100 mètres", "zh-Hans": "100米超级游艇" },
-    labelPlural: { en: "", fr: "superyachts de 100 mètres", "zh-Hans": "" },
-  },
-  {
-    id: "boeing_787",
-    valueEur: 270,
-    label: { en: "Boeing 787", fr: "Boeing 787", "zh-Hans": "波音787客机" },
-    // Model name -- doesn't inflect in French (or English) regardless of count.
-  },
-];
+export interface ScaleComparison {
+  referenceId: string;
+  label: string;
+  sentence: string;
+  shortSentence: string;
+  countLabel: string;
+  source: string;
+}
 
-// Kids table: deliberately NOT a reuse of the adult list — a 6-year-old has
-// no intuition for "a private jet" as a unit, but absolutely has one for
-// ice cream, LEGO, bikes and rollercoasters. Small-item values are
-// everyday-knowledge approximations (not independently sourced the way the
-// adult table's big-ticket items were, since these are common consumer
-// prices, not specialist market data). The two big-ticket items
-// (trampoline_park, rollercoaster) ARE sourced: a standard trampoline park
-// (25,000-40,000 sq ft) runs ~$1.5-3M per industry cost guides, and a major
-// theme-park rollercoaster is commonly cited in the $10-15M range.
-// trampoline_park exists specifically to fill the gap between backyard_pool
-// and rollercoaster -- without it, a €2-8M work (Cabanel, Ingres tier)
-// landed on 50-140 backyard pools, which reads as flat/uncountable rather
-// than a vivid, graspable comparison.
-const KIDS_OBJECTS: ComparisonObject[] = [
+export const SCALE_REFERENCES: ScaleReference[] = [
+  {
+    id: "wide_body_aircraft",
+    label: {
+      en: "modern wide-body aircraft",
+      fr: "avion long-courrier moderne",
+      "zh-Hans": "大型现代宽体客机",
+    },
+    unitValueMillions: { low: 110, high: 140 },
+    currency: "USD_MILLION",
+    source: "Editorial benchmark from recent wide-body aircraft market/list-price ranges; reviewed as a scale analogy, not a purchase quote.",
+    methodology: "Use for nine-figure art-market context where one or several aircraft communicates magnitude.",
+    lastReviewedDate: "2026-08-13",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["adult", "kids"],
+    usefulAmountMillions: { min: 80, max: 600 },
+  },
+  {
+    id: "ferrari_class_supercar",
+    label: {
+      en: "Ferrari-class supercars",
+      fr: "supercars de type Ferrari",
+      "zh-Hans": "法拉利级别超跑",
+    },
+    unitValueMillions: { low: 0.35, high: 0.45 },
+    currency: "USD_MILLION",
+    source: "Editorial benchmark from current high-end supercar order-of-magnitude pricing.",
+    methodology: "Use rounded ranges only; never exact car counts.",
+    lastReviewedDate: "2026-08-13",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["adult", "kids"],
+    usefulAmountMillions: { min: 5, max: 250 },
+  },
+  {
+    id: "central_paris_apartment",
+    label: {
+      en: "prime central-Paris apartments",
+      fr: "appartements haut de gamme au centre de Paris",
+      "zh-Hans": "巴黎市中心高端公寓",
+    },
+    unitValueMillions: { low: 2.5, high: 4.5 },
+    currency: "EUR_MILLION",
+    source: "Editorial benchmark using central Paris luxury-apartment order-of-magnitude pricing.",
+    methodology: "Use ranges to communicate urban real-estate scale without implying exact valuation.",
+    lastReviewedDate: "2026-08-13",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["adult"],
+    usefulAmountMillions: { min: 8, max: 250 },
+  },
+  {
+    id: "luxury_yacht",
+    label: {
+      en: "50-metre luxury yachts",
+      fr: "yachts de luxe de 50 mètres",
+      "zh-Hans": "50米级豪华游艇",
+    },
+    unitValueMillions: { low: 25, high: 45 },
+    currency: "USD_MILLION",
+    source: "Editorial benchmark from specialist yacht-build cost ranges.",
+    methodology: "Use for mid/high eight-figure art-market context.",
+    lastReviewedDate: "2026-08-13",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["adult"],
+    usefulAmountMillions: { min: 20, max: 180 },
+  },
+  {
+    id: "football_transfer",
+    label: {
+      en: "elite football transfer fees",
+      fr: "transferts de football de très haut niveau",
+      "zh-Hans": "顶级足球转会费",
+    },
+    unitValueMillions: { low: 70, high: 120 },
+    currency: "EUR_MILLION",
+    source: "Editorial benchmark from recent elite European football transfer-fee ranges.",
+    methodology: "Use only as a broad cultural scale comparison.",
+    lastReviewedDate: "2026-08-13",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["adult"],
+    usefulAmountMillions: { min: 50, max: 250 },
+  },
   {
     id: "ice_cream",
-    valueEur: 0.000004,
-    label: { en: "ice cream scoop", fr: "boule de glace", "zh-Hans": "一球冰淇淋" },
-    labelPlural: { en: "", fr: "boules de glace", "zh-Hans": "" },
-  },
-  {
-    id: "lego_set",
-    valueEur: 0.00006,
-    label: { en: "LEGO set", fr: "boîte de LEGO", "zh-Hans": "一套乐高" },
-    labelPlural: { en: "", fr: "boîtes de LEGO", "zh-Hans": "" },
-  },
-  {
-    id: "bicycle",
-    valueEur: 0.0002,
-    label: { en: "bicycle", fr: "vélo", "zh-Hans": "自行车" },
-    labelPlural: { en: "", fr: "vélos", "zh-Hans": "" },
-  },
-  {
-    id: "theme_park_day",
-    valueEur: 0.0006,
     label: {
-      en: "family day at a theme park",
-      fr: "journée en famille dans un parc d'attractions",
-      "zh-Hans": "一次家庭主题乐园之旅",
+      en: "ice creams",
+      fr: "glaces",
+      "zh-Hans": "冰淇淋",
     },
-    labelPlural: { en: "", fr: "journées en famille dans un parc d'attractions", "zh-Hans": "" },
-  },
-  {
-    id: "backyard_pool",
-    valueEur: 0.04,
-    label: { en: "backyard swimming pool", fr: "piscine de jardin", "zh-Hans": "自家后院游泳池" },
-    labelPlural: { en: "", fr: "piscines de jardin", "zh-Hans": "" },
-  },
-  {
-    id: "trampoline_park",
-    valueEur: 2,
-    label: { en: "trampoline park", fr: "parc de trampolines", "zh-Hans": "一座蹦床乐园" },
-    labelPlural: { en: "", fr: "parcs de trampolines", "zh-Hans": "" },
-  },
-  {
-    id: "rollercoaster",
-    valueEur: 12,
-    label: { en: "real rollercoaster", fr: "vrais grand huit", "zh-Hans": "一座真正的过山车" },
-    // "grand huit" is an invariant colloquial compound in French -- doesn't
-    // take a regular plural form, singular text is used at any count.
+    unitValueMillions: { low: 0.000004, high: 0.000006 },
+    currency: "EUR_MILLION",
+    source: "Editorial everyday-price benchmark for children's scale copy.",
+    methodology: "Use only rounded million-level quantities.",
+    lastReviewedDate: "2026-08-13",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["kids"],
+    usefulAmountMillions: { min: 1, max: 80 },
   },
 ];
 
-function roundNicely(n: number): number {
-  if (n < 10) return Math.round(n);
-  if (n < 50) return Math.round(n / 5) * 5;
-  if (n < 200) return Math.round(n / 10) * 10;
-  return Math.round(n / 25) * 25;
+const CURRENCY_TO_USD: Record<string, number> = {
+  USD_MILLION: 1,
+  USD: 1 / 1_000_000,
+  EUR_MILLION: 1.09,
+  EUR: 1.09 / 1_000_000,
+  GBP_MILLION: 1.29,
+  GBP: 1.29 / 1_000_000,
+};
+
+export function resolveScaleComparisonForAmount(
+  amountMillions: number,
+  currency: string | undefined,
+  locale: Locale,
+  mode: Mode
+): ScaleComparison | null {
+  const amountUsdMillions = toUsdMillions(amountMillions, currency);
+  if (amountUsdMillions == null || amountUsdMillions <= 0) return null;
+  const audience: ScaleAudience = mode === "kids" ? "kids" : "adult";
+  const candidates = SCALE_REFERENCES.filter(
+    (reference) =>
+      reference.allowedLocales.includes(locale) &&
+      reference.ageSuitability.includes(audience) &&
+      amountUsdMillions >= toUsdMillions(reference.usefulAmountMillions.min, reference.currency)! &&
+      amountUsdMillions <= toUsdMillions(reference.usefulAmountMillions.max, reference.currency)!
+  );
+  const reference = pickReference(amountUsdMillions, candidates, mode);
+  if (!reference) return null;
+  const range = comparisonRange(amountUsdMillions, reference);
+  if (!range) return null;
+  return {
+    referenceId: reference.id,
+    label: reference.label[locale] || reference.label.en,
+    sentence: sentenceFor(reference, range, locale, mode),
+    shortSentence: shortSentenceFor(reference, range, locale, mode),
+    countLabel: countLabelFor(range, reference, locale),
+    source: reference.source,
+  };
 }
 
-/** Largest-value object whose implied count is still >= 1 — avoids ever
- * landing on an awkward "0.2 Boeing 787s" by walking down to a smaller,
- * more countable object instead of always picking the closest order of
- * magnitude regardless of direction. */
-function pickComparison(midpointEur: number, objects: ComparisonObject[]): { object: ComparisonObject; count: number } | null {
-  const sorted = [...objects].sort((a, b) => b.valueEur - a.valueEur);
-  for (const obj of sorted) {
-    const count = midpointEur / obj.valueEur;
-    if (count >= 1) return { object: obj, count: roundNicely(count) };
-  }
-  // Artwork smaller than even the smallest object -- fall back to it anyway
-  // (only reachable in principle; our real catalog never estimates this low).
-  const smallest = sorted[sorted.length - 1];
-  return smallest ? { object: smallest, count: Math.max(1, roundNicely(midpointEur / smallest.valueEur)) } : null;
-}
-
-function pick(text: LocalizedText, locale: Locale): string {
-  return text[locale] || text.en;
-}
-
-/** Picks the grammatically correct form of an object's label for the given
- * count and locale: zh-Hans never inflects, en pluralizes with a plain "+s"
- * (every EN label here is a regular noun phrase, no irregulars in this
- * list), fr uses the object's explicit labelPlural when count != 1 and one
- * exists (falls back to the singular for the handful of invariant terms
- * like "Boeing 787" or "grand huit" that were never given one). */
-function pickLabel(object: ComparisonObject, count: number, locale: Locale): string {
-  const singular = pick(object.label, locale);
-  if (count === 1) return singular;
-  if (locale === "zh-Hans") return singular;
-  if (locale === "en") return `${singular}s`;
-  if (locale === "fr" && object.labelPlural?.fr) return object.labelPlural.fr;
-  return singular;
-}
-
-/** Normal/Simple mode analogy sentence for ProvenanceReveal (design-
- * direction-v3 §2/§8 — "not a pill", a plain sentence):
- *  - Normal: "Comparable to approximately {count} {object}"
- *  - Simple: "That is about the price of {count} {object}"
- * Both share the exact same object table and math as each other -- v3's
- * Simple-mode example ("two large private planes" vs Normal's "two long-
- * range private jets") differs only in sentence framing, not in which real
- * object gets picked, so this reuses ADULT_OBJECTS rather than inventing a
- * parallel Simple-only comparison table. Kids mode keeps its own dedicated
- * table/template (resolveKidsScaleComparison, below) -- unrelated to this.
- * Null estimate -> null, same rule as everywhere else this data appears. */
 export function resolveScaleComparisonSentence(
   low: number | null,
   high: number | null,
@@ -187,37 +169,133 @@ export function resolveScaleComparisonSentence(
   mode: "normal" | "simple"
 ): string | null {
   if (low == null || high == null) return null;
-  const midpoint = (low + high) / 2;
-  const result = pickComparison(midpoint, ADULT_OBJECTS);
-  if (!result) return null;
-  const label = pickLabel(result.object, result.count, locale);
-  const templates: Record<"normal" | "simple", Record<Locale, (c: number, l: string) => string>> = {
-    normal: {
-      en: (c, l) => `Comparable to approximately ${c} ${l}`,
-      fr: (c, l) => `Comparable à environ ${c} ${l}`,
-      "zh-Hans": (c, l) => `大约相当于 ${c} 个${l}`,
-    },
-    simple: {
-      en: (c, l) => `That is about the price of ${c} ${l}`,
-      fr: (c, l) => `C'est à peu près le prix de ${c} ${l}`,
-      "zh-Hans": (c, l) => `差不多是 ${c} 个${l}的价格`,
-    },
-  };
-  return templates[mode][locale](result.count, label);
+  const comparison = resolveScaleComparisonForAmount((low + high) / 2, "EUR_MILLION", locale, mode);
+  return comparison?.sentence ?? null;
 }
 
-/** Kids "Enough for N object!" sentence. Same null rule as the adult
- * version -- no estimate, no comparison, no exceptions. */
 export function resolveKidsScaleComparison(low: number | null, high: number | null, locale: Locale): string | null {
   if (low == null || high == null) return null;
-  const midpoint = (low + high) / 2;
-  const result = pickComparison(midpoint, KIDS_OBJECTS);
-  if (!result) return null;
-  const label = pickLabel(result.object, result.count, locale);
-  const templates: Record<Locale, (count: number, label: string) => string> = {
-    en: (c, l) => `That's enough for ${c} ${l}!`,
-    fr: (c, l) => `De quoi s'offrir ${c} ${l} !`,
-    "zh-Hans": (c, l) => `这些钱够买 ${c} 个${l}啦！`,
-  };
-  return templates[locale](result.count, label);
+  const comparison = resolveScaleComparisonForAmount((low + high) / 2, "EUR_MILLION", locale, "kids");
+  return comparison?.sentence ?? null;
+}
+
+export function resolveValueRevealScaleComparison(valueReveal: ValueReveal | null, locale: Locale, mode: Mode): ScaleComparison | null {
+  const numeric = valueRevealNumericContext(valueReveal);
+  if (!numeric) return null;
+  return resolveScaleComparisonForAmount(numeric.amountMillions, numeric.currency, locale, mode);
+}
+
+export function valueRevealNumericContext(valueReveal: ValueReveal | null): { amountMillions: number; currency: string | undefined } | null {
+  if (!valueReveal) return null;
+  if (valueReveal.mode === "ESTIMATED_VALUE") {
+    return {
+      amountMillions: (valueReveal.estimatedValue.low + valueReveal.estimatedValue.high) / 2,
+      currency: valueReveal.estimatedValue.currency === "EUR" ? "EUR_MILLION" : valueReveal.estimatedValue.currency,
+    };
+  }
+  if (valueReveal.mode === "MARKET_CONTEXT") {
+    const number = valueReveal.marketContext.headlineNumber;
+    if (typeof number === "number") return { amountMillions: number, currency: valueReveal.marketContext.currency };
+    if (typeof number === "object" && number && typeof number.low === "number" && typeof number.high === "number") {
+      return { amountMillions: (number.low + number.high) / 2, currency: valueReveal.marketContext.currency };
+    }
+    return null;
+  }
+  const optional = valueReveal.beyondMarket.optionalContext;
+  if (!optional) return null;
+  const match = optional.match(/([$€£])\s?([0-9]+(?:[.,][0-9]+)?)\s?M/i) || optional.match(/([0-9]+(?:[.,][0-9]+)?)\s?(?:million|millions)/i);
+  if (!match) return null;
+  const symbol = match[1]?.match(/[$€£]/) ? match[1] : "$";
+  const numberText = match[2] || match[1];
+  const number = Number(numberText.replace(",", "."));
+  if (!Number.isFinite(number)) return null;
+  const currency = symbol === "€" ? "EUR_MILLION" : symbol === "£" ? "GBP_MILLION" : "USD_MILLION";
+  return { amountMillions: number, currency };
+}
+
+function pickReference(amountUsdMillions: number, candidates: ScaleReference[], mode: Mode): ScaleReference | null {
+  if (candidates.length === 0) return null;
+  if (mode === "kids") {
+    return candidates.find((candidate) => candidate.id === "ferrari_class_supercar")
+      || candidates.find((candidate) => candidate.id === "wide_body_aircraft")
+      || candidates[0];
+  }
+  if (amountUsdMillions >= 80) {
+    return candidates.find((candidate) => candidate.id === "wide_body_aircraft") || candidates[0];
+  }
+  if (amountUsdMillions >= 15) {
+    return candidates.find((candidate) => candidate.id === "ferrari_class_supercar")
+      || candidates.find((candidate) => candidate.id === "central_paris_apartment")
+      || candidates[0];
+  }
+  return candidates.find((candidate) => candidate.id === "central_paris_apartment") || candidates[0];
+}
+
+function comparisonRange(amountUsdMillions: number, reference: ScaleReference): { low: number; high: number } | null {
+  const lowUnit = toUsdMillions(reference.unitValueMillions.high, reference.currency);
+  const highUnit = toUsdMillions(reference.unitValueMillions.low, reference.currency);
+  if (!lowUnit || !highUnit) return null;
+  const low = roundRangeCount(amountUsdMillions / lowUnit);
+  const high = roundRangeCount(amountUsdMillions / highUnit);
+  if (low <= 0 || high <= 0) return null;
+  return { low: Math.min(low, high), high: Math.max(low, high) };
+}
+
+function sentenceFor(reference: ScaleReference, range: { low: number; high: number }, locale: Locale, mode: Mode): string {
+  const count = countLabelFor(range, reference, locale);
+  if (mode === "kids") {
+    if (locale === "fr") return `Imagine cette somme : environ ${count}.`;
+    if (locale === "zh-Hans") return `想象一下这个数字：大约相当于${count}。`;
+    return `Imagine that much money: about ${count}.`;
+  }
+  if (mode === "simple") {
+    if (locale === "fr") return `Pensez à environ ${count}.`;
+    if (locale === "zh-Hans") return `可以想成大约${count}。`;
+    return `Think of it as roughly ${count}.`;
+  }
+  if (locale === "fr") return `Pour situer l'échelle : environ ${count}.`;
+  if (locale === "zh-Hans") return `作为量级参照：大约相当于${count}。`;
+  return `For scale: roughly ${count}.`;
+}
+
+function shortSentenceFor(reference: ScaleReference, range: { low: number; high: number }, locale: Locale, mode: Mode): string {
+  const count = countLabelFor(range, reference, locale);
+  if (mode === "kids") {
+    if (locale === "fr") return `Imagine : ${count}`;
+    if (locale === "zh-Hans") return `想象一下：${count}`;
+    return `Imagine: ${count}`;
+  }
+  if (locale === "fr") return `environ ${count}`;
+  if (locale === "zh-Hans") return `约${count}`;
+  return `roughly ${count}`;
+}
+
+function countLabelFor(range: { low: number; high: number }, reference: ScaleReference, locale: Locale): string {
+  const label = reference.label[locale] || reference.label.en;
+  if (range.low === range.high) {
+    if (range.low === 1) {
+      if (locale === "fr") return `un ${label}`;
+      if (locale === "zh-Hans") return `一架${label}`;
+      return `one ${label}`;
+    }
+    return `${range.low} ${label}`;
+  }
+  if (locale === "fr") return `${range.low} à ${range.high} ${label}`;
+  if (locale === "zh-Hans") return `${range.low}到${range.high}个${label}`;
+  return `${range.low}-${range.high} ${label}`;
+}
+
+function roundRangeCount(value: number): number {
+  if (value < 1.4) return 1;
+  if (value < 10) return Math.round(value);
+  if (value < 50) return Math.round(value / 5) * 5;
+  if (value < 200) return Math.round(value / 10) * 10;
+  return Math.round(value / 25) * 25;
+}
+
+function toUsdMillions(amount: number, currency: string | undefined): number | null {
+  const key = currency || "USD_MILLION";
+  const multiplier = CURRENCY_TO_USD[key];
+  if (!multiplier || !Number.isFinite(amount)) return null;
+  return amount * multiplier;
 }
