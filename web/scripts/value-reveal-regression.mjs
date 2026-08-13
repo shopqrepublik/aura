@@ -77,6 +77,23 @@ function getMostValuableArtwork(artworks) {
   return best;
 }
 
+function cleanVisitorText(value) {
+  if (!value) return "";
+  if (/[{}[\]"]|source_ids|catalog_version|review_status/.test(value)) {
+    try {
+      const parsed = JSON.parse(value);
+      return [parsed.label, parsed.explanation].filter((x) => typeof x === "string").join(". ");
+    } catch {
+      return value
+        .replace(/"source_ids"\s*:\s*\[[^\]]*\],?/g, "")
+        .replace(/[{}[\]"]/g, "")
+        .replace(/\b(number|currency|label|explanation)\s*:/g, "")
+        .trim();
+    }
+  }
+  return value;
+}
+
 const estimated = { id: "estimated", estimate: { low: 80, high: 120 }, valueReveal: null };
 const billion = { id: "billion", estimate: { low: 900, high: 1000 }, valueReveal: null };
 const marketContext = {
@@ -134,6 +151,13 @@ assert(summary.unvaluedCount === 1, "Mixed visit unvalued count must be correct"
 summary = summarizeVisitValue([marketContext, beyondMarket, unvalued]);
 assert(summary.hasEstimatedValue === false, "No estimated values must not create a fake zero-value estimate");
 assert(getMostValuableArtwork([marketContext, beyondMarket, unvalued]) === null, "No estimated values must not create a fake most valuable artwork");
+
+const leakedContext = '{"number":450.3,"currency":"USD_MILLION","label":"Leonardo auction record","explanation":"Context only, not a valuation.","source_ids":["christies_salvator_mundi"]}';
+const cleanedContext = cleanVisitorText(leakedContext);
+assert(!/[{}[\]"]/.test(cleanedContext), "Visitor value copy must not expose raw JSON");
+assert(!/source_ids|christies_salvator_mundi/.test(cleanedContext), "Visitor value copy must not expose internal source ids");
+assert(/Leonardo auction record/.test(cleanedContext), "Visitor value copy must preserve the human label");
+assert(/not a valuation/.test(cleanedContext), "Visitor value copy must preserve the value caveat");
 
 const artworksPath = path.join(process.cwd(), "lib", "data", "artworks.json");
 const artworks = JSON.parse(fs.readFileSync(artworksPath, "utf8"));

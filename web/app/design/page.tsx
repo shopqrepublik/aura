@@ -117,6 +117,7 @@ function demoState(overrides: Partial<AppState>): AppState {
     catalogArtworks: {},
     currentArtwork: null,
     uncatalogedSighting: null,
+    uncatalogedAdded: new Set(),
     lastConfidence: 0.94,
     scanStatus: null,
     pendingRecognitionImageBase64: null,

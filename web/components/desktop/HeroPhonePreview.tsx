@@ -63,6 +63,7 @@ export default function HeroPhonePreview({ locale }: { locale: Locale }) {
     catalogArtworks: {},
     currentArtwork: artwork,
     uncatalogedSighting: null,
+    uncatalogedAdded: new Set(),
     lastConfidence: 0.97,
     scanStatus: null,
     pendingRecognitionImageBase64: null,

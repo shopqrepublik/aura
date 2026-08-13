@@ -18,8 +18,15 @@ export type Screen = "home" | "camera" | "card" | "progress" | "recap";
 // why/where/rarity/audio/Kids text, because none of that has been reviewed
 // for a work that isn't in the catalog at all.
 export interface UncatalogedSighting {
+  id: string;
   artist: string | null;
   title: string | null;
+  date?: string | null;
+  objectType?: string | null;
+  whatYouAreLookingAt?: string | null;
+  whyItMatters?: string | null;
+  lookCloser?: string | null;
+  confidence?: number | null;
 }
 
 export interface AppState {
@@ -40,6 +47,7 @@ export interface AppState {
   catalogArtworks: Record<string, Artwork>;
   currentArtwork: Artwork | null;
   uncatalogedSighting: UncatalogedSighting | null;
+  uncatalogedAdded: Set<string>;
   lastConfidence: number;
   scanStatus: string | null; // transient message on the camera screen
   pendingRecognitionImageBase64: string | null;
@@ -60,6 +68,7 @@ const initialState: AppState = {
   catalogArtworks: {},
   currentArtwork: null,
   uncatalogedSighting: null,
+  uncatalogedAdded: new Set(),
   lastConfidence: 0,
   scanStatus: null,
   pendingRecognitionImageBase64: null,
@@ -141,7 +150,7 @@ export function useElyioApp() {
           });
           setState((s) => ({
             ...s,
-            uncatalogedSighting: uncataloged,
+            uncatalogedSighting: buildUncatalogedSighting(uncataloged, result.vision, result.confidence),
             currentArtwork: null,
             scanStatus: null,
             screen: "card",
@@ -241,6 +250,31 @@ export function useElyioApp() {
     });
   }, []);
 
+  const addUncatalogedToVisit = useCallback(() => {
+    setState((s) => {
+      if (!s.uncatalogedSighting) return s;
+      const id = s.uncatalogedSighting.id;
+      const nextAdded = new Set(s.uncatalogedAdded);
+      const nextCatalogArtworks = { ...s.catalogArtworks };
+      const nextSeen = s.seen.filter((seenId) => seenId !== id);
+      if (nextAdded.has(id)) {
+        nextAdded.delete(id);
+        delete nextCatalogArtworks[id];
+      } else {
+        nextAdded.add(id);
+        nextCatalogArtworks[id] = uncatalogedArtworkForVisit(s.uncatalogedSighting, s.locale);
+        nextSeen.push(id);
+        track("artwork_added", {
+          artwork_id: id,
+          result_type: "uncataloged",
+          artist: s.uncatalogedSighting.artist,
+          title: s.uncatalogedSighting.title,
+        });
+      }
+      return { ...s, uncatalogedAdded: nextAdded, catalogArtworks: nextCatalogArtworks, seen: nextSeen };
+    });
+  }, []);
+
   const toggleFavorite = useCallback(() => {
     setState((s) => {
       if (!s.currentArtwork) return s;
@@ -284,6 +318,87 @@ export function useElyioApp() {
   return {
     state,
     seenArtworks,
-    actions: { goto, setLocale, setMode, startVisit, recognizeFrame, addToVisit, toggleFavorite, completeVisit, newVisit },
+    actions: { goto, setLocale, setMode, startVisit, recognizeFrame, addToVisit, addUncatalogedToVisit, toggleFavorite, completeVisit, newVisit },
+  };
+}
+
+function uncatalogedPlaceholderImage(): string {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7e1d6"/><stop offset=".55" stop-color="#d6c8b8"/><stop offset="1" stop-color="#8c6a4c"/></linearGradient></defs><rect width="800" height="600" fill="url(#g)"/><text x="400" y="308" text-anchor="middle" font-family="Georgia, serif" font-size="38" fill="rgba(24,23,20,.62)">AI recognized</text></svg>`;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+function localizedSame(value: string): Record<Locale, string> {
+  return { en: value, fr: value, "zh-Hans": value };
+}
+
+function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Locale): Artwork {
+  const title = sighting.title || "Recognized artwork";
+  const artist = sighting.artist || null;
+  return {
+    id: sighting.id,
+    artist,
+    year: sighting.date || "",
+    hall: null,
+    inventoryNumber: sighting.id,
+    image: "AI",
+    imageUrl: uncatalogedPlaceholderImage(),
+    accent: "#8C6A4C",
+    priority: "uncataloged",
+    needsEditorialReview: true,
+    editorialStatus: "ai_recognized_uncurated",
+    title: localizedSame(title),
+    titleNeedsReview: { en: true, fr: true, "zh-Hans": true },
+    estimate: { low: null, high: null },
+    valueReveal: null,
+    why: localizedSame(sighting.whyItMatters || "AI recognized this work, but ELYIO has not reviewed it as a curated catalog record yet."),
+    where: localizedSame(sighting.lookCloser || "Look back at the object and compare the visible details with the recognition result."),
+    rarity: localizedSame(locale === "fr" ? "Contexte de marché non vérifié." : locale === "zh-Hans" ? "市场背景尚未审核。" : "Market context not reviewed."),
+  };
+}
+
+function stringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((x): x is string => typeof x === "string" && x.trim().length > 0) : [];
+}
+
+function buildUncatalogedSighting(
+  base: NonNullable<Awaited<ReturnType<typeof api.recognize>>["recognized_but_not_cataloged"]>,
+  vision: Record<string, unknown> | null | undefined,
+  confidence: number
+): UncatalogedSighting {
+  const clues = [
+    ...(vision ? stringArray(vision.dominant_visual_features) : []),
+    ...(vision ? stringArray(vision.distinctive_features) : []),
+  ];
+  const objectType = base.object_type || (typeof vision?.object_type === "string" ? vision.object_type : null);
+  const subject = typeof vision?.depicted_subject === "string" ? vision.depicted_subject : null;
+  const material = typeof vision?.material_guess === "string" ? vision.material_guess : null;
+  const period = base.date || (typeof vision?.period_guess === "string" ? vision.period_guess : null);
+  const firstClue = clues[0] || subject || objectType || base.title;
+  const secondClue = clues.find((x) => x !== firstClue) || material || subject;
+
+  return {
+    id: `uncataloged:${Date.now()}:${base.artist || ""}:${base.title || ""}`,
+    artist: base.artist,
+    title: base.title,
+    date: period,
+    objectType,
+    confidence: base.confidence ?? confidence,
+    whatYouAreLookingAt:
+      base.what_you_are_looking_at ||
+      [objectType ? `A ${objectType}` : "An artwork", subject ? `showing ${subject}` : null, material ? `in ${material}` : null]
+        .filter(Boolean)
+        .join(" "),
+    whyItMatters:
+      base.why_it_matters ||
+      (base.artist || base.title
+        ? "The recognition is strong enough to give you a useful starting point, but ELYIO has not yet reviewed this work as a curated catalog record."
+        : "ELYIO can describe what is visible, but this result needs review before we attach a full story."),
+    lookCloser:
+      base.look_closer ||
+      (firstClue && secondClue
+        ? `Look for ${firstClue}, then compare it with ${secondClue}.`
+        : firstClue
+          ? `Start by looking for ${firstClue}.`
+          : "Step back and include the whole object in your next photo."),
   };
 }

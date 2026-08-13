@@ -78,7 +78,9 @@ export type ValueReveal = EstimatedValueReveal | MarketContextReveal | BeyondMar
 export interface Artwork {
   id: string;
   artist: string | null;
+  rawArtist?: string | null;
   year: string;
+  rawYear?: string | null;
   hall: string | null;
   inventoryNumber: string;
   image: string;

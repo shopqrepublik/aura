@@ -11,7 +11,15 @@ import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks"
 import { getArtworkValueReveal } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
 import { track } from "@/lib/analytics";
+import { proxyImageUrl } from "@/lib/visitPalette";
 import type { AppState } from "@/lib/app-state";
+
+function displayImageUrl(url: string): string {
+  if (/^https?:\/\/(upload|commons)\.wikimedia\.org\//i.test(url)) {
+    return proxyImageUrl(url, 1200);
+  }
+  return url;
+}
 
 // "The Curated Reveal" (design-direction-v3.md) -- Observe -> Reveal stages
 // for the Artwork Card. Content policy (Kids mode) is unchanged from before
@@ -88,11 +96,8 @@ export default function CardScreen({
   const isAdded = state.added.has(artwork.id);
   const isFavorite = state.favorites.has(artwork.id);
 
-  const exclusionMessage = artwork.kidsExclusionMessage
-    ? artwork.kidsExclusionMessage[state.locale] || artwork.kidsExclusionMessage.en
-    : tt("kids_mode_excluded", state.locale);
-
   const revealKey = `${artwork.id}-${state.locale}`;
+  const sectionEyebrow = "text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]";
 
   return (
     <div className="w-full h-full bg-[#F7F3EC] flex flex-col overflow-y-auto scrollbar-none">
@@ -101,7 +106,7 @@ export default function CardScreen({
           {!imgError ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={artwork.imageUrl}
+              src={displayImageUrl(artwork.imageUrl)}
               alt={title}
               className="w-full h-full object-cover"
               onError={() => setImgError(true)}
@@ -141,7 +146,6 @@ export default function CardScreen({
           artistFallback={tt("uncataloged_unknown_artist", state.locale)}
           title={title}
           year={artwork.year}
-          hookText={excluded ? exclusionMessage : why}
         />
 
         <ProvenanceReveal
@@ -156,8 +160,22 @@ export default function CardScreen({
 
         {!excluded && (
           <>
-            <ViewingNote text={where} accent={artwork.accent} />
-            <p className="mt-4 text-[12px] leading-[17px] text-[#8A8A90] font-[450]">{rarity}</p>
+            <section className="mt-5">
+              <div className={sectionEyebrow}>{tt("why_it_matters_label", state.locale)}</div>
+              <p className="mt-2 text-[16px] leading-[23px] tracking-[-0.01em] text-[#272622]">{why}</p>
+            </section>
+            <section className="mt-5">
+              <div className={sectionEyebrow}>{tt("look_closer_label", state.locale)}</div>
+              <ViewingNote text={where} accent={artwork.accent} />
+            </section>
+            {rarity && (
+              <details className="mt-4 group">
+                <summary className="cursor-pointer list-none text-[12px] font-semibold text-[#67635C]">
+                  {tt("view_deeper_context", state.locale)}
+                </summary>
+                <p className="mt-2 text-[12px] leading-[17px] text-[#8A8A90] font-[450]">{rarity}</p>
+              </details>
+            )}
           </>
         )}
 

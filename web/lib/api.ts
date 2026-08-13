@@ -28,7 +28,16 @@ export interface RecognizeResponse {
   vision?: Record<string, unknown> | null;
   top_candidates?: unknown[];
   stage2_verifier?: Record<string, unknown> | null;
-  recognized_but_not_cataloged?: { artist: string | null; title: string | null } | null;
+  recognized_but_not_cataloged?: {
+    artist: string | null;
+    title: string | null;
+    date?: string | null;
+    object_type?: string | null;
+    what_you_are_looking_at?: string | null;
+    why_it_matters?: string | null;
+    look_closer?: string | null;
+    confidence?: number | null;
+  } | null;
 }
 
 export interface CatalogArtworkResponse {
@@ -177,9 +186,10 @@ export async function recognize(
 }
 
 export async function getArtworkDetail(artworkId: string, locale: string, mode: string): Promise<CatalogArtworkResponse> {
-  return getJSON<CatalogArtworkResponse>(
+  const raw = await getJSON<CatalogArtworkResponse>(
     `/v1/artworks/${encodeURIComponent(artworkId)}?locale=${encodeURIComponent(locale)}&mode=${encodeURIComponent(mode)}`
   );
+  return { ...raw, locale, mode };
 }
 
 function mergeLocalized(base: string, values: Record<string, string | null | undefined>): Artwork["title"] {
@@ -197,6 +207,47 @@ function localizedRows(raw: CatalogArtworkResponse, mode: string): Record<string
     if (row.mode === mode) byLocale[row.locale] = row;
   }
   return byLocale;
+}
+
+const APPROVED_IMAGE_OVERRIDES: Record<string, string> = {
+  // From exports/louvre/louvre_wikimedia_asset_manifest_final.jsonl:
+  // rights_status=APPROVED, match_method=wikidata_p217_inventory_exact.
+  cl010062370:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_natural_color.jpg/960px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_natural_color.jpg",
+};
+
+function humanArtistName(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const first = value.split(";")[0].trim();
+  const parenthetical = first.match(/\(([^)]*(?:Leonardo da Vinci|Pablo Picasso|Auguste Rodin|Claude Monet|Paul Cezanne|Paul Cézanne)[^)]*)\)/i);
+  if (parenthetical) {
+    const aliases = parenthetical[1].split(",").map((x) => x.trim()).filter(Boolean);
+    const best = aliases.find((x) => !/^dit\s+/i.test(x) && /Leonardo da Vinci|Pablo Picasso|Auguste Rodin|Claude Monet|Paul Cezanne|Paul Cézanne/i.test(x));
+    if (best) return best.replace(/^dit\s+/i, "");
+    const namedAlias = aliases.find((x) => /Leonardo da Vinci|Pablo Picasso|Auguste Rodin|Claude Monet|Paul Cezanne|Paul Cézanne/i.test(x));
+    if (namedAlias) return namedAlias.replace(/^dit\s+/i, "");
+  }
+  return first.replace(/\s*\([^)]{20,}\)\s*/g, "").trim() || first;
+}
+
+function humanYear(value: string | null | undefined, locale = "en"): string {
+  if (!value) return "";
+  const yearRange = value.match(/(\d{3,4})\s*[-–]\s*(\d{2,4})/);
+  if (yearRange) {
+    const prefix = locale === "fr" ? "vers " : locale === "zh-Hans" ? "约 " : "c. ";
+    return `${prefix}${yearRange[1]}–${yearRange[2]}`;
+  }
+  return value
+    .replace(/^Date de création\/fabrication\s*:\s*/i, "")
+    .replace(/^Date\s*:\s*/i, "")
+    .trim();
+}
+
+function humanTitle(raw: CatalogArtworkResponse): string {
+  const normal = localizedRows(raw, "normal").en?.title;
+  if (normal) return normal;
+  if (raw.id === "cl010062370") return "Mona Lisa";
+  return raw.title || raw.id;
 }
 
 function modeText(
@@ -233,7 +284,7 @@ function stringFromUnknown(value: unknown): string | null {
   return null;
 }
 
-function camelValueReveal(raw: Record<string, unknown> | null | undefined): ValueReveal | null {
+function camelValueReveal(raw: Record<string, unknown> | null | undefined, locale = "en"): ValueReveal | null {
   if (!raw || typeof raw.mode !== "string") return null;
   if (raw.mode === "ESTIMATED_VALUE") {
     const estimated = (raw.estimated_value || {}) as Record<string, unknown>;
@@ -247,8 +298,8 @@ function camelValueReveal(raw: Record<string, unknown> | null | undefined): Valu
         currency: typeof estimated.currency === "string" ? estimated.currency : "EUR",
         confidence: typeof estimated.confidence === "string" ? estimated.confidence : undefined,
         asOfDate: typeof estimated.as_of_date === "string" ? estimated.as_of_date : undefined,
-        methodology: typeof estimated.methodology === "string" ? estimated.methodology : undefined,
-        disclaimer: typeof estimated.disclaimer === "string" ? estimated.disclaimer : undefined,
+        methodology: localizeValueCopy(typeof estimated.methodology === "string" ? estimated.methodology : undefined, locale),
+        disclaimer: localizeValueCopy(typeof estimated.disclaimer === "string" ? estimated.disclaimer : undefined, locale),
       },
     };
   }
@@ -261,32 +312,101 @@ function camelValueReveal(raw: Record<string, unknown> | null | undefined): Valu
         headlineNumber: context.headline_number as number | string | { low: number; high: number } | undefined,
         currency: typeof context.currency === "string" ? context.currency : undefined,
         label: typeof context.label === "string" ? context.label : "Market context",
-        explanation: typeof context.explanation === "string" ? context.explanation : "",
-        relationshipToArtwork: typeof context.relationship_to_artwork === "string" ? context.relationship_to_artwork : "",
+        explanation: localizeValueCopy(typeof context.explanation === "string" ? context.explanation : "", locale) || "",
+        relationshipToArtwork: localizeValueCopy(typeof context.relationship_to_artwork === "string" ? context.relationship_to_artwork : "", locale) || "",
         contextType: typeof context.context_type === "string" ? context.context_type : "MARKET_CONTEXT",
         sourceReference: typeof context.source_reference === "string" ? context.source_reference : undefined,
         date: typeof context.date === "string" ? context.date : null,
         confidence: typeof context.confidence === "string" ? context.confidence : undefined,
-        disclaimer: typeof context.disclaimer === "string" ? context.disclaimer : undefined,
+        disclaimer: localizeValueCopy(typeof context.disclaimer === "string" ? context.disclaimer : undefined, locale),
       },
     };
   }
   if (raw.mode === "BEYOND_MARKET") {
     const beyond = (raw.beyond_market || {}) as Record<string, unknown>;
+    const optionalContext = parseOptionalContext(beyond.optional_context, locale);
     return {
       mode: "BEYOND_MARKET",
       aggregateValueEligible: false,
       beyondMarket: {
-        headline: typeof beyond.headline === "string" ? beyond.headline : "No ordinary market price.",
-        explanation: typeof beyond.explanation === "string" ? beyond.explanation : "",
-        institutionalLegalContext: typeof beyond.institutional_legal_context === "string" ? beyond.institutional_legal_context : undefined,
-        optionalContext: typeof beyond.optional_context === "string" ? beyond.optional_context : undefined,
-        disclaimer: typeof beyond.disclaimer === "string" ? beyond.disclaimer : undefined,
+        headline:
+          localizeValueCopy(typeof beyond.headline === "string" ? beyond.headline : "No ordinary market price.", locale) ||
+          "No ordinary market price.",
+        explanation: localizeValueCopy(typeof beyond.explanation === "string" ? beyond.explanation : "", locale) || "",
+        institutionalLegalContext: localizeValueCopy(
+          typeof beyond.institutional_legal_context === "string" ? beyond.institutional_legal_context : undefined,
+          locale
+        ),
+        optionalContext,
+        disclaimer: localizeValueCopy(typeof beyond.disclaimer === "string" ? beyond.disclaimer : undefined, locale),
         confidence: typeof beyond.confidence === "string" ? beyond.confidence : undefined,
       },
     };
   }
   return null;
+}
+
+function parseOptionalContext(value: unknown, locale = "en"): string | undefined {
+  if (typeof value !== "string" || !value.trim()) return undefined;
+  const trimmed = value.trim();
+  if (!trimmed.startsWith("{")) return localizeValueCopy(trimmed, locale);
+  try {
+    const parsed = JSON.parse(trimmed) as Record<string, unknown>;
+    const number = parsed.number;
+    const currency = parsed.currency;
+    const label = typeof parsed.label === "string" ? parsed.label : undefined;
+    const explanation = typeof parsed.explanation === "string" ? parsed.explanation : undefined;
+    let formatted: string | null = null;
+    if (typeof number === "number") {
+      if (currency === "USD_MILLION") formatted = `$${number}M`;
+      else if (currency === "EUR_MILLION") formatted = `€${number}M`;
+      else if (currency === "GBP_MILLION") formatted = `£${number}M`;
+      else formatted = String(number);
+    }
+    if (locale === "fr" && label === "Leonardo auction record") {
+      return [
+        formatted ? `Record de vente de Leonardo : ${formatted}.` : "Record de vente de Leonardo.",
+        "Le Salvator Mundi s'est vendu 450,3 millions de dollars chez Christie's en 2017. C'est un repère de grandeur, pas une estimation de La Joconde.",
+      ].join(" ");
+    }
+    if (locale === "zh-Hans" && label === "Leonardo auction record") {
+      return [
+        "列奥纳多拍卖纪录：4.503 亿美元。",
+        "《救世主》2017 年在佳士得成交。这只是规模参照，不是《蒙娜丽莎》的估值。",
+      ].join("");
+    }
+    return [label && formatted ? `${label}: ${formatted}.` : label || formatted, localizeValueCopy(explanation, locale)].filter(Boolean).join(" ");
+  } catch {
+    return undefined;
+  }
+}
+
+function localizeValueCopy(value: string | undefined, locale = "en"): string | undefined {
+  if (!value || locale === "en") return value;
+  if (/No ordinary market price/i.test(value)) {
+    return locale === "fr" ? "Aucun prix de marché ordinaire." : "没有普通市场价格。";
+  }
+  if (/belongs to France's public museum collections/i.test(value)) {
+    return locale === "fr"
+      ? "Cette œuvre appartient aux collections publiques françaises et ne se vend pas comme une œuvre privée."
+      : "这件作品属于法国公共博物馆收藏，并不像私人艺术品那样交易。";
+  }
+  if (/French public Musees de France collections are inalienable public property/i.test(value)) {
+    return locale === "fr"
+      ? "Les collections publiques des Musées de France sont des biens publics inaliénables."
+      : "法国 Musees de France 公共收藏属于不可转让的公共财产。";
+  }
+  if (/Not an appraisal, insurance value, or sale estimate/i.test(value)) {
+    return locale === "fr"
+      ? "Ce n'est ni une expertise, ni une valeur d'assurance, ni une estimation de vente."
+      : "这不是鉴定估价、保险价值或出售估价。";
+  }
+  if (/This is market context, not an appraisal of the museum work/i.test(value)) {
+    return locale === "fr"
+      ? "C'est un contexte de marché, pas une estimation de l'œuvre du musée."
+      : "这是市场背景，不是对馆藏作品的估价。";
+  }
+  return value;
 }
 
 function louvrePlaceholderImage(): string {
@@ -295,7 +415,7 @@ function louvrePlaceholderImage(): string {
 }
 
 export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
-  const title = raw.title || raw.id;
+  const title = humanTitle(raw);
   const room = raw.room || raw.hall || raw.current_location_raw || raw.department || null;
   const museumCatalogLabel =
     raw.museum_id === "louvre"
@@ -328,15 +448,25 @@ export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
   });
   const hasAudioUrl = Boolean(audioUrl.en || audioUrl.fr || audioUrl["zh-Hans"]);
   const hasAudioScript = Boolean(audioScript.en || audioScript.fr || audioScript["zh-Hans"]);
+  const displayArtist = humanArtistName(raw.artist) || humanArtistName(creatorEvidence);
+  const displayYear = humanYear(raw.year, raw.locale || "en");
+  const normalWhereText = normalWhere.en;
+  const normalRarityText = normalRarity.en;
+  const simpleWhy = modeText(raw, "simple", "analogy", why);
+  const kidsWhy = modeText(raw, "kids", "analogy", why);
+  const simpleHasOnlyOpening = simpleWhy.en !== normalWhy.en && modeText(raw, "simple", "where_to_look", normalWhereText).en === normalWhereText;
+  const kidsHasOnlyOpening = kidsWhy.en !== normalWhy.en && modeText(raw, "kids", "where_to_look", normalWhereText).en === normalWhereText;
 
   return {
     id: raw.id,
-    artist: raw.artist || creatorEvidence,
-    year: raw.year || "",
+    artist: displayArtist,
+    rawArtist: raw.artist || creatorEvidence,
+    year: displayYear,
+    rawYear: raw.year || "",
     hall: room,
     inventoryNumber: raw.inventory_number || raw.id,
     image: "L",
-    imageUrl: raw.image_url || louvrePlaceholderImage(),
+    imageUrl: raw.image_url || APPROVED_IMAGE_OVERRIDES[raw.id] || louvrePlaceholderImage(),
     accent: "#8C6A4C",
     priority: raw.priority == null ? "" : String(raw.priority),
     needsEditorialReview: raw.needs_editorial_review ?? true,
@@ -347,16 +477,16 @@ export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
       low: raw.estimate_low,
       high: raw.estimate_high,
     },
-    valueReveal: camelValueReveal(raw.value_reveal || null),
+    valueReveal: camelValueReveal(raw.value_reveal || null, raw.locale || "en"),
     why: normalWhy,
     where: normalWhere,
     rarity: normalRarity,
-    whySimple: modeText(raw, "simple", "analogy", why),
-    whereSimple: modeText(raw, "simple", "where_to_look", normalWhere.en),
-    raritySimple: modeText(raw, "simple", "rarity_note", normalRarity.en),
-    whyKids: modeText(raw, "kids", "analogy", why),
-    whereKids: modeText(raw, "kids", "where_to_look", normalWhere.en),
-    rarityKids: modeText(raw, "kids", "rarity_note", normalRarity.en),
+    whySimple: simpleWhy,
+    whereSimple: simpleHasOnlyOpening ? simpleWhy : modeText(raw, "simple", "where_to_look", normalWhereText),
+    raritySimple: simpleHasOnlyOpening ? simpleWhy : modeText(raw, "simple", "rarity_note", normalRarityText),
+    whyKids: kidsWhy,
+    whereKids: kidsHasOnlyOpening ? kidsWhy : modeText(raw, "kids", "where_to_look", normalWhereText),
+    rarityKids: kidsHasOnlyOpening ? kidsWhy : modeText(raw, "kids", "rarity_note", normalRarityText),
     ...(hasAudioScript ? { audioScript } : {}),
     ...(hasAudioUrl ? { audioUrl } : {}),
   };

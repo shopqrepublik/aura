@@ -17,10 +17,12 @@ import type { AppState } from "@/lib/app-state";
 export default function UncatalogedCardScreen({
   state,
   onBack,
+  onAddToVisit,
   onGoProgress,
 }: {
   state: AppState;
   onBack: () => void;
+  onAddToVisit: () => void;
   onGoProgress: () => void;
 }) {
   const sighting = state.uncatalogedSighting;
@@ -28,6 +30,8 @@ export default function UncatalogedCardScreen({
 
   const artist = sighting.artist || tt("uncataloged_unknown_artist", state.locale);
   const title = sighting.title || tt("uncataloged_unknown_title", state.locale);
+  const isAdded = state.uncatalogedAdded.has(sighting.id);
+  const metaLine = [sighting.date, sighting.objectType].filter(Boolean).join(" · ");
 
   return (
     <div className="w-full h-full bg-[#F7F3EC] flex flex-col overflow-y-auto scrollbar-none">
@@ -61,18 +65,42 @@ export default function UncatalogedCardScreen({
           {title}
         </h1>
 
+        {metaLine && <p className="mt-1.5 text-[13px] leading-[18px] text-[#68665f]">{metaLine}</p>}
+
+        <div className="mt-5 text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">
+          {state.locale === "fr" ? "Ce que vous regardez" : state.locale === "zh-Hans" ? "你看到的是" : "What you're looking at"}
+        </div>
+        <p className="mt-2 text-[16px] leading-[23px] text-[#272622]">{sighting.whatYouAreLookingAt || tt("uncataloged_note", state.locale)}</p>
+
+        <div className="mt-5 text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">
+          {tt("why_it_matters_label", state.locale)}
+        </div>
+        <p className="mt-2 text-[15px] leading-[21px] text-[#3E3A34]">{sighting.whyItMatters}</p>
+
         <div
           className="mt-5 rounded-[16px] px-4 py-3.5"
-          style={{ background: "rgba(24,23,20,0.045)", border: "1px solid rgba(24,23,20,0.06)" }}
+          style={{ background: "rgba(140,106,76,0.10)", borderLeft: "2px solid rgba(140,106,76,0.70)" }}
         >
-          <p className="text-[13px] leading-[19px] text-[#5E584F]">{tt("uncataloged_note", state.locale)}</p>
+          <div className="text-[10px] font-semibold tracking-[0.15em] uppercase text-[#696763]">
+            {tt("look_closer_label", state.locale)}
+          </div>
+          <p className="mt-1.5 text-[15px] leading-[21px] text-[#272622]">{sighting.lookCloser}</p>
         </div>
+
+        <p className="mt-4 text-[12px] leading-[17px] text-[#77736d]">{tt("uncataloged_value_note", state.locale)}</p>
 
         <div className="mt-6 space-y-3">
           <button
             type="button"
-            onClick={onBack}
+            onClick={onAddToVisit}
             className="w-full h-[54px] rounded-[14px] text-[16px] font-medium tracking-[-0.01em] bg-[#181714] text-[#FAF7F0] shadow-[0_7px_18px_rgba(20,18,15,0.12)] active:scale-[0.98] transition-transform"
+          >
+            {isAdded ? tt("added_check", state.locale) : tt("add_to_my_visit", state.locale)}
+          </button>
+          <button
+            type="button"
+            onClick={onBack}
+            className="w-full h-[50px] rounded-[14px] bg-[rgba(24,23,20,0.055)] border border-[rgba(24,23,20,0.06)] text-[#25231F] text-[15px] font-medium tracking-[-0.01em]"
           >
             {tt("scan_next_artwork", state.locale)}
           </button>

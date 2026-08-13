@@ -242,6 +242,9 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   scan_next_artwork: { en: "Scan next artwork", fr: "Scanner l'œuvre suivante", "zh-Hans": "扫描下一件作品" },
   progress_label: { en: "Progress", fr: "Progression", "zh-Hans": "进度" },
   view_visit_progress: { en: "View visit progress", fr: "Voir la progression de la visite", "zh-Hans": "查看参观进度" },
+  why_it_matters_label: { en: "Why it matters", fr: "Pourquoi c'est important", "zh-Hans": "为什么重要" },
+  look_closer_label: { en: "Look closer", fr: "Regardez de plus près", "zh-Hans": "仔细看" },
+  view_deeper_context: { en: "View deeper context", fr: "Voir le contexte", "zh-Hans": "查看更多背景" },
   listen_label: { en: "Listen", fr: "Écouter", "zh-Hans": "收听" },
   listen_playing_label: { en: "Playing", fr: "Lecture en cours", "zh-Hans": "播放中" },
   live_progress: { en: "Live Progress", fr: "Progression en direct", "zh-Hans": "实时进度" },
@@ -418,9 +421,14 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   // the reviewed catalog yet -- deliberately does not promise a story or
   // estimate that doesn't exist.
   uncataloged_note: {
-    en: "Not yet in our reviewed collection — we don't have its story or estimate yet.",
-    fr: "Pas encore dans notre collection vérifiée — nous n'avons pas encore son histoire ni son estimation.",
-    "zh-Hans": "尚未收录在我们审核过的收藏中——我们还没有它的介绍或估值。",
+    en: "ELYIO recognized this, but it is not yet one of our reviewed catalog records.",
+    fr: "ELYIO a reconnu cette œuvre, mais elle ne fait pas encore partie de nos fiches révisées.",
+    "zh-Hans": "ELYIO 识别出了这件作品，但它还不是我们已审核的目录记录。",
+  },
+  uncataloged_value_note: {
+    en: "Market context has not been reviewed for this work yet.",
+    fr: "Le contexte de marché n'a pas encore été vérifié pour cette œuvre.",
+    "zh-Hans": "这件作品的市场背景尚未经过审核。",
   },
   uncataloged_unknown_artist: { en: "Unknown artist", fr: "Artiste inconnu", "zh-Hans": "未知艺术家" },
   uncataloged_unknown_title: { en: "Unidentified work", fr: "Œuvre non identifiée", "zh-Hans": "未识别的作品" },

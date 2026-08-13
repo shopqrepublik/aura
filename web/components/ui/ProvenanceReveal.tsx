@@ -142,7 +142,9 @@ export default function ProvenanceReveal({
     : valueReveal?.mode === "BEYOND_MARKET"
       ? valueReveal.beyondMarket.institutionalLegalContext
       : undefined;
-  const optionalContext = valueReveal?.mode === "BEYOND_MARKET" ? valueReveal.beyondMarket.optionalContext : null;
+  const optionalContext = valueReveal?.mode === "BEYOND_MARKET" ? cleanVisitorText(valueReveal.beyondMarket.optionalContext) : null;
+  const cleanedSupportingText = cleanVisitorText(supportingText);
+  const cleanedDisclaimerText = cleanVisitorText(disclaimerText);
 
   return (
     <div
@@ -219,13 +221,20 @@ export default function ProvenanceReveal({
       >
         {priceText}
       </div>
-      <p className="mt-2.5 text-[12px] leading-[16px] text-[#68655f]">{supportingText}</p>
+      <p className="mt-2.5 text-[12px] leading-[16px] text-[#68655f]">{cleanedSupportingText}</p>
       {valueReveal?.mode === "MARKET_CONTEXT" && (
         <p className="mt-2 text-[11px] leading-[15px] font-semibold uppercase tracking-[0.08em] text-[#6B211D]">
           {tt("not_artwork_value_label", locale)}
         </p>
       )}
-      {optionalContext && <p className="mt-2 text-[11px] leading-[15px] text-[#77736d]">{optionalContext}</p>}
+      {optionalContext && (
+        <div className="mt-4 rounded-[14px] bg-white/35 px-3 py-2.5 border border-[rgba(45,39,31,0.08)]">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#65625d]">
+            {locale === "fr" ? "Pour situer" : locale === "zh-Hans" ? "作为参照" : "For scale"}
+          </div>
+          <p className="mt-1 text-[12px] leading-[16px] text-[#3A3731]">{optionalContext}</p>
+        </div>
+      )}
 
       {tier === "exceptional" && (
         <div className="mt-4 py-2 border-t border-b border-[rgba(45,39,31,0.14)] flex items-center justify-between">
@@ -245,7 +254,7 @@ export default function ProvenanceReveal({
         )}
 
         <p className="mt-[18px] text-[11px] leading-[16px] text-[#66635e]">
-          {disclaimerText}{" "}
+          {cleanedDisclaimerText}{" "}
           <button
             type="button"
             onClick={() => setMethodologyOpen(true)}
@@ -266,4 +275,21 @@ export default function ProvenanceReveal({
       />
     </div>
   );
+}
+
+function cleanVisitorText(value: string | null | undefined): string {
+  if (!value) return "";
+  if (/[{}[\]"]|source_ids|catalog_version|review_status/.test(value)) {
+    try {
+      const parsed = JSON.parse(value) as Record<string, unknown>;
+      return [parsed.label, parsed.explanation].filter((x): x is string => typeof x === "string").join(". ");
+    } catch {
+      return value
+        .replace(/"source_ids"\s*:\s*\[[^\]]*\],?/g, "")
+        .replace(/[{}[\]"]/g, "")
+        .replace(/\b(number|currency|label|explanation)\s*:/g, "")
+        .trim();
+    }
+  }
+  return value;
 }
