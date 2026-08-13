@@ -11,7 +11,6 @@ import { proxyImageUrl } from "@/lib/visitPalette";
 import { formatVisitValueHeadline, summarizeVisitValue } from "@/lib/valueReveal";
 import { ORSAY_CLOCK_IMAGE_URL as HERO_IMAGE_URL } from "@/lib/museumTheme";
 import { usePwaInstall } from "@/lib/pwaInstall";
-import AuthModal from "@/components/ui/AuthModal";
 import { track } from "@/lib/analytics";
 import type { AppState } from "@/lib/app-state";
 import type { Artwork } from "@/lib/types";
@@ -76,25 +75,16 @@ function museumExperienceKey(museum: Museum | null): string {
 export default function HomeScreen({
   state,
   seenArtworks,
-  isAuthenticated,
   onStartVisit,
   onSetLocale,
-  onSignInWithEmail,
-  onSignInWithGoogle,
 }: {
   state: AppState;
   seenArtworks: Artwork[];
-  // Real registration (email magic link + Google; Apple deferred) gates
-  // Begin/Continue -- a Visit now requires a real user_id server-side
-  // (backend/app/models.py), so this isn't just a UI nicety.
-  isAuthenticated: boolean;
   // Phase 2 §1 -- takes the resolved museum id (detected via GPS or
   // manually confirmed from useMuseumDetection below) instead of assuming
   // a single hardcoded museum.
   onStartVisit: (museumId: string) => void;
   onSetLocale: (locale: AppState["locale"]) => void;
-  onSignInWithEmail: (email: string) => Promise<void>;
-  onSignInWithGoogle: () => Promise<void>;
 }) {
   const { status: museumStatus, museums, museum, confirmManually } = useMuseumDetection();
   const activeMuseum = museum ?? museums[0] ?? null;
@@ -102,7 +92,6 @@ export default function HomeScreen({
   const [showConfirm, setShowConfirm] = useState(false);
   const [showMuseumSheet, setShowMuseumSheet] = useState(false);
   const [museumSearch, setMuseumSearch] = useState("");
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const [iosInstallDismissed, setIosInstallDismissed] = useState(() =>
     typeof window !== "undefined" ? window.localStorage.getItem("elyio-ios-install-dismissed") === "1" : false
   );
@@ -357,17 +346,14 @@ export default function HomeScreen({
         </div>
       )}
 
-      {/* Primary CTA -- §7, no black circle. Gated behind real sign-in
-          (§17 spec's registration requirement) rather than calling
-          onStartVisit directly when no session exists yet. */}
+      {/* Primary CTA -- §7, no black circle. Starts an anonymous/local visit
+          immediately: server-side visit persistence remains best-effort in
+          app-state.ts, but recognition and progress must not wait for
+          account creation. */}
       <div className="relative z-10 mt-[28px] px-6">
         <button
           type="button"
           onClick={() => {
-            if (!isAuthenticated) {
-              setShowAuthModal(true);
-              return;
-            }
             if (activeMuseum) onStartVisit(activeMuseum.id);
           }}
           className="w-full h-[58px] px-5 rounded-[14px] bg-[#181714] text-[#FAF6ED] flex items-center justify-between shadow-[0_9px_24px_rgba(21,18,14,0.16)] active:scale-[0.985] transition-transform"
@@ -422,15 +408,6 @@ export default function HomeScreen({
             </button>
           )}
         </div>
-      )}
-
-      {showAuthModal && (
-        <AuthModal
-          locale={state.locale}
-          onClose={() => setShowAuthModal(false)}
-          signInWithEmail={onSignInWithEmail}
-          signInWithGoogle={onSignInWithGoogle}
-        />
       )}
 
       {/* Today's visit -- §7 */}
@@ -546,6 +523,12 @@ export default function HomeScreen({
                     museum={m}
                     locale={state.locale}
                     onSelect={() => {
+                      track("museum_selected", {
+                        museum_id: m.id,
+                        experience_level: m.experience_level,
+                        city: m.city,
+                        source: "featured",
+                      });
                       confirmManually(m.id);
                       setShowMuseumSheet(false);
                     }}
@@ -567,6 +550,12 @@ export default function HomeScreen({
                     museum={m}
                     locale={state.locale}
                     onSelect={() => {
+                      track("museum_selected", {
+                        museum_id: m.id,
+                        experience_level: m.experience_level,
+                        city: m.city,
+                        source: museumSearch.trim() ? "search" : "results",
+                      });
                       confirmManually(m.id);
                       setShowMuseumSheet(false);
                     }}

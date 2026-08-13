@@ -13,7 +13,6 @@ import ProgressScreen from "@/components/screens/ProgressScreen";
 import RecapScreen from "@/components/screens/RecapScreen";
 import DesktopShell from "@/components/desktop/DesktopShell";
 import type { Artwork } from "@/lib/types";
-import type { User } from "@supabase/supabase-js";
 
 // The real, working ELYIO app — state-machine driven, talks to the existing
 // backend (lib/api.ts), same 5-screen flow and nav map as the old PWA
@@ -28,16 +27,10 @@ function AppScreens({
   state,
   seenArtworks,
   actions,
-  user,
-  signInWithEmail,
-  signInWithGoogle,
 }: {
   state: AppState;
   seenArtworks: Artwork[];
   actions: ReturnType<typeof useElyioApp>["actions"];
-  user: User | null;
-  signInWithEmail: (email: string) => Promise<void>;
-  signInWithGoogle: () => Promise<void>;
 }) {
   return (
     <>
@@ -45,11 +38,8 @@ function AppScreens({
         <HomeScreen
           state={state}
           seenArtworks={seenArtworks}
-          isAuthenticated={!!user}
           onStartVisit={actions.startVisit}
           onSetLocale={actions.setLocale}
-          onSignInWithEmail={signInWithEmail}
-          onSignInWithGoogle={signInWithGoogle}
         />
       )}
       {state.screen === "camera" && (
@@ -113,7 +103,7 @@ function AppScreens({
 // this resolves true.
 export default function AppPage() {
   const { state, seenArtworks, actions } = useElyioApp();
-  const { user, signInWithEmail, signInWithGoogle } = useAuth();
+  const { user } = useAuth();
   const isDesktop = useIsDesktop();
 
   // Links every event fired after this point (visit_started onward, per
@@ -130,9 +120,6 @@ export default function AppPage() {
       state={state}
       seenArtworks={seenArtworks}
       actions={actions}
-      user={user}
-      signInWithEmail={signInWithEmail}
-      signInWithGoogle={signInWithGoogle}
     />
   );
 

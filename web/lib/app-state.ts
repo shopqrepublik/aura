@@ -80,7 +80,7 @@ export function useElyioApp() {
   const startVisit = useCallback(async (museumId: string) => {
     setState((s) => {
       if (s.visitStarted) return s;
-      track("visit_started");
+      track("visit_started", { museum_id: museumId });
       return { ...s, visitStarted: true, startTime: Date.now(), museumId };
     });
     setState((s) => {
@@ -99,7 +99,10 @@ export function useElyioApp() {
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
     setState((s) => ({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null }));
-    track("scan_attempt");
+    track("scan_attempt", { museum_id: state.museumId, seen_count: state.seen.length });
+    if (state.seen.length > 0) {
+      track("second_scan_started", { museum_id: state.museumId, seen_count: state.seen.length });
+    }
     track("recognition_started", { museum_id: state.museumId });
     try {
       const result = await api.recognize(imageBase64, state.locale, state.museumId ?? "");
@@ -144,6 +147,12 @@ export function useElyioApp() {
             screen: "card",
             cardOpenedAt: Date.now(),
           }));
+          track("result_viewed", {
+            result_type: "uncataloged",
+            museum_id: state.museumId,
+            confidence: result.confidence,
+            ai_candidate: uncataloged,
+          });
           return;
         }
         track("scan_failed", { reason: result.status });
@@ -167,6 +176,13 @@ export function useElyioApp() {
         artwork_id: artwork.id,
         confidence: result.confidence,
         recognition_mode: result.recognition_mode,
+      });
+      track("result_viewed", {
+        result_type: "catalog",
+        museum_id: state.museumId,
+        artwork_id: artwork.id,
+        confidence: result.confidence,
+        status: result.status,
       });
 
       setState((s) => {
@@ -206,7 +222,7 @@ export function useElyioApp() {
         pendingRecognitionImageBase64: networkError ? imageBase64 : null,
       }));
     }
-  }, [state.catalogArtworks, state.locale, state.mode, state.museumId]);
+  }, [state.catalogArtworks, state.locale, state.mode, state.museumId, state.seen.length]);
 
   const addToVisit = useCallback(() => {
     setState((s) => {
@@ -247,6 +263,7 @@ export function useElyioApp() {
     // by the time this actually runs.
     setState((s) => {
       track("visit_completed", { works_count: s.seen.length });
+      track("recap_viewed", { works_count: s.seen.length });
       return s;
     });
     if (state.visitId) {
