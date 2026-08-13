@@ -720,10 +720,21 @@ def _stage2_artist_match_allowed(vision: dict, candidate: Optional[dict]) -> boo
 
     from rapidfuzz import fuzz
 
-    score = fuzz.token_sort_ratio(
-        _normalize_for_matching(str(query_artist)),
-        _normalize_for_matching(str(candidate_artist)),
-    ) / 100
+    query_artist_n = _normalize_for_matching(str(query_artist)).lower()
+    candidate_artist_n = _normalize_for_matching(str(candidate_artist)).lower()
+    if query_artist_n and (
+        query_artist_n in candidate_artist_n
+        or candidate_artist_n in query_artist_n
+    ):
+        return True
+    query_tokens = _tokens(query_artist_n)
+    candidate_tokens = _tokens(candidate_artist_n)
+    if query_tokens and candidate_tokens:
+        overlap = len(query_tokens & candidate_tokens) / max(1, min(len(query_tokens), len(candidate_tokens)))
+        if overlap >= 0.67:
+            return True
+
+    score = fuzz.token_sort_ratio(query_artist_n, candidate_artist_n) / 100
     return score >= 0.58
 
 
