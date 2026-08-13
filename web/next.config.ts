@@ -4,7 +4,8 @@ import type { NextConfig } from "next";
 // guessed): backend API (lib/api.ts's BACKEND_URL), Supabase auth
 // (lib/supabase.ts), PostHog (lib/analytics.ts -- both us./eu.i.posthog.com
 // listed because NEXT_PUBLIC_POSTHOG_HOST determines which one is live and
-// this must not silently break if that value changes), and Wikimedia --
+// this must not silently break if that value changes; us-assets/eu-assets
+// are where posthog-js fetches its remote config), and Wikimedia --
 // most artwork photos are proxied through our own /v1/image-proxy, but
 // CardScreen/RecapScreen/ProgressScreen's on-screen (non-canvas) <img> tags
 // hotlink artwork.imageUrl directly (only the canvas-export path needs the
@@ -19,11 +20,11 @@ const SUPABASE_ORIGIN = "https://smjvufoavwmenodxcmlg.supabase.co";
 // ask here is a starter policy that doesn't break the app today.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://us-assets.i.posthog.com https://eu-assets.i.posthog.com",
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: ${BACKEND_ORIGIN} https://*.wikimedia.org`,
   "font-src 'self' data:",
-  `connect-src 'self' ${BACKEND_ORIGIN} ${SUPABASE_ORIGIN} https://us.i.posthog.com https://eu.i.posthog.com`,
+  `connect-src 'self' ${BACKEND_ORIGIN} ${SUPABASE_ORIGIN} https://us.i.posthog.com https://eu.i.posthog.com https://us-assets.i.posthog.com https://eu-assets.i.posthog.com`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
