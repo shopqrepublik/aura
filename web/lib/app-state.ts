@@ -414,7 +414,7 @@ interface StoredVisitState {
   };
 }
 
-const VISIT_STORAGE_KEY = "elyio-current-visit-v1";
+const VISIT_STORAGE_KEY = "elyio-current-visit-v2";
 
 function loadVisitState(): AppState | null {
   if (typeof window === "undefined") return null;

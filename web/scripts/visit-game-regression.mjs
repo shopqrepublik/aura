@@ -12,13 +12,13 @@ const appStateSource = readFileSync(new URL("../lib/app-state.ts", import.meta.u
 const recapImageSource = readFileSync(new URL("../lib/recap-image.ts", import.meta.url), "utf8");
 
 assert(visitGameSource.includes("billion_euro_visitor"), "Billion Euro Visitor achievement missing");
-assert(visitGameSource.includes("summary.hasIndicativeValue && summary.indicativeValueHigh >= 1000"), "Billion Euro Visitor must use the new indicative total, not artist benchmarks");
+assert(visitGameSource.includes("summary.hasIndicativeValue && summary.indicativeValueLow >= 1000"), "Billion Euro Visitor must use the conservative low bound, not artist benchmarks or corrupted high ranges");
 assert(visitGameSource.includes('kind: "indicative_total"'), "Indicative total value moment missing");
 assert(visitGameSource.includes('kind: "market_context"'), "Biggest market moment fallback missing");
 assert(visitGameSource.includes("valueRevealNumericContext"), "Market moment should use trusted value reveal numeric context");
 assert(!visitGameSource.includes("estimatedValueHigh += numeric"), "Market context must not be summed as estimate");
 assert(appStateSource.includes("nextAdded.add(id);") && appStateSource.includes("nextSeen.push(id);"), "Favoriting must preserve the work in the canonical visit summary");
-assert(appStateSource.includes("elyio-current-visit-v1"), "Anonymous visit local persistence missing");
+assert(appStateSource.includes("elyio-current-visit-v2"), "Anonymous visit local persistence/version invalidation missing");
 assert(appStateSource.includes("favoriteOrder"), "Favorite order persistence missing");
 assert(appStateSource.includes('track("achievement_unlocked"'), "Achievement analytics missing");
 assert(appStateSource.includes('track("mission_completed"'), "Mission completion analytics missing");

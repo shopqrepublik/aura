@@ -54,6 +54,7 @@ export interface VisitValueMoment {
   kind: "reviewed_estimate" | "indicative_total" | "market_context" | "none";
   label: string;
   valueText: string;
+  trophyText?: string;
   subtitle: string;
   artwork: Artwork | null;
   aggregateEligible: boolean;
@@ -191,7 +192,7 @@ function buildAchievements(input: VisitGameInput, metrics: VisitMetricSummary, p
     achievement("renaissance_explorer", "R", "Renaissance Explorer", "You found 5 Renaissance works.", periodCounts.renaissance >= 5),
     achievement("impressionist_trail", "I", "Impressionist Trail", "You followed 5 Impressionist or modern works.", periodCounts.impressionist >= 5),
     achievement("deep_dive", "◌", "Deep Dive", "You spent meaningful time exploring.", metrics.durationMinutes >= 30 || metrics.artworksCount >= 5),
-    achievement("billion_euro_visitor", "€", "Billion Euro Visitor", "Your ELYIO indicative total crossed €1B.", summary.hasIndicativeValue && summary.indicativeValueHigh >= 1000),
+    achievement("billion_euro_visitor", "€", "Billion Euro Visitor", "Your ELYIO indicative total starts above €1B.", summary.hasIndicativeValue && summary.indicativeValueLow >= 1000),
     achievement("market_giant", "M", "Market Giant", "You encountered a nine-figure market benchmark.", Math.max(biggest?.amountMillions ?? 0, summary.indicativeValueHigh) >= 100),
     achievement("museum_explorer", "E", "Museum Explorer", "You built a real museum visit.", metrics.artworksCount >= 3),
   ];
@@ -235,6 +236,7 @@ function buildValueMoment(artworks: Artwork[], locale: Locale): VisitValueMoment
         high: summary.indicativeValueHigh,
         currency: summary.indicativeValueCurrency,
       }),
+      trophyText: formatTrophyValue(summary.indicativeValueLow, summary.indicativeValueHigh, summary.indicativeValueCurrency),
       subtitle: valueSubtitle("indicative_total", locale),
       artwork: getMostIndicativeArtwork(artworks),
       aggregateEligible: true,
@@ -249,6 +251,7 @@ function buildValueMoment(artworks: Artwork[], locale: Locale): VisitValueMoment
         high: summary.estimatedValueHigh,
         currency: summary.estimatedValueCurrency,
       }),
+      trophyText: formatTrophyValue(summary.estimatedValueLow, summary.estimatedValueHigh, summary.estimatedValueCurrency),
       subtitle: valueSubtitle("reviewed_estimate", locale),
       artwork: getMostAggregateArtwork(artworks),
       aggregateEligible: true,
@@ -273,6 +276,16 @@ function buildValueMoment(artworks: Artwork[], locale: Locale): VisitValueMoment
     artwork: null,
     aggregateEligible: false,
   };
+}
+
+function formatTrophyValue(lowMillions: number, highMillions: number, currency: string): string {
+  const midpoint = (lowMillions + highMillions) / 2;
+  const prefix = currency === "EUR" ? "€" : `${currency} `;
+  if (!Number.isFinite(midpoint) || midpoint <= 0) return "";
+  if (midpoint >= 1000) return `${prefix}${Number((midpoint / 1000).toFixed(midpoint >= 9500 ? 0 : 1)).toString().replace(/\.0$/, "")}B`;
+  if (midpoint >= 100) return `${prefix}${Math.round(midpoint / 10) * 10}M`;
+  if (midpoint >= 10) return `${prefix}${Math.round(midpoint)}M`;
+  return `${prefix}${Number(midpoint.toFixed(1))}M`;
 }
 
 function findBiggestMarketContext(artworks: Artwork[], locale: Locale): { amountMillions: number; valueText: string; subtitle: string; artwork: Artwork } | null {

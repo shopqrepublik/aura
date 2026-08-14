@@ -3,6 +3,25 @@ import { getArtistMarketContext } from "./generated-enrichment";
 import { getArtworkValueReveal } from "./valueReveal";
 import type { Artwork, ValueReveal } from "./types";
 
+export const VALUATION_ENGINE_VERSION = "ai-indicative-estimate-v3";
+
+const VALUATION_BANDS: Record<string, { lowEur: number; highEur: number }> = {
+  V01: { lowEur: 100_000, highEur: 250_000 },
+  V02: { lowEur: 250_000, highEur: 500_000 },
+  V03: { lowEur: 500_000, highEur: 1_000_000 },
+  V04: { lowEur: 1_000_000, highEur: 2_000_000 },
+  V05: { lowEur: 2_000_000, highEur: 5_000_000 },
+  V06: { lowEur: 5_000_000, highEur: 10_000_000 },
+  V07: { lowEur: 10_000_000, highEur: 20_000_000 },
+  V08: { lowEur: 20_000_000, highEur: 40_000_000 },
+  V09: { lowEur: 40_000_000, highEur: 70_000_000 },
+  V10: { lowEur: 70_000_000, highEur: 120_000_000 },
+  V11: { lowEur: 120_000_000, highEur: 200_000_000 },
+  V12: { lowEur: 200_000_000, highEur: 350_000_000 },
+  V13: { lowEur: 350_000_000, highEur: 600_000_000 },
+  V14: { lowEur: 600_000_000, highEur: 1_000_000_000 },
+};
+
 export interface IndicativeValueInput {
   artist: string | null;
   title: string | null;
@@ -26,6 +45,11 @@ export interface IndicativeValueInput {
 export function reviewedValueWins(artwork: Artwork): boolean {
   const reveal = getArtworkValueReveal(artwork);
   return reveal?.mode === "ESTIMATED_VALUE" && reveal.aggregateValueEligible === true;
+}
+
+export function preservesExistingValuePolicy(artwork: Artwork): boolean {
+  const reveal = getArtworkValueReveal(artwork);
+  return reveal?.mode === "BEYOND_MARKET";
 }
 
 export function isIndicativeEstimateEligible(input: IndicativeValueInput): boolean {
@@ -54,9 +78,10 @@ export async function fetchIndicativeValueReveal(input: IndicativeValueInput): P
       aggregateValueEligible: false,
       indicativeAggregateEligible: true,
       aiIndicativeEstimate: {
-        low: response.estimate.low_estimate,
-        high: response.estimate.high_estimate,
+        lowEur: response.estimate.low_eur,
+        highEur: response.estimate.high_eur,
         currency: "EUR",
+        valuationBandId: response.estimate.valuation_band_id,
         confidence: response.estimate.confidence,
         shortReason: response.estimate.short_reason,
         assumptions: response.estimate.assumptions,
@@ -79,16 +104,16 @@ export function localIndicativeEstimateFallback(input: IndicativeValueInput): Va
   const eurMillions = toEurMillions(context.amountMillions, context.currency);
   if (!eurMillions) return null;
   const significance = significanceMultiplier(input);
-  const low = roundEstimate(eurMillions * significance.low);
-  const high = Math.max(low + estimateStep(low), roundEstimate(eurMillions * significance.high));
+  const band = valuationBandForMidpoint(eurMillions * ((significance.low + significance.high) / 2) * 1_000_000);
   return {
     mode: "AI_INDICATIVE_ESTIMATE",
     aggregateValueEligible: false,
     indicativeAggregateEligible: true,
     aiIndicativeEstimate: {
-      low,
-      high,
+      lowEur: band.lowEur,
+      highEur: band.highEur,
       currency: "EUR",
+      valuationBandId: band.id,
       confidence: context.confidence === "HIGH" ? "MEDIUM" : "LOW",
       shortReason: "ELYIO indicative estimate derived from trusted artist-market context and broad artwork comparability.",
       assumptions: [
@@ -97,7 +122,7 @@ export function localIndicativeEstimateFallback(input: IndicativeValueInput): Va
         context.workTitle ? `Grounded by artist-market context for ${context.workTitle}.` : "Grounded by artist-market context.",
       ],
       model: "elyio-local-guardrail-fallback",
-      version: "ai-indicative-estimate-v1",
+      version: VALUATION_ENGINE_VERSION,
       generatedAt: new Date().toISOString(),
       groundingFingerprint: fallbackFingerprint(input),
       disclaimer: "ELYIO indicative estimate for scale only; not an appraisal, insurance value, or sale estimate.",
@@ -111,6 +136,7 @@ export async function attachIndicativeValueIfEligible(
   collectionImportance?: string | null
 ): Promise<Artwork> {
   if (reviewedValueWins(artwork)) return artwork;
+  if (preservesExistingValuePolicy(artwork)) return artwork;
   if (artwork.valueReveal?.mode === "AI_INDICATIVE_ESTIMATE") return artwork;
   const reveal = await fetchIndicativeValueReveal({
     artist: artwork.artist,
@@ -167,20 +193,14 @@ function significanceMultiplier(input: IndicativeValueInput): { low: number; hig
   return { low: 0.04, high: 0.14 };
 }
 
-function roundEstimate(value: number): number {
-  if (value >= 100) return Math.round(value / 10) * 10;
-  if (value >= 20) return Math.round(value / 5) * 5;
-  if (value >= 5) return Math.round(value);
-  return Number(value.toFixed(1));
-}
-
-function estimateStep(value: number): number {
-  if (value >= 100) return 20;
-  if (value >= 20) return 5;
-  if (value >= 5) return 2;
-  return 0.5;
-}
-
 function fallbackFingerprint(input: IndicativeValueInput): string {
-  return [input.artist, input.title, input.date, input.objectType, input.museum].filter(Boolean).join("|").toLowerCase();
+  return [VALUATION_ENGINE_VERSION, input.artist, input.title, input.date, input.objectType, input.museum].filter(Boolean).join("|").toLowerCase();
+}
+
+function valuationBandForMidpoint(midpointEur: number): { id: string; lowEur: number; highEur: number } {
+  if (!Number.isFinite(midpointEur) || midpointEur <= 0) return { id: "V01", ...VALUATION_BANDS.V01 };
+  for (const [id, band] of Object.entries(VALUATION_BANDS)) {
+    if (midpointEur >= band.lowEur && midpointEur <= band.highEur) return { id, ...band };
+  }
+  return { id: "V14", ...VALUATION_BANDS.V14 };
 }

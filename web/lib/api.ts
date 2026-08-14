@@ -181,8 +181,9 @@ export interface IndicativeValueResponse {
   reason?: string | null;
   estimate?: {
     currency: "EUR";
-    low_estimate: number;
-    high_estimate: number;
+    low_eur: number;
+    high_eur: number;
+    valuation_band_id: string;
     confidence: "HIGH" | "MEDIUM" | "LOW";
     short_reason: string;
     assumptions: string[];
@@ -375,21 +376,26 @@ function camelValueReveal(raw: Record<string, unknown> | null | undefined, local
   }
   if (raw.mode === "AI_INDICATIVE_ESTIMATE") {
     const estimate = (raw.ai_indicative_estimate || raw.aiIndicativeEstimate || {}) as Record<string, unknown>;
-    if (typeof estimate.low !== "number" && typeof estimate.low_estimate !== "number") return null;
-    if (typeof estimate.high !== "number" && typeof estimate.high_estimate !== "number") return null;
+    const version = typeof estimate.version === "string" ? estimate.version : "";
+    if (version !== "ai-indicative-estimate-v3") return null;
+    const lowEur = Number(estimate.low_eur ?? estimate.lowEur);
+    const highEur = Number(estimate.high_eur ?? estimate.highEur);
+    if (!Number.isFinite(lowEur) || !Number.isFinite(highEur)) return null;
+    if (lowEur <= 0 || highEur <= lowEur || highEur > 1_000_000_000) return null;
     return {
       mode: "AI_INDICATIVE_ESTIMATE",
       aggregateValueEligible: false,
       indicativeAggregateEligible: true,
       aiIndicativeEstimate: {
-        low: Number(estimate.low ?? estimate.low_estimate),
-        high: Number(estimate.high ?? estimate.high_estimate),
+        lowEur,
+        highEur,
         currency: "EUR",
+        valuationBandId: typeof estimate.valuation_band_id === "string" ? estimate.valuation_band_id : typeof estimate.valuationBandId === "string" ? estimate.valuationBandId : "",
         confidence: estimate.confidence === "HIGH" || estimate.confidence === "MEDIUM" || estimate.confidence === "LOW" ? estimate.confidence : "LOW",
         shortReason: localizeValueCopy(typeof estimate.short_reason === "string" ? estimate.short_reason : typeof estimate.shortReason === "string" ? estimate.shortReason : "", locale) || "",
         assumptions: Array.isArray(estimate.assumptions) ? estimate.assumptions.filter((x): x is string => typeof x === "string") : [],
         model: typeof estimate.model === "string" ? estimate.model : undefined,
-        version: typeof estimate.version === "string" ? estimate.version : "ai-indicative-estimate-v1",
+        version,
         generatedAt: typeof estimate.generated_at === "string" ? estimate.generated_at : typeof estimate.generatedAt === "string" ? estimate.generatedAt : new Date().toISOString(),
         groundingFingerprint: typeof estimate.grounding_fingerprint === "string" ? estimate.grounding_fingerprint : typeof estimate.groundingFingerprint === "string" ? estimate.groundingFingerprint : "",
         disclaimer: localizeValueCopy(typeof estimate.disclaimer === "string" ? estimate.disclaimer : undefined, locale),

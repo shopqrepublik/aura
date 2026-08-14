@@ -17,6 +17,7 @@ export interface ScaleReference {
 
 export interface ScaleComparison {
   referenceId: string;
+  icon: string;
   label: string;
   sentence: string;
   shortSentence: string;
@@ -39,7 +40,7 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["adult", "kids"],
-    usefulAmountMillions: { min: 80, max: 600 },
+    usefulAmountMillions: { min: 70, max: 1200 },
   },
   {
     id: "ferrari_class_supercar",
@@ -55,7 +56,7 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["adult", "kids"],
-    usefulAmountMillions: { min: 5, max: 250 },
+    usefulAmountMillions: { min: 5, max: 1200 },
   },
   {
     id: "central_paris_apartment",
@@ -71,7 +72,7 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 8, max: 250 },
+    usefulAmountMillions: { min: 8, max: 1200 },
   },
   {
     id: "luxury_yacht",
@@ -87,7 +88,7 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 20, max: 180 },
+    usefulAmountMillions: { min: 20, max: 600 },
   },
   {
     id: "football_transfer",
@@ -103,7 +104,7 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 50, max: 250 },
+    usefulAmountMillions: { min: 50, max: 600 },
   },
   {
     id: "ice_cream",
@@ -119,7 +120,39 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["kids"],
-    usefulAmountMillions: { min: 1, max: 80 },
+    usefulAmountMillions: { min: 1, max: 1200 },
+  },
+  {
+    id: "bicycle",
+    label: {
+      en: "bicycles",
+      fr: "vélos",
+      "zh-Hans": "自行车",
+    },
+    unitValueMillions: { low: 0.0007, high: 0.001 },
+    currency: "EUR_MILLION",
+    source: "Editorial everyday-price benchmark for children's scale copy.",
+    methodology: "Use broad rounded quantities only.",
+    lastReviewedDate: "2026-08-14",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["kids"],
+    usefulAmountMillions: { min: 1, max: 1200 },
+  },
+  {
+    id: "family_holiday",
+    label: {
+      en: "family holidays",
+      fr: "vacances en famille",
+      "zh-Hans": "家庭旅行",
+    },
+    unitValueMillions: { low: 0.004, high: 0.007 },
+    currency: "EUR_MILLION",
+    source: "Editorial everyday-price benchmark for children's scale copy.",
+    methodology: "Use broad rounded quantities only.",
+    lastReviewedDate: "2026-08-14",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["kids"],
+    usefulAmountMillions: { min: 1, max: 1200 },
   },
 ];
 
@@ -138,8 +171,18 @@ export function resolveScaleComparisonForAmount(
   locale: Locale,
   mode: Mode
 ): ScaleComparison | null {
+  return resolveScaleComparisonsForAmount(amountMillions, currency, locale, mode, 1)[0] || null;
+}
+
+export function resolveScaleComparisonsForAmount(
+  amountMillions: number,
+  currency: string | undefined,
+  locale: Locale,
+  mode: Mode,
+  limit?: number
+): ScaleComparison[] {
   const amountUsdMillions = toUsdMillions(amountMillions, currency);
-  if (amountUsdMillions == null || amountUsdMillions <= 0) return null;
+  if (amountUsdMillions == null || amountUsdMillions <= 0) return [];
   const audience: ScaleAudience = mode === "kids" ? "kids" : "adult";
   const candidates = SCALE_REFERENCES.filter(
     (reference) =>
@@ -148,18 +191,20 @@ export function resolveScaleComparisonForAmount(
       amountUsdMillions >= toUsdMillions(reference.usefulAmountMillions.min, reference.currency)! &&
       amountUsdMillions <= toUsdMillions(reference.usefulAmountMillions.max, reference.currency)!
   );
-  const reference = pickReference(amountUsdMillions, candidates, mode);
-  if (!reference) return null;
-  const range = comparisonRange(amountUsdMillions, reference);
-  if (!range) return null;
-  return {
-    referenceId: reference.id,
-    label: reference.label[locale] || reference.label.en,
-    sentence: sentenceFor(reference, range, locale, mode),
-    shortSentence: shortSentenceFor(reference, range, locale, mode),
-    countLabel: countLabelFor(range, reference, locale),
-    source: reference.source,
-  };
+  const ordered = orderReferences(amountUsdMillions, candidates, mode);
+  return ordered.slice(0, limit ?? (mode === "normal" ? 3 : mode === "simple" ? 2 : 3)).map((reference) => {
+    const range = comparisonRange(amountUsdMillions, reference);
+    if (!range) return null;
+    return {
+      referenceId: reference.id,
+      icon: iconFor(reference.id),
+      label: reference.label[locale] || reference.label.en,
+      sentence: sentenceFor(reference, range, locale, mode),
+      shortSentence: shortSentenceFor(reference, range, locale, mode),
+      countLabel: countLabelFor(range, reference, locale),
+      source: reference.source,
+    };
+  }).filter((comparison): comparison is ScaleComparison => !!comparison);
 }
 
 export function resolveScaleComparisonSentence(
@@ -185,6 +230,12 @@ export function resolveValueRevealScaleComparison(valueReveal: ValueReveal | nul
   return resolveScaleComparisonForAmount(numeric.amountMillions, numeric.currency, locale, mode);
 }
 
+export function resolveValueRevealScaleComparisons(valueReveal: ValueReveal | null, locale: Locale, mode: Mode): ScaleComparison[] {
+  const numeric = valueRevealNumericContext(valueReveal);
+  if (!numeric) return [];
+  return resolveScaleComparisonsForAmount(numeric.amountMillions, numeric.currency, locale, mode);
+}
+
 export function valueRevealNumericContext(valueReveal: ValueReveal | null): { amountMillions: number; currency: string | undefined } | null {
   if (!valueReveal) return null;
   if (valueReveal.mode === "ESTIMATED_VALUE") {
@@ -194,8 +245,10 @@ export function valueRevealNumericContext(valueReveal: ValueReveal | null): { am
     };
   }
   if (valueReveal.mode === "AI_INDICATIVE_ESTIMATE") {
+    if (valueReveal.aiIndicativeEstimate.version !== "ai-indicative-estimate-v3") return null;
+    if (valueReveal.aiIndicativeEstimate.highEur > 1_000_000_000) return null;
     return {
-      amountMillions: (valueReveal.aiIndicativeEstimate.low + valueReveal.aiIndicativeEstimate.high) / 2,
+      amountMillions: ((valueReveal.aiIndicativeEstimate.lowEur + valueReveal.aiIndicativeEstimate.highEur) / 2) / 1_000_000,
       currency: "EUR_MILLION",
     };
   }
@@ -219,22 +272,33 @@ export function valueRevealNumericContext(valueReveal: ValueReveal | null): { am
   return { amountMillions: number, currency };
 }
 
-function pickReference(amountUsdMillions: number, candidates: ScaleReference[], mode: Mode): ScaleReference | null {
-  if (candidates.length === 0) return null;
-  if (mode === "kids") {
-    return candidates.find((candidate) => candidate.id === "ferrari_class_supercar")
-      || candidates.find((candidate) => candidate.id === "wide_body_aircraft")
-      || candidates[0];
-  }
-  if (amountUsdMillions >= 80) {
-    return candidates.find((candidate) => candidate.id === "wide_body_aircraft") || candidates[0];
-  }
-  if (amountUsdMillions >= 15) {
-    return candidates.find((candidate) => candidate.id === "ferrari_class_supercar")
-      || candidates.find((candidate) => candidate.id === "central_paris_apartment")
-      || candidates[0];
-  }
-  return candidates.find((candidate) => candidate.id === "central_paris_apartment") || candidates[0];
+function orderReferences(amountUsdMillions: number, candidates: ScaleReference[], mode: Mode): ScaleReference[] {
+  const wanted = mode === "kids"
+    ? ["ferrari_class_supercar", "ice_cream", "bicycle", "family_holiday", "wide_body_aircraft"]
+    : mode === "simple"
+      ? amountUsdMillions >= 70
+        ? ["wide_body_aircraft", "ferrari_class_supercar", "central_paris_apartment"]
+        : ["ferrari_class_supercar", "central_paris_apartment", "luxury_yacht"]
+      : amountUsdMillions >= 70
+        ? ["wide_body_aircraft", "ferrari_class_supercar", "central_paris_apartment", "luxury_yacht", "football_transfer"]
+        : ["ferrari_class_supercar", "central_paris_apartment", "luxury_yacht", "football_transfer"];
+  const byId = new Map(candidates.map((candidate) => [candidate.id, candidate]));
+  return [
+    ...wanted.map((id) => byId.get(id)).filter((candidate): candidate is ScaleReference => !!candidate),
+    ...candidates.filter((candidate) => !wanted.includes(candidate.id)),
+  ];
+}
+
+function iconFor(id: string): string {
+  if (id === "wide_body_aircraft") return "✈";
+  if (id === "ferrari_class_supercar") return "🏎";
+  if (id === "central_paris_apartment") return "⌂";
+  if (id === "luxury_yacht") return "◈";
+  if (id === "football_transfer") return "⚽";
+  if (id === "ice_cream") return "🍦";
+  if (id === "bicycle") return "🚲";
+  if (id === "family_holiday") return "☀";
+  return "•";
 }
 
 function comparisonRange(amountUsdMillions: number, reference: ScaleReference): { low: number; high: number } | null {
@@ -278,6 +342,21 @@ function shortSentenceFor(reference: ScaleReference, range: { low: number; high:
 
 function countLabelFor(range: { low: number; high: number }, reference: ScaleReference, locale: Locale): string {
   const label = reference.label[locale] || reference.label.en;
+  if (range.low >= 1_000_000 || range.high >= 1_000_000) {
+    const low = Math.max(1, Math.round(range.low / 1_000_000));
+    const high = Math.max(low, Math.round(range.high / 1_000_000));
+    if (locale === "fr") return low === high ? `${low} million de ${label}` : `${low} à ${high} millions de ${label}`;
+    if (locale === "zh-Hans") return low === high ? `${low}百万个${label}` : `${low}到${high}百万个${label}`;
+    return low === high ? `${low} million ${label}` : `${low}-${high} million ${label}`;
+  }
+  if (range.low >= 10_000 || range.high >= 10_000) {
+    const low = formatLargeCount(range.low, locale);
+    const high = formatLargeCount(range.high, locale);
+    if (range.low === range.high) return `${low} ${label}`;
+    if (locale === "fr") return `${low} à ${high} ${label}`;
+    if (locale === "zh-Hans") return `${low}到${high}个${label}`;
+    return `${low}-${high} ${label}`;
+  }
   if (range.low === range.high) {
     if (range.low === 1) {
       if (locale === "fr") return `un ${label}`;
@@ -296,7 +375,17 @@ function roundRangeCount(value: number): number {
   if (value < 10) return Math.round(value);
   if (value < 50) return Math.round(value / 5) * 5;
   if (value < 200) return Math.round(value / 10) * 10;
-  return Math.round(value / 25) * 25;
+  if (value < 1000) return Math.round(value / 25) * 25;
+  if (value < 10_000) return Math.round(value / 500) * 500;
+  if (value < 100_000) return Math.round(value / 5_000) * 5_000;
+  if (value < 1_000_000) return Math.round(value / 50_000) * 50_000;
+  return Math.round(value / 500_000) * 500_000;
+}
+
+function formatLargeCount(value: number, locale: Locale): string {
+  const rounded = value >= 100_000 ? Math.round(value / 5_000) * 5_000 : value;
+  if (locale === "zh-Hans") return String(rounded);
+  return rounded.toLocaleString(locale === "fr" ? "fr-FR" : "en-US");
 }
 
 function toUsdMillions(amount: number, currency: string | undefined): number | null {

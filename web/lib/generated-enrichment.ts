@@ -48,8 +48,8 @@ export interface GeneratedEnrichmentInput {
   confidence?: number | null;
 }
 
-const VERSION = "generated-artwork-enrichment-v1";
-const CACHE_PREFIX = "elyio.generatedArtworkEnrichment.v1:";
+const VERSION = "generated-artwork-enrichment-v2";
+const CACHE_PREFIX = "elyio.generatedArtworkEnrichment.v2:";
 
 const FORBIDDEN_VISITOR_TERMS = [
   "elyio has not reviewed",

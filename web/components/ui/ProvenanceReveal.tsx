@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { haptics } from "@/lib/haptics";
 import { hexToRgba, getPriceTier, usePrefersReducedMotion } from "@/lib/cardReveal";
 import { GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
-import { resolveValueRevealScaleComparison } from "@/lib/scaleComparison";
-import { formatValueRevealHeadline } from "@/lib/valueReveal";
+import { resolveValueRevealScaleComparisons } from "@/lib/scaleComparison";
+import { formatEstimatedValueRange, formatValueRevealHeadline, isValidAIIndicativeEstimate } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
 import MarketMethodologySheet from "./MarketMethodologySheet";
 import type { Locale, Mode, ValueReveal } from "@/lib/types";
@@ -62,8 +62,18 @@ export default function ProvenanceReveal({
   mode: Mode;
 }) {
   const hasEstimate = valueReveal?.mode === "ESTIMATED_VALUE" && valueReveal.aggregateValueEligible;
-  const hasIndicativeEstimate = valueReveal?.mode === "AI_INDICATIVE_ESTIMATE" && valueReveal.indicativeAggregateEligible;
-  const estimate = hasEstimate ? valueReveal.estimatedValue : hasIndicativeEstimate ? valueReveal.aiIndicativeEstimate : null;
+  const hasIndicativeEstimate = valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
+    && valueReveal.indicativeAggregateEligible
+    && isValidAIIndicativeEstimate(valueReveal.aiIndicativeEstimate);
+  const estimate = hasEstimate
+    ? valueReveal.estimatedValue
+    : hasIndicativeEstimate
+      ? {
+          low: valueReveal.aiIndicativeEstimate.lowEur / 1_000_000,
+          high: valueReveal.aiIndicativeEstimate.highEur / 1_000_000,
+          currency: valueReveal.aiIndicativeEstimate.currency,
+        }
+      : null;
   const tier = getPriceTier(estimate?.high ?? null);
   const reducedMotion = usePrefersReducedMotion();
   const [methodologyOpen, setMethodologyOpen] = useState(false);
@@ -105,12 +115,12 @@ export default function ProvenanceReveal({
   const kidsBump = mode === "kids" ? 0.02 : 0;
   const tintOpacity = (tier ? TINT_OPACITY[tier] : TINT_OPACITY.standard) + kidsBump;
 
-  const analogy = resolveValueRevealScaleComparison(valueReveal, locale, mode);
+  const analogies = resolveValueRevealScaleComparisons(valueReveal, locale, mode);
 
   const priceSize = tier ? PRICE_SIZE_PX[tier] : PRICE_SIZE_PX.standard;
   const priceText = estimate
     ? priceStage === "low"
-      ? `€${estimate.low}M`
+      ? formatEstimatedValueRange({ low: estimate.low, high: estimate.low, currency: estimate.currency }).replace(/–.*$/, "")
       : formatValueRevealHeadline(valueReveal, locale)
     : formatValueRevealHeadline(valueReveal, locale);
   const revealLabel = valueReveal?.mode === "ESTIMATED_VALUE"
@@ -237,12 +247,26 @@ export default function ProvenanceReveal({
           {locale === "fr" ? "Hypothèse ELYIO, pas une expertise" : locale === "zh-Hans" ? "ELYIO 假设估计，并非鉴定估价" : "ELYIO estimate, not an appraisal"}
         </p>
       )}
-      {analogy && (
+      {analogies.length > 0 && (
         <div className="mt-4 rounded-[16px] bg-white/40 px-3.5 py-3 border border-[rgba(45,39,31,0.08)]">
           <div className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#65625d]">
-            {locale === "fr" ? "Pour situer" : locale === "zh-Hans" ? "作为参照" : "For scale"}
+            {mode === "kids"
+              ? locale === "fr" ? "Mission argent" : locale === "zh-Hans" ? "金额任务" : "Money mission"
+              : locale === "fr" ? "Pour situer" : locale === "zh-Hans" ? "作为参照" : "For scale"}
           </div>
-          <p className="mt-1.5 text-[16px] leading-[21px] font-semibold text-[#24231f]">{analogy.shortSentence}</p>
+          <div className="mt-2 space-y-1.5">
+            {analogies.map((analogy) => (
+              <div key={analogy.referenceId} className="flex gap-2 text-[15px] leading-[20px] font-semibold text-[#24231f]">
+                <span className="w-5 shrink-0 text-center">{analogy.icon}</span>
+                <span>{analogy.shortSentence}</span>
+              </div>
+            ))}
+          </div>
+          {mode === "kids" && (
+            <p className="mt-2 text-[12px] leading-[16px] text-[#5C564D]">
+              {locale === "fr" ? "Lequel choisirais-tu : l'œuvre ou toutes ces choses ?" : locale === "zh-Hans" ? "你会选这件作品，还是这些东西？" : "Which would you choose: the artwork or all those things?"}
+            </p>
+          )}
         </div>
       )}
       {optionalContext && (

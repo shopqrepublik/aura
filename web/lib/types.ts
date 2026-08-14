@@ -48,9 +48,10 @@ export interface AIIndicativeEstimateReveal {
   aggregateValueEligible: false;
   indicativeAggregateEligible: true;
   aiIndicativeEstimate: {
-    low: number;
-    high: number;
+    lowEur: number;
+    highEur: number;
     currency: "EUR";
+    valuationBandId: string;
     confidence: "HIGH" | "MEDIUM" | "LOW";
     shortReason: string;
     assumptions: string[];

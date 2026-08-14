@@ -33,7 +33,13 @@ function getAggregateEligibleValue(artwork) {
 function getIndicativeEligibleValue(artwork) {
   const reveal = getArtworkValueReveal(artwork);
   if (reveal?.mode === "ESTIMATED_VALUE" && reveal.aggregateValueEligible === true) return reveal.estimatedValue;
-  if (reveal?.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) return reveal.aiIndicativeEstimate;
+  if (reveal?.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) {
+    const estimate = reveal.aiIndicativeEstimate;
+    if (estimate.version !== "ai-indicative-estimate-v3") return null;
+    if (!Number.isFinite(estimate.lowEur) || !Number.isFinite(estimate.highEur)) return null;
+    if (estimate.lowEur <= 0 || estimate.highEur <= estimate.lowEur || estimate.highEur > 1_000_000_000) return null;
+    return { low: estimate.lowEur / 1_000_000, high: estimate.highEur / 1_000_000, currency: estimate.currency };
+  }
   return null;
 }
 
@@ -139,15 +145,39 @@ const aiIndicative = {
     aggregateValueEligible: false,
     indicativeAggregateEligible: true,
     aiIndicativeEstimate: {
-      low: 70,
-      high: 100,
+      lowEur: 70_000_000,
+      highEur: 100_000_000,
       currency: "EUR",
+      valuationBandId: "V10",
       confidence: "MEDIUM",
       shortReason: "Hypothetical scale estimate.",
       assumptions: ["Museum work is not for sale."],
-      version: "ai-indicative-estimate-v1",
+      version: "ai-indicative-estimate-v3",
       generatedAt: new Date().toISOString(),
       groundingFingerprint: "test",
+    },
+  },
+};
+const staleAiIndicative = {
+  id: "stale-ai-indicative",
+  estimate: { low: null, high: null },
+  valueReveal: {
+    mode: "AI_INDICATIVE_ESTIMATE",
+    aggregateValueEligible: false,
+    indicativeAggregateEligible: true,
+    aiIndicativeEstimate: {
+      low: 7_000_000,
+      high: 15_000_000,
+      lowEur: 7_000_000_000_000,
+      highEur: 15_000_000_000_000,
+      currency: "EUR",
+      valuationBandId: "V99",
+      confidence: "LOW",
+      shortReason: "Bad stale payload.",
+      assumptions: [],
+      version: "ai-indicative-estimate-v1",
+      generatedAt: new Date().toISOString(),
+      groundingFingerprint: "bad",
     },
   },
 };
@@ -180,6 +210,7 @@ assert(summary.estimatedValueHigh === 0, "AI_INDICATIVE_ESTIMATE must not enter 
 assert(summary.indicativeValueLow === 70 && summary.indicativeValueHigh === 100, "AI_INDICATIVE_ESTIMATE must enter indicative totals");
 assert(summary.hasIndicativeValue === true, "AI_INDICATIVE_ESTIMATE should set indicative total state");
 assert(getMostValuableArtwork([aiIndicative]) === null, "AI_INDICATIVE_ESTIMATE cannot be most valuable reviewed artwork");
+assert(summarizeVisitValue([staleAiIndicative]).hasIndicativeValue === false, "Stale/catastrophic AI values must not enter totals");
 
 summary = summarizeVisitValue([beyondMarket]);
 assert(summary.estimatedValueHigh === 0, "BEYOND_MARKET must contribute zero to totals");

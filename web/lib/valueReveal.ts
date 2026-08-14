@@ -1,5 +1,5 @@
 import { tt } from "./i18n";
-import type { Artwork, Estimate, Locale, ValueReveal } from "./types";
+import type { AIIndicativeEstimateReveal, Artwork, Estimate, Locale, ValueReveal } from "./types";
 
 export interface AggregateEligibleValue {
   low: number;
@@ -66,9 +66,10 @@ export function getIndicativeEligibleValue(artwork: Artwork): AggregateEligibleV
     };
   }
   if (reveal.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) {
+    if (!isValidAIIndicativeEstimate(reveal.aiIndicativeEstimate)) return null;
     return {
-      low: reveal.aiIndicativeEstimate.low,
-      high: reveal.aiIndicativeEstimate.high,
+      low: reveal.aiIndicativeEstimate.lowEur / 1_000_000,
+      high: reveal.aiIndicativeEstimate.highEur / 1_000_000,
       currency: reveal.aiIndicativeEstimate.currency,
     };
   }
@@ -144,6 +145,7 @@ export function formatEstimatedValueRange(value: AggregateEligibleValue): string
   const prefix = value.currency === "EUR" ? "€" : `${value.currency} `;
   const low = formatMoneyMillions(value.low);
   const high = formatMoneyMillions(value.high);
+  if (low === high) return `${prefix}${low}`;
   return `${prefix}${low}–${high}`;
 }
 
@@ -208,7 +210,12 @@ export function formatValueRevealHeadline(valueReveal: ValueReveal | null, local
     return formatEstimatedValueRange(valueReveal.estimatedValue);
   }
   if (valueReveal.mode === "AI_INDICATIVE_ESTIMATE") {
-    return formatEstimatedValueRange(valueReveal.aiIndicativeEstimate);
+    if (!isValidAIIndicativeEstimate(valueReveal.aiIndicativeEstimate)) return tt("pending_review", locale);
+    return formatEstimatedValueRange({
+      low: valueReveal.aiIndicativeEstimate.lowEur / 1_000_000,
+      high: valueReveal.aiIndicativeEstimate.highEur / 1_000_000,
+      currency: valueReveal.aiIndicativeEstimate.currency,
+    });
   }
   if (valueReveal.mode === "MARKET_CONTEXT") {
     const number = valueReveal.marketContext.headlineNumber;
@@ -216,6 +223,18 @@ export function formatValueRevealHeadline(valueReveal: ValueReveal | null, local
     return formatContextNumber(number, valueReveal.marketContext.currency);
   }
   return valueReveal.beyondMarket.headline;
+}
+
+export function isValidAIIndicativeEstimate(estimate: AIIndicativeEstimateReveal["aiIndicativeEstimate"] | undefined): boolean {
+  if (!estimate) return false;
+  if (estimate.version !== "ai-indicative-estimate-v3") return false;
+  if (estimate.currency !== "EUR") return false;
+  if (!/^V(0[1-9]|1[0-4])$/.test(estimate.valuationBandId || "")) return false;
+  if (!Number.isFinite(estimate.lowEur) || !Number.isFinite(estimate.highEur)) return false;
+  if (estimate.lowEur <= 0 || estimate.highEur <= estimate.lowEur) return false;
+  if (estimate.highEur > 1_000_000_000) return false;
+  if (estimate.highEur / Math.max(estimate.lowEur, 1) > 10) return false;
+  return true;
 }
 
 function formatMoneyMillions(value: number): string {

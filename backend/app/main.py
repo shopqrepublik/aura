@@ -64,6 +64,7 @@ Run:
 import base64
 import hashlib
 import json
+import math
 import os
 import random
 import re
@@ -1396,8 +1397,9 @@ class IndicativeValueRequest(BaseModel):
 
 class IndicativeEstimate(BaseModel):
     currency: str
-    low_estimate: float
-    high_estimate: float
+    low_eur: float
+    high_eur: float
+    valuation_band_id: str
     confidence: str
     short_reason: str
     assumptions: List[str]
@@ -1414,10 +1416,27 @@ class IndicativeValueResponse(BaseModel):
     estimate: Optional[IndicativeEstimate] = None
 
 
-INDICATIVE_VALUE_VERSION = "ai-indicative-estimate-v1"
+INDICATIVE_VALUE_VERSION = "ai-indicative-estimate-v3"
 INDICATIVE_VALUE_DISCLAIMER = (
     "ELYIO indicative estimate for scale only; not an appraisal, insurance value, offer price, or sale estimate."
 )
+MAX_AI_INDICATIVE_EUR = 1_000_000_000
+VALUATION_BANDS: dict[str, tuple[int, int]] = {
+    "V01": (100_000, 250_000),
+    "V02": (250_000, 500_000),
+    "V03": (500_000, 1_000_000),
+    "V04": (1_000_000, 2_000_000),
+    "V05": (2_000_000, 5_000_000),
+    "V06": (5_000_000, 10_000_000),
+    "V07": (10_000_000, 20_000_000),
+    "V08": (20_000_000, 40_000_000),
+    "V09": (40_000_000, 70_000_000),
+    "V10": (70_000_000, 120_000_000),
+    "V11": (120_000_000, 200_000_000),
+    "V12": (200_000_000, 350_000_000),
+    "V13": (350_000_000, 600_000_000),
+    "V14": (600_000_000, 1_000_000_000),
+}
 
 
 def _indicative_value_fingerprint(req: IndicativeValueRequest) -> str:
@@ -1450,7 +1469,7 @@ def _indicative_value_eligible(req: IndicativeValueRequest) -> tuple[bool, str]:
             req.collection_importance,
         ] if x
     ).lower()
-    if re.search(r"(human remains|mummy|funerary|coin|fragment|weapon|armor|armour|ritual|sarcophagus)", text):
+    if re.search(r"(human remains|mummy|funerary|coin|fragment|weapon|armor|armour|ritual|sarcophagus|room|palace|architecture|chapel|tomb)", text):
         return False, "object category not suitable for market-range presentation"
     if re.search(r"(painting|oil|canvas|panel|portrait|self-portrait|drawing|pastel|watercolor|sculpture|statue|marble|bronze|bust|vase|bowl|ceramic|porcelain|decorative)", text):
         return True, "eligible fine/decorative art"
@@ -1460,18 +1479,46 @@ def _indicative_value_eligible(req: IndicativeValueRequest) -> tuple[bool, str]:
 
 
 def _normalize_indicative_estimate(data: Dict[str, Any], req: IndicativeValueRequest, fingerprint: str) -> Optional[dict]:
-    try:
-        low = float(data.get("low_estimate"))
-        high = float(data.get("high_estimate"))
-    except Exception:
+    band_id = str(data.get("valuation_band_id") or "").upper().strip()
+    if band_id not in VALUATION_BANDS:
+        print(json.dumps({
+            "event": "indicative_value_rejected",
+            "version": INDICATIVE_VALUE_VERSION,
+            "reason": "invalid_band",
+            "band": band_id,
+            "artist": req.artist,
+            "title": req.title,
+        }, ensure_ascii=False))
         return None
-    if not (low > 0 and high > 0 and high >= low):
+    low_eur, high_eur = VALUATION_BANDS[band_id]
+    context_cap = _market_context_high_cap_eur(req)
+    if context_cap and high_eur > context_cap:
+        band_id = _highest_band_with_high_at_or_below(context_cap)
+        low_eur, high_eur = VALUATION_BANDS[band_id]
+    elif not context_cap and high_eur > 200_000_000:
+        band_id = "V11"
+        low_eur, high_eur = VALUATION_BANDS[band_id]
+    if not (math.isfinite(low_eur) and math.isfinite(high_eur)):
         return None
-    if high / max(low, 0.1) > 8:
+    if not (low_eur > 0 and high_eur > low_eur):
+        return None
+    if high_eur / low_eur > 10:
+        return None
+    if high_eur > MAX_AI_INDICATIVE_EUR:
         return None
     confidence = str(data.get("confidence") or "LOW").upper()
     if confidence not in {"HIGH", "MEDIUM", "LOW"}:
         confidence = "LOW"
+    if confidence == "LOW" and band_id in {"V13", "V14"}:
+        print(json.dumps({
+            "event": "indicative_value_rejected",
+            "version": INDICATIVE_VALUE_VERSION,
+            "reason": "low_confidence_too_high",
+            "band": band_id,
+            "artist": req.artist,
+            "title": req.title,
+        }, ensure_ascii=False))
+        return None
     assumptions = data.get("assumptions")
     if not isinstance(assumptions, list):
         assumptions = []
@@ -1480,8 +1527,9 @@ def _normalize_indicative_estimate(data: Dict[str, Any], req: IndicativeValueReq
         assumptions = ["Hypothetical scale estimate only.", "The museum work is not for sale."]
     return {
         "currency": "EUR",
-        "low_estimate": round(low, 1),
-        "high_estimate": round(high, 1),
+        "low_eur": low_eur,
+        "high_eur": high_eur,
+        "valuation_band_id": band_id,
         "confidence": confidence,
         "short_reason": str(data.get("short_reason") or "Indicative range based on supplied artwork facts and market context.")[:260],
         "assumptions": assumptions,
@@ -1498,20 +1546,20 @@ def _heuristic_indicative_estimate(req: IndicativeValueRequest, fingerprint: str
     if not context or not context.amountMillions or not context.currency:
         return None
     multiplier = 0.92 if context.currency in {"USD", "USD_MILLION"} else 1.17 if context.currency in {"GBP", "GBP_MILLION"} else 1.0
-    eur = context.amountMillions * multiplier
+    eur_millions = context.amountMillions * multiplier
     text = " ".join(x for x in [req.title, req.object_type, req.medium, req.collection_importance] if x).lower()
     if re.search(r"(mona lisa|joconde|masterpiece|iconic|highlight|self-portrait|autoportrait)", text):
-        lo, hi = eur * 0.58, eur * 0.86
+        midpoint = eur_millions * 0.72
     elif re.search(r"(painting|oil|canvas|panel|portrait)", text):
-        lo, hi = eur * 0.18, eur * 0.38
+        midpoint = eur_millions * 0.28
     elif re.search(r"(sculpture|statue|marble|bronze|bust)", text):
-        lo, hi = eur * 0.12, eur * 0.30
+        midpoint = eur_millions * 0.21
     else:
-        lo, hi = eur * 0.04, eur * 0.14
+        midpoint = eur_millions * 0.09
+    band_id = _valuation_band_for_midpoint_eur(midpoint * 1_000_000)
     return _normalize_indicative_estimate(
         {
-            "low_estimate": lo,
-            "high_estimate": hi,
+            "valuation_band_id": band_id,
             "confidence": "LOW" if (context.confidence or "").upper() != "HIGH" else "MEDIUM",
             "short_reason": "Fallback indicative range derived from supplied trusted artist-market context.",
             "assumptions": [
@@ -1523,6 +1571,34 @@ def _heuristic_indicative_estimate(req: IndicativeValueRequest, fingerprint: str
         req,
         fingerprint,
     )
+
+
+def _valuation_band_for_midpoint_eur(midpoint_eur: float) -> str:
+    if not math.isfinite(midpoint_eur) or midpoint_eur <= 0:
+        return "V01"
+    for band_id, (low, high) in VALUATION_BANDS.items():
+        if low <= midpoint_eur <= high:
+            return band_id
+    return "V14"
+
+
+def _market_context_high_cap_eur(req: IndicativeValueRequest) -> Optional[float]:
+    context = req.existing_market_context
+    if not context or not context.amountMillions or not context.currency:
+        return None
+    multiplier = 0.92 if context.currency in {"USD", "USD_MILLION"} else 1.17 if context.currency in {"GBP", "GBP_MILLION"} else 1.0
+    context_eur = context.amountMillions * multiplier * 1_000_000
+    if not math.isfinite(context_eur) or context_eur <= 0:
+        return None
+    return min(MAX_AI_INDICATIVE_EUR, context_eur * 4)
+
+
+def _highest_band_with_high_at_or_below(max_high_eur: float) -> str:
+    selected = "V01"
+    for band_id, (_low, high) in VALUATION_BANDS.items():
+        if high <= max_high_eur:
+            selected = band_id
+    return selected
 
 
 @app.post("/v1/indicative-value", response_model=IndicativeValueResponse)
@@ -1547,9 +1623,12 @@ def indicative_value(req: IndicativeValueRequest):
         "You produce ELYIO indicative market ranges for museum visitors. "
         "This is a hypothetical scale estimate, not an appraisal, insurance value, offer price, or claim that the museum work can be sold. "
         "Use ONLY the supplied facts and supplied market context. Do not invent citations, auction houses, sale dates, comparable work names, provenance, or prices. "
-        "If evidence is weak, return a broad LOW confidence range rather than fake precision. "
+        "You must choose exactly one valuation_band_id from this EUR ladder; do not output raw money numbers. "
+        "Bands: V01 €0.1-0.25M; V02 €0.25-0.5M; V03 €0.5-1M; V04 €1-2M; V05 €2-5M; V06 €5-10M; V07 €10-20M; "
+        "V08 €20-40M; V09 €40-70M; V10 €70-120M; V11 €120-200M; V12 €200-350M; V13 €350-600M; V14 €600M-1B. "
+        "If evidence is weak, choose LOW confidence and a conservative band rather than fake precision. "
         "Respond with one strict JSON object only: "
-        '{"currency":"EUR","low_estimate":number,"high_estimate":number,"confidence":"HIGH|MEDIUM|LOW","short_reason":"...","assumptions":["..."]}'
+        '{"valuation_band_id":"V01|V02|...|V14","confidence":"HIGH|MEDIUM|LOW","short_reason":"...","assumptions":["..."]}'
     )
     try:
         resp = _openai_chat_completion_with_retries(

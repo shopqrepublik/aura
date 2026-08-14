@@ -226,7 +226,7 @@ function drawValueMoment(ctx: CanvasRenderingContext2D, data: RecapImageData, ma
   ctx.font = `800 21px ${SANS_STACK}`;
   ctx.fillText(data.valueMoment.label.toUpperCase(), margin + 34, y + 48);
   ctx.font = `500 82px ${SERIF_STACK}`;
-  fillFitText(ctx, data.valueMoment.valueText, margin + 34, y + 126, RECAP_IMAGE_WIDTH - margin * 2 - 68, 82, SERIF_STACK, 500);
+  fillFitText(ctx, data.valueMoment.trophyText || data.valueMoment.valueText, margin + 34, y + 126, RECAP_IMAGE_WIDTH - margin * 2 - 68, 82, SERIF_STACK, 500);
   ctx.fillStyle = "rgba(24,23,20,0.66)";
   ctx.font = `600 25px ${SANS_STACK}`;
   fillFitText(ctx, data.valueMoment.subtitle, margin + 34, y + 172, RECAP_IMAGE_WIDTH - margin * 2 - 68, 25, SANS_STACK, 600);
