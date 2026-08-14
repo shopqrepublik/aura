@@ -208,11 +208,13 @@ function buildRecapHighlights(
   const favoriteArtwork = latestFavorite(input.seenArtworks, input.favoriteIds);
   const valueMoment = buildValueMoment(input.seenArtworks, input.locale);
   const achievement = achievements.find((a) => a.unlocked && a.id === "billion_euro_visitor")
-    || achievements.find((a) => a.unlocked && a.id === "market_giant")
+    || achievements.find((a) => a.unlocked && a.id === "ten_masterpieces")
     || achievements.find((a) => a.unlocked && a.id === "impressionist_trail")
     || achievements.find((a) => a.unlocked && a.id === "renaissance_explorer")
-    || achievements.find((a) => a.unlocked && a.id === "ten_masterpieces")
+    || achievements.find((a) => a.unlocked && a.id === "artist_explorer")
     || achievements.find((a) => a.unlocked && a.id === "curious_eye")
+    || achievements.find((a) => a.unlocked && a.id === "museum_explorer")
+    || achievements.find((a) => a.unlocked && a.id === "market_giant")
     || achievements.find((a) => a.unlocked)
     || null;
   return {

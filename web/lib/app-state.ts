@@ -222,7 +222,10 @@ export function useElyioApp() {
         status: result.status,
       });
 
-      artwork = await attachIndicativeValueIfEligible(artwork, state.museumName, artwork.why?.en || artwork.editorialStatus);
+      artwork = withCapturedScanFallbackImage(
+        await attachIndicativeValueIfEligible(artwork, state.museumName, artwork.why?.en || artwork.editorialStatus),
+        imageBase64
+      );
 
       setState((s) => {
         const next: AppState = {
@@ -434,6 +437,21 @@ function recordUncatalogedDiscovery(state: AppState, sighting: UncatalogedSighti
     seen: appendUnique(state.seen, sighting.id),
     lastActivityAt: Date.now(),
   };
+}
+
+function withCapturedScanFallbackImage(artwork: Artwork, imageBase64: string | null | undefined): Artwork {
+  if (hasReusableArtworkImage(artwork.imageUrl)) return artwork;
+  const captured = capturedImageDataUrl(imageBase64);
+  if (!captured) return artwork;
+  return { ...artwork, imageUrl: captured, image: captured };
+}
+
+function hasReusableArtworkImage(url: string | null | undefined): boolean {
+  if (!url) return false;
+  if (/^data:image\/svg\+xml/i.test(url)) {
+    return !/(ELYIO|AI recognized|Recognized artwork)/i.test(decodeURIComponent(url));
+  }
+  return /^data:image\//i.test(url) || /^https?:\/\//i.test(url);
 }
 
 function uncatalogedPlaceholderImage(): string {
