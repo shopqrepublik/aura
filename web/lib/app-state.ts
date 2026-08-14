@@ -176,7 +176,7 @@ export function useElyioApp() {
             state.museumName
           );
           setState((s) => persistVisitState(applyVisitGameUnlocks({
-            ...s,
+            ...recordUncatalogedDiscovery(s, sighting, s.locale),
             uncatalogedSighting: sighting,
             currentArtwork: null,
             scanStatus: null,
@@ -226,12 +226,10 @@ export function useElyioApp() {
 
       setState((s) => {
         const next: AppState = {
-          ...s,
-          catalogArtworks: getArtwork(artwork.id) ? s.catalogArtworks : { ...s.catalogArtworks, [artwork.id]: artwork },
+          ...recordCatalogDiscovery(s, artwork, result.confidence),
           currentArtwork: artwork,
           uncatalogedSighting: null,
           lastConfidence: result.confidence,
-          seen: s.seen,
           scanStatus: null,
           pendingRecognitionImageBase64: null,
           screen: "card",
@@ -257,17 +255,12 @@ export function useElyioApp() {
     setState((s) => {
       if (!s.currentArtwork) return s;
       const id = s.currentArtwork.id;
+      if (s.added.has(id) && s.seen.includes(id)) return s;
       const nextAdded = new Set(s.added);
-      const wasAdded = nextAdded.has(id);
-      if (wasAdded) {
-        nextAdded.delete(id);
-      } else {
-        nextAdded.add(id);
-        track("artwork_added", { artwork_id: id });
-        if (s.visitId) api.addVisitArtwork(s.visitId, id, s.lastConfidence).catch(() => {});
-      }
-      const nextSeen = s.seen.filter((seenId) => seenId !== id);
-      if (!wasAdded) nextSeen.push(id);
+      nextAdded.add(id);
+      track("artwork_added", { artwork_id: id, source: "manual_confirm" });
+      if (s.visitId) api.addVisitArtwork(s.visitId, id, s.lastConfidence).catch(() => {});
+      const nextSeen = appendUnique(s.seen, id);
       return persistVisitState(applyVisitGameUnlocks({ ...s, added: nextAdded, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
@@ -276,23 +269,19 @@ export function useElyioApp() {
     setState((s) => {
       if (!s.uncatalogedSighting) return s;
       const id = s.uncatalogedSighting.id;
+      if (s.uncatalogedAdded.has(id) && s.seen.includes(id)) return s;
       const nextAdded = new Set(s.uncatalogedAdded);
       const nextCatalogArtworks = { ...s.catalogArtworks };
-      const nextSeen = s.seen.filter((seenId) => seenId !== id);
-      if (nextAdded.has(id)) {
-        nextAdded.delete(id);
-        delete nextCatalogArtworks[id];
-      } else {
-        nextAdded.add(id);
-        nextCatalogArtworks[id] = uncatalogedArtworkForVisit(s.uncatalogedSighting, s.locale);
-        nextSeen.push(id);
-        track("artwork_added", {
-          artwork_id: id,
-          result_type: "uncataloged",
-          artist: s.uncatalogedSighting.artist,
-          title: s.uncatalogedSighting.title,
-        });
-      }
+      nextAdded.add(id);
+      nextCatalogArtworks[id] = uncatalogedArtworkForVisit(s.uncatalogedSighting, s.locale);
+      const nextSeen = appendUnique(s.seen, id);
+      track("artwork_added", {
+        artwork_id: id,
+        result_type: "uncataloged",
+        source: "manual_confirm",
+        artist: s.uncatalogedSighting.artist,
+        title: s.uncatalogedSighting.title,
+      });
       return persistVisitState(applyVisitGameUnlocks({ ...s, uncatalogedAdded: nextAdded, catalogArtworks: nextCatalogArtworks, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
@@ -304,18 +293,18 @@ export function useElyioApp() {
       const next = new Set(s.favorites);
       const favoriteOrder = s.favoriteOrder.filter((favoriteId) => favoriteId !== id);
       const nextAdded = new Set(s.added);
-      const nextSeen = s.seen.filter((seenId) => seenId !== id);
       if (next.has(id)) {
         next.delete(id);
       } else {
         next.add(id);
         favoriteOrder.push(id);
         nextAdded.add(id);
-        nextSeen.push(id);
+        if (!s.seen.includes(id)) track("artwork_added", { artwork_id: id, source: "favorite_backfill" });
         if (s.visitId) api.addVisitArtwork(s.visitId, id, s.lastConfidence).catch(() => {});
         track("artwork_favorited", { artwork_id: id });
         track("favorite_added", { artwork_id: id });
       }
+      const nextSeen = appendUnique(s.seen, id);
       return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, added: nextAdded, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
@@ -328,7 +317,6 @@ export function useElyioApp() {
       const favoriteOrder = s.favoriteOrder.filter((favoriteId) => favoriteId !== id);
       const nextCatalogArtworks = { ...s.catalogArtworks };
       const nextAdded = new Set(s.uncatalogedAdded);
-      const nextSeen = s.seen.filter((seenId) => seenId !== id);
       if (next.has(id)) {
         next.delete(id);
       } else {
@@ -336,10 +324,13 @@ export function useElyioApp() {
         favoriteOrder.push(id);
         nextAdded.add(id);
         if (!nextCatalogArtworks[id]) nextCatalogArtworks[id] = uncatalogedArtworkForVisit(s.uncatalogedSighting, s.locale);
-        nextSeen.push(id);
+        if (!s.seen.includes(id)) {
+          track("artwork_added", { artwork_id: id, result_type: "uncataloged", source: "favorite_backfill" });
+        }
         track("artwork_favorited", { artwork_id: id, result_type: "uncataloged" });
         track("favorite_added", { artwork_id: id, result_type: "uncataloged" });
       }
+      const nextSeen = appendUnique(s.seen, id);
       return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, uncatalogedAdded: nextAdded, catalogArtworks: nextCatalogArtworks, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
@@ -397,6 +388,51 @@ export function useElyioApp() {
       dismissAchievementToast,
       dismissMissionToast,
     },
+  };
+}
+
+function appendUnique(ids: string[], id: string): string[] {
+  return ids.includes(id) ? ids : [...ids, id];
+}
+
+function recordCatalogDiscovery(state: AppState, artwork: Artwork, confidence: number): AppState {
+  const alreadySeen = state.seen.includes(artwork.id);
+  const nextAdded = new Set(state.added);
+  nextAdded.add(artwork.id);
+  if (!alreadySeen) {
+    track("artwork_added", { artwork_id: artwork.id, source: "auto_sighting" });
+    if (state.visitId) api.addVisitArtwork(state.visitId, artwork.id, confidence).catch(() => {});
+  }
+  return {
+    ...state,
+    added: nextAdded,
+    catalogArtworks: getArtwork(artwork.id) ? state.catalogArtworks : { ...state.catalogArtworks, [artwork.id]: artwork },
+    seen: appendUnique(state.seen, artwork.id),
+    lastActivityAt: Date.now(),
+  };
+}
+
+function recordUncatalogedDiscovery(state: AppState, sighting: UncatalogedSighting, locale: Locale): AppState {
+  const alreadySeen = state.seen.includes(sighting.id);
+  const nextAdded = new Set(state.uncatalogedAdded);
+  const nextCatalogArtworks = { ...state.catalogArtworks };
+  nextAdded.add(sighting.id);
+  nextCatalogArtworks[sighting.id] = uncatalogedArtworkForVisit(sighting, locale);
+  if (!alreadySeen) {
+    track("artwork_added", {
+      artwork_id: sighting.id,
+      result_type: "uncataloged",
+      source: "auto_sighting",
+      artist: sighting.artist,
+      title: sighting.title,
+    });
+  }
+  return {
+    ...state,
+    uncatalogedAdded: nextAdded,
+    catalogArtworks: nextCatalogArtworks,
+    seen: appendUnique(state.seen, sighting.id),
+    lastActivityAt: Date.now(),
   };
 }
 

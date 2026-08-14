@@ -377,7 +377,7 @@ function camelValueReveal(raw: Record<string, unknown> | null | undefined, local
   if (raw.mode === "AI_INDICATIVE_ESTIMATE") {
     const estimate = (raw.ai_indicative_estimate || raw.aiIndicativeEstimate || {}) as Record<string, unknown>;
     const version = typeof estimate.version === "string" ? estimate.version : "";
-    if (version !== "ai-indicative-estimate-v3") return null;
+    if (version !== "ai-indicative-estimate-v4") return null;
     const lowEur = Number(estimate.low_eur ?? estimate.lowEur);
     const highEur = Number(estimate.high_eur ?? estimate.highEur);
     if (!Number.isFinite(lowEur) || !Number.isFinite(highEur)) return null;

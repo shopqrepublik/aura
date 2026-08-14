@@ -1416,7 +1416,7 @@ class IndicativeValueResponse(BaseModel):
     estimate: Optional[IndicativeEstimate] = None
 
 
-INDICATIVE_VALUE_VERSION = "ai-indicative-estimate-v3"
+INDICATIVE_VALUE_VERSION = "ai-indicative-estimate-v4"
 INDICATIVE_VALUE_DISCLAIMER = (
     "ELYIO indicative estimate for scale only; not an appraisal, insurance value, offer price, or sale estimate."
 )
@@ -1491,13 +1491,26 @@ def _normalize_indicative_estimate(data: Dict[str, Any], req: IndicativeValueReq
         }, ensure_ascii=False))
         return None
     low_eur, high_eur = VALUATION_BANDS[band_id]
-    context_cap = _market_context_high_cap_eur(req)
-    if context_cap and high_eur > context_cap:
-        band_id = _highest_band_with_high_at_or_below(context_cap)
+    confidence = str(data.get("confidence") or "LOW").upper()
+    if confidence not in {"HIGH", "MEDIUM", "LOW"}:
+        confidence = "LOW"
+    high_cap_eur = _indicative_high_cap_eur(req, confidence)
+    if high_eur > high_cap_eur:
+        original_band = band_id
+        band_id = _highest_band_with_high_at_or_below(high_cap_eur)
         low_eur, high_eur = VALUATION_BANDS[band_id]
-    elif not context_cap and high_eur > 200_000_000:
-        band_id = "V11"
-        low_eur, high_eur = VALUATION_BANDS[band_id]
+        print(json.dumps({
+            "event": "indicative_value_band_downgraded",
+            "version": INDICATIVE_VALUE_VERSION,
+            "reason": "market_anchor_or_confidence_cap",
+            "artist": req.artist,
+            "title": req.title,
+            "original_band": original_band,
+            "accepted_band": band_id,
+            "confidence": confidence,
+            "cap_eur": high_cap_eur,
+            "has_market_anchor": bool(req.existing_market_context and req.existing_market_context.amountMillions),
+        }, ensure_ascii=False))
     if not (math.isfinite(low_eur) and math.isfinite(high_eur)):
         return None
     if not (low_eur > 0 and high_eur > low_eur):
@@ -1505,19 +1518,6 @@ def _normalize_indicative_estimate(data: Dict[str, Any], req: IndicativeValueReq
     if high_eur / low_eur > 10:
         return None
     if high_eur > MAX_AI_INDICATIVE_EUR:
-        return None
-    confidence = str(data.get("confidence") or "LOW").upper()
-    if confidence not in {"HIGH", "MEDIUM", "LOW"}:
-        confidence = "LOW"
-    if confidence == "LOW" and band_id in {"V13", "V14"}:
-        print(json.dumps({
-            "event": "indicative_value_rejected",
-            "version": INDICATIVE_VALUE_VERSION,
-            "reason": "low_confidence_too_high",
-            "band": band_id,
-            "artist": req.artist,
-            "title": req.title,
-        }, ensure_ascii=False))
         return None
     assumptions = data.get("assumptions")
     if not isinstance(assumptions, list):
@@ -1539,6 +1539,20 @@ def _normalize_indicative_estimate(data: Dict[str, Any], req: IndicativeValueReq
         "grounding_fingerprint": fingerprint,
         "disclaimer": INDICATIVE_VALUE_DISCLAIMER,
     }
+
+
+def _indicative_high_cap_eur(req: IndicativeValueRequest, confidence: str) -> float:
+    context_cap = _market_context_high_cap_eur(req, confidence)
+    if context_cap:
+        return context_cap
+    # No trusted artist-market anchor means museum fame alone cannot justify
+    # the top of the ladder. LOW confidence remains display-only on the
+    # frontend and is intentionally capped at a modest broad range.
+    if confidence == "HIGH":
+        return 120_000_000
+    if confidence == "MEDIUM":
+        return 70_000_000
+    return 10_000_000
 
 
 def _heuristic_indicative_estimate(req: IndicativeValueRequest, fingerprint: str) -> Optional[dict]:
@@ -1582,7 +1596,7 @@ def _valuation_band_for_midpoint_eur(midpoint_eur: float) -> str:
     return "V14"
 
 
-def _market_context_high_cap_eur(req: IndicativeValueRequest) -> Optional[float]:
+def _market_context_high_cap_eur(req: IndicativeValueRequest, confidence: str) -> Optional[float]:
     context = req.existing_market_context
     if not context or not context.amountMillions or not context.currency:
         return None
@@ -1590,7 +1604,8 @@ def _market_context_high_cap_eur(req: IndicativeValueRequest) -> Optional[float]
     context_eur = context.amountMillions * multiplier * 1_000_000
     if not math.isfinite(context_eur) or context_eur <= 0:
         return None
-    return min(MAX_AI_INDICATIVE_EUR, context_eur * 4)
+    cap_multiple = 3.0 if confidence == "HIGH" else 2.5 if confidence == "MEDIUM" else 1.25
+    return min(MAX_AI_INDICATIVE_EUR, context_eur * cap_multiple)
 
 
 def _highest_band_with_high_at_or_below(max_high_eur: float) -> str:
@@ -1626,6 +1641,8 @@ def indicative_value(req: IndicativeValueRequest):
         "You must choose exactly one valuation_band_id from this EUR ladder; do not output raw money numbers. "
         "Bands: V01 €0.1-0.25M; V02 €0.25-0.5M; V03 €0.5-1M; V04 €1-2M; V05 €2-5M; V06 €5-10M; V07 €10-20M; "
         "V08 €20-40M; V09 €40-70M; V10 €70-120M; V11 €120-200M; V12 €200-350M; V13 €350-600M; V14 €600M-1B. "
+        "If trusted artist-market context is supplied, do not choose a band many multiples above it unless the supplied facts make exceptional importance explicit. "
+        "If no trusted market context is supplied, do not use museum fame alone to choose V11 or above. "
         "If evidence is weak, choose LOW confidence and a conservative band rather than fake precision. "
         "Respond with one strict JSON object only: "
         '{"valuation_band_id":"V01|V02|...|V14","confidence":"HIGH|MEDIUM|LOW","short_reason":"...","assumptions":["..."]}'

@@ -330,7 +330,7 @@ function shareText(state: AppState, game: ReturnType<typeof buildVisitGame>): st
   const museum = state.museumName || "ELYIO";
   const works = game.metrics.artworksCount;
   const artists = game.metrics.artistsCount;
-  if (state.locale === "fr") return `${works} œuvres, ${artists} artistes — ${museum} — ELYIO`;
+  if (state.locale === "fr") return `${works} ${works === 1 ? "œuvre" : "œuvres"}, ${artists} ${artists === 1 ? "artiste" : "artistes"} — ${museum} — ELYIO`;
   if (state.locale === "zh-Hans") return `${museum}：${works}件作品，${artists}位艺术家 — ELYIO`;
-  return `${works} artworks, ${artists} artists — ${museum} — ELYIO`;
+  return `${works} ${works === 1 ? "artwork" : "artworks"}, ${artists} ${artists === 1 ? "artist" : "artists"} — ${museum} — ELYIO`;
 }

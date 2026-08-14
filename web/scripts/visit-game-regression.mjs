@@ -17,7 +17,10 @@ assert(visitGameSource.includes('kind: "indicative_total"'), "Indicative total v
 assert(visitGameSource.includes('kind: "market_context"'), "Biggest market moment fallback missing");
 assert(visitGameSource.includes("valueRevealNumericContext"), "Market moment should use trusted value reveal numeric context");
 assert(!visitGameSource.includes("estimatedValueHigh += numeric"), "Market context must not be summed as estimate");
-assert(appStateSource.includes("nextAdded.add(id);") && appStateSource.includes("nextSeen.push(id);"), "Favoriting must preserve the work in the canonical visit summary");
+assert(appStateSource.includes("recordCatalogDiscovery") && appStateSource.includes("recordUncatalogedDiscovery"), "Successful recognitions must auto-record visit discoveries");
+assert(appStateSource.includes('source: "auto_sighting"'), "Auto-sightings must be distinguishable from manual/favorite actions");
+assert(appStateSource.includes("appendUnique"), "Visit discoveries must dedupe repeated scans");
+assert(!appStateSource.includes("nextAdded.delete(id);"), "Add-to-visit must not remove successful discoveries from the canonical visit summary");
 assert(appStateSource.includes("elyio-current-visit-v2"), "Anonymous visit local persistence/version invalidation missing");
 assert(appStateSource.includes("favoriteOrder"), "Favorite order persistence missing");
 assert(appStateSource.includes('track("achievement_unlocked"'), "Achievement analytics missing");

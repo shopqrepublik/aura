@@ -245,7 +245,7 @@ export function valueRevealNumericContext(valueReveal: ValueReveal | null): { am
     };
   }
   if (valueReveal.mode === "AI_INDICATIVE_ESTIMATE") {
-    if (valueReveal.aiIndicativeEstimate.version !== "ai-indicative-estimate-v3") return null;
+    if (valueReveal.aiIndicativeEstimate.version !== "ai-indicative-estimate-v4") return null;
     if (valueReveal.aiIndicativeEstimate.highEur > 1_000_000_000) return null;
     return {
       amountMillions: ((valueReveal.aiIndicativeEstimate.lowEur + valueReveal.aiIndicativeEstimate.highEur) / 2) / 1_000_000,

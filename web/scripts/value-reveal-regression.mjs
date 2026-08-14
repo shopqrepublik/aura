@@ -35,7 +35,8 @@ function getIndicativeEligibleValue(artwork) {
   if (reveal?.mode === "ESTIMATED_VALUE" && reveal.aggregateValueEligible === true) return reveal.estimatedValue;
   if (reveal?.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) {
     const estimate = reveal.aiIndicativeEstimate;
-    if (estimate.version !== "ai-indicative-estimate-v3") return null;
+    if (estimate.version !== "ai-indicative-estimate-v4") return null;
+    if (estimate.confidence === "LOW") return null;
     if (!Number.isFinite(estimate.lowEur) || !Number.isFinite(estimate.highEur)) return null;
     if (estimate.lowEur <= 0 || estimate.highEur <= estimate.lowEur || estimate.highEur > 1_000_000_000) return null;
     return { low: estimate.lowEur / 1_000_000, high: estimate.highEur / 1_000_000, currency: estimate.currency };
@@ -152,9 +153,30 @@ const aiIndicative = {
       confidence: "MEDIUM",
       shortReason: "Hypothetical scale estimate.",
       assumptions: ["Museum work is not for sale."],
-      version: "ai-indicative-estimate-v3",
+      version: "ai-indicative-estimate-v4",
       generatedAt: new Date().toISOString(),
       groundingFingerprint: "test",
+    },
+  },
+};
+const lowConfidenceAiIndicative = {
+  id: "low-ai-indicative",
+  estimate: { low: null, high: null },
+  valueReveal: {
+    mode: "AI_INDICATIVE_ESTIMATE",
+    aggregateValueEligible: false,
+    indicativeAggregateEligible: true,
+    aiIndicativeEstimate: {
+      lowEur: 5_000_000,
+      highEur: 10_000_000,
+      currency: "EUR",
+      valuationBandId: "V06",
+      confidence: "LOW",
+      shortReason: "Low-confidence broad context.",
+      assumptions: ["Display-only context."],
+      version: "ai-indicative-estimate-v4",
+      generatedAt: new Date().toISOString(),
+      groundingFingerprint: "low",
     },
   },
 };
@@ -211,6 +233,7 @@ assert(summary.indicativeValueLow === 70 && summary.indicativeValueHigh === 100,
 assert(summary.hasIndicativeValue === true, "AI_INDICATIVE_ESTIMATE should set indicative total state");
 assert(getMostValuableArtwork([aiIndicative]) === null, "AI_INDICATIVE_ESTIMATE cannot be most valuable reviewed artwork");
 assert(summarizeVisitValue([staleAiIndicative]).hasIndicativeValue === false, "Stale/catastrophic AI values must not enter totals");
+assert(summarizeVisitValue([lowConfidenceAiIndicative]).hasIndicativeValue === false, "LOW-confidence AI indicative values must not enter visit totals or monetary achievements");
 
 summary = summarizeVisitValue([beyondMarket]);
 assert(summary.estimatedValueHigh === 0, "BEYOND_MARKET must contribute zero to totals");

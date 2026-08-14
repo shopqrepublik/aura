@@ -91,7 +91,7 @@ const aiIndicativeReveal = {
     confidence: "MEDIUM",
     shortReason: "QA",
     assumptions: [],
-    version: "ai-indicative-estimate-v3",
+    version: "ai-indicative-estimate-v4",
     generatedAt: new Date().toISOString(),
     groundingFingerprint: "qa",
   },

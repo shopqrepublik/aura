@@ -3,7 +3,7 @@ import { getArtistMarketContext } from "./generated-enrichment";
 import { getArtworkValueReveal } from "./valueReveal";
 import type { Artwork, ValueReveal } from "./types";
 
-export const VALUATION_ENGINE_VERSION = "ai-indicative-estimate-v3";
+export const VALUATION_ENGINE_VERSION = "ai-indicative-estimate-v4";
 
 const VALUATION_BANDS: Record<string, { lowEur: number; highEur: number }> = {
   V01: { lowEur: 100_000, highEur: 250_000 },
@@ -104,7 +104,9 @@ export function localIndicativeEstimateFallback(input: IndicativeValueInput): Va
   const eurMillions = toEurMillions(context.amountMillions, context.currency);
   if (!eurMillions) return null;
   const significance = significanceMultiplier(input);
-  const band = valuationBandForMidpoint(eurMillions * ((significance.low + significance.high) / 2) * 1_000_000);
+  const confidence = context.confidence === "HIGH" ? "MEDIUM" : "LOW";
+  const midpointEur = eurMillions * ((significance.low + significance.high) / 2) * 1_000_000;
+  const band = capBandForConfidence(valuationBandForMidpoint(midpointEur), context, confidence);
   return {
     mode: "AI_INDICATIVE_ESTIMATE",
     aggregateValueEligible: false,
@@ -114,7 +116,7 @@ export function localIndicativeEstimateFallback(input: IndicativeValueInput): Va
       highEur: band.highEur,
       currency: "EUR",
       valuationBandId: band.id,
-      confidence: context.confidence === "HIGH" ? "MEDIUM" : "LOW",
+      confidence,
       shortReason: "ELYIO indicative estimate derived from trusted artist-market context and broad artwork comparability.",
       assumptions: [
         "Hypothetical scale estimate only.",
@@ -203,4 +205,23 @@ function valuationBandForMidpoint(midpointEur: number): { id: string; lowEur: nu
     if (midpointEur >= band.lowEur && midpointEur <= band.highEur) return { id, ...band };
   }
   return { id: "V14", ...VALUATION_BANDS.V14 };
+}
+
+function capBandForConfidence(
+  band: { id: string; lowEur: number; highEur: number },
+  context: NonNullable<IndicativeValueInput["existingMarketContext"]>,
+  confidence: "HIGH" | "MEDIUM" | "LOW"
+): { id: string; lowEur: number; highEur: number } {
+  const contextMillions = toEurMillions(context.amountMillions || 0, context.currency || "");
+  const contextCap = contextMillions
+    ? contextMillions * 1_000_000 * (confidence === "HIGH" ? 3.0 : confidence === "MEDIUM" ? 2.5 : 1.25)
+    : null;
+  const confidenceCap = confidence === "HIGH" ? 120_000_000 : confidence === "MEDIUM" ? 70_000_000 : 10_000_000;
+  const cap = Math.min(contextCap || confidenceCap, 1_000_000_000);
+  if (band.highEur <= cap) return band;
+  let selected = { id: "V01", ...VALUATION_BANDS.V01 };
+  for (const [id, candidate] of Object.entries(VALUATION_BANDS)) {
+    if (candidate.highEur <= cap) selected = { id, ...candidate };
+  }
+  return selected;
 }

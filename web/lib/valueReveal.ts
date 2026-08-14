@@ -67,6 +67,7 @@ export function getIndicativeEligibleValue(artwork: Artwork): AggregateEligibleV
   }
   if (reveal.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) {
     if (!isValidAIIndicativeEstimate(reveal.aiIndicativeEstimate)) return null;
+    if (reveal.aiIndicativeEstimate.confidence === "LOW") return null;
     return {
       low: reveal.aiIndicativeEstimate.lowEur / 1_000_000,
       high: reveal.aiIndicativeEstimate.highEur / 1_000_000,
@@ -227,7 +228,7 @@ export function formatValueRevealHeadline(valueReveal: ValueReveal | null, local
 
 export function isValidAIIndicativeEstimate(estimate: AIIndicativeEstimateReveal["aiIndicativeEstimate"] | undefined): boolean {
   if (!estimate) return false;
-  if (estimate.version !== "ai-indicative-estimate-v3") return false;
+  if (estimate.version !== "ai-indicative-estimate-v4") return false;
   if (estimate.currency !== "EUR") return false;
   if (!/^V(0[1-9]|1[0-4])$/.test(estimate.valuationBandId || "")) return false;
   if (!Number.isFinite(estimate.lowEur) || !Number.isFinite(estimate.highEur)) return false;
