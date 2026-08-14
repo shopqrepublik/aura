@@ -8,7 +8,7 @@ import { isRecognitionNetworkError } from "./recognitionErrors";
 import { buildGeneratedEnrichment, generatedValueReveal, type GeneratedEnrichment } from "./generated-enrichment";
 import { attachIndicativeValueIfEligible, fetchIndicativeValueReveal } from "./indicative-value";
 import { buildVisitGame } from "./visit-game";
-import type { Artwork, Locale, Mode, ValueReveal } from "./types";
+import type { Artwork, ArtworkImageSourceType, Locale, Mode, ValueReveal } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
 
@@ -440,18 +440,43 @@ function recordUncatalogedDiscovery(state: AppState, sighting: UncatalogedSighti
 }
 
 function withCapturedScanFallbackImage(artwork: Artwork, imageBase64: string | null | undefined): Artwork {
-  if (hasReusableArtworkImage(artwork.imageUrl)) return artwork;
+  if (hasReusableArtworkImage(artwork)) return artwork;
   const captured = capturedImageDataUrl(imageBase64);
   if (!captured) return artwork;
-  return { ...artwork, imageUrl: captured, image: captured };
+  return { ...artwork, imageUrl: captured, image: captured, imageSourceType: "VISITOR_CAPTURE", imageSourceId: imageSourceId(captured) };
 }
 
-function hasReusableArtworkImage(url: string | null | undefined): boolean {
-  if (!url) return false;
+function hasReusableArtworkImage(artwork: Artwork): boolean {
+  const classified = artwork.imageSourceType || classifyArtworkImageSource(artwork.imageUrl);
+  return classified === "REFERENCE_REAL" || classified === "VISITOR_CAPTURE";
+}
+
+function classifyArtworkImageSource(url: string | null | undefined): ArtworkImageSourceType {
+  if (!url) return "PLACEHOLDER";
+  if (/^https?:\/\//i.test(url)) return "REFERENCE_REAL";
+  if (/^data:image\/(jpeg|jpg|png|webp)/i.test(url)) return "VISITOR_CAPTURE";
   if (/^data:image\/svg\+xml/i.test(url)) {
-    return !/(ELYIO|AI recognized|Recognized artwork)/i.test(decodeURIComponent(url));
+    const decoded = safeDecodeImageDataUrl(url);
+    return /(ELYIO|AI recognized|Recognized artwork)/i.test(decoded) ? "PLACEHOLDER" : "REFERENCE_REAL";
   }
-  return /^data:image\//i.test(url) || /^https?:\/\//i.test(url);
+  return "PLACEHOLDER";
+}
+
+function safeDecodeImageDataUrl(url: string): string {
+  try {
+    return decodeURIComponent(url);
+  } catch {
+    return url;
+  }
+}
+
+function imageSourceId(url: string): string {
+  let hash = 2166136261;
+  for (let i = 0; i < url.length; i++) {
+    hash ^= url.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+  return `image:${(hash >>> 0).toString(16)}`;
 }
 
 function uncatalogedPlaceholderImage(): string {
@@ -581,6 +606,8 @@ function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Local
   const normal = sighting.enrichment.content[locale]?.normal || sighting.enrichment.content.en.normal;
   const simple = sighting.enrichment.content[locale]?.simple || sighting.enrichment.content.en.simple;
   const kids = sighting.enrichment.content[locale]?.kids || sighting.enrichment.content.en.kids;
+  const imageUrl = sighting.imageUrl || uncatalogedPlaceholderImage();
+  const imageSourceType: ArtworkImageSourceType = sighting.imageUrl ? "VISITOR_CAPTURE" : "PLACEHOLDER";
   return {
     id: sighting.id,
     artist,
@@ -588,7 +615,9 @@ function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Local
     hall: null,
     inventoryNumber: sighting.id,
     image: "AI",
-    imageUrl: sighting.imageUrl || uncatalogedPlaceholderImage(),
+    imageUrl,
+    imageSourceType,
+    imageSourceId: sighting.imageUrl ? imageSourceId(sighting.imageUrl) : "placeholder:uncataloged",
     accent: "#8C6A4C",
     priority: "uncataloged",
     needsEditorialReview: true,

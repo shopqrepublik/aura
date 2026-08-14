@@ -94,6 +94,7 @@ export interface BeyondMarketReveal {
 }
 
 export type ValueReveal = EstimatedValueReveal | AIIndicativeEstimateReveal | MarketContextReveal | BeyondMarketReveal;
+export type ArtworkImageSourceType = "REFERENCE_REAL" | "VISITOR_CAPTURE" | "PLACEHOLDER";
 
 export interface Artwork {
   id: string;
@@ -105,6 +106,8 @@ export interface Artwork {
   inventoryNumber: string;
   image: string;
   imageUrl: string;
+  imageSourceType?: ArtworkImageSourceType;
+  imageSourceId?: string;
   accent: string;
   priority: string;
   needsEditorialReview: boolean;

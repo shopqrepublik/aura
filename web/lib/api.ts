@@ -555,6 +555,8 @@ export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
   const kidsWhy = modeText(raw, "kids", "analogy", why);
   const simpleHasOnlyOpening = simpleWhy.en !== normalWhy.en && modeText(raw, "simple", "where_to_look", normalWhereText).en === normalWhereText;
   const kidsHasOnlyOpening = kidsWhy.en !== normalWhy.en && modeText(raw, "kids", "where_to_look", normalWhereText).en === normalWhereText;
+  const resolvedImageUrl = raw.image_url || APPROVED_IMAGE_OVERRIDES[raw.id] || louvrePlaceholderImage();
+  const imageSourceType = raw.image_url || APPROVED_IMAGE_OVERRIDES[raw.id] ? "REFERENCE_REAL" : "PLACEHOLDER";
 
   return {
     id: raw.id,
@@ -565,7 +567,9 @@ export function artworkFromCatalogDetail(raw: CatalogArtworkResponse): Artwork {
     hall: room,
     inventoryNumber: raw.inventory_number || raw.id,
     image: "L",
-    imageUrl: raw.image_url || APPROVED_IMAGE_OVERRIDES[raw.id] || louvrePlaceholderImage(),
+    imageUrl: resolvedImageUrl,
+    imageSourceType,
+    imageSourceId: imageSourceType === "REFERENCE_REAL" ? `catalog:${raw.id}` : "placeholder:elyio",
     accent: "#8C6A4C",
     priority: raw.priority == null ? "" : String(raw.priority),
     needsEditorialReview: raw.needs_editorial_review ?? true,

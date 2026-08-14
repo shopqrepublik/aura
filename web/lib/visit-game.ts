@@ -110,10 +110,16 @@ export function visitDisplayMuseumName(museumName: string | null | undefined, lo
 }
 
 export function visitHeadline(museumName: string | null | undefined, locale: Locale, shortVisit = false): string {
-  const museum = visitDisplayMuseumName(museumName, locale);
+  const museum = visitHeadlineMuseumName(museumName, locale);
   if (locale === "fr") return shortVisit ? `MA DÉCOUVERTE AU ${museum}` : `MA VISITE AU ${museum}`;
   if (locale === "zh-Hans") return shortVisit ? `我的${museum}发现` : `我的${museum}参观`;
   return shortVisit ? `MY ${museum.toUpperCase()} DISCOVERY` : `MY ${museum.toUpperCase()} VISIT`;
+}
+
+function visitHeadlineMuseumName(museumName: string | null | undefined, locale: Locale): string {
+  const museum = visitDisplayMuseumName(museumName, locale);
+  if (/musée\s+du\s+louvre|louvre/i.test(museum)) return locale === "zh-Hans" ? "卢浮宫" : "Louvre";
+  return museum;
 }
 
 export function formatDuration(minutes: number, locale: Locale): string {

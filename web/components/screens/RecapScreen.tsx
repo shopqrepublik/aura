@@ -175,7 +175,13 @@ export default function RecapScreen({
         {heroArtwork && (
           <div className="absolute inset-x-0 top-0 h-[46%] opacity-[0.28] pointer-events-none overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={heroArtwork.imageUrl} alt="" className="w-full h-full object-cover grayscale-[15%] contrast-110" />
+            <img
+              src={heroArtwork.imageUrl}
+              alt=""
+              data-image-source-type={heroArtwork.imageSourceType || "UNKNOWN"}
+              data-image-source-id={heroArtwork.imageSourceId || ""}
+              className="w-full h-full object-cover grayscale-[15%] contrast-110"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#11100E]/35 to-[#11100E]" />
           </div>
         )}
@@ -206,7 +212,13 @@ export default function RecapScreen({
               {heroArtwork && (
                 <div className="aspect-[4/3] bg-[#2F3730] overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={heroArtwork.imageUrl} alt="" className="w-full h-full object-cover" />
+                  <img
+                    src={heroArtwork.imageUrl}
+                    alt=""
+                    data-image-source-type={heroArtwork.imageSourceType || "UNKNOWN"}
+                    data-image-source-id={heroArtwork.imageSourceId || ""}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               )}
               <div className="p-4">

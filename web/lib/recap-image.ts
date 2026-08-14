@@ -73,7 +73,7 @@ async function paintHero(ctx: CanvasRenderingContext2D, data: RecapImageData, wi
   const heroY = 520;
   const heroW = width - 172;
   const heroH = 570;
-  if (artwork?.imageUrl) {
+  if (artwork?.imageUrl && selectedImageSourceType(artwork) !== "PLACEHOLDER") {
     try {
       const url = /^https?:\/\/(upload|commons)\.wikimedia\.org\//i.test(artwork.imageUrl)
         ? proxyImageUrl(artwork.imageUrl, 1600)
@@ -125,6 +125,22 @@ async function paintHero(ctx: CanvasRenderingContext2D, data: RecapImageData, wi
     ctx.ellipse(width * 0.5, heroY + 270 + i * 14, 300 - i * 22, 72 + i * 6, -0.08, 0, Math.PI * 2);
     ctx.stroke();
   }
+}
+
+function selectedImageSourceType(artwork: Artwork): "REFERENCE_REAL" | "VISITOR_CAPTURE" | "PLACEHOLDER" {
+  if (artwork.imageSourceType) return artwork.imageSourceType;
+  const url = artwork.imageUrl;
+  if (!url) return "PLACEHOLDER";
+  if (/^https?:\/\//i.test(url)) return "REFERENCE_REAL";
+  if (/^data:image\/(jpeg|jpg|png|webp)/i.test(url)) return "VISITOR_CAPTURE";
+  if (/^data:image\/svg\+xml/i.test(url)) {
+    try {
+      return /(ELYIO|AI recognized|Recognized artwork)/i.test(decodeURIComponent(url)) ? "PLACEHOLDER" : "REFERENCE_REAL";
+    } catch {
+      return "PLACEHOLDER";
+    }
+  }
+  return "PLACEHOLDER";
 }
 
 function paintTrophyBackground(ctx: CanvasRenderingContext2D, width: number, height: number): void {

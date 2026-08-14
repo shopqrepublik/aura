@@ -21,6 +21,10 @@ assert(appStateSource.includes("recordCatalogDiscovery") && appStateSource.inclu
 assert(appStateSource.includes('source: "auto_sighting"'), "Auto-sightings must be distinguishable from manual/favorite actions");
 assert(appStateSource.includes("appendUnique"), "Visit discoveries must dedupe repeated scans");
 assert(!appStateSource.includes("nextAdded.delete(id);"), "Add-to-visit must not remove successful discoveries from the canonical visit summary");
+assert(appStateSource.includes('imageSourceType: "VISITOR_CAPTURE"'), "Visitor-captured scans must be explicitly marked as VISITOR_CAPTURE");
+assert(appStateSource.includes('return "PLACEHOLDER"'), "Placeholder images must be explicitly classified as PLACEHOLDER");
+assert(appStateSource.includes("withCapturedScanFallbackImage"), "Catalog placeholder images must be replaceable by the captured scan");
+assert(recapImageSource.includes('selectedImageSourceType(artwork) !== "PLACEHOLDER"'), "Share-card canvas must not draw placeholders as trophy hero artwork");
 assert(appStateSource.includes("elyio-current-visit-v2"), "Anonymous visit local persistence/version invalidation missing");
 assert(appStateSource.includes("favoriteOrder"), "Favorite order persistence missing");
 assert(appStateSource.includes('track("achievement_unlocked"'), "Achievement analytics missing");
