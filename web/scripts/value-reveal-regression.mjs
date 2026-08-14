@@ -30,22 +30,37 @@ function getAggregateEligibleValue(artwork) {
   return reveal.estimatedValue;
 }
 
+function getIndicativeEligibleValue(artwork) {
+  const reveal = getArtworkValueReveal(artwork);
+  if (reveal?.mode === "ESTIMATED_VALUE" && reveal.aggregateValueEligible === true) return reveal.estimatedValue;
+  if (reveal?.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) return reveal.aiIndicativeEstimate;
+  return null;
+}
+
 function summarizeVisitValue(artworks) {
   return artworks.reduce(
     (summary, artwork) => {
       const reveal = getArtworkValueReveal(artwork);
       const value = getAggregateEligibleValue(artwork);
+      const indicative = getIndicativeEligibleValue(artwork);
       summary.totalArtworkCount += 1;
       if (value) {
         summary.estimatedValueLow += value.low;
         summary.estimatedValueHigh += value.high;
         summary.estimatedValueArtworkCount += 1;
         summary.hasEstimatedValue = true;
-      } else if (reveal?.mode === "MARKET_CONTEXT") {
+      }
+      if (indicative) {
+        summary.indicativeValueLow += indicative.low;
+        summary.indicativeValueHigh += indicative.high;
+        summary.indicativeValueArtworkCount += 1;
+        summary.hasIndicativeValue = true;
+      }
+      if (reveal?.mode === "MARKET_CONTEXT") {
         summary.marketContextCount += 1;
       } else if (reveal?.mode === "BEYOND_MARKET") {
         summary.beyondMarketCount += 1;
-      } else {
+      } else if (!indicative) {
         summary.unvaluedCount += 1;
       }
       return summary;
@@ -54,11 +69,15 @@ function summarizeVisitValue(artworks) {
       estimatedValueLow: 0,
       estimatedValueHigh: 0,
       estimatedValueArtworkCount: 0,
+      indicativeValueLow: 0,
+      indicativeValueHigh: 0,
+      indicativeValueArtworkCount: 0,
       marketContextCount: 0,
       beyondMarketCount: 0,
       unvaluedCount: 0,
       totalArtworkCount: 0,
       hasEstimatedValue: false,
+      hasIndicativeValue: false,
     }
   );
 }
@@ -112,6 +131,26 @@ const marketContext = {
     },
   },
 };
+const aiIndicative = {
+  id: "ai-indicative",
+  estimate: { low: null, high: null },
+  valueReveal: {
+    mode: "AI_INDICATIVE_ESTIMATE",
+    aggregateValueEligible: false,
+    indicativeAggregateEligible: true,
+    aiIndicativeEstimate: {
+      low: 70,
+      high: 100,
+      currency: "EUR",
+      confidence: "MEDIUM",
+      shortReason: "Hypothetical scale estimate.",
+      assumptions: ["Museum work is not for sale."],
+      version: "ai-indicative-estimate-v1",
+      generatedAt: new Date().toISOString(),
+      groundingFingerprint: "test",
+    },
+  },
+};
 const beyondMarket = {
   id: "beyond",
   estimate: { low: null, high: null },
@@ -136,14 +175,21 @@ assert(summary.estimatedValueHigh === 0, "MARKET_CONTEXT must contribute zero to
 assert(summary.marketContextCount === 1, "MARKET_CONTEXT count must be tracked");
 assert(getMostValuableArtwork([marketContext]) === null, "MARKET_CONTEXT cannot be most valuable");
 
+summary = summarizeVisitValue([aiIndicative]);
+assert(summary.estimatedValueHigh === 0, "AI_INDICATIVE_ESTIMATE must not enter reviewed totals");
+assert(summary.indicativeValueLow === 70 && summary.indicativeValueHigh === 100, "AI_INDICATIVE_ESTIMATE must enter indicative totals");
+assert(summary.hasIndicativeValue === true, "AI_INDICATIVE_ESTIMATE should set indicative total state");
+assert(getMostValuableArtwork([aiIndicative]) === null, "AI_INDICATIVE_ESTIMATE cannot be most valuable reviewed artwork");
+
 summary = summarizeVisitValue([beyondMarket]);
 assert(summary.estimatedValueHigh === 0, "BEYOND_MARKET must contribute zero to totals");
 assert(summary.beyondMarketCount === 1, "BEYOND_MARKET count must be tracked");
 assert(getMostValuableArtwork([beyondMarket]) === null, "BEYOND_MARKET cannot be most valuable");
 
-summary = summarizeVisitValue([estimated, marketContext, beyondMarket, unvalued]);
+summary = summarizeVisitValue([estimated, aiIndicative, marketContext, beyondMarket, unvalued]);
 assert(summary.estimatedValueLow === 80 && summary.estimatedValueHigh === 120, "Mixed visit totals must include only eligible estimates");
 assert(summary.estimatedValueArtworkCount === 1, "Mixed visit estimated count must be correct");
+assert(summary.indicativeValueLow === 150 && summary.indicativeValueHigh === 220, "Mixed visit indicative total must include reviewed plus AI indicative");
 assert(summary.marketContextCount === 1, "Mixed visit market context count must be correct");
 assert(summary.beyondMarketCount === 1, "Mixed visit beyond-market count must be correct");
 assert(summary.unvaluedCount === 1, "Mixed visit unvalued count must be correct");

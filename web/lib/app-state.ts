@@ -6,8 +6,9 @@ import { getArtwork } from "./artworks";
 import { track } from "./analytics";
 import { isRecognitionNetworkError } from "./recognitionErrors";
 import { buildGeneratedEnrichment, generatedValueReveal, type GeneratedEnrichment } from "./generated-enrichment";
+import { attachIndicativeValueIfEligible, fetchIndicativeValueReveal } from "./indicative-value";
 import { buildVisitGame } from "./visit-game";
-import type { Artwork, Locale, Mode } from "./types";
+import type { Artwork, Locale, Mode, ValueReveal } from "./types";
 
 export type Screen = "home" | "camera" | "card" | "progress" | "recap";
 
@@ -23,6 +24,7 @@ export interface UncatalogedSighting {
   confidence?: number | null;
   imageUrl?: string | null;
   enrichment: GeneratedEnrichment;
+  valueReveal?: ValueReveal | null;
 }
 
 export interface AppState {
@@ -169,9 +171,13 @@ export function useElyioApp() {
             confidence: result.confidence,
             ai_candidate: uncataloged,
           });
+          const sighting = await enrichUncatalogedSightingValue(
+            buildUncatalogedSighting(uncataloged, result.vision, result.confidence, imageBase64),
+            state.museumName
+          );
           setState((s) => persistVisitState(applyVisitGameUnlocks({
             ...s,
-            uncatalogedSighting: buildUncatalogedSighting(uncataloged, result.vision, result.confidence, imageBase64),
+            uncatalogedSighting: sighting,
             currentArtwork: null,
             scanStatus: null,
             screen: "card",
@@ -216,6 +222,8 @@ export function useElyioApp() {
         status: result.status,
       });
 
+      artwork = await attachIndicativeValueIfEligible(artwork, state.museumName, artwork.why?.en || artwork.editorialStatus);
+
       setState((s) => {
         const next: AppState = {
           ...s,
@@ -243,7 +251,7 @@ export function useElyioApp() {
         lastActivityAt: Date.now(),
       }));
     }
-  }, [state.catalogArtworks, state.locale, state.mode, state.museumId, state.seen.length]);
+  }, [state.catalogArtworks, state.locale, state.mode, state.museumId, state.museumName, state.seen.length]);
 
   const addToVisit = useCallback(() => {
     setState((s) => {
@@ -295,15 +303,20 @@ export function useElyioApp() {
       const id = s.currentArtwork.id;
       const next = new Set(s.favorites);
       const favoriteOrder = s.favoriteOrder.filter((favoriteId) => favoriteId !== id);
+      const nextAdded = new Set(s.added);
+      const nextSeen = s.seen.filter((seenId) => seenId !== id);
       if (next.has(id)) {
         next.delete(id);
       } else {
         next.add(id);
         favoriteOrder.push(id);
+        nextAdded.add(id);
+        nextSeen.push(id);
+        if (s.visitId) api.addVisitArtwork(s.visitId, id, s.lastConfidence).catch(() => {});
         track("artwork_favorited", { artwork_id: id });
         track("favorite_added", { artwork_id: id });
       }
-      return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, lastActivityAt: Date.now() }, s));
+      return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, added: nextAdded, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
 
@@ -314,16 +327,20 @@ export function useElyioApp() {
       const next = new Set(s.favorites);
       const favoriteOrder = s.favoriteOrder.filter((favoriteId) => favoriteId !== id);
       const nextCatalogArtworks = { ...s.catalogArtworks };
+      const nextAdded = new Set(s.uncatalogedAdded);
+      const nextSeen = s.seen.filter((seenId) => seenId !== id);
       if (next.has(id)) {
         next.delete(id);
       } else {
         next.add(id);
         favoriteOrder.push(id);
+        nextAdded.add(id);
         if (!nextCatalogArtworks[id]) nextCatalogArtworks[id] = uncatalogedArtworkForVisit(s.uncatalogedSighting, s.locale);
+        nextSeen.push(id);
         track("artwork_favorited", { artwork_id: id, result_type: "uncataloged" });
         track("favorite_added", { artwork_id: id, result_type: "uncataloged" });
       }
-      return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, catalogArtworks: nextCatalogArtworks, lastActivityAt: Date.now() }, s));
+      return persistVisitState(applyVisitGameUnlocks({ ...s, favorites: next, favoriteOrder, uncatalogedAdded: nextAdded, catalogArtworks: nextCatalogArtworks, seen: nextSeen, lastActivityAt: Date.now() }, s));
     });
   }, []);
 
@@ -525,7 +542,7 @@ function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Local
     title: localizedSame(title),
     titleNeedsReview: { en: true, fr: true, "zh-Hans": true },
     estimate: { low: null, high: null },
-    valueReveal: generatedValueReveal(sighting.enrichment, locale),
+    valueReveal: sighting.valueReveal || generatedValueReveal(sighting.enrichment, locale),
     why: localizedSame(normal.whyItMatters),
     where: localizedSame(normal.lookCloser),
     rarity: localizedSame(normal.deeperContext),
@@ -536,6 +553,30 @@ function uncatalogedArtworkForVisit(sighting: UncatalogedSighting, locale: Local
     whereKids: localizedSame(kids.lookCloser),
     rarityKids: localizedSame(kids.funFactOrMission || kids.deeperContext),
   };
+}
+
+async function enrichUncatalogedSightingValue(sighting: UncatalogedSighting, museumName: string | null): Promise<UncatalogedSighting> {
+  const context = sighting.enrichment.artistMarketContext;
+  const valueReveal = await fetchIndicativeValueReveal({
+    artist: sighting.artist || sighting.enrichment.displayArtist,
+    title: sighting.title || sighting.enrichment.displayTitle,
+    date: sighting.date || sighting.enrichment.displayDate,
+    objectType: sighting.objectType || sighting.enrichment.objectType,
+    museum: museumName || undefined,
+    movement: sighting.enrichment.movementOrPeriod,
+    collectionImportance: sighting.enrichment.content.en.normal.whyItMatters,
+    existingMarketContext: context && context.confidence !== "NONE"
+      ? {
+          amountMillions: context.amountMillions,
+          currency: context.currency,
+          workTitle: context.workTitle,
+          year: context.year,
+          sourceReference: context.sourceReference,
+          confidence: context.confidence,
+        }
+      : null,
+  });
+  return valueReveal ? { ...sighting, valueReveal } : sighting;
 }
 
 function buildUncatalogedSighting(

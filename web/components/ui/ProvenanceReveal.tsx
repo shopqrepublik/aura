@@ -62,7 +62,8 @@ export default function ProvenanceReveal({
   mode: Mode;
 }) {
   const hasEstimate = valueReveal?.mode === "ESTIMATED_VALUE" && valueReveal.aggregateValueEligible;
-  const estimate = hasEstimate ? valueReveal.estimatedValue : null;
+  const hasIndicativeEstimate = valueReveal?.mode === "AI_INDICATIVE_ESTIMATE" && valueReveal.indicativeAggregateEligible;
+  const estimate = hasEstimate ? valueReveal.estimatedValue : hasIndicativeEstimate ? valueReveal.aiIndicativeEstimate : null;
   const tier = getPriceTier(estimate?.high ?? null);
   const reducedMotion = usePrefersReducedMotion();
   const [methodologyOpen, setMethodologyOpen] = useState(false);
@@ -79,7 +80,7 @@ export default function ProvenanceReveal({
     const entranceDelay = PAUSE_MS + (tier === "exceptional" ? EXCEPTIONAL_PAUSE_BONUS_MS : 0);
     timers.push(setTimeout(() => setContainerVisible(true), entranceDelay));
 
-    if (hasEstimate) {
+    if (hasEstimate || hasIndicativeEstimate) {
       // Price shows its low bound the moment the card is visible (no
       // count-up -- it just jumps straight to `€{low}M`), holds there for
       // PRICE_LOW_MS, then resolves to the full range FULL_RANGE_MS later.
@@ -99,7 +100,7 @@ export default function ProvenanceReveal({
     }
 
     return () => timers.forEach(clearTimeout);
-  }, [reducedMotion, tier, hasEstimate]);
+  }, [reducedMotion, tier, hasEstimate, hasIndicativeEstimate]);
 
   const kidsBump = mode === "kids" ? 0.02 : 0;
   const tintOpacity = (tier ? TINT_OPACITY[tier] : TINT_OPACITY.standard) + kidsBump;
@@ -114,6 +115,8 @@ export default function ProvenanceReveal({
     : formatValueRevealHeadline(valueReveal, locale);
   const revealLabel = valueReveal?.mode === "ESTIMATED_VALUE"
     ? tt("estimated_value_label", locale)
+    : valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
+      ? indicativeLabel(locale)
     : valueReveal?.mode === "MARKET_CONTEXT"
       ? tt("market_context_label", locale)
       : valueReveal?.mode === "BEYOND_MARKET"
@@ -121,6 +124,8 @@ export default function ProvenanceReveal({
         : tt("market_context_label", locale);
   const supportingText = valueReveal?.mode === "ESTIMATED_VALUE"
     ? tt("estimated_market_range", locale)
+    : valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
+      ? indicativeSupportingText(valueReveal.aiIndicativeEstimate.shortReason, locale, mode)
     : valueReveal?.mode === "MARKET_CONTEXT"
       ? valueReveal.marketContext.explanation
       : valueReveal?.mode === "BEYOND_MARKET"
@@ -128,6 +133,8 @@ export default function ProvenanceReveal({
         : tt("reveal_pending_review_note", locale);
   const disclaimerText = valueReveal?.mode === "ESTIMATED_VALUE"
     ? valueReveal.estimatedValue.disclaimer || tt("estimate_disclaimer", locale)
+    : valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
+      ? valueReveal.aiIndicativeEstimate.disclaimer || indicativeDisclaimer(locale)
     : valueReveal?.mode === "MARKET_CONTEXT"
       ? valueReveal.marketContext.disclaimer || tt("market_context_disclaimer", locale)
       : valueReveal?.mode === "BEYOND_MARKET"
@@ -135,6 +142,8 @@ export default function ProvenanceReveal({
         : tt("reveal_pending_review_note", locale);
   const methodBody = valueReveal?.mode === "MARKET_CONTEXT"
     ? valueReveal.marketContext.relationshipToArtwork
+    : valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
+      ? indicativeMethodBody(valueReveal.aiIndicativeEstimate.assumptions, locale)
     : valueReveal?.mode === "BEYOND_MARKET"
       ? valueReveal.beyondMarket.institutionalLegalContext
       : undefined;
@@ -198,7 +207,7 @@ export default function ProvenanceReveal({
       <div
         className="mt-6 font-medium leading-[0.88] text-[#161512]"
         style={
-          hasEstimate
+          hasEstimate || hasIndicativeEstimate
             ? {
                 fontFamily: "var(--font-editorial)",
                 fontSize: `clamp(${priceSize - 6}px, 13vw, ${priceSize}px)`,
@@ -221,6 +230,11 @@ export default function ProvenanceReveal({
       {valueReveal?.mode === "MARKET_CONTEXT" && (
         <p className="mt-2 text-[11px] leading-[15px] font-semibold uppercase tracking-[0.08em] text-[#6B211D]">
           {tt("not_artwork_value_label", locale)}
+        </p>
+      )}
+      {valueReveal?.mode === "AI_INDICATIVE_ESTIMATE" && (
+        <p className="mt-2 text-[11px] leading-[15px] font-semibold uppercase tracking-[0.08em] text-[#6B211D]">
+          {locale === "fr" ? "Hypothèse ELYIO, pas une expertise" : locale === "zh-Hans" ? "ELYIO 假设估计，并非鉴定估价" : "ELYIO estimate, not an appraisal"}
         </p>
       )}
       {analogy && (
@@ -257,7 +271,7 @@ export default function ProvenanceReveal({
             onClick={() => setMethodologyOpen(true)}
             className="underline underline-offset-2 text-[#181714] font-medium"
           >
-            {tt(hasEstimate ? "view_methodology" : "view_value_context", locale)} →
+            {tt(hasEstimate || hasIndicativeEstimate ? "view_methodology" : "view_value_context", locale)} →
           </button>
         </p>
       </div>
@@ -272,6 +286,45 @@ export default function ProvenanceReveal({
       />
     </div>
   );
+}
+
+function indicativeLabel(locale: Locale): string {
+  if (locale === "fr") return "FOURCHETTE INDICATIVE ELYIO";
+  if (locale === "zh-Hans") return "ELYIO 参考估值区间";
+  return "ELYIO INDICATIVE RANGE";
+}
+
+function indicativeSupportingText(reason: string, locale: Locale, mode: Mode): string {
+  if (mode === "kids") {
+    if (locale === "fr") return "Une estimation imaginaire pour comprendre l'échelle, pas un prix de vente.";
+    if (locale === "zh-Hans") return "这是帮助理解规模的假设数字，不是售价。";
+    return "A scale estimate to help you imagine the size, not a sale price.";
+  }
+  if (mode === "simple") {
+    if (locale === "fr") return "Une estimation hypothétique pour situer l'échelle du marché.";
+    if (locale === "zh-Hans") return "用于理解市场量级的假设估计。";
+    return "A hypothetical market estimate to show scale.";
+  }
+  return reason || (locale === "fr"
+    ? "Estimation hypothétique fondée sur l'artiste, la période, le médium et le contexte de marché fourni."
+    : locale === "zh-Hans"
+      ? "基于艺术家、时期、媒材和已提供市场背景的假设估计。"
+      : "A hypothetical market estimate based on artist, period, medium, significance, and supplied market context.");
+}
+
+function indicativeDisclaimer(locale: Locale): string {
+  if (locale === "fr") return "Estimation ELYIO pour situer l'échelle seulement ; ce n'est ni une expertise, ni une valeur d'assurance, ni une estimation de vente.";
+  if (locale === "zh-Hans") return "ELYIO 估计仅用于说明规模；不是鉴定估价、保险价值或出售估价。";
+  return "ELYIO indicative estimate for scale only; not an appraisal, insurance value, offer price, or sale estimate.";
+}
+
+function indicativeMethodBody(assumptions: string[], locale: Locale): string {
+  const intro = locale === "fr"
+    ? "Cette fourchette est une hypothèse ELYIO destinée à donner une échelle au visiteur."
+    : locale === "zh-Hans"
+      ? "这个区间是 ELYIO 为帮助访客理解规模而生成的假设估计。"
+      : "This range is an ELYIO hypothesis for visitor scale.";
+  return [intro, ...assumptions].filter(Boolean).join(" ");
 }
 
 function cleanVisitorText(value: string | null | undefined): string {

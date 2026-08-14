@@ -27,7 +27,7 @@ export interface Estimate {
   reviewedBy?: string | null;
 }
 
-export type ValueMode = "ESTIMATED_VALUE" | "MARKET_CONTEXT" | "BEYOND_MARKET";
+export type ValueMode = "ESTIMATED_VALUE" | "AI_INDICATIVE_ESTIMATE" | "MARKET_CONTEXT" | "BEYOND_MARKET";
 
 export interface EstimatedValueReveal {
   mode: "ESTIMATED_VALUE";
@@ -39,6 +39,25 @@ export interface EstimatedValueReveal {
     confidence?: string;
     asOfDate?: string;
     methodology?: string;
+    disclaimer?: string;
+  };
+}
+
+export interface AIIndicativeEstimateReveal {
+  mode: "AI_INDICATIVE_ESTIMATE";
+  aggregateValueEligible: false;
+  indicativeAggregateEligible: true;
+  aiIndicativeEstimate: {
+    low: number;
+    high: number;
+    currency: "EUR";
+    confidence: "HIGH" | "MEDIUM" | "LOW";
+    shortReason: string;
+    assumptions: string[];
+    model?: string;
+    version: string;
+    generatedAt: string;
+    groundingFingerprint: string;
     disclaimer?: string;
   };
 }
@@ -73,7 +92,7 @@ export interface BeyondMarketReveal {
   };
 }
 
-export type ValueReveal = EstimatedValueReveal | MarketContextReveal | BeyondMarketReveal;
+export type ValueReveal = EstimatedValueReveal | AIIndicativeEstimateReveal | MarketContextReveal | BeyondMarketReveal;
 
 export interface Artwork {
   id: string;

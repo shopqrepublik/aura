@@ -193,6 +193,12 @@ export function valueRevealNumericContext(valueReveal: ValueReveal | null): { am
       currency: valueReveal.estimatedValue.currency === "EUR" ? "EUR_MILLION" : valueReveal.estimatedValue.currency,
     };
   }
+  if (valueReveal.mode === "AI_INDICATIVE_ESTIMATE") {
+    return {
+      amountMillions: (valueReveal.aiIndicativeEstimate.low + valueReveal.aiIndicativeEstimate.high) / 2,
+      currency: "EUR_MILLION",
+    };
+  }
   if (valueReveal.mode === "MARKET_CONTEXT") {
     const number = valueReveal.marketContext.headlineNumber;
     if (typeof number === "number") return { amountMillions: number, currency: valueReveal.marketContext.currency };

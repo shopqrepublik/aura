@@ -611,7 +611,7 @@ function classifyArtwork(artist: string | null, title: string, objectType: strin
   return "factual_minimum";
 }
 
-function getArtistMarketContext(artist: string | null): ArtistMarketContext | null {
+export function getArtistMarketContext(artist: string | null): ArtistMarketContext | null {
   if (!artist) return null;
   const normalized = normalize(artist);
   return ARTIST_MARKET_CONTEXTS.find((context) => context.aliases.some((alias) => normalized.includes(normalize(alias)))) || null;

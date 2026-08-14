@@ -33,7 +33,7 @@ export default function UncatalogedCardScreen({
   const title = enrichment.displayTitle || sighting.title || tt("uncataloged_unknown_title", state.locale);
   const isAdded = state.uncatalogedAdded.has(sighting.id);
   const isFavorite = state.favorites.has(sighting.id);
-  const valueReveal = generatedValueReveal(enrichment, state.locale);
+  const valueReveal = sighting.valueReveal || generatedValueReveal(enrichment, state.locale);
   const metaLine = [enrichment.displayDate, enrichment.objectType, enrichment.movementOrPeriod]
     .filter(Boolean)
     .filter((value, index, values) => values.indexOf(value) === index)

@@ -70,7 +70,7 @@ import re
 import time
 import uuid
 from datetime import datetime, timezone
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Query
@@ -118,6 +118,7 @@ MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_B
 OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "2"))
 OPENAI_RECOGNITION_TIMEOUT_SECONDS = float(os.environ.get("OPENAI_RECOGNITION_TIMEOUT_SECONDS", "35"))
 RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
+INDICATIVE_VALUE_MODEL = os.environ.get("OPENAI_INDICATIVE_VALUE_MODEL", RECOGNITION_MODEL)
 # Stage 2 (visual_verify_single_candidate) TRIED gpt-4o-mini to cut slow-path
 # latency — rolled back. On the 101-catalog test it dropped 76/101 -> 71/101
 # (2 confirmed false negatives on exact-title-match candidates gpt-4o accepted
@@ -128,6 +129,7 @@ RECOGNITION_MODEL = os.environ.get("OPENAI_RECOGNITION_MODEL", "gpt-4o")
 # bar, so Stage 2 stays on gpt-4o. See README for the full before/after numbers.
 VISUAL_VERIFY_MODEL = "gpt-4o"
 TOPN_VERIFIER_MUSEUMS = set(DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM)
+INDICATIVE_VALUE_CACHE: dict[str, dict] = {}
 
 
 
@@ -1368,6 +1370,206 @@ class VisitArtworkAdd(BaseModel):
     artwork_id: str
     confidence: float
     added: bool = False
+
+
+class ExistingMarketContext(BaseModel):
+    amountMillions: Optional[float] = None
+    currency: Optional[str] = None
+    workTitle: Optional[str] = None
+    year: Optional[str] = None
+    sourceReference: Optional[str] = None
+    confidence: Optional[str] = None
+
+
+class IndicativeValueRequest(BaseModel):
+    artist: Optional[str] = None
+    title: Optional[str] = None
+    date: Optional[str] = None
+    object_type: Optional[str] = None
+    medium: Optional[str] = None
+    dimensions: Optional[str] = None
+    museum: Optional[str] = None
+    movement: Optional[str] = None
+    collection_importance: Optional[str] = None
+    existing_market_context: Optional[ExistingMarketContext] = None
+
+
+class IndicativeEstimate(BaseModel):
+    currency: str
+    low_estimate: float
+    high_estimate: float
+    confidence: str
+    short_reason: str
+    assumptions: List[str]
+    model: Optional[str] = None
+    version: str
+    generated_at: str
+    grounding_fingerprint: str
+    disclaimer: Optional[str] = None
+
+
+class IndicativeValueResponse(BaseModel):
+    eligible: bool
+    reason: Optional[str] = None
+    estimate: Optional[IndicativeEstimate] = None
+
+
+INDICATIVE_VALUE_VERSION = "ai-indicative-estimate-v1"
+INDICATIVE_VALUE_DISCLAIMER = (
+    "ELYIO indicative estimate for scale only; not an appraisal, insurance value, offer price, or sale estimate."
+)
+
+
+def _indicative_value_fingerprint(req: IndicativeValueRequest) -> str:
+    payload = {
+        "version": INDICATIVE_VALUE_VERSION,
+        "artist": req.artist,
+        "title": req.title,
+        "date": req.date,
+        "object_type": req.object_type,
+        "medium": req.medium,
+        "dimensions": req.dimensions,
+        "museum": req.museum,
+        "movement": req.movement,
+        "collection_importance": req.collection_importance,
+        "market_context": req.existing_market_context.model_dump() if req.existing_market_context else None,
+    }
+    return hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
+
+
+def _indicative_value_eligible(req: IndicativeValueRequest) -> tuple[bool, str]:
+    if not req.artist or not req.title:
+        return False, "artist/title required"
+    text = " ".join(
+        x for x in [
+            req.artist,
+            req.title,
+            req.object_type,
+            req.medium,
+            req.movement,
+            req.collection_importance,
+        ] if x
+    ).lower()
+    if re.search(r"(human remains|mummy|funerary|coin|fragment|weapon|armor|armour|ritual|sarcophagus)", text):
+        return False, "object category not suitable for market-range presentation"
+    if re.search(r"(painting|oil|canvas|panel|portrait|self-portrait|drawing|pastel|watercolor|sculpture|statue|marble|bronze|bust|vase|bowl|ceramic|porcelain|decorative)", text):
+        return True, "eligible fine/decorative art"
+    if re.search(r"(monet|renoir|degas|cezanne|cézanne|gauguin|manet|van gogh|picasso|rodin|titian|leonardo|antonello|raphael|rembrandt|courbet|morisot|sisley)", text):
+        return True, "eligible known art-market artist"
+    return False, "insufficient evidence for indicative range"
+
+
+def _normalize_indicative_estimate(data: Dict[str, Any], req: IndicativeValueRequest, fingerprint: str) -> Optional[dict]:
+    try:
+        low = float(data.get("low_estimate"))
+        high = float(data.get("high_estimate"))
+    except Exception:
+        return None
+    if not (low > 0 and high > 0 and high >= low):
+        return None
+    if high / max(low, 0.1) > 8:
+        return None
+    confidence = str(data.get("confidence") or "LOW").upper()
+    if confidence not in {"HIGH", "MEDIUM", "LOW"}:
+        confidence = "LOW"
+    assumptions = data.get("assumptions")
+    if not isinstance(assumptions, list):
+        assumptions = []
+    assumptions = [str(x)[:180] for x in assumptions if str(x).strip()][:5]
+    if not assumptions:
+        assumptions = ["Hypothetical scale estimate only.", "The museum work is not for sale."]
+    return {
+        "currency": "EUR",
+        "low_estimate": round(low, 1),
+        "high_estimate": round(high, 1),
+        "confidence": confidence,
+        "short_reason": str(data.get("short_reason") or "Indicative range based on supplied artwork facts and market context.")[:260],
+        "assumptions": assumptions,
+        "model": INDICATIVE_VALUE_MODEL,
+        "version": INDICATIVE_VALUE_VERSION,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "grounding_fingerprint": fingerprint,
+        "disclaimer": INDICATIVE_VALUE_DISCLAIMER,
+    }
+
+
+def _heuristic_indicative_estimate(req: IndicativeValueRequest, fingerprint: str) -> Optional[dict]:
+    context = req.existing_market_context
+    if not context or not context.amountMillions or not context.currency:
+        return None
+    multiplier = 0.92 if context.currency in {"USD", "USD_MILLION"} else 1.17 if context.currency in {"GBP", "GBP_MILLION"} else 1.0
+    eur = context.amountMillions * multiplier
+    text = " ".join(x for x in [req.title, req.object_type, req.medium, req.collection_importance] if x).lower()
+    if re.search(r"(mona lisa|joconde|masterpiece|iconic|highlight|self-portrait|autoportrait)", text):
+        lo, hi = eur * 0.58, eur * 0.86
+    elif re.search(r"(painting|oil|canvas|panel|portrait)", text):
+        lo, hi = eur * 0.18, eur * 0.38
+    elif re.search(r"(sculpture|statue|marble|bronze|bust)", text):
+        lo, hi = eur * 0.12, eur * 0.30
+    else:
+        lo, hi = eur * 0.04, eur * 0.14
+    return _normalize_indicative_estimate(
+        {
+            "low_estimate": lo,
+            "high_estimate": hi,
+            "confidence": "LOW" if (context.confidence or "").upper() != "HIGH" else "MEDIUM",
+            "short_reason": "Fallback indicative range derived from supplied trusted artist-market context.",
+            "assumptions": [
+                "Hypothetical scale estimate only.",
+                "The museum work is not for sale.",
+                "No invented auction citations were used.",
+            ],
+        },
+        req,
+        fingerprint,
+    )
+
+
+@app.post("/v1/indicative-value", response_model=IndicativeValueResponse)
+def indicative_value(req: IndicativeValueRequest):
+    eligible, reason = _indicative_value_eligible(req)
+    if not eligible:
+        return IndicativeValueResponse(eligible=False, reason=reason)
+    fingerprint = _indicative_value_fingerprint(req)
+    if fingerprint in INDICATIVE_VALUE_CACHE:
+        return IndicativeValueResponse(eligible=True, estimate=INDICATIVE_VALUE_CACHE[fingerprint])
+    if not OPENAI_API_KEY:
+        estimate = _heuristic_indicative_estimate(req, fingerprint)
+        if estimate:
+            INDICATIVE_VALUE_CACHE[fingerprint] = estimate
+            return IndicativeValueResponse(eligible=True, estimate=estimate)
+        return IndicativeValueResponse(eligible=False, reason="OpenAI key unavailable and no trusted market context supplied")
+
+    from openai import OpenAI
+
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
+    system_prompt = (
+        "You produce ELYIO indicative market ranges for museum visitors. "
+        "This is a hypothetical scale estimate, not an appraisal, insurance value, offer price, or claim that the museum work can be sold. "
+        "Use ONLY the supplied facts and supplied market context. Do not invent citations, auction houses, sale dates, comparable work names, provenance, or prices. "
+        "If evidence is weak, return a broad LOW confidence range rather than fake precision. "
+        "Respond with one strict JSON object only: "
+        '{"currency":"EUR","low_estimate":number,"high_estimate":number,"confidence":"HIGH|MEDIUM|LOW","short_reason":"...","assumptions":["..."]}'
+    )
+    try:
+        resp = _openai_chat_completion_with_retries(
+            client,
+            model=INDICATIVE_VALUE_MODEL,
+            max_tokens=450,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": json.dumps(req.model_dump(), ensure_ascii=False)},
+            ],
+        )
+        data = json.loads(resp.choices[0].message.content)
+        estimate = _normalize_indicative_estimate(data, req, fingerprint)
+    except Exception:
+        estimate = _heuristic_indicative_estimate(req, fingerprint)
+    if not estimate:
+        return IndicativeValueResponse(eligible=False, reason="estimate validation failed")
+    INDICATIVE_VALUE_CACHE[fingerprint] = estimate
+    return IndicativeValueResponse(eligible=True, estimate=estimate)
 
 
 def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museum_id: Optional[str]) -> None:

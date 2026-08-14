@@ -146,6 +146,54 @@ export interface VisitProgress {
   route_completion_pct: number;
 }
 
+export interface IndicativeValueRequest {
+  artist: string | null;
+  title: string | null;
+  date?: string | null;
+  object_type?: string | null;
+  objectType?: string | null;
+  medium?: string | null;
+  dimensions?: string | null;
+  museum?: string | null;
+  movement?: string | null;
+  collection_importance?: string | null;
+  collectionImportance?: string | null;
+  existing_market_context?: {
+    amountMillions?: number;
+    currency?: string;
+    workTitle?: string;
+    year?: string;
+    sourceReference?: string;
+    confidence?: string;
+  } | null;
+  existingMarketContext?: {
+    amountMillions?: number;
+    currency?: string;
+    workTitle?: string;
+    year?: string;
+    sourceReference?: string;
+    confidence?: string;
+  } | null;
+}
+
+export interface IndicativeValueResponse {
+  eligible: boolean;
+  reason?: string | null;
+  estimate?: {
+    currency: "EUR";
+    low_estimate: number;
+    high_estimate: number;
+    confidence: "HIGH" | "MEDIUM" | "LOW";
+    short_reason: string;
+    assumptions: string[];
+    model?: string;
+    version: string;
+    generated_at: string;
+    grounding_fingerprint: string;
+    disclaimer?: string;
+  } | null;
+}
+
 async function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit = {}, timeoutMs = 30000): Promise<Response> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
@@ -183,6 +231,28 @@ export async function recognize(
     hall_hint: hallHint ?? null,
     locale,
   });
+}
+
+export async function getIndicativeValue(input: IndicativeValueRequest): Promise<IndicativeValueResponse> {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  const res = await fetchWithTimeout(`${BACKEND_URL}/v1/indicative-value`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
+    artist: input.artist,
+    title: input.title,
+    date: input.date ?? null,
+    object_type: input.object_type ?? input.objectType ?? null,
+    medium: input.medium ?? null,
+    dimensions: input.dimensions ?? null,
+    museum: input.museum ?? null,
+    movement: input.movement ?? null,
+    collection_importance: input.collection_importance ?? input.collectionImportance ?? null,
+    existing_market_context: input.existing_market_context ?? input.existingMarketContext ?? null,
+    }),
+  }, 12000);
+  if (!res.ok) throw new Error(`/v1/indicative-value failed: ${res.status}`);
+  return res.json();
 }
 
 export async function getArtworkDetail(artworkId: string, locale: string, mode: string): Promise<CatalogArtworkResponse> {
@@ -300,6 +370,29 @@ function camelValueReveal(raw: Record<string, unknown> | null | undefined, local
         asOfDate: typeof estimated.as_of_date === "string" ? estimated.as_of_date : undefined,
         methodology: localizeValueCopy(typeof estimated.methodology === "string" ? estimated.methodology : undefined, locale),
         disclaimer: localizeValueCopy(typeof estimated.disclaimer === "string" ? estimated.disclaimer : undefined, locale),
+      },
+    };
+  }
+  if (raw.mode === "AI_INDICATIVE_ESTIMATE") {
+    const estimate = (raw.ai_indicative_estimate || raw.aiIndicativeEstimate || {}) as Record<string, unknown>;
+    if (typeof estimate.low !== "number" && typeof estimate.low_estimate !== "number") return null;
+    if (typeof estimate.high !== "number" && typeof estimate.high_estimate !== "number") return null;
+    return {
+      mode: "AI_INDICATIVE_ESTIMATE",
+      aggregateValueEligible: false,
+      indicativeAggregateEligible: true,
+      aiIndicativeEstimate: {
+        low: Number(estimate.low ?? estimate.low_estimate),
+        high: Number(estimate.high ?? estimate.high_estimate),
+        currency: "EUR",
+        confidence: estimate.confidence === "HIGH" || estimate.confidence === "MEDIUM" || estimate.confidence === "LOW" ? estimate.confidence : "LOW",
+        shortReason: localizeValueCopy(typeof estimate.short_reason === "string" ? estimate.short_reason : typeof estimate.shortReason === "string" ? estimate.shortReason : "", locale) || "",
+        assumptions: Array.isArray(estimate.assumptions) ? estimate.assumptions.filter((x): x is string => typeof x === "string") : [],
+        model: typeof estimate.model === "string" ? estimate.model : undefined,
+        version: typeof estimate.version === "string" ? estimate.version : "ai-indicative-estimate-v1",
+        generatedAt: typeof estimate.generated_at === "string" ? estimate.generated_at : typeof estimate.generatedAt === "string" ? estimate.generatedAt : new Date().toISOString(),
+        groundingFingerprint: typeof estimate.grounding_fingerprint === "string" ? estimate.grounding_fingerprint : typeof estimate.groundingFingerprint === "string" ? estimate.groundingFingerprint : "",
+        disclaimer: localizeValueCopy(typeof estimate.disclaimer === "string" ? estimate.disclaimer : undefined, locale),
       },
     };
   }

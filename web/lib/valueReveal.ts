@@ -12,11 +12,17 @@ export interface VisitValueSummary {
   estimatedValueHigh: number;
   estimatedValueCurrency: string;
   estimatedValueArtworkCount: number;
+  indicativeValueLow: number;
+  indicativeValueHigh: number;
+  indicativeValueCurrency: string;
+  aiIndicativeArtworkCount: number;
+  indicativeValueArtworkCount: number;
   marketContextCount: number;
   beyondMarketCount: number;
   unvaluedCount: number;
   totalArtworkCount: number;
   hasEstimatedValue: boolean;
+  hasIndicativeValue: boolean;
 }
 
 export function valueRevealFromEstimate(estimate: Estimate | null | undefined): ValueReveal | null {
@@ -49,11 +55,32 @@ export function getAggregateEligibleValue(artwork: Artwork): AggregateEligibleVa
   };
 }
 
+export function getIndicativeEligibleValue(artwork: Artwork): AggregateEligibleValue | null {
+  const reveal = getArtworkValueReveal(artwork);
+  if (!reveal) return null;
+  if (reveal.mode === "ESTIMATED_VALUE" && reveal.aggregateValueEligible === true) {
+    return {
+      low: reveal.estimatedValue.low,
+      high: reveal.estimatedValue.high,
+      currency: reveal.estimatedValue.currency,
+    };
+  }
+  if (reveal.mode === "AI_INDICATIVE_ESTIMATE" && reveal.indicativeAggregateEligible === true) {
+    return {
+      low: reveal.aiIndicativeEstimate.low,
+      high: reveal.aiIndicativeEstimate.high,
+      currency: reveal.aiIndicativeEstimate.currency,
+    };
+  }
+  return null;
+}
+
 export function summarizeVisitValue(artworks: Artwork[]): VisitValueSummary {
   return artworks.reduce<VisitValueSummary>(
     (summary, artwork) => {
       const reveal = getArtworkValueReveal(artwork);
       const aggregate = getAggregateEligibleValue(artwork);
+      const indicative = getIndicativeEligibleValue(artwork);
       summary.totalArtworkCount += 1;
       if (aggregate) {
         summary.estimatedValueLow += aggregate.low;
@@ -61,13 +88,20 @@ export function summarizeVisitValue(artworks: Artwork[]): VisitValueSummary {
         summary.estimatedValueCurrency = aggregate.currency;
         summary.estimatedValueArtworkCount += 1;
         summary.hasEstimatedValue = true;
-        return summary;
+      }
+      if (indicative) {
+        summary.indicativeValueLow += indicative.low;
+        summary.indicativeValueHigh += indicative.high;
+        summary.indicativeValueCurrency = indicative.currency;
+        summary.indicativeValueArtworkCount += 1;
+        summary.hasIndicativeValue = true;
+        if (reveal?.mode === "AI_INDICATIVE_ESTIMATE") summary.aiIndicativeArtworkCount += 1;
       }
       if (reveal?.mode === "MARKET_CONTEXT") {
         summary.marketContextCount += 1;
       } else if (reveal?.mode === "BEYOND_MARKET") {
         summary.beyondMarketCount += 1;
-      } else {
+      } else if (!indicative) {
         summary.unvaluedCount += 1;
       }
       return summary;
@@ -77,11 +111,17 @@ export function summarizeVisitValue(artworks: Artwork[]): VisitValueSummary {
       estimatedValueHigh: 0,
       estimatedValueCurrency: "EUR",
       estimatedValueArtworkCount: 0,
+      indicativeValueLow: 0,
+      indicativeValueHigh: 0,
+      indicativeValueCurrency: "EUR",
+      aiIndicativeArtworkCount: 0,
+      indicativeValueArtworkCount: 0,
       marketContextCount: 0,
       beyondMarketCount: 0,
       unvaluedCount: 0,
       totalArtworkCount: 0,
       hasEstimatedValue: false,
+      hasIndicativeValue: false,
     }
   );
 }
@@ -102,7 +142,9 @@ export function getMostValuableArtwork(artworks: Artwork[]): Artwork | null {
 
 export function formatEstimatedValueRange(value: AggregateEligibleValue): string {
   const prefix = value.currency === "EUR" ? "€" : `${value.currency} `;
-  return `${prefix}${value.low}–${value.high}M`;
+  const low = formatMoneyMillions(value.low);
+  const high = formatMoneyMillions(value.high);
+  return `${prefix}${low}–${high}`;
 }
 
 function formatContextNumber(value: number | string | { low: number; high: number }, currency?: string): string {
@@ -165,10 +207,21 @@ export function formatValueRevealHeadline(valueReveal: ValueReveal | null, local
   if (valueReveal.mode === "ESTIMATED_VALUE") {
     return formatEstimatedValueRange(valueReveal.estimatedValue);
   }
+  if (valueReveal.mode === "AI_INDICATIVE_ESTIMATE") {
+    return formatEstimatedValueRange(valueReveal.aiIndicativeEstimate);
+  }
   if (valueReveal.mode === "MARKET_CONTEXT") {
     const number = valueReveal.marketContext.headlineNumber;
     if (number == null) return valueReveal.marketContext.label;
     return formatContextNumber(number, valueReveal.marketContext.currency);
   }
   return valueReveal.beyondMarket.headline;
+}
+
+function formatMoneyMillions(value: number): string {
+  if (!Number.isFinite(value)) return "0M";
+  if (Math.abs(value) >= 1000) return `${Number((value / 1000).toFixed(value % 1000 === 0 ? 0 : 1))}B`;
+  if (Math.abs(value) >= 100) return `${Math.round(value)}M`;
+  if (Math.abs(value) >= 10) return `${Number(value.toFixed(value % 1 === 0 ? 0 : 1))}M`;
+  return `${Number(value.toFixed(1))}M`;
 }

@@ -5,6 +5,7 @@ import {
   formatEstimatedValueRange,
   formatValueRevealHeadline,
   getAggregateEligibleValue,
+  getIndicativeEligibleValue,
   getArtworkValueReveal,
   summarizeVisitValue,
 } from "./valueReveal";
@@ -50,7 +51,7 @@ export interface VisitAchievement {
 }
 
 export interface VisitValueMoment {
-  kind: "reviewed_estimate" | "market_context" | "none";
+  kind: "reviewed_estimate" | "indicative_total" | "market_context" | "none";
   label: string;
   valueText: string;
   subtitle: string;
@@ -190,8 +191,8 @@ function buildAchievements(input: VisitGameInput, metrics: VisitMetricSummary, p
     achievement("renaissance_explorer", "R", "Renaissance Explorer", "You found 5 Renaissance works.", periodCounts.renaissance >= 5),
     achievement("impressionist_trail", "I", "Impressionist Trail", "You followed 5 Impressionist or modern works.", periodCounts.impressionist >= 5),
     achievement("deep_dive", "◌", "Deep Dive", "You spent meaningful time exploring.", metrics.durationMinutes >= 30 || metrics.artworksCount >= 5),
-    achievement("billion_euro_visitor", "€", "Billion Euro Visitor", "Your reviewed market-range total crossed €1B.", summary.hasEstimatedValue && summary.estimatedValueHigh >= 1000),
-    achievement("market_giant", "M", "Market Giant", "You encountered a nine-figure market benchmark.", (biggest?.amountMillions ?? 0) >= 100),
+    achievement("billion_euro_visitor", "€", "Billion Euro Visitor", "Your ELYIO indicative total crossed €1B.", summary.hasIndicativeValue && summary.indicativeValueHigh >= 1000),
+    achievement("market_giant", "M", "Market Giant", "You encountered a nine-figure market benchmark.", Math.max(biggest?.amountMillions ?? 0, summary.indicativeValueHigh) >= 100),
     achievement("museum_explorer", "E", "Museum Explorer", "You built a real museum visit.", metrics.artworksCount >= 3),
   ];
   return defs.map((a) => localizeAchievement(a, input.locale, input.unlockedAchievements?.[a.id] ?? null));
@@ -225,6 +226,20 @@ function buildRecapHighlights(
 
 function buildValueMoment(artworks: Artwork[], locale: Locale): VisitValueMoment {
   const summary = summarizeVisitValue(artworks);
+  if (summary.hasIndicativeValue) {
+    return {
+      kind: "indicative_total",
+      label: valueLabel("indicative_total", locale),
+      valueText: formatEstimatedValueRange({
+        low: summary.indicativeValueLow,
+        high: summary.indicativeValueHigh,
+        currency: summary.indicativeValueCurrency,
+      }),
+      subtitle: valueSubtitle("indicative_total", locale),
+      artwork: getMostIndicativeArtwork(artworks),
+      aggregateEligible: true,
+    };
+  }
   if (summary.hasEstimatedValue) {
     return {
       kind: "reviewed_estimate",
@@ -284,6 +299,20 @@ function getMostAggregateArtwork(artworks: Artwork[]): Artwork | null {
   let bestValue = Number.NEGATIVE_INFINITY;
   for (const artwork of artworks) {
     const aggregate = getAggregateEligibleValue(artwork);
+    if (!aggregate) continue;
+    if (aggregate.high > bestValue) {
+      best = artwork;
+      bestValue = aggregate.high;
+    }
+  }
+  return best;
+}
+
+function getMostIndicativeArtwork(artworks: Artwork[]): Artwork | null {
+  let best: Artwork | null = null;
+  let bestValue = Number.NEGATIVE_INFINITY;
+  for (const artwork of artworks) {
+    const aggregate = getIndicativeEligibleValue(artwork);
     if (!aggregate) continue;
     if (aggregate.high > bestValue) {
       best = artwork;
@@ -478,6 +507,11 @@ function achievementDescription(id: string, locale: Locale): string {
 }
 
 function valueLabel(kind: VisitValueMoment["kind"], locale: Locale): string {
+  if (kind === "indicative_total") {
+    if (locale === "fr") return "VALEUR TOTALE VUE";
+    if (locale === "zh-Hans") return "已观看估计总值";
+    return "TOTAL VALUE VIEWED";
+  }
   if (kind === "reviewed_estimate") {
     if (locale === "fr") return "FOURCHETTE ÉVALUÉE RENCONTRÉE";
     if (locale === "zh-Hans") return "已评估市场区间";
@@ -494,6 +528,11 @@ function valueLabel(kind: VisitValueMoment["kind"], locale: Locale): string {
 }
 
 function valueSubtitle(kind: VisitValueMoment["kind"], locale: Locale): string {
+  if (kind === "indicative_total") {
+    if (locale === "fr") return "estimation indicative ELYIO";
+    if (locale === "zh-Hans") return "ELYIO 参考估计";
+    return "ELYIO indicative estimate";
+  }
   if (kind === "reviewed_estimate") {
     if (locale === "fr") return "fourchette agrégée uniquement pour les œuvres éligibles";
     if (locale === "zh-Hans") return "仅汇总符合条件的已评估作品";
