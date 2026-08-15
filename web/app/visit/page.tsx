@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ElyioApp from "@/components/ElyioApp";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
   title: "Start your ELYIO museum visit",
@@ -9,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function VisitPage() {
-  return <ElyioApp />;
+  return <><ElyioApp /><ServiceWorkerRegister /></>;
 }

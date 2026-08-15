@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 // Editorial serif for artwork titles / Reveal price / Recap value -- next/font
 // self-hosts the font files at build time (no runtime request to Google's
@@ -10,7 +9,7 @@ import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 // through to the system serif in the stack for zh-Hans text, same as any
 // other font missing those glyphs.
 const editorialSerif = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-editorial",
   display: "swap",
@@ -62,7 +61,6 @@ export default function RootLayout({
     <html lang="en" translate="no" className={`h-full antialiased ${editorialSerif.variable}`}>
       <body className="min-h-full flex flex-col bg-[#F7F3EC] text-[#181714]">
         {children}
-        <ServiceWorkerRegister />
       </body>
     </html>
   );
