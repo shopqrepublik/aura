@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/seo/SeoLink";
 import { notFound } from "next/navigation";
 import SeoNav from "@/components/seo/SeoNav";
 import { LOCALES, SITE_URL, alternatesFor, museums, type SeoLocale } from "@/lib/seo-content";

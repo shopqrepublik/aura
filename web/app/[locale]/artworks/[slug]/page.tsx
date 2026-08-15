@@ -1,6 +1,6 @@
 import type {Metadata} from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/seo/SeoLink";
 import {notFound} from "next/navigation";
 import SeoNav from "@/components/seo/SeoNav";
 import {LOCALES,SITE_URL,alternatesFor,artworkBySlug,artworks,localizedArtwork,museumForArtwork,type SeoLocale} from "@/lib/seo-content";

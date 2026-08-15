@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/seo/SeoLink";
 import type { SeoLocale } from "@/lib/seo-content";
 import { localeNames } from "@/lib/seo-content";
 
