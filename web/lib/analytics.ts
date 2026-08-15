@@ -62,6 +62,8 @@ function ensureInit() {
 // built. They stay defined so the eventual paywall screen has a name to
 // call rather than inventing one later.
 export type EventName =
+  | "seo_landing"
+  | "seo_begin_visit"
   | "onboarding_completed"
   | "language_selected"
   | "museum_selected"
@@ -109,7 +111,12 @@ export type EventName =
 export function track(event: EventName, properties?: Record<string, unknown>) {
   ensureInit();
   if (!KEY || typeof window === "undefined") return;
-  posthog.capture(event, properties);
+  let landing: Record<string, unknown> = {};
+  try {
+    const stored = window.sessionStorage.getItem("elyio-organic-landing");
+    if (stored) landing = JSON.parse(stored) as Record<string, unknown>;
+  } catch { /* attribution must never interfere with the visit */ }
+  posthog.capture(event, { ...landing, ...properties });
 }
 
 // Called once a Supabase session resolves to a real user. Only the id is

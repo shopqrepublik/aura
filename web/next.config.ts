@@ -32,8 +32,25 @@ const CSP = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [{ protocol: "https", hostname: "api.elyio.co", pathname: "/v1/image-proxy" }],
+    minimumCacheTTL: 31536000,
+  },
   async headers() {
     return [
+      {
+        source: "/design",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/louvre-golden20-preview",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: "/visit",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
       {
         source: "/(.*)",
         headers: [
@@ -48,8 +65,18 @@ const nextConfig: NextConfig = {
           // isolating the browsing context group doesn't touch it.
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
           { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          ...(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
+            ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }]
+            : []),
         ],
       },
+    ];
+  },
+  async redirects() {
+    return [
+      { source: "/:path*", has: [{ type: "host", value: "elyio.co" }], destination: "https://www.elyio.co/:path*", permanent: true },
     ];
   },
 };

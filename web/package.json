@@ -13,7 +13,8 @@
     "test:result": "node scripts/generated-enrichment-regression.mjs",
     "test:scale": "node scripts/scale-comparison-regression.mjs",
     "test:visit": "node scripts/visit-game-regression.mjs",
-    "test:pwa": "node scripts/pwa-runtime-check.mjs"
+    "test:pwa": "node scripts/pwa-runtime-check.mjs",
+    "indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.1",

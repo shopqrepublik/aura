@@ -2,7 +2,7 @@
   "name": "ELYIO — Point. Discover. Understand.",
   "short_name": "ELYIO",
   "description": "Point. Discover. Understand. AI museum guide for Musée d'Orsay.",
-  "start_url": "/",
+  "start_url": "/visit",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

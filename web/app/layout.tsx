@@ -17,6 +17,7 @@ const editorialSerif = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.elyio.co"),
   title: "ELYIO — Point. Discover. Understand.",
   description: "ELYIO is a premium museum guide. Point your camera at an artwork, discover its story, significance and scale.",
   manifest: "/manifest.json",
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
   other: {
     google: "notranslate",
     "apple-mobile-web-app-capable": "yes",
+    "robots": "index, follow, max-image-preview:large",
   },
 };
 
