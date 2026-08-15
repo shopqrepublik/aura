@@ -6,5 +6,6 @@ export function generateStaticParams() { return LOCALES.map((locale) => ({ local
 export default async function LocaleLayout({ children, params }:{children:React.ReactNode;params:Promise<{locale:string}>}) {
   const { locale } = await params;
   if (!LOCALES.includes(locale as SeoLocale)) notFound();
-  return <div lang={locale === "zh-hans" ? "zh-Hans" : locale} className="seo-site">{children}</div>;
+  const language = locale === "zh-hans" ? "zh-Hans" : locale;
+  return <><meta httpEquiv="content-language" content={language}/><script dangerouslySetInnerHTML={{__html:`document.documentElement.lang=${JSON.stringify(language)}`}}/><div lang={language} className="seo-site">{children}</div></>;
 }
