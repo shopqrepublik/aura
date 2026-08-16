@@ -8,6 +8,7 @@ RecognitionAssets, embeddings, or TTS.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -1280,7 +1281,45 @@ def load_or_write_batch(name: str, builder) -> dict[str, Any]:
     return write_batch(name, *builder())
 
 
-def main() -> None:
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--max-new-batches",
+        type=int,
+        default=1,
+        help="Maximum number of new 50-record scale-up batches to write (default: 1).",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Report the next scale-up selection without writing any files.",
+    )
+    args = parser.parse_args()
+    if args.max_new_batches < 1:
+        parser.error("--max-new-batches must be at least 1")
+    return args
+
+
+def dry_run() -> None:
+    existing_names = locked_or_failed_batches()
+    manifests = [batch_dir_manifest(name) for name in existing_names]
+    manifests = [manifest for manifest in manifests if manifest]
+    existing_ids: set[str] = set()
+    for name in existing_names:
+        existing_ids |= batch_artwork_ids(name)
+    locked_records = sum(manifest["records"] for manifest in manifests if manifest["status"] == "LOCKED")
+    next_name = next_pending_batch_name(manifests)
+    selection = [] if locked_records >= 250 else generic_batch_selection(existing_ids, batch_size=50)
+    print(json.dumps({
+        "dry_run": True,
+        "next_batch": next_name,
+        "selected_records": len(selection),
+        "artwork_ids": [row["ark_id"] for row in selection],
+        "writes": 0,
+    }, ensure_ascii=False, indent=2))
+
+
+def main(max_new_batches: int = 1) -> None:
     PHASE2D.mkdir(parents=True, exist_ok=True)
     b1 = load_or_write_batch("batch001", batch001_records)
     manifests = [b1]
@@ -1300,6 +1339,7 @@ def main() -> None:
     for name in locked_or_failed_batches():
         existing_ids |= batch_artwork_ids(name)
     batch_number = 3
+    new_batches_written = 0
     while sum(m["records"] for m in manifests if m["status"] == "LOCKED") < target_phase2d:
         name = f"batch{batch_number:03d}"
         existing = batch_dir_manifest(name)
@@ -1314,9 +1354,12 @@ def main() -> None:
         if not selection:
             break
         manifest = write_batch(name, *records_for_selection(name, selection))
+        new_batches_written += 1
         manifests.append(manifest)
         existing_ids |= {row["ark_id"] for row in selection}
         if manifest["status"] != "LOCKED":
+            break
+        if new_batches_written >= max_new_batches:
             break
         batch_number += 1
     write_master(manifests)
@@ -1329,4 +1372,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    cli_args = parse_args()
+    if cli_args.dry_run:
+        dry_run()
+    else:
+        main(max_new_batches=cli_args.max_new_batches)
