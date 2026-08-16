@@ -3,7 +3,7 @@
 
 Writes candidate content artifacts only under exports/louvre/content/phase2d.
 No production writes, catalog membership changes, Louvre image fetches,
-RecognitionAssets, embeddings, TTS, or batch003 processing.
+RecognitionAssets, embeddings, or TTS.
 """
 
 from __future__ import annotations
@@ -1001,6 +1001,45 @@ def batch002_selection() -> list[dict[str, Any]]:
     return tier_b + tier_c
 
 
+def batch_dir_manifest(name: str) -> dict[str, Any] | None:
+    path = PHASE2D / name / "manifest.json"
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def batch_artwork_ids(name: str) -> set[str]:
+    path = PHASE2D / name / "artworks.jsonl"
+    if not path.exists():
+        return set()
+    return {row["artwork_id"] for row in read_jsonl(path)}
+
+
+def locked_or_failed_batches() -> list[str]:
+    if not PHASE2D.exists():
+        return []
+    names = []
+    for path in sorted(PHASE2D.glob("batch*")):
+        if path.is_dir() and (path / "manifest.json").exists():
+            names.append(path.name)
+    return names
+
+
+def generic_batch_selection(existing_ids: set[str], batch_size: int = 50) -> list[dict[str, Any]]:
+    final = read_jsonl(CATALOG)
+    golden_ids = {r["artwork_id"] for r in read_jsonl(GOLDEN)}
+    excluded = set(existing_ids) | golden_ids
+    remaining = [r for r in final if r["ark_id"] not in excluded]
+    tier_b = [r for r in remaining if r["visitor_tier"] == "B"]
+    tier_c = [r for r in remaining if r["visitor_tier"] == "C"]
+    selected = tier_b[: min(20, batch_size)]
+    selected += tier_c[: max(0, batch_size - len(selected))]
+    if len(selected) < batch_size:
+        used = {r["ark_id"] for r in selected}
+        selected += [r for r in remaining if r["ark_id"] not in used][: batch_size - len(selected)]
+    return selected[:batch_size]
+
+
 def batch001_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     records = read_jsonl(BATCH001_REPAIR / "artworks.jsonl")
     pilot = {r["artwork_id"]: r for r in read_jsonl(BATCH001_LOC_V2 / "pilot5_localized.jsonl")}
@@ -1028,11 +1067,15 @@ def batch001_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list
 
 
 def batch002_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    return records_for_selection("batch002", batch002_selection())
+
+
+def records_for_selection(batch_name: str, selection: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     records = []
     evidences = []
     values = []
     sources = []
-    for idx, row in enumerate(batch002_selection()):
+    for idx, row in enumerate(selection):
         evidence = evidence_for(row)
         value = value_for(row, evidence)
         en = en_content(row, evidence, idx)
@@ -1040,7 +1083,7 @@ def batch002_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list
         record = {
             "artwork_id": row["ark_id"],
             "catalog_version": CATALOG_VERSION,
-            "batch_version": "louvre_phase2d_batch002_v0.1",
+            "batch_version": f"louvre_phase2d_{batch_name}_v0.1",
             "generated_at": GENERATED_AT,
             "visitor_tier": row["visitor_tier"],
             "identity": {
@@ -1068,7 +1111,7 @@ def batch002_records() -> tuple[list[dict[str, Any]], list[dict[str, Any]], list
             "specificity": "SPECIFICITY_HIGH" if row["visitor_tier"] == "B" else "SPECIFICITY_MEDIUM",
             "review_status": "NEEDS_HUMAN_REVIEW" if row["visitor_tier"] == "B" else "AUTO_QA_PASSED",
             "title_localization": title_loc,
-            "localization_v2": {"version": "louvre_phase2d_localization_v2", "source": "phase2d_batch002", "localized_at": GENERATED_AT},
+            "localization_v2": {"version": "louvre_phase2d_localization_v2", "source": f"phase2d_{batch_name}", "localized_at": GENERATED_AT},
             "safety": {"production_writes": 0, "recognition_assets_created": 0, "embeddings_created": 0, "tts_audio_bytes_generated": 0, "louvre_image_bytes_fetched": 0},
         }
         records.append(record)
@@ -1215,24 +1258,74 @@ def write_master(manifests: list[dict[str, Any]]) -> None:
         "processed_artworks": len(progress_rows),
         "locked_batches": [m["batch"] for m in manifests if m["status"] == "LOCKED"],
         "failed_batches": [m["batch"] for m in manifests if m["status"] == "FAILED"],
-        "batch003_processed": False,
+        "next_pending_batch": next_pending_batch_name(manifests),
         "safety": {"production_writes": 0, "catalog_changes": 0, "recognition_assets_created": 0, "embeddings_created": 0, "tts_audio_bytes_generated": 0, "louvre_image_bytes_fetched": 0},
     }
     (PHASE2D / "phase2d_master_manifest.json").write_text(json.dumps(master, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def next_pending_batch_name(manifests: list[dict[str, Any]]) -> str:
+    numbers = []
+    for manifest in manifests:
+        match = re.match(r"batch(\d+)$", manifest["batch"])
+        if match:
+            numbers.append(int(match.group(1)))
+    return f"batch{(max(numbers) + 1 if numbers else 1):03d}"
+
+
+def load_or_write_batch(name: str, builder) -> dict[str, Any]:
+    existing = batch_dir_manifest(name)
+    if existing:
+        return existing
+    return write_batch(name, *builder())
+
+
 def main() -> None:
     PHASE2D.mkdir(parents=True, exist_ok=True)
-    b1 = write_batch("batch001", *batch001_records())
+    b1 = load_or_write_batch("batch001", batch001_records)
     manifests = [b1]
     if not b1["accepted"]:
         write_master(manifests)
         print(json.dumps({"batch001": b1["status"], "batch002": "NOT_PROCESSED"}, ensure_ascii=False, indent=2))
         return
-    b2 = write_batch("batch002", *batch002_records())
+    b2 = load_or_write_batch("batch002", batch002_records)
     manifests.append(b2)
+    if not b2["accepted"]:
+        write_master(manifests)
+        print(json.dumps({"batch001": b1["status"], "batch002": b2["status"]}, ensure_ascii=False, indent=2))
+        return
+
+    target_phase2d = 250
+    existing_ids = set()
+    for name in locked_or_failed_batches():
+        existing_ids |= batch_artwork_ids(name)
+    batch_number = 3
+    while sum(m["records"] for m in manifests if m["status"] == "LOCKED") < target_phase2d:
+        name = f"batch{batch_number:03d}"
+        existing = batch_dir_manifest(name)
+        if existing:
+            manifests.append(existing)
+            existing_ids |= batch_artwork_ids(name)
+            if existing["status"] != "LOCKED":
+                break
+            batch_number += 1
+            continue
+        selection = generic_batch_selection(existing_ids, batch_size=50)
+        if not selection:
+            break
+        manifest = write_batch(name, *records_for_selection(name, selection))
+        manifests.append(manifest)
+        existing_ids |= {row["ark_id"] for row in selection}
+        if manifest["status"] != "LOCKED":
+            break
+        batch_number += 1
     write_master(manifests)
-    print(json.dumps({"batch001": b1["status"], "batch002": b2["status"], "batch003": "NOT_PROCESSED"}, ensure_ascii=False, indent=2))
+    print(json.dumps({
+        "locked_batches": [m["batch"] for m in manifests if m["status"] == "LOCKED"],
+        "failed_batches": [m["batch"] for m in manifests if m["status"] == "FAILED"],
+        "phase2d_processed": sum(m["records"] for m in manifests if m["status"] == "LOCKED"),
+        "total_with_golden20": sum(m["records"] for m in manifests if m["status"] == "LOCKED") + len(read_jsonl(GOLDEN)),
+    }, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
