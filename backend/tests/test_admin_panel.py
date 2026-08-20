@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from backend.app import admin
-from backend.app.models import Base, ProductEvent
+from backend.app.models import Artwork, ArtworkCatalogMembership, Base, LouvreImageReference, ProductEvent, RecognitionAsset
 
 
 def make_hash(password: str) -> str:
@@ -71,7 +71,7 @@ class AdminPanelTests(unittest.TestCase):
         self.assertIsNotNone(prev_start)
         self.assertGreater(end - start, timedelta(days=6))
 
-    def test_server_recognition_completed_counts_as_success(self):
+    def test_identityless_server_recognition_is_operational_not_visitor_metric(self):
         db = self.Session()
         now = datetime.now(timezone.utc)
         db.add(ProductEvent(event_id="attempt-1", event_name="recognition_started", occurred_at=now, museum_id="louvre"))
@@ -81,10 +81,48 @@ class AdminPanelTests(unittest.TestCase):
         db.commit()
         metrics = admin._recognition_metrics(db, now - timedelta(minutes=1), now + timedelta(minutes=1))
         db.close()
-        self.assertEqual(metrics["attempts"], 2)
+        self.assertEqual(metrics["attempts"], 0)
+        self.assertEqual(metrics["successful"], 0)
+        self.assertEqual(metrics["failed"], 0)
+        self.assertIsNone(metrics["success_rate"])
+        self.assertEqual(metrics["identityless_operational_events"], 4)
+
+    def test_identified_recognition_counts_as_visitor_metric(self):
+        db = self.Session()
+        now = datetime.now(timezone.utc)
+        identity = {"anonymous_id": "anon-1", "session_id": "session-1"}
+        db.add(ProductEvent(event_id="attempt-1", event_name="recognition_started", occurred_at=now, museum_id="louvre", **identity))
+        db.add(ProductEvent(event_id="done-1", event_name="scan_success", occurred_at=now, museum_id="louvre", artwork_id="work-1", properties={"confidence": 0.9}, **identity))
+        db.commit()
+        metrics = admin._recognition_metrics(db, now - timedelta(minutes=1), now + timedelta(minutes=1))
+        db.close()
+        self.assertEqual(metrics["attempts"], 1)
         self.assertEqual(metrics["successful"], 1)
-        self.assertEqual(metrics["failed"], 1)
-        self.assertEqual(metrics["success_rate"], 50.0)
+        self.assertEqual(metrics["failed"], 0)
+        self.assertEqual(metrics["success_rate"], 100.0)
+
+    def test_catalog_health_separates_presentation_reference_and_assets(self):
+        db = self.Session()
+        db.add_all([
+            Artwork(id="with-presentation", museum_id="louvre", title_original="With presentation", image_url="https://example.com/a.jpg", recognition_status="VISION_READY"),
+            Artwork(id="with-asset", museum_id="louvre", title_original="With asset", recognition_status="VISION_PLUS_ASSET"),
+            Artwork(id="with-louvre-ref", museum_id="louvre", title_original="With Louvre ref", recognition_status="VISION_READY"),
+            Artwork(id="no-reference", museum_id="louvre", title_original="No reference", recognition_status="VISION_READY"),
+        ])
+        for artwork_id in ["with-presentation", "with-asset", "with-louvre-ref", "no-reference"]:
+            db.add(ArtworkCatalogMembership(artwork_id=artwork_id, museum_id="louvre", catalog_version="test", active=True))
+        db.add(RecognitionAsset(artwork_id="with-asset", source="wikimedia_commons", source_url="https://commons.example/work.jpg", local_storage_status="not_fetched"))
+        db.add(LouvreImageReference(artwork_id="with-louvre-ref", url_image="https://collections.louvre.example/work.jpg", fetched=False))
+        db.commit()
+        metrics = admin._catalog_health(db)
+        db.close()
+        self.assertEqual(metrics["active_visitor_catalog_total"], 4)
+        self.assertEqual(metrics["works_with_presentation_images"], 1)
+        self.assertEqual(metrics["works_missing_presentation_images"], 3)
+        self.assertEqual(metrics["works_with_recognition_assets"], 1)
+        self.assertEqual(metrics["works_missing_recognition_assets"], 3)
+        self.assertEqual(metrics["works_with_source_or_reference_images"], 3)
+        self.assertEqual(metrics["works_missing_any_image_reference"], 1)
 
 
 if __name__ == "__main__":

@@ -292,7 +292,8 @@ export default function AdminApp() {
                   <ul className="admin-warnings">
                     {dashboard.data_gaps.map((gap) => <li key={gap}><AlertTriangle size={15} /> {gap}</li>)}
                     {dashboard.recognition.success_rate !== null && Number(dashboard.recognition.success_rate) < 75 && <li><AlertTriangle size={15} /> Recognition success rate is below 75% for this period.</li>}
-                    {Number(dashboard.catalog.works_missing_images) > 0 && <li><AlertTriangle size={15} /> {formatValue(dashboard.catalog.works_missing_images)} active catalog works are missing artwork images.</li>}
+                    {Number(dashboard.catalog.works_missing_presentation_images) > 0 && <li><AlertTriangle size={15} /> {formatValue(dashboard.catalog.works_missing_presentation_images)} active catalog works are missing presentation image URLs.</li>}
+                    {Number(dashboard.recognition.identityless_operational_events) > 0 && <li><AlertTriangle size={15} /> {formatValue(dashboard.recognition.identityless_operational_events)} identityless server recognition events are retained for operations but excluded from visitor KPIs.</li>}
                   </ul>
                 </div>
               </div>
@@ -372,7 +373,10 @@ export default function AdminApp() {
                 <Kpi label="VISION_PLUS_ASSET" value={dashboard.catalog.vision_plus_asset} />
                 <Kpi label="VISION_READY" value={dashboard.catalog.vision_ready} />
                 <Kpi label="NOT_READY" value={dashboard.catalog.not_ready} />
-                <Kpi label="Missing images" value={dashboard.catalog.works_missing_images} />
+                <Kpi label="Missing presentation images" value={dashboard.catalog.works_missing_presentation_images} />
+                <Kpi label="Any image/reference" value={dashboard.catalog.works_with_source_or_reference_images} />
+                <Kpi label="No image reference" value={dashboard.catalog.works_missing_any_image_reference} />
+                <Kpi label="No local image cache" value={dashboard.catalog.works_missing_local_cached_source_images} />
               </div>
             </Section>
 
