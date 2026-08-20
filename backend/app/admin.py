@@ -14,7 +14,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Query, Request, Response
 from pydantic import BaseModel, Field
-from sqlalchemy import String, and_, case, desc, distinct, func, inspect, or_, text
+from sqlalchemy import String, and_, case, desc, distinct, func, inspect, or_, select, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
@@ -27,6 +27,7 @@ from .models import (
     ArtworkCatalogMembership,
     ArtworkLocalization,
     ArtworkValueReveal,
+    LouvreImageReference,
     Museum,
     ProductEvent,
     RecognitionAsset,
@@ -215,6 +216,10 @@ def _event_count(db: Session, start: Optional[datetime], end: datetime, event_na
     if event_names:
         query = query.filter(ProductEvent.event_name.in_(list(event_names)))
     return int(query.count())
+
+
+def _identified_event_query(db: Session, start: Optional[datetime], end: datetime):
+    return _event_base_query(db, start, end).filter(_identity_expr().isnot(None))
 
 
 def _pct(current: int | float, previous: int | float) -> Optional[float]:
@@ -480,15 +485,22 @@ def _returning_user_count(db: Session, start: Optional[datetime], end: datetime)
 
 
 def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) -> Dict[str, Any]:
-    attempts = _event_count(db, start, end, {"recognition_started"})
-    successes = _event_count(db, start, end, SUCCESS_EVENTS)
-    failures = _event_count(db, start, end, FAILURE_EVENTS)
+    visitor_events = _identified_event_query(db, start, end) if _table_exists(db, "product_events") else None
+    attempts = int(visitor_events.filter(ProductEvent.event_name == "recognition_started").count()) if visitor_events else 0
+    successes = int(visitor_events.filter(ProductEvent.event_name.in_(list(SUCCESS_EVENTS))).count()) if visitor_events else 0
+    failures = int(visitor_events.filter(ProductEvent.event_name.in_(list(FAILURE_EVENTS))).count()) if visitor_events else 0
     no_match = 0
     latencies: List[float] = []
     failure_reasons = Counter()
     confidence_buckets = Counter()
+    identityless_operational_events = 0
     if _table_exists(db, "product_events"):
-        rows = _event_base_query(db, start, end).filter(
+        identityless_operational_events = int(
+            _event_base_query(db, start, end)
+            .filter(ProductEvent.event_name.in_(["recognition_started", "recognition_completed", "recognition_failed"]), _identity_expr().is_(None))
+            .count()
+        )
+        rows = _identified_event_query(db, start, end).filter(
             ProductEvent.event_name.in_(["recognition_completed", "recognition_failed", "scan_failed", "scan_success", "recognition_succeeded"])
         ).all()
         for row in rows:
@@ -524,6 +536,8 @@ def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) 
         "confidence_buckets": dict(confidence_buckets),
         "failure_reasons": [{"reason": reason, "count": count} for reason, count in failure_reasons.most_common()],
         "historical_success_records": historical_successes,
+        "identityless_operational_events": identityless_operational_events,
+        "visitor_metric_definition": "Recognition metrics count first-party product events with a persistent user_id or anonymous_id. Identityless server smoke/API events are retained but excluded from visitor KPIs.",
     }
 
 
@@ -625,33 +639,81 @@ def _retention(db: Session) -> Dict[str, Any]:
 
 
 def _catalog_health(db: Session) -> Dict[str, Any]:
-    active_subquery = db.query(ArtworkCatalogMembership.artwork_id).filter(ArtworkCatalogMembership.active.is_(True)).subquery()
+    active_select = select(ArtworkCatalogMembership.artwork_id).where(ArtworkCatalogMembership.active.is_(True))
     active_total = int(db.query(ArtworkCatalogMembership).filter(ArtworkCatalogMembership.active.is_(True)).count())
-    active_artworks = db.query(Artwork).filter(Artwork.id.in_(active_subquery))
-    with_assets = int(
-        db.query(distinct(RecognitionAsset.artwork_id))
+    active_artworks = db.query(Artwork).filter(Artwork.id.in_(active_select))
+    active_ids = {artwork_id for (artwork_id,) in db.query(ArtworkCatalogMembership.artwork_id).filter(ArtworkCatalogMembership.active.is_(True)).all()}
+    presentation_ids = {
+        artwork_id
+        for (artwork_id,) in db.query(Artwork.id).filter(Artwork.id.in_(active_select), Artwork.image_url.isnot(None), Artwork.image_url != "").all()
+    }
+    ra_rows = (
+        db.query(RecognitionAsset.artwork_id, RecognitionAsset.source_url, RecognitionAsset.local_storage_status)
         .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == RecognitionAsset.artwork_id)
         .filter(ArtworkCatalogMembership.active.is_(True))
-        .count()
+        .all()
     )
-    vision_ready = max(0, active_total - with_assets)
-    not_ready = int(active_artworks.filter(Artwork.metadata_status.in_(["INSUFFICIENT", "NOT_READY"])).count())
+    recognition_asset_ids = {artwork_id for artwork_id, _source_url, _storage in ra_rows}
+    recognition_asset_source_ids = {artwork_id for artwork_id, source_url, _storage in ra_rows if source_url}
+    local_cache_ids = {
+        artwork_id
+        for artwork_id, _source_url, storage in ra_rows
+        if (storage or "").lower() in {"cached", "downloaded", "local"}
+    }
+    louvre_rows = (
+        db.query(LouvreImageReference.artwork_id, LouvreImageReference.url_image, LouvreImageReference.url_thumbnail, LouvreImageReference.fetched)
+        .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == LouvreImageReference.artwork_id)
+        .filter(ArtworkCatalogMembership.active.is_(True))
+        .all()
+    )
+    louvre_reference_ids = {artwork_id for artwork_id, url_image, url_thumbnail, _fetched in louvre_rows if url_image or url_thumbnail}
+    louvre_fetched_ids = {artwork_id for artwork_id, _url_image, _url_thumbnail, fetched in louvre_rows if fetched}
+    with_assets = len(recognition_asset_ids)
+    status_counts = {
+        (status or "UNKNOWN"): int(count)
+        for status, count in (
+            db.query(Artwork.recognition_status, func.count(distinct(Artwork.id)))
+            .filter(Artwork.id.in_(active_select))
+            .group_by(Artwork.recognition_status)
+            .all()
+        )
+    }
+    vision_plus_asset = int(status_counts.get("VISION_PLUS_ASSET", with_assets))
+    vision_ready = int(status_counts.get("VISION_READY", max(0, active_total - with_assets)))
+    not_ready_statuses = {"INSUFFICIENT", "NOT_READY", "NO_USABLE_ASSET", "RIGHTS_RESTRICTED"}
+    not_ready = int(
+        active_artworks.filter(or_(Artwork.metadata_status.in_(["INSUFFICIENT", "NOT_READY"]), Artwork.recognition_status.in_(list(not_ready_statuses)))).count()
+    )
     missing_images = int(active_artworks.filter(or_(Artwork.image_url.is_(None), Artwork.image_url == "")).count())
     missing_metadata = int(active_artworks.filter(or_(Artwork.title_original.is_(None), Artwork.title_original == "")).count())
+    any_reference_ids = presentation_ids | recognition_asset_source_ids | louvre_reference_ids
+    local_image_ids = local_cache_ids | louvre_fetched_ids
     louvre_active = int(db.query(ArtworkCatalogMembership).filter(ArtworkCatalogMembership.active.is_(True), ArtworkCatalogMembership.museum_id == "louvre").count())
     louvre_total = int(db.query(Artwork).filter(Artwork.museum_id == "louvre").count())
     return {
         "knowledge_catalog_total": int(db.query(Artwork).count()),
         "active_visitor_catalog_total": active_total,
-        "vision_plus_asset": with_assets,
+        "vision_plus_asset": vision_plus_asset,
         "vision_ready": vision_ready,
         "not_ready": not_ready,
+        "recognition_status_counts": status_counts,
         "active_works": active_total,
         "inactive_works": max(0, int(db.query(Artwork).count()) - active_total),
         "works_missing_images": missing_images,
+        "works_missing_presentation_images": missing_images,
         "works_missing_metadata": missing_metadata,
         "works_with_recognition_assets": with_assets,
         "works_missing_recognition_assets": max(0, active_total - with_assets),
+        "works_with_presentation_images": len(presentation_ids),
+        "works_with_source_or_reference_images": len(any_reference_ids),
+        "works_missing_any_image_reference": len(active_ids - any_reference_ids),
+        "works_with_louvre_image_references": len(louvre_reference_ids),
+        "works_with_local_cached_source_images": len(local_image_ids),
+        "works_missing_local_cached_source_images": len(active_ids - local_image_ids),
+        "works_with_remote_or_reference_images_but_no_local_cache": len(any_reference_ids - local_image_ids),
+        "recognition_asset_exists_presentation_missing": len(recognition_asset_ids - presentation_ids),
+        "presentation_exists_recognition_asset_missing": len(presentation_ids - recognition_asset_ids),
+        "both_presentation_and_recognition_asset_missing": len(active_ids - (presentation_ids | recognition_asset_ids)),
         "louvre": {
             "knowledge_catalog": louvre_total,
             "active_visitor_catalog": louvre_active,
@@ -691,7 +753,7 @@ def _museum_rows(db: Session, start: Optional[datetime], end: datetime, limit: i
 def _event_count_for_museum(db: Session, start: Optional[datetime], end: datetime, museum_id: str, events: Iterable[str]) -> int:
     if not _table_exists(db, "product_events"):
         return 0
-    return int(_event_base_query(db, start, end).filter(ProductEvent.event_name.in_(list(events)), ProductEvent.museum_id == museum_id).count())
+    return int(_identified_event_query(db, start, end).filter(ProductEvent.event_name.in_(list(events)), ProductEvent.museum_id == museum_id).count())
 
 
 def _identity_count_for_museum(db: Session, start: Optional[datetime], end: datetime, museum_id: str) -> int:
@@ -722,7 +784,7 @@ def _top_artworks(db: Session, start: Optional[datetime], end: datetime, limit: 
     event_counts = Counter()
     if _table_exists(db, "product_events"):
         rows = (
-            _event_base_query(db, start, end)
+            _identified_event_query(db, start, end)
             .filter(ProductEvent.artwork_id.isnot(None), ProductEvent.event_name.in_(["result_viewed", "artwork_viewed", "scan_success", "recognition_succeeded"]))
             .with_entities(ProductEvent.artwork_id, func.count(ProductEvent.event_id))
             .group_by(ProductEvent.artwork_id)
@@ -769,7 +831,7 @@ def _segments(db: Session, start: Optional[datetime], end: datetime) -> Dict[str
     def grouped(column):
         return [
             {"label": label or "unknown", "events": int(count)}
-            for label, count in _event_base_query(db, start, end).with_entities(column, func.count(ProductEvent.event_id)).group_by(column).order_by(desc(func.count(ProductEvent.event_id))).limit(15).all()
+            for label, count in _identified_event_query(db, start, end).with_entities(column, func.count(ProductEvent.event_id)).group_by(column).order_by(desc(func.count(ProductEvent.event_id))).limit(15).all()
         ]
     return {
         "devices": grouped(ProductEvent.device_type),
