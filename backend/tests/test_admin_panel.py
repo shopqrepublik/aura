@@ -2,7 +2,7 @@ import base64
 import hashlib
 import os
 import unittest
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from backend.app import admin
-from backend.app.models import AdminLoginAttempt, AdminSession, ProductEvent
+from backend.app.models import Base, ProductEvent
 
 
 def make_hash(password: str) -> str:
@@ -23,9 +23,7 @@ def make_hash(password: str) -> str:
 class AdminPanelTests(unittest.TestCase):
     def setUp(self):
         self.engine = create_engine("sqlite:///:memory:", connect_args={"check_same_thread": False}, poolclass=StaticPool)
-        AdminSession.__table__.create(self.engine)
-        AdminLoginAttempt.__table__.create(self.engine)
-        ProductEvent.__table__.create(self.engine)
+        Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(bind=self.engine)
         self.old_hash = admin.ADMIN_PASSWORD_HASH
         self.old_email = admin.ADMIN_EMAIL
@@ -72,6 +70,21 @@ class AdminPanelTests(unittest.TestCase):
         self.assertIsNotNone(start)
         self.assertIsNotNone(prev_start)
         self.assertGreater(end - start, timedelta(days=6))
+
+    def test_server_recognition_completed_counts_as_success(self):
+        db = self.Session()
+        now = datetime.now(timezone.utc)
+        db.add(ProductEvent(event_id="attempt-1", event_name="recognition_started", occurred_at=now, museum_id="louvre"))
+        db.add(ProductEvent(event_id="done-1", event_name="recognition_completed", occurred_at=now, museum_id="louvre", properties={"status": "matched", "confidence": 1.0}))
+        db.add(ProductEvent(event_id="attempt-2", event_name="recognition_started", occurred_at=now, museum_id="louvre"))
+        db.add(ProductEvent(event_id="fail-1", event_name="recognition_failed", occurred_at=now, museum_id="louvre", properties={"reason": "ai_error"}))
+        db.commit()
+        metrics = admin._recognition_metrics(db, now - timedelta(minutes=1), now + timedelta(minutes=1))
+        db.close()
+        self.assertEqual(metrics["attempts"], 2)
+        self.assertEqual(metrics["successful"], 1)
+        self.assertEqual(metrics["failed"], 1)
+        self.assertEqual(metrics["success_rate"], 50.0)
 
 
 if __name__ == "__main__":

@@ -494,8 +494,12 @@ def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) 
         for row in rows:
             props = row.properties or {}
             status = props.get("status")
+            if row.event_name == "recognition_completed" and status in {"matched", "needs_confirmation"}:
+                successes += 1
             if status == "no_match" or props.get("reason") in {"no_match", "uncataloged"}:
                 no_match += 1
+                if row.event_name == "recognition_completed":
+                    failures += 1
             reason = props.get("reason") or props.get("failure_reason") or status
             if row.event_name in FAILURE_EVENTS and reason:
                 failure_reasons[str(reason)] += 1
