@@ -417,3 +417,82 @@ class VisitArtwork(Base):
     scanned_at = Column(DateTime, default=now)
 
     visit = relationship("Visit", back_populates="artworks")
+
+
+class ProductEvent(Base):
+    """First-party product event log used by the admin control center.
+
+    This complements the existing PostHog client analytics with a small,
+    queryable Postgres trail for founder/operator metrics. It deliberately
+    stores product identifiers and coarse device/acquisition metadata, not
+    browser fingerprints or precise location.
+    """
+    __tablename__ = "product_events"
+    __table_args__ = (
+        Index("idx_product_events_name_time", "event_name", "occurred_at"),
+        Index("idx_product_events_occurred_at", "occurred_at"),
+        Index("idx_product_events_identity", "anonymous_id", "user_id"),
+        Index("idx_product_events_session_id", "session_id"),
+        Index("idx_product_events_museum_id", "museum_id"),
+        Index("idx_product_events_artwork_id", "artwork_id"),
+        Index("idx_product_events_recognition_attempt_id", "recognition_attempt_id"),
+    )
+
+    event_id = Column(String, primary_key=True)
+    event_name = Column(String, nullable=False)
+    occurred_at = Column(DateTime, default=now, nullable=False)
+    user_id = Column(String, nullable=True)
+    anonymous_id = Column(String, nullable=True)
+    session_id = Column(String, nullable=True)
+    museum_id = Column(String, nullable=True)
+    artwork_id = Column(String, nullable=True)
+    recognition_attempt_id = Column(String, nullable=True)
+    properties = Column(JSON, nullable=True)
+    source = Column(String, nullable=True)
+    referrer = Column(Text, nullable=True)
+    utm_source = Column(String, nullable=True)
+    utm_medium = Column(String, nullable=True)
+    utm_campaign = Column(String, nullable=True)
+    utm_content = Column(String, nullable=True)
+    country = Column(String, nullable=True)
+    city = Column(String, nullable=True)
+    language = Column(String, nullable=True)
+    device_type = Column(String, nullable=True)
+    os = Column(String, nullable=True)
+    browser = Column(String, nullable=True)
+    user_agent = Column(Text, nullable=True)
+    path = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=now, nullable=False)
+
+
+class AdminSession(Base):
+    __tablename__ = "admin_sessions"
+    __table_args__ = (
+        Index("idx_admin_sessions_token_hash", "token_hash"),
+        Index("idx_admin_sessions_expires_at", "expires_at"),
+    )
+
+    id = Column(String, primary_key=True)
+    email = Column(String, nullable=False)
+    token_hash = Column(String, nullable=False, unique=True)
+    created_at = Column(DateTime, default=now, nullable=False)
+    expires_at = Column(DateTime, nullable=False)
+    revoked_at = Column(DateTime, nullable=True)
+    last_seen_at = Column(DateTime, nullable=True)
+    ip_hash = Column(String, nullable=True)
+    user_agent = Column(Text, nullable=True)
+
+
+class AdminLoginAttempt(Base):
+    __tablename__ = "admin_login_attempts"
+    __table_args__ = (
+        Index("idx_admin_login_attempts_email_time", "email", "attempted_at"),
+        Index("idx_admin_login_attempts_ip_time", "ip_hash", "attempted_at"),
+    )
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    email = Column(String, nullable=False)
+    ip_hash = Column(String, nullable=True)
+    attempted_at = Column(DateTime, default=now, nullable=False)
+    success = Column(Boolean, nullable=False, default=False)
+    user_agent = Column(Text, nullable=True)

@@ -117,6 +117,10 @@ export default function ElyioApp() {
   const isDesktop = useIsDesktop();
 
   useEffect(() => {
+    track("app_opened", { locale: state.locale, display_mode: window.matchMedia?.("(display-mode: standalone)")?.matches ? "standalone" : "browser" });
+  }, [state.locale]);
+
+  useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     if (query.get("from") !== "organic") return;
     const attribution = { traffic_source: "organic", landing_page: query.get("landing") || "unknown", landing_locale: query.get("locale") || state.locale };

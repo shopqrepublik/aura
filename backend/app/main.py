@@ -88,6 +88,7 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 # VISITS dict below -- every /v1/visits* endpoint now requires a verified
 # Supabase JWT and persists to real Postgres (see app/db.py, app/auth.py).
 from .auth import get_current_user  # noqa: E402
+from .admin import record_product_event_from_server, router as admin_router  # noqa: E402
 from .catalog import (  # noqa: E402
     CatalogUnavailableError,
     DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM,
@@ -109,9 +110,11 @@ app.add_middleware(
         "https://www.elyio.co",
         "http://localhost:3000",  # local web/ dev
     ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(admin_router)
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
@@ -285,6 +288,7 @@ def _log_recognition_event(event: str, **properties) -> None:
         **properties,
     }
     print(json.dumps(payload, ensure_ascii=False, default=str), flush=True)
+    record_product_event_from_server(event, properties)
 
 
 def _openai_chat_completion_with_retries(client, **kwargs):
