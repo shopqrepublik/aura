@@ -746,11 +746,12 @@ def _top_artworks(db: Session, start: Optional[datetime], end: datetime, limit: 
 def _acquisition(db: Session, start: Optional[datetime], end: datetime) -> Dict[str, Any]:
     if not _table_exists(db, "product_events"):
         return {"sources": [], "utm": []}
+    source_expr = func.coalesce(ProductEvent.utm_source, ProductEvent.source, "direct")
     sources = (
         _event_base_query(db, start, end)
         .filter(_identity_expr().isnot(None))
-        .with_entities(func.coalesce(ProductEvent.utm_source, ProductEvent.source, "direct").label("source"), func.count(distinct(_identity_expr())).label("users"))
-        .group_by("source")
+        .with_entities(source_expr.label("source"), func.count(distinct(_identity_expr())).label("users"))
+        .group_by(source_expr)
         .order_by(desc("users"))
         .limit(25)
         .all()
