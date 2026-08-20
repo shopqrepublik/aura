@@ -1,6 +1,7 @@
 "use client";
 
 import posthog from "posthog-js";
+import { BACKEND_URL } from "./api";
 
 // PostHog (§13) -- the tool the original product spec names directly
 // ("PostHog or equivalent", §13). No-ops entirely (init and every
@@ -62,23 +63,30 @@ function ensureInit() {
 // built. They stay defined so the eventual paywall screen has a name to
 // call rather than inventing one later.
 export type EventName =
+  | "app_opened"
   | "seo_landing"
   | "seo_begin_visit"
+  | "session_started"
   | "onboarding_completed"
   | "language_selected"
   | "museum_selected"
   | "visit_started"
   | "recognition_started"
+  | "recognition_succeeded"
   | "recognition_completed"
   | "recognition_failed"
   | "catalog_match"
   | "catalog_no_match"
   | "scan_attempt"
+  | "scan_opened"
+  | "image_captured"
   | "scan_success"
   | "scan_failed"
   | "candidate_confirmed"
   | "result_viewed"
+  | "artwork_viewed"
   | "artwork_card_opened"
+  | "content_opened"
   | "artwork_card_read_time"
   | "audio_started"
   | "audio_completed"
@@ -108,14 +116,120 @@ export type EventName =
   | "pwa_installed"
   | "pwa_ios_instructions_shown";
 
+const ANON_KEY = "elyio-anonymous-id";
+const SESSION_KEY = "elyio-session-id";
+
+function uuid() {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+}
+
+function getOrCreateStoredId(storage: Storage, key: string) {
+  let value = storage.getItem(key);
+  if (!value) {
+    value = uuid();
+    storage.setItem(key, value);
+  }
+  return value;
+}
+
+function getAnonymousId() {
+  try {
+    return getOrCreateStoredId(window.localStorage, ANON_KEY);
+  } catch {
+    return undefined;
+  }
+}
+
+function getSessionId() {
+  try {
+    return getOrCreateStoredId(window.sessionStorage, SESSION_KEY);
+  } catch {
+    return undefined;
+  }
+}
+
+function parseUtm() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get("utm_source") || undefined,
+    utm_medium: params.get("utm_medium") || undefined,
+    utm_campaign: params.get("utm_campaign") || undefined,
+    utm_content: params.get("utm_content") || undefined,
+  };
+}
+
+function deviceType() {
+  const ua = navigator.userAgent;
+  if (/ipad|tablet/i.test(ua)) return "tablet";
+  if (/mobile|iphone|android/i.test(ua)) return "mobile";
+  return "desktop";
+}
+
+function osName() {
+  const ua = navigator.userAgent;
+  if (/iphone|ipad|ios/i.test(ua)) return "iOS";
+  if (/android/i.test(ua)) return "Android";
+  if (/windows/i.test(ua)) return "Windows";
+  if (/mac os|macintosh/i.test(ua)) return "macOS";
+  return "other";
+}
+
+function browserName() {
+  const ua = navigator.userAgent;
+  if (/edg/i.test(ua)) return "Edge";
+  if (/crios|chrome/i.test(ua)) return "Chrome";
+  if (/firefox|fxios/i.test(ua)) return "Firefox";
+  if (/safari/i.test(ua)) return "Safari";
+  return "other";
+}
+
+function sendFirstPartyEvent(event: EventName, properties?: Record<string, unknown>, landing: Record<string, unknown> = {}) {
+  if (typeof window === "undefined") return;
+  const payload = {
+    event_id: uuid(),
+    event_name: event,
+    occurred_at: new Date().toISOString(),
+    anonymous_id: getAnonymousId(),
+    session_id: getSessionId(),
+    museum_id: typeof properties?.museum_id === "string" ? properties.museum_id : undefined,
+    artwork_id: typeof properties?.artwork_id === "string" ? properties.artwork_id : undefined,
+    recognition_attempt_id: typeof properties?.recognition_attempt_id === "string" ? properties.recognition_attempt_id : undefined,
+    properties: { ...landing, ...properties },
+    source: typeof landing.source === "string" ? landing.source : undefined,
+    referrer: document.referrer || undefined,
+    ...parseUtm(),
+    language: navigator.language,
+    device_type: deviceType(),
+    os: osName(),
+    browser: browserName(),
+    path: `${window.location.pathname}${window.location.search}`,
+  };
+  const body = JSON.stringify(payload);
+  try {
+    if (navigator.sendBeacon) {
+      const blob = new Blob([body], { type: "application/json" });
+      if (navigator.sendBeacon(`${BACKEND_URL}/v1/events`, blob)) return;
+    }
+  } catch { /* event transport must never interfere with the visit */ }
+  void fetch(`${BACKEND_URL}/v1/events`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+    keepalive: true,
+  }).catch(() => undefined);
+}
+
 export function track(event: EventName, properties?: Record<string, unknown>) {
   ensureInit();
-  if (!KEY || typeof window === "undefined") return;
+  if (typeof window === "undefined") return;
   let landing: Record<string, unknown> = {};
   try {
     const stored = window.sessionStorage.getItem("elyio-organic-landing");
     if (stored) landing = JSON.parse(stored) as Record<string, unknown>;
   } catch { /* attribution must never interfere with the visit */ }
+  sendFirstPartyEvent(event, properties, landing);
+  if (!KEY) return;
   posthog.capture(event, { ...landing, ...properties });
 }
 
