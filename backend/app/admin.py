@@ -39,7 +39,7 @@ from .models import (
 
 router = APIRouter()
 
-ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "alexsen33gmail.com").strip().lower()
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "alexsen33@gmail.com").strip().lower()
 DEFAULT_ADMIN_PASSWORD_HASH = (
     "pbkdf2_sha256$260000$OuaLQdcniDseZVsAq3dBoA$BkRoanD8tyigNeU3vhSePRsiXDUhvghHVSwFpKYfhuk"
 )
