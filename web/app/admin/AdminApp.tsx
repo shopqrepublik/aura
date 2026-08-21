@@ -195,10 +195,18 @@ export default function AdminApp() {
       await api("/v1/admin/me");
       const data = await api<Dashboard>(`/v1/admin/dashboard?period=${period}`);
       setDashboard(data);
-      setFailures((await api<{ rows: Array<JsonRecord> }>(`/v1/admin/recognition/failures?period=${period}&limit=25`)).rows);
-      setArtworks((await api<{ rows: Array<JsonRecord> }>(`/v1/admin/artworks?limit=25${search ? `&q=${encodeURIComponent(search)}` : ""}`)).rows);
-      setUsers((await api<{ rows: Array<JsonRecord> }>(`/v1/admin/users?limit=25${search ? `&q=${encodeURIComponent(search)}` : ""}`)).rows);
       setAuthed(true);
+      const [failureRows, artworkRows, userRows] = await Promise.allSettled([
+        api<{ rows: Array<JsonRecord> }>(`/v1/admin/recognition/failures?period=${period}&limit=25`),
+        api<{ rows: Array<JsonRecord> }>(`/v1/admin/artworks?limit=25${search ? `&q=${encodeURIComponent(search)}` : ""}`),
+        api<{ rows: Array<JsonRecord> }>(`/v1/admin/users?limit=25${search ? `&q=${encodeURIComponent(search)}` : ""}`),
+      ]);
+      if (failureRows.status === "fulfilled") setFailures(failureRows.value.rows);
+      if (artworkRows.status === "fulfilled") setArtworks(artworkRows.value.rows);
+      if (userRows.status === "fulfilled") setUsers(userRows.value.rows);
+      if ([failureRows, artworkRows, userRows].some((result) => result.status === "rejected")) {
+        setError("Dashboard loaded. One secondary table failed to refresh.");
+      }
     } catch (e) {
       if (e instanceof Error && e.message === "unauthorized") setAuthed(false);
       else setError(e instanceof Error ? e.message : "Admin load failed");
