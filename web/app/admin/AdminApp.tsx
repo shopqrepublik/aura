@@ -160,7 +160,7 @@ function Table({ rows, columns }: { rows: Array<JsonRecord>; columns: Array<{ ke
         <tbody>
           {rows.length === 0 && (
             <tr>
-              <td colSpan={columns.length}>No rows for this period.</td>
+              <td colSpan={columns.length}>No visitor data yet</td>
             </tr>
           )}
           {rows.map((row, idx) => (

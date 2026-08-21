@@ -118,6 +118,8 @@ export type EventName =
 
 const ANON_KEY = "elyio-anonymous-id";
 const SESSION_KEY = "elyio-session-id";
+const SESSION_STARTED_KEY = "elyio-session-started";
+const INTERNAL_TEST_KEY = "elyio-internal-test";
 
 function uuid() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
@@ -146,6 +148,18 @@ function getSessionId() {
     return getOrCreateStoredId(window.sessionStorage, SESSION_KEY);
   } catch {
     return undefined;
+  }
+}
+
+function internalTestEnabled() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("elyio_internal_test") === "1") {
+      window.sessionStorage.setItem(INTERNAL_TEST_KEY, "1");
+    }
+    return window.sessionStorage.getItem(INTERNAL_TEST_KEY) === "1";
+  } catch {
+    return false;
   }
 }
 
@@ -195,7 +209,7 @@ function sendFirstPartyEvent(event: EventName, properties?: Record<string, unkno
     museum_id: typeof properties?.museum_id === "string" ? properties.museum_id : undefined,
     artwork_id: typeof properties?.artwork_id === "string" ? properties.artwork_id : undefined,
     recognition_attempt_id: typeof properties?.recognition_attempt_id === "string" ? properties.recognition_attempt_id : undefined,
-    properties: { ...landing, ...properties },
+    properties: { ...landing, ...properties, ...(internalTestEnabled() ? { internal_test: true } : {}) },
     source: typeof landing.source === "string" ? landing.source : undefined,
     referrer: document.referrer || undefined,
     ...parseUtm(),
@@ -218,6 +232,18 @@ function sendFirstPartyEvent(event: EventName, properties?: Record<string, unkno
     body,
     keepalive: true,
   }).catch(() => undefined);
+}
+
+export function trackSessionStartedOnce(properties?: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  try {
+    if (window.sessionStorage.getItem(SESSION_STARTED_KEY)) return;
+    window.sessionStorage.setItem(SESSION_STARTED_KEY, "1");
+  } catch {
+    // If sessionStorage is unavailable, emit the event rather than losing
+    // session-start visibility entirely.
+  }
+  track("session_started", properties);
 }
 
 export function track(event: EventName, properties?: Record<string, unknown>) {

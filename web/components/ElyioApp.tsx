@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useElyioApp, type AppState } from "@/lib/app-state";
 import { useAuth } from "@/lib/useAuth";
-import { identify, track } from "@/lib/analytics";
+import { identify, track, trackSessionStartedOnce } from "@/lib/analytics";
 import { useIsDesktop } from "@/lib/useIsDesktop";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
@@ -117,6 +117,7 @@ export default function ElyioApp() {
   const isDesktop = useIsDesktop();
 
   useEffect(() => {
+    trackSessionStartedOnce({ locale: state.locale });
     track("app_opened", { locale: state.locale, display_mode: window.matchMedia?.("(display-mode: standalone)")?.matches ? "standalone" : "browser" });
   }, [state.locale]);
 
