@@ -116,7 +116,7 @@ function Login({ onLogin }: { onLogin: () => void }) {
         <p>Founder analytics, recognition operations and catalog health.</p>
         <label>
           Email
-          <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" autoComplete="username" required />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" autoComplete="username" required />
         </label>
         <label>
           Password
