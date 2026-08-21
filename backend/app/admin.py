@@ -193,11 +193,18 @@ def _period_bounds(period: str) -> Tuple[Optional[datetime], datetime, Optional[
     return start, now, start - span, start, key
 
 
-def _event_base_query(db: Session, start: Optional[datetime], end: datetime):
+def _non_internal_event_filter():
+    return or_(ProductEvent.properties.is_(None), ProductEvent.properties["internal_test"].as_boolean().isnot(True))
+
+
+def _event_base_query(db: Session, start: Optional[datetime], end: datetime, include_internal: bool = False):
     query = db.query(ProductEvent)
     if start:
         query = query.filter(ProductEvent.occurred_at >= start)
-    return query.filter(ProductEvent.occurred_at < end)
+    query = query.filter(ProductEvent.occurred_at < end)
+    if not include_internal:
+        query = query.filter(_non_internal_event_filter())
+    return query
 
 
 def _identity_count(db: Session, start: Optional[datetime], end: datetime, event_names: Optional[Iterable[str]] = None) -> int:

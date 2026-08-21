@@ -101,6 +101,32 @@ class AdminPanelTests(unittest.TestCase):
         self.assertEqual(metrics["failed"], 0)
         self.assertEqual(metrics["success_rate"], 100.0)
 
+    def test_internal_test_events_are_excluded_from_founder_metrics(self):
+        db = self.Session()
+        now = datetime.now(timezone.utc)
+        db.add(ProductEvent(
+            event_id="internal-app",
+            event_name="app_opened",
+            occurred_at=now,
+            anonymous_id="qa-anon",
+            session_id="qa-session",
+            properties={"internal_test": True},
+        ))
+        db.add(ProductEvent(
+            event_id="real-app",
+            event_name="app_opened",
+            occurred_at=now,
+            anonymous_id="real-anon",
+            session_id="real-session",
+            properties={},
+        ))
+        db.commit()
+        active = admin._identity_count(db, now - timedelta(minutes=1), now + timedelta(minutes=1), {"app_opened"})
+        sessions = admin._basic_user_metrics(db, now - timedelta(minutes=1), now + timedelta(minutes=1), None, None)["sessions"]
+        db.close()
+        self.assertEqual(active, 1)
+        self.assertEqual(sessions, 1)
+
     def test_catalog_health_separates_presentation_reference_and_assets(self):
         db = self.Session()
         db.add_all([

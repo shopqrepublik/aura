@@ -89,6 +89,11 @@ const initialState: AppState = {
   missionToast: null,
 };
 
+function eventId() {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+}
+
 export function useElyioApp() {
   const [state, setState] = useState<AppState>(() => loadVisitState() || initialState);
 
@@ -104,6 +109,7 @@ export function useElyioApp() {
     setState((s) => {
       if (s.visitStarted) return s;
       track("visit_started", { museum_id: museumId });
+      track("scan_opened", { museum_id: museumId, source: "visit_started" });
       const now = Date.now();
       return persistVisitState({
         ...s,
@@ -131,15 +137,18 @@ export function useElyioApp() {
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
     setState((s) => persistVisitState({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
-    track("scan_attempt", { museum_id: state.museumId, seen_count: state.seen.length });
+    const recognitionAttemptId = eventId();
+    track("image_captured", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId });
+    track("scan_attempt", { museum_id: state.museumId, seen_count: state.seen.length, recognition_attempt_id: recognitionAttemptId });
     if (state.seen.length > 0) {
-      track("second_scan_started", { museum_id: state.museumId, seen_count: state.seen.length });
+      track("second_scan_started", { museum_id: state.museumId, seen_count: state.seen.length, recognition_attempt_id: recognitionAttemptId });
     }
-    track("recognition_started", { museum_id: state.museumId });
+    track("recognition_started", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId });
     try {
       const result = await api.recognize(imageBase64, state.locale, state.museumId ?? "");
       track("recognition_completed", {
         museum_id: state.museumId,
+        recognition_attempt_id: recognitionAttemptId,
         status: result.status,
         confidence: result.confidence,
         recognition_mode: result.recognition_mode,
@@ -165,9 +174,10 @@ export function useElyioApp() {
         // failure message -- see UncatalogedSighting's doc comment above.
         const uncataloged = result.recognized_but_not_cataloged;
         if (uncataloged && (uncataloged.artist || uncataloged.title)) {
-          track("scan_failed", { reason: "uncataloged" });
+          track("scan_failed", { reason: "uncataloged", recognition_attempt_id: recognitionAttemptId });
           track("catalog_no_match", {
             museum_id: state.museumId,
+            recognition_attempt_id: recognitionAttemptId,
             confidence: result.confidence,
             ai_candidate: uncataloged,
           });
@@ -187,13 +197,14 @@ export function useElyioApp() {
           track("result_viewed", {
             result_type: "uncataloged",
             museum_id: state.museumId,
+            recognition_attempt_id: recognitionAttemptId,
             confidence: result.confidence,
             ai_candidate: uncataloged,
           });
           return;
         }
-        track("scan_failed", { reason: result.status });
-        track("catalog_no_match", { museum_id: state.museumId, confidence: result.confidence });
+        track("scan_failed", { reason: result.status, recognition_attempt_id: recognitionAttemptId });
+        track("catalog_no_match", { museum_id: state.museumId, confidence: result.confidence, recognition_attempt_id: recognitionAttemptId });
         setState((s) => persistVisitState({ ...s, scanStatus: "not_identified", pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
         return;
       }
@@ -205,12 +216,13 @@ export function useElyioApp() {
       // in PostHog even before that UI exists; a real confirm step, when
       // built, should fire this on the user's actual confirm tap instead.
       if (result.status === "needs_confirmation") {
-        track("candidate_confirmed", { artwork_id: artwork.id, confidence: result.confidence });
+        track("candidate_confirmed", { artwork_id: artwork.id, confidence: result.confidence, recognition_attempt_id: recognitionAttemptId });
       }
-      track("scan_success", { artwork_id: artwork.id, confidence: result.confidence, status: result.status });
+      track("scan_success", { artwork_id: artwork.id, museum_id: state.museumId, confidence: result.confidence, status: result.status, recognition_attempt_id: recognitionAttemptId });
       track("catalog_match", {
         museum_id: state.museumId,
         artwork_id: artwork.id,
+        recognition_attempt_id: recognitionAttemptId,
         confidence: result.confidence,
         recognition_mode: result.recognition_mode,
       });
@@ -218,8 +230,15 @@ export function useElyioApp() {
         result_type: "catalog",
         museum_id: state.museumId,
         artwork_id: artwork.id,
+        recognition_attempt_id: recognitionAttemptId,
         confidence: result.confidence,
         status: result.status,
+      });
+      track("artwork_viewed", {
+        result_type: "catalog",
+        museum_id: state.museumId,
+        artwork_id: artwork.id,
+        recognition_attempt_id: recognitionAttemptId,
       });
 
       artwork = withCapturedScanFallbackImage(
@@ -242,9 +261,9 @@ export function useElyioApp() {
         return persistVisitState(applyVisitGameUnlocks(next, s));
       });
     } catch (error) {
-      track("recognition_failed", { museum_id: state.museumId, reason: error instanceof Error ? error.message : "error" });
+      track("recognition_failed", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId, reason: error instanceof Error ? error.message : "error" });
       const networkError = isRecognitionNetworkError(error);
-      track("scan_failed", { reason: networkError ? "network_error" : "error" });
+      track("scan_failed", { reason: networkError ? "network_error" : "error", recognition_attempt_id: recognitionAttemptId });
       setState((s) => persistVisitState({
         ...s,
         scanStatus: networkError ? "network_error" : "not_identified",
