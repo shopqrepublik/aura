@@ -2,7 +2,7 @@ import unittest
 from dataclasses import replace
 from datetime import datetime, timezone
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
 
 from backend.app.ingestion import (
@@ -73,6 +73,20 @@ class GenericIngestionTests(unittest.TestCase):
             self.assertEqual(entity_counts, self.counts(db))
             self.assertEqual(db.query(IngestionRun).count(), 2)
             self.assertEqual(db.query(ArtworkCatalogMembership).count(), 0)
+
+    def test_apply_respects_real_foreign_key_insert_order(self):
+        engine = create_engine("sqlite+pysqlite:///:memory:")
+        event.listen(engine, "connect", lambda connection, _record: connection.execute("PRAGMA foreign_keys=ON"))
+        Base.metadata.create_all(engine); Session = sessionmaker(bind=engine)
+        with Session() as db:
+            db.add(Country(code="FR", name="France")); db.commit()
+            db.add(Institution(id="museum", name="Museum", country_code="FR")); db.commit()
+            db.add(InstitutionProfile(institution_id="museum", candidate_universe="ACTIVE_CATALOG", recognition_policy="ASSET_VERIFY"))
+            db.add(SourceProvider(id="fixture", name="Fixture", adapter_key="fixture_v1", adapter_config={"institution_ids": ["museum"]}))
+            db.commit()
+            apply_plan(db, build_plan(db, FixtureAdapter([self.row()]), "museum"), operator_id="fk-test")
+            self.assertEqual(self.counts(db)[:6], (1, 1, 1, 1, 1, 1))
+        engine.dispose()
 
     def test_source_update_and_duplicate_source_batch(self):
         with self.Session() as db:

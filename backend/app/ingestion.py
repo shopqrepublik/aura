@@ -416,6 +416,11 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
         records_inspected=plan.summary["records_inspected"],
     )
     db.add(run)
+    # These models intentionally use stable scalar foreign-key IDs rather
+    # than ORM relationship assignment. Flush dependency roots explicitly so
+    # PostgreSQL never observes a child insert before its parent; SQLite tests
+    # may otherwise mask the ordering error when FK enforcement is disabled.
+    db.flush()
     created = updated = unchanged = conflicts = failed = 0
     try:
         for item in plan.records:
@@ -424,6 +429,7 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
             artwork_id = item.artwork_id
             if item.action in {"NEW", "POSSIBLE_DUPLICATE"}:
                 db.add(CulturalObject(id=item.cultural_object_id, canonical_title=record.title_original, canonical_creator=record.creator_display, identity_status="SOURCE_SINGLETON"))
+                db.flush()
                 db.add(InstitutionHolding(
                     id=item.institution_holding_id, cultural_object_id=item.cultural_object_id,
                     institution_id=plan.institution_id,
@@ -432,6 +438,7 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
                     relationship_type="HOLDING", status="CURRENT",
                     location_text=record.room or record.gallery,
                 ))
+                db.flush()
                 db.add(Artwork(
                     id=artwork_id, museum_id=plan.institution_id,
                     cultural_object_id=item.cultural_object_id,
@@ -444,6 +451,7 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
                     source_url=record.source_url, source_language=record.source_language or record.title_locale,
                     last_source_sync=record.retrieved_at or utcnow(), raw_json=record.raw_payload,
                 ))
+                db.flush()
                 if item.action == "POSSIBLE_DUPLICATE":
                     for duplicate_id in item.possible_duplicate_ids:
                         a, b = sorted((item.cultural_object_id, duplicate_id))
@@ -471,6 +479,7 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
                     review_status="REVIEW_REQUIRED" if item.risk != "SAFE_AUTOMATIC" else "UNREVIEWED",
                 )
                 db.add(source)
+                db.flush()
             source.last_seen_at = utcnow()
             source.retrieved_at = record.retrieved_at
             source.provider_modified_at = record.provider_modified_at
