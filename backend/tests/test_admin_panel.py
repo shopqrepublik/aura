@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
 from backend.app import admin
-from backend.app.models import Artwork, ArtworkCatalogMembership, Base, LouvreImageReference, ProductEvent, RecognitionAsset
+from backend.app.models import Artwork, ArtworkCatalogMembership, Base, LouvreImageReference, ProductEvent, RecognitionAsset, RecognitionAttempt
 
 
 def make_hash(password: str) -> str:
@@ -74,10 +74,8 @@ class AdminPanelTests(unittest.TestCase):
     def test_identityless_server_recognition_is_operational_not_visitor_metric(self):
         db = self.Session()
         now = datetime.now(timezone.utc)
-        db.add(ProductEvent(event_id="attempt-1", event_name="recognition_started", occurred_at=now, museum_id="louvre"))
-        db.add(ProductEvent(event_id="done-1", event_name="recognition_completed", occurred_at=now, museum_id="louvre", properties={"status": "matched", "confidence": 1.0}))
-        db.add(ProductEvent(event_id="attempt-2", event_name="recognition_started", occurred_at=now, museum_id="louvre"))
-        db.add(ProductEvent(event_id="fail-1", event_name="recognition_failed", occurred_at=now, museum_id="louvre", properties={"reason": "ai_error"}))
+        db.add(RecognitionAttempt(recognition_attempt_id="attempt-1", institution_id="louvre", completed_at=now, terminal_outcome="success"))
+        db.add(RecognitionAttempt(recognition_attempt_id="attempt-2", institution_id="louvre", completed_at=now, terminal_outcome="failed"))
         db.commit()
         metrics = admin._recognition_metrics(db, now - timedelta(minutes=1), now + timedelta(minutes=1))
         db.close()
@@ -85,14 +83,13 @@ class AdminPanelTests(unittest.TestCase):
         self.assertEqual(metrics["successful"], 0)
         self.assertEqual(metrics["failed"], 0)
         self.assertIsNone(metrics["success_rate"])
-        self.assertEqual(metrics["identityless_operational_events"], 4)
+        self.assertEqual(metrics["identityless_operational_events"], 2)
 
     def test_identified_recognition_counts_as_visitor_metric(self):
         db = self.Session()
         now = datetime.now(timezone.utc)
-        identity = {"anonymous_id": "anon-1", "session_id": "session-1"}
-        db.add(ProductEvent(event_id="attempt-1", event_name="recognition_started", occurred_at=now, museum_id="louvre", **identity))
-        db.add(ProductEvent(event_id="done-1", event_name="scan_success", occurred_at=now, museum_id="louvre", artwork_id="work-1", properties={"confidence": 0.9}, **identity))
+        identity = {"anonymous_id": "00000000-0000-4000-8000-000000000001", "session_id": "00000000-0000-4000-8000-000000000002"}
+        db.add(RecognitionAttempt(recognition_attempt_id="attempt-1", institution_id="louvre", completed_at=now, terminal_outcome="success", confidence=0.9, **identity))
         db.commit()
         metrics = admin._recognition_metrics(db, now - timedelta(minutes=1), now + timedelta(minutes=1))
         db.close()
@@ -110,7 +107,7 @@ class AdminPanelTests(unittest.TestCase):
             occurred_at=now,
             anonymous_id="qa-anon",
             session_id="qa-session",
-            properties={"internal_test": True},
+            properties={}, schema_version=2, business_eligible=True, internal_test=True,
         ))
         db.add(ProductEvent(
             event_id="real-app",
@@ -118,7 +115,7 @@ class AdminPanelTests(unittest.TestCase):
             occurred_at=now,
             anonymous_id="real-anon",
             session_id="real-session",
-            properties={},
+            properties={}, schema_version=2, business_eligible=True, internal_test=False,
         ))
         db.commit()
         active = admin._identity_count(db, now - timedelta(minutes=1), now + timedelta(minutes=1), {"app_opened"})

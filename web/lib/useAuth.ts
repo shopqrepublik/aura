@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
-import { track } from "./analytics";
+import { setAnalyticsAuthToken, track } from "./analytics";
 
 // Real registration (email magic link + Google; Apple deferred until an
 // Apple Developer account exists) -- separate from useElyioApp's
@@ -23,6 +23,7 @@ export function useAuth() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
+      setAnalyticsAuthToken(data.session?.access_token);
       setSession(data.session);
       setLoading(false);
     });
@@ -39,6 +40,7 @@ export function useAuth() {
     // page load), which is what makes this a one-time-per-registration
     // signal rather than firing on every return visit.
     const { data: listener } = supabase.auth.onAuthStateChange((event, newSession) => {
+      setAnalyticsAuthToken(newSession?.access_token);
       setSession(newSession);
       if (event === "SIGNED_IN" && newSession) {
         // Strip a magic-link/OAuth hash (#access_token=...&...) from the URL

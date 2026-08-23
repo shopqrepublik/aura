@@ -27,6 +27,7 @@ from .models import User
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 
 _bearer_scheme = HTTPBearer(auto_error=True)
+_optional_bearer_scheme = HTTPBearer(auto_error=False)
 # Lazy -- constructing PyJWKClient makes no network call itself (only the
 # first .get_signing_key_from_jwt() does, and that result is cached), but
 # building it at import time would still hard-fail module import when
@@ -69,6 +70,32 @@ def get_current_user(
     # Upsert rather than trusting a Postgres trigger to have already run --
     # keeps the sync logic in one place (here) instead of split between
     # Python and a DB-side trigger function only visible in Supabase itself.
+    user = db.get(User, user_id)
+    if user is None:
+        user = User(id=user_id, email=email, auth_provider=provider)
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+    elif email and user.email != email:
+        user.email = email
+        db.commit()
+    return user
+
+
+def get_optional_current_user(
+    credentials: HTTPAuthorizationCredentials | None = Depends(_optional_bearer_scheme),
+    db: Session = Depends(get_db),
+) -> User | None:
+    """Resolve a supplied bearer token server-side; remain anonymous if absent."""
+    if credentials is None:
+        return None
+    payload = _verify_supabase_jwt(credentials.credentials)
+    try:
+        user_id = uuid.UUID(payload["sub"])
+    except (KeyError, ValueError):
+        raise HTTPException(status_code=401, detail="token missing a valid sub claim")
+    email = payload.get("email")
+    provider = (payload.get("app_metadata") or {}).get("provider", "email")
     user = db.get(User, user_id)
     if user is None:
         user = User(id=user_id, email=email, auth_provider=provider)

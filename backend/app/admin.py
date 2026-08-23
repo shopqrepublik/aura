@@ -6,22 +6,27 @@ import json
 import math
 import os
 import secrets
+import threading
+import time
 import uuid
-from collections import Counter, defaultdict
+from collections import Counter, defaultdict, deque
 from datetime import date, datetime, timedelta, timezone
 from io import StringIO
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Query, Request, Response
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import String, and_, case, desc, distinct, func, inspect, or_, select, text
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from .db import SessionLocal, get_db
+from .auth import get_optional_current_user
 from .models import (
     AdminLoginAttempt,
     AdminSession,
+    AnalyticsIdentityLink,
+    AnalyticsSession,
     Artwork,
     ArtworkCatalogMembership,
     ArtworkLocalization,
@@ -32,6 +37,7 @@ from .models import (
     Museum,
     ProductEvent,
     RecognitionAsset,
+    RecognitionAttempt,
     UncatalogedSighting,
     User,
     Visit,
@@ -50,6 +56,40 @@ ADMIN_SESSION_DAYS = int(os.environ.get("ADMIN_SESSION_DAYS", "7"))
 ADMIN_LOGIN_WINDOW_MINUTES = int(os.environ.get("ADMIN_LOGIN_WINDOW_MINUTES", "15"))
 ADMIN_LOGIN_MAX_FAILURES = int(os.environ.get("ADMIN_LOGIN_MAX_FAILURES", "8"))
 TRACKING_AVAILABLE_SINCE = "2026-08-20"
+TRUSTED_ANALYTICS_AVAILABLE_SINCE = "2026-08-23"
+EVENT_SCHEMA_VERSION = 2
+EVENT_BODY_MAX_BYTES = int(os.environ.get("EVENT_BODY_MAX_BYTES", "32768"))
+EVENT_RATE_LIMIT_PER_MINUTE = int(os.environ.get("EVENT_RATE_LIMIT_PER_MINUTE", "120"))
+EVENT_PROPERTIES_MAX_BYTES = int(os.environ.get("EVENT_PROPERTIES_MAX_BYTES", "8192"))
+ANALYTICS_QA_TOKEN = os.environ.get("ANALYTICS_QA_TOKEN")
+
+PUBLIC_EVENT_ALLOWLIST = {
+    "achievement_unlocked", "app_opened", "artwork_added", "artwork_card_opened",
+    "artwork_card_read_time", "artwork_favorited", "artwork_viewed", "audio_completed",
+    "audio_started", "candidate_confirmed", "catalog_match", "catalog_no_match",
+    "favorite_added", "finish_visit_clicked", "image_captured", "language_selected",
+    "mission_completed", "museum_selected", "onboarding_completed", "progress_viewed",
+    "pwa_install_cta_clicked", "pwa_install_cta_shown", "pwa_install_prompt_accepted",
+    "pwa_install_prompt_dismissed", "pwa_installed", "pwa_ios_instructions_shown",
+    "recap_generated", "recap_viewed", "recognition_completed", "recognition_failed",
+    "recognition_started", "result_viewed", "scan_attempt", "scan_failed", "scan_opened",
+    "scan_success", "second_scan_started", "seo_begin_visit", "session_started",
+    "share_card_viewed", "share_clicked", "share_completed", "share_saved", "share_started",
+    "visit_completed", "visit_started",
+}
+ARTWORK_DIMENSION_EVENTS = {
+    "artwork_added", "artwork_card_opened", "artwork_card_read_time", "artwork_favorited",
+    "artwork_viewed", "audio_completed", "audio_started", "candidate_confirmed",
+    "catalog_match", "favorite_added", "result_viewed", "scan_success",
+}
+MEANINGFUL_CLIENT_EVENTS = {
+    "museum_selected", "visit_started", "scan_attempt", "result_viewed", "artwork_viewed",
+    "artwork_added", "favorite_added", "progress_viewed", "recap_viewed", "share_completed",
+}
+SUCCESSFUL_RECOGNITION_OUTCOMES = {"success", "uncataloged_result"}
+FAILED_RECOGNITION_OUTCOMES = {"no_match", "invalid_image", "timeout", "failed"}
+_event_rate_buckets: Dict[str, deque[float]] = defaultdict(deque)
+_event_rate_lock = threading.Lock()
 
 MEANINGFUL_EVENTS = {
     "visit_started",
@@ -92,27 +132,71 @@ class AdminLoginRequest(BaseModel):
 
 
 class ProductEventIn(BaseModel):
-    event_id: Optional[str] = None
-    event_name: str = Field(min_length=1, max_length=120)
+    schema_version: int = Field(default=1, ge=1, le=EVENT_SCHEMA_VERSION)
+    event_id: str
+    event_name: str = Field(min_length=1, max_length=64)
+    client_occurred_at: Optional[datetime] = None
+    # Accepted only for v1 compatibility and stored as an untrusted client time.
     occurred_at: Optional[datetime] = None
     user_id: Optional[str] = None
-    anonymous_id: Optional[str] = None
-    session_id: Optional[str] = None
-    museum_id: Optional[str] = None
-    artwork_id: Optional[str] = None
-    recognition_attempt_id: Optional[str] = None
+    anonymous_id: Optional[str] = Field(default=None, max_length=36)
+    session_id: Optional[str] = Field(default=None, max_length=36)
+    museum_id: Optional[str] = Field(default=None, max_length=120)
+    artwork_id: Optional[str] = Field(default=None, max_length=200)
+    recognition_attempt_id: Optional[str] = Field(default=None, max_length=36)
     properties: Dict[str, Any] = Field(default_factory=dict)
-    source: Optional[str] = None
-    referrer: Optional[str] = None
-    utm_source: Optional[str] = None
-    utm_medium: Optional[str] = None
-    utm_campaign: Optional[str] = None
-    utm_content: Optional[str] = None
-    language: Optional[str] = None
-    device_type: Optional[str] = None
-    os: Optional[str] = None
-    browser: Optional[str] = None
-    path: Optional[str] = None
+    source: Optional[str] = Field(default=None, max_length=120)
+    referrer: Optional[str] = Field(default=None, max_length=2048)
+    utm_source: Optional[str] = Field(default=None, max_length=200)
+    utm_medium: Optional[str] = Field(default=None, max_length=200)
+    utm_campaign: Optional[str] = Field(default=None, max_length=200)
+    utm_content: Optional[str] = Field(default=None, max_length=200)
+    language: Optional[str] = Field(default=None, max_length=80)
+    device_type: Optional[str] = Field(default=None, max_length=40)
+    os: Optional[str] = Field(default=None, max_length=80)
+    browser: Optional[str] = Field(default=None, max_length=80)
+    path: Optional[str] = Field(default=None, max_length=2048)
+
+    @field_validator("event_id", "anonymous_id", "session_id", "recognition_attempt_id")
+    @classmethod
+    def identifiers_are_uuids(cls, value: Optional[str]):
+        if value is None:
+            return value
+        try:
+            return str(uuid.UUID(value))
+        except ValueError as exc:
+            raise ValueError("identifier must be a UUID") from exc
+
+    @field_validator("event_name")
+    @classmethod
+    def event_is_supported(cls, value: str):
+        if value not in PUBLIC_EVENT_ALLOWLIST:
+            raise ValueError("unsupported public event")
+        return value
+
+    @field_validator("properties")
+    @classmethod
+    def properties_are_bounded(cls, value: Dict[str, Any]):
+        def depth(node: Any, level: int = 0) -> int:
+            if level > 5:
+                raise ValueError("properties exceed maximum nesting depth")
+            if isinstance(node, dict):
+                for key, child in node.items():
+                    if not isinstance(key, str) or len(key) > 120:
+                        raise ValueError("properties contain an invalid key")
+                    depth(child, level + 1)
+            elif isinstance(node, list):
+                if len(node) > 50:
+                    raise ValueError("properties array is too large")
+                for child in node:
+                    depth(child, level + 1)
+            elif isinstance(node, str) and len(node) > 2000:
+                raise ValueError("property string is too large")
+            return level
+        depth(value)
+        if len(json.dumps(value, ensure_ascii=False).encode("utf-8")) > EVENT_PROPERTIES_MAX_BYTES:
+            raise ValueError("properties payload is too large")
+        return value
 
 
 def _utcnow() -> datetime:
@@ -130,6 +214,64 @@ def _hash_ip(request: Request) -> Optional[str]:
         return None
     pepper = os.environ.get("ADMIN_IP_HASH_PEPPER", "elyio-admin-ip-v1")
     return hashlib.sha256(f"{pepper}:{ip}".encode("utf-8")).hexdigest()
+
+
+def _trusted_internal_request(request: Request) -> bool:
+    supplied = request.headers.get("x-elyio-qa-token", "")
+    return bool(ANALYTICS_QA_TOKEN and supplied and hmac.compare_digest(supplied, ANALYTICS_QA_TOKEN))
+
+
+def _enforce_event_rate_limit(request: Request, anonymous_id: Optional[str]) -> None:
+    now_monotonic = time.monotonic()
+    ip_key = _hash_ip(request) or "unknown"
+    keys = [f"ip:{ip_key}"]
+    if anonymous_id:
+        keys.append(f"anon:{anonymous_id}")
+    with _event_rate_lock:
+        for key in keys:
+            bucket = _event_rate_buckets[key]
+            while bucket and bucket[0] <= now_monotonic - 60:
+                bucket.popleft()
+            if len(bucket) >= EVENT_RATE_LIMIT_PER_MINUTE:
+                raise HTTPException(status_code=429, detail="event ingestion rate limit exceeded")
+        for key in keys:
+            _event_rate_buckets[key].append(now_monotonic)
+
+
+def _link_analytics_identity(db: Session, anonymous_id: Optional[str], user: Optional[User]) -> None:
+    if not anonymous_id or user is None or not _table_exists(db, "analytics_identity_links"):
+        return
+    user_id = str(user.id)
+    row = db.get(AnalyticsIdentityLink, anonymous_id)
+    if row is None:
+        db.add(AnalyticsIdentityLink(anonymous_id=anonymous_id, user_id=user_id))
+    elif row.user_id != user_id:
+        # A browser identifier cannot be silently reassigned between accounts.
+        raise HTTPException(status_code=409, detail="anonymous identity is already linked to another user")
+    else:
+        row.last_seen_at = _utcnow()
+
+
+def _validate_analytics_session(
+    db: Session,
+    session_id: Optional[str],
+    anonymous_id: Optional[str],
+    user: Optional[User],
+) -> None:
+    if not session_id or not _table_exists(db, "analytics_sessions"):
+        return
+    user_id = str(user.id) if user else None
+    row = db.get(AnalyticsSession, session_id)
+    if row is None:
+        db.add(AnalyticsSession(session_id=session_id, anonymous_id=anonymous_id, user_id=user_id))
+        return
+    if row.anonymous_id and anonymous_id and row.anonymous_id != anonymous_id:
+        raise HTTPException(status_code=409, detail="session belongs to another anonymous identity")
+    if row.user_id and user_id and row.user_id != user_id:
+        raise HTTPException(status_code=409, detail="session belongs to another authenticated user")
+    row.anonymous_id = row.anonymous_id or anonymous_id
+    row.user_id = row.user_id or user_id
+    row.last_seen_at = _utcnow()
 
 
 def _b64decode_padded(value: str) -> bytes:
@@ -165,7 +307,33 @@ def _table_exists(db: Session, table_name: str) -> bool:
 
 
 def _identity_expr():
-    return func.coalesce(ProductEvent.user_id, ProductEvent.anonymous_id)
+    linked_user = (
+        select(AnalyticsIdentityLink.user_id)
+        .where(AnalyticsIdentityLink.anonymous_id == ProductEvent.anonymous_id)
+        .limit(1)
+        .scalar_subquery()
+    )
+    return func.coalesce(ProductEvent.user_id, linked_user, ProductEvent.anonymous_id)
+
+
+def _attempt_identity_expr():
+    linked_user = (
+        select(AnalyticsIdentityLink.user_id)
+        .where(AnalyticsIdentityLink.anonymous_id == RecognitionAttempt.anonymous_id)
+        .limit(1)
+        .scalar_subquery()
+    )
+    return func.coalesce(RecognitionAttempt.user_id, linked_user, RecognitionAttempt.anonymous_id)
+
+
+def _attempt_base_query(db: Session, start: Optional[datetime], end: datetime, include_internal: bool = False):
+    query = db.query(RecognitionAttempt).filter(RecognitionAttempt.completed_at.isnot(None))
+    if start:
+        query = query.filter(RecognitionAttempt.completed_at >= start)
+    query = query.filter(RecognitionAttempt.completed_at < end)
+    if not include_internal:
+        query = query.filter(RecognitionAttempt.internal_test.is_(False))
+    return query
 
 
 def _safe_datetime(value: Optional[datetime]) -> Optional[str]:
@@ -195,16 +363,27 @@ def _period_bounds(period: str) -> Tuple[Optional[datetime], datetime, Optional[
 
 
 def _non_internal_event_filter():
-    return or_(ProductEvent.properties.is_(None), ProductEvent.properties["internal_test"].as_boolean().isnot(True))
+    return ProductEvent.internal_test.isnot(True)
 
 
-def _event_base_query(db: Session, start: Optional[datetime], end: datetime, include_internal: bool = False):
+def _event_base_query(
+    db: Session,
+    start: Optional[datetime],
+    end: datetime,
+    include_internal: bool = False,
+    trusted_only: bool = True,
+):
     query = db.query(ProductEvent)
     if start:
         query = query.filter(ProductEvent.occurred_at >= start)
     query = query.filter(ProductEvent.occurred_at < end)
     if not include_internal:
         query = query.filter(_non_internal_event_filter())
+    if trusted_only:
+        query = query.filter(
+            ProductEvent.schema_version == EVENT_SCHEMA_VERSION,
+            ProductEvent.business_eligible.is_(True),
+        )
     return query
 
 
@@ -272,6 +451,12 @@ def _event_to_row(event: ProductEvent) -> Dict[str, Any]:
         "os": event.os,
         "browser": event.browser,
         "path": event.path,
+        "schema_version": event.schema_version,
+        "client_occurred_at": _safe_datetime(event.client_occurred_at),
+        "server_received_at": _safe_datetime(event.server_received_at),
+        "internal_test": event.internal_test,
+        "trust_level": event.trust_level,
+        "business_eligible": event.business_eligible,
     }
 
 
@@ -368,25 +553,62 @@ def admin_me(session: AdminSession = Depends(require_admin)):
 
 
 @router.post("/v1/events")
-def ingest_product_event(payload: ProductEventIn, request: Request, db: Session = Depends(get_db)):
+def ingest_product_event(
+    payload: ProductEventIn,
+    request: Request,
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_current_user),
+):
     if not _table_exists(db, "product_events"):
         return {"ok": False, "stored": False, "reason": "schema_missing"}
-    event_id = payload.event_id or str(uuid.uuid4())
-    if db.query(ProductEvent).filter(ProductEvent.event_id == event_id).first():
+    content_length = request.headers.get("content-length")
+    if content_length and int(content_length) > EVENT_BODY_MAX_BYTES:
+        raise HTTPException(status_code=413, detail="event payload too large")
+    if payload.user_id is not None:
+        raise HTTPException(status_code=400, detail="user_id is server-derived and must not be supplied")
+    _enforce_event_rate_limit(request, payload.anonymous_id)
+    if db.query(ProductEvent).filter(ProductEvent.event_id == payload.event_id).first():
         return {"ok": True, "stored": False, "duplicate": True}
+    now = _utcnow()
+    client_time = payload.client_occurred_at or payload.occurred_at
+    if client_time is not None:
+        client_time = _as_aware(client_time)
+        if abs((client_time - now).total_seconds()) > 86400:
+            client_time = None
+    institution = db.get(Museum, payload.museum_id) if payload.museum_id else None
+    if payload.museum_id and (institution is None or not institution.active):
+        raise HTTPException(status_code=422, detail="unknown or inactive institution")
+    properties = dict(payload.properties or {})
+    # These fields are never trusted from a public payload.
+    properties.pop("internal_test", None)
+    properties.pop("user_id", None)
+    result_type = properties.get("result_type")
+    artwork = db.get(Artwork, payload.artwork_id) if payload.artwork_id else None
+    if payload.artwork_id and artwork is None and payload.event_name in ARTWORK_DIMENSION_EVENTS and result_type != "uncataloged":
+        raise HTTPException(status_code=422, detail="unknown artwork")
+    artwork_id = artwork.id if artwork is not None else None
+    if artwork is not None and institution is not None and artwork.museum_id != institution.id:
+        raise HTTPException(status_code=422, detail="artwork does not belong to institution")
+    internal_test = _trusted_internal_request(request)
+    _link_analytics_identity(db, payload.anonymous_id, current_user)
+    _validate_analytics_session(db, payload.session_id, payload.anonymous_id, current_user)
+    schema_v2 = payload.schema_version == EVENT_SCHEMA_VERSION
     db.add(
         ProductEvent(
-            event_id=event_id,
-            event_name=payload.event_name[:120],
-            occurred_at=payload.occurred_at or _utcnow(),
-            user_id=(payload.user_id or None),
+            event_id=payload.event_id,
+            event_name=payload.event_name,
+            occurred_at=now,
+            client_occurred_at=client_time,
+            server_received_at=now,
+            schema_version=payload.schema_version,
+            user_id=str(current_user.id) if current_user else None,
             anonymous_id=(payload.anonymous_id or None),
             session_id=(payload.session_id or None),
-            museum_id=(payload.museum_id or _extract_prop(payload.properties, "museum_id")),
-            artwork_id=(payload.artwork_id or _extract_prop(payload.properties, "artwork_id")),
-            recognition_attempt_id=(payload.recognition_attempt_id or _extract_prop(payload.properties, "recognition_attempt_id")),
-            properties=payload.properties,
-            source=payload.source or _extract_prop(payload.properties, "source"),
+            museum_id=institution.id if institution else None,
+            artwork_id=artwork_id,
+            recognition_attempt_id=payload.recognition_attempt_id,
+            properties=properties,
+            source=payload.source or _extract_prop(properties, "source"),
             referrer=payload.referrer,
             utm_source=payload.utm_source,
             utm_medium=payload.utm_medium,
@@ -398,6 +620,9 @@ def ingest_product_event(payload: ProductEventIn, request: Request, db: Session 
             browser=payload.browser,
             user_agent=request.headers.get("user-agent"),
             path=payload.path,
+            internal_test=internal_test,
+            trust_level="CLIENT_VALIDATED_V2" if schema_v2 else "CLIENT_VALIDATED_LEGACY",
+            business_eligible=bool(schema_v2 and payload.anonymous_id),
         )
     )
     try:
@@ -405,7 +630,7 @@ def ingest_product_event(payload: ProductEventIn, request: Request, db: Session 
     except SQLAlchemyError:
         db.rollback()
         return {"ok": False, "stored": False}
-    return {"ok": True, "stored": True}
+    return {"ok": True, "stored": True, "schema_version": payload.schema_version, "internal_test": internal_test}
 
 
 def record_product_event_from_server(event_name: str, properties: Optional[dict] = None) -> None:
@@ -423,7 +648,13 @@ def record_product_event_from_server(event_name: str, properties: Optional[dict]
                 occurred_at=_utcnow(),
                 museum_id=props.get("museum_id"),
                 artwork_id=props.get("resolved_artwork_id") or props.get("artwork_id"),
+                recognition_attempt_id=props.get("recognition_attempt_id"),
                 properties=props,
+                schema_version=EVENT_SCHEMA_VERSION,
+                server_received_at=_utcnow(),
+                internal_test=bool(props.get("internal_test", False)),
+                trust_level="SERVER_OPERATIONAL",
+                business_eligible=False,
             )
         )
         db.commit()
@@ -433,37 +664,63 @@ def record_product_event_from_server(event_name: str, properties: Optional[dict]
         db.close()
 
 
+def _meaningful_activity_by_identity(
+    db: Session,
+    start: Optional[datetime] = None,
+    end: Optional[datetime] = None,
+) -> Dict[str, List[datetime]]:
+    end = end or _utcnow()
+    rows: Dict[str, List[datetime]] = defaultdict(list)
+    if _table_exists(db, "product_events"):
+        for identity, occurred_at in (
+            _event_base_query(db, start, end)
+            .filter(_identity_expr().isnot(None), ProductEvent.event_name.in_(list(MEANINGFUL_CLIENT_EVENTS)))
+            .with_entities(_identity_expr(), ProductEvent.occurred_at)
+            .all()
+        ):
+            rows[str(identity)].append(_as_aware(occurred_at))
+    if _table_exists(db, "recognition_attempts"):
+        for identity, completed_at in (
+            _attempt_base_query(db, start, end)
+            .filter(_attempt_identity_expr().isnot(None))
+            .with_entities(_attempt_identity_expr(), RecognitionAttempt.completed_at)
+            .all()
+        ):
+            rows[str(identity)].append(_as_aware(completed_at))
+    return rows
+
+
 def _basic_user_metrics(db: Session, start: Optional[datetime], end: datetime, prev_start: Optional[datetime], prev_end: Optional[datetime]) -> Dict[str, Any]:
     registered_total = int(db.query(User).count())
-    registered_new = int(db.query(User).filter(User.created_at >= start, User.created_at < end).count()) if start else registered_total
-    active = _identity_count(db, start, end, MEANINGFUL_EVENTS)
-    previous_active = _identity_count(db, prev_start, prev_end, MEANINGFUL_EVENTS) if prev_start and prev_end else 0
-    anonymous = int(
-        _event_base_query(db, start, end)
-        .filter(ProductEvent.anonymous_id.isnot(None), ProductEvent.user_id.is_(None))
-        .with_entities(func.count(distinct(ProductEvent.anonymous_id)))
-        .scalar()
-        or 0
-    ) if _table_exists(db, "product_events") else 0
-    activated = _identity_count(db, start, end, SUCCESS_EVENTS)
-    sessions = int(
-        _event_base_query(db, start, end)
-        .filter(ProductEvent.session_id.isnot(None))
-        .with_entities(func.count(distinct(ProductEvent.session_id)))
-        .scalar()
-        or 0
-    ) if _table_exists(db, "product_events") else 0
-    visit_sessions = int(db.query(Visit).filter((Visit.started_at >= start) if start else text("true"), Visit.started_at < end).count())
-    sessions = max(sessions, visit_sessions)
+    current_activity = _meaningful_activity_by_identity(db, start, end)
+    previous_activity = _meaningful_activity_by_identity(db, prev_start, prev_end) if prev_start and prev_end else {}
+    all_activity = _meaningful_activity_by_identity(db)
+    active = len(current_activity)
+    previous_active = len(previous_activity)
+    linked_anonymous = {row.anonymous_id for row in db.query(AnalyticsIdentityLink).all()} if _table_exists(db, "analytics_identity_links") else set()
+    anonymous_ids = set()
+    if _table_exists(db, "product_events"):
+        anonymous_ids.update(value for (value,) in _event_base_query(db, start, end).filter(ProductEvent.anonymous_id.isnot(None)).with_entities(ProductEvent.anonymous_id).distinct().all())
+    anonymous = len(anonymous_ids - linked_anonymous)
+    activated = _activated_identity_count(db, start, end)
+    session_ids = set()
+    if _table_exists(db, "product_events"):
+        session_ids.update(value for (value,) in _event_base_query(db, start, end).filter(ProductEvent.session_id.isnot(None)).with_entities(ProductEvent.session_id).distinct().all())
+    if _table_exists(db, "recognition_attempts"):
+        session_ids.update(value for (value,) in _attempt_base_query(db, start, end).filter(RecognitionAttempt.session_id.isnot(None), _attempt_identity_expr().isnot(None)).with_entities(RecognitionAttempt.session_id).distinct().all())
+    sessions = len(session_ids)
     returning = _returning_user_count(db, start, end)
+    first_seen = {identity: min(times) for identity, times in all_activity.items() if times}
+    new_users = sum(1 for seen in first_seen.values() if (start is None or seen >= start) and seen < end)
+    total_users = len(set(all_activity) | {str(user_id) for (user_id,) in db.query(User.id).all()})
     return {
-        "total_users": registered_total + anonymous,
+        "total_users": total_users,
         "registered_users": registered_total,
         "anonymous_visitors": anonymous,
-        "new_users": registered_new,
+        "new_users": new_users,
         "active_users": _with_delta(active, previous_active),
         "activated_users": activated,
-        "activation_rate": round((activated / registered_new) * 100, 1) if registered_new else None,
+        "activation_rate": round((activated / new_users) * 100, 1) if new_users else None,
         "returning_users": returning,
         "returning_user_pct": round((returning / active) * 100, 1) if active else None,
         "sessions": sessions,
@@ -476,62 +733,74 @@ def _basic_user_metrics(db: Session, start: Optional[datetime], end: datetime, p
 
 
 def _active_since(db: Session, delta: timedelta) -> int:
-    return _identity_count(db, _utcnow() - delta, _utcnow(), MEANINGFUL_EVENTS)
+    return len(_meaningful_activity_by_identity(db, _utcnow() - delta, _utcnow()))
 
 
 def _returning_user_count(db: Session, start: Optional[datetime], end: datetime) -> int:
-    if not _table_exists(db, "product_events"):
+    current = set(_meaningful_activity_by_identity(db, start, end))
+    all_activity = _meaningful_activity_by_identity(db)
+    return sum(1 for identity in current if len({moment.date() for moment in all_activity.get(identity, [])}) > 1)
+
+
+def _activated_identity_count(db: Session, start: Optional[datetime], end: datetime) -> int:
+    if not _table_exists(db, "recognition_attempts"):
         return 0
     rows = (
-        _event_base_query(db, start, end)
-        .filter(ProductEvent.event_name.in_(list(MEANINGFUL_EVENTS)), _identity_expr().isnot(None))
-        .with_entities(_identity_expr().label("identity"), func.count(distinct(func.date(ProductEvent.occurred_at))).label("days"))
-        .group_by("identity")
+        db.query(RecognitionAttempt)
+        .filter(
+            RecognitionAttempt.completed_at.isnot(None),
+            RecognitionAttempt.internal_test.is_(False),
+            RecognitionAttempt.terminal_outcome.in_(list(SUCCESSFUL_RECOGNITION_OUTCOMES)),
+            _attempt_identity_expr().isnot(None),
+        )
+        .with_entities(_attempt_identity_expr(), func.min(RecognitionAttempt.completed_at))
+        .group_by(_attempt_identity_expr())
         .all()
     )
-    return sum(1 for row in rows if int(row.days or 0) > 1)
+    first_seen = {
+        identity: min(times)
+        for identity, times in _meaningful_activity_by_identity(db).items()
+        if times
+    }
+    return sum(
+        1
+        for identity_raw, first_activation in rows
+        if str(identity_raw) in first_seen
+        and (start is None or first_seen[str(identity_raw)] >= start)
+        and first_seen[str(identity_raw)] < end
+        and (start is None or _as_aware(first_activation) >= start)
+        and _as_aware(first_activation) < end
+    )
+
+
+def _successful_identity_count(db: Session, start: Optional[datetime], end: datetime) -> int:
+    if not _table_exists(db, "recognition_attempts"):
+        return 0
+    return int(
+        _attempt_base_query(db, start, end)
+        .filter(_attempt_identity_expr().isnot(None), RecognitionAttempt.terminal_outcome.in_(list(SUCCESSFUL_RECOGNITION_OUTCOMES)))
+        .with_entities(func.count(distinct(_attempt_identity_expr())))
+        .scalar()
+        or 0
+    )
 
 
 def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) -> Dict[str, Any]:
-    visitor_events = _identified_event_query(db, start, end) if _table_exists(db, "product_events") else None
-    attempts = int(visitor_events.filter(ProductEvent.event_name == "recognition_started").count()) if visitor_events else 0
-    successes = int(visitor_events.filter(ProductEvent.event_name.in_(list(SUCCESS_EVENTS))).count()) if visitor_events else 0
-    failures = int(visitor_events.filter(ProductEvent.event_name.in_(list(FAILURE_EVENTS))).count()) if visitor_events else 0
-    no_match = 0
-    latencies: List[float] = []
-    failure_reasons = Counter()
-    confidence_buckets = Counter()
-    identityless_operational_events = 0
-    if _table_exists(db, "product_events"):
-        identityless_operational_events = int(
-            _event_base_query(db, start, end)
-            .filter(ProductEvent.event_name.in_(["recognition_started", "recognition_completed", "recognition_failed"]), _identity_expr().is_(None))
-            .count()
-        )
-        rows = _identified_event_query(db, start, end).filter(
-            ProductEvent.event_name.in_(["recognition_completed", "recognition_failed", "scan_failed", "scan_success", "recognition_succeeded"])
-        ).all()
-        for row in rows:
-            props = row.properties or {}
-            status = props.get("status")
-            if row.event_name == "recognition_completed" and status in {"matched", "needs_confirmation"}:
-                successes += 1
-            if status == "no_match" or props.get("reason") in {"no_match", "uncataloged"}:
-                no_match += 1
-                if row.event_name == "recognition_completed":
-                    failures += 1
-            reason = props.get("reason") or props.get("failure_reason") or status
-            if row.event_name in FAILURE_EVENTS and reason:
-                failure_reasons[str(reason)] += 1
-            latency = props.get("latency_ms") or props.get("recognition_latency_ms")
-            if isinstance(latency, (int, float)):
-                latencies.append(float(latency))
-            conf = props.get("confidence")
-            if isinstance(conf, (int, float)):
-                confidence_buckets[_confidence_bucket(float(conf))] += 1
-    historical_successes = int(db.query(VisitArtwork).count())
-    if attempts == 0 and historical_successes:
-        successes = historical_successes
+    if not _table_exists(db, "recognition_attempts"):
+        return {"attempts": None, "successful": None, "failed": None, "success_rate": None, "data_available_since": TRUSTED_ANALYTICS_AVAILABLE_SINCE}
+    kpi_outcomes = SUCCESSFUL_RECOGNITION_OUTCOMES | FAILED_RECOGNITION_OUTCOMES
+    rows = _attempt_base_query(db, start, end).filter(
+        _attempt_identity_expr().isnot(None),
+        RecognitionAttempt.terminal_outcome.in_(list(kpi_outcomes)),
+    ).all()
+    attempts = len(rows)
+    successes = sum(1 for row in rows if row.terminal_outcome in SUCCESSFUL_RECOGNITION_OUTCOMES)
+    failures = sum(1 for row in rows if row.terminal_outcome in FAILED_RECOGNITION_OUTCOMES)
+    no_match = sum(1 for row in rows if row.terminal_outcome == "no_match")
+    latencies = [float(row.latency_ms) for row in rows if row.latency_ms is not None]
+    failure_reasons = Counter(row.terminal_outcome for row in rows if row.terminal_outcome in FAILED_RECOGNITION_OUTCOMES)
+    confidence_buckets = Counter(_confidence_bucket(float(row.confidence)) for row in rows if row.confidence is not None)
+    identityless_operational_events = int(_attempt_base_query(db, start, end).filter(_attempt_identity_expr().is_(None)).count())
     return {
         "attempts": attempts,
         "successful": successes,
@@ -543,9 +812,10 @@ def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) 
         "latency_p95_ms": _percentile(latencies, 95),
         "confidence_buckets": dict(confidence_buckets),
         "failure_reasons": [{"reason": reason, "count": count} for reason, count in failure_reasons.most_common()],
-        "historical_success_records": historical_successes,
+        "historical_success_records": int(db.query(VisitArtwork).count()),
         "identityless_operational_events": identityless_operational_events,
-        "visitor_metric_definition": "Recognition metrics count first-party product events with a persistent user_id or anonymous_id. Identityless server smoke/API events are retained but excluded from visitor KPIs.",
+        "visitor_metric_definition": "One non-internal, visitor-linked recognition_attempt row is one attempt; success is one terminal success/uncataloged_result outcome. Companion raw events never add KPI attempts or successes.",
+        "data_available_since": TRUSTED_ANALYTICS_AVAILABLE_SINCE,
     }
 
 
@@ -574,7 +844,12 @@ def _funnel(db: Session, start: Optional[datetime], end: datetime) -> Dict[str, 
     first_count = None
     previous = None
     for event, label in FUNNEL_STAGES:
-        count = _identity_count(db, start, end, {event})
+        if event == "recognition_started" and _table_exists(db, "recognition_attempts"):
+            count = int(_attempt_base_query(db, start, end).filter(_attempt_identity_expr().isnot(None)).with_entities(func.count(distinct(_attempt_identity_expr()))).scalar() or 0)
+        elif event == "scan_success":
+            count = _successful_identity_count(db, start, end)
+        else:
+            count = _identity_count(db, start, end, {event})
         if first_count is None:
             first_count = count
         rows.append(
@@ -592,41 +867,44 @@ def _funnel(db: Session, start: Optional[datetime], end: datetime) -> Dict[str, 
         for i in range(1, len(rows))
     ]
     biggest = max(dropoffs, key=lambda x: x["lost"], default=None)
-    return {"stages": rows, "biggest_dropoff": biggest}
+    return {"stages": rows, "biggest_dropoff": biggest, "trust": {"recognition_started": "SERVER_CONFIRMED", "scan_success": "SERVER_CONFIRMED", "other_stages": "CLIENT_VALIDATED"}}
 
 
 def _retention(db: Session) -> Dict[str, Any]:
-    if not _table_exists(db, "product_events"):
-        return {"d1": None, "d7": None, "d30": None, "cohorts": []}
-    rows = (
-        db.query(ProductEvent)
-        .filter(ProductEvent.event_name.in_(list(MEANINGFUL_EVENTS)), _identity_expr().isnot(None))
-        .with_entities(_identity_expr().label("identity"), func.date(ProductEvent.occurred_at).label("day"))
-        .distinct()
-        .all()
-    )
-    by_identity: Dict[str, List[date]] = defaultdict(list)
-    for identity, day in rows:
-        if identity and day:
-            by_identity[str(identity)].append(day)
+    activity = _meaningful_activity_by_identity(db)
+    by_identity: Dict[str, List[date]] = {
+        identity: sorted({moment.date() for moment in moments})
+        for identity, moments in activity.items()
+    }
     if not by_identity:
-        return {"d1": None, "d7": None, "d30": None, "cohorts": []}
+        return {"d1": None, "d7": None, "d30": None, "cohorts": [], "available_since": TRUSTED_ANALYTICS_AVAILABLE_SINCE}
     d1 = d7 = d30 = 0
-    cohorts: Dict[str, Dict[str, Any]] = defaultdict(lambda: {"users": 0, "d1": 0, "d7": 0, "d30": 0})
+    d1_eligible = d7_eligible = d30_eligible = 0
+    today = _utcnow().date()
+    cohorts: Dict[str, Dict[str, Any]] = defaultdict(lambda: {"users": 0, "d1": 0, "d7": 0, "d30": 0, "d1e": 0, "d7e": 0, "d30e": 0})
     for days in by_identity.values():
         first = min(days)
         day_set = set(days)
         key = f"{first.isocalendar().year}-W{first.isocalendar().week:02d}"
         cohorts[key]["users"] += 1
-        if first + timedelta(days=1) in day_set:
-            d1 += 1
-            cohorts[key]["d1"] += 1
-        if any(day >= first + timedelta(days=7) for day in day_set):
-            d7 += 1
-            cohorts[key]["d7"] += 1
-        if any(day >= first + timedelta(days=30) for day in day_set):
-            d30 += 1
-            cohorts[key]["d30"] += 1
+        if first + timedelta(days=1) <= today:
+            d1_eligible += 1
+            cohorts[key]["d1e"] += 1
+            if first + timedelta(days=1) in day_set:
+                d1 += 1
+                cohorts[key]["d1"] += 1
+        if first + timedelta(days=7) <= today:
+            d7_eligible += 1
+            cohorts[key]["d7e"] += 1
+            if first + timedelta(days=7) in day_set:
+                d7 += 1
+                cohorts[key]["d7"] += 1
+        if first + timedelta(days=30) <= today:
+            d30_eligible += 1
+            cohorts[key]["d30e"] += 1
+            if first + timedelta(days=30) in day_set:
+                d30 += 1
+                cohorts[key]["d30"] += 1
     total = len(by_identity)
     cohort_rows = []
     for cohort, data in sorted(cohorts.items(), reverse=True)[:12]:
@@ -634,15 +912,17 @@ def _retention(db: Session) -> Dict[str, Any]:
         cohort_rows.append({
             "cohort": cohort,
             "users": users,
-            "d1": round(data["d1"] / users * 100, 1) if users else 0,
-            "d7": round(data["d7"] / users * 100, 1) if users else 0,
-            "d30": round(data["d30"] / users * 100, 1) if users else 0,
+            "d1": round(data["d1"] / data["d1e"] * 100, 1) if data["d1e"] else None,
+            "d7": round(data["d7"] / data["d7e"] * 100, 1) if data["d7e"] else None,
+            "d30": round(data["d30"] / data["d30e"] * 100, 1) if data["d30e"] else None,
         })
     return {
-        "d1": round(d1 / total * 100, 1),
-        "d7": round(d7 / total * 100, 1),
-        "d30": round(d30 / total * 100, 1),
+        "d1": round(d1 / d1_eligible * 100, 1) if d1_eligible else None,
+        "d7": round(d7 / d7_eligible * 100, 1) if d7_eligible else None,
+        "d30": round(d30 / d30_eligible * 100, 1) if d30_eligible else None,
+        "eligible": {"d1": d1_eligible, "d7": d7_eligible, "d30": d30_eligible},
         "cohorts": cohort_rows,
+        "available_since": TRUSTED_ANALYTICS_AVAILABLE_SINCE,
     }
 
 
@@ -739,8 +1019,9 @@ def _museum_rows(db: Session, start: Optional[datetime], end: datetime, limit: i
     museums = db.query(Museum).order_by(Museum.experience_level.desc(), Museum.name.asc()).limit(limit).all()
     rows = []
     for museum in museums:
-        scans = _event_count_for_museum(db, start, end, museum.id, {"recognition_started", "scan_attempt"})
-        success = _event_count_for_museum(db, start, end, museum.id, SUCCESS_EVENTS)
+        attempts_query = _attempt_base_query(db, start, end).filter(RecognitionAttempt.institution_id == museum.id, _attempt_identity_expr().isnot(None)) if _table_exists(db, "recognition_attempts") else None
+        scans = int(attempts_query.count()) if attempts_query is not None else 0
+        success = int(attempts_query.filter(RecognitionAttempt.terminal_outcome.in_(list(SUCCESSFUL_RECOGNITION_OUTCOMES))).count()) if attempts_query is not None else 0
         visitors = _identity_count_for_museum(db, start, end, museum.id)
         rows.append({
             "id": museum.id,
@@ -765,44 +1046,35 @@ def _event_count_for_museum(db: Session, start: Optional[datetime], end: datetim
 
 
 def _identity_count_for_museum(db: Session, start: Optional[datetime], end: datetime, museum_id: str) -> int:
-    if not _table_exists(db, "product_events"):
-        return 0
-    return int(
-        _event_base_query(db, start, end)
-        .filter(ProductEvent.museum_id == museum_id, _identity_expr().isnot(None))
-        .with_entities(func.count(distinct(_identity_expr())))
-        .scalar()
-        or 0
-    )
+    identities = set()
+    if _table_exists(db, "product_events"):
+        identities.update(str(value) for (value,) in _event_base_query(db, start, end).filter(ProductEvent.museum_id == museum_id, _identity_expr().isnot(None)).with_entities(_identity_expr()).distinct().all())
+    if _table_exists(db, "recognition_attempts"):
+        identities.update(str(value) for (value,) in _attempt_base_query(db, start, end).filter(RecognitionAttempt.institution_id == museum_id, _attempt_identity_expr().isnot(None)).with_entities(_attempt_identity_expr()).distinct().all())
+    return len(identities)
 
 
 def _session_count_for_museum(db: Session, start: Optional[datetime], end: datetime, museum_id: str) -> int:
-    if not _table_exists(db, "product_events"):
-        return 0
-    return int(
-        _event_base_query(db, start, end)
-        .filter(ProductEvent.museum_id == museum_id, ProductEvent.session_id.isnot(None))
-        .with_entities(func.count(distinct(ProductEvent.session_id)))
-        .scalar()
-        or 0
-    )
+    sessions = set()
+    if _table_exists(db, "product_events"):
+        sessions.update(value for (value,) in _event_base_query(db, start, end).filter(ProductEvent.museum_id == museum_id, ProductEvent.session_id.isnot(None)).with_entities(ProductEvent.session_id).distinct().all())
+    if _table_exists(db, "recognition_attempts"):
+        sessions.update(value for (value,) in _attempt_base_query(db, start, end).filter(RecognitionAttempt.institution_id == museum_id, RecognitionAttempt.session_id.isnot(None), _attempt_identity_expr().isnot(None)).with_entities(RecognitionAttempt.session_id).distinct().all())
+    return len(sessions)
 
 
 def _top_artworks(db: Session, start: Optional[datetime], end: datetime, limit: int = 20) -> List[Dict[str, Any]]:
     event_counts = Counter()
-    if _table_exists(db, "product_events"):
+    if _table_exists(db, "recognition_attempts"):
         rows = (
-            _identified_event_query(db, start, end)
-            .filter(ProductEvent.artwork_id.isnot(None), ProductEvent.event_name.in_(["result_viewed", "artwork_viewed", "scan_success", "recognition_succeeded"]))
-            .with_entities(ProductEvent.artwork_id, func.count(ProductEvent.event_id))
-            .group_by(ProductEvent.artwork_id)
-            .order_by(desc(func.count(ProductEvent.event_id)))
+            _attempt_base_query(db, start, end)
+            .filter(RecognitionAttempt.artwork_id.isnot(None), RecognitionAttempt.terminal_outcome == "success", _attempt_identity_expr().isnot(None))
+            .with_entities(RecognitionAttempt.artwork_id, func.count(RecognitionAttempt.recognition_attempt_id))
+            .group_by(RecognitionAttempt.artwork_id)
+            .order_by(desc(func.count(RecognitionAttempt.recognition_attempt_id)))
             .limit(limit)
             .all()
         )
-        event_counts.update({artwork_id: int(count) for artwork_id, count in rows})
-    if not event_counts:
-        rows = db.query(VisitArtwork.artwork_id, func.count(VisitArtwork.id)).group_by(VisitArtwork.artwork_id).order_by(desc(func.count(VisitArtwork.id))).limit(limit).all()
         event_counts.update({artwork_id: int(count) for artwork_id, count in rows})
     artworks = {a.id: a for a in db.query(Artwork).filter(Artwork.id.in_(list(event_counts.keys()))).all()} if event_counts else {}
     return [
@@ -852,9 +1124,9 @@ def _segments(db: Session, start: Optional[datetime], end: datetime) -> Dict[str
 
 def _system(db: Session) -> Dict[str, Any]:
     latest_recognition = None
-    if _table_exists(db, "product_events"):
-        row = db.query(ProductEvent).filter(ProductEvent.event_name.in_(["recognition_succeeded", "scan_success", "recognition_completed"])).order_by(ProductEvent.occurred_at.desc()).first()
-        latest_recognition = _safe_datetime(row.occurred_at) if row else None
+    if _table_exists(db, "recognition_attempts"):
+        row = db.query(RecognitionAttempt).filter(RecognitionAttempt.terminal_outcome.in_(list(SUCCESSFUL_RECOGNITION_OUTCOMES))).order_by(RecognitionAttempt.completed_at.desc()).first()
+        latest_recognition = _safe_datetime(row.completed_at) if row else None
     configured_institutions = int(db.query(InstitutionProfile).filter(InstitutionProfile.active.is_(True)).count()) if _table_exists(db, "institution_profiles") else 0
     unconfigured_institutions = int(
         db.query(Museum).filter(Museum.active.is_(True), ~Museum.id.in_(select(InstitutionProfile.institution_id))).count()
@@ -873,6 +1145,7 @@ def _system(db: Session) -> Dict[str, Any]:
         "unconfigured_institutions": unconfigured_institutions,
         "latest_successful_recognition": latest_recognition,
         "tracking_available_since": TRACKING_AVAILABLE_SINCE,
+        "trusted_analytics_available_since": TRUSTED_ANALYTICS_AVAILABLE_SINCE,
     }
 
 
@@ -888,7 +1161,7 @@ def _data_gaps(db: Session) -> List[str]:
         gaps.append("First-party product_events table is not installed; anonymous funnel, retention and recognition attempt history cannot be calculated.")
     elif int(db.query(ProductEvent).count()) == 0:
         gaps.append("First-party product event history begins with this admin deployment; older anonymous funnel and retention metrics are unavailable.")
-    gaps.append("Historical backend recognition attempts were previously stdout logs only; precise historical failure/latency metrics are available only after first-party event ingestion.")
+    gaps.append(f"Trusted business metrics begin at schema v2 rollout ({TRUSTED_ANALYTICS_AVAILABLE_SINCE}); legacy product_events remain raw/unverified and are not reinterpreted.")
     gaps.append("City/country analytics are only shown when privacy-safe request metadata or client properties exist; no GPS collection is used.")
     return gaps
 
@@ -915,29 +1188,31 @@ def admin_dashboard(period: str = Query("30d"), db: Session = Depends(get_db), _
 
 
 def _activation(db: Session, start: Optional[datetime], end: datetime) -> Dict[str, Any]:
-    new_users = _identity_count(db, start, end, {"app_opened", "visit_started", "museum_selected"})
-    activated = _identity_count(db, start, end, SUCCESS_EVENTS)
+    all_activity = _meaningful_activity_by_identity(db)
+    first_seen = {identity: min(times) for identity, times in all_activity.items() if times}
+    new_users = sum(1 for seen in first_seen.values() if (start is None or seen >= start) and seen < end)
+    activated = _activated_identity_count(db, start, end)
     median_time = None
     scans_before_first = None
-    if _table_exists(db, "product_events"):
+    if _table_exists(db, "recognition_attempts"):
         rows = (
-            _event_base_query(db, start, end)
-            .filter(_identity_expr().isnot(None), ProductEvent.event_name.in_(["app_opened", "visit_started", "recognition_started", "recognition_succeeded", "scan_success"]))
-            .order_by(ProductEvent.occurred_at.asc())
+            _attempt_base_query(db, start, end)
+            .filter(_attempt_identity_expr().isnot(None))
+            .with_entities(_attempt_identity_expr(), RecognitionAttempt.completed_at, RecognitionAttempt.terminal_outcome)
+            .order_by(RecognitionAttempt.completed_at.asc())
             .all()
         )
-        first_seen: Dict[str, datetime] = {}
         first_success: Dict[str, datetime] = {}
         scans: Dict[str, int] = defaultdict(int)
-        for row in rows:
-            identity = row.user_id or row.anonymous_id
-            if not identity:
+        for identity_raw, completed_at, outcome in rows:
+            identity = str(identity_raw)
+            if identity not in first_seen or (start is not None and first_seen[identity] < start):
                 continue
-            first_seen.setdefault(identity, row.occurred_at)
-            if row.event_name == "recognition_started" and identity not in first_success:
-                scans[identity] += 1
-            if row.event_name in SUCCESS_EVENTS and identity not in first_success:
-                first_success[identity] = row.occurred_at
+            if identity in first_success:
+                continue
+            scans[identity] += 1
+            if outcome in SUCCESSFUL_RECOGNITION_OUTCOMES:
+                first_success[identity] = _as_aware(completed_at)
         deltas = [(first_success[i] - first_seen[i]).total_seconds() for i in first_success if i in first_seen]
         median_time = _percentile(deltas, 50) if deltas else None
         scan_counts = [scans[i] for i in first_success]
@@ -962,30 +1237,27 @@ def admin_recognition_failures(
     _: AdminSession = Depends(require_admin),
 ):
     start, end, *_ = _period_bounds(period)
-    if not _table_exists(db, "product_events"):
-        return {"rows": [], "total": 0, "data_gap": "recognition failures were not durably stored before product_events"}
-    query = _event_base_query(db, start, end).filter(ProductEvent.event_name.in_(list(FAILURE_EVENTS) + ["recognition_completed"]))
+    if not _table_exists(db, "recognition_attempts"):
+        return {"rows": [], "total": 0, "data_gap": "trusted recognition attempts are not installed"}
+    query = _attempt_base_query(db, start, end).filter(RecognitionAttempt.terminal_outcome.in_(list(FAILED_RECOGNITION_OUTCOMES)))
     if museum:
-        query = query.filter(ProductEvent.museum_id == museum)
+        query = query.filter(RecognitionAttempt.institution_id == museum)
+    if reason:
+        query = query.filter(RecognitionAttempt.terminal_outcome == reason)
     rows = []
-    for event in query.order_by(ProductEvent.occurred_at.desc()).offset(offset).limit(limit).all():
-        props = event.properties or {}
-        event_reason = props.get("reason") or props.get("failure_reason") or props.get("status")
-        if reason and event_reason != reason:
-            continue
-        if event.event_name == "recognition_completed" and props.get("status") not in {"no_match", "failed"}:
-            continue
+    for event in query.order_by(RecognitionAttempt.completed_at.desc()).offset(offset).limit(limit).all():
         rows.append({
-            "timestamp": _safe_datetime(event.occurred_at),
+            "timestamp": _safe_datetime(event.completed_at),
             "user": event.user_id or event.anonymous_id,
             "session_id": event.session_id,
-            "museum_id": event.museum_id,
-            "top_candidate": props.get("top_candidate") or props.get("candidate") or props.get("ai_candidate"),
-            "confidence": props.get("confidence"),
-            "failure_reason": event_reason,
-            "latency_ms": props.get("latency_ms") or props.get("recognition_latency_ms"),
-            "pipeline": props.get("pipeline") or props.get("recognition_mode") or props.get("model"),
-            "status": props.get("status") or event.event_name,
+            "museum_id": event.institution_id,
+            "top_candidate": event.artwork_id,
+            "confidence": event.confidence,
+            "failure_reason": event.terminal_outcome,
+            "latency_ms": event.latency_ms,
+            "pipeline": event.recognition_mode,
+            "status": event.response_status or event.terminal_outcome,
+            "recognition_attempt_id": event.recognition_attempt_id,
         })
     return {"rows": rows, "total": query.count(), "images_available": False}
 

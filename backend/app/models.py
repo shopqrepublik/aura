@@ -528,6 +528,68 @@ class ProductEvent(Base):
     user_agent = Column(Text, nullable=True)
     path = Column(Text, nullable=True)
     created_at = Column(DateTime, default=now, nullable=False)
+    schema_version = Column(Integer, nullable=True)
+    client_occurred_at = Column(DateTime, nullable=True)
+    server_received_at = Column(DateTime, nullable=True)
+    internal_test = Column(Boolean, nullable=True)
+    trust_level = Column(String, nullable=True)
+    business_eligible = Column(Boolean, nullable=True)
+
+
+class AnalyticsIdentityLink(Base):
+    """Non-destructive link from a browser identity to an authenticated user."""
+    __tablename__ = "analytics_identity_links"
+    __table_args__ = (
+        Index("idx_analytics_identity_links_user", "user_id"),
+        Index("idx_analytics_identity_links_last_seen", "last_seen_at"),
+    )
+    anonymous_id = Column(String, primary_key=True)
+    user_id = Column(String, nullable=False)
+    linked_at = Column(DateTime, default=now, nullable=False)
+    last_seen_at = Column(DateTime, default=now, nullable=False)
+
+
+class AnalyticsSession(Base):
+    __tablename__ = "analytics_sessions"
+    __table_args__ = (
+        Index("idx_analytics_sessions_anonymous", "anonymous_id"),
+        Index("idx_analytics_sessions_user", "user_id"),
+        Index("idx_analytics_sessions_last_seen", "last_seen_at"),
+    )
+    session_id = Column(String, primary_key=True)
+    anonymous_id = Column(String, nullable=True)
+    user_id = Column(String, nullable=True)
+    first_seen_at = Column(DateTime, default=now, nullable=False)
+    last_seen_at = Column(DateTime, default=now, nullable=False)
+
+
+class RecognitionAttempt(Base):
+    """One authoritative terminal business fact per recognition request."""
+    __tablename__ = "recognition_attempts"
+    __table_args__ = (
+        Index("idx_recognition_attempts_completed_at", "completed_at"),
+        Index("idx_recognition_attempts_identity", "anonymous_id", "user_id"),
+        Index("idx_recognition_attempts_session", "session_id"),
+        Index("idx_recognition_attempts_institution", "institution_id"),
+        Index("idx_recognition_attempts_artwork", "artwork_id"),
+        Index("idx_recognition_attempts_outcome", "terminal_outcome", "completed_at"),
+    )
+    recognition_attempt_id = Column(String, primary_key=True)
+    schema_version = Column(Integer, nullable=False, default=2)
+    anonymous_id = Column(String, nullable=True)
+    user_id = Column(String, nullable=True)
+    session_id = Column(String, nullable=True)
+    institution_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=True)
+    started_at = Column(DateTime, default=now, nullable=False)
+    completed_at = Column(DateTime, nullable=True)
+    terminal_outcome = Column(String, nullable=True)
+    response_status = Column(String, nullable=True)
+    confidence = Column(Float, nullable=True)
+    recognition_mode = Column(String, nullable=True)
+    latency_ms = Column(Integer, nullable=True)
+    internal_test = Column(Boolean, nullable=False, default=False)
+    response_payload = Column(JSON, nullable=True)
 
 
 class AdminSession(Base):

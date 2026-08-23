@@ -74,10 +74,10 @@ from datetime import datetime, timezone
 from typing import Optional, List, Dict, Any
 
 from dotenv import load_dotenv
-from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
-from pydantic import BaseModel
+from fastapi.responses import JSONResponse, Response
+from pydantic import BaseModel, field_validator
 from sqlalchemy import case, func, or_
 from sqlalchemy.orm import Session
 
@@ -87,8 +87,14 @@ load_dotenv()  # reads .env from the repo root if present; no-op otherwise
 # Apple Developer account exists) replace the old anonymous in-memory
 # VISITS dict below -- every /v1/visits* endpoint now requires a verified
 # Supabase JWT and persists to real Postgres (see app/db.py, app/auth.py).
-from .auth import get_current_user  # noqa: E402
-from .admin import record_product_event_from_server, router as admin_router  # noqa: E402
+from .auth import get_current_user, get_optional_current_user  # noqa: E402
+from .admin import (  # noqa: E402
+    _link_analytics_identity,
+    _trusted_internal_request,
+    _validate_analytics_session,
+    record_product_event_from_server,
+    router as admin_router,
+)
 from .catalog import (  # noqa: E402
     CatalogUnavailableError,
     InstitutionNotReadyError,
@@ -101,7 +107,7 @@ from .catalog import (  # noqa: E402
     get_institution_runtime_config,
 )
 from .db import SessionLocal, get_db  # noqa: E402
-from .models import Artwork, ArtworkLocalization, Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
+from .models import Artwork, ArtworkLocalization, Museum, RecognitionAttempt, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -117,6 +123,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(admin_router)
+
+
+@app.middleware("http")
+async def limit_public_event_body(request: Request, call_next):
+    if request.url.path == "/v1/events":
+        body = await request.body()
+        max_bytes = int(os.environ.get("EVENT_BODY_MAX_BYTES", "32768"))
+        if len(body) > max_bytes:
+            return JSONResponse(status_code=413, content={"detail": "event payload too large"})
+    return await call_next(request)
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
@@ -1363,6 +1379,19 @@ class RecognizeRequest(BaseModel):
     hall_hint: Optional[str] = None
     locale: str = "en"
     benchmark_mode: Optional[str] = None  # test-only: vision_metadata_only
+    recognition_attempt_id: Optional[str] = None
+    anonymous_id: Optional[str] = None
+    session_id: Optional[str] = None
+
+    @field_validator("recognition_attempt_id", "anonymous_id", "session_id")
+    @classmethod
+    def recognition_ids_are_uuids(cls, value: Optional[str]):
+        if value is None:
+            return value
+        try:
+            return str(uuid.UUID(value))
+        except ValueError as exc:
+            raise ValueError("identifier must be a UUID") from exc
 
 
 class RecognizedButNotCataloged(BaseModel):
@@ -1384,6 +1413,7 @@ class RecognizeResponse(BaseModel):
     # card (no reviewed estimate/editorial text exists for it), but useful
     # for us to see what the model actually recognized outside the catalog.
     recognized_but_not_cataloged: Optional[RecognizedButNotCataloged] = None
+    recognition_attempt_id: Optional[str] = None
 
 
 class VisitCreate(BaseModel):
@@ -1730,28 +1760,76 @@ def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museu
 
 # ---- Recognition (§12, §8.3 confidence policy) -------------------------
 @app.post("/v1/recognize", response_model=RecognizeResponse)
-def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
-    if not req.image_base64:
-        raise HTTPException(status_code=400, detail="image_base64 required")
-    if len(req.image_base64) > MAX_RECOGNITION_IMAGE_BASE64_CHARS:
-        raise HTTPException(status_code=413, detail="image too large")
-    try:
-        base64.b64decode(req.image_base64, validate=True)
-    except Exception:
-        raise HTTPException(status_code=400, detail="image_base64 is not valid base64")
-
-    started = time.perf_counter()
-    _log_recognition_event("recognition_started", museum_id=req.museum_id, locale=req.locale)
+def recognize(
+    req: RecognizeRequest,
+    request: Request,
+    db: Session = Depends(get_db),
+    current_user: Optional[User] = Depends(get_optional_current_user),
+):
+    attempt_id = req.recognition_attempt_id or str(uuid.uuid4())
+    existing_attempt = db.get(RecognitionAttempt, attempt_id)
+    if existing_attempt is not None:
+        if existing_attempt.response_payload:
+            return RecognizeResponse(**existing_attempt.response_payload)
+        raise HTTPException(status_code=409, detail="recognition attempt is already in progress")
 
     try:
         institution_config = get_institution_runtime_config(db, req.museum_id)
         candidates = get_recognition_candidates(db, req.museum_id)
     except InstitutionNotReadyError as e:
-        _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready")
+        _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready", recognition_attempt_id=attempt_id)
         raise HTTPException(status_code=409, detail={"code": "institution_not_ready", "message": str(e)})
     except CatalogUnavailableError as e:
-        _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="catalog_unavailable")
+        _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="catalog_unavailable", recognition_attempt_id=attempt_id)
         raise HTTPException(status_code=503, detail=str(e))
+
+    internal_test = _trusted_internal_request(request)
+    _link_analytics_identity(db, req.anonymous_id, current_user)
+    _validate_analytics_session(db, req.session_id, req.anonymous_id, current_user)
+    attempt = RecognitionAttempt(
+        recognition_attempt_id=attempt_id,
+        anonymous_id=req.anonymous_id,
+        user_id=str(current_user.id) if current_user else None,
+        session_id=req.session_id,
+        institution_id=req.museum_id,
+        internal_test=internal_test,
+    )
+    db.add(attempt)
+    db.commit()
+    started = time.perf_counter()
+
+    def finish(response: RecognizeResponse, outcome: str) -> RecognizeResponse:
+        response.recognition_attempt_id = attempt_id
+        attempt.completed_at = datetime.now(timezone.utc)
+        attempt.terminal_outcome = outcome
+        attempt.response_status = response.status
+        attempt.artwork_id = response.artwork_id
+        attempt.confidence = response.confidence
+        attempt.recognition_mode = response.recognition_mode
+        attempt.latency_ms = round((time.perf_counter() - started) * 1000)
+        attempt.response_payload = response.model_dump(mode="json")
+        db.commit()
+        return response
+
+    def fail_request(outcome: str) -> None:
+        attempt.completed_at = datetime.now(timezone.utc)
+        attempt.terminal_outcome = outcome
+        attempt.latency_ms = round((time.perf_counter() - started) * 1000)
+        db.commit()
+
+    if not req.image_base64:
+        fail_request("invalid_image")
+        raise HTTPException(status_code=400, detail="image_base64 required")
+    if len(req.image_base64) > MAX_RECOGNITION_IMAGE_BASE64_CHARS:
+        fail_request("invalid_image")
+        raise HTTPException(status_code=413, detail="image too large")
+    try:
+        base64.b64decode(req.image_base64, validate=True)
+    except Exception:
+        fail_request("invalid_image")
+        raise HTTPException(status_code=400, detail="image_base64 is not valid base64")
+
+    _log_recognition_event("recognition_started", museum_id=req.museum_id, locale=req.locale, recognition_attempt_id=attempt_id)
 
     if OPENAI_API_KEY:
         try:
@@ -1770,9 +1848,10 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                 reason="ai_error",
                 error_type=type(e).__name__,
                 error_message=str(e)[:500],
+                recognition_attempt_id=attempt_id,
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
-            return RecognizeResponse(status="no_match", confidence=0.0)
+            return finish(RecognizeResponse(status="no_match", confidence=0.0), "failed")
 
         artwork_id = result.get("artwork_id")
         confidence = float(result.get("confidence", 0))
@@ -1798,12 +1877,13 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                 confidence=confidence,
                 ai_candidate=recognized_but_not_cataloged,
                 resolved_artwork_id=None,
+                recognition_attempt_id=attempt_id,
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
-            return RecognizeResponse(status="no_match", confidence=confidence,
+            return finish(RecognizeResponse(status="no_match", confidence=confidence,
                                       recognized_but_not_cataloged=recognized_but_not_cataloged,
                                       vision=vision, top_candidates=top_candidates,
-                                      stage2_verifier=stage2_verifier)
+                                      stage2_verifier=stage2_verifier), "uncataloged_result" if recognized_but_not_cataloged else "no_match")
         if confidence >= institution_config.confidence_auto:
             _log_recognition_event(
                 "recognition_completed",
@@ -1813,12 +1893,13 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                 confidence=confidence,
                 resolved_artwork_id=artwork_id,
                 recognition_mode=recognition_mode,
+                recognition_attempt_id=attempt_id,
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
-            return RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence,
+            return finish(RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence,
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
-                                      stage2_verifier=stage2_verifier)
+                                      stage2_verifier=stage2_verifier), "success")
         elif confidence >= institution_config.confidence_review:
             _log_recognition_event(
                 "recognition_completed",
@@ -1828,13 +1909,14 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                 confidence=confidence,
                 resolved_artwork_id=artwork_id,
                 recognition_mode=recognition_mode,
+                recognition_attempt_id=attempt_id,
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
-            return RecognizeResponse(status="needs_confirmation", artwork_id=artwork_id,
+            return finish(RecognizeResponse(status="needs_confirmation", artwork_id=artwork_id,
                                       confidence=confidence, alternatives=alternatives,
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
-                                      stage2_verifier=stage2_verifier)
+                                      stage2_verifier=stage2_verifier), "success")
         else:
             _log_recognition_event(
                 "recognition_completed",
@@ -1844,31 +1926,33 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                 confidence=confidence,
                 resolved_artwork_id=artwork_id,
                 recognition_mode=recognition_mode,
+                recognition_attempt_id=attempt_id,
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
-            return RecognizeResponse(status="no_match", confidence=confidence,
+            return finish(RecognizeResponse(status="no_match", confidence=confidence,
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
-                                      stage2_verifier=stage2_verifier)
+                                      stage2_verifier=stage2_verifier), "no_match")
 
     # Development-only fallback mock. Production should fail explicitly when
     # the AI provider is not configured, never return a random artwork.
     if not ALLOW_RECOGNITION_MOCK:
-        _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="openai_key_missing")
+        _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="openai_key_missing", recognition_attempt_id=attempt_id)
+        fail_request("failed")
         raise HTTPException(status_code=503, detail="recognition is not configured")
     if not candidates:
-        _log_recognition_event("recognition_completed", museum_id=req.museum_id, status="no_match", catalog_match=False, confidence=0.0)
-        return RecognizeResponse(status="no_match", confidence=0.0)
+        _log_recognition_event("recognition_completed", museum_id=req.museum_id, status="no_match", catalog_match=False, confidence=0.0, recognition_attempt_id=attempt_id)
+        return finish(RecognizeResponse(status="no_match", confidence=0.0), "no_match")
     candidate = random.choice(candidates)
     confidence = round(random.uniform(0.75, 0.99), 3)
     if confidence >= institution_config.confidence_auto:
-        return RecognizeResponse(status="matched", artwork_id=candidate["id"], confidence=confidence)
+        return finish(RecognizeResponse(status="matched", artwork_id=candidate["id"], confidence=confidence), "success")
     elif confidence >= institution_config.confidence_review:
         alts = [a["id"] for a in random.sample(candidates, k=min(2, len(candidates)))]
-        return RecognizeResponse(status="needs_confirmation", artwork_id=candidate["id"],
-                                  confidence=confidence, alternatives=alts)
+        return finish(RecognizeResponse(status="needs_confirmation", artwork_id=candidate["id"],
+                                  confidence=confidence, alternatives=alts), "success")
     else:
-        return RecognizeResponse(status="no_match", confidence=confidence)
+        return finish(RecognizeResponse(status="no_match", confidence=confidence), "no_match")
 
 
 # ---- Museums (Phase 2 §1: geofence generalization) -----------------------

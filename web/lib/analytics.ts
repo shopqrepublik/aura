@@ -57,14 +57,11 @@ function ensureInit() {
   initialized = true;
 }
 
-// Kept in sync with the required-events list in AURA_MVP_Product_Technical_Spec_v1.1.md
-// §13. paywall_viewed / purchase_completed are listed here on purpose even
-// though nothing calls track() with them yet -- monetization (§14) isn't
-// built. They stay defined so the eventual paywall screen has a name to
-// call rather than inventing one later.
+// Canonical public schema-v2 allowlist. Keep synchronized with
+// backend/app/admin.py:PUBLIC_EVENT_ALLOWLIST; unused speculative events are
+// deliberately not accepted.
 export type EventName =
   | "app_opened"
-  | "seo_landing"
   | "seo_begin_visit"
   | "session_started"
   | "onboarding_completed"
@@ -72,7 +69,6 @@ export type EventName =
   | "museum_selected"
   | "visit_started"
   | "recognition_started"
-  | "recognition_succeeded"
   | "recognition_completed"
   | "recognition_failed"
   | "catalog_match"
@@ -86,14 +82,12 @@ export type EventName =
   | "result_viewed"
   | "artwork_viewed"
   | "artwork_card_opened"
-  | "content_opened"
   | "artwork_card_read_time"
   | "audio_started"
   | "audio_completed"
   | "artwork_added"
   | "artwork_favorited"
   | "favorite_added"
-  | "mission_shown"
   | "mission_completed"
   | "achievement_unlocked"
   | "progress_viewed"
@@ -107,8 +101,6 @@ export type EventName =
   | "share_saved"
   | "share_started"
   | "share_completed"
-  | "paywall_viewed"
-  | "purchase_completed"
   | "pwa_install_cta_shown"
   | "pwa_install_cta_clicked"
   | "pwa_install_prompt_accepted"
@@ -119,11 +111,15 @@ export type EventName =
 const ANON_KEY = "elyio-anonymous-id";
 const SESSION_KEY = "elyio-session-id";
 const SESSION_STARTED_KEY = "elyio-session-started";
-const INTERNAL_TEST_KEY = "elyio-internal-test";
+const QA_TOKEN_KEY = "elyio-trusted-qa-token";
+let analyticsAuthToken: string | undefined;
 
 function uuid() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => {
+    const value = Math.floor(Math.random() * 16);
+    return (char === "x" ? value : (value & 0x3) | 0x8).toString(16);
+  });
 }
 
 function getOrCreateStoredId(storage: Storage, key: string) {
@@ -135,7 +131,7 @@ function getOrCreateStoredId(storage: Storage, key: string) {
   return value;
 }
 
-function getAnonymousId() {
+export function getAnonymousId() {
   try {
     return getOrCreateStoredId(window.localStorage, ANON_KEY);
   } catch {
@@ -143,7 +139,7 @@ function getAnonymousId() {
   }
 }
 
-function getSessionId() {
+export function getSessionId() {
   try {
     return getOrCreateStoredId(window.sessionStorage, SESSION_KEY);
   } catch {
@@ -151,16 +147,16 @@ function getSessionId() {
   }
 }
 
-function internalTestEnabled() {
+function trustedQaToken() {
   try {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get("elyio_internal_test") === "1") {
-      window.sessionStorage.setItem(INTERNAL_TEST_KEY, "1");
-    }
-    return window.sessionStorage.getItem(INTERNAL_TEST_KEY) === "1";
+    return window.sessionStorage.getItem(QA_TOKEN_KEY) || undefined;
   } catch {
-    return false;
+    return undefined;
   }
+}
+
+export function setAnalyticsAuthToken(token?: string) {
+  analyticsAuthToken = token;
 }
 
 function parseUtm() {
@@ -201,15 +197,16 @@ function browserName() {
 function sendFirstPartyEvent(event: EventName, properties?: Record<string, unknown>, landing: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   const payload = {
+    schema_version: 2,
     event_id: uuid(),
     event_name: event,
-    occurred_at: new Date().toISOString(),
+    client_occurred_at: new Date().toISOString(),
     anonymous_id: getAnonymousId(),
     session_id: getSessionId(),
     museum_id: typeof properties?.museum_id === "string" ? properties.museum_id : undefined,
     artwork_id: typeof properties?.artwork_id === "string" ? properties.artwork_id : undefined,
     recognition_attempt_id: typeof properties?.recognition_attempt_id === "string" ? properties.recognition_attempt_id : undefined,
-    properties: { ...landing, ...properties, ...(internalTestEnabled() ? { internal_test: true } : {}) },
+    properties: { ...landing, ...properties },
     source: typeof landing.source === "string" ? landing.source : undefined,
     referrer: document.referrer || undefined,
     ...parseUtm(),
@@ -220,15 +217,20 @@ function sendFirstPartyEvent(event: EventName, properties?: Record<string, unkno
     path: `${window.location.pathname}${window.location.search}`,
   };
   const body = JSON.stringify(payload);
+  const qaToken = trustedQaToken();
   try {
-    if (navigator.sendBeacon) {
+    if (navigator.sendBeacon && !analyticsAuthToken && !qaToken) {
       const blob = new Blob([body], { type: "application/json" });
       if (navigator.sendBeacon(`${BACKEND_URL}/v1/events`, blob)) return;
     }
   } catch { /* event transport must never interfere with the visit */ }
   void fetch(`${BACKEND_URL}/v1/events`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...(analyticsAuthToken ? { Authorization: `Bearer ${analyticsAuthToken}` } : {}),
+      ...(qaToken ? { "X-ELYIO-QA-Token": qaToken } : {}),
+    },
     body,
     keepalive: true,
   }).catch(() => undefined);

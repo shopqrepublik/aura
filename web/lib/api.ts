@@ -25,6 +25,7 @@ export interface RecognizeResponse {
   confidence: number;
   alternatives: string[];
   recognition_mode?: string | null;
+  recognition_attempt_id?: string | null;
   vision?: Record<string, unknown> | null;
   top_candidates?: unknown[];
   stage2_verifier?: Record<string, unknown> | null;
@@ -224,14 +225,31 @@ export async function recognize(
   imageBase64: string,
   locale: string,
   museumId: string,
-  hallHint?: string
+  hallHint?: string,
+  recognitionAttemptId?: string,
+  anonymousId?: string,
+  sessionId?: string,
 ): Promise<RecognizeResponse> {
-  return postJSON<RecognizeResponse>("/v1/recognize", {
+  const headers: Record<string, string> = { "Content-Type": "application/json", ...(await authHeaders()) };
+  try {
+    const qaToken = window.sessionStorage.getItem("elyio-trusted-qa-token");
+    if (qaToken) headers["X-ELYIO-QA-Token"] = qaToken;
+  } catch { /* controlled QA marker is optional */ }
+  const res = await fetchWithTimeout(`${BACKEND_URL}/v1/recognize`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify({
     image_base64: imageBase64,
     museum_id: museumId,
     hall_hint: hallHint ?? null,
     locale,
-  });
+    recognition_attempt_id: recognitionAttemptId,
+    anonymous_id: anonymousId,
+    session_id: sessionId,
+    }),
+  }, 60000);
+  if (!res.ok) throw new Error(`/v1/recognize failed: ${res.status}`);
+  return res.json();
 }
 
 export async function getIndicativeValue(input: IndicativeValueRequest): Promise<IndicativeValueResponse> {

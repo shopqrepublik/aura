@@ -21,6 +21,10 @@ erDiagram
   VISIT ||--o{ VISIT_ARTWORK : records
   PRODUCT_EVENT }o--o| MUSEUM : dimensions
   PRODUCT_EVENT }o--o| ARTWORK : dimensions
+  ANALYTICS_IDENTITY_LINK }o--|| USER : resolves_to
+  ANALYTICS_SESSION }o--o| USER : authenticated_as
+  RECOGNITION_ATTEMPT }o--|| INSTITUTION : occurs_at
+  RECOGNITION_ATTEMPT }o--o| ARTWORK : resolves_to
   ADMIN_SESSION }o--|| ADMIN_LOGIN_ATTEMPT : operationally_related
 ```
 
@@ -38,6 +42,12 @@ erDiagram
 | Artwork location | `hall`, `room`, `current_location_raw`, display status | Point-in-time strings; no effective dates/history. |
 | Temporary exhibition/loan | Not modeled | Requires overwriting location/museum or custom metadata. |
 | Editions/copies | No explicit work/object/edition distinction | Source IDs can distinguish objects, but semantic relationships are absent. |
+
+### Trusted analytics entities
+
+`product_events` is the raw validated UX-event ledger. Schema-v2 rows preserve client time separately while `occurred_at`/`server_received_at`, authenticated user, trusted QA flag, trust level and business eligibility are server-owned. `event_id` is the idempotency key.
+
+`recognition_attempts` has exactly one UUID row per recognition request and is the authoritative KPI ledger for institution, visitor/session linkage, optional resolved artwork, latency and one terminal outcome. `analytics_identity_links` non-destructively maps one or more anonymous browser identities to a verified user. `analytics_sessions` prevents a session UUID from changing identity context. Legacy event rows stay `LEGACY_UNVERIFIED`; migration 0003 performs no fabricated backfill.
 
 ### Identity
 

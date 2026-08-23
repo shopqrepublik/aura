@@ -3,7 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import * as api from "./api";
 import { getArtwork } from "./artworks";
-import { track } from "./analytics";
+import { getAnonymousId, getSessionId, track } from "./analytics";
 import { isRecognitionNetworkError } from "./recognitionErrors";
 import { buildGeneratedEnrichment, generatedValueReveal, type GeneratedEnrichment } from "./generated-enrichment";
 import { attachIndicativeValueIfEligible, fetchIndicativeValueReveal } from "./indicative-value";
@@ -145,7 +145,15 @@ export function useElyioApp() {
     }
     track("recognition_started", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId });
     try {
-      const result = await api.recognize(imageBase64, state.locale, state.museumId ?? "");
+      const result = await api.recognize(
+        imageBase64,
+        state.locale,
+        state.museumId ?? "",
+        undefined,
+        recognitionAttemptId,
+        getAnonymousId(),
+        getSessionId(),
+      );
       track("recognition_completed", {
         museum_id: state.museumId,
         recognition_attempt_id: recognitionAttemptId,
