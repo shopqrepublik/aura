@@ -2,6 +2,9 @@
 // ported from the original frontend/data.js — same fields, same content
 // policy, just typed and consumed from a Next.js app instead of vanilla JS).
 
+/** Any institution/content locale accepted by the global data model. */
+export type LocaleCode = string;
+/** Locales whose complete UI message bundles ship in this release. */
 export type Locale = "en" | "fr" | "zh-Hans";
 export type Mode = "normal" | "simple" | "kids";
 

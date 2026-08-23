@@ -34,6 +34,7 @@ from .models import (
     Country,
     InstitutionProfile,
     LouvreImageReference,
+    MediaAsset,
     Museum,
     ProductEvent,
     RecognitionAsset,
@@ -795,6 +796,9 @@ def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) 
     ).all()
     attempts = len(rows)
     successes = sum(1 for row in rows if row.terminal_outcome in SUCCESSFUL_RECOGNITION_OUTCOMES)
+    auto_accepted = sum(1 for row in rows if row.visitor_resolution == "AUTO_ACCEPTED")
+    confirmation_required = sum(1 for row in rows if row.visitor_resolution == "CONFIRMATION_REQUIRED")
+    generated_results = sum(1 for row in rows if row.visitor_resolution == "GENERATED_RESULT")
     failures = sum(1 for row in rows if row.terminal_outcome in FAILED_RECOGNITION_OUTCOMES)
     no_match = sum(1 for row in rows if row.terminal_outcome == "no_match")
     latencies = [float(row.latency_ms) for row in rows if row.latency_ms is not None]
@@ -804,6 +808,9 @@ def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) 
     return {
         "attempts": attempts,
         "successful": successes,
+        "auto_accepted": auto_accepted,
+        "confirmation_required": confirmation_required,
+        "generated_results": generated_results,
         "failed": failures,
         "unknown_no_match": no_match,
         "success_rate": round((successes / attempts) * 100, 1) if attempts else None,
@@ -814,7 +821,7 @@ def _recognition_metrics(db: Session, start: Optional[datetime], end: datetime) 
         "failure_reasons": [{"reason": reason, "count": count} for reason, count in failure_reasons.most_common()],
         "historical_success_records": int(db.query(VisitArtwork).count()),
         "identityless_operational_events": identityless_operational_events,
-        "visitor_metric_definition": "One non-internal, visitor-linked recognition_attempt row is one attempt; success is one terminal success/uncataloged_result outcome. Companion raw events never add KPI attempts or successes.",
+        "visitor_metric_definition": "One non-internal, visitor-linked recognition_attempt row is one attempt. Engine success includes an auto-accepted catalog match, a catalog candidate requiring confirmation, or an uncataloged generated result; visitor_resolution reports those states separately. Companion raw events never add KPI attempts or successes.",
         "data_available_since": TRUSTED_ANALYTICS_AVAILABLE_SINCE,
     }
 
@@ -978,6 +985,24 @@ def _catalog_health(db: Session) -> Dict[str, Any]:
     local_image_ids = local_cache_ids | louvre_fetched_ids
     louvre_active = int(db.query(ArtworkCatalogMembership).filter(ArtworkCatalogMembership.active.is_(True), ArtworkCatalogMembership.museum_id == "louvre").count())
     louvre_total = int(db.query(Artwork).filter(Artwork.museum_id == "louvre").count())
+    generic_media = db.query(MediaAsset).filter(MediaAsset.artwork_id.in_(active_ids)) if active_ids else db.query(MediaAsset).filter(False)
+    provenance_verified_ids = {
+        artwork_id for (artwork_id,) in generic_media.filter(MediaAsset.verification_state == "VERIFIED").with_entities(MediaAsset.artwork_id).distinct().all()
+    }
+    provenance_partial_ids = {
+        artwork_id for (artwork_id,) in generic_media.filter(MediaAsset.verification_state == "DECLARED_BY_SOURCE").with_entities(MediaAsset.artwork_id).distinct().all()
+    } - provenance_verified_ids
+    provenance_unknown_ids = active_ids - provenance_verified_ids - provenance_partial_ids
+    rights_restricted_ids = {
+        artwork_id for (artwork_id,) in generic_media.filter(MediaAsset.rights_status == "RESTRICTED").with_entities(MediaAsset.artwork_id).distinct().all()
+    }
+    usable_reference_ids = {
+        artwork_id for (artwork_id,) in generic_media.filter(
+            MediaAsset.purpose.in_(["REFERENCE", "RECOGNITION_ASSET", "SOURCE_ORIGINAL"]),
+            or_(MediaAsset.original_url.isnot(None), MediaAsset.asset_url.isnot(None)),
+            MediaAsset.rights_status != "RESTRICTED",
+        ).with_entities(MediaAsset.artwork_id).distinct().all()
+    }
     return {
         "knowledge_catalog_total": int(db.query(Artwork).count()),
         "active_visitor_catalog_total": active_total,
@@ -1002,6 +1027,11 @@ def _catalog_health(db: Session) -> Dict[str, Any]:
         "recognition_asset_exists_presentation_missing": len(recognition_asset_ids - presentation_ids),
         "presentation_exists_recognition_asset_missing": len(presentation_ids - recognition_asset_ids),
         "both_presentation_and_recognition_asset_missing": len(active_ids - (presentation_ids | recognition_asset_ids)),
+        "provenance_verified": len(provenance_verified_ids),
+        "provenance_partial": len(provenance_partial_ids),
+        "provenance_unknown": len(provenance_unknown_ids),
+        "rights_restricted": len(rights_restricted_ids),
+        "no_usable_source_media": len(active_ids - usable_reference_ids),
         "louvre": {
             "knowledge_catalog": louvre_total,
             "active_visitor_catalog": louvre_active,

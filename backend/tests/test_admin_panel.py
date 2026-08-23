@@ -146,6 +146,10 @@ class AdminPanelTests(unittest.TestCase):
         self.assertEqual(metrics["works_missing_recognition_assets"], 3)
         self.assertEqual(metrics["works_with_source_or_reference_images"], 3)
         self.assertEqual(metrics["works_missing_any_image_reference"], 1)
+        self.assertEqual(metrics["provenance_verified"], 0)
+        self.assertEqual(metrics["provenance_partial"], 0)
+        self.assertEqual(metrics["provenance_unknown"], 4)
+        self.assertEqual(metrics["no_usable_source_media"], 4)
 
 
 if __name__ == "__main__":

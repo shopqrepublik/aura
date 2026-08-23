@@ -1,38 +1,34 @@
 # Recognition Readiness
 
-Status: CURRENT definitions with required normalization noted.
+Status: CURRENT operational contract.
 
-## Minimum readiness gate
+## Readiness dimensions
 
-An artwork should be activated only when:
+Readiness is not one inferred flag. Review stable object/source identity, correct InstitutionHolding/catalog membership, sufficient metadata, presentation readiness, recognition readiness, provenance verification, rights/processing eligibility and benchmark outcome independently.
 
-1. stable artwork/source identity is verified;
-2. membership points to the correct institution/catalog version;
-3. title/object metadata is sufficient for candidate ranking;
-4. presentation image role is known;
-5. recognition asset/reference policy is explicit;
-6. rights and AI/TDM eligibility are recorded independently;
-7. wrong-work and wrong-museum benchmarks pass;
-8. no-match behavior is safe;
-9. admin catalog health shows no unexplained missing data;
-10. rollback means membership deactivation, not row deletion.
+| Operational category | Meaning |
+|---|---|
+| Presentation ready | Approved visitor-facing media exists; not automatically recognition-eligible. |
+| Recognition ready | Policy/candidate metadata and, where required, an explicitly eligible RecognitionAsset are ready. |
+| Provenance verified | ELYIO verification state is `VERIFIED`; source declaration alone is partial. |
+| Provenance incomplete | `DECLARED_BY_SOURCE` or missing required source/license/retrieval evidence. |
+| No usable source media | No non-restricted REFERENCE/RECOGNITION_ASSET/SOURCE_ORIGINAL URL for the active artwork. |
+| Rights restricted | Explicit restriction; do not present/process beyond the recorded permission. |
 
-## Current status computation
-
-The DB stores `display_status`, `metadata_status`, `recognition_status`, rights status/review flag, and asset rows independently. Admin `not_ready` treats insufficient metadata and `NOT_READY`, `NO_USABLE_ASSET`, `RIGHTS_RESTRICTED` as not ready. `VISION_PLUS_ASSET`/`VISION_READY` are also used as database statuses, while response `recognition_mode` uses the same two strings. `READY` and `NEEDS_ASSET` remain in production data. A canonical state machine is not enforced by DB constraints.
-
-## Required per-institution configuration
-
-Current code requires a catalog-version environment variable and Python-map entry to receive the top-N policy. Until generalized, onboarding must document whether the museum uses top-N metadata verification or per-candidate asset verification and why.
+Admin Catalog exposes aggregate provenance categories without redesigning Overview. Legacy status strings (`READY`, `VISION_READY`, `VISION_PLUS_ASSET`, `NEEDS_ASSET`, etc.) remain for compatibility; the dimensions above are the canonical interpretation.
 
 ## Activation checklist
 
-- [ ] Active membership count equals approved manifest count.
-- [ ] Every membership `museum_id` matches its artwork.
-- [ ] No duplicate `(source, source_record_id)`.
-- [ ] Asset identity and license review completed.
-- [ ] Presentation/recognition/reference roles are not conflated.
-- [ ] Self-match recall, decoy rejection, wrong-museum and no-art image tests pass.
-- [ ] Confidence/status distribution reviewed.
-- [ ] No benchmark uses production visitor images without authorization.
-- [ ] Admin health and public catalog count agree.
+- [ ] CulturalObject, Holding and provider SourceRecord are stable; no title-derived identity.
+- [ ] Membership and holding institution agree with the selected Institution Profile.
+- [ ] Candidate universe/version resolves and fails closed when empty/invalid.
+- [ ] Presentation/reference/recognition purposes are explicit.
+- [ ] UNKNOWN rights remain unknown; AI/TDM/recognition eligibility is explicit.
+- [ ] Exact import duplicates are blocked; possible duplicates reviewed, never auto-merged.
+- [ ] Wrong-work, wrong-institution, no-art and partial-image benchmark gates pass.
+- [ ] `needs_confirmation` is monitored separately from auto-accepted results.
+- [ ] Deactivation/rollback uses membership/profile state rather than deleting evidence.
+
+## Current compatibility
+
+Recognition continues using established columns and algorithms. Generic media is an additive provenance system until a later parity-gated reader migration. Louvre-specific import/reference code is a legitimate source adapter; it must not control global candidate/policy logic.

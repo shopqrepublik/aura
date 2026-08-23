@@ -1,29 +1,33 @@
-# Image Provenance
+# Image and Media Provenance
 
-Status: CURRENT audit.
+Status: CURRENT after migration `0004_global_media_identity_foundation`.
 
-## Current storage
+## Generic model
 
-| Role/table | Captured fields | Gaps |
-|---|---|---|
-| `Artwork.image_url` | presentation URL; `source_urls`, source record context | No per-image license, attribution or retrieved timestamp. |
-| `RecognitionAsset` | source, URL, license, attribution, rights status, AI/TDM and embedding eligibility, local storage status, timestamps | No content hash, derivative lineage, provider retrieval timestamp or explicit presentation role. |
-| `LouvreImageReference` | source URL/thumbnail, copyright/credit, rights evidence, type/position, fetched flag | Louvre-only; metadata-only; no generic provider-reference table. |
-| Browser visitor capture | base64 in visit localStorage; sent for recognition | No explicit TTL/clear UI; private, not provenance for public catalog. |
-| Backend proxy cache | hashed local JPEG derivative | Cache metadata is filesystem/key based, not a durable provenance row. |
+`media_assets` links an asset to its cultural object and optionally the compatibility artwork, holding and source record. It records provider, provider asset ID, original/asset URL, media type, purpose, rights status, verification state, license, attribution, public-domain assertion, retrieval time, SHA-256, derivative parent/specification and independent presentation/recognition eligibility.
 
-## Role invariant
+| Dimension | Values/current meaning |
+|---|---|
+| Purpose | `PRESENTATION`, `REFERENCE`, `RECOGNITION_ASSET`, `SOURCE_ORIGINAL`, `DERIVATIVE` |
+| Rights | `VERIFIED_PUBLIC_DOMAIN`, `LICENSED`, `UNKNOWN`, `RESTRICTED` |
+| Verification | `VERIFIED`, `DECLARED_BY_SOURCE`, `UNKNOWN`, `RESTRICTED` |
+| Eligibility | `presentation_eligible` and `recognition_eligible` are independent nullable booleans; null means not determined |
 
-Presentation image != recognition asset != provider source/reference image != visitor capture. An asset can fill more than one role only when each use and rights basis is explicit.
+`UNKNOWN` is never promoted to public domain. A source declaration is not ELYIO verification. An asset suitable for presentation is not automatically legal or technically suitable for recognition, and an approved recognition asset is not automatically a public presentation image.
 
-## Required traceability
+## Legacy migration
 
-For each public/recognition image preserve provider, provider asset/record ID, source URL, license/version, attribution, retrieved_at, content hash, original metadata, derivative parameters/hash/storage, rights review, AI/TDM eligibility and links to the exact artwork identity.
+- `Artwork.image_url` becomes a `PRESENTATION` asset with UNKNOWN rights/verification and undetermined presentation eligibility. Runtime continues reading the legacy column.
+- `RecognitionAsset` becomes `RECOGNITION_ASSET`; existing declared license/attribution/rights are preserved. Recognition eligibility is true only when existing AI/TDM and embedding flags were both explicitly true.
+- `LouvreImageReference` becomes a generic `REFERENCE` asset while the Louvre source table remains as a source-adapter compatibility table. It is not silently made fetchable or recognition-eligible.
+- No legacy media is marked `VERIFIED` by the migration.
 
-## Provider-side unknowns
+Pre-deployment transaction snapshot (2026-08-23, current 944 artworks): 3,290 prospective asset rows: 2,923 `DECLARED_BY_SOURCE` and 367 `UNKNOWN`; rights were 133 declared public-domain, 45 licensed, 3,112 unknown, 0 restricted. These are asset rows, not unique artworks, and remain a dated snapshot. Among 790 active visitor-catalog artworks: 0 have VERIFIED provenance, 495 have at least declared/partial provenance, 295 remain provenance-unknown, 0 have a restricted asset, and 295 lack a non-restricted REFERENCE/RECOGNITION_ASSET/SOURCE_ORIGINAL URL. Admin Catalog exposes these operational categories.
 
-OpenAI input retention, Wikimedia availability/change history, upstream museum rights changes, Vercel/Fly request logging and cache deletion behavior were not verified. These are provider truths requiring contractual/manual checks; no GDPR conclusion is asserted.
+## Invariants and privacy
 
-## Current policy
+Presentation image != source/reference image != recognition asset != visitor capture. A placeholder must not suppress a real private visitor capture. Browser captures remain private visit/session material and never become catalog media, recognition assets or SEO images automatically. The proxy/cache creates a delivery derivative but must not be treated as a new rights grant.
 
-Louvre references remain metadata-only and `fetched=false` by importer policy. Eligible non-Louvre `RecognitionAsset` can be used. A visitor capture may replace a placeholder for private UI but must never become public media or a catalog recognition asset automatically.
+## Provider unknowns
+
+Upstream license changes, source availability, OpenAI input retention, Fly/Vercel logs and local cache deletion remain provider/operations truths. They require manual contractual/operational verification; this document makes no legal or GDPR conclusion.

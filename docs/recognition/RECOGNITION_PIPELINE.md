@@ -1,85 +1,55 @@
 # Recognition Pipeline
 
-Status: CURRENT production path in `backend/app/main.py` and `backend/app/catalog.py`.
-
-## End-to-end flow
+Status: CURRENT; Block 3 does not replace ranking or decision algorithms.
 
 ```mermaid
 flowchart TD
-  I[Visitor JPEG data URL] --> Q[Validate size/base64 + museum_id]
-  Q --> C[Load selected-museum candidate universe]
-  Q --> S1[Stage 1 OpenAI visual analysis]
-  S1 --> R[Rank up to 5 candidates by metadata signals]
+  I[Visitor JPEG + institution + attempt UUID] --> Q[Validate input and Institution Profile]
+  Q -->|invalid/unconfigured| X[Controlled failure / fail closed]
+  Q --> S1[OpenAI Stage 1 visual analysis]
+  Q --> C[Institution-scoped candidate universe]
+  S1 --> R[Shared metadata ranking]
   C --> R
-  R --> P{Museum recognition policy}
-  P -->|versioned map| T[Top-N constrained Stage 2]
-  P -->|non-map with eligible reference| V[Single asset visual verify; runner-up retry]
-  P -->|no eligible asset| M[Metadata confidence path]
-  T --> D{MATCH / NEEDS_CONFIRMATION / NO_MATCH}
+  R --> P{Profile recognition policy}
+  P --> T[Top-N constrained verifier]
+  P --> V[Eligible asset verifier]
+  P --> M[Metadata/uncataloged path]
+  T --> D[MATCH / NEEDS_CONFIRMATION / NO_MATCH]
   V --> D
   M --> D
-  D -->|catalog ID| A[Catalog detail / presentation card]
-  D -->|identity but no catalog ID| U[Uncataloged generated card]
-  D -->|no identity| N[No match / retry]
+  D --> E[Engine outcome + visitor resolution]
+  E --> A[Catalog card / generated card / retry]
 ```
 
-## Request and context
+## Request/context
 
-`POST /v1/recognize` accepts `image_base64`, required `museum_id`, optional `hall_hint`, `locale`, and a test-only `benchmark_mode`. Maximum base64 characters defaults to 8,000,000. The backend does not receive browser `anonymous_id`, `session_id`, or `recognition_attempt_id`; browser and server telemetry therefore cannot be reliably joined today.
+`POST /v1/recognize` accepts validated base64 image, required `museum_id` (compatible Institution ID), locale, optional hint/benchmark mode, and UUIDs for recognition attempt, anonymous identity and session. The attempt UUID propagates through request, backend ledger, response and companion events. The Institution Profile supplies candidate universe, catalog version, prompt context, thresholds, candidate limit and asset-substitution policy. Missing/invalid configuration returns controlled `institution_not_ready`; candidates never broaden globally.
 
-Stage 1 (`recognize_open`) sends the visitor image to `OPENAI_RECOGNITION_MODEL` (default `gpt-4o`) with a museum context. Louvre, Orsay and Orangerie have named prompt text; other museums receive their raw ID in a generic sentence. The model returns structured observable features, OCR, likely artist/title, image quality and confidence; it must not emit catalog IDs.
+## Candidate/decision path
 
-## Candidate universe and ranking
+Stage 1 extracts observable evidence/OCR and possible identity without inventing catalog IDs. `backend/app/catalog.py` fetches only `ACTIVE_CATALOG`, `INSTITUTION_ARTWORKS`, or `NONE` for the selected institution. Shared Python scoring ranks title/creator/date/location/object/description signals. Policy then uses constrained top-N metadata verification, an eligible single reference comparison, or uncataloged/no-match behavior. Provider/country/currency/locale do not choose algorithm branches.
 
-`get_recognition_candidates(db, museum_id)` always filters `Artwork.museum_id`. If the museum has a default version in `DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM` and active membership rows, it additionally scopes to that version. Otherwise every artwork for that museum is eligible. It materializes the candidate list and supporting values/assets, then Python ranks using normalized title/artist/date/hall/object/description signals. Top five proceed.
+## Media meaning
 
-This is safe for current hundreds-per-museum catalogs but does not scale to million-item institution catalogs without indexed retrieval/preselection.
+`VISION_PLUS_ASSET` means an eligible prepared reference/recognition asset participates or is available according to the current policy. `VISION_READY` is the vision+metadata path without such reference comparison. `NOT_READY` is operational readiness, not a successful response mode. Migration 0004 mirrors legacy assets into generic `media_assets`, but recognition still reads existing `RecognitionAsset`/image compatibility fields to guarantee parity.
 
-## Stage 2 variants
+Presentation image != source/reference != RecognitionAsset. The generic model adds explicit purposes and eligibility; runtime may not infer recognition permission from presentation availability or public-domain artwork status.
 
-### Versioned top-N verifier
+## Engine outcome versus visitor resolution
 
-`TOPN_VERIFIER_MUSEUMS` is exactly the keys of a hardcoded ten-museum version map. OpenAI sees the visitor image, Stage 1 analysis and metadata summaries for at most five allowed candidates. It returns `MATCH`, `NEEDS_CONFIRMATION`, or `NO_MATCH`; chosen ID must be in the allowed list. An artist-consistency guard can reject attachment.
+`RecognitionAttempt.terminal_outcome` is the one KPI terminal fact. New columns make semantics explicit:
 
-### Asset visual verifier
+| API status/path | Engine outcome | Visitor resolution | KPI interpretation |
+|---|---|---|---|
+| `matched` | `CATALOG_CANDIDATE_MATCHED` | `AUTO_ACCEPTED` | successful usable result |
+| `needs_confirmation` | `CATALOG_CANDIDATE_MATCHED` | `CONFIRMATION_REQUIRED` | engine success/candidate found, not user-confirmed |
+| uncataloged generated result | `UNCATALOGED_IDENTIFIED` | `GENERATED_RESULT` | successful usable uncataloged result |
+| `no_match` | `NO_MATCH` | `NO_RESULT` | failed/no-match attempt |
+| invalid input | `INVALID_INPUT` | `NO_RESULT` | invalid attempt |
+| exception | `ENGINE_ERROR` | `NO_RESULT` | failed attempt |
 
-For other museums, a high-enough fuzzy candidate with an approved reference image is compared against the visitor photo by `gpt-4o`. A rejected top candidate can trigger one runner-up verification. Reference fetch is allowed only by explicit URL/asset policy and can use local cache.
+Admin “engine success” includes a candidate requiring confirmation, matching the canonical terminal attempt definition. It separately reports `confirmation_required`; product reporting must not label this as a confirmed catalog recognition. Future explicit visitor confirmation would be a separate state/event, not a reinterpretation.
 
-### Metadata-only fallback
+## Behavior and scale
 
-When no eligible reference is available outside the top-N path, combined model/ranking confidence is capped. This path returns `VISION_READY`, not proof of pixel-level asset comparison.
-
-## Readiness/mode vocabulary
-
-| Term | Actual meaning |
-|---|---|
-| `VISION_PLUS_ASSET` | Result/readiness has an eligible recognition reference/local asset; on single-candidate path it is visually compared. On top-N path the mode can indicate a local asset exists even though the top-N verifier itself uses candidate metadata plus visitor image, not the reference bytes. |
-| `VISION_READY` | Metadata/vision path can make a catalog decision without an eligible local reference comparison. |
-| `NOT_READY` | Admin catalog-health category for metadata/readiness states such as `INSUFFICIENT`, `NOT_READY`, `NO_USABLE_ASSET`, `RIGHTS_RESTRICTED`. The API response does not return `NOT_READY` as a recognition mode. |
-| `READY` | Older/current database status present on 116 rows; admin separately reports status counts. It is not identical to `VISION_READY`. |
-| `NEEDS_ASSET` | Current DB status for 38 rows; catalog membership may still be active. |
-
-Status vocabulary needs normalization because DB values and response modes overlap imperfectly.
-
-## Image-role separation
-
-- Presentation image: `Artwork.image_url`, intended for visitor display.
-- Recognition asset: `RecognitionAsset.source_url`, with license, attribution, AI/TDM and embedding eligibility.
-- Source/reference image: provider evidence such as `LouvreImageReference`; it may be metadata-only and forbidden to fetch.
-- Visitor capture: private input/fallback hero; never a public recognition asset.
-
-`catalog.py` can substitute an eligible `RecognitionAsset` as recognition image for non-Louvre works. Louvre substitution is explicitly blocked pending identity reconciliation.
-
-## Confidence and frontend behavior
-
-Global thresholds are hardcoded: automatic match `0.92`, review `0.82`; fuzzy candidate threshold `0.55`. Backend maps catalog results to `matched`, `needs_confirmation`, or `no_match`. Current frontend displays and counts `needs_confirmation` immediately and emits `candidate_confirmed` without a user confirmation action—an explicit semantic defect.
-
-Pure no-match does not count. A no-match with Stage 1 artist/title becomes a private uncataloged generated card and is counted with a time-derived ID; repeat dedupe is not guaranteed. Network errors keep the image for retry and do not count.
-
-## Latency and analytics
-
-Latency depends on one Stage 1 call plus zero/one Stage 2 call, or two asset verifications after runner-up retry, plus DB/image cache work. No capacity/latency claim is made here. Browser emits correlated attempt/result events; backend emits separate identityless `recognition_started/completed/failed`. The current browser does not attach measured `latency_ms`, so admin latency percentiles are often unavailable.
-
-## Current dated snapshot
-
-2026-08-23 production DB: 180 `VISION_PLUS_ASSET`, 610 `VISION_READY`, 116 `READY`, 38 `NEEDS_ASSET`; 180 recognition assets. These counts can change independently of code.
+Matched/usable results can create one automatic sighting; repeat dedupe remains visit-state logic. No-match/network failure does not count. Uncataloged results preserve private visitor capture fallback and do not become public catalog/SEO content. Current in-process materialization/ranking remains suitable for current catalogs; indexed retrieval/preselection is future scale work, not changed here.

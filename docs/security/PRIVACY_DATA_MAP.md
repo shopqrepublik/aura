@@ -6,6 +6,7 @@ Status: CURRENT technical behavior; not legal advice.
 |---|---|---|---|---|
 | Visitor scan image | Camera/file input | Browser base64; HTTPS to FastAPI; sent to OpenAI | Browser: until visit overwritten/cleared where retained; provider: UNKNOWN | Not stored in product DB by recognition code; failed network image is persisted for retry. |
 | Presentation/reference derivative | Public providers | Browser/CDN/backend filesystem cache | Cache TTL/code known; provider lifecycle unknown | Public catalog media, separate from visitor image. |
+| Catalog media provenance | Provider adapters / legacy migration | PostgreSQL `media_assets`, provider URLs and optional derivatives | No deletion policy; source lifecycle unknown | Purpose, rights, verification and eligibility are explicit. Legacy UNKNOWN is not promoted; no visitor capture enters automatically. |
 | Anonymous ID | Browser | localStorage; product_events, attempts, identity links, PostHog | No deletion/TTL policy in code | Validated random UUID, persistent per origin; pseudonymous, not authentication. |
 | Session ID | Browser | sessionStorage; product_events, attempts, analytics_sessions | Browser tab lifetime; DB retention undefined | UUID fixed server-side to identity context; not inactivity-based. |
 | Supabase user | Auth | Supabase + local `users`; verified ID in analytics/attempts and identity link | Provider/app retention undefined | Browser cannot submit arbitrary user ID; historical anonymous rows remain immutable. |
@@ -18,6 +19,8 @@ Status: CURRENT technical behavior; not legal advice.
 ## Successful versus failed images
 
 On successful catalog recognition, a trusted presentation image remains primary; if absent, the capture may become private visitor hero and be persisted in local visit JSON. Uncataloged results use capture as hero. On network failure, pending capture is persisted for retry. Pure no-match clears pending capture. Backend code processes image in memory and forwards it to OpenAI; it does not insert raw bytes into DB/event rows.
+
+Generic catalog media rows may record public/provider URLs, attribution, license, retrieval timestamp and checksums. They are operational provenance, not visitor data. `PRESENTATION`, `REFERENCE`, `RECOGNITION_ASSET`, `SOURCE_ORIGINAL` and `DERIVATIVE` do not imply one another. Rights and processing eligibility are reviewed independently.
 
 ## Internal/QA
 

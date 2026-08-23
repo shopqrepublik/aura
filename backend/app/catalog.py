@@ -157,6 +157,8 @@ def explicit_value_reveal_to_dict(row: Optional[ArtworkValueReveal]) -> Optional
                 "headline": row.beyond_market_headline or "No ordinary market price.",
                 "explanation": row.beyond_market_explanation or "",
                 "institutional_legal_context": row.institutional_legal_context,
+                "content_policy_code": row.content_policy_code,
+                "institutional_legal_context_localizations": row.institutional_legal_context_localizations or {},
                 "optional_context": row.optional_context,
                 "disclaimer": row.disclaimer,
                 "confidence": row.confidence,

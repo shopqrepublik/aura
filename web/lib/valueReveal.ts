@@ -143,7 +143,9 @@ export function getMostValuableArtwork(artworks: Artwork[]): Artwork | null {
 }
 
 export function formatEstimatedValueRange(value: AggregateEligibleValue): string {
-  const prefix = value.currency === "EUR" ? "€" : `${value.currency} `;
+  // Values are stored in millions in their declared currency. Do not convert
+  // here; institution display currency is configuration, not an FX rate.
+  const prefix = value.currency === "EUR" ? "€" : value.currency === "GBP" ? "£" : value.currency === "USD" ? "$" : `${value.currency} `;
   const low = formatMoneyMillions(value.low);
   const high = formatMoneyMillions(value.high);
   if (low === high) return `${prefix}${low}`;
