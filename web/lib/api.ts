@@ -125,8 +125,16 @@ export async function getMuseums(params?: { q?: string; city?: string; region?: 
   if (params?.city) search.set("city", params.city);
   if (params?.region) search.set("region", params.region);
   if (params?.limit) search.set("limit", String(params.limit));
+  const headers: Record<string, string> = {};
+  try {
+    const qaToken = window.sessionStorage.getItem("elyio-trusted-qa-token");
+    if (qaToken) {
+      search.set("include_controlled_preview", "true");
+      headers["X-ELYIO-QA-Token"] = qaToken;
+    }
+  } catch { /* public museum discovery remains available without QA access */ }
   const suffix = search.toString() ? `?${search.toString()}` : "";
-  const res = await fetch(`${BACKEND_URL}/v1/museums${suffix}`);
+  const res = await fetch(`${BACKEND_URL}/v1/museums${suffix}`, { headers });
   if (!res.ok) throw new Error(`museums fetch failed: ${res.status}`);
   return res.json();
 }

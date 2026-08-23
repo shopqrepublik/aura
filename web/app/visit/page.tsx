@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ElyioApp from "@/components/ElyioApp";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import ControlledPreviewGate from "@/components/ControlledPreviewGate";
 
 export const metadata: Metadata = {
   title: "Start your ELYIO museum visit",
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.elyio.co/visit" },
 };
 
-export default function VisitPage() {
-  return <><ElyioApp /><ServiceWorkerRegister /></>;
+export default async function VisitPage({ searchParams }: { searchParams: Promise<{ "controlled-preview"?: string }> }) {
+  const query = await searchParams;
+  const controlledPreview = query["controlled-preview"] === "1";
+  return <ControlledPreviewGate enabled={controlledPreview}><ElyioApp /><ServiceWorkerRegister /></ControlledPreviewGate>;
 }
