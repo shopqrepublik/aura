@@ -24,6 +24,8 @@ Report match, needs-confirmation, no-match, confident-wrong, wrong-museum leakag
 
 Confident-wrong and cross-museum leakage are release blockers. Recall targets must be museum/asset-class specific and backed by a frozen manifest. Benchmarks must record code SHA, catalog version, model, thresholds, asset manifest hash, date and network/cache state.
 
+Benchmark input rights are a separate gate from provider presentation and RecognitionAsset rights. Prefer team-owned/explicitly permitted photographs, verified CC0/public-domain inputs, or approved visitor photographs. Do not crop or augment ND-licensed provider media without explicit approval. A metadata-only `VISION_READY` benchmark does not require a RecognitionAsset, but it still requires lawful ground-truth visitor/input images.
+
 ## Production analytics limitations
 
 First-party events began 2026-08-20. Browser attempts are identifiable but currently lack measured latency. Server operations have backend outcomes but no browser identity/correlation ID. Historical stdout cannot reconstruct precise attempts. Admin results therefore supplement, not replace, controlled benchmarking.

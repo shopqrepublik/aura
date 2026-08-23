@@ -11,6 +11,7 @@ from sqlalchemy.pool import StaticPool
 
 from backend.app import admin, main
 from backend.app.auth import get_optional_current_user
+from backend.app.catalog import InstitutionRuntimeConfig
 from backend.app.models import (
     AnalyticsIdentityLink,
     Artwork,
@@ -326,6 +327,45 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             self.assertEqual(row.session_id, session_id)
             sighting = db.query(UncatalogedSighting).filter(UncatalogedSighting.museum_id == "configured-ai-guide").one()
             self.assertEqual(sighting.count, 1)
+
+    def test_vision_ready_metadata_path_requires_no_recognition_or_presentation_asset(self):
+        candidate = {
+            "id": "ng-test-object", "museum_id": "national-gallery-london",
+            "title": "The Test Painting", "artist": "Test Artist", "year": "1900",
+            "image_url": None, "recognition_asset_id": None, "inventory_number": "NG1",
+            "object_type": "painting", "description": "A controlled metadata fixture.",
+        }
+        config = InstitutionRuntimeConfig(
+            institution_id="national-gallery-london", display_name="The National Gallery",
+            visitor_catalog_version="benchmark-only", candidate_universe="ACTIVE_CATALOG",
+            recognition_policy="TOP_N_METADATA", supported_modes=("NORMAL",), max_candidates=5,
+            confidence_auto=0.92, confidence_review=0.75, fuzzy_candidate_threshold=0.55,
+            prompt_context="The National Gallery, London", allow_recognition_asset_substitution=False,
+        )
+        old_open = main.recognize_open
+        old_topn = main.verify_top_candidates_with_openai
+        old_single = main.visual_verify_single_candidate
+        single_calls = []
+        try:
+            main.recognize_open = lambda *_args, **_kwargs: {
+                "recognized": True, "is_artwork_photo": True, "image_quality": "good",
+                "artist": "Test Artist", "title": "The Test Painting", "confidence": 0.96,
+                "confidence_artist": 0.96, "confidence_title": 0.96, "visual_clues": ["painting"],
+            }
+            main.verify_top_candidates_with_openai = lambda _image, _vision, ranked: {
+                "decision": "MATCH", "chosen_id": ranked[0]["candidate"]["id"],
+                "confidence": 0.95, "runner_up": None, "reason": "metadata fixture",
+                "observable_evidence": ["controlled fixture"],
+            }
+            main.visual_verify_single_candidate = lambda *_args, **_kwargs: single_calls.append(True)
+            result = self.old_recognize("visitor-image", "national-gallery-london", None, [candidate], institution_config=config)
+        finally:
+            main.recognize_open = old_open
+            main.verify_top_candidates_with_openai = old_topn
+            main.visual_verify_single_candidate = old_single
+        self.assertEqual(result["artwork_id"], "ng-test-object")
+        self.assertEqual(result["recognition_mode"], "VISION_READY")
+        self.assertEqual(single_calls, [])
 
 
 if __name__ == "__main__":

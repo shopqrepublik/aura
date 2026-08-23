@@ -37,6 +37,8 @@ Stage 1 extracts observable evidence/OCR and possible identity without inventing
 
 `VISION_PLUS_ASSET` means an eligible prepared reference/recognition asset participates or is available according to the current policy. `VISION_READY` is the vision+metadata path without such reference comparison. `NOT_READY` is operational readiness, not a successful response mode. Migration 0004 mirrors legacy assets into generic `media_assets`, but recognition still reads existing `RecognitionAsset`/image compatibility fields to guarantee parity.
 
+RecognitionAsset absence does not disable AI-first recognition. Under `TOP_N_METADATA`, Stage 2 receives the visitor image, Stage 1 observations and metadata summaries for institution-scoped candidates; it receives no provider/reference image bytes. Presentation and source/reference images are likewise not prerequisites for `VISION_READY`.
+
 Presentation image != source/reference != RecognitionAsset. The generic model adds explicit purposes and eligibility; runtime may not infer recognition permission from presentation availability or public-domain artwork status.
 
 ## Engine outcome versus visitor resolution

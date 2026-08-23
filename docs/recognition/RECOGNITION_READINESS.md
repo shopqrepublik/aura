@@ -32,3 +32,5 @@ Admin Catalog exposes aggregate provenance categories without redesigning Overvi
 ## Current compatibility
 
 Recognition continues using established columns and algorithms. Generic media is an additive provenance system until a later parity-gated reader migration. Louvre-specific import/reference code is a legitimate source adapter; it must not control global candidate/policy logic.
+
+`VISION_READY` and `VISION_PLUS_ASSET` are independent readiness tracks. The former can operate from institution-scoped metadata and visitor input alone; the latter additionally requires approved reference processing. Neither presentation eligibility nor RecognitionAsset availability may be used as a blanket gate on the configured-institution AI uncataloged fallback.

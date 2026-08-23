@@ -57,6 +57,7 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 
 - Configure profile universe/policy/version/modes/thresholds and independent readiness dimensions.
 - Benchmark self/gallery/partial/decoy/wrong-institution/non-art/uncataloged sets; record auto-accepted, confirmation-required, no-match, confident-wrong, latency and cost.
+- Treat benchmark-input rights separately from presentation/reference rights. `TOP_N_METADATA`/`VISION_READY` requires no RecognitionAsset, but still requires a reviewed ground-truth image corpus. Track `SOURCE READY`, `METADATA READY`, `CATALOG READY`, `VISION_READY`, `VISION_PLUS_ASSET`, `BENCHMARK READY`, and `PUBLIC ACTIVATION READY` independently.
 - Approve gates and rollback before activation; no provider-specific core branch.
 
 ## 10. Frontend/content/SEO
