@@ -1,49 +1,47 @@
 # Global Target Architecture
 
-Status: **PROPOSED target**. Block 1 foundation (`Country`, compatible `Institution`, optional `Collection`, `InstitutionProfile`, migration ledger and fail-closed recognition configuration) is IMPLEMENTED; later entities below remain proposed.
+Status: **PROPOSED**, except items explicitly labeled IMPLEMENTED.
 
-## Goal
+## Direction
 
-Evolve the current modular monolith and Postgres schema without premature microservices. Keep Next.js, FastAPI and PostgreSQL; replace museum-specific code maps and ambiguous identity with data-driven entities/configuration.
+Keep the Next.js/FastAPI/PostgreSQL modular monolith. Global expansion should add institution/source data and reviewed configuration, not museum-specific application branches or premature services.
 
-## Target entities
+```mermaid
+erDiagram
+  COUNTRY ||--o{ CITY : contains
+  CITY ||--o{ INSTITUTION : hosts
+  INSTITUTION ||--o{ COLLECTION : organizes
+  CULTURAL_OBJECT ||--o{ INSTITUTION_HOLDING : held_or_displayed_by
+  SOURCE_PROVIDER ||--o{ SOURCE_RECORD : publishes
+  CULTURAL_OBJECT ||--o{ SOURCE_RECORD : evidenced_by
+  CULTURAL_OBJECT ||--o{ MEDIA_ASSET : depicted_by
+  MEDIA_ASSET ||--o{ MEDIA_ASSET : derived_into
+  INSTITUTION ||--o{ VISITOR_CATALOG : configures
+  VISITOR_CATALOG ||--o{ CATALOG_MEMBERSHIP : activates
+```
 
-- `Country`: ISO code, localized name, default currency/legal region.
-- `City`: country FK, canonical timezone, localized name/slug.
-- `Institution`: current Museum generalized with type, country/city, languages, coordinates and operational status.
-- `Collection`: hierarchical institution-owned department/collection with stable source IDs.
-- `CanonicalWork`: conceptual work where defensible.
-- `ArtworkObject`: physical object/copy/edition, canonical identity and source provenance.
-- `InstitutionHolding`: owning/displaying institution, collection, location, loan/exhibition and effective dates.
-- `SourceRecord`: provider, record ID/URL, retrieved timestamp, raw payload/hash and license policy.
-- `MediaAsset`: presentation/recognition roles, exact source/license/attribution/derivative lineage.
-- `VisitorCatalog`: institution, version, recognition policy, activation state.
-- `RecognitionProfile`: candidate strategy, thresholds, model, benchmark gate and asset requirements.
+## Implemented foundation
 
-## Pragmatic evolution
+- Country; compatible Institution in `museums`; optional Collection; DB-backed Institution Profile and fail-closed catalog/recognition resolution.
+- CulturalObject, InstitutionHolding, SourceProvider/SourceRecord, namespaced identifiers, duplicate-review state and generic MediaAsset.
+- Country/Institution locale, IANA timezone, display currency and content-policy boundary.
+- Trusted analytics identity and recognition attempt model; engine outcome separated from visitor resolution.
+- Migration ledger and release identity.
 
-1. **Implemented:** add country/institution configuration and migration ledger without renaming public APIs.
-2. **Implemented for runtime recognition/catalog selection:** move catalog version, prompt context, thresholds, candidate universe and asset policy into `institution_profiles`.
-3. Introduce source/media tables alongside current image columns; backfill provenance before removing legacy fields.
-4. Add collection/holding/location only when onboarding the second country demonstrates real mappings.
-5. Keep synchronous FastAPI for user recognition; add queue/batch only for ingestion, enrichment and analytics aggregation.
+## Proposed evolution
 
-## Recognition configuration
+1. Add normalized City only when shared city metadata/routing makes a string insufficient.
+2. Move provider adapters onto the generic adapter contract and add reusable ingest/upsert tooling.
+3. Review/backfill media provenance and switch runtime reads from legacy image tables to `media_assets` behind parity tests.
+4. Add localized Institution/Collection/Object metadata rows and a locale registry/content fallback service; ship new UI bundles deliberately.
+5. Introduce a distinct conceptual Work/Edition layer only when real records require grouping multiple physical objects.
+6. Add time-bounded exhibition/loan workflows only after institution data supplies authoritative changes.
+7. Add daily aggregates/stronger distributed rate control when measured traffic warrants it.
 
-Each visitor catalog should declare candidate universe, maximum candidate count, Stage 2 strategy, thresholds, asset eligibility, prompt context, supported object types and benchmark version. No code branch should be named after an institution.
+## National Gallery architecture paper test
 
-## Multilingual data
-
-Use BCP-47 locale rows for Institution, Collection, Work and editorial content. Preserve source-language text and declare fallback policy. UI locale registry must be data/config-driven, not a TypeScript union requiring code edits for every language.
-
-## Analytics dimensions
-
-Events should reference institution/catalog/object and a server-issued anonymous identity token or signed event envelope. Definitions must be versioned. Raw events feed daily aggregates; internal/QA dimension is server-trusted.
-
-## Future B2B administration
-
-Extend the current Control Center with institution-scoped roles, catalog activation workflows, provenance/readiness gates and benchmark approvals. Do not expose direct table editing. Founder global access and institution operator access must have separate authorization scopes/audit logs.
+The core can represent Country GB, a London institution, `Europe/London`, `en-GB`, GBP, objects/holdings/provider records/media and a fail-closed profile without institution-specific core changes. Remaining work is a National Gallery source adapter/content package, rights assessment, ingest, catalog membership/profile activation, benchmarks and production validation. Current frontend has no complete `en-GB` bundle distinction and SEO routes are a France content package; these are onboarding/content work, not schema or recognition-core blockers.
 
 ## Non-goals
 
-No museum-per-service architecture, no separate database per institution, no mandatory event streaming platform at current volume, and no graph database unless measured queries justify one.
+No per-institution service/database, Kafka, warehouse, graph database, live FX conversion, global legal engine, automatic uncertain dedupe, or exhibition-management suite at current scale.

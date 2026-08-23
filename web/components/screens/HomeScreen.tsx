@@ -40,21 +40,6 @@ const MISSION_EYEBROW_KEY: Record<string, string> = {
 
 const editorial = { fontFamily: "var(--font-editorial)" } as const;
 
-const FEATURED_MUSEUM_IDS = new Set([
-  "louvre",
-  "orsay",
-  "orangerie",
-  "versailles",
-  "museofile_m5044", // Musée Rodin
-  "museofile_m5043", // Musée Picasso Paris
-  "museofile_m5055", // Musée du quai Branly - Jacques Chirac
-  "museofile_m1111", // Petit Palais
-  "museofile_m1104", // Musée Carnavalet
-  "museofile_m5025", // Musée de l'Armée
-  "museofile_m5005", // Musée Guimet
-  "museofile_m5003", // Musée de Cluny
-]);
-
 function normalizedMuseumText(value: string | null | undefined): string {
   return (value || "")
     .normalize("NFD")
@@ -63,9 +48,9 @@ function normalizedMuseumText(value: string | null | undefined): string {
 }
 
 function museumLocationLabel(museum: Museum | null): string {
-  if (!museum) return "Paris";
+  if (!museum) return "Museum";
   if (museum.city && museum.region) return `${museum.city} · ${museum.region}`;
-  return museum.city || museum.region || "France";
+  return museum.city || museum.region || museum.country_code || "Museum";
 }
 
 function museumExperienceKey(museum: Museum | null): string {
@@ -109,9 +94,8 @@ export default function HomeScreen({
   const activeMuseumLocation = museumLocationLabel(activeMuseum);
   const activeMuseumExperience = tt(museumExperienceKey(activeMuseum), state.locale);
   const featuredMuseums = useMemo(() => {
-    const featured = museums.filter((m) => FEATURED_MUSEUM_IDS.has(m.id));
-    const idWeight = (id: string) => Array.from(FEATURED_MUSEUM_IDS).indexOf(id);
-    return featured.sort((a, b) => idWeight(a.id) - idWeight(b.id)).slice(0, 12);
+    // Backend ordering is data-backed through InstitutionProfile.
+    return museums.filter((m) => m.experience_level === "CURATED").slice(0, 12);
   }, [museums]);
   const visibleMuseums = useMemo(() => {
     const query = normalizedMuseumText(museumSearch.trim());
@@ -122,9 +106,9 @@ export default function HomeScreen({
           );
           return haystack.includes(query);
         })
-      : museums.filter((m) => !FEATURED_MUSEUM_IDS.has(m.id));
+      : museums.filter((m) => !featuredMuseums.some((featured) => featured.id === m.id));
     return source.slice(0, 80);
-  }, [museums, museumSearch]);
+  }, [featuredMuseums, museums, museumSearch]);
 
   useEffect(() => {
     if (shouldShowIosInstallHint) track("pwa_ios_instructions_shown");
@@ -300,7 +284,7 @@ export default function HomeScreen({
             style={editorial}
             className="mt-2 text-[clamp(30px,8vw,38px)] leading-[1.05] font-medium tracking-[-0.03em] text-[#181714]"
           >
-            {tt("continue_visit_heading", state.locale)}
+            {tt("continue_visit_heading", state.locale).replace("{museum}", activeMuseumName)}
           </h1>
           {seenArtworks.length > 0 && (
             <p className="mt-2 text-[15px] leading-[21px] text-[#4F4C46]">
@@ -429,7 +413,7 @@ export default function HomeScreen({
           </div>
           <div className="text-[13px] text-[#67635C]">
             {tt("home_museum_context", state.locale)
-              .replace("{city}", activeMuseum?.city || "France")
+              .replace("{city}", activeMuseum?.city || activeMuseum?.country_code || "Museum")
               .replace("{experience}", activeMuseumExperience)}
           </div>
         </div>
@@ -494,7 +478,7 @@ export default function HomeScreen({
         <div className="mt-1.5 text-[10px] text-[#A19B91]">{tt("privacy_footer_note", state.locale)}</div>
       </div>
 
-      {/* Museum selector sheet -- scalable France-wide directory. */}
+      {/* Museum selector sheet -- institution directory. */}
       {showMuseumSheet && (
         <div className="fixed inset-0 z-40 flex items-end" onClick={() => setShowMuseumSheet(false)}>
           <div className="absolute inset-0 bg-black/40" />
@@ -583,7 +567,7 @@ function MuseumRow({ museum, locale, onSelect }: { museum: Museum; locale: AppSt
           {museum.name}
         </span>
         <span className="mt-0.5 block text-[12px] leading-[16px] text-[#67635C]">
-          {[museum.city, museum.department].filter(Boolean).join(" · ") || museum.region || "France"}
+          {[museum.city, museum.department].filter(Boolean).join(" · ") || museum.region || museum.country_code || "Museum"}
         </span>
       </span>
       <span className={`shrink-0 text-[10px] font-semibold ${curated ? "text-[#181714]" : "text-[#0A6A5A]"}`}>

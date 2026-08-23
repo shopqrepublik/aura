@@ -1,56 +1,43 @@
 # Global Hardcode Audit
 
-Status: CURRENT tracked-source audit at `5c5ac7e`. Content mentions inside artwork prose are not architectural hardcodes; historical AURA specs, generated exports and research scripts are classified separately.
+Status: CURRENT Block 3 review. Content facts inside the checked-in France SEO/editorial package and provider-specific adapter/research scripts are not core hardcodes.
 
-## Meaningful findings
+| Path/component | Current assumption / Block 3 result | Classification | Impact / next action |
+|---|---|---|---|
+| `backend/app/catalog.py`, `InstitutionProfile` | Catalog universe/policy/version/thresholds are DB-backed; missing config fails closed | SAFE_CONFIGURATION / RESOLVED | Preserve adversarial tests; no institution branch. |
+| `backend/app/main.py` directory ordering | Former Louvre/Orsay/Orangerie sort moved to `directory_priority` profile data | SAFE_CONFIGURATION / RESOLVED | Onboard through data. |
+| `web/components/screens/HomeScreen.tsx` featured IDs/France fallbacks | Removed ID set and France fallback; consumes backend curated ordering/country | SAFE_CONFIGURATION / RESOLVED | Hero/theme remains current product art direction. |
+| `backend/app/models.py:Artwork` | Former object==holding==source mixture now points to CulturalObject + InstitutionHolding; provider SourceRecord separate | SAFE_COMPATIBILITY / RESOLVED FOUNDATION | Legacy columns remain until reader migration. |
+| `backend/app/models.py:LouvreImageReference` | Louvre-specific source table mirrored into generic MediaAsset | LEGACY SOURCE ADAPTER | Keep as evidence/compatibility; future Louvre adapter emits generic contract. |
+| `backend/app/source_adapter.py` | Generic provider/institution/media/provenance output contract | SAFE_CONFIGURATION / RESOLVED | Implement adapter-specific fetch/parsing only. |
+| `media_assets` | Presentation/reference/recognition/source/derivative and rights/eligibility explicit | SAFE_CONFIGURATION / RESOLVED FOUNDATION | Review/backfill UNKNOWN; later switch runtime reader. |
+| `backend/app/admin.py:_catalog_health` | Louvre compatibility block remains; generic provenance categories added | SHOULD_GENERALIZE | Per-institution breakdown later; not onboarding core blocker. |
+| `backend/app/main.py:DEMO_ARTWORKS` | Orsay/Orangerie runtime fallback catalog remains | GLOBAL_BLOCKER P1 | Remove after DB-only parity/availability gate. |
+| `backend/app/main.py` recognition comments/source policies | Louvre references remain legitimate provider policy; shared decision code uses profile | LEGACY/SOURCE_ADAPTER | Isolate fetch/policy registry during adapter migration. |
+| `web/lib/types.ts` | Shipped UI bundle union remains en/fr/zh-Hans; `LocaleCode` and DB config allow arbitrary BCP-47 | SHOULD_GENERALIZE P1 | A new primary UI language still needs a reviewed bundle; no schema/core branch. |
+| `web/lib/i18n.ts` | Reusable UI copy centralized; museum/France/Paris continuation and directory copy generalized | PARTIALLY RESOLVED | Inline ternaries remain; migrate progressively to resource modules. |
+| `web/lib/api.ts` legal copy | France string-pattern policy removed; structured policy code/localizations returned from DB | SAFE_CONFIGURATION / RESOLVED | New jurisdiction claims require explicit reviewed policy content. |
+| `backend/app/main.py`, `web/lib/valueReveal.ts` | Value Engine V4 uses explicit EUR ladder; institution can configure display currency but no FX exists | SAFE_CURRENT_POLICY / P1 PRODUCT LIMITATION | Do not relabel EUR values as GBP; future reviewed multi-currency value block. |
+| `web/lib/international.ts` | Generic `Intl` currency/date helpers; no conversion | SAFE_CONFIGURATION | Adopt on new institution surfaces. |
+| `web/lib/scaleComparison.ts` | Paris/European comparison packs remain content-specific | SHOULD_GENERALIZE P1 | Select reviewed comparison pack by locale/market; arithmetic stays shared. |
+| `web/lib/seo-content.ts`, `web/app/[locale]` | France 12-museum/117-work, three-locale checked-in SEO package | SAFE_CONTENT_PACKAGE | New country SEO requires approved package/routes; do not treat as core directory. |
+| `web/components/seo/SeoNav.tsx` | Three shipped locale links | SHOULD_GENERALIZE | Generate from approved SEO locale package later. |
+| `web/next.config.ts` | Current provider origin allowlist | SAFE_DEPLOYMENT_CONFIGURATION | Add a reviewed provider origin when onboarding sources. |
+| `web/public/manifest.json` / museum theme | Some Orsay-era presentation copy/assets | LEGACY/SHOULD_GENERALIZE | Product copy/theme cleanup later; not recognition/catalog architecture. |
+| `backend/scripts/louvre_*`, `exports/louvre/*` | Louvre-specific acquisition/research | LEGACY SOURCE WORK | Retain evidence; do not call it global core. |
+| `/louvre-golden20-preview`, root AURA/frontend specs | Historical/internal | LEGACY | Keep noindex and labeled historical. |
+| `backend/app/admin.py` default founder credentials | Source defaults exist if env absent | GLOBAL_BLOCKER P1 SECURITY | Fail closed, external IdP/MFA/RBAC in security block. |
 
-| Path / component | Current assumption | Class | Impact | Recommended remediation |
-|---|---|---|---|---|
-| `backend/app/catalog.py` former version constants/map | **RESOLVED:** catalog version/candidate universe are in `institution_profiles` | **SAFE_CONFIGURATION** | New institution requires data, not a Python branch | Preserve profile validation and migration tests |
-| `backend/app/main.py` former `TOPN_VERIFIER_MUSEUMS` | **RESOLVED:** recognition policy is profile data | **SAFE_CONFIGURATION** | Per-institution behavior is explicit | Benchmark before policy/threshold change |
-| `backend/app/main.py:recognize_open` | **RESOLVED:** name/prompt context comes from the resolved Institution Profile | **SAFE_CONFIGURATION** | New museum receives stable human context | Localize prompt context in later i18n block |
-| `backend/app/main.py` confidence constants | Runtime auto/review/fuzzy thresholds are profile-backed; constants remain fallback for direct internal function callers | **SAFE_CONFIGURATION** | Production endpoint is configurable | Remove fallback only after all offline tooling accepts config |
-| `backend/app/main.py:VISUAL_VERIFY_MODEL` | Stage 2 hardcoded `gpt-4o` | **SAFE_CONFIGURATION** today | Model change requires deploy; benchmark coupling | Environment/profile plus frozen benchmark approval |
-| `backend/app/main.py:DEMO_ARTWORKS` | Large Orsay/Orangerie fallback catalog in code | **GLOBAL_BLOCKER** | Duplicate source of truth, bundle/module weight, one-pilot assumptions | Remove runtime fallback after DB availability contract/tests |
-| `backend/app/main.py` museum sort | Louvre, Orsay, Orangerie fixed priority | **SHOULD_GENERALIZE** | Global directory privileges Paris museums | Institution prominence/market config in data |
-| `institution_profiles.allow_recognition_asset_substitution` | Louvre quarantine is an explicit migrated data value | **SAFE_CONFIGURATION** temporary | Core catalog code has no Louvre branch | Move to per-asset identity-review status later |
-| `backend/app/main.py` source URL policy/comments | Louvre/RMN is metadata-only; Wikimedia behavior generic | **SAFE_CONFIGURATION** | Rights-safe but provider-specific logic can spread | Provider policy registry keyed by source/license |
-| `backend/app/models.py:LouvreImageReference` | Dedicated provider/museum table | **SHOULD_GENERALIZE** | New providers need new tables/code | Generic `source_media_references` with typed raw metadata |
-| `backend/app/models.py:Artwork` | Louvre-era department/collection/location fields added to universal row | **SHOULD_GENERALIZE** | Semantics unclear across institutions | Normalized collection/holding/location with source mapping |
-| `backend/app/admin.py:_catalog_health` | Imports/queries Louvre table and returns Louvre-only block | **SHOULD_GENERALIZE** | Admin global health is partially museum-specific | Generic per-institution/provider breakdown |
-| `backend/app/admin.py:ADMIN_EMAIL` | One default founder email | **SHOULD_GENERALIZE** | No roles/multiple operators; source default identity | Admin users/roles from identity provider; no default account |
-| `backend/app/admin.py` default password hash/pepper | Safe only if production overrides | **GLOBAL_BLOCKER** security | Misconfiguration activates known source defaults; weakens IP pseudonymization | Fail closed when secrets absent; rotate env secrets |
-| `backend/app/admin.py:TRACKING_AVAILABLE_SINCE` | Date string hardcoded | **SAFE_CONFIGURATION** | Correct known data boundary but manual | Derive earliest event plus immutable deployment annotation |
-| `backend/app/admin.py` readiness values | Mixes READY/VISION_READY/VISION_PLUS_ASSET/NEEDS_ASSET | **SHOULD_GENERALIZE** | Ambiguous readiness counts | Enforced enum/state dimensions and migration |
-| `web/lib/types.ts` | Locale union exactly en/fr/zh-Hans | **GLOBAL_BLOCKER** for new language | Every language needs code/content/schema edits | Locale registry + BCP-47 rows |
-| `web/lib/i18n.ts` | UI dictionaries inline; Paris time/featured/France-wide labels | **GLOBAL_BLOCKER** for another country UX | London would show Paris/France copy | Institution/location templating and locale resource modules/CMS |
-| `web/lib/api.ts:localizeValueCopy` | French public-collection law and Leonardo string pattern branches | **GLOBAL_BLOCKER** | UK/global works can receive false France legal context | Jurisdiction/content-policy records, structured localized fields |
-| `web/lib/valueReveal.ts`, `indicative-value.ts` | EUR-only AI estimate/aggregation | **SHOULD_GENERALIZE** | Non-euro institution UX/market context constrained | Base currency policy and locale formatting; keep canonical calculation currency explicit |
-| `web/lib/scaleComparison.ts` | Paris apartments/European reference prices | **SHOULD_GENERALIZE** | Comparisons can be culturally irrelevant | Locale/market reference packs with dated provenance |
-| `web/lib/seo-content.ts` | 12 museum pages and 117 works explicitly checked in | **SAFE_CONFIGURATION** for quality | New museum requires frontend content deploy | Keep editorial approval, but use validated content package schema |
-| `web/components/seo/SeoNav.tsx` | Exactly three locale links | **SHOULD_GENERALIZE** | Adding locale requires component edit | Iterate configured locale registry/alternates |
-| `web/app/[locale]` static params | Three URL locale values | **SHOULD_GENERALIZE** | Code deploy for locale expansion | Generated from approved locale config/content |
-| `web/lib/app-state.ts` | One selected museum per visit | **SAFE_CONFIGURATION** | Correct visit invariant; not a global blocker | Preserve, while allowing institution switch only via new visit |
-| `web/lib/app-state.ts` uncataloged ID | Time-derived identity | **SHOULD_GENERALIZE** | Repeat scans inflate and cannot analyze cross-session object | Stable normalized/fingerprint temporary identity |
-| `web/lib/analytics.ts` | Browser language, no country/city derivation | **SAFE_CONFIGURATION** privacy / incomplete analytics | Global geography unavailable | Consent/privacy-reviewed coarse server dimension if needed |
-| `web/app/admin` | English-only founder UI/`en-US` formatting | **SAFE_CONFIGURATION** internal | Not visitor blocker; poor multi-region ops | Locale-neutral dates/numbers and optional operator locale |
-| `web/next.config.ts` | Fixed Supabase project/API/PostHog/Wikimedia origins | **SAFE_CONFIGURATION** per deployment | New provider/region requires deploy | Validated env-derived allowlist with secure defaults |
-| `web/public/manifest.json` | Stale Orsay description | **LEGACY** | Install metadata misstates product | Update separately with global product copy |
-| `web/app/louvre-golden20-preview` | Louvre-specific internal route/export path | **LEGACY** | Future sessions may confuse it with runtime | Keep noindex or move to research tooling/archive |
-| `backend/scripts/louvre_*`, `exports/louvre/*` | Institution-specific research/import pipeline | **LEGACY** as generic tooling | Cannot onboard London from it directly | Extract adapter interfaces/fixtures; retain provenance evidence |
-| root AURA spec/`frontend/` | Orsay-only MVP assumptions | **LEGACY** | Documentation/code confusion | Keep explicitly historical; canonical docs start at `docs/README.md` |
+## Implicit assumptions
 
-## Implicit assumptions without literal keywords
+- **Resolved foundation:** object identity no longer requires one permanent institution relation; holdings have status/effective dates.
+- **Resolved:** exact provider and institution-record identities are constrained; title/artist never auto-merges.
+- **Resolved foundation:** arbitrary country/locale/timezone/currency configuration is representable.
+- **Remaining:** current UI message bundles, generated enrichment templates and public SEO only ship three locales.
+- **Remaining:** full institution catalog is materialized/ranked in process per request.
+- **Remaining:** generic adapter ingest/upsert CLI is not implemented; existing import scripts are provider/institution-specific.
+- **Remaining:** legacy media/runtime columns remain authoritative until parity migration.
 
-- Artwork has one required museum FK; ownership/display/loan cannot diverge.
-- **Resolved:** catalog activation never silently falls back; invalid/missing configuration fails closed.
-- Candidate ranking materializes a museum's entire list in Python per request.
-- First-party identity is browser-local and not linked to authenticated user.
-- Event integrity trusts public clients.
-- Session means tab sessionStorage, not product inactivity.
-- Country, timezone, institution locales and optional Collection hierarchy exist; normalized City and populated collection mappings remain absent.
-- Static SEO/public content and DB catalog have no generic publication workflow.
+## National Gallery paper test
 
-## Counts by requested category
-
-Meaningful production findings: Louvre-specific 8, Paris-specific 4, France/legal/currency-specific 6, implicit single-institution/global assumptions 8. Counts overlap by design and exclude historical prose/data mentions.
+GB/London/Europe-London/en-GB/GBP, object/holding/source/media and profile rows require no core schema, catalog or recognition conditional. Remaining custom code is a source adapter plus ingest/rights/content/benchmark work. A complete en-GB-specific visitor bundle is optional while English fallback is accepted; a new non-shipped language would require a reviewed bundle.

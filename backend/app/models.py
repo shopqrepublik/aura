@@ -55,6 +55,8 @@ class Museum(Base):
     timezone = Column(String, nullable=True)
     default_locale = Column(String, nullable=True)
     supported_locales = Column(JSON, nullable=True)
+    display_currency = Column(String(3), nullable=True)
+    content_policy = Column(JSON, nullable=True)
     active = Column(Boolean, nullable=False, default=True)
 
 
@@ -64,6 +66,8 @@ class Country(Base):
     name = Column(String, nullable=False)
     default_locale = Column(String, nullable=True)
     default_timezone = Column(String, nullable=True)
+    default_currency = Column(String(3), nullable=True)
+    content_policy = Column(JSON, nullable=True)
     active = Column(Boolean, nullable=False, default=True)
     created_at = Column(DateTime, default=now)
     updated_at = Column(DateTime, default=now, onupdate=now)
@@ -83,6 +87,7 @@ class InstitutionProfile(Base):
     fuzzy_candidate_threshold = Column(Float, nullable=False, default=0.55)
     prompt_context = Column(Text, nullable=True)
     allow_recognition_asset_substitution = Column(Boolean, nullable=False, default=True)
+    directory_priority = Column(Integer, nullable=False, default=100)
     active = Column(Boolean, nullable=False, default=True)
     created_at = Column(DateTime, default=now)
     updated_at = Column(DateTime, default=now, onupdate=now)
@@ -131,6 +136,8 @@ class Artwork(Base):
     id = Column(String, primary_key=True)           # e.g. "orsay_rf_1990"
     museum_id = Column(String, ForeignKey("museums.id"), nullable=False)
     collection_id = Column(String, ForeignKey("collections.id"), nullable=True)
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=True)
+    institution_holding_id = Column(String, ForeignKey("institution_holdings.id"), nullable=True)
     artist = Column(String, nullable=True)
     title_original = Column(String, nullable=False)
     title_complement = Column(String, nullable=True)
@@ -151,6 +158,7 @@ class Artwork(Base):
     source = Column(String, nullable=True)            # e.g. "louvre", "demo_artworks", "wikidata_cirrus"
     source_record_id = Column(String, nullable=True)  # e.g. Louvre ARK id "cl010066107"
     source_url = Column(String, nullable=True)
+    source_language = Column(String, nullable=True)
     last_source_sync = Column(DateTime, nullable=True)
     raw_json = Column(JSON, nullable=True)             # unmodified source payload, never partially overwritten
 
@@ -189,6 +197,136 @@ class Artwork(Base):
     louvre_image_references = relationship("LouvreImageReference", back_populates="artwork")
     recognition_assets = relationship("RecognitionAsset", back_populates="artwork")
     catalog_memberships = relationship("ArtworkCatalogMembership", back_populates="artwork")
+
+
+class CulturalObject(Base):
+    """Stable ELYIO identity without introducing a full ontology."""
+    __tablename__ = "cultural_objects"
+    id = Column(String, primary_key=True)
+    object_kind = Column(String, nullable=False, default="PHYSICAL_OBJECT")
+    canonical_title = Column(String, nullable=True)
+    canonical_creator = Column(String, nullable=True)
+    identity_status = Column(String, nullable=False, default="LEGACY_SINGLETON")
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+class InstitutionHolding(Base):
+    __tablename__ = "institution_holdings"
+    __table_args__ = (
+        UniqueConstraint("institution_id", "institution_record_id", name="uq_holding_institution_record"),
+        Index("idx_institution_holdings_object", "cultural_object_id"),
+        Index("idx_institution_holdings_institution_status", "institution_id", "status"),
+    )
+    id = Column(String, primary_key=True)
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    institution_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    institution_record_id = Column(String, nullable=True)
+    collection_id = Column(String, ForeignKey("collections.id"), nullable=True)
+    relationship_type = Column(String, nullable=False, default="HOLDING")
+    status = Column(String, nullable=False, default="CURRENT")
+    location_text = Column(Text, nullable=True)
+    valid_from = Column(DateTime, nullable=True)
+    valid_to = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+class SourceProvider(Base):
+    __tablename__ = "source_providers"
+    id = Column(String, primary_key=True)
+    name = Column(String, nullable=False)
+    provider_type = Column(String, nullable=False, default="OTHER")
+    base_url = Column(String, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
+    created_at = Column(DateTime, default=now)
+
+
+class SourceRecord(Base):
+    __tablename__ = "source_records"
+    __table_args__ = (
+        UniqueConstraint("provider_id", "provider_record_id", name="uq_source_records_provider_record"),
+        Index("idx_source_records_object", "cultural_object_id"),
+        Index("idx_source_records_holding", "institution_holding_id"),
+    )
+    id = Column(String, primary_key=True)
+    provider_id = Column(String, ForeignKey("source_providers.id"), nullable=False)
+    provider_record_id = Column(String, nullable=False)
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    institution_holding_id = Column(String, ForeignKey("institution_holdings.id"), nullable=True)
+    institution_id = Column(String, ForeignKey("museums.id"), nullable=True)
+    source_url = Column(String, nullable=True)
+    source_language = Column(String, nullable=True)
+    retrieved_at = Column(DateTime, nullable=True)
+    raw_payload = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=now)
+
+
+class CulturalObjectIdentifier(Base):
+    __tablename__ = "cultural_object_identifiers"
+    __table_args__ = (
+        UniqueConstraint("namespace", "identifier", name="uq_object_identifier_namespace_value"),
+        Index("idx_object_identifiers_object", "cultural_object_id"),
+    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    namespace = Column(String, nullable=False)
+    identifier = Column(String, nullable=False)
+    verification_state = Column(String, nullable=False, default="DECLARED_BY_SOURCE")
+    source_record_id = Column(String, ForeignKey("source_records.id"), nullable=True)
+    created_at = Column(DateTime, default=now)
+
+
+class MediaAsset(Base):
+    """Generic media provenance with independent use eligibility."""
+    __tablename__ = "media_assets"
+    __table_args__ = (
+        UniqueConstraint("provider_id", "original_url", "purpose", name="uq_media_provider_url_purpose"),
+        Index("idx_media_assets_object_purpose", "cultural_object_id", "purpose"),
+        Index("idx_media_assets_artwork", "artwork_id"),
+        Index("idx_media_assets_rights", "rights_status", "verification_state"),
+        Index("idx_media_assets_derivative", "derivative_of_id"),
+    )
+    id = Column(String, primary_key=True)
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    artwork_id = Column(String, ForeignKey("artworks.id"), nullable=True)
+    institution_holding_id = Column(String, ForeignKey("institution_holdings.id"), nullable=True)
+    source_record_id = Column(String, ForeignKey("source_records.id"), nullable=True)
+    provider_id = Column(String, ForeignKey("source_providers.id"), nullable=False)
+    purpose = Column(String, nullable=False)
+    media_type = Column(String, nullable=False, default="IMAGE")
+    original_url = Column(String, nullable=True)
+    asset_url = Column(String, nullable=True)
+    provider_asset_id = Column(String, nullable=True)
+    rights_status = Column(String, nullable=False, default="UNKNOWN")
+    verification_state = Column(String, nullable=False, default="UNKNOWN")
+    license_code = Column(String, nullable=True)
+    license_text = Column(Text, nullable=True)
+    attribution = Column(Text, nullable=True)
+    public_domain = Column(Boolean, nullable=True)
+    presentation_eligible = Column(Boolean, nullable=True)
+    recognition_eligible = Column(Boolean, nullable=True)
+    retrieved_at = Column(DateTime, nullable=True)
+    checksum_sha256 = Column(String(64), nullable=True)
+    derivative_of_id = Column(String, ForeignKey("media_assets.id"), nullable=True)
+    derivative_spec = Column(JSON, nullable=True)
+    legacy_source_table = Column(String, nullable=True)
+    legacy_source_id = Column(String, nullable=True)
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+class CulturalObjectDuplicateReview(Base):
+    __tablename__ = "cultural_object_duplicate_reviews"
+    __table_args__ = (UniqueConstraint("object_a_id", "object_b_id", name="uq_object_duplicate_pair"),)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    object_a_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    object_b_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    decision = Column(String, nullable=False, default="POSSIBLE_DUPLICATE")
+    evidence = Column(JSON, nullable=True)
+    reviewed_by = Column(String, nullable=True)
+    reviewed_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=now)
 
 
 class ArtworkCatalogMembership(Base):
@@ -310,6 +448,8 @@ class ArtworkValueReveal(Base):
     beyond_market_headline = Column(String, nullable=True)
     beyond_market_explanation = Column(Text, nullable=True)
     institutional_legal_context = Column(Text, nullable=True)
+    content_policy_code = Column(String, nullable=True)
+    institutional_legal_context_localizations = Column(JSON, nullable=True)
     optional_context = Column(Text, nullable=True)
 
     confidence = Column(String, nullable=True)
@@ -584,6 +724,8 @@ class RecognitionAttempt(Base):
     started_at = Column(DateTime, default=now, nullable=False)
     completed_at = Column(DateTime, nullable=True)
     terminal_outcome = Column(String, nullable=True)
+    engine_outcome = Column(String, nullable=True)
+    visitor_resolution = Column(String, nullable=True)
     response_status = Column(String, nullable=True)
     confidence = Column(Float, nullable=True)
     recognition_mode = Column(String, nullable=True)

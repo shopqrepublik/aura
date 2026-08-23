@@ -107,7 +107,7 @@ from .catalog import (  # noqa: E402
     get_institution_runtime_config,
 )
 from .db import SessionLocal, get_db  # noqa: E402
-from .models import Artwork, ArtworkLocalization, Museum, RecognitionAttempt, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
+from .models import Artwork, ArtworkLocalization, InstitutionProfile, Museum, RecognitionAttempt, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -1802,6 +1802,21 @@ def recognize(
         response.recognition_attempt_id = attempt_id
         attempt.completed_at = datetime.now(timezone.utc)
         attempt.terminal_outcome = outcome
+        if outcome == "uncataloged_result":
+            attempt.engine_outcome = "UNCATALOGED_IDENTIFIED"
+            attempt.visitor_resolution = "GENERATED_RESULT"
+        elif response.status == "matched":
+            attempt.engine_outcome = "CATALOG_CANDIDATE_MATCHED"
+            attempt.visitor_resolution = "AUTO_ACCEPTED"
+        elif response.status == "needs_confirmation":
+            attempt.engine_outcome = "CATALOG_CANDIDATE_MATCHED"
+            attempt.visitor_resolution = "CONFIRMATION_REQUIRED"
+        elif outcome == "no_match":
+            attempt.engine_outcome = "NO_MATCH"
+            attempt.visitor_resolution = "NO_RESULT"
+        else:
+            attempt.engine_outcome = "ENGINE_ERROR"
+            attempt.visitor_resolution = "NO_RESULT"
         attempt.response_status = response.status
         attempt.artwork_id = response.artwork_id
         attempt.confidence = response.confidence
@@ -1814,6 +1829,8 @@ def recognize(
     def fail_request(outcome: str) -> None:
         attempt.completed_at = datetime.now(timezone.utc)
         attempt.terminal_outcome = outcome
+        attempt.engine_outcome = "INVALID_INPUT" if outcome == "invalid_image" else "ENGINE_ERROR"
+        attempt.visitor_resolution = "NO_RESULT"
         attempt.latency_ms = round((time.perf_counter() - started) * 1000)
         db.commit()
 
@@ -1982,6 +1999,7 @@ class MuseumOut(BaseModel):
     timezone: Optional[str] = None
     default_locale: Optional[str] = None
     supported_locales: List[str] = []
+    display_currency: Optional[str] = None
 
 
 @app.get("/v1/museums", response_model=List[MuseumOut])
@@ -2015,10 +2033,9 @@ def list_museums(
         query = query.filter(func.lower(Museum.region) == region.lower())
 
     rows = (
-        query.order_by(
+        query.outerjoin(InstitutionProfile, InstitutionProfile.institution_id == Museum.id).order_by(
             case((Museum.experience_level == "CURATED", 0), else_=1),
-            case((Museum.id == "louvre", 0), (Museum.id == "orsay", 1), (Museum.id == "orangerie", 2), else_=3),
-            case((Museum.region == "Ile-de-France", 0), else_=1),
+            InstitutionProfile.directory_priority.asc().nullslast(),
             Museum.city.asc().nullslast(),
             Museum.name.asc(),
         )
@@ -2071,6 +2088,7 @@ def list_museums(
             timezone=row.timezone,
             default_locale=row.default_locale,
             supported_locales=row.supported_locales or [],
+            display_currency=row.display_currency,
         )
         for row in rows
     ]

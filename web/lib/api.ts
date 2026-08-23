@@ -112,6 +112,11 @@ export interface Museum {
   source_updated_at?: string | null;
   experience_level?: "CURATED" | "AI_GUIDE" | string;
   curated_artwork_count?: number;
+  country_code?: string | null;
+  timezone?: string | null;
+  default_locale?: string | null;
+  supported_locales?: string[];
+  display_currency?: string | null;
 }
 
 export async function getMuseums(params?: { q?: string; city?: string; region?: string; limit?: number }): Promise<Museum[]> {
@@ -450,9 +455,10 @@ function camelValueReveal(raw: Record<string, unknown> | null | undefined, local
           localizeValueCopy(typeof beyond.headline === "string" ? beyond.headline : "No ordinary market price.", locale) ||
           "No ordinary market price.",
         explanation: localizeValueCopy(typeof beyond.explanation === "string" ? beyond.explanation : "", locale) || "",
-        institutionalLegalContext: localizeValueCopy(
+        institutionalLegalContext: localizedPolicyCopy(
+          beyond.institutional_legal_context_localizations,
           typeof beyond.institutional_legal_context === "string" ? beyond.institutional_legal_context : undefined,
-          locale
+          locale,
         ),
         optionalContext,
         disclaimer: localizeValueCopy(typeof beyond.disclaimer === "string" ? beyond.disclaimer : undefined, locale),
@@ -503,16 +509,6 @@ function localizeValueCopy(value: string | undefined, locale = "en"): string | u
   if (/No ordinary market price/i.test(value)) {
     return locale === "fr" ? "Aucun prix de marché ordinaire." : "没有普通市场价格。";
   }
-  if (/belongs to France's public museum collections/i.test(value)) {
-    return locale === "fr"
-      ? "Cette œuvre appartient aux collections publiques françaises et ne se vend pas comme une œuvre privée."
-      : "这件作品属于法国公共博物馆收藏，并不像私人艺术品那样交易。";
-  }
-  if (/French public Musees de France collections are inalienable public property/i.test(value)) {
-    return locale === "fr"
-      ? "Les collections publiques des Musées de France sont des biens publics inaliénables."
-      : "法国 Musees de France 公共收藏属于不可转让的公共财产。";
-  }
   if (/Not an appraisal, insurance value, or sale estimate/i.test(value)) {
     return locale === "fr"
       ? "Ce n'est ni une expertise, ni une valeur d'assurance, ni une estimation de vente."
@@ -524,6 +520,15 @@ function localizeValueCopy(value: string | undefined, locale = "en"): string | u
       : "这是市场背景，不是对馆藏作品的估价。";
   }
   return value;
+}
+
+function localizedPolicyCopy(value: unknown, fallback: string | undefined, locale: string): string | undefined {
+  if (value && typeof value === "object") {
+    const rows = value as Record<string, unknown>;
+    const localized = rows[locale] ?? rows[locale.toLowerCase()] ?? rows.en;
+    if (typeof localized === "string" && localized.trim()) return localized;
+  }
+  return fallback;
 }
 
 function louvrePlaceholderImage(): string {

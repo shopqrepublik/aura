@@ -1,104 +1,88 @@
 # Museum Onboarding Playbook
 
-Status: CURRENT process plus explicit gaps. Paper test institution: National Gallery London. This document does not authorize ingestion.
+Status: CURRENT after Block 3. National Gallery London is a paper test only; this does not authorize ingestion.
 
-## 1. Institution creation
+## 1. Institution/country configuration
 
-- Manual: establish canonical institution name, official source, stable ELYIO ID, coordinates, geofence, public slug and operational owner.
-- Tool/DB: insert `countries` when needed, then insert/update canonical Institution data in compatibility table `museums`; no generic institution CLI exists yet.
-- Validation: unique ID/slug/external source ID; directory API returns one row.
-- Success: museum selectable without replacing another row.
-- National Gallery: country/institution schema is now configuration-ready; ingestion remains explicitly out of scope.
+- Approve stable ELYIO ID/slug/name, ISO country, city, coordinates/geofence, IANA timezone, BCP-47 locales, display currency and owner.
+- Upsert `countries`, then compatible Institution in `museums`; add `collections` only where source hierarchy is real.
+- Validate `get_institution_international_config`, uniqueness and exactly one active directory row.
 
-## 2. Country/city configuration
+## 2. Initial fail-closed profile
 
-- Manual: ISO country, city, timezone, default language/currency/legal context.
-- Current DB: `country_code`, city string, timezone, default locale and supported locales are implemented. A normalized City entity is not.
-- Success target: canonical country/city relations and formatting policy.
-- National Gallery: country/timezone is config-only; City normalization is optional for initial onboarding.
+- Create `institution_profiles` with `candidate_universe=NONE`, `recognition_policy=NOT_READY`, reviewed modes/thresholds/context and an inactive/not-ready catalog version.
+- Verify missing/empty configuration returns `institution_not_ready`, never global candidates.
 
-## 3. Catalog source
+## 3. Source and rights assessment
 
-- Manual: identify official API/export/license/update policy and source-of-truth IDs.
-- Tool: build source adapter following existing import patterns; Louvre tooling is not reusable generically.
-- Validation: raw payload preserved, pagination/retry/checkpoint documented, source count reconciled.
-- National Gallery: custom adapter/research required.
+- Identify official API/export, provider IDs, terms, metadata/image licenses, attribution, caching/derivative and AI/TDM/recognition permission.
+- Implement a provider adapter against `backend/app/source_adapter.py`. Fetch/parsing may be custom; core entity/recognition logic may not.
+- Round-trip sample raw payload, source URL/language, retrieval time and media declarations. UNKNOWN remains UNKNOWN.
 
-## 4. Rights/provenance assessment
+## 4. Dry-run manifest
 
-- Manual/legal-owner input: metadata license, image license, attribution, AI/TDM, caching/derivative permissions.
-- DB: source fields, `RecognitionAsset` rights/eligibility; current presentation field lacks complete per-image provenance.
-- Success: every used image role has explicit evidence; unknown means not eligible.
+- Emit provider/source record ID, institution ID, original metadata/language, URL, collection source ID, retrieval time, raw payload and typed media.
+- Produce insert/update/unchanged/rejected/collision counts and hashes. A generic runner is not yet implemented; custom integration glue remains.
+- Success: deterministic rerun and reviewed sample; no writes by default.
 
-## 5. Artwork ingestion
+## 5. Object and holding identity
 
-- Tool: dry-run normalized manifest, then reviewed DB import.
-- DB: `artworks`; never overwrite editorial localizations/value rows.
-- Validation: exact insert/update/unchanged/rejected counts and source hashes.
-- Success: knowledge rows exist but are not yet visitor-active.
+- Upsert SourceProvider/SourceRecord, CulturalObject, InstitutionHolding and namespaced identifiers.
+- Exact provider record is idempotent; institution record is unique within institution. Never use title+artist/image as merge identity; translations do not create objects.
+- Record `POSSIBLE_DUPLICATE`, `CONFIRMED_SAME`, or `DISTINCT`; never auto-merge uncertain editions/casts/copies.
 
-## 6. Normalization
+## 6. Metadata/localization
 
-Normalize artist/title/date/inventory/object type/material/dimensions/location while preserving raw/original values. Do not translate proper names by guessing. Validate null/error rates and source round-trip.
+- Preserve original/source-language metadata and raw payload. Normalize facts without destroying source values.
+- Store visitor narrative/translation in locale rows with review state; generated translations do not overwrite museum metadata.
 
-## 7. Duplicate checks
+## 7. Media/provenance
 
-Check `(source, source_record_id)`, institution inventory namespace, source redirects, title/creator candidates and editions/copies. Human review any merge. Current model cannot express canonical-work/copy relationships; record the gap, do not collapse rows.
+- Create `SOURCE_ORIGINAL`, `REFERENCE`, `PRESENTATION`, `RECOGNITION_ASSET` and authorized `DERIVATIVE` separately.
+- Record provider/record/URL, license/attribution, rights + verification, retrieval/checksum/lineage and independent presentation/recognition eligibility.
+- No UNKNOWN asset is activated by implication and no visitor capture is imported.
 
-## 8. Images
+## 8. Compatibility Artwork/catalog
 
-Choose presentation and recognition assets separately. Populate source/license/attribution/AI eligibility; create derivatives only if authorized. Validate identity visually and through source IDs. National Gallery must not reuse Louvre image rules.
+- Create stable `Artwork.id` pointing at object + holding; preserve institution/source IDs and editorial/value rows.
+- Add versioned memberships initially inactive. Validate membership/profile/holding institution and manifest counts.
 
-## 9. Recognition readiness
+## 9. Recognition/benchmark
 
-Assign metadata/display/recognition/rights status; add eligible `RecognitionAsset` where required. Current status vocabulary needs manual normalization. Success: no active row is accidentally draft/not-ready.
+- Configure profile universe/policy/version/modes/thresholds and independent readiness dimensions.
+- Benchmark self/gallery/partial/decoy/wrong-institution/non-art/uncataloged sets; record auto-accepted, confirmation-required, no-match, confident-wrong, latency and cost.
+- Approve gates and rollback before activation; no provider-specific core branch.
 
-## 10. Institution Profile and visitor catalog activation
+## 10. Frontend/content/SEO
 
-Create a versioned membership manifest with priorities/tiers, initially inactive. Add one reviewed `institution_profiles` row declaring catalog version, candidate universe, recognition policy, thresholds, supported modes and asset policy. No Python museum branch is required. Validate membership institution matches artwork institution and activate only after the catalog is non-empty. Missing configuration deliberately returns `institution_not_ready`.
+- Directory ordering is profile data. Add institution content/theme deliberately; current SEO is a France content package and global routes are separate work.
+- Create/review a UI bundle when the default language is not shipped. `en-GB` may deliberately use English fallback but is not a distinct reviewed bundle.
+- Never relabel EUR V4 values as GBP; explicitly configure or omit unsupported jurisdiction/value claims.
 
-## 11. Benchmark
+## 11. Analytics/admin
 
-Freeze manifest/assets/model/thresholds. Run self, gallery, decoy, wrong-museum, non-art and uncataloged sets. Record confident-wrong, recall, no-match, latency and cost. Success thresholds must be approved before activation; no universal measured threshold exists.
+- Reuse canonical events with valid institution/artwork/attempt IDs; QA uses server-secret context.
+- Verify catalog/readiness/provenance categories, confirmation-required rate and institution filters. QA remains operationally visible but excluded from founder metrics.
 
-## 12. Frontend availability
+## 12. Smoke/activation/rollback
 
-Directory selection is data-driven. Curated visitor/SEO copy, museum prominence, homepage city text and locale support are checked-in frontend code/data. National Gallery requires frontend content/config changes; public SEO pages are not generated from DB automatically.
-
-## 13. Analytics
-
-Ensure museum/artwork/attempt IDs are carried on all relevant events and admin filters. Add institution dimensions without event-name forks. Use QA flag for tests, recognizing current flag is client-asserted.
-
-## 14. Production smoke
-
-Run `PRODUCTION_SMOKE_TEST.md`: selection, known/unknown/wrong-museum, repeat, result, game, recap/share, event linkage and admin catalog health. Use controlled fixtures and no real-user media.
-
-## 15. Admin monitoring
-
-Verify catalog size/readiness/images, museum visitors/scans/success rate, failure reasons and top artworks. Current success metric double-count issue must be fixed before using launch KPIs as acceptance criteria.
-
-## 16. Rollback/deactivation
-
-Deactivate membership/version; remove curated frontend/SEO availability through reviewed deploy; retain source/provenance rows; invalidate caches if needed. Roll back code independently. Document search removal and event definition changes.
+- Run `PRODUCTION_SMOKE_TEST.md`: selection, known/unknown/wrong-institution/repeat, result/game/recap/share, attempt linkage, admin/system/catalog and current SEO/PWA regression.
+- Apply migrations through ledger and deploy reviewed main/release. Activate membership/profile only after smoke.
+- Roll back by restoring membership/profile/catalog version; retain object/source/media evidence. Roll back code/content separately and account for SW/cache/SEO.
 
 ## National Gallery London paper result
 
-**Could it be onboarded without architectural changes? PARTIAL / NO for clean repeatability.**
+**YES: architecturally ready to begin controlled onboarding, not activation.**
 
-| Work item | Today |
+| Item | Required |
 |---|---|
-| Basic museum row | Config/data import |
-| Correct country/timezone/institution semantics | Config/data; foundation implemented |
-| Catalog | New source adapter/data ingestion |
-| Stable object IDs | Data design/import; current source uniqueness usable |
-| Collection/loan/exhibition | Architecture change if required |
-| Images/rights | Manual assessment + asset ingestion |
-| Recognition policy/version | Institution Profile configuration; no core code change |
-| Candidate ranking | Existing generic core can work after configuration |
-| UI/SEO museum availability | Frontend content/config change |
-| English UI | Already supported |
-| UK legal/currency/value copy | Frontend/value policy change |
-| Analytics/admin dimensions | Museum ID works; country/institution integrity needs model change |
-| Benchmark/smoke | New fixtures/manual QA |
+| GB, London, Europe/London, en-GB, GBP | Configuration/data only |
+| Object/holding/source/media | Current generic schema; no core change |
+| Catalog/recognition | Institution Profile; no core change |
+| Candidate/ranking | Shared core; benchmark selects configuration |
+| Custom engineering | National Gallery source adapter and generic-runner glue |
+| Review/ops | Rights, normalization/dedupe, content, benchmark, smoke/rollback |
+| Frontend | Institution content/availability and English fallback review; SEO only if separately approved |
+| Optional | City entity, richer loans/collections, en-GB distinctions, automation/B2B roles |
 
-Mandatory before launch: source/right assessment, import and identity manifest, Institution Profile, frontend/SEO content, benchmark, analytics validation, smoke/rollback. Optional later: populated collection hierarchy, normalized City, institution B2B role, automated sync and multilingual expansion beyond English.
+No National Gallery-specific core catalog or recognition conditional is required. Adapter/ingest, rights review, profile/catalog, benchmark, content and production validation remain mandatory before visitor activation.

@@ -65,9 +65,9 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   },
   home_todays_visit_label: { en: "Today's visit", fr: "Visite du jour", "zh-Hans": "今日参观" },
   home_museum_time: {
-    en: "Paris · Estimated time 60–90 min",
-    fr: "Paris · Durée estimée 60–90 min",
-    "zh-Hans": "巴黎 · 预计用时 60–90 分钟",
+    en: "{city} · Estimated time 60–90 min",
+    fr: "{city} · Durée estimée 60–90 min",
+    "zh-Hans": "{city} · 预计用时 60–90 分钟",
   },
   home_todays_missions_label: { en: "Today's missions", fr: "Missions du jour", "zh-Hans": "今日任务" },
   home_missions_subtitle: {
@@ -84,9 +84,9 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   // getArtwork, no separate storage.
   welcome_back_label: { en: "Welcome back", fr: "Bon retour", "zh-Hans": "欢迎回来" },
   continue_visit_heading: {
-    en: "Continue your Musée d'Orsay visit",
-    fr: "Continuez votre visite du Musée d'Orsay",
-    "zh-Hans": "继续您的奥赛博物馆参观",
+    en: "Continue your {museum} visit",
+    fr: "Continuez votre visite de {museum}",
+    "zh-Hans": "继续您的{museum}参观",
   },
   continue_visit_stat: {
     en: "{n} {works} · {value} seen",
@@ -98,8 +98,8 @@ const NEW_STRINGS: Record<string, LocalizedText> = {
   museum_coming_soon: { en: "Coming soon", fr: "Bientôt disponible", "zh-Hans": "即将开放" },
   select_museum_sheet_title: { en: "Select museum", fr: "Choisir un musée", "zh-Hans": "选择博物馆" },
   museum_search_placeholder: { en: "Search museum or city", fr: "Rechercher un musée ou une ville", "zh-Hans": "搜索博物馆或城市" },
-  museum_featured_label: { en: "Featured near Paris", fr: "Sélection autour de Paris", "zh-Hans": "巴黎附近精选" },
-  museum_results_label: { en: "France-wide museums", fr: "Musées en France", "zh-Hans": "法国博物馆" },
+  museum_featured_label: { en: "Featured guides", fr: "Guides sélectionnés", "zh-Hans": "精选导览" },
+  museum_results_label: { en: "Museum directory", fr: "Répertoire des musées", "zh-Hans": "博物馆目录" },
   museum_curated_label: { en: "Curated guide", fr: "Guide éditorial", "zh-Hans": "精选导览" },
   museum_ai_guide_label: { en: "AI Guide available", fr: "Guide IA disponible", "zh-Hans": "AI 导览可用" },
   museum_no_results: { en: "No museums found", fr: "Aucun musée trouvé", "zh-Hans": "未找到博物馆" },
@@ -443,3 +443,14 @@ export const LOCALES: { code: Locale; label: string }[] = [
   { code: "fr", label: "Français" },
   { code: "zh-Hans", label: "简体中文" },
 ];
+
+/**
+ * Runtime message-bundle boundary. Institution locale configuration is not
+ * restricted to these values, but the visitor UI must fall back to a bundle
+ * that is actually shipped instead of claiming an untranslated locale works.
+ */
+export function resolveUiLocale(locale: string | null | undefined): Locale {
+  if (locale === "fr") return "fr";
+  if (locale?.toLowerCase() === "zh-hans") return "zh-Hans";
+  return "en";
+}

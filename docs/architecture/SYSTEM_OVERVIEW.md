@@ -1,76 +1,58 @@
 # System Overview
 
-Status: IMPLEMENTED on the globalization Block 1 release branch; production identifiers are recorded during deployment verification.
+Status: CURRENT after Globalization Blocks 1–3.
 
 ## Runtime topology
 
 ```mermaid
 flowchart LR
-  U[Visitor browser / PWA] --> V[Next.js on Vercel]
-  U -->|recognition, catalog, events| F[FastAPI on Fly v43]
+  U[Visitor browser / PWA] --> V[Next.js / Vercel]
+  U -->|events, recognition, catalog| F[FastAPI / Fly]
   A[Admin browser /admin] --> V
-  A -->|credentialed admin API| F
+  A -->|server-authorized API| F
   F --> P[(Supabase PostgreSQL)]
   F --> O[OpenAI]
-  F --> W[Approved Wikimedia sources]
-  U --> H[PostHog US Cloud]
+  F --> S[Approved provider media/catalog sources]
+  U --> H[PostHog, secondary telemetry]
 ```
 
-The public localized website is static/server-rendered. `/visit` is the anonymous-first client app. `/admin` is a noindex client Control Center whose data and authorization live exclusively in FastAPI; the frontend does not possess an admin secret.
+The localized public website is static/server-rendered. `/visit` is the anonymous-first client application. `/admin` is noindex; authorization and data are server-side. Production release identity is exposed by `/health` and admin System.
 
-## Product data plane
+## Visitor and analytics flow
 
-1. Browser creates persistent `anonymous_id` in localStorage and a tab-lifetime `session_id` in sessionStorage.
-2. Explicit events are sent both to first-party `POST /v1/events` and, when configured, PostHog.
-3. Recognition creates a separate `recognition_attempt_id` per capture and attaches it to browser-side attempt/result events.
-4. Backend recognition creates identityless operational events because `/v1/recognize` does not receive browser identity/attempt ID.
-5. Admin metrics exclude events with `properties.internal_test=true` and exclude identityless server events from visitor recognition KPIs.
+1. Browser owns a validated persistent anonymous UUID and sessionStorage-scoped session UUID.
+2. Public schema-v2 events use an allowlist/idempotent event ID. Server owns canonical time, authenticated user, QA status, trust and business eligibility.
+3. Each scan creates one `recognition_attempt_id`, sent with frontend events and `/v1/recognize`.
+4. Backend owns the authoritative RecognitionAttempt terminal outcome; companion UX events remain raw evidence, not extra KPI attempts.
+5. A verified login links anonymous history to user identity without rewriting old events.
+6. Admin metrics exclude trusted QA/legacy/unqualified events and distinguish raw event from business fact.
 
-## Major boundaries
+## Catalog and identity flow
+
+Institution resolution is Country + compatible `museums` Institution + optional Collection + Institution Profile. Profiles select a versioned catalog/candidate policy and fail closed when invalid. Artwork runtime IDs remain stable, while CulturalObject, InstitutionHolding and SourceRecord distinguish identity/relationship/evidence. Generic MediaAsset explicitly records presentation/reference/recognition/source/derivative roles and rights/provenance.
+
+## International boundary
+
+Country/Institution configuration supports ISO country code, arbitrary BCP-47 locale tags, IANA timezone, three-letter display currency and policy hooks. UI currently ships complete `en`, `fr`, `zh-Hans` bundles only. UTC remains analytics truth. No FX conversion is implied by display currency. Current France SEO/content is preserved as a content package, not treated as a global default.
+
+## Major invariants
 
 | Boundary | Rule |
 |---|---|
-| Public vs private | SEO HTML is public/indexable; visit/admin/session routes are noindex. |
-| Visitor vs admin auth | Supabase JWT protects server visits; separate hashed-cookie sessions protect admin. |
-| Knowledge vs visitor catalog | `artworks` holds facts; `artwork_catalog_memberships` activates versioned subsets. |
-| Presentation vs recognition | `Artwork.image_url`, `RecognitionAsset`, and source/reference records are distinct concepts. |
-| Client vs server analytics | Client events have visitor identity; server recognition events are operational and identityless today. |
-| Current vs target | Current France-specific schema is documented in `DATA_MODEL.md`; proposed global entities are not claimed as implemented. |
-| Institution resolution | Country/Institution/optional Collection and operational Institution Profile are implemented additively; public museum IDs remain stable. |
-| Fail closed | Missing or invalid institution configuration returns HTTP 409 `institution_not_ready`; candidate lookup never broadens globally. |
-| Schema governance | `schema_migrations` and `schema_migration_attempts` provide checksummed ordered state and failure visibility. |
+| Public/private | SEO content public; visit state, captures and admin private/noindex. |
+| Institution | Data/configuration; no all-museum recognition fallback. |
+| Identity | Object != holding != provider record != compatibility Artwork. |
+| Media | Presentation != reference != recognition asset != private capture. |
+| Rights | UNKNOWN is explicit and never auto-promoted. |
+| Localization | Source metadata preserved; localized visitor copy separate. |
+| Value | Value V4 semantics unchanged; currency selection is not conversion. |
+| Recognition metrics | Engine terminal outcome and visitor resolution are separately named. |
+| Deployment | Ordered migration ledger; reviewed main/release source reports SHA. |
 
-## Current production API inventory
+## Production API surface
 
-Verified from live OpenAPI on 2026-08-23:
+Key public paths are `/health`, `POST /v1/events`, `POST /v1/recognize`, `POST /v1/indicative-value`, `GET /v1/museums`, `GET /v1/artworks/{artwork_id}`, `GET /v1/image-proxy`, and authenticated visit endpoints. `/v1/admin/*` covers login/session, dashboard, recognition, users, artworks, museums, catalog, acquisition, system and export. OpenAPI/current code is authoritative.
 
-| Method | Path | Access/purpose |
-|---|---|---|
-| POST | `/v1/admin/login` | Public credential exchange; throttled |
-| POST | `/v1/admin/logout` | Revokes caller cookie session when present |
-| GET | `/v1/admin/me` | Admin cookie required |
-| POST | `/v1/events` | Public first-party event ingestion |
-| GET | `/v1/admin/dashboard` | Admin aggregate dashboard |
-| GET | `/v1/admin/recognition/failures` | Admin failure rows |
-| GET | `/v1/admin/users` | Admin users/anonymous visitors |
-| GET | `/v1/admin/users/{identity}` | Admin event timeline |
-| GET | `/v1/admin/artworks` | Admin artwork health/search |
-| GET | `/v1/admin/museums` | Admin museum metrics |
-| GET | `/v1/admin/catalog` | Admin catalog health |
-| GET | `/v1/admin/acquisition` | Admin source metrics |
-| GET | `/v1/admin/system` | Admin service/tracking facts |
-| GET | `/v1/admin/export/{kind}` | Admin CSV export |
-| POST | `/v1/indicative-value` | Public bounded value context |
-| POST | `/v1/recognize` | Public museum-scoped recognition |
-| GET | `/v1/museums` | Public directory |
-| GET | `/v1/artworks/{artwork_id}` | Public catalog detail |
-| GET | `/v1/image-proxy` | Public allowlisted image transform/cache |
-| POST | `/v1/visits` | Supabase JWT required |
-| POST | `/v1/visits/{visit_id}/artworks` | Supabase JWT required |
-| GET | `/v1/visits/{visit_id}/progress` | Supabase JWT required |
-| POST | `/v1/visits/{visit_id}/complete` | Supabase JWT required |
-| GET | `/health` | Public health |
+## Compatibility state
 
-## Release identity
-
-`/health` reports backend Git SHA, build timestamp and environment. `/v1/admin/system` adds migration head and configured/unconfigured institution counts. The frontend admin System view embeds the Vercel Git SHA. Canonical rule: production deploys from reviewed `main` or an explicitly documented release commit.
+Legacy artwork/image/source columns and Louvre source tables remain live so Block 3 does not change recognition or visitor presentation behavior. New normalized tables are the write target for future adapters; runtime migration occurs only behind parity tests. No National Gallery data exists.

@@ -265,6 +265,8 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             rows = db.query(RecognitionAttempt).all()
             self.assertEqual(len(rows), 1)
             self.assertEqual(rows[0].terminal_outcome, "success")
+            self.assertEqual(rows[0].engine_outcome, "CATALOG_CANDIDATE_MATCHED")
+            self.assertEqual(rows[0].visitor_resolution, "AUTO_ACCEPTED")
             self.assertEqual(rows[0].artwork_id, "known-work")
 
     def test_event_body_over_limit_is_rejected_before_ingestion(self):
@@ -274,6 +276,26 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             headers={"Content-Type": "application/json"},
         )
         self.assertEqual(response.status_code, 413)
+
+    def test_confirmation_required_is_engine_success_but_distinct_visitor_resolution(self):
+        main.recognize_with_vision = lambda *_args, **_kwargs: {
+            "artwork_id": "known-work", "confidence": 0.85,
+            "alternatives": [], "recognition_mode": "VISION_READY",
+        }
+        attempt_id = "91000000-0000-4000-8000-000000000001"
+        response = self.client.post("/v1/recognize", json={
+            "image_base64": "AA==", "museum_id": "louvre", "locale": "en",
+            "recognition_attempt_id": attempt_id,
+            "anonymous_id": "91000000-0000-4000-8000-000000000002",
+            "session_id": "91000000-0000-4000-8000-000000000003",
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "needs_confirmation")
+        with self.Session() as db:
+            row = db.get(RecognitionAttempt, attempt_id)
+            self.assertEqual(row.terminal_outcome, "success")
+            self.assertEqual(row.engine_outcome, "CATALOG_CANDIDATE_MATCHED")
+            self.assertEqual(row.visitor_resolution, "CONFIRMATION_REQUIRED")
 
 
 if __name__ == "__main__":
