@@ -4,7 +4,7 @@ Media validation must compare both unique media entities and relationship edges.
 
 The hybrid visitor invariant remains independent of media readiness: configured + catalog match uses canonical content; configured + no reliable match uses truthful AI uncataloged fallback and records the sighting; unknown/unconfigured institution fails closed. Catalog when we know. AI when we don't. Learn from what visitors scan.
 
-Status: CURRENT after Block 3. National Gallery London is a paper test only; this does not authorize ingestion.
+Status: CURRENT. National Gallery London now has a frozen 170-work controlled recognition package and benchmark tooling; it is not publicly activated.
 
 Block 4 path: register provider/adapter/institution mapping, then DISCOVER → DRY_RUN → PLAN → RECONCILE → reviewed APPLY using [Source Adapter Guide](SOURCE_ADAPTER_GUIDE.md). Complete [provenance review](PROVENANCE_REVIEW_RUNBOOK.md), readiness and benchmark before separate activation. New institutions must not use legacy direct-upsert scripts.
 
@@ -28,7 +28,7 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 ## 4. Dry-run manifest
 
 - Emit provider/source record ID, institution ID, original metadata/language, URL, collection source ID, retrieval time, raw payload and typed media.
-- Produce insert/update/unchanged/rejected/collision counts and hashes. A generic runner is not yet implemented; custom integration glue remains.
+- Produce insert/update/unchanged/rejected/collision counts and hashes with `backend/scripts/ingest_catalog.py`; custom provider logic remains in its adapter.
 - Success: deterministic rerun and reviewed sample; no writes by default.
 
 ## 5. Object and holding identity
@@ -76,9 +76,9 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 - Apply migrations through ledger and deploy reviewed main/release. Activate membership/profile only after smoke.
 - Roll back by restoring membership/profile/catalog version; retain object/source/media evidence. Roll back code/content separately and account for SW/cache/SEO.
 
-## National Gallery London paper result
+## National Gallery London controlled result (2026-08-24)
 
-**YES: architecturally ready to begin controlled onboarding, not activation.**
+**YES: technically ready for controlled real-world scan testing, not public activation.** See `../recognition/NATIONAL_GALLERY_BENCHMARK_2026-08-24.md`.
 
 | Item | Required |
 |---|---|
@@ -86,9 +86,9 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 | Object/holding/source/media | Current generic schema; no core change |
 | Catalog/recognition | Institution Profile; no core change |
 | Candidate/ranking | Shared core; benchmark selects configuration |
-| Custom engineering | National Gallery source adapter and generic-runner glue |
-| Review/ops | Rights, normalization/dedupe, content, benchmark, smoke/rollback |
+| Custom engineering | Existing National Gallery source adapter plus controlled corpus/benchmark tools |
+| Review/ops | Real independent visitor captures, content, smoke/rollback and product-owner gates |
 | Frontend | Institution content/availability and English fallback review; SEO only if separately approved |
 | Optional | City entity, richer loans/collections, en-GB distinctions, automation/B2B roles |
 
-No National Gallery-specific core catalog or recognition conditional is required. Adapter/ingest, rights review, profile/catalog, benchmark, content and production validation remain mandatory before visitor activation.
+No National Gallery-specific core catalog or recognition conditional is required. The server-side `controlled_preview_only` policy and trusted QA token isolate the catalog. Public content, selector and SEO activation remain separate decisions.

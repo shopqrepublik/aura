@@ -17,6 +17,8 @@ Readiness is not one inferred flag. Review stable object/source identity, correc
 
 Admin Catalog exposes aggregate provenance categories without redesigning Overview. Legacy status strings (`READY`, `VISION_READY`, `VISION_PLUS_ASSET`, `NEEDS_ASSET`, etc.) remain for compatibility; the dimensions above are the canonical interpretation.
 
+Technical readiness is separate from public activation. A `controlled_preview_only` institution can have an active benchmark catalog/profile while public directory, artwork detail and recognition requests remain inaccessible without the server-trusted QA token. `VISION_READY` requires stable institution/object/holding identity and useful title metadata; `VISION_PLUS_ASSET` additionally requires an explicitly selected RecognitionAsset. Neither state implies public presentation or SEO activation.
+
 ## Activation checklist
 
 - [ ] CulturalObject, Holding and provider SourceRecord are stable; no title-derived identity.

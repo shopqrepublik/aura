@@ -1,5 +1,14 @@
 # Global Readiness Scorecard
 
+## National Gallery controlled recognition delta (2026-08-24)
+
+| Capability | Score | Evidence |
+|---|---:|---|
+| Recognition | 3 | Frozen 170-work second-country benchmark; PLUS_ASSET produced zero confident-wrong results across pristine and visitor-like suites; controlled real-gallery validation remains. |
+| Onboarding | 3 | Idempotent controlled-catalog provisioner, generic adapter/runner, isolated benchmark catalog and server-side preview gate. |
+| Multi-country | 3 | GB/London/en-GB/GBP profile uses shared catalog and recognition core with no institution-name branch. |
+| Scale | 2 | Full 3,785 metadata set classifies under current rules, but candidate retrieval/ranking remains in-process and AI calls dominate latency/cost. |
+
 ## Block 4.5 delta
 
 | Capability | Score | Evidence |

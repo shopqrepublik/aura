@@ -26,6 +26,7 @@ from backend.scripts.migrate import (
     apply_pending,
     baseline,
 )
+from backend.app import main
 
 
 class InstitutionConfigurationTests(unittest.TestCase):
@@ -91,6 +92,16 @@ class InstitutionConfigurationTests(unittest.TestCase):
             db.commit()
             with self.assertRaisesRegex(InstitutionNotReadyError, "active catalog is empty"):
                 get_recognition_candidates(db, "empty")
+
+    def test_explicit_recognition_asset_allows_generic_https_reference(self):
+        candidate = {
+            "id": "global-work",
+            "recognition_asset_id": 42,
+            "image_url": "https://provider.example/iiif/work/full/max/0/default.jpg",
+        }
+        self.assertTrue(main._reference_verification_allowed(candidate))
+        candidate["recognition_asset_id"] = None
+        self.assertFalse(main._reference_verification_allowed(candidate))
 
 
 class MigrationLedgerTests(unittest.TestCase):

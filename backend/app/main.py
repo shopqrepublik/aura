@@ -926,7 +926,18 @@ def _reference_verification_allowed(candidate: dict) -> bool:
     import urllib.parse
 
     parsed = urllib.parse.urlsplit(image_url)
+    # RecognitionAsset selection is the explicit DB-backed gate. Once an
+    # asset has been selected by catalog.py, the verifier may populate its
+    # bounded local cache from that asset's HTTPS source. Provider hosts do
+    # not belong in core recognition conditionals.
+    if candidate.get("recognition_asset_id"):
+        return parsed.scheme == "https" and bool(parsed.hostname)
     return parsed.hostname in {"commons.wikimedia.org", "upload.wikimedia.org"}
+
+
+def _controlled_preview_only(db: Session, institution_id: str) -> bool:
+    institution = db.get(Museum, institution_id)
+    return bool(institution and (institution.content_policy or {}).get("controlled_preview_only") is True)
 
 
 # ---- Image proxy (Recap PNG export) ---------------------------------------
@@ -1765,6 +1776,8 @@ def recognize(
     db: Session = Depends(get_db),
     current_user: Optional[User] = Depends(get_optional_current_user),
 ):
+    if _controlled_preview_only(db, req.museum_id) and not _trusted_internal_request(request):
+        raise HTTPException(status_code=404, detail="institution not found")
     attempt_id = req.recognition_attempt_id or str(uuid.uuid4())
     existing_attempt = db.get(RecognitionAttempt, attempt_id)
     if existing_attempt is not None:
@@ -2003,9 +2016,11 @@ class MuseumOut(BaseModel):
 
 @app.get("/v1/museums", response_model=List[MuseumOut])
 def list_museums(
+    request: Request,
     q: Optional[str] = None,
     city: Optional[str] = None,
     region: Optional[str] = None,
+    include_controlled_preview: bool = False,
     limit: int = Query(1500, ge=1, le=1500),
     db: Session = Depends(get_db),
 ):
@@ -2041,6 +2056,11 @@ def list_museums(
         .limit(limit)
         .all()
     )
+    allow_controlled = include_controlled_preview and _trusted_internal_request(request)
+    rows = [
+        row for row in rows
+        if allow_controlled or (row.content_policy or {}).get("controlled_preview_only") is not True
+    ]
     museum_ids = [row.id for row in rows]
     counts = {
         museum_id: count
@@ -2095,7 +2115,10 @@ def list_museums(
 
 # ---- Artworks -----------------------------------------------------------
 @app.get("/v1/artworks/{artwork_id}")
-def get_artwork_detail(artwork_id: str, locale: str = "en", mode: str = "normal", db: Session = Depends(get_db)):
+def get_artwork_detail(artwork_id: str, request: Request, locale: str = "en", mode: str = "normal", db: Session = Depends(get_db)):
+    raw_artwork = db.get(Artwork, artwork_id)
+    if raw_artwork and _controlled_preview_only(db, raw_artwork.museum_id) and not _trusted_internal_request(request):
+        raise HTTPException(status_code=404, detail="artwork not found")
     try:
         art = get_catalog_artwork(db, artwork_id)
     except CatalogUnavailableError as e:

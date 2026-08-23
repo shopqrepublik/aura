@@ -218,9 +218,12 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             db.add(Country(code="FR", name="France"))
             db.add(Museum(id="louvre", name="Louvre", country_code="FR", active=True))
             db.add(Museum(id="configured-ai-guide", name="Configured AI Guide", country_code="FR", active=True, experience_level="AI_GUIDE"))
+            db.add(Museum(id="controlled-gallery", name="Controlled Gallery", country_code="FR", active=True, content_policy={"controlled_preview_only": True}))
             db.add(InstitutionProfile(institution_id="louvre", candidate_universe="INSTITUTION_ARTWORKS", recognition_policy="ASSET_VERIFY"))
             db.add(InstitutionProfile(institution_id="configured-ai-guide", candidate_universe="NONE", recognition_policy="UNCATALOGED_ONLY"))
+            db.add(InstitutionProfile(institution_id="controlled-gallery", candidate_universe="INSTITUTION_ARTWORKS", recognition_policy="ASSET_VERIFY"))
             db.add(Artwork(id="known-work", museum_id="louvre", title_original="Known"))
+            db.add(Artwork(id="controlled-work", museum_id="controlled-gallery", title_original="Controlled"))
             db.commit()
 
         def override_db():
@@ -230,6 +233,8 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
         main.app.dependency_overrides[main.get_db] = override_db
         main.app.dependency_overrides[get_optional_current_user] = lambda: None
         self.old_key = main.OPENAI_API_KEY
+        self.old_qa = admin.ANALYTICS_QA_TOKEN
+        admin.ANALYTICS_QA_TOKEN = "test-qa-secret"
         self.old_recognize = main.recognize_with_vision
         main.OPENAI_API_KEY = "test-key"
         self.calls = 0
@@ -243,6 +248,7 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
 
     def tearDown(self):
         main.OPENAI_API_KEY = self.old_key
+        admin.ANALYTICS_QA_TOKEN = self.old_qa
         main.recognize_with_vision = self.old_recognize
         main.app.dependency_overrides.clear()
         self.engine.dispose()
@@ -326,6 +332,24 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             self.assertEqual(row.session_id, session_id)
             sighting = db.query(UncatalogedSighting).filter(UncatalogedSighting.museum_id == "configured-ai-guide").one()
             self.assertEqual(sighting.count, 1)
+
+    def test_controlled_preview_is_hidden_and_requires_trusted_qa(self):
+        public_directory = self.client.get("/v1/museums").json()
+        self.assertNotIn("controlled-gallery", {row["id"] for row in public_directory})
+        qa_directory = self.client.get(
+            "/v1/museums?include_controlled_preview=true",
+            headers={"X-ELYIO-QA-Token": "test-qa-secret"},
+        ).json()
+        self.assertIn("controlled-gallery", {row["id"] for row in qa_directory})
+        payload = {
+            "image_base64": "AA==", "museum_id": "controlled-gallery", "locale": "en",
+            "recognition_attempt_id": "93000000-0000-4000-8000-000000000001",
+            "anonymous_id": "93000000-0000-4000-8000-000000000002",
+            "session_id": "93000000-0000-4000-8000-000000000003",
+        }
+        self.assertEqual(self.client.post("/v1/recognize", json=payload).status_code, 404)
+        qa = self.client.post("/v1/recognize", json=payload, headers={"X-ELYIO-QA-Token": "test-qa-secret"})
+        self.assertEqual(qa.status_code, 200)
 
 
 if __name__ == "__main__":

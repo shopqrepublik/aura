@@ -1,6 +1,6 @@
 # Recognition Pipeline
 
-Media readiness is association-aware: a recognition reference requires an eligible media entity and an active eligible association to the correct object/holding with an appropriate role. Shared contextual media is never promoted into every linked object's candidate evidence.
+Media readiness is association-aware: a recognition reference requires an explicitly selected `RecognitionAsset` associated with the correct object/holding. Shared contextual media is never promoted into every linked object's candidate evidence. A selected HTTPS RecognitionAsset may be fetched into the bounded local reference cache at verification time; provider hosts are data, not hardcoded recognition branches.
 
 The hybrid invariant is unchanged: a configured institution and reliable active-catalog match yields a catalog-backed result; a configured institution without a reliable catalog match uses the explicitly uncataloged AI fallback and records demand; an unknown/unconfigured institution fails closed. Media/provenance gates constrain curated assets, not the configured-institution AI fallback.
 
@@ -38,6 +38,8 @@ Stage 1 extracts observable evidence/OCR and possible identity without inventing
 `VISION_PLUS_ASSET` means an eligible prepared reference/recognition asset participates or is available according to the current policy. `VISION_READY` is the vision+metadata path without such reference comparison. `NOT_READY` is operational readiness, not a successful response mode. Migration 0004 mirrors legacy assets into generic `media_assets`, but recognition still reads existing `RecognitionAsset`/image compatibility fields to guarantee parity.
 
 Presentation image != source/reference != RecognitionAsset. The generic model adds explicit purposes and eligibility; runtime may not infer recognition permission from presentation availability or public-domain artwork status.
+
+`RecognitionAsset` is not required for `VISION_READY`. That path sends the visitor image, institution context and the top five institution-scoped candidate metadata summaries to the two vision passes; no presentation/source/reference bytes are sent. `VISION_PLUS_ASSET` additionally compares the visitor image with one selected reference asset. National Gallery testing on 2026-08-24 showed that this distinction is operationally material for visually confusable works; see `NATIONAL_GALLERY_BENCHMARK_2026-08-24.md`.
 
 ## Engine outcome versus visitor resolution
 

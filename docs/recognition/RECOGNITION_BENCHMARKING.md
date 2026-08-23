@@ -6,6 +6,8 @@ Status: CURRENT practice and required standard.
 
 `backend/scripts/latency_test.py`, catalog regression/parity checks, reference-cache tooling and many `backend/scripts/louvre_*benchmark*.py` scripts exist. Louvre scripts are research/operations tools, not a universal framework. Some call OpenAI/Wikimedia and create local outputs; some import/migrate. Read CLI/source and target DB before execution.
 
+National Gallery controlled tooling is `backend/scripts/national_gallery_prepare_recognition_corpus.py`, `backend/scripts/national_gallery_recognition_benchmark.py`, and `backend/scripts/national_gallery_controlled_preview.py`. Corpus/benchmark output is ignored under `exports/`; only tooling, frozen metadata input and dated aggregate report belong in Git. The benchmark runner keeps the candidate snapshot separate from the test snapshot so out-of-catalog behavior is testable without contaminating the controlled 170-work universe.
+
 ## Benchmark dimensions
 
 For every activated museum, maintain separately:
@@ -26,4 +28,4 @@ Confident-wrong and cross-museum leakage are release blockers. Recall targets mu
 
 ## Production analytics limitations
 
-First-party events began 2026-08-20. Browser attempts are identifiable but currently lack measured latency. Server operations have backend outcomes but no browser identity/correlation ID. Historical stdout cannot reconstruct precise attempts. Admin results therefore supplement, not replace, controlled benchmarking.
+First-party events began 2026-08-20. Current recognition attempts carry anonymous, session, optional server-derived user, institution, artwork, terminal outcome, visitor resolution, latency and trusted `internal_test` classification. Controlled preview requests use the server-trusted QA token and are excluded from founder KPIs. Historical pre-contract rows remain legacy and cannot be reconstructed; admin results supplement, not replace, frozen controlled benchmarks.
