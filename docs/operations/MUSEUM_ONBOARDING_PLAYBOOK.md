@@ -2,6 +2,8 @@
 
 Status: CURRENT after Block 3. National Gallery London is a paper test only; this does not authorize ingestion.
 
+Block 4 path: register provider/adapter/institution mapping, then DISCOVER → DRY_RUN → PLAN → RECONCILE → reviewed APPLY using [Source Adapter Guide](SOURCE_ADAPTER_GUIDE.md). Complete [provenance review](PROVENANCE_REVIEW_RUNBOOK.md), readiness and benchmark before separate activation. New institutions must not use legacy direct-upsert scripts.
+
 ## 1. Institution/country configuration
 
 - Approve stable ELYIO ID/slug/name, ISO country, city, coordinates/geofence, IANA timezone, BCP-47 locales, display currency and owner.

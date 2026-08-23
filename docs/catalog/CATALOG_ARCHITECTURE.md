@@ -1,5 +1,9 @@
 # Catalog Architecture
 
+## Repeatable import boundary (CURRENT)
+
+See [Generic Ingestion Architecture](INGESTION_ARCHITECTURE.md). Generic APPLY creates canonical/source data only; it never creates active `ArtworkCatalogMembership`. Readiness and benchmark precede explicit activation.
+
 Status: CURRENT after Globalization Blocks 1–3.
 
 `museums` is the compatible canonical Institution directory. `institution_profiles` owns visitor catalog version, candidate universe, recognition policy/thresholds, prompt context, supported modes and operational ordering. `artworks` remains the visitor/editorial compatibility record; `cultural_objects`, `institution_holdings`, `source_records` and `media_assets` now separate identity and evidence. `artwork_catalog_memberships` activates a versioned visitor subset. Localizations, estimates and value reveals are editorial layers and source refreshes must not overwrite them.

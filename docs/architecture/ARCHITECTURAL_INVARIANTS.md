@@ -1,5 +1,15 @@
 # Architectural Invariants
 
+## Block 4 ingestion invariants (CURRENT)
+
+- Provider adapters describe external sources; generic ingestion owns ELYIO rules and never branches on institution/provider names.
+- APPLY is explicit, audited and idempotent; dry-run modes perform zero database mutation.
+- Ingestion, visitor-catalog activation and recognition activation are separate gates.
+- Weak metadata may suggest a duplicate but cannot merge objects.
+- Provider declarations never self-promote to VERIFIED or media eligibility.
+- Bad imports are neutralized reversibly, not by deleting canonical identity/provenance.
+- EUR-grounded Value Engine output cannot be relabelled GBP or another currency.
+
 Status: CURRENT rules future changes must preserve.
 
 1. Institution is data/configuration in `museums` + `institution_profiles`, never a permanent core branch. Provider adapters may be source-specific.

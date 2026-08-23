@@ -1,5 +1,9 @@
 # Image and Media Provenance
 
+## Operational review (CURRENT)
+
+Generic import preserves provider evidence without promotion. UNKNOWN, DECLARED_BY_SOURCE, VERIFIED and RESTRICTED stay explicit. Presentation and recognition eligibility are independent and admin decisions are audited. See [Provenance Review Runbook](../operations/PROVENANCE_REVIEW_RUNBOOK.md).
+
 Status: CURRENT after migration `0004_global_media_identity_foundation`.
 
 ## Generic model

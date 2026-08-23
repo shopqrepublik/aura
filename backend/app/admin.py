@@ -35,6 +35,7 @@ from .models import (
     InstitutionProfile,
     LouvreImageReference,
     MediaAsset,
+    MediaProvenanceReview,
     Museum,
     ProductEvent,
     RecognitionAsset,
@@ -551,6 +552,86 @@ def admin_logout(
 @router.get("/v1/admin/me")
 def admin_me(session: AdminSession = Depends(require_admin)):
     return {"email": session.email, "expires_at": _safe_datetime(session.expires_at)}
+
+
+class ProvenanceReviewUpdate(BaseModel):
+    verification_state: Optional[str] = None
+    rights_status: Optional[str] = None
+    presentation_eligible: Optional[bool] = None
+    recognition_eligible: Optional[bool] = None
+    notes: Optional[str] = Field(default=None, max_length=4000)
+
+    @field_validator("verification_state")
+    @classmethod
+    def valid_verification(cls, value):
+        if value is not None and value not in {"UNKNOWN", "DECLARED_BY_SOURCE", "VERIFIED", "RESTRICTED"}:
+            raise ValueError("invalid verification state")
+        return value
+
+    @field_validator("rights_status")
+    @classmethod
+    def valid_rights(cls, value):
+        if value is not None and value not in {"UNKNOWN", "LICENSED", "VERIFIED_PUBLIC_DOMAIN", "RESTRICTED"}:
+            raise ValueError("invalid rights status")
+        return value
+
+
+def _media_review_dict(row: MediaAsset) -> dict:
+    return {key: getattr(row, key) for key in (
+        "id", "provider_id", "artwork_id", "institution_holding_id", "source_record_id",
+        "purpose", "original_url", "rights_status", "verification_state", "license_code",
+        "attribution", "presentation_eligible", "recognition_eligible", "reviewed_by",
+    )}
+
+
+@router.get("/v1/admin/provenance")
+def admin_provenance_queue(
+    institution_id: Optional[str] = None, provider_id: Optional[str] = None,
+    verification_state: Optional[str] = None, rights_status: Optional[str] = None,
+    presentation_eligible: Optional[bool] = None, recognition_eligible: Optional[bool] = None,
+    no_usable_media: bool = False, limit: int = Query(100, ge=1, le=500),
+    db: Session = Depends(get_db), _: AdminSession = Depends(require_admin),
+):
+    query = db.query(MediaAsset)
+    if institution_id:
+        query = query.join(Artwork, Artwork.id == MediaAsset.artwork_id).filter(Artwork.museum_id == institution_id)
+    if provider_id: query = query.filter(MediaAsset.provider_id == provider_id)
+    if verification_state: query = query.filter(MediaAsset.verification_state == verification_state)
+    if rights_status: query = query.filter(MediaAsset.rights_status == rights_status)
+    if presentation_eligible is not None: query = query.filter(MediaAsset.presentation_eligible.is_(presentation_eligible))
+    if recognition_eligible is not None: query = query.filter(MediaAsset.recognition_eligible.is_(recognition_eligible))
+    if no_usable_media: query = query.filter(MediaAsset.presentation_eligible.isnot(True), MediaAsset.recognition_eligible.isnot(True))
+    rows = query.order_by(MediaAsset.created_at.asc()).limit(limit).all()
+    return {"items": [_media_review_dict(row) for row in rows], "returned": len(rows)}
+
+
+@router.patch("/v1/admin/provenance/{media_asset_id}")
+def admin_review_provenance(
+    media_asset_id: str, payload: ProvenanceReviewUpdate,
+    db: Session = Depends(get_db), admin: AdminSession = Depends(require_admin),
+):
+    row = db.get(MediaAsset, media_asset_id)
+    if row is None: raise HTTPException(status_code=404, detail="media asset not found")
+    before = _media_review_dict(row)
+    for field in ("verification_state", "rights_status"):
+        value = getattr(payload, field)
+        if value is not None: setattr(row, field, value)
+    if row.rights_status == "RESTRICTED" or row.verification_state == "RESTRICTED":
+        row.presentation_eligible = False
+        row.recognition_eligible = False
+    else:
+        for field in ("presentation_eligible", "recognition_eligible"):
+            value = getattr(payload, field)
+            if value is not None: setattr(row, field, value)
+        if (row.presentation_eligible is True or row.recognition_eligible is True) and row.verification_state != "VERIFIED":
+            raise HTTPException(status_code=409, detail="eligibility requires explicit VERIFIED provenance")
+        if (row.presentation_eligible is True or row.recognition_eligible is True) and row.rights_status not in {"LICENSED", "VERIFIED_PUBLIC_DOMAIN"}:
+            raise HTTPException(status_code=409, detail="eligibility requires reviewed usable rights")
+    row.reviewed_by, row.reviewed_at, row.review_notes = admin.email, _utcnow(), payload.notes
+    after = _media_review_dict(row)
+    db.add(MediaProvenanceReview(media_asset_id=row.id, actor=admin.email, action="REVIEW", before_state=before, after_state=after, notes=payload.notes))
+    db.commit()
+    return {"ok": True, "asset": after}
 
 
 @router.post("/v1/events")

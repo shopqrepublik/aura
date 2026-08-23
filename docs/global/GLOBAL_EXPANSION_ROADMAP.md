@@ -1,5 +1,7 @@
 # Global Expansion Roadmap
 
+Block 4 exit: after migration `0005`, generic runner, deterministic apply, provenance review, audit/deactivation and readiness handoff are implemented. The next block may implement and dry-run a National Gallery adapter; import/activation still require explicit authorization.
+
 Status: PROPOSED sequence.
 
 ## Phase 0 — documentation baseline

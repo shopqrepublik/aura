@@ -24,6 +24,8 @@ class AdapterMediaRecord:
     recognition_eligible: bool | None = None
     retrieved_at: datetime | None = None
     checksum_sha256: str | None = None
+    license_text: str | None = None
+    source_rights_metadata: dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -34,15 +36,26 @@ class AdapterObjectRecord:
     source_url: str | None
     source_language: str | None
     title_original: str
+    title_locale: str | None = None
     creator_display: str | None = None
+    date_display: str | None = None
+    object_type: str | None = None
+    description: str | None = None
     institution_record_id: str | None = None
     collection_source_id: str | None = None
+    department: str | None = None
+    room: str | None = None
+    gallery: str | None = None
     retrieved_at: datetime | None = None
+    provider_modified_at: datetime | None = None
     media: tuple[AdapterMediaRecord, ...] = ()
     raw_payload: dict[str, Any] = field(default_factory=dict)
 
 
 class CatalogSourceAdapter(Protocol):
     provider_id: str
+    adapter_key: str
 
     def records(self) -> Iterable[AdapterObjectRecord]: ...
+
+    def source_snapshot(self) -> str | None: ...

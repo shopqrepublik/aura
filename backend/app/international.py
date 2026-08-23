@@ -23,6 +23,14 @@ class InstitutionInternationalConfig:
     content_policy: dict
 
 
+@dataclass(frozen=True)
+class ValueOutputPolicy:
+    enabled: bool
+    engine_currency: str
+    display_currency: str | None
+    reason: str
+
+
 def normalize_locale(value: str) -> str:
     value = (value or "").strip()
     if not _LOCALE.fullmatch(value):
@@ -73,4 +81,17 @@ def get_institution_international_config(db: Session, institution_id: str) -> In
         supported_locales=supported,
         display_currency=currency,
         content_policy=policy,
+    )
+
+
+def get_value_output_policy(config: InstitutionInternationalConfig, engine_currency: str = "EUR") -> ValueOutputPolicy:
+    """Never relabel a currency-grounded model as an institution currency."""
+    engine_currency = validate_currency(engine_currency) or "EUR"
+    explicitly_enabled = config.content_policy.get("value_engine_v4_enabled")
+    compatible = config.display_currency == engine_currency
+    enabled = compatible if explicitly_enabled is None else bool(explicitly_enabled) and compatible
+    return ValueOutputPolicy(
+        enabled=enabled, engine_currency=engine_currency,
+        display_currency=config.display_currency,
+        reason="currency_compatible" if enabled else "unsupported_currency_or_disabled_policy",
     )

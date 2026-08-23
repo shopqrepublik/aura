@@ -1,5 +1,9 @@
 # Global Blockers
 
+## Block 4 resolution (2026-08-23)
+
+RESOLVED: generic adapter/runner, idempotent reconciliation, ingestion audit, explicit provenance review and import/activation separation. Distributed execution remains later scale work and does not block controlled second-country onboarding.
+
 Effort uses S/M/L/XL, not hour estimates.
 
 | Priority | Issue/evidence | Consequence | Approach | Effort |

@@ -237,6 +237,8 @@ class SourceProvider(Base):
     id = Column(String, primary_key=True)
     name = Column(String, nullable=False)
     provider_type = Column(String, nullable=False, default="OTHER")
+    adapter_key = Column(String, nullable=True)
+    adapter_config = Column(JSON, nullable=True)
     base_url = Column(String, nullable=True)
     active = Column(Boolean, nullable=False, default=True)
     created_at = Column(DateTime, default=now)
@@ -258,6 +260,14 @@ class SourceRecord(Base):
     source_url = Column(String, nullable=True)
     source_language = Column(String, nullable=True)
     retrieved_at = Column(DateTime, nullable=True)
+    provider_modified_at = Column(DateTime, nullable=True)
+    first_seen_at = Column(DateTime, default=now, nullable=False)
+    last_seen_at = Column(DateTime, default=now, nullable=False)
+    content_checksum = Column(String(64), nullable=True)
+    ingestion_status = Column(String, nullable=False, default="INGESTED")
+    review_status = Column(String, nullable=False, default="UNREVIEWED")
+    active = Column(Boolean, nullable=False, default=True)
+    last_ingestion_run_id = Column(String, ForeignKey("ingestion_runs.id"), nullable=True)
     raw_payload = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=now)
 
@@ -312,6 +322,11 @@ class MediaAsset(Base):
     derivative_spec = Column(JSON, nullable=True)
     legacy_source_table = Column(String, nullable=True)
     legacy_source_id = Column(String, nullable=True)
+    source_rights_metadata = Column(JSON, nullable=True)
+    review_notes = Column(Text, nullable=True)
+    reviewed_by = Column(String, nullable=True)
+    reviewed_at = Column(DateTime, nullable=True)
+    ingestion_run_id = Column(String, ForeignKey("ingestion_runs.id"), nullable=True)
     created_at = Column(DateTime, default=now)
     updated_at = Column(DateTime, default=now, onupdate=now)
 
@@ -327,6 +342,66 @@ class CulturalObjectDuplicateReview(Base):
     reviewed_by = Column(String, nullable=True)
     reviewed_at = Column(DateTime, nullable=True)
     created_at = Column(DateTime, default=now)
+
+
+class IngestionRun(Base):
+    __tablename__ = "ingestion_runs"
+    __table_args__ = (
+        Index("idx_ingestion_runs_provider_institution_started", "provider_id", "institution_id", "started_at"),
+        Index("idx_ingestion_runs_status", "status"),
+    )
+    id = Column(String, primary_key=True)
+    mode = Column(String, nullable=False)
+    adapter_key = Column(String, nullable=False)
+    provider_id = Column(String, ForeignKey("source_providers.id"), nullable=False)
+    institution_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    status = Column(String, nullable=False, default="RUNNING")
+    code_version = Column(String, nullable=True)
+    source_snapshot = Column(String, nullable=True)
+    operator_id = Column(String, nullable=True)
+    started_at = Column(DateTime, default=now, nullable=False)
+    finished_at = Column(DateTime, nullable=True)
+    records_inspected = Column(Integer, nullable=False, default=0)
+    created_count = Column(Integer, nullable=False, default=0)
+    updated_count = Column(Integer, nullable=False, default=0)
+    unchanged_count = Column(Integer, nullable=False, default=0)
+    conflict_count = Column(Integer, nullable=False, default=0)
+    failed_count = Column(Integer, nullable=False, default=0)
+    summary = Column(JSON, nullable=True)
+    error = Column(Text, nullable=True)
+
+
+class IngestionChange(Base):
+    __tablename__ = "ingestion_changes"
+    __table_args__ = (
+        Index("idx_ingestion_changes_run", "ingestion_run_id"),
+        Index("idx_ingestion_changes_source", "provider_id", "provider_record_id"),
+    )
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    ingestion_run_id = Column(String, ForeignKey("ingestion_runs.id"), nullable=False)
+    provider_id = Column(String, nullable=False)
+    provider_record_id = Column(String, nullable=False)
+    action = Column(String, nullable=False)
+    risk = Column(String, nullable=False)
+    status = Column(String, nullable=False)
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=True)
+    institution_holding_id = Column(String, ForeignKey("institution_holdings.id"), nullable=True)
+    source_record_id = Column(String, ForeignKey("source_records.id"), nullable=True)
+    details = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=now, nullable=False)
+
+
+class MediaProvenanceReview(Base):
+    __tablename__ = "media_provenance_reviews"
+    __table_args__ = (Index("idx_media_provenance_reviews_asset_created", "media_asset_id", "created_at"),)
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    media_asset_id = Column(String, ForeignKey("media_assets.id"), nullable=False)
+    actor = Column(String, nullable=False)
+    action = Column(String, nullable=False)
+    before_state = Column(JSON, nullable=True)
+    after_state = Column(JSON, nullable=True)
+    notes = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=now, nullable=False)
 
 
 class ArtworkCatalogMembership(Base):

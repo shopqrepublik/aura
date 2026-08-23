@@ -1,5 +1,15 @@
 # Global Readiness Scorecard
 
+## Block 4 delta (0–4)
+
+| Capability | Score | Evidence |
+|---|---:|---|
+| Onboarding | 3 | registered adapters, safe modes, audited idempotent APPLY |
+| Media provenance operations | 3 | authenticated per-asset review/audit and eligibility gates |
+| Catalog | 3 | canonical reconciliation, activation separation, readiness handoff |
+| Multi-country | 3 | neutral core; National Gallery requires adapter/data work only |
+| Scale | 2 | controlled synchronous import is suitable; distributed execution is future work |
+
 Scale: 0 absent; 1 prototype; 2 current deployment; 3 clean multi-museum/country ready; 4 global-scale ready.
 
 | Capability | Score | Evidence |
