@@ -18,7 +18,6 @@ from sqlalchemy import String, and_, case, desc, distinct, func, inspect, or_, s
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
-from .catalog import DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM
 from .db import SessionLocal, get_db
 from .models import (
     AdminLoginAttempt,
@@ -27,6 +26,8 @@ from .models import (
     ArtworkCatalogMembership,
     ArtworkLocalization,
     ArtworkValueReveal,
+    Country,
+    InstitutionProfile,
     LouvreImageReference,
     Museum,
     ProductEvent,
@@ -854,14 +855,31 @@ def _system(db: Session) -> Dict[str, Any]:
     if _table_exists(db, "product_events"):
         row = db.query(ProductEvent).filter(ProductEvent.event_name.in_(["recognition_succeeded", "scan_success", "recognition_completed"])).order_by(ProductEvent.occurred_at.desc()).first()
         latest_recognition = _safe_datetime(row.occurred_at) if row else None
+    configured_institutions = int(db.query(InstitutionProfile).filter(InstitutionProfile.active.is_(True)).count()) if _table_exists(db, "institution_profiles") else 0
+    unconfigured_institutions = int(
+        db.query(Museum).filter(Museum.active.is_(True), ~Museum.id.in_(select(InstitutionProfile.institution_id))).count()
+    ) if _table_exists(db, "institution_profiles") else int(db.query(Museum).count())
     return {
         "api_status": "ok",
         "db_status": "ok",
-        "frontend_release": os.environ.get("VERCEL_GIT_COMMIT_SHA"),
-        "backend_release": os.environ.get("FLY_IMAGE_REF") or os.environ.get("RENDER_GIT_COMMIT") or os.environ.get("GIT_COMMIT_SHA"),
+        "frontend_release": os.environ.get("FRONTEND_GIT_SHA"),
+        "backend_release": os.environ.get("GIT_COMMIT_SHA") or os.environ.get("FLY_IMAGE_REF") or os.environ.get("RENDER_GIT_COMMIT"),
+        "build_timestamp": os.environ.get("BUILD_TIMESTAMP"),
+        "deployment_environment": os.environ.get("DEPLOYMENT_ENV", "unknown"),
+        "migration_head": _migration_head(db),
+        "countries": int(db.query(Country).count()) if _table_exists(db, "countries") else 0,
+        "institutions": int(db.query(Museum).filter(Museum.active.is_(True)).count()),
+        "configured_institutions": configured_institutions,
+        "unconfigured_institutions": unconfigured_institutions,
         "latest_successful_recognition": latest_recognition,
         "tracking_available_since": TRACKING_AVAILABLE_SINCE,
     }
+
+
+def _migration_head(db: Session) -> Optional[str]:
+    if not _table_exists(db, "schema_migrations"):
+        return None
+    return db.execute(text("SELECT migration_id FROM schema_migrations ORDER BY migration_id DESC LIMIT 1")).scalar()
 
 
 def _data_gaps(db: Session) -> List[str]:

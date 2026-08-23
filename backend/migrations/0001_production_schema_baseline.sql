@@ -1,0 +1,3 @@
+-- Baseline marker only. Never execute this file against an existing database.
+-- `python scripts/migrate.py baseline` validates the live schema and records
+-- this migration without replaying historical DDL.

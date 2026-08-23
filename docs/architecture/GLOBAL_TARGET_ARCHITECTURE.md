@@ -1,6 +1,6 @@
 # Global Target Architecture
 
-Status: **PROPOSED — NOT IMPLEMENTED**.
+Status: **PROPOSED target**. Block 1 foundation (`Country`, compatible `Institution`, optional `Collection`, `InstitutionProfile`, migration ledger and fail-closed recognition configuration) is IMPLEMENTED; later entities below remain proposed.
 
 ## Goal
 
@@ -22,8 +22,8 @@ Evolve the current modular monolith and Postgres schema without premature micros
 
 ## Pragmatic evolution
 
-1. Add country/institution configuration and migration ledger without renaming public APIs.
-2. Move `DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM`, prompt context, ordering and thresholds into versioned DB/config rows.
+1. **Implemented:** add country/institution configuration and migration ledger without renaming public APIs.
+2. **Implemented for runtime recognition/catalog selection:** move catalog version, prompt context, thresholds, candidate universe and asset policy into `institution_profiles`.
 3. Introduce source/media tables alongside current image columns; backfill provenance before removing legacy fields.
 4. Add collection/holding/location only when onboarding the second country demonstrates real mappings.
 5. Keep synchronous FastAPI for user recognition; add queue/batch only for ingestion, enrichment and analytics aggregation.

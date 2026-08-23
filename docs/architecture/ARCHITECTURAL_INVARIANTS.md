@@ -2,7 +2,7 @@
 
 Status: CURRENT rules plus global safety requirements.
 
-1. A museum/institution must become data/configuration, never a permanent code branch.
+1. A museum/institution is data/configuration in `museums` + `institution_profiles`, never a permanent core code branch. Source adapters may remain provider-specific.
 2. Recognition candidate lookup is scoped to the selected institution/catalog; no cross-museum leakage.
 3. Every catalog object has a stable ELYIO ID and traceable source record; inventory numbers alone are not globally unique.
 4. Presentation image, source/reference image and `RecognitionAsset` are distinct roles.
@@ -22,3 +22,5 @@ Status: CURRENT rules plus global safety requirements.
 18. Schema changes are versioned, repeatable and observable; deployed tables without a migration ledger are transitional debt.
 19. Production source must be reproducible from reviewed mainline Git history and embedded in deployment metadata.
 20. Historical audit counts are dated snapshots, not constants or KPI defaults.
+21. Missing, inactive or invalid Institution Profile configuration fails closed; it must never broaden to institution-wide or global candidates implicitly.
+22. Existing institution IDs and analytics `museum_id` dimensions remain stable through the Institution transition.

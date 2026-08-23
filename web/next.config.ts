@@ -32,6 +32,11 @@ const CSP = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  env: {
+    NEXT_PUBLIC_DEPLOYED_GIT_SHA: process.env.VERCEL_GIT_COMMIT_SHA ?? process.env.GIT_COMMIT_SHA ?? "unknown",
+    NEXT_PUBLIC_BUILD_TIMESTAMP: process.env.BUILD_TIMESTAMP ?? "unknown",
+    NEXT_PUBLIC_DEPLOYMENT_ENV: process.env.VERCEL_ENV ?? process.env.DEPLOYMENT_ENV ?? "unknown",
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [{ protocol: "https", hostname: "api.elyio.co", pathname: "/v1/image-proxy" }],

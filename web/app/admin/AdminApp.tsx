@@ -448,6 +448,11 @@ export default function AdminApp() {
               <div className="admin-kpi-grid compact">
                 <Kpi label="API" value={dashboard.system.api_status} />
                 <Kpi label="Database" value={dashboard.system.db_status} />
+                <Kpi label="Frontend SHA" value={process.env.NEXT_PUBLIC_DEPLOYED_GIT_SHA} />
+                <Kpi label="Backend SHA" value={dashboard.system.backend_release} />
+                <Kpi label="Migration head" value={dashboard.system.migration_head} />
+                <Kpi label="Configured institutions" value={dashboard.system.configured_institutions} />
+                <Kpi label="Unconfigured institutions" value={dashboard.system.unconfigured_institutions} />
                 <Kpi label="Latest recognition" value={dashboard.system.latest_successful_recognition} />
                 <Kpi label="Tracking since" value={dashboard.system.tracking_available_since} />
               </div>

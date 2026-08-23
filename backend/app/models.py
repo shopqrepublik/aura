@@ -23,6 +23,12 @@ def now():
 
 
 class Museum(Base):
+    """Canonical institution record.
+
+    The historic ``museums`` table and ``Museum`` Python name remain in use
+    for API/foreign-key compatibility.  Global institution attributes live
+    here; no per-institution application branch is required.
+    """
     __tablename__ = "museums"
     id = Column(String, primary_key=True)          # e.g. "orsay"
     name = Column(String, nullable=False)
@@ -45,6 +51,64 @@ class Museum(Base):
     source_updated_at = Column(DateTime, nullable=True)
     raw_json = Column(JSON, nullable=True)
     experience_level = Column(String, nullable=False, default="AI_GUIDE")
+    country_code = Column(String, ForeignKey("countries.code"), nullable=True)
+    timezone = Column(String, nullable=True)
+    default_locale = Column(String, nullable=True)
+    supported_locales = Column(JSON, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
+
+
+class Country(Base):
+    __tablename__ = "countries"
+    code = Column(String(2), primary_key=True)
+    name = Column(String, nullable=False)
+    default_locale = Column(String, nullable=True)
+    default_timezone = Column(String, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+class InstitutionProfile(Base):
+    """Operational catalog/recognition configuration for an institution."""
+    __tablename__ = "institution_profiles"
+    institution_id = Column(String, ForeignKey("museums.id"), primary_key=True)
+    visitor_catalog_version = Column(String, nullable=True)
+    candidate_universe = Column(String, nullable=False, default="NONE")
+    recognition_policy = Column(String, nullable=False, default="NOT_READY")
+    supported_modes = Column(JSON, nullable=False, default=lambda: ["normal", "simple", "kids"])
+    max_candidates = Column(Integer, nullable=False, default=5)
+    confidence_auto = Column(Float, nullable=False, default=0.92)
+    confidence_review = Column(Float, nullable=False, default=0.82)
+    fuzzy_candidate_threshold = Column(Float, nullable=False, default=0.55)
+    prompt_context = Column(Text, nullable=True)
+    allow_recognition_asset_substitution = Column(Boolean, nullable=False, default=True)
+    active = Column(Boolean, nullable=False, default=True)
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+class Collection(Base):
+    """Optional institution hierarchy; existing artworks need not use it."""
+    __tablename__ = "collections"
+    __table_args__ = (
+        UniqueConstraint("institution_id", "slug", name="uq_collections_institution_slug"),
+    )
+    id = Column(String, primary_key=True)
+    institution_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    parent_id = Column(String, ForeignKey("collections.id"), nullable=True)
+    slug = Column(String, nullable=False)
+    name = Column(String, nullable=False)
+    source = Column(String, nullable=True)
+    source_record_id = Column(String, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
+    created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+# Canonical application terminology. ``Museum`` remains an alias-compatible
+# mapped class so existing imports and public museum IDs do not change.
+Institution = Museum
 
 
 class Artwork(Base):
@@ -66,6 +130,7 @@ class Artwork(Base):
 
     id = Column(String, primary_key=True)           # e.g. "orsay_rf_1990"
     museum_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    collection_id = Column(String, ForeignKey("collections.id"), nullable=True)
     artist = Column(String, nullable=True)
     title_original = Column(String, nullable=False)
     title_complement = Column(String, nullable=True)

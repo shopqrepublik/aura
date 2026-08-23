@@ -1,6 +1,6 @@
 # System Overview
 
-Status: CURRENT at production source `5c5ac7e`.
+Status: IMPLEMENTED on the globalization Block 1 release branch; production identifiers are recorded during deployment verification.
 
 ## Runtime topology
 
@@ -36,6 +36,9 @@ The public localized website is static/server-rendered. `/visit` is the anonymou
 | Presentation vs recognition | `Artwork.image_url`, `RecognitionAsset`, and source/reference records are distinct concepts. |
 | Client vs server analytics | Client events have visitor identity; server recognition events are operational and identityless today. |
 | Current vs target | Current France-specific schema is documented in `DATA_MODEL.md`; proposed global entities are not claimed as implemented. |
+| Institution resolution | Country/Institution/optional Collection and operational Institution Profile are implemented additively; public museum IDs remain stable. |
+| Fail closed | Missing or invalid institution configuration returns HTTP 409 `institution_not_ready`; candidate lookup never broadens globally. |
+| Schema governance | `schema_migrations` and `schema_migration_attempts` provide checksummed ordered state and failure visibility. |
 
 ## Current production API inventory
 
@@ -68,6 +71,6 @@ Verified from live OpenAPI on 2026-08-23:
 | POST | `/v1/visits/{visit_id}/complete` | Supabase JWT required |
 | GET | `/health` | Public health |
 
-## Production discrepancy
+## Release identity
 
-`origin/main` is not production source. Current production was built immediately after `5c5ac7e` on the documentation branch. Restoring a reviewed deployable mainline is the first operational correction.
+`/health` reports backend Git SHA, build timestamp and environment. `/v1/admin/system` adds migration head and configured/unconfigured institution counts. The frontend admin System view embeds the Vercel Git SHA. Canonical rule: production deploys from reviewed `main` or an explicitly documented release commit.

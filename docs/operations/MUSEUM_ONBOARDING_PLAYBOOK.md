@@ -5,17 +5,17 @@ Status: CURRENT process plus explicit gaps. Paper test institution: National Gal
 ## 1. Institution creation
 
 - Manual: establish canonical institution name, official source, stable ELYIO ID, coordinates, geofence, public slug and operational owner.
-- Tool/DB: insert/update `museums` using a reviewed importer/SQL; no generic institution CLI exists.
+- Tool/DB: insert `countries` when needed, then insert/update canonical Institution data in compatibility table `museums`; no generic institution CLI exists yet.
 - Validation: unique ID/slug/external source ID; directory API returns one row.
 - Success: museum selectable without replacing another row.
-- National Gallery: **migration/design required** for country; current row can only store city/region strings.
+- National Gallery: country/institution schema is now configuration-ready; ingestion remains explicitly out of scope.
 
 ## 2. Country/city configuration
 
 - Manual: ISO country, city, timezone, default language/currency/legal context.
-- Current DB: only `city`, `department`, `region`, address/postal code; no country/timezone.
+- Current DB: `country_code`, city string, timezone, default locale and supported locales are implemented. A normalized City entity is not.
 - Success target: canonical country/city relations and formatting policy.
-- National Gallery: **current global blocker**, not config-only.
+- National Gallery: country/timezone is config-only; City normalization is optional for initial onboarding.
 
 ## 3. Catalog source
 
@@ -53,9 +53,9 @@ Choose presentation and recognition assets separately. Populate source/license/a
 
 Assign metadata/display/recognition/rights status; add eligible `RecognitionAsset` where required. Current status vocabulary needs manual normalization. Success: no active row is accidentally draft/not-ready.
 
-## 10. Visitor catalog activation
+## 10. Institution Profile and visitor catalog activation
 
-Create a versioned membership manifest with priorities/tiers, initially inactive. Current code requires adding a museum-specific environment variable and Python map entry for top-N behavior; **custom backend change required today**. Validate membership museum matches artwork museum.
+Create a versioned membership manifest with priorities/tiers, initially inactive. Add one reviewed `institution_profiles` row declaring catalog version, candidate universe, recognition policy, thresholds, supported modes and asset policy. No Python museum branch is required. Validate membership institution matches artwork institution and activate only after the catalog is non-empty. Missing configuration deliberately returns `institution_not_ready`.
 
 ## 11. Benchmark
 
@@ -88,12 +88,12 @@ Deactivate membership/version; remove curated frontend/SEO availability through 
 | Work item | Today |
 |---|---|
 | Basic museum row | Config/data import |
-| Correct country/timezone/institution semantics | Migration + backend/frontend model change |
+| Correct country/timezone/institution semantics | Config/data; foundation implemented |
 | Catalog | New source adapter/data ingestion |
 | Stable object IDs | Data design/import; current source uniqueness usable |
 | Collection/loan/exhibition | Architecture change if required |
 | Images/rights | Manual assessment + asset ingestion |
-| Recognition policy/version | Backend code/config change |
+| Recognition policy/version | Institution Profile configuration; no core code change |
 | Candidate ranking | Existing generic core can work after configuration |
 | UI/SEO museum availability | Frontend content/config change |
 | English UI | Already supported |
@@ -101,4 +101,4 @@ Deactivate membership/version; remove curated frontend/SEO availability through 
 | Analytics/admin dimensions | Museum ID works; country/institution integrity needs model change |
 | Benchmark/smoke | New fixtures/manual QA |
 
-Mandatory before launch: country/institution model, source/right assessment, import and identity manifest, recognition configuration, frontend/SEO content, benchmark, analytics validation, smoke/rollback. Optional later: collection hierarchy, institution B2B role, automated sync and multilingual expansion beyond English.
+Mandatory before launch: source/right assessment, import and identity manifest, Institution Profile, frontend/SEO content, benchmark, analytics validation, smoke/rollback. Optional later: populated collection hierarchy, normalized City, institution B2B role, automated sync and multilingual expansion beyond English.

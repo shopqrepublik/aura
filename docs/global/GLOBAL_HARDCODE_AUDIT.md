@@ -6,14 +6,14 @@ Status: CURRENT tracked-source audit at `5c5ac7e`. Content mentions inside artwo
 
 | Path / component | Current assumption | Class | Impact | Recommended remediation |
 |---|---|---|---|---|
-| `backend/app/catalog.py` version constants/map | Ten exact museum IDs and one env variable per version | **GLOBAL_BLOCKER** | New curated museum needs backend code/deploy; absent map falls back to all museum artworks | `visitor_catalogs`/recognition profile table and active version pointer |
-| `backend/app/main.py:TOPN_VERIFIER_MUSEUMS` | Recognition policy equals keys of that map | **GLOBAL_BLOCKER** | Policy cannot be configured per institution/catalog | Data-driven recognition profile |
-| `backend/app/main.py:recognize_open` | Named prompts only for Louvre/Orsay/Orangerie; fallback shows raw museum ID | **SHOULD_GENERALIZE** | Poor/inconsistent context for new museum | Load localized institution name/source policy from DB/config |
-| `backend/app/main.py` confidence constants | 0.92 auto, 0.82 review, 0.55 fuzzy globally | **SHOULD_GENERALIZE** | Different object/media classes cannot be calibrated independently | Benchmark-versioned profile thresholds |
+| `backend/app/catalog.py` former version constants/map | **RESOLVED:** catalog version/candidate universe are in `institution_profiles` | **SAFE_CONFIGURATION** | New institution requires data, not a Python branch | Preserve profile validation and migration tests |
+| `backend/app/main.py` former `TOPN_VERIFIER_MUSEUMS` | **RESOLVED:** recognition policy is profile data | **SAFE_CONFIGURATION** | Per-institution behavior is explicit | Benchmark before policy/threshold change |
+| `backend/app/main.py:recognize_open` | **RESOLVED:** name/prompt context comes from the resolved Institution Profile | **SAFE_CONFIGURATION** | New museum receives stable human context | Localize prompt context in later i18n block |
+| `backend/app/main.py` confidence constants | Runtime auto/review/fuzzy thresholds are profile-backed; constants remain fallback for direct internal function callers | **SAFE_CONFIGURATION** | Production endpoint is configurable | Remove fallback only after all offline tooling accepts config |
 | `backend/app/main.py:VISUAL_VERIFY_MODEL` | Stage 2 hardcoded `gpt-4o` | **SAFE_CONFIGURATION** today | Model change requires deploy; benchmark coupling | Environment/profile plus frozen benchmark approval |
 | `backend/app/main.py:DEMO_ARTWORKS` | Large Orsay/Orangerie fallback catalog in code | **GLOBAL_BLOCKER** | Duplicate source of truth, bundle/module weight, one-pilot assumptions | Remove runtime fallback after DB availability contract/tests |
 | `backend/app/main.py` museum sort | Louvre, Orsay, Orangerie fixed priority | **SHOULD_GENERALIZE** | Global directory privileges Paris museums | Institution prominence/market config in data |
-| `backend/app/catalog.py:artwork_to_catalog_dict` | Louvre RecognitionAsset substitution always blocked | **SAFE_CONFIGURATION** temporary | Correct safety quarantine but institution name embedded | Asset review state/policy rather than museum ID branch |
+| `institution_profiles.allow_recognition_asset_substitution` | Louvre quarantine is an explicit migrated data value | **SAFE_CONFIGURATION** temporary | Core catalog code has no Louvre branch | Move to per-asset identity-review status later |
 | `backend/app/main.py` source URL policy/comments | Louvre/RMN is metadata-only; Wikimedia behavior generic | **SAFE_CONFIGURATION** | Rights-safe but provider-specific logic can spread | Provider policy registry keyed by source/license |
 | `backend/app/models.py:LouvreImageReference` | Dedicated provider/museum table | **SHOULD_GENERALIZE** | New providers need new tables/code | Generic `source_media_references` with typed raw metadata |
 | `backend/app/models.py:Artwork` | Louvre-era department/collection/location fields added to universal row | **SHOULD_GENERALIZE** | Semantics unclear across institutions | Normalized collection/holding/location with source mapping |
@@ -43,12 +43,12 @@ Status: CURRENT tracked-source audit at `5c5ac7e`. Content mentions inside artwo
 ## Implicit assumptions without literal keywords
 
 - Artwork has one required museum FK; ownership/display/loan cannot diverge.
-- Catalog activation silently falls back to all museum artworks when no configured version is found.
+- **Resolved:** catalog activation never silently falls back; invalid/missing configuration fails closed.
 - Candidate ranking materializes a museum's entire list in Python per request.
 - First-party identity is browser-local and not linked to authenticated user.
 - Event integrity trusts public clients.
 - Session means tab sessionStorage, not product inactivity.
-- Collection hierarchy, country, timezone and institution default language are absent.
+- Country, timezone, institution locales and optional Collection hierarchy exist; normalized City and populated collection mappings remain absent.
 - Static SEO/public content and DB catalog have no generic publication workflow.
 
 ## Counts by requested category

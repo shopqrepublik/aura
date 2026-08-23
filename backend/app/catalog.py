@@ -1,59 +1,91 @@
 from __future__ import annotations
 
-import os
+from dataclasses import dataclass
 from typing import Iterable, Optional
 
 from sqlalchemy import inspect
 from sqlalchemy.orm import Session
 
-from .models import Artwork, ArtworkCatalogMembership, ArtworkEstimate, ArtworkValueReveal, RecognitionAsset
+from .models import (
+    Artwork,
+    ArtworkCatalogMembership,
+    ArtworkEstimate,
+    ArtworkValueReveal,
+    Institution,
+    InstitutionProfile,
+    RecognitionAsset,
+)
 
 
 class CatalogUnavailableError(RuntimeError):
     """Raised when the DB-backed catalog cannot be queried."""
 
 
-LOUVRE_VISITOR_CATALOG_VERSION = os.environ.get("LOUVRE_VISITOR_CATALOG_VERSION", "2026-08-11-v1")
-VERSAILLES_VISITOR_CATALOG_VERSION = os.environ.get("VERSAILLES_VISITOR_CATALOG_VERSION", "2026-08-12-v1")
-RODIN_VISITOR_CATALOG_VERSION = os.environ.get("RODIN_VISITOR_CATALOG_VERSION", "2026-08-13-v1")
-PICASSO_PARIS_VISITOR_CATALOG_VERSION = os.environ.get("PICASSO_PARIS_VISITOR_CATALOG_VERSION", "2026-08-13-v1")
-QUAI_BRANLY_VISITOR_CATALOG_VERSION = os.environ.get("QUAI_BRANLY_VISITOR_CATALOG_VERSION", "2026-08-13-v1")
-GUIMET_VISITOR_CATALOG_VERSION = os.environ.get("GUIMET_VISITOR_CATALOG_VERSION", "2026-08-14-v1")
-CLUNY_VISITOR_CATALOG_VERSION = os.environ.get("CLUNY_VISITOR_CATALOG_VERSION", "2026-08-14-v1")
-CARNAVALET_VISITOR_CATALOG_VERSION = os.environ.get("CARNAVALET_VISITOR_CATALOG_VERSION", "2026-08-14-v1")
-PETIT_PALAIS_VISITOR_CATALOG_VERSION = os.environ.get("PETIT_PALAIS_VISITOR_CATALOG_VERSION", "2026-08-14-v1")
-ARMEE_VISITOR_CATALOG_VERSION = os.environ.get("ARMEE_VISITOR_CATALOG_VERSION", "2026-08-14-v1")
-DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM = {
-    "louvre": LOUVRE_VISITOR_CATALOG_VERSION,
-    "versailles": VERSAILLES_VISITOR_CATALOG_VERSION,
-    "museofile_m5044": RODIN_VISITOR_CATALOG_VERSION,
-    "museofile_m5043": PICASSO_PARIS_VISITOR_CATALOG_VERSION,
-    "museofile_m5055": QUAI_BRANLY_VISITOR_CATALOG_VERSION,
-    "museofile_m5005": GUIMET_VISITOR_CATALOG_VERSION,
-    "museofile_m5003": CLUNY_VISITOR_CATALOG_VERSION,
-    "museofile_m1104": CARNAVALET_VISITOR_CATALOG_VERSION,
-    "museofile_m1111": PETIT_PALAIS_VISITOR_CATALOG_VERSION,
-    "museofile_m5025": ARMEE_VISITOR_CATALOG_VERSION,
-}
+class InstitutionNotReadyError(CatalogUnavailableError):
+    """Controlled fail-closed state for missing/invalid institution config."""
+
+
+@dataclass(frozen=True)
+class InstitutionRuntimeConfig:
+    institution_id: str
+    display_name: str
+    visitor_catalog_version: Optional[str]
+    candidate_universe: str
+    recognition_policy: str
+    supported_modes: tuple[str, ...]
+    max_candidates: int
+    confidence_auto: float
+    confidence_review: float
+    fuzzy_candidate_threshold: float
+    prompt_context: Optional[str]
+    allow_recognition_asset_substitution: bool
+
+
+VALID_CANDIDATE_UNIVERSES = {"ACTIVE_CATALOG", "INSTITUTION_ARTWORKS", "NONE"}
+VALID_RECOGNITION_POLICIES = {"TOP_N_METADATA", "ASSET_VERIFY", "UNCATALOGED_ONLY", "NOT_READY"}
 
 
 def _has_membership_table(db: Session) -> bool:
     return db.bind is not None and inspect(db.bind).has_table("artwork_catalog_memberships")
 
 
-def _use_membership_scope(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> bool:
-    version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
-    if not museum_id or not version or not _has_membership_table(db):
-        return False
-    return (
-        db.query(ArtworkCatalogMembership)
-        .filter(
-            ArtworkCatalogMembership.museum_id == museum_id,
-            ArtworkCatalogMembership.catalog_version == version,
-            ArtworkCatalogMembership.active.is_(True),
-        )
-        .first()
-        is not None
+def get_institution_runtime_config(db: Session, institution_id: str) -> InstitutionRuntimeConfig:
+    if not institution_id:
+        raise InstitutionNotReadyError("institution_not_ready: institution identifier is required")
+    institution = db.get(Institution, institution_id)
+    profile = db.get(InstitutionProfile, institution_id)
+    if institution is None or not institution.active:
+        raise InstitutionNotReadyError(f"institution_not_ready: unknown or inactive institution {institution_id!r}")
+    if profile is None or not profile.active:
+        raise InstitutionNotReadyError(f"institution_not_ready: no active profile for institution {institution_id!r}")
+    if profile.candidate_universe not in VALID_CANDIDATE_UNIVERSES:
+        raise InstitutionNotReadyError(f"institution_not_ready: invalid candidate universe for {institution_id!r}")
+    if profile.recognition_policy not in VALID_RECOGNITION_POLICIES:
+        raise InstitutionNotReadyError(f"institution_not_ready: invalid recognition policy for {institution_id!r}")
+    if profile.candidate_universe == "ACTIVE_CATALOG" and not profile.visitor_catalog_version:
+        raise InstitutionNotReadyError(f"institution_not_ready: active catalog version missing for {institution_id!r}")
+    valid_pairings = {
+        "ACTIVE_CATALOG": {"TOP_N_METADATA", "ASSET_VERIFY"},
+        "INSTITUTION_ARTWORKS": {"TOP_N_METADATA", "ASSET_VERIFY"},
+        "NONE": {"UNCATALOGED_ONLY"},
+    }
+    if profile.recognition_policy not in valid_pairings[profile.candidate_universe]:
+        raise InstitutionNotReadyError(f"institution_not_ready: incompatible candidate universe and policy for {institution_id!r}")
+    if profile.recognition_policy == "NOT_READY":
+        raise InstitutionNotReadyError(f"institution_not_ready: recognition disabled for {institution_id!r}")
+    return InstitutionRuntimeConfig(
+        institution_id=institution.id,
+        display_name=institution.common_name or institution.name,
+        visitor_catalog_version=profile.visitor_catalog_version,
+        candidate_universe=profile.candidate_universe,
+        recognition_policy=profile.recognition_policy,
+        supported_modes=tuple(profile.supported_modes or []),
+        max_candidates=max(1, int(profile.max_candidates or 5)),
+        confidence_auto=float(profile.confidence_auto),
+        confidence_review=float(profile.confidence_review),
+        fuzzy_candidate_threshold=float(profile.fuzzy_candidate_threshold),
+        prompt_context=profile.prompt_context,
+        allow_recognition_asset_substitution=bool(profile.allow_recognition_asset_substitution),
     )
 
 
@@ -155,6 +187,7 @@ def artwork_to_catalog_dict(
     estimate: Optional[ArtworkEstimate] = None,
     value_reveal: Optional[ArtworkValueReveal] = None,
     recognition_asset: Optional[RecognitionAsset] = None,
+    allow_recognition_asset_substitution: bool = True,
 ) -> dict:
     """Return the legacy DEMO_ARTWORKS-shaped dict used by recognition/UI APIs."""
     reveal = explicit_value_reveal_to_dict(value_reveal) or estimate_to_value_reveal(estimate)
@@ -163,11 +196,7 @@ def artwork_to_catalog_dict(
     if (
         recognition_asset is not None
         and recognition_asset.embedding_eligible
-        # Louvre RecognitionAssets are currently quarantined at the product
-        # level until the identity audit is reconciled into production state.
-        # Do not let a rights-approved but identity-mismatched asset replace
-        # the authoritative artwork image/reference exposed to recognition/UI.
-        and artwork.museum_id != "louvre"
+        and allow_recognition_asset_substitution
     ):
         recognition_image_url = recognition_asset.source_url
         recognition_asset_id = recognition_asset.id
@@ -268,11 +297,16 @@ def _recognition_asset_by_artwork_id(db: Session, artwork_ids: Iterable[str]) ->
 
 
 def get_recognition_candidates(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> list[dict]:
-    if not museum_id:
-        return []
     try:
-        if _use_membership_scope(db, museum_id, catalog_version):
-            version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
+        config = get_institution_runtime_config(db, museum_id)
+        if catalog_version and catalog_version != config.visitor_catalog_version:
+            raise InstitutionNotReadyError(f"institution_not_ready: requested catalog version is not active for {museum_id!r}")
+        if config.candidate_universe == "NONE":
+            return []
+        if config.candidate_universe == "ACTIVE_CATALOG":
+            if not _has_membership_table(db):
+                raise InstitutionNotReadyError(f"institution_not_ready: catalog membership table missing for {museum_id!r}")
+            version = config.visitor_catalog_version
             rows = (
                 db.query(Artwork)
                 .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == Artwork.id)
@@ -285,17 +319,32 @@ def get_recognition_candidates(db: Session, museum_id: str, catalog_version: Opt
                 .order_by(ArtworkCatalogMembership.visitor_priority.desc().nullslast(), Artwork.priority.asc().nullslast(), Artwork.id.asc())
                 .all()
             )
-        else:
+            if not rows:
+                raise InstitutionNotReadyError(f"institution_not_ready: active catalog is empty for {museum_id!r}")
+        elif config.candidate_universe == "INSTITUTION_ARTWORKS":
             rows = (
                 db.query(Artwork)
                 .filter(Artwork.museum_id == museum_id)
                 .order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc())
                 .all()
             )
+        else:
+            raise InstitutionNotReadyError(f"institution_not_ready: candidate universe disabled for {museum_id!r}")
         estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
         value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
         recognition_assets = _recognition_asset_by_artwork_id(db, [row.id for row in rows])
-        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id), recognition_assets.get(row.id)) for row in rows]
+        return [
+            artwork_to_catalog_dict(
+                row,
+                estimates.get(row.id),
+                value_reveals.get(row.id),
+                recognition_assets.get(row.id),
+                config.allow_recognition_asset_substitution,
+            )
+            for row in rows
+        ]
+    except InstitutionNotReadyError:
+        raise
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog lookup failed for museum_id={museum_id!r}: {exc}") from exc
 
@@ -308,7 +357,9 @@ def get_catalog_artwork(db: Session, artwork_id: str) -> Optional[dict]:
         estimate = _estimate_by_artwork_id(db, [row.id]).get(row.id)
         value_reveal = _value_reveal_by_artwork_id(db, [row.id]).get(row.id)
         recognition_asset = _recognition_asset_by_artwork_id(db, [row.id]).get(row.id)
-        return artwork_to_catalog_dict(row, estimate, value_reveal, recognition_asset)
+        profile = db.get(InstitutionProfile, row.museum_id)
+        allow_substitution = bool(profile and profile.active and profile.allow_recognition_asset_substitution)
+        return artwork_to_catalog_dict(row, estimate, value_reveal, recognition_asset, allow_substitution)
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog artwork lookup failed for artwork_id={artwork_id!r}: {exc}") from exc
 
@@ -318,8 +369,11 @@ def get_catalog_artworks_by_ids(db: Session, museum_id: str, artwork_ids: Iterab
     if not museum_id or not ids:
         return []
     try:
-        if _use_membership_scope(db, museum_id, catalog_version):
-            version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
+        config = get_institution_runtime_config(db, museum_id)
+        if config.candidate_universe == "NONE":
+            return []
+        if config.candidate_universe == "ACTIVE_CATALOG":
+            version = config.visitor_catalog_version
             rows = (
                 db.query(Artwork)
                 .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == Artwork.id)
@@ -333,17 +387,21 @@ def get_catalog_artworks_by_ids(db: Session, museum_id: str, artwork_ids: Iterab
                 .order_by(ArtworkCatalogMembership.visitor_priority.desc().nullslast(), Artwork.priority.asc().nullslast(), Artwork.id.asc())
                 .all()
             )
-        else:
+        elif config.candidate_universe == "INSTITUTION_ARTWORKS":
             rows = (
                 db.query(Artwork)
                 .filter(Artwork.museum_id == museum_id, Artwork.id.in_(ids))
                 .order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc())
                 .all()
             )
+        else:
+            raise InstitutionNotReadyError(f"institution_not_ready: candidate universe disabled for {museum_id!r}")
         estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
         value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
         recognition_assets = _recognition_asset_by_artwork_id(db, [row.id for row in rows])
-        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id), recognition_assets.get(row.id)) for row in rows]
+        return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id), recognition_assets.get(row.id), config.allow_recognition_asset_substitution) for row in rows]
+    except InstitutionNotReadyError:
+        raise
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog artwork list lookup failed for museum_id={museum_id!r}: {exc}") from exc
 
@@ -352,8 +410,11 @@ def count_catalog_artworks(db: Session, museum_id: str, catalog_version: Optiona
     if not museum_id:
         return 0
     try:
-        if _use_membership_scope(db, museum_id, catalog_version):
-            version = catalog_version or DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM.get(museum_id)
+        config = get_institution_runtime_config(db, museum_id)
+        if config.candidate_universe == "NONE":
+            return 0
+        if config.candidate_universe == "ACTIVE_CATALOG":
+            version = config.visitor_catalog_version
             return (
                 db.query(ArtworkCatalogMembership)
                 .filter(
@@ -363,6 +424,10 @@ def count_catalog_artworks(db: Session, museum_id: str, catalog_version: Optiona
                 )
                 .count()
             )
-        return db.query(Artwork).filter(Artwork.museum_id == museum_id).count()
+        if config.candidate_universe == "INSTITUTION_ARTWORKS":
+            return db.query(Artwork).filter(Artwork.museum_id == museum_id).count()
+        raise InstitutionNotReadyError(f"institution_not_ready: candidate universe disabled for {museum_id!r}")
+    except InstitutionNotReadyError:
+        raise
     except Exception as exc:
         raise CatalogUnavailableError(f"catalog count failed for museum_id={museum_id!r}: {exc}") from exc

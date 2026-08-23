@@ -91,12 +91,14 @@ from .auth import get_current_user  # noqa: E402
 from .admin import record_product_event_from_server, router as admin_router  # noqa: E402
 from .catalog import (  # noqa: E402
     CatalogUnavailableError,
-    DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM,
+    InstitutionNotReadyError,
+    InstitutionRuntimeConfig,
     aggregate_eligible_value,
     count_catalog_artworks,
     get_catalog_artwork,
     get_catalog_artworks_by_ids,
     get_recognition_candidates,
+    get_institution_runtime_config,
 )
 from .db import SessionLocal, get_db  # noqa: E402
 from .models import Artwork, ArtworkLocalization, Museum, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
@@ -132,7 +134,6 @@ INDICATIVE_VALUE_MODEL = os.environ.get("OPENAI_INDICATIVE_VALUE_MODEL", RECOGNI
 # regression, not a safety one — but "don't regress accuracy" was the explicit
 # bar, so Stage 2 stays on gpt-4o. See README for the full before/after numbers.
 VISUAL_VERIFY_MODEL = "gpt-4o"
-TOPN_VERIFIER_MUSEUMS = set(DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM)
 INDICATIVE_VALUE_CACHE: dict[str, dict] = {}
 
 
@@ -305,7 +306,7 @@ def _openai_chat_completion_with_retries(client, **kwargs):
     raise last_error or RuntimeError("OpenAI recognition request failed")
 
 
-def recognize_open(image_base64: str, museum_id: str) -> dict:
+def recognize_open(image_base64: str, museum_id: str, institution_context: Optional[str] = None) -> dict:
     """
     Open recognition — no candidate list in the prompt at all. A 13-photo
     real-world test showed the closed-catalog prompt (and even the two-stage
@@ -318,11 +319,10 @@ def recognize_open(image_base64: str, museum_id: str) -> dict:
     from openai import OpenAI  # imported lazily so the module still loads without the package during UI-only dev
 
     client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
-    museum_context = {
-        "louvre": "Musée du Louvre. The final identity must later be resolved against ELYIO's own Louvre visitor catalog; do not invent or output an ARK id.",
-        "orsay": "Musée d'Orsay. The final identity must later be resolved against ELYIO's own Orsay catalog.",
-        "orangerie": "Musée de l'Orangerie. The final identity must later be resolved against ELYIO's own Orangerie catalog.",
-    }.get(museum_id, f"{museum_id or 'a museum'}. The final identity must later be resolved against ELYIO's own museum catalog.")
+    museum_context = institution_context or (
+        f"{museum_id or 'a configured museum'}. The final identity must later be "
+        "resolved against ELYIO's institution-scoped catalog."
+    )
     system_prompt = (
         "You are the first visual-analysis pass for a museum recognition system. "
         f"Context: the visitor is likely inside {museum_context}\n\n"
@@ -1126,7 +1126,14 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
     return data
 
 
-def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional[str], candidates: List[dict], benchmark_mode: Optional[str] = None) -> dict:
+def recognize_with_vision(
+    image_base64: str,
+    museum_id: str,
+    hall_hint: Optional[str],
+    candidates: List[dict],
+    benchmark_mode: Optional[str] = None,
+    institution_config: Optional[InstitutionRuntimeConfig] = None,
+) -> dict:
     """
     Hybrid: open recognition (no candidate list) -> fuzzy text match against
     the DB-backed, museum-scoped catalog -> up to TWO visual verification calls, but only when a
@@ -1158,14 +1165,27 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
     still the only thing that can ever return an artwork_id either way --
     this doesn't loosen the confident-wrong guarantee at all.
     """
-    ident = recognize_open(image_base64, museum_id)
+    policy = institution_config.recognition_policy if institution_config else "ASSET_VERIFY"
+    fuzzy_threshold = institution_config.fuzzy_candidate_threshold if institution_config else FUZZY_CANDIDATE_THRESHOLD
+    candidate_limit = institution_config.max_candidates if institution_config else 5
+    prompt_context = institution_config.prompt_context if institution_config else None
+    if not prompt_context and institution_config:
+        prompt_context = (
+            f"{institution_config.display_name}. The final identity must later be resolved "
+            "against ELYIO's institution-scoped catalog."
+        )
+    ident = (
+        recognize_open(image_base64, museum_id, prompt_context)
+        if prompt_context
+        else recognize_open(image_base64, museum_id)
+    )
     artist, title = ident.get("artist"), ident.get("title")
     model_confidence = float(ident.get("confidence", 0) or 0)
 
     image_quality = ident.get("image_quality")
     non_artwork_reason = str(ident.get("non_artwork_reason") or "").lower()
     is_curated_space_photo = (
-        museum_id in TOPN_VERIFIER_MUSEUMS
+        policy == "TOP_N_METADATA"
         and image_quality == "good"
         and any(term in non_artwork_reason for term in ["room", "interior", "hall", "gallery"])
         and bool(ident.get("visual_clues") or ident.get("visual_search_description") or ident.get("distinctive_features"))
@@ -1190,7 +1210,7 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
     if not ident.get("recognized") and not title and not ident.get("visual_clues"):
         return {"artwork_id": None, "confidence": 0.0, "alternatives": []}  # fast path: nothing recognized
 
-    ranked = rank_catalog_candidates(ident, candidates, hall_hint=hall_hint, limit=5)
+    ranked = rank_catalog_candidates(ident, candidates, hall_hint=hall_hint, limit=candidate_limit)
     if not ranked:
         return {
             "artwork_id": None,
@@ -1220,8 +1240,8 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
             ],
         }
 
-    if not match or match_score < FUZZY_CANDIDATE_THRESHOLD:
-        if museum_id not in TOPN_VERIFIER_MUSEUMS:
+    if not match or match_score < fuzzy_threshold:
+        if policy != "TOP_N_METADATA":
             return {  # fast path: recognized something, but nothing catalog-adjacent
                 "artwork_id": None,
                 "confidence": 0.0,
@@ -1231,8 +1251,8 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
                 "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:3]],
             }
 
-    if museum_id in TOPN_VERIFIER_MUSEUMS:
-        topn_verdict = verify_top_candidates_with_openai(image_base64, ident, ranked[:5])
+    if policy == "TOP_N_METADATA":
+        topn_verdict = verify_top_candidates_with_openai(image_base64, ident, ranked[:candidate_limit])
         chosen_id = topn_verdict.get("chosen_id")
         if topn_verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
             chosen = next((row["candidate"] for row in ranked if row["candidate"]["id"] == chosen_id), None)
@@ -1251,7 +1271,7 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
                     "confidence": float(topn_verdict.get("confidence", 0) or 0),
                     "alternatives": [
                         row["candidate"]["id"]
-                        for row in ranked[:5]
+                        for row in ranked[:candidate_limit]
                         if row["candidate"]["id"] != chosen_id
                     ][:3],
                     "recognition_mode": "VISION_PLUS_ASSET" if has_local_asset else "VISION_READY",
@@ -1273,7 +1293,7 @@ def recognize_with_vision(image_base64: str, museum_id: str, hall_hint: Optional
             "vision": ident,
             "top_candidates": [
                 {"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]}
-                for row in ranked[:5]
+                for row in ranked[:candidate_limit]
             ],
             "stage2_verifier": topn_verdict,
         }
@@ -1724,14 +1744,25 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
     _log_recognition_event("recognition_started", museum_id=req.museum_id, locale=req.locale)
 
     try:
+        institution_config = get_institution_runtime_config(db, req.museum_id)
         candidates = get_recognition_candidates(db, req.museum_id)
+    except InstitutionNotReadyError as e:
+        _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready")
+        raise HTTPException(status_code=409, detail={"code": "institution_not_ready", "message": str(e)})
     except CatalogUnavailableError as e:
         _log_recognition_event("recognition_failed", museum_id=req.museum_id, reason="catalog_unavailable")
         raise HTTPException(status_code=503, detail=str(e))
 
     if OPENAI_API_KEY:
         try:
-            result = recognize_with_vision(req.image_base64, req.museum_id, req.hall_hint, candidates, benchmark_mode=req.benchmark_mode)
+            result = recognize_with_vision(
+                req.image_base64,
+                req.museum_id,
+                req.hall_hint,
+                candidates,
+                benchmark_mode=req.benchmark_mode,
+                institution_config=institution_config,
+            )
         except Exception as e:
             _log_recognition_event(
                 "recognition_failed",
@@ -1773,7 +1804,7 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                                       recognized_but_not_cataloged=recognized_but_not_cataloged,
                                       vision=vision, top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier)
-        if confidence >= CONFIDENCE_AUTO:
+        if confidence >= institution_config.confidence_auto:
             _log_recognition_event(
                 "recognition_completed",
                 museum_id=req.museum_id,
@@ -1788,7 +1819,7 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier)
-        elif confidence >= CONFIDENCE_REVIEW:
+        elif confidence >= institution_config.confidence_review:
             _log_recognition_event(
                 "recognition_completed",
                 museum_id=req.museum_id,
@@ -1830,9 +1861,9 @@ def recognize(req: RecognizeRequest, db: Session = Depends(get_db)):
         return RecognizeResponse(status="no_match", confidence=0.0)
     candidate = random.choice(candidates)
     confidence = round(random.uniform(0.75, 0.99), 3)
-    if confidence >= CONFIDENCE_AUTO:
+    if confidence >= institution_config.confidence_auto:
         return RecognizeResponse(status="matched", artwork_id=candidate["id"], confidence=confidence)
-    elif confidence >= CONFIDENCE_REVIEW:
+    elif confidence >= institution_config.confidence_review:
         alts = [a["id"] for a in random.sample(candidates, k=min(2, len(candidates)))]
         return RecognizeResponse(status="needs_confirmation", artwork_id=candidate["id"],
                                   confidence=confidence, alternatives=alts)
@@ -1863,6 +1894,10 @@ class MuseumOut(BaseModel):
     source_updated_at: Optional[str] = None
     experience_level: str = "AI_GUIDE"
     curated_artwork_count: int = 0
+    country_code: Optional[str] = None
+    timezone: Optional[str] = None
+    default_locale: Optional[str] = None
+    supported_locales: List[str] = []
 
 
 @app.get("/v1/museums", response_model=List[MuseumOut])
@@ -1879,7 +1914,7 @@ def list_museums(
     never artwork catalogs. CURATED means a museum has ELYIO catalog coverage;
     AI_GUIDE means recognition can still run and fall back to the AI result.
     """
-    query = db.query(Museum)
+    query = db.query(Museum).filter(Museum.active.is_(True))
     if q:
         needle = f"%{q.lower()}%"
         query = query.filter(
@@ -1919,8 +1954,12 @@ def list_museums(
         )
     }
     for museum_id in museum_ids:
-        if museum_id in DEFAULT_VISITOR_CATALOG_VERSION_BY_MUSEUM:
+        try:
             counts[museum_id] = count_catalog_artworks(db, museum_id)
+        except InstitutionNotReadyError:
+            # Directory remains available while diagnostics expose the missing
+            # profile; recognition itself still fails closed.
+            counts[museum_id] = 0
     return [
         MuseumOut(
             id=row.id,
@@ -1944,6 +1983,10 @@ def list_museums(
             source_updated_at=row.source_updated_at.date().isoformat() if row.source_updated_at else None,
             experience_level=row.experience_level or "AI_GUIDE",
             curated_artwork_count=counts.get(row.id, 0),
+            country_code=row.country_code,
+            timezone=row.timezone,
+            default_locale=row.default_locale,
+            supported_locales=row.supported_locales or [],
         )
         for row in rows
     ]
@@ -2123,4 +2166,11 @@ def complete_visit(
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "release": {
+            "git_sha": os.environ.get("GIT_COMMIT_SHA", "unknown"),
+            "build_timestamp": os.environ.get("BUILD_TIMESTAMP", "unknown"),
+            "environment": os.environ.get("DEPLOYMENT_ENV", "unknown"),
+        },
+    }
