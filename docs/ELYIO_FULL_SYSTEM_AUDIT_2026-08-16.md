@@ -2,6 +2,8 @@
 
 Production snapshot  2026-08-16
 
+> **Status: HISTORICAL AUDIT / PREVIOUS BASELINE.** Audited state: 2026-08-16 at `3adf605aca3ae5afd6f6d879b717c4f69682ad0c`. This file preserves evidence and must not be treated as current architecture. It is superseded by [`docs/README.md`](README.md) and the 2026-08-23 canonical documentation tree. Sections about admin, first-party analytics, identity, retention, recognition operations and current deployments are materially outdated.
+
 > This is the canonical architectural and operating snapshot of ELYIO at the audited revision. It describes the service as observed, not an aspirational design. No credential values, user records, or private media are included.
 
 ## Table of Contents
