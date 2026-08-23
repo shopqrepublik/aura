@@ -40,6 +40,7 @@ def register(db) -> None:
         country = Country(code="GB", name="United Kingdom")
         db.add(country)
     country.default_locale = "en-GB"; country.default_timezone = "Europe/London"; country.default_currency = "GBP"; country.active = True
+    db.flush()
     institution = db.get(Institution, INSTITUTION_ID)
     if institution is None:
         institution = Institution(id=INSTITUTION_ID, slug=INSTITUTION_ID, name="The National Gallery")
@@ -48,6 +49,7 @@ def register(db) -> None:
     institution.timezone = "Europe/London"; institution.default_locale = "en-GB"; institution.supported_locales = ["en-GB"]
     institution.display_currency = "GBP"; institution.experience_level = "CURATED"; institution.active = True
     institution.content_policy = {**(data["institution"].get("content_policy") or {}), "controlled_preview_only": True, "seo_enabled": False}
+    db.flush()
     profile = db.get(InstitutionProfile, INSTITUTION_ID)
     if profile is None:
         profile = InstitutionProfile(institution_id=INSTITUTION_ID)
