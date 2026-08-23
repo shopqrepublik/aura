@@ -8,13 +8,21 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
-from backend.app.catalog import InstitutionRuntimeConfig
-from backend.app.ingestion import stable_id
-from backend.app.main import REFERENCE_CACHE_DIR, recognize_with_vision
+try:
+    from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+    from backend.app.catalog import InstitutionRuntimeConfig
+    from backend.app.ingestion import stable_id
+    from backend.app.main import REFERENCE_CACHE_DIR, recognize_with_vision
+except ModuleNotFoundError:
+    from app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+    from app.catalog import InstitutionRuntimeConfig
+    from app.ingestion import stable_id
+    from app.main import REFERENCE_CACHE_DIR, recognize_with_vision
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SNAPSHOT = ROOT / "backend/data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
+SCRIPT = Path(__file__).resolve()
+ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
+BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
+DEFAULT_SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
 DEFAULT_CORPUS = ROOT / "exports/national_gallery/recognition_corpus_170_v1/manifest.json"
 DEFAULT_OUT = ROOT / "exports/national_gallery/recognition_benchmark"
 

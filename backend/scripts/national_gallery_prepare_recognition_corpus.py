@@ -19,11 +19,17 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
-from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
-from backend.app.ingestion import stable_id
+try:
+    from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+    from backend.app.ingestion import stable_id
+except ModuleNotFoundError:
+    from app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+    from app.ingestion import stable_id
 
-ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_SNAPSHOT = ROOT / "backend/data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
+SCRIPT = Path(__file__).resolve()
+ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
+BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
+DEFAULT_SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
 DEFAULT_OUT = ROOT / "exports/national_gallery/recognition_corpus_170_v1"
 UA = "ELYIO-National-Gallery-controlled-recognition/1.0"
 

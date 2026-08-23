@@ -12,17 +12,22 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
-from backend.app.db import SessionLocal
-from backend.app.ingestion import apply_plan, build_plan
-from backend.app.models import (
-    Artwork, ArtworkCatalogMembership, Base, Country, Institution, InstitutionProfile,
-    MediaAsset, MediaAssetAssociation, RecognitionAsset, SourceProvider,
-)
+try:  # repository execution
+    from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+    from backend.app.db import SessionLocal
+    from backend.app.ingestion import apply_plan, build_plan
+    from backend.app.models import Artwork, ArtworkCatalogMembership, Base, Country, Institution, InstitutionProfile, MediaAsset, MediaAssetAssociation, RecognitionAsset, SourceProvider
+except ModuleNotFoundError:  # Fly image execution from /app
+    from app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+    from app.db import SessionLocal
+    from app.ingestion import apply_plan, build_plan
+    from app.models import Artwork, ArtworkCatalogMembership, Base, Country, Institution, InstitutionProfile, MediaAsset, MediaAssetAssociation, RecognitionAsset, SourceProvider
 
-ROOT = Path(__file__).resolve().parents[2]
-SNAPSHOT = ROOT / "backend/data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
-CONFIG = ROOT / "backend/data/onboarding/national_gallery_london/config.json"
+SCRIPT = Path(__file__).resolve()
+ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
+BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
+SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
+CONFIG = BACKEND_ROOT / "data/onboarding/national_gallery_london/config.json"
 INSTITUTION_ID = "national-gallery-london"
 PROVIDER_ID = "national_gallery_london"
 CATALOG_VERSION = "ng-controlled-170-v1"
