@@ -25,6 +25,7 @@ from .models import (
     InstitutionHolding,
     InstitutionProfile,
     MediaAsset,
+    MediaAssetAssociation,
     MediaProvenanceReview,
     SourceProvider,
     SourceRecord,
@@ -92,6 +93,7 @@ class PlannedRecord:
     possible_duplicate_ids: tuple[str, ...] = ()
     changed_fields: tuple[str, ...] = ()
     media_additions: int = 0
+    media_relationship_additions: int = 0
     provenance_issues: tuple[str, ...] = ()
     record: AdapterObjectRecord | None = field(default=None, repr=False, compare=False)
 
@@ -115,7 +117,7 @@ class IngestionPlan:
     def summary(self) -> dict[str, int]:
         counts = {key: 0 for key in (
             "records_inspected", "new_objects", "new_holdings", "known_source_records",
-            "possible_duplicates", "metadata_changes", "media_additions", "provenance_issues",
+            "possible_duplicates", "metadata_changes", "unique_media_assets", "media_relationship_edges", "media_additions", "provenance_issues",
             "conflicts", "invalid_records", "records_requiring_review", "source_missing",
         )}
         counts["records_inspected"] = sum(1 for row in self.records if row.action != "SOURCE_MISSING")
@@ -131,7 +133,9 @@ class IngestionPlan:
             if row.action == "INVALID": counts["invalid_records"] += 1
             if row.action == "SOURCE_MISSING": counts["source_missing"] += 1
             if row.risk != "SAFE_AUTOMATIC": counts["records_requiring_review"] += 1
-            counts["media_additions"] += row.media_additions
+            counts["unique_media_assets"] += row.media_additions
+            counts["media_relationship_edges"] += row.media_relationship_additions
+            counts["media_additions"] += row.media_additions  # v1 compatibility
             counts["provenance_issues"] += len(row.provenance_issues)
         return counts
 
@@ -205,16 +209,40 @@ def _provenance_issues(media: Iterable[AdapterMediaRecord]) -> tuple[str, ...]:
     return tuple(issues)
 
 
-def _media_addition_count(db: Session, provider_id: str, media: Iterable[AdapterMediaRecord]) -> int:
-    count = 0
-    for asset in media:
-        exists = db.query(MediaAsset.id).filter(
-            MediaAsset.provider_id == provider_id,
-            MediaAsset.original_url == asset.original_url,
-            MediaAsset.purpose == asset.purpose,
-        ).first()
-        if not exists: count += 1
-    return count
+def _media_identity(provider_id: str, asset: AdapterMediaRecord) -> tuple[str, str]:
+    return (provider_id, f"pid:{asset.provider_asset_id}" if asset.provider_asset_id else f"url:{asset.original_url}")
+
+
+def _find_media(db: Session, provider_id: str, asset: AdapterMediaRecord) -> MediaAsset | None:
+    query = db.query(MediaAsset).filter(MediaAsset.provider_id == provider_id)
+    if asset.provider_asset_id:
+        return query.filter(MediaAsset.provider_asset_id == asset.provider_asset_id).first()
+    return query.filter(MediaAsset.original_url == asset.original_url).first()
+
+
+def _relationship_key(record: AdapterObjectRecord, asset: AdapterMediaRecord, index: int) -> str:
+    return asset.source_relationship_key or f"{record.provider_record_id}:media:{index}:{asset.provider_asset_id or asset.original_url}"
+
+
+def _association_id(record: AdapterObjectRecord, asset: AdapterMediaRecord, index: int, object_id: str, holding_id: str | None) -> str:
+    scope = asset.association_scope
+    target = holding_id if scope == "HOLDING" else object_id
+    return stable_id("media-assoc", record.provider_id, _relationship_key(record, asset, index), scope, target or "", asset.association_role or asset.purpose)
+
+
+def _media_plan_counts(db: Session, record: AdapterObjectRecord, object_id: str, holding_id: str | None, seen_assets: set[tuple[str, str]], seen_edges: set[str]) -> tuple[int, int]:
+    new_assets = new_edges = 0
+    for index, asset in enumerate(record.media):
+        identity = _media_identity(record.provider_id, asset)
+        existing = _find_media(db, record.provider_id, asset)
+        if existing is None and identity not in seen_assets:
+            new_assets += 1
+        seen_assets.add(identity)
+        edge_id = _association_id(record, asset, index, object_id, holding_id)
+        if db.get(MediaAssetAssociation, edge_id) is None and edge_id not in seen_edges:
+            new_edges += 1
+        seen_edges.add(edge_id)
+    return new_assets, new_edges
 
 
 def build_plan(
@@ -229,6 +257,8 @@ def build_plan(
     validate_target(db, adapter, institution_id)
     records = tuple(adapter.records())
     seen_batch: set[str] = set()
+    seen_media_assets: set[tuple[str, str]] = set()
+    seen_media_edges: set[str] = set()
     planned: list[PlannedRecord] = []
     for record in records:
         errors = validate_record(record, adapter, institution_id)
@@ -244,16 +274,16 @@ def build_plan(
             SourceRecord.provider_record_id == record.provider_record_id,
         ).first()
         issues = _provenance_issues(record.media)
-        media_count = _media_addition_count(db, adapter.provider_id, record.media)
         if source:
+            media_count, edge_count = _media_plan_counts(db, record, source.cultural_object_id, source.institution_holding_id, seen_media_assets, seen_media_edges)
             if source.institution_id and source.institution_id != institution_id:
                 planned.append(PlannedRecord(record.provider_record_id, "CONFLICT", "HIGH_RISK", "source record belongs to another institution", checksum, source_record_id=source.id, record=record))
                 continue
             if source.content_checksum == checksum:
-                planned.append(PlannedRecord(record.provider_record_id, "UNCHANGED", "SAFE_AUTOMATIC", "source checksum unchanged", checksum, source.cultural_object_id, source.institution_holding_id, source.id, media_additions=media_count, provenance_issues=issues, record=record))
+                planned.append(PlannedRecord(record.provider_record_id, "UNCHANGED", "SAFE_AUTOMATIC", "source checksum unchanged", checksum, source.cultural_object_id, source.institution_holding_id, source.id, media_additions=media_count, media_relationship_additions=edge_count, provenance_issues=issues, record=record))
             else:
                 changed, risk = _material_changes(source, record)
-                planned.append(PlannedRecord(record.provider_record_id, "UPDATE", risk, "provider record changed" if source.content_checksum else "legacy source record requires synchronization baseline", checksum, source.cultural_object_id, source.institution_holding_id, source.id, changed_fields=changed, media_additions=media_count, provenance_issues=issues, record=record))
+                planned.append(PlannedRecord(record.provider_record_id, "UPDATE", risk, "provider record changed" if source.content_checksum else "legacy source record requires synchronization baseline", checksum, source.cultural_object_id, source.institution_holding_id, source.id, changed_fields=changed, media_additions=media_count, media_relationship_additions=edge_count, provenance_issues=issues, record=record))
             continue
 
         holding = None
@@ -264,7 +294,8 @@ def build_plan(
             ).first()
         if holding:
             artwork = db.query(Artwork).filter(Artwork.institution_holding_id == holding.id).first()
-            planned.append(PlannedRecord(record.provider_record_id, "MATCHED", "REVIEW_RECOMMENDED", "strong institution record matched; new provider link requires review", checksum, holding.cultural_object_id, holding.id, stable_id("source-record", adapter.provider_id, record.provider_record_id), artwork.id if artwork else None, media_additions=media_count, provenance_issues=issues, record=record))
+            media_count, edge_count = _media_plan_counts(db, record, holding.cultural_object_id, holding.id, seen_media_assets, seen_media_edges)
+            planned.append(PlannedRecord(record.provider_record_id, "MATCHED", "REVIEW_RECOMMENDED", "strong institution record matched; new provider link requires review", checksum, holding.cultural_object_id, holding.id, stable_id("source-record", adapter.provider_id, record.provider_record_id), artwork.id if artwork else None, media_additions=media_count, media_relationship_additions=edge_count, provenance_issues=issues, record=record))
             continue
 
         duplicate_ids: tuple[str, ...] = ()
@@ -277,15 +308,19 @@ def build_plan(
             duplicate_ids = tuple(sorted({row[0] for row in matches if row[0]}))
         action: Action = "POSSIBLE_DUPLICATE" if duplicate_ids else "NEW"
         risk: Risk = "REVIEW_RECOMMENDED" if duplicate_ids else "SAFE_AUTOMATIC"
+        new_object_id = stable_id("object", adapter.provider_id, record.provider_record_id)
+        new_holding_id = stable_id("holding", adapter.provider_id, record.provider_record_id)
+        media_count, edge_count = _media_plan_counts(db, record, new_object_id, new_holding_id, seen_media_assets, seen_media_edges)
         planned.append(PlannedRecord(
             record.provider_record_id, action, risk,
             "weak metadata suggests an existing object; no automatic merge" if duplicate_ids else "new provider record",
             checksum,
-            stable_id("object", adapter.provider_id, record.provider_record_id),
-            stable_id("holding", adapter.provider_id, record.provider_record_id),
+            new_object_id,
+            new_holding_id,
             stable_id("source-record", adapter.provider_id, record.provider_record_id),
             stable_id("artwork", adapter.provider_id, record.provider_record_id),
-            duplicate_ids, (), media_count, issues, record,
+            possible_duplicate_ids=duplicate_ids, media_additions=media_count,
+            media_relationship_additions=edge_count, provenance_issues=issues, record=record,
         ))
 
     if include_missing:
@@ -313,41 +348,57 @@ def _eligibility(asset: AdapterMediaRecord) -> tuple[bool | None, bool | None]:
     return bool(asset.presentation_eligible), bool(asset.recognition_eligible)
 
 
-def _upsert_media(db: Session, plan: PlannedRecord, run_id: str, artwork_id: str | None) -> int:
-    created = 0
+def _upsert_media(db: Session, plan: PlannedRecord, run_id: str, artwork_id: str | None) -> tuple[int, int]:
+    assets_created = associations_created = 0
     assert plan.record is not None and plan.cultural_object_id
-    for asset in plan.record.media:
-        existing = db.query(MediaAsset).filter(
-            MediaAsset.provider_id == plan.record.provider_id,
-            MediaAsset.original_url == asset.original_url,
-            MediaAsset.purpose == asset.purpose,
-        ).first()
-        if existing: continue
+    for index, asset in enumerate(plan.record.media):
+        existing = _find_media(db, plan.record.provider_id, asset)
         presentation, recognition = _eligibility(asset)
-        source_metadata = dict(asset.source_rights_metadata or {})
-        source_metadata["adapter_presentation_hint"] = asset.presentation_eligible
-        source_metadata["adapter_recognition_hint"] = asset.recognition_eligible
-        db.add(MediaAsset(
-            id=stable_id("media", plan.record.provider_id, asset.provider_asset_id or asset.original_url, asset.purpose),
-            cultural_object_id=plan.cultural_object_id,
-            artwork_id=artwork_id,
-            institution_holding_id=plan.institution_holding_id,
-            source_record_id=plan.source_record_id,
-            provider_id=plan.record.provider_id,
-            provider_asset_id=asset.provider_asset_id,
-            purpose=asset.purpose, media_type=asset.media_type,
-            original_url=asset.original_url, asset_url=None,
-            rights_status=asset.rights_status,
-            verification_state=asset.verification_state,
-            license_code=asset.license_code, license_text=asset.license_text,
-            attribution=asset.attribution,
-            public_domain=True if asset.rights_status == "VERIFIED_PUBLIC_DOMAIN" and asset.verification_state == "VERIFIED" else None,
-            presentation_eligible=presentation, recognition_eligible=recognition,
-            retrieved_at=asset.retrieved_at, checksum_sha256=asset.checksum_sha256,
-            source_rights_metadata=source_metadata, ingestion_run_id=run_id,
-        ))
-        created += 1
-    return created
+        if existing is None:
+            source_metadata = dict(asset.source_rights_metadata or {})
+            source_metadata["adapter_presentation_hint"] = asset.presentation_eligible
+            source_metadata["adapter_recognition_hint"] = asset.recognition_eligible
+            existing = MediaAsset(
+                id=stable_id("media", plan.record.provider_id, asset.provider_asset_id or asset.original_url),
+                # Compatibility pointers intentionally remain unset for new generic writes.
+                cultural_object_id=None, artwork_id=None, institution_holding_id=None, source_record_id=None,
+                provider_id=plan.record.provider_id, provider_asset_id=asset.provider_asset_id,
+                purpose=asset.purpose, media_type=asset.media_type,
+                original_url=asset.original_url, asset_url=None,
+                rights_status=asset.rights_status, verification_state=asset.verification_state,
+                license_code=asset.license_code, license_text=asset.license_text,
+                attribution=asset.attribution,
+                public_domain=True if asset.rights_status == "VERIFIED_PUBLIC_DOMAIN" and asset.verification_state == "VERIFIED" else None,
+                presentation_eligible=presentation, recognition_eligible=recognition,
+                retrieved_at=asset.retrieved_at, checksum_sha256=asset.checksum_sha256,
+                source_rights_metadata=source_metadata, ingestion_run_id=run_id,
+            )
+            db.add(existing)
+            assets_created += 1
+        association_id = _association_id(plan.record, asset, index, plan.cultural_object_id, plan.institution_holding_id)
+        association = db.get(MediaAssetAssociation, association_id)
+        if association is None:
+            scope = asset.association_scope
+            if scope not in {"OBJECT", "HOLDING"} or (scope == "HOLDING" and not plan.institution_holding_id):
+                raise IngestionConflictError("invalid media association target scope")
+            association = MediaAssetAssociation(
+                id=association_id, media_asset_id=existing.id, target_scope=scope,
+                cultural_object_id=plan.cultural_object_id,
+                institution_holding_id=plan.institution_holding_id if scope == "HOLDING" else None,
+                source_record_id=plan.source_record_id, provider_id=plan.record.provider_id,
+                source_relationship_key=_relationship_key(plan.record, asset, index),
+                relationship_role=asset.association_role or asset.purpose,
+                position=asset.position if asset.position is not None else index,
+                primary=asset.primary, presentation_eligible=presentation,
+                recognition_eligible=recognition, active=True, ingestion_run_id=run_id,
+            )
+            db.add(association)
+            associations_created += 1
+        else:
+            association.last_seen_at = utcnow()
+            association.active = True
+            association.ingestion_run_id = run_id
+    return assets_created, associations_created
 
 
 def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = None, code_version: str | None = None) -> str:
@@ -433,7 +484,7 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
             else:
                 source.review_status = "REVIEW_REQUIRED"
 
-            media_created = _upsert_media(db, item, run_id, artwork_id)
+            media_created, associations_created = _upsert_media(db, item, run_id, artwork_id)
             db.add(IngestionChange(
                 ingestion_run_id=run_id, provider_id=plan.provider_id,
                 provider_record_id=item.provider_record_id, action=item.action,
@@ -441,7 +492,7 @@ def apply_plan(db: Session, plan: IngestionPlan, *, operator_id: str | None = No
                 cultural_object_id=item.cultural_object_id,
                 institution_holding_id=item.institution_holding_id,
                 source_record_id=item.source_record_id,
-                details={"reason": item.reason, "changed_fields": list(item.changed_fields), "media_created": media_created, "possible_duplicate_ids": list(item.possible_duplicate_ids)},
+                details={"reason": item.reason, "changed_fields": list(item.changed_fields), "media_created": media_created, "media_associations_created": associations_created, "possible_duplicate_ids": list(item.possible_duplicate_ids)},
             ))
 
         run.created_count, run.updated_count, run.unchanged_count = created, updated, unchanged
@@ -471,19 +522,22 @@ def safe_deactivate_source_record(db: Session, source_record_id: str, *, operato
     if source is None: raise ValueError("source record not found")
     source.active = False
     source.ingestion_status = "DEACTIVATED"
-    media = db.query(MediaAsset).filter(MediaAsset.source_record_id == source.id).all()
-    for asset in media:
-        before = {"presentation_eligible": asset.presentation_eligible, "recognition_eligible": asset.recognition_eligible}
-        asset.presentation_eligible = False
-        asset.recognition_eligible = False
-        asset.review_notes = f"Deactivated by {operator_id}"
-        asset.reviewed_by = operator_id
-        asset.reviewed_at = utcnow()
+    associations = db.query(MediaAssetAssociation).filter(
+        MediaAssetAssociation.source_record_id == source.id,
+        MediaAssetAssociation.active.is_(True),
+    ).all()
+    for association in associations:
+        asset = db.get(MediaAsset, association.media_asset_id)
+        before = {"association_active": association.active, "presentation_eligible": association.presentation_eligible, "recognition_eligible": association.recognition_eligible}
+        association.active = False
+        association.presentation_eligible = False
+        association.recognition_eligible = False
+        association.updated_at = utcnow()
         db.add(MediaProvenanceReview(
             media_asset_id=asset.id, actor=operator_id, action="SAFE_DEACTIVATION",
             before_state=before,
-            after_state={"presentation_eligible": False, "recognition_eligible": False},
-            notes="Source record deactivated; asset retained and made ineligible",
+            after_state={"association_active": False, "presentation_eligible": False, "recognition_eligible": False},
+            notes=f"Source relationship {association.id} deactivated; shared media entity retained",
         ))
     memberships = []
     if source.institution_holding_id:
@@ -492,19 +546,26 @@ def safe_deactivate_source_record(db: Session, source_record_id: str, *, operato
             memberships = db.query(ArtworkCatalogMembership).filter(ArtworkCatalogMembership.artwork_id == artwork.id, ArtworkCatalogMembership.active.is_(True)).all()
             for membership in memberships: membership.active = False
     db.commit()
-    return {"media_disabled": len(media), "memberships_deactivated": len(memberships)}
+    return {"media_disabled": len(associations), "media_associations_disabled": len(associations), "memberships_deactivated": len(memberships)}
 
 
 def readiness_report(db: Session, institution_id: str) -> dict[str, Any]:
     holding_ids = [row[0] for row in db.query(InstitutionHolding.id).filter(InstitutionHolding.institution_id == institution_id, InstitutionHolding.status == "CURRENT").all()]
     artwork_rows = db.query(Artwork).filter(Artwork.institution_holding_id.in_(holding_ids)).all() if holding_ids else []
     artwork_ids = {row.id for row in artwork_rows}
-    media = db.query(MediaAsset).filter(MediaAsset.artwork_id.in_(artwork_ids)).all() if artwork_ids else []
-    presentation_ids = {row.artwork_id for row in media if row.presentation_eligible is True}
-    recognition_ids = {row.artwork_id for row in media if row.recognition_eligible is True}
-    reference_ids = {row.artwork_id for row in media if row.purpose in {"REFERENCE", "RECOGNITION_ASSET", "SOURCE_ORIGINAL"} and row.original_url and row.rights_status != "RESTRICTED"}
+    object_to_artwork = {row.cultural_object_id: row.id for row in artwork_rows}
+    holding_to_artwork = {row.institution_holding_id: row.id for row in artwork_rows}
+    associations = db.query(MediaAssetAssociation, MediaAsset).join(MediaAsset, MediaAsset.id == MediaAssetAssociation.media_asset_id).filter(
+        MediaAssetAssociation.active.is_(True),
+        (MediaAssetAssociation.institution_holding_id.in_(holding_ids)) | (MediaAssetAssociation.cultural_object_id.in_(list(object_to_artwork))),
+    ).all() if artwork_ids else []
+    def linked_artwork(edge: MediaAssetAssociation) -> str | None:
+        return holding_to_artwork.get(edge.institution_holding_id) or object_to_artwork.get(edge.cultural_object_id)
+    presentation_ids = {linked_artwork(edge) for edge, asset in associations if edge.presentation_eligible is True and asset.presentation_eligible is True}
+    recognition_ids = {linked_artwork(edge) for edge, asset in associations if edge.recognition_eligible is True and asset.recognition_eligible is True}
+    reference_ids = {linked_artwork(edge) for edge, asset in associations if edge.relationship_role in {"REFERENCE", "RECOGNITION_ASSET", "SOURCE_ORIGINAL"} and asset.original_url and asset.rights_status != "RESTRICTED"}
     missing_metadata = {row.id for row in artwork_rows if not row.title_original}
-    provenance_blocked = {row.artwork_id for row in media if row.verification_state != "VERIFIED" or row.rights_status in {"UNKNOWN", "RESTRICTED"}}
+    provenance_blocked = {linked_artwork(edge) for edge, asset in associations if asset.verification_state != "VERIFIED" or asset.rights_status in {"UNKNOWN", "RESTRICTED"}}
     return {
         "institution_id": institution_id,
         "total_holdings": len(holding_ids),

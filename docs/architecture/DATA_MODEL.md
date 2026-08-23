@@ -2,7 +2,7 @@
 
 ## Block 4 synchronization additions (CURRENT)
 
-`SourceProvider.adapter_key/adapter_config` registers adapter/institution scope. `SourceRecord` records first/last seen, provider modification time, checksum, ingestion/review/active state and last run. `IngestionRun` plus `IngestionChange` audit atomic APPLY. `MediaAsset` carries source rights evidence and review/run linkage; `MediaProvenanceReview` is append-only admin audit. Migration `0005_generic_ingestion_workflow` is additive and fabricates no historical review state.
+`SourceProvider.adapter_key/adapter_config` registers adapter/institution scope. `SourceRecord` records first/last seen, provider modification time, checksum, ingestion/review/active state and last run. `IngestionRun` plus `IngestionChange` audit atomic APPLY. `MediaAsset` carries media identity and source rights evidence; `MediaAssetAssociation` carries the explicit, provenance-traceable object/holding relationship and contextual role. One asset can have many associations. `MediaProvenanceReview` is append-only admin audit. Migrations `0005_generic_ingestion_workflow` and `0006_many_to_many_media_associations` are additive and fabricate no historical review state.
 
 Status: CURRENT schema after migration `0004_global_media_identity_foundation`; explicitly proposed items are marked.
 

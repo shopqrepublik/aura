@@ -1,5 +1,9 @@
 # Museum Onboarding Playbook
 
+Media validation must compare both unique media entities and relationship edges. Zero edge loss is an activation prerequisite. Shared/contextual media remains independently gated for presentation and recognition.
+
+The hybrid visitor invariant remains independent of media readiness: configured + catalog match uses canonical content; configured + no reliable match uses truthful AI uncataloged fallback and records the sighting; unknown/unconfigured institution fails closed. Catalog when we know. AI when we don't. Learn from what visitors scan.
+
 Status: CURRENT after Block 3. National Gallery London is a paper test only; this does not authorize ingestion.
 
 Block 4 path: register provider/adapter/institution mapping, then DISCOVER → DRY_RUN → PLAN → RECONCILE → reviewed APPLY using [Source Adapter Guide](SOURCE_ADAPTER_GUIDE.md). Complete [provenance review](PROVENANCE_REVIEW_RUNBOOK.md), readiness and benchmark before separate activation. New institutions must not use legacy direct-upsert scripts.

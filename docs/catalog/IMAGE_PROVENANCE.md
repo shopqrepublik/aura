@@ -8,7 +8,9 @@ Status: CURRENT after migration `0004_global_media_identity_foundation`.
 
 ## Generic model
 
-`media_assets` links an asset to its cultural object and optionally the compatibility artwork, holding and source record. It records provider, provider asset ID, original/asset URL, media type, purpose, rights status, verification state, license, attribution, public-domain assertion, retrieval time, SHA-256, derivative parent/specification and independent presentation/recognition eligibility.
+`media_assets` records provider media identity, provider asset ID, original/asset URL, media type, intrinsic/default purpose, rights status, verification state, license, attribution, public-domain assertion, retrieval time, SHA-256, derivative parent/specification and asset-level eligibility ceiling. `media_asset_associations` separately links that entity to an explicit CulturalObject or InstitutionHolding target. The edge records contextual role, order/primary semantics, source record/relationship, ingestion run, active history and per-target eligibility. Therefore `MediaAsset != MediaAssociation`.
+
+Effective use requires both levels: asset rights/eligibility **and** the target association's role/eligibility. A shared contextual video is not a recognition reference for every linked object. A shared relationship likewise does not automatically authorize visitor presentation.
 
 | Dimension | Values/current meaning |
 |---|---|
@@ -20,6 +22,8 @@ Status: CURRENT after migration `0004_global_media_identity_foundation`.
 `UNKNOWN` is never promoted to public domain. A source declaration is not ELYIO verification. An asset suitable for presentation is not automatically legal or technically suitable for recognition, and an approved recognition asset is not automatically a public presentation image.
 
 ## Legacy migration
+
+Migration `0006_many_to_many_media_associations` adds associations non-destructively and backfills one exact edge for every legacy asset with an object relationship. It retains compatibility columns; it does not change provenance classifications or activate media/catalogs.
 
 - `Artwork.image_url` becomes a `PRESENTATION` asset with UNKNOWN rights/verification and undetermined presentation eligibility. Runtime continues reading the legacy column.
 - `RecognitionAsset` becomes `RECOGNITION_ASSET`; existing declared license/attribution/rights are preserved. Recognition eligibility is true only when existing AI/TDM and embedding flags were both explicitly true.

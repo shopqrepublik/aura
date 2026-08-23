@@ -45,6 +45,10 @@ class JsonFileAdapter:
                 retrieved_at=_dt(item.get("retrieved_at")),
                 checksum_sha256=item.get("checksum_sha256"),
                 source_rights_metadata=item.get("source_rights_metadata") or {},
+                association_scope=item.get("association_scope", "HOLDING"),
+                association_role=item.get("association_role"),
+                position=item.get("position"), primary=item.get("primary"),
+                source_relationship_key=item.get("source_relationship_key"),
             ) for item in row.get("media", []))
             yield AdapterObjectRecord(
                 provider_id=self.provider_id,

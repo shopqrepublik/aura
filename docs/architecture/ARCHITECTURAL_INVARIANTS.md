@@ -1,5 +1,9 @@
 # Architectural Invariants
 
+- **MediaAsset is not MediaAssociation.** Provider media identity is unique independently of all exact CulturalObject/InstitutionHolding relationship edges; no valid source edge may be silently lost or represented by a fake duplicate asset.
+- Media rights/eligibility and association role/eligibility must both permit presentation or recognition. Contextual shared media never becomes a recognition reference by association alone.
+- Configured institution + known reliable catalog work uses the catalog-backed result. Configured institution + no reliable catalog match retains the truthful AI uncataloged fallback and records demand. Unknown/unconfigured institution fails closed. In engineering shorthand: “Catalog when we know. AI when we don't. Learn from what visitors scan.”
+
 ## Block 4 ingestion invariants (CURRENT)
 
 - Provider adapters describe external sources; generic ingestion owns ELYIO rules and never branches on institution/provider names.

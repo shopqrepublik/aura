@@ -32,9 +32,11 @@ from .models import (
     ArtworkLocalization,
     ArtworkValueReveal,
     Country,
+    InstitutionHolding,
     InstitutionProfile,
     LouvreImageReference,
     MediaAsset,
+    MediaAssetAssociation,
     MediaProvenanceReview,
     Museum,
     ProductEvent,
@@ -576,12 +578,19 @@ class ProvenanceReviewUpdate(BaseModel):
         return value
 
 
-def _media_review_dict(row: MediaAsset) -> dict:
-    return {key: getattr(row, key) for key in (
+def _media_review_dict(row: MediaAsset, db: Session | None = None) -> dict:
+    result = {key: getattr(row, key) for key in (
         "id", "provider_id", "artwork_id", "institution_holding_id", "source_record_id",
         "purpose", "original_url", "rights_status", "verification_state", "license_code",
         "attribution", "presentation_eligible", "recognition_eligible", "reviewed_by",
     )}
+    if db is not None:
+        edges = db.query(MediaAssetAssociation).filter(MediaAssetAssociation.media_asset_id == row.id, MediaAssetAssociation.active.is_(True)).all()
+        result["linked_objects_count"] = len({edge.cultural_object_id for edge in edges if edge.cultural_object_id})
+        result["linked_holdings_count"] = len({edge.institution_holding_id for edge in edges if edge.institution_holding_id})
+        result["relationship_roles"] = sorted({edge.relationship_role for edge in edges})
+        result["associations"] = [{"id": edge.id, "target_scope": edge.target_scope, "cultural_object_id": edge.cultural_object_id, "institution_holding_id": edge.institution_holding_id, "source_record_id": edge.source_record_id, "relationship_role": edge.relationship_role, "presentation_eligible": edge.presentation_eligible, "recognition_eligible": edge.recognition_eligible} for edge in edges]
+    return result
 
 
 @router.get("/v1/admin/provenance")
@@ -594,7 +603,13 @@ def admin_provenance_queue(
 ):
     query = db.query(MediaAsset)
     if institution_id:
-        query = query.join(Artwork, Artwork.id == MediaAsset.artwork_id).filter(Artwork.museum_id == institution_id)
+        associated_ids = db.query(MediaAssetAssociation.media_asset_id).outerjoin(
+            InstitutionHolding, InstitutionHolding.id == MediaAssetAssociation.institution_holding_id
+        ).filter(MediaAssetAssociation.active.is_(True), or_(
+            InstitutionHolding.institution_id == institution_id,
+            MediaAssetAssociation.cultural_object_id.in_(db.query(Artwork.cultural_object_id).filter(Artwork.museum_id == institution_id)),
+        ))
+        query = query.filter(or_(MediaAsset.id.in_(associated_ids), MediaAsset.artwork_id.in_(db.query(Artwork.id).filter(Artwork.museum_id == institution_id))))
     if provider_id: query = query.filter(MediaAsset.provider_id == provider_id)
     if verification_state: query = query.filter(MediaAsset.verification_state == verification_state)
     if rights_status: query = query.filter(MediaAsset.rights_status == rights_status)
@@ -602,7 +617,7 @@ def admin_provenance_queue(
     if recognition_eligible is not None: query = query.filter(MediaAsset.recognition_eligible.is_(recognition_eligible))
     if no_usable_media: query = query.filter(MediaAsset.presentation_eligible.isnot(True), MediaAsset.recognition_eligible.isnot(True))
     rows = query.order_by(MediaAsset.created_at.asc()).limit(limit).all()
-    return {"items": [_media_review_dict(row) for row in rows], "returned": len(rows)}
+    return {"items": [_media_review_dict(row, db) for row in rows], "returned": len(rows)}
 
 
 @router.patch("/v1/admin/provenance/{media_asset_id}")
@@ -1066,24 +1081,25 @@ def _catalog_health(db: Session) -> Dict[str, Any]:
     local_image_ids = local_cache_ids | louvre_fetched_ids
     louvre_active = int(db.query(ArtworkCatalogMembership).filter(ArtworkCatalogMembership.active.is_(True), ArtworkCatalogMembership.museum_id == "louvre").count())
     louvre_total = int(db.query(Artwork).filter(Artwork.museum_id == "louvre").count())
-    generic_media = db.query(MediaAsset).filter(MediaAsset.artwork_id.in_(active_ids)) if active_ids else db.query(MediaAsset).filter(False)
-    provenance_verified_ids = {
-        artwork_id for (artwork_id,) in generic_media.filter(MediaAsset.verification_state == "VERIFIED").with_entities(MediaAsset.artwork_id).distinct().all()
-    }
-    provenance_partial_ids = {
-        artwork_id for (artwork_id,) in generic_media.filter(MediaAsset.verification_state == "DECLARED_BY_SOURCE").with_entities(MediaAsset.artwork_id).distinct().all()
-    } - provenance_verified_ids
+    active_artwork_rows = db.query(Artwork.id, Artwork.cultural_object_id, Artwork.institution_holding_id).filter(Artwork.id.in_(active_ids)).all() if active_ids else []
+    object_to_artwork = {object_id: artwork_id for artwork_id, object_id, _holding_id in active_artwork_rows if object_id}
+    holding_to_artwork = {holding_id: artwork_id for artwork_id, _object_id, holding_id in active_artwork_rows if holding_id}
+    associated_media = db.query(MediaAssetAssociation, MediaAsset).join(
+        MediaAsset, MediaAsset.id == MediaAssetAssociation.media_asset_id
+    ).filter(MediaAssetAssociation.active.is_(True), or_(
+        MediaAssetAssociation.cultural_object_id.in_(list(object_to_artwork)),
+        MediaAssetAssociation.institution_holding_id.in_(list(holding_to_artwork)),
+    )).all() if active_ids else []
+    def associated_artwork_id(edge):
+        return holding_to_artwork.get(edge.institution_holding_id) or object_to_artwork.get(edge.cultural_object_id)
+    legacy_media = db.query(MediaAsset).filter(MediaAsset.artwork_id.in_(active_ids)).all() if active_ids else []
+    media_facts = [(associated_artwork_id(edge), asset, edge) for edge, asset in associated_media]
+    media_facts.extend((asset.artwork_id, asset, None) for asset in legacy_media if not any(edge.media_asset_id == asset.id for edge, _linked in associated_media))
+    provenance_verified_ids = {artwork_id for artwork_id, asset, _edge in media_facts if artwork_id and asset.verification_state == "VERIFIED"}
+    provenance_partial_ids = {artwork_id for artwork_id, asset, _edge in media_facts if artwork_id and asset.verification_state == "DECLARED_BY_SOURCE"} - provenance_verified_ids
     provenance_unknown_ids = active_ids - provenance_verified_ids - provenance_partial_ids
-    rights_restricted_ids = {
-        artwork_id for (artwork_id,) in generic_media.filter(MediaAsset.rights_status == "RESTRICTED").with_entities(MediaAsset.artwork_id).distinct().all()
-    }
-    usable_reference_ids = {
-        artwork_id for (artwork_id,) in generic_media.filter(
-            MediaAsset.purpose.in_(["REFERENCE", "RECOGNITION_ASSET", "SOURCE_ORIGINAL"]),
-            or_(MediaAsset.original_url.isnot(None), MediaAsset.asset_url.isnot(None)),
-            MediaAsset.rights_status != "RESTRICTED",
-        ).with_entities(MediaAsset.artwork_id).distinct().all()
-    }
+    rights_restricted_ids = {artwork_id for artwork_id, asset, _edge in media_facts if artwork_id and asset.rights_status == "RESTRICTED"}
+    usable_reference_ids = {artwork_id for artwork_id, asset, edge in media_facts if artwork_id and (edge.relationship_role if edge else asset.purpose) in {"REFERENCE", "RECOGNITION_ASSET", "SOURCE_ORIGINAL"} and (asset.original_url or asset.asset_url) and asset.rights_status != "RESTRICTED"}
     return {
         "knowledge_catalog_total": int(db.query(Artwork).count()),
         "active_visitor_catalog_total": active_total,

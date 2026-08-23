@@ -1,5 +1,9 @@
 # Recognition Pipeline
 
+Media readiness is association-aware: a recognition reference requires an eligible media entity and an active eligible association to the correct object/holding with an appropriate role. Shared contextual media is never promoted into every linked object's candidate evidence.
+
+The hybrid invariant is unchanged: a configured institution and reliable active-catalog match yields a catalog-backed result; a configured institution without a reliable catalog match uses the explicitly uncataloged AI fallback and records demand; an unknown/unconfigured institution fails closed. Media/provenance gates constrain curated assets, not the configured-institution AI fallback.
+
 Status: CURRENT; Block 3 does not replace ranking or decision algorithms.
 
 ```mermaid

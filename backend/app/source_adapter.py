@@ -26,6 +26,11 @@ class AdapterMediaRecord:
     checksum_sha256: str | None = None
     license_text: str | None = None
     source_rights_metadata: dict[str, Any] = field(default_factory=dict)
+    association_scope: str = "HOLDING"
+    association_role: str | None = None
+    position: int | None = None
+    primary: bool | None = None
+    source_relationship_key: str | None = None
 
 
 @dataclass(frozen=True)

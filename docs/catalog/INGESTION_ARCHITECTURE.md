@@ -12,7 +12,11 @@ flowchart LR
   I --> O[CulturalObject]
   I --> H[InstitutionHolding]
   I --> S[SourceRecord]
-  I --> M[MediaAsset]
+  I --> M[MediaAsset entity]
+  I --> E[Media association edge]
+  E --> M
+  E --> O
+  E --> H
   I -. separate gate .-> C[Visitor catalog]
 ```
 
@@ -32,4 +36,8 @@ Media discovery never downloads media. UNKNOWN/DECLARED_BY_SOURCE never self-pro
 
 Legacy classification: direct-upsert `import_demo_catalog_to_db.py`, `import_versailles_launch_catalog.py`, and `import_paris_curated_*` are museum-specific legacy; Louvre production/Phase2 scripts are source-specific legacy or research; `louvre_acquire_approved_assets.py` is a legitimate Louvre-side acquisition tool; `import_museofile_museums.py` is directory-only; Louvre recognition scripts are benchmarks. They are retained for evidence but are not the onboarding path for new institutions.
 
-National Gallery paper test: custom work is endpoint/snapshot discovery, provider field mapping, pagination/retry, rights declaration mapping and conservative collection mapping. Canonical identity, holding/source/media models, runner, recognition and analytics core need no change.
+## Many-to-many media (CURRENT, migration 0006)
+
+`MediaAsset` is provider media identity; `MediaAssetAssociation` is the independently reconcilable edge to a `CulturalObject` or an `InstitutionHolding`. PLAN reports `unique_media_assets` separately from `media_relationship_edges`. One provider asset plus N source relationships produces one asset and N edges, and repeated APPLY preserves those cardinalities. Association role, position, primary flag, source record, source relationship key and ingestion run explain why each edge exists. Safe source deactivation disables only that source's edges, never a shared media entity or another source's edge. Legacy ownership columns remain readable during rollout but new generic writes use associations.
+
+National Gallery Phase 1 is the acceptance example: 3,794 source relationships reconcile to 3,745 unique media entities and exactly 3,794 association edges (zero loss). No adapter workaround or catalog activation is involved.

@@ -1,5 +1,9 @@
 # Global Blockers
 
+| Priority | State | Issue | Resolution/evidence |
+|---|---|---|---|
+| P0 | RESOLVED Block 4.5 | One-object `MediaAsset` ownership silently lost shared provider relationships | Migration 0006 plus generic `MediaAssetAssociation`; National Gallery 3,794/3,794 edges preserved, zero adapter workaround |
+
 ## Block 4 resolution (2026-08-23)
 
 RESOLVED: generic adapter/runner, idempotent reconciliation, ingestion audit, explicit provenance review and import/activation separation. Distributed execution remains later scale work and does not block controlled second-country onboarding.

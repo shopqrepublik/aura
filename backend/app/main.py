@@ -1722,40 +1722,39 @@ def indicative_value(req: IndicativeValueRequest):
     return IndicativeValueResponse(eligible=True, estimate=estimate)
 
 
-def _log_uncataloged_sighting(artist: Optional[str], title: Optional[str], museum_id: Optional[str]) -> None:
-    """Tier 2 (Phase 2 §2): best-effort, upserted by (artist, title) -- never
-    raises, and never requires DATABASE_URL to be set. recognize() has
-    always worked without a database configured (recognition itself has no
-    DB dependency, unlike /v1/visits*), and this logging is a nice-to-have
-    prioritization signal for the catalog team, not something that should
-    turn "DB not configured" into "recognition is now broken" -- same
-    "degrade, don't crash" convention as OPENAI_API_KEY's mock fallback and
-    the frontend's best-effort visit tracking (lib/app-state.ts's
-    startVisit)."""
+def _log_uncataloged_sighting(
+    artist: Optional[str], title: Optional[str], museum_id: Optional[str],
+    db: Optional[Session] = None,
+) -> None:
+    """Best-effort institution-scoped demand signal; never canonical data."""
     if not artist or not title:
         return
 
-    if SessionLocal is None:
+    if db is None and SessionLocal is None:
         return
-    db = SessionLocal()
+    owns_session = db is None
+    db = db or SessionLocal()
     try:
         row = (
             db.query(UncatalogedSighting)
-            .filter(UncatalogedSighting.artist == artist, UncatalogedSighting.title == title)
+            .filter(
+                UncatalogedSighting.artist == artist,
+                UncatalogedSighting.title == title,
+                UncatalogedSighting.museum_id == museum_id,
+            )
             .first()
         )
         if row:
             row.count += 1
             row.last_seen_at = datetime.now(timezone.utc)
-            if museum_id and not row.museum_id:
-                row.museum_id = museum_id
         else:
             db.add(UncatalogedSighting(artist=artist, title=title, museum_id=museum_id))
         db.commit()
     except Exception:
         db.rollback()
     finally:
-        db.close()
+        if owns_session:
+            db.close()
 
 
 # ---- Recognition (§12, §8.3 confidence policy) -------------------------
@@ -1884,7 +1883,7 @@ def recognize(
             if recognized_but_not_cataloged:
                 _log_uncataloged_sighting(
                     recognized_but_not_cataloged.get("artist"),
-                    recognized_but_not_cataloged.get("title"), req.museum_id,
+                    recognized_but_not_cataloged.get("title"), req.museum_id, db,
                 )
             _log_recognition_event(
                 "recognition_completed",

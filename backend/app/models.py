@@ -298,7 +298,9 @@ class MediaAsset(Base):
         Index("idx_media_assets_derivative", "derivative_of_id"),
     )
     id = Column(String, primary_key=True)
-    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=False)
+    # Deprecated compatibility pointers. Association ownership lives in
+    # MediaAssetAssociation; these remain populated for legacy readers.
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=True)
     artwork_id = Column(String, ForeignKey("artworks.id"), nullable=True)
     institution_holding_id = Column(String, ForeignKey("institution_holdings.id"), nullable=True)
     source_record_id = Column(String, ForeignKey("source_records.id"), nullable=True)
@@ -328,6 +330,36 @@ class MediaAsset(Base):
     reviewed_at = Column(DateTime, nullable=True)
     ingestion_run_id = Column(String, ForeignKey("ingestion_runs.id"), nullable=True)
     created_at = Column(DateTime, default=now)
+    updated_at = Column(DateTime, default=now, onupdate=now)
+
+
+class MediaAssetAssociation(Base):
+    """A provenance-preserving edge; MediaAsset identity is independent."""
+    __tablename__ = "media_asset_associations"
+    __table_args__ = (
+        Index("idx_media_assoc_asset_active", "media_asset_id", "active"),
+        Index("idx_media_assoc_object_role", "cultural_object_id", "relationship_role", "active"),
+        Index("idx_media_assoc_holding_role", "institution_holding_id", "relationship_role", "active"),
+        Index("idx_media_assoc_source", "source_record_id", "active"),
+    )
+    id = Column(String, primary_key=True)
+    media_asset_id = Column(String, ForeignKey("media_assets.id"), nullable=False)
+    target_scope = Column(String, nullable=False)  # OBJECT | HOLDING
+    cultural_object_id = Column(String, ForeignKey("cultural_objects.id"), nullable=True)
+    institution_holding_id = Column(String, ForeignKey("institution_holdings.id"), nullable=True)
+    source_record_id = Column(String, ForeignKey("source_records.id"), nullable=True)
+    provider_id = Column(String, ForeignKey("source_providers.id"), nullable=False)
+    source_relationship_key = Column(String, nullable=False)
+    relationship_role = Column(String, nullable=False)
+    position = Column(Integer, nullable=True)
+    primary = Column(Boolean, nullable=True)
+    presentation_eligible = Column(Boolean, nullable=True)
+    recognition_eligible = Column(Boolean, nullable=True)
+    active = Column(Boolean, nullable=False, default=True)
+    first_seen_at = Column(DateTime, default=now, nullable=False)
+    last_seen_at = Column(DateTime, default=now, nullable=False)
+    ingestion_run_id = Column(String, ForeignKey("ingestion_runs.id"), nullable=True)
+    created_at = Column(DateTime, default=now, nullable=False)
     updated_at = Column(DateTime, default=now, onupdate=now)
 
 

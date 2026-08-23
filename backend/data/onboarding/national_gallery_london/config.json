@@ -1,0 +1,6 @@
+{
+  "country": {"code":"GB","name":"United Kingdom","default_locale":"en-GB","default_timezone":"Europe/London","default_currency":"GBP"},
+  "institution": {"id":"national-gallery-london","slug":"national-gallery-london","name":"The National Gallery","city":"London","timezone":"Europe/London","default_locale":"en-GB","supported_locales":["en-GB"],"display_currency":"GBP","content_policy":{"value_engine_v4_enabled":false},"production_registered":false,"public_selector_enabled":false,"seo_enabled":false},
+  "profile": {"candidate_universe":"NONE","recognition_policy":"UNCATALOGED_ONLY","active_visitor_catalog":false},
+  "provider": {"id":"national_gallery_london","adapter_key":"national_gallery_ciim_v1","endpoint":"https://data.ng.ac.uk/es/public/_search"}
+}

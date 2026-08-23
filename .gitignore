@@ -48,4 +48,8 @@ aura-mvp.zip
 # committed while this pilot is still test-scale and un-reviewed.
 /backend/data/louvre/
 
+# Full National Gallery discovery snapshots are reproducible generated data.
+# The smaller reviewed benchmark-candidate snapshot is committed explicitly.
+/backend/data/onboarding/national_gallery_london/source_snapshot_*.json
+
 .vercel

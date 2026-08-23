@@ -1,5 +1,15 @@
 # Global Readiness Scorecard
 
+## Block 4.5 delta
+
+| Capability | Score | Evidence |
+|---|---:|---|
+| Media provenance operations | 3 | shared media entity plus exact object/holding associations; dual eligibility gates |
+| Catalog | 3 | relationship-complete ingestion without asset duplication or edge loss |
+| Multi-country | 3 | National Gallery official snapshot reconciles generically at full cardinality |
+| Onboarding | 3 | plan/apply distinguish unique assets from relationship edges |
+| Scale | 2 | correct current synchronous model; distributed processing remains future work |
+
 ## Block 4 delta (0–4)
 
 | Capability | Score | Evidence |

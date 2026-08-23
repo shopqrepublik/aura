@@ -20,6 +20,7 @@ from backend.app.models import (
     Museum,
     ProductEvent,
     RecognitionAttempt,
+    UncatalogedSighting,
     User,
 )
 
@@ -216,7 +217,9 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
         with self.Session() as db:
             db.add(Country(code="FR", name="France"))
             db.add(Museum(id="louvre", name="Louvre", country_code="FR", active=True))
+            db.add(Museum(id="configured-ai-guide", name="Configured AI Guide", country_code="FR", active=True, experience_level="AI_GUIDE"))
             db.add(InstitutionProfile(institution_id="louvre", candidate_universe="INSTITUTION_ARTWORKS", recognition_policy="ASSET_VERIFY"))
+            db.add(InstitutionProfile(institution_id="configured-ai-guide", candidate_universe="NONE", recognition_policy="UNCATALOGED_ONLY"))
             db.add(Artwork(id="known-work", museum_id="louvre", title_original="Known"))
             db.commit()
 
@@ -296,6 +299,33 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             self.assertEqual(row.terminal_outcome, "success")
             self.assertEqual(row.engine_outcome, "CATALOG_CANDIDATE_MATCHED")
             self.assertEqual(row.visitor_resolution, "CONFIRMATION_REQUIRED")
+
+    def test_configured_institution_keeps_truthful_uncataloged_ai_fallback(self):
+        main.recognize_with_vision = lambda *_args, **_kwargs: {
+            "artwork_id": None, "confidence": 0.78, "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": "Unknown Artist", "title": "Uncataloged Work"},
+            "recognition_mode": "AI_UNCATALOGED",
+        }
+        attempt_id = "92000000-0000-4000-8000-000000000001"
+        anonymous_id = "92000000-0000-4000-8000-000000000002"
+        session_id = "92000000-0000-4000-8000-000000000003"
+        response = self.client.post("/v1/recognize", json={
+            "image_base64": "AA==", "museum_id": "configured-ai-guide", "locale": "en",
+            "recognition_attempt_id": attempt_id, "anonymous_id": anonymous_id, "session_id": session_id,
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "no_match")
+        self.assertEqual(response.json()["recognized_but_not_cataloged"]["title"], "Uncataloged Work")
+        with self.Session() as db:
+            row = db.get(RecognitionAttempt, attempt_id)
+            self.assertEqual(row.terminal_outcome, "uncataloged_result")
+            self.assertEqual(row.engine_outcome, "UNCATALOGED_IDENTIFIED")
+            self.assertEqual(row.visitor_resolution, "GENERATED_RESULT")
+            self.assertEqual(row.institution_id, "configured-ai-guide")
+            self.assertEqual(row.anonymous_id, anonymous_id)
+            self.assertEqual(row.session_id, session_id)
+            sighting = db.query(UncatalogedSighting).filter(UncatalogedSighting.museum_id == "configured-ai-guide").one()
+            self.assertEqual(sighting.count, 1)
 
 
 if __name__ == "__main__":

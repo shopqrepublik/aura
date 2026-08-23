@@ -13,7 +13,7 @@ from backend.app.international import get_institution_international_config, get_
 from backend.app.models import (
     Artwork, ArtworkCatalogMembership, Base, Country, CulturalObject,
     CulturalObjectDuplicateReview, IngestionRun, Institution, InstitutionHolding,
-    InstitutionProfile, MediaAsset, SourceProvider, SourceRecord,
+    InstitutionProfile, MediaAsset, MediaAssetAssociation, SourceProvider, SourceRecord,
 )
 from backend.app.source_adapter import AdapterMediaRecord, AdapterObjectRecord
 
@@ -53,7 +53,7 @@ class GenericIngestionTests(unittest.TestCase):
         )
 
     def counts(self, db):
-        return tuple(db.query(model).count() for model in (CulturalObject, InstitutionHolding, Artwork, SourceRecord, MediaAsset, ArtworkCatalogMembership))
+        return tuple(db.query(model).count() for model in (CulturalObject, InstitutionHolding, Artwork, SourceRecord, MediaAsset, MediaAssetAssociation, ArtworkCatalogMembership))
 
     def test_dry_run_plan_has_zero_mutation_and_reports_provenance(self):
         with self.Session() as db:
@@ -117,6 +117,52 @@ class GenericIngestionTests(unittest.TestCase):
             self.assertFalse(policy.enabled)
             self.assertEqual(policy.engine_currency, "EUR")
             self.assertEqual(policy.display_currency, "GBP")
+
+    def test_shared_media_is_one_entity_with_exact_relationship_edges(self):
+        shared = AdapterMediaRecord(
+            provider_asset_id="shared-video", original_url="https://source.test/shared.mp4",
+            purpose="REFERENCE", media_type="VIDEO", rights_status="LICENSED",
+            verification_state="DECLARED_BY_SOURCE", presentation_eligible=None,
+            recognition_eligible=False, association_scope="HOLDING",
+            association_role="CONTEXTUAL", source_relationship_key="shared-video-edge",
+        )
+        rows = []
+        for index, name in enumerate(("A", "B", "C"), 1):
+            specific = AdapterMediaRecord(
+                provider_asset_id=f"image-{name}", original_url=f"https://source.test/{name}.jpg",
+                purpose="REFERENCE", media_type="IMAGE", rights_status="UNKNOWN",
+                verification_state="UNKNOWN", recognition_eligible=False,
+                association_scope="HOLDING", association_role="REFERENCE",
+                source_relationship_key=f"image-{name}-edge",
+            )
+            rows.append(replace(self.row(name, title=f"Object {name}", accession=f"INV-{index}"), media=(shared, specific)))
+        with self.Session() as db:
+            adapter = FixtureAdapter(rows)
+            plan = build_plan(db, adapter, "museum", mode="DRY_RUN")
+            self.assertEqual(plan.summary["unique_media_assets"], 4)
+            self.assertEqual(plan.summary["media_relationship_edges"], 6)
+            apply_plan(db, plan, operator_id="test")
+            self.assertEqual(db.query(MediaAsset).count(), 4)
+            self.assertEqual(db.query(MediaAssetAssociation).count(), 6)
+            video = db.query(MediaAsset).filter(MediaAsset.provider_asset_id == "shared-video").one()
+            edges = db.query(MediaAssetAssociation).filter(MediaAssetAssociation.media_asset_id == video.id).all()
+            self.assertEqual(len(edges), 3)
+            self.assertTrue(all(edge.relationship_role == "CONTEXTUAL" for edge in edges))
+            self.assertTrue(all(edge.recognition_eligible is False for edge in edges))
+            apply_plan(db, build_plan(db, adapter, "museum"), operator_id="test")
+            self.assertEqual(db.query(MediaAsset).count(), 4)
+            self.assertEqual(db.query(MediaAssetAssociation).count(), 6)
+
+    def test_deactivating_one_source_preserves_shared_asset_and_other_edges(self):
+        shared = AdapterMediaRecord(provider_asset_id="shared", original_url="https://source.test/shared.mp4", media_type="VIDEO", purpose="REFERENCE", verification_state="DECLARED_BY_SOURCE", rights_status="LICENSED", association_scope="HOLDING", association_role="CONTEXTUAL", source_relationship_key="shared")
+        rows = [replace(self.row("one", accession="INV-1"), media=(shared,)), replace(self.row("two", accession="INV-2", title="Other"), media=(shared,))]
+        with self.Session() as db:
+            apply_plan(db, build_plan(db, FixtureAdapter(rows), "museum"), operator_id="test")
+            source = db.query(SourceRecord).filter(SourceRecord.provider_record_id == "one").one()
+            result = safe_deactivate_source_record(db, source.id, operator_id="test")
+            self.assertEqual(result["media_associations_disabled"], 1)
+            self.assertEqual(db.query(MediaAsset).count(), 1)
+            self.assertEqual(db.query(MediaAssetAssociation).filter(MediaAssetAssociation.active.is_(True)).count(), 1)
 
 
 if __name__ == "__main__":

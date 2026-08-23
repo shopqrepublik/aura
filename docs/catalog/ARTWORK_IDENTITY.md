@@ -1,5 +1,7 @@
 # Artwork Identity
 
+Media identity is orthogonal to artwork identity. `MediaAssetAssociation` explicitly targets either the conceptual CulturalObject or an institution-specific Holding; source media does not redefine or merge the object. Multiple objects may reference one media entity without collapsing their canonical identities.
+
 ## Generic reconciliation (CURRENT)
 
 Identity first uses unique provider/record, then institution/accession, then explicit reviewed mapping. Title/creator/date are weak evidence only and yield `POSSIBLE_DUPLICATE`, never automatic merge. Existing Artwork IDs remain compatible.
