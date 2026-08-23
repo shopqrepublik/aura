@@ -25,4 +25,4 @@ Scale: 0 absent; 1 prototype; 2 works for current deployment; 3 cleanly multi-mu
 
 ## Executive rollups
 
-Multi-museum 3; multi-city 2; multi-country 2; multilingual 2; recognition 3; catalog 3; analytics 3; admin 3; security 3; PWA 2; scale 2; deployment governance 3.
+Multi-museum 3; multi-city 2; multi-country 2; multilingual 2; recognition 3; catalog 3; analytics 3; admin 3; security 3; PWA 2; scale 1; deployment governance 3.
