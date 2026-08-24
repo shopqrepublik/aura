@@ -15,6 +15,8 @@ class NationalGalleryControlledExpansionTests(unittest.TestCase):
         cls.selection = json.loads((DATA / "controlled_catalog_500_v1.json").read_text(encoding="utf-8"))
         cls.readiness = json.loads((DATA / "controlled_catalog_500_recognition_readiness_v1.json").read_text(encoding="utf-8"))
         cls.baseline = list(NationalGalleryLondonAdapter(DATA / "pre_eminent_review_snapshot_2026-08-23.json").records())
+        cls.selection_1000 = json.loads((DATA / "controlled_catalog_1000_v1.json").read_text(encoding="utf-8"))
+        cls.readiness_1000 = json.loads((DATA / "controlled_catalog_1000_recognition_readiness_v1.json").read_text(encoding="utf-8"))
 
     def test_selection_preserves_170_and_has_exactly_500_unique_records(self):
         rows = self.selection["records"]
@@ -46,6 +48,26 @@ class NationalGalleryControlledExpansionTests(unittest.TestCase):
         self.assertEqual(summary, {"total": 500, "vision_plus_asset": 500, "vision_ready": 0, "not_ready": 0})
         self.assertEqual(len(self.readiness["records"]), 500)
         self.assertEqual({row["provider_record_id"] for row in self.readiness["records"]}, {row["provider_record_id"] for row in self.selection["records"]})
+
+    def test_1000_selection_preserves_every_controlled_500_identity(self):
+        old = {row["provider_record_id"] for row in self.selection["records"]}
+        new_rows = self.selection_1000["records"]
+        new = {row["provider_record_id"] for row in new_rows}
+        self.assertEqual(len(new_rows), 1000)
+        self.assertEqual(len(new), 1000)
+        self.assertTrue(old.issubset(new))
+        self.assertEqual(sum(not row["prior_controlled"] for row in new_rows), 500)
+        self.assertGreaterEqual(self.selection_1000["summary"]["unique_artists"], 600)
+
+    def test_1000_readiness_is_exact(self):
+        self.assertEqual(self.readiness_1000["summary"], {
+            "total": 1000, "vision_plus_asset": 1000,
+            "vision_ready": 0, "not_ready": 0,
+        })
+        self.assertEqual(
+            {row["provider_record_id"] for row in self.readiness_1000["records"]},
+            {row["provider_record_id"] for row in self.selection_1000["records"]},
+        )
 
 
 if __name__ == "__main__":

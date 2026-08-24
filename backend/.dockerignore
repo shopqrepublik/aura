@@ -13,5 +13,8 @@ data/**
 !data/onboarding/national_gallery_london/controlled_catalog_500_v1.json
 !data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json
 !data/onboarding/national_gallery_london/controlled_catalog_500_visual_descriptors_v1.json
+!data/onboarding/national_gallery_london/controlled_catalog_1000_v1.json
+!data/onboarding/national_gallery_london/controlled_catalog_1000_recognition_readiness_v1.json
+!data/onboarding/national_gallery_london/controlled_catalog_1000_visual_descriptors_v1.json
 .env
 .git

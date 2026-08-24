@@ -49,7 +49,7 @@ def main() -> None:
     payload = {
         "schema_version": 1,
         "descriptor_version": DESCRIPTOR_VERSION,
-        "catalog_version": "ng-controlled-500-v2-retrieval",
+        "catalog_version": f'{json.loads(Path(args.selection).read_text(encoding="utf-8"))["catalog_version"]}-retrieval',
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "records": output,
     }

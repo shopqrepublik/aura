@@ -1,5 +1,14 @@
 # Global Readiness Scorecard
 
+## National Gallery controlled 1,000 delta (2026-08-24)
+
+| Capability | Score | Evidence |
+|---|---:|---|
+| Recognition | 3 | 1,000-work institution-scoped runtime, versioned descriptor retrieval, bounded three-reference verification, zero final confident-wrong results, 20/20 long-tail fallback. |
+| Onboarding | 3 | Prior 500 identities preserved; deterministic balanced selection and additive generic corpus/readiness/descriptor workflow. |
+| Multi-country | 3 | London controlled catalog continues through shared Institution Profile and recognition core without an institution-specific algorithm branch. |
+| Scale | 2 | Retrieval time roughly doubled but remains sub-second; model calls stayed approximately 1.8/scan. Provider/model p95 variability and synchronous AI remain the scale constraints. |
+
 ## National Gallery controlled recognition delta (2026-08-24)
 
 | Capability | Score | Evidence |

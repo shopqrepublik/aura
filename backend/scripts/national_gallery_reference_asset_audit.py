@@ -20,7 +20,13 @@ def main() -> None:
     parser.add_argument("--out")
     args = parser.parse_args()
     selection = json.loads(Path(args.selection).read_text(encoding="utf-8"))["records"]
-    added = {str(row["provider_record_id"]) for row in selection if not row["baseline_170"]}
+    # Expansion manifests identify the immediately preceding controlled set;
+    # older manifests retain the original-170 marker for compatibility.
+    added = {
+        str(row["provider_record_id"])
+        for row in selection
+        if not row.get("prior_controlled", row["baseline_170"])
+    }
     records = {}
     for manifest in args.manifest:
         for row in json.loads(Path(manifest).read_text(encoding="utf-8"))["records"]:

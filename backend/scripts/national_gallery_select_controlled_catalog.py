@@ -60,13 +60,25 @@ def main() -> None:
     parser.add_argument("--samples-out", default=str(DEFAULT_SAMPLES_OUT))
     parser.add_argument("--metadata-only-additions", type=int, default=0)
     parser.add_argument("--technical-exclusions", default=str(DEFAULT_EXCLUSIONS))
+    parser.add_argument("--preserve-selection", help="Preserve every provider ID from a prior controlled selection")
+    parser.add_argument("--prior-samples", help="Prior benchmark sample manifest to preserve for regression")
     args = parser.parse_args()
 
     baseline = list(NationalGalleryLondonAdapter(args.baseline).records())
     full = list(NationalGalleryLondonAdapter(args.full).records())
     baseline_ids = {row.provider_record_id for row in baseline}
-    available = [row for row in full if row.provider_record_id not in baseline_ids]
-    additions_needed = args.target - len(baseline)
+    full_by_id = {row.provider_record_id: row for row in full}
+    preserved_ids = baseline_ids
+    if args.preserve_selection:
+        preserved_payload = json.loads(Path(args.preserve_selection).read_text(encoding="utf-8"))
+        preserved_ids = {str(row["provider_record_id"]) for row in preserved_payload["records"]}
+        missing = preserved_ids - set(full_by_id)
+        if missing:
+            raise SystemExit(f"preserved IDs missing from source snapshot: {sorted(missing)[:5]}")
+    preserved = [full_by_id[row.provider_record_id] for row in baseline]
+    preserved.extend(sorted((full_by_id[value] for value in preserved_ids - baseline_ids), key=lambda row: stable_rank("preserved", row.provider_record_id)))
+    available = [row for row in full if row.provider_record_id not in preserved_ids]
+    additions_needed = args.target - len(preserved)
     if additions_needed <= 0:
         raise SystemExit("target must exceed baseline")
 
@@ -80,9 +92,9 @@ def main() -> None:
         # Greedy coverage: reward under-represented artists, periods and visual
         # proxies. Stable hashes resolve ties and make the manifest reproducible.
         chosen = []
-        artist_counts = Counter(row.creator_display or "Unknown" for row in baseline)
-        period_counts = Counter(period(row.date_display) for row in baseline)
-        proxy_counts = Counter(visual_proxy(row.title_original, row.object_type) for row in baseline)
+        artist_counts = Counter(row.creator_display or "Unknown" for row in preserved)
+        period_counts = Counter(period(row.date_display) for row in preserved)
+        proxy_counts = Counter(visual_proxy(row.title_original, row.object_type) for row in preserved)
         remaining = list(rows)
         while remaining and len(chosen) < count:
             def key(row):
@@ -101,13 +113,13 @@ def main() -> None:
         return chosen
 
     additions = pick(with_media, media_target, "media") + pick(metadata_only, args.metadata_only_additions, "metadata")
-    selected = baseline + additions
+    selected = preserved + additions
     selected_ids = [row.provider_record_id for row in selected]
     if len(selected_ids) != args.target or len(set(selected_ids)) != args.target:
         raise SystemExit("selection cardinality/uniqueness invariant failed")
 
     summary = {
-        "target": args.target, "baseline_preserved": len(baseline), "additions": len(additions),
+        "target": args.target, "baseline_preserved": len(baseline), "prior_controlled_preserved": len(preserved), "additions": len(additions),
         "new_with_image_media": sum(any(media.media_type == "IMAGE" for media in row.media) for row in additions),
         "new_metadata_only": sum(not any(media.media_type == "IMAGE" for media in row.media) for row in additions),
         "unique_artists": len({row.creator_display for row in selected if row.creator_display}),
@@ -115,15 +127,16 @@ def main() -> None:
         "visual_proxies": dict(sorted(Counter(visual_proxy(row.title_original, row.object_type) for row in selected).items())),
     }
     payload = {
-        "schema_version": 1, "catalog_version": "ng-controlled-500-v1",
+        "schema_version": 1, "catalog_version": f"ng-controlled-{args.target}-v1",
         "source_snapshot": NationalGalleryLondonAdapter(args.full).source_snapshot(),
         "baseline_snapshot": NationalGalleryLondonAdapter(args.baseline).source_snapshot(),
-        "selection_policy": "preserve controlled 170; greedy artist/50-year-period/visual-proxy coverage; activate only technically prepared ASSET_VERIFY candidates after VISION_READY safety regression",
+        "selection_policy": f"preserve controlled {len(preserved)} (including original 170); greedy artist/50-year-period/visual-proxy coverage; activate only technically prepared ASSET_VERIFY candidates after safety regression",
         "technical_exclusions": sorted(exclusions),
         "summary": summary,
         "records": [{
             "position": index, "provider_record_id": row.provider_record_id,
             "baseline_170": row.provider_record_id in baseline_ids,
+            "prior_controlled": row.provider_record_id in preserved_ids,
             "readiness": "VISION_PLUS_ASSET_CANDIDATE" if any(media.media_type == "IMAGE" for media in row.media) else "VISION_READY",
             "artist": row.creator_display, "title": row.title_original, "date": row.date_display,
             "period": period(row.date_display), "visual_proxy": visual_proxy(row.title_original, row.object_type),
@@ -143,10 +156,15 @@ def main() -> None:
             break
     outside = [row for row in full if row.provider_record_id not in set(selected_ids) and any(media.media_type == "IMAGE" for media in row.media)]
     outside_sample = sorted(outside, key=lambda row: stable_rank("outside", period(row.date_display), visual_proxy(row.title_original, row.object_type), row.provider_record_id))[:20]
+    prior_regression = []
+    if args.prior_samples:
+        prior_samples = json.loads(Path(args.prior_samples).read_text(encoding="utf-8"))["samples"]
+        prior_regression = list(prior_samples.get("new_work_60") or prior_samples.get("works_171_500") or [])
     sample_payload = {
-        "schema_version": 1, "catalog_version": "ng-controlled-500-v1",
+        "schema_version": 1, "catalog_version": f"ng-controlled-{args.target}-v1",
         "samples": {
             "original_170": [row.provider_record_id for row in baseline],
+            "works_171_500": prior_regression,
             "new_work_60": [row.provider_record_id for row in new_sample],
             "confusion_30": [row.provider_record_id for row in confusable],
             "out_of_catalog_20": [row.provider_record_id for row in outside_sample],

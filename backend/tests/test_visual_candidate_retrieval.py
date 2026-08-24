@@ -60,6 +60,16 @@ class VisualCandidateRetrievalTests(unittest.TestCase):
         }])
         self.assertEqual(ranked, [])
 
+    def test_1000_descriptor_manifest_has_exact_selection_parity(self):
+        selection = json.loads((DATA / "controlled_catalog_1000_v1.json").read_text(encoding="utf-8"))
+        descriptors = json.loads((DATA / "controlled_catalog_1000_visual_descriptors_v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(descriptors["descriptor_version"], DESCRIPTOR_VERSION)
+        self.assertEqual(len(descriptors["records"]), 1000)
+        self.assertEqual(
+            {row["provider_record_id"] for row in descriptors["records"]},
+            {row["provider_record_id"] for row in selection["records"]},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

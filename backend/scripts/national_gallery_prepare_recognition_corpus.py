@@ -138,7 +138,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--snapshot", default=str(DEFAULT_SNAPSHOT)); parser.add_argument("--out", default=str(DEFAULT_OUT))
     parser.add_argument("--workers", type=int, default=6); parser.add_argument("--limit", type=int)
-    parser.add_argument("--exclude-manifest", help="Skip provider record IDs already present in another corpus manifest")
+    parser.add_argument("--exclude-manifest", action="append", help="Skip provider record IDs already present in another corpus manifest")
     parser.add_argument("--require-image", action="store_true", help="Select only records declaring at least one image relationship")
     parser.add_argument("--selection-manifest", help="Restrict preparation to provider IDs in a controlled selection manifest")
     args = parser.parse_args(); out = Path(args.out).resolve(); out.mkdir(parents=True, exist_ok=True)
@@ -148,8 +148,10 @@ def main() -> None:
         selected = {str(row["provider_record_id"]) for row in selection["records"]}
         records = [row for row in records if row.provider_record_id in selected]
     if args.exclude_manifest:
-        prior = json.loads(Path(args.exclude_manifest).read_text(encoding="utf-8"))
-        excluded = {row.get("provider_record_id") for row in prior.get("records", [])}
+        excluded = set()
+        for manifest_path in args.exclude_manifest:
+            prior = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+            excluded.update(row.get("provider_record_id") for row in prior.get("records", []))
         records = [row for row in records if row.provider_record_id not in excluded]
     if args.require_image:
         records = [row for row in records if any(media.media_type == "IMAGE" for media in row.media)]

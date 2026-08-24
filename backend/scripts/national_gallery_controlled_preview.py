@@ -27,20 +27,21 @@ SCRIPT = Path(__file__).resolve()
 ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
 BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
 SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json"
-SELECTION = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_v1.json"
-READINESS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json"
-DESCRIPTORS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_visual_descriptors_v1.json"
+SELECTION = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_1000_v1.json"
+READINESS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_1000_recognition_readiness_v1.json"
+DESCRIPTORS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_1000_visual_descriptors_v1.json"
 CONFIG = BACKEND_ROOT / "data/onboarding/national_gallery_london/config.json"
 INSTITUTION_ID = "national-gallery-london"
 PROVIDER_ID = "national_gallery_london"
-CATALOG_VERSION = "ng-controlled-500-v2-retrieval"
+CATALOG_VERSION = "ng-controlled-1000-v1-retrieval"
+CONTROLLED_SIZE = 1000
 
 
 def selection() -> tuple[list[str], set[str]]:
     rows = json.loads(SELECTION.read_text(encoding="utf-8"))["records"]
     ordered = [str(row["provider_record_id"]) for row in rows]
-    if len(ordered) != 500 or len(set(ordered)) != 500:
-        raise RuntimeError("controlled selection must contain exactly 500 unique provider IDs")
+    if len(ordered) != CONTROLLED_SIZE or len(set(ordered)) != CONTROLLED_SIZE:
+        raise RuntimeError(f"controlled selection must contain exactly {CONTROLLED_SIZE} unique provider IDs")
     return ordered, set(ordered)
 
 
@@ -128,7 +129,7 @@ def activate_controlled_catalog(db) -> dict:
         if membership is None:
             membership = ArtworkCatalogMembership(artwork_id=artwork.id, museum_id=INSTITUTION_ID, catalog_version=CATALOG_VERSION)
             db.add(membership); memberships += 1
-        membership.active = True; membership.tier = "CONTROLLED_PREVIEW"; membership.visitor_priority = float(500 - position)
+        membership.active = True; membership.tier = "CONTROLLED_PREVIEW"; membership.visitor_priority = float(CONTROLLED_SIZE - position)
         if artwork.id not in plus_asset_ids:
             continue
         association = (

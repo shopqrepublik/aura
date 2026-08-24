@@ -22,14 +22,21 @@ def main() -> None:
     parser.add_argument("--manifest", action="append", required=True); parser.add_argument("--out", required=True)
     args = parser.parse_args()
     selection = json.loads(Path(args.selection).read_text(encoding="utf-8"))["records"]
-    groups = {str(row["provider_record_id"]): "ORIGINAL_170" if row["baseline_170"] else "NEW_330" for row in selection}
+    groups = {
+        str(row["provider_record_id"]): (
+            "ORIGINAL_170" if row["baseline_170"] else
+            "WORKS_171_500" if row.get("prior_controlled") else
+            "NEW_501_1000"
+        )
+        for row in selection
+    }
     normalized = {row.provider_record_id: row for row in NationalGalleryLondonAdapter(args.snapshot, provider_record_ids=set(groups)).records()}
     media = {}
     for manifest in args.manifest:
         for row in json.loads(Path(manifest).read_text(encoding="utf-8"))["records"]:
             if row.get("status") == "READY" and row["provider_record_id"] in groups: media[row["provider_record_id"]] = row
     report = {}
-    for name in ("ORIGINAL_170", "NEW_330"):
+    for name in ("ORIGINAL_170", "WORKS_171_500", "NEW_501_1000"):
         ids = [provider_id for provider_id, group in groups.items() if group == name]
         rows = [normalized[provider_id] for provider_id in ids]
         dimensions = []

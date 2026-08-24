@@ -5,6 +5,8 @@
 - Configured institution + known reliable catalog work uses the catalog-backed result. Configured institution + no reliable catalog match retains the truthful AI uncataloged fallback and records demand. Unknown/unconfigured institution fails closed. In engineering shorthand: “Catalog when we know. AI when we don't. Learn from what visitors scan.”
 - RecognitionAsset absence does not disable metadata-only `VISION_READY` or the configured-institution AI fallback.
 - Controlled-preview institutions are enforced server-side, not hidden only in the frontend; public directory, artwork and recognition access remain closed without trusted QA context.
+- Visual descriptors are versioned, non-authoritative retrieval evidence. They may rank candidates but cannot establish identity; expensive same-object verification remains bounded independently of catalog size.
+- An explicit verifier `NEEDS_CONFIRMATION` decision cannot be promoted to auto-accepted by a high numeric confidence. Same-artist evidence conflicts remain cautious; confidence thresholds are not lowered to improve recall.
 
 ## Block 4 ingestion invariants (CURRENT)
 

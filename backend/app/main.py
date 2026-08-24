@@ -1254,6 +1254,50 @@ def recognize_with_vision(
     fuzzy_threshold = institution_config.fuzzy_candidate_threshold if institution_config else FUZZY_CANDIDATE_THRESHOLD
     candidate_limit = institution_config.max_candidates if institution_config else 5
     prompt_context = institution_config.prompt_context if institution_config else None
+    confidence_auto = institution_config.confidence_auto if institution_config else 0.92
+
+    def verifier_confidence(verdict: dict) -> float:
+        """Keep the verifier's explicit caution from becoming auto-acceptance.
+
+        The model decision and its numeric confidence are separate signals. A
+        NEEDS_CONFIRMATION verdict may be highly confident that the candidate
+        is *likely*, but it must remain below the institution's auto-accept
+        boundary so the existing visitor-resolution contract stays reachable.
+        This does not lower either configured threshold.
+        """
+        value = float(verdict.get("confidence", 0) or 0)
+        if verdict.get("decision") == "NEEDS_CONFIRMATION":
+            return min(value, max(0.0, confidence_auto - 0.001))
+        return value
+
+    def preserve_same_artist_confusion(verdict: dict, candidate_rows: list[dict]) -> dict:
+        """Do not auto-accept an unsupported metadata seed in a confusion family.
+
+        Visual retrieval is non-authoritative, but disagreement is useful
+        safety evidence. If a verifier selects the metadata-only seed while a
+        different work by the same artist is also in the bounded confusion
+        set, retain the catalog candidate as NEEDS_CONFIRMATION instead of
+        presenting it as certain. The verifier still establishes identity;
+        this rule only controls visitor resolution.
+        """
+        if verdict.get("decision") != "MATCH" or not verdict.get("chosen_id"):
+            return verdict
+        chosen_row = next((row for row in candidate_rows if row["candidate"]["id"] == verdict["chosen_id"]), None)
+        if not chosen_row or chosen_row.get("signals", {}).get("visual_retrieval_rank") is not None:
+            return verdict
+        chosen_artist = str(chosen_row["candidate"].get("artist") or "").strip().casefold()
+        if not chosen_artist:
+            return verdict
+        same_artist_competitor = any(
+            row["candidate"]["id"] != verdict["chosen_id"]
+            and str(row["candidate"].get("artist") or "").strip().casefold() == chosen_artist
+            for row in candidate_rows
+        )
+        if same_artist_competitor:
+            verdict = dict(verdict)
+            verdict["decision"] = "NEEDS_CONFIRMATION"
+            verdict["reason"] = f'{verdict.get("reason", "")} Same-artist retrieval evidence remains ambiguous.'.strip()
+        return verdict
     if not prompt_context and institution_config:
         prompt_context = (
             f"{institution_config.display_name}. The final identity must later be resolved "
@@ -1392,7 +1436,7 @@ def recognize_with_vision(
                 has_local_asset = bool(chosen and _reference_verification_allowed(chosen) and _local_reference_available(chosen))
                 return {
                     "artwork_id": chosen_id,
-                    "confidence": float(topn_verdict.get("confidence", 0) or 0),
+                    "confidence": verifier_confidence(topn_verdict),
                     "alternatives": [
                         row["candidate"]["id"]
                         for row in ranked[:candidate_limit]
@@ -1425,11 +1469,12 @@ def recognize_with_vision(
     if _reference_verification_allowed(match):
         if any(row["candidate"].get("visual_descriptor") for row in ranked):
             verdict = visual_verify_reference_candidates(image_base64, ranked)
+            verdict = preserve_same_artist_confusion(verdict, ranked)
             chosen_id = verdict.get("chosen_id")
             if verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
                 return {
                     "artwork_id": chosen_id,
-                    "confidence": float(verdict.get("confidence", 0) or 0),
+                    "confidence": verifier_confidence(verdict),
                     "alternatives": [row["candidate"]["id"] for row in ranked if row["candidate"]["id"] != chosen_id][:3],
                     "recognition_mode": "VISION_PLUS_ASSET",
                     "vision": ident,
