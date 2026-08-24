@@ -77,7 +77,7 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 
 - Run `PRODUCTION_SMOKE_TEST.md`: selection, known/unknown/wrong-institution/repeat, result/game/recap/share, attempt linkage, admin/system/catalog and current SEO/PWA regression.
 - Apply migrations through ledger and deploy reviewed main/release. Activate membership/profile only after smoke.
-- Large controlled snapshots use bounded idempotent ingestion batches; never materialize a full raw-provider plan merely to activate one catalog version. Switch membership/profile only after every batch reaches parity.
+- Large controlled snapshots use bounded idempotent ingestion batches; never materialize a full raw-provider plan merely to activate one catalog version. On auto-stop platforms, run explicit single-batch commands and a separate `--activate-only` parity step. Switch membership/profile only after every batch reaches parity.
 - Roll back by restoring membership/profile/catalog version; retain object/source/media evidence. Roll back code/content separately and account for SW/cache/SEO.
 
 ## National Gallery London controlled result (2026-08-24)

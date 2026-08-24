@@ -50,7 +50,7 @@ def selected_adapter(provider_record_ids: set[str] | None = None) -> NationalGal
     return NationalGalleryLondonAdapter(SNAPSHOT, provider_record_ids=provider_record_ids or selection()[1])
 
 
-def apply_in_bounded_batches(db, *, operator: str, batch_size: int = 100) -> dict:
+def apply_in_bounded_batches(db, *, operator: str, batch_size: int = 100, batch_index: int | None = None) -> dict:
     """Apply source records without materializing a 1,000-record raw plan.
 
     Source ingestion is additive and idempotent; controlled membership/profile
@@ -60,7 +60,12 @@ def apply_in_bounded_batches(db, *, operator: str, batch_size: int = 100) -> dic
     ordered, _ = selection()
     summaries: list[dict] = []
     run_ids: list[str] = []
-    for offset in range(0, len(ordered), batch_size):
+    offsets = list(range(0, len(ordered), batch_size))
+    if batch_index is not None:
+        if batch_index < 0 or batch_index >= len(offsets):
+            raise ValueError(f"batch_index must be between 0 and {len(offsets) - 1}")
+        offsets = [offsets[batch_index]]
+    for offset in offsets:
         batch = set(ordered[offset:offset + batch_size])
         adapter = selected_adapter(batch)
         plan = build_plan(db, adapter, INSTITUTION_ID, mode="PLAN")
@@ -190,7 +195,15 @@ def activate_controlled_catalog(db) -> dict:
 
 def status(db) -> dict:
     selected_ids = tuple(stable_id("artwork", PROVIDER_ID, provider_id) for provider_id in selection()[0])
-    asset_artworks = db.query(RecognitionAsset.artwork_id).filter(RecognitionAsset.artwork_id.in_(selected_ids)).distinct().count()
+    asset_artworks = (
+        db.query(RecognitionAsset.artwork_id)
+        .join(ArtworkCatalogMembership, ArtworkCatalogMembership.artwork_id == RecognitionAsset.artwork_id)
+        .filter(
+            RecognitionAsset.artwork_id.in_(selected_ids),
+            ArtworkCatalogMembership.catalog_version == CATALOG_VERSION,
+            ArtworkCatalogMembership.active.is_(True),
+        ).distinct().count()
+    )
     memberships = db.query(ArtworkCatalogMembership).filter_by(museum_id=INSTITUTION_ID, catalog_version=CATALOG_VERSION, active=True).count()
     return {
         "institution": db.get(Institution, INSTITUTION_ID) is not None,
@@ -208,6 +221,8 @@ def status(db) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(); parser.add_argument("mode", choices=("PLAN", "APPLY", "STATUS")); parser.add_argument("--operator")
+    parser.add_argument("--batch-index", type=int, help="Apply one zero-based 100-record batch without catalog activation")
+    parser.add_argument("--activate-only", action="store_true", help="Activate only after all batches have been applied")
     args = parser.parse_args()
     if args.mode == "APPLY" and not args.operator: parser.error("--operator is required for APPLY")
     if args.mode == "PLAN":
@@ -226,8 +241,10 @@ def main() -> None:
                 register(db)
                 db.commit()
                 result = {"production_public_activation": False}
-                result["ingestion"] = apply_in_bounded_batches(db, operator=args.operator)
-                result["controlled_catalog"] = activate_controlled_catalog(db)
+                if not args.activate_only:
+                    result["ingestion"] = apply_in_bounded_batches(db, operator=args.operator, batch_index=args.batch_index)
+                if args.batch_index is None:
+                    result["controlled_catalog"] = activate_controlled_catalog(db)
                 result["status"] = status(db)
     print(json.dumps(result, indent=2, default=str))
 

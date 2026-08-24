@@ -89,6 +89,24 @@ class NationalGalleryControlledExpansionTests(unittest.TestCase):
         self.assertEqual(adapter.call_count, 10)
         self.assertEqual(apply.call_count, 10)
 
+    def test_single_batch_operator_mode_is_retryable(self):
+        class FakePlan:
+            summary = {"records_inspected": 100}
+        with patch("backend.scripts.national_gallery_controlled_preview.selection", return_value=(list(map(str, range(1000))), set())), patch(
+            "backend.scripts.national_gallery_controlled_preview.selected_adapter", return_value=object()
+        ) as adapter, patch(
+            "backend.scripts.national_gallery_controlled_preview.build_plan", return_value=FakePlan()
+        ), patch(
+            "backend.scripts.national_gallery_controlled_preview.apply_plan", return_value="run-one"
+        ) as apply:
+            class DB:
+                def expunge_all(self): pass
+            result = apply_in_bounded_batches(DB(), operator="test", batch_index=7)
+        self.assertEqual(result["batches"], 1)
+        self.assertEqual(result["summary"]["records_inspected"], 100)
+        self.assertEqual(adapter.call_count, 1)
+        self.assertEqual(apply.call_count, 1)
+
 
 if __name__ == "__main__":
     unittest.main()
