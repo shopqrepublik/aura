@@ -147,6 +147,39 @@ def activate_controlled_catalog(db) -> dict:
     artworks = db.query(Artwork).filter(Artwork.id.in_(tuple(order))).all()
     if len(artworks) != len(order):
         raise RuntimeError(f"selected artwork parity failed: expected {len(order)}, found {len(artworks)}")
+    memberships_by_artwork = {
+        row.artwork_id: row
+        for row in db.query(ArtworkCatalogMembership).filter(
+            ArtworkCatalogMembership.artwork_id.in_(tuple(order)),
+            ArtworkCatalogMembership.catalog_version == CATALOG_VERSION,
+        ).all()
+    }
+    holding_ids = tuple({artwork.institution_holding_id for artwork in artworks if artwork.institution_holding_id})
+    associations_by_holding = {}
+    if holding_ids:
+        association_rows = (
+            db.query(MediaAssetAssociation, MediaAsset)
+            .join(MediaAsset, MediaAsset.id == MediaAssetAssociation.media_asset_id)
+            .filter(
+                MediaAssetAssociation.active.is_(True),
+                MediaAssetAssociation.institution_holding_id.in_(holding_ids),
+                MediaAsset.media_type == "IMAGE",
+                MediaAsset.original_url.isnot(None),
+            )
+            .order_by(
+                MediaAssetAssociation.institution_holding_id,
+                MediaAssetAssociation.position.asc().nullslast(),
+                MediaAssetAssociation.id,
+            ).all()
+        )
+        for edge, media in association_rows:
+            associations_by_holding.setdefault(edge.institution_holding_id, (edge, media))
+    recognition_by_key = {
+        (row.artwork_id, row.source_url): row
+        for row in db.query(RecognitionAsset).filter(
+            RecognitionAsset.artwork_id.in_(tuple(order))
+        ).all()
+    }
     memberships = assets = 0
     # Historical controlled versions remain auditable but are not active
     # candidate universes after this explicit version switch.
@@ -157,32 +190,23 @@ def activate_controlled_catalog(db) -> dict:
     ).update({ArtworkCatalogMembership.active: False}, synchronize_session=False)
     for artwork in artworks:
         position = order[artwork.id]
-        membership = db.query(ArtworkCatalogMembership).filter_by(artwork_id=artwork.id, catalog_version=CATALOG_VERSION).first()
+        membership = memberships_by_artwork.get(artwork.id)
         if membership is None:
             membership = ArtworkCatalogMembership(artwork_id=artwork.id, museum_id=INSTITUTION_ID, catalog_version=CATALOG_VERSION)
-            db.add(membership); memberships += 1
+            db.add(membership); memberships_by_artwork[artwork.id] = membership; memberships += 1
         membership.active = True; membership.tier = "CONTROLLED_PREVIEW"; membership.visitor_priority = float(CONTROLLED_SIZE - position)
         if artwork.id not in plus_asset_ids:
             continue
-        association = (
-            db.query(MediaAssetAssociation, MediaAsset)
-            .join(MediaAsset, MediaAsset.id == MediaAssetAssociation.media_asset_id)
-            .filter(
-                MediaAssetAssociation.active.is_(True),
-                MediaAssetAssociation.institution_holding_id == artwork.institution_holding_id,
-                MediaAsset.media_type == "IMAGE",
-                MediaAsset.original_url.isnot(None),
-            ).order_by(MediaAssetAssociation.position.asc().nullslast()).first()
-        )
+        association = associations_by_holding.get(artwork.institution_holding_id)
         if association is None:
             continue
         edge, media = association
         edge.recognition_eligible = True; media.recognition_eligible = True
         recognition_url = f"https://data.ng.ac.uk/iiif/3/{media.provider_asset_id}/full/max/0/default.jpg"
-        recognition = db.query(RecognitionAsset).filter_by(artwork_id=artwork.id, source_url=recognition_url).first()
+        recognition = recognition_by_key.get((artwork.id, recognition_url))
         if recognition is None:
             recognition = RecognitionAsset(artwork_id=artwork.id, source="national_gallery_controlled_preview", source_url=recognition_url)
-            db.add(recognition); assets += 1
+            db.add(recognition); recognition_by_key[(artwork.id, recognition_url)] = recognition; assets += 1
         recognition.license = media.license_code; recognition.attribution = media.attribution
         recognition.rights_status = (media.rights_status or "unknown").lower()
         recognition.ai_tdm_eligible = True; recognition.embedding_eligible = True
