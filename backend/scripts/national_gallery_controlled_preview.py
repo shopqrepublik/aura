@@ -29,10 +29,11 @@ BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
 SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json"
 SELECTION = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_v1.json"
 READINESS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json"
+DESCRIPTORS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_visual_descriptors_v1.json"
 CONFIG = BACKEND_ROOT / "data/onboarding/national_gallery_london/config.json"
 INSTITUTION_ID = "national-gallery-london"
 PROVIDER_ID = "national_gallery_london"
-CATALOG_VERSION = "ng-controlled-500-v1"
+CATALOG_VERSION = "ng-controlled-500-v2-retrieval"
 
 
 def selection() -> tuple[list[str], set[str]]:
@@ -50,6 +51,18 @@ def selected_adapter() -> NationalGalleryLondonAdapter:
 def recognition_ready_ids() -> set[str]:
     rows = json.loads(READINESS.read_text(encoding="utf-8"))["records"]
     return {stable_id("artwork", PROVIDER_ID, str(row["provider_record_id"])) for row in rows if row["readiness"] == "VISION_PLUS_ASSET"}
+
+
+def recognition_descriptors() -> dict[str, dict]:
+    rows = json.loads(DESCRIPTORS.read_text(encoding="utf-8"))["records"]
+    return {
+        stable_id("artwork", PROVIDER_ID, str(row["provider_record_id"])): {
+            "version": row["version"],
+            "values": row["values"],
+            "source_sha256": row["source_sha256"],
+        }
+        for row in rows
+    }
 
 
 def register(db) -> None:
@@ -96,6 +109,7 @@ def register(db) -> None:
 def activate_controlled_catalog(db) -> dict:
     ordered_provider_ids, _ = selection()
     plus_asset_ids = recognition_ready_ids()
+    descriptors = recognition_descriptors()
     order = {stable_id("artwork", PROVIDER_ID, provider_id): position for position, provider_id in enumerate(ordered_provider_ids)}
     artworks = db.query(Artwork).filter(Artwork.id.in_(tuple(order))).all()
     if len(artworks) != len(order):
@@ -140,6 +154,7 @@ def activate_controlled_catalog(db) -> dict:
         recognition.rights_status = (media.rights_status or "unknown").lower()
         recognition.ai_tdm_eligible = True; recognition.embedding_eligible = True
         recognition.local_storage_status = "not_fetched"
+        recognition.visual_descriptor = descriptors.get(artwork.id)
     db.get(InstitutionProfile, INSTITUTION_ID).visitor_catalog_version = CATALOG_VERSION
     db.commit()
     return {"artworks": len(artworks), "memberships_created": memberships, "recognition_assets_created": assets}

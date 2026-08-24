@@ -21,6 +21,8 @@ Technical readiness is separate from public activation. A `controlled_preview_on
 
 National Gallery `ng-controlled-500-v1` deliberately activates 500 `VISION_PLUS_ASSET` works. A metadata-only safety sample had unacceptable confident-wrong behavior, so metadata-qualified long-tail records remain outside this controlled candidate universe and continue through uncataloged AI fallback. This is a catalog-content decision backed by the dated benchmark, not a change to the global VISION_READY definition.
 
+Recognition-reference readiness also requires technical usefulness. A selected primary must depict the artwork itself, use the correct object/holding association role, avoid contextual/video thumbnails, and have usable resolution/composition. `VISION_PLUS_ASSET` is not a quality guarantee by itself. Where available, a versioned cheap descriptor may support candidate retrieval, but it remains non-authoritative and final same-object reference verification is mandatory. The National Gallery recovery release uses runtime catalog version `ng-controlled-500-v2-retrieval` without changing its 500 identities or public activation state.
+
 ## Activation checklist
 
 - [ ] CulturalObject, Holding and provider SourceRecord are stable; no title-derived identity.

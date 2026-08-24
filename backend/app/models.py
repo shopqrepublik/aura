@@ -641,6 +641,9 @@ class RecognitionAsset(Base):
     ai_tdm_eligible = Column(Boolean, default=False)
     embedding_eligible = Column(Boolean, default=False)
     local_storage_status = Column(String, default="not_fetched")  # "not_fetched" | "cached" | "cache_expired"
+    # Cheap candidate-retrieval evidence only; never a recognition decision.
+    # Shape: {"version": str, "values": [bounded floats], "source_sha256": str}.
+    visual_descriptor = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=now)
     updated_at = Column(DateTime, default=now, onupdate=now)
 

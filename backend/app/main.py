@@ -108,6 +108,7 @@ from .catalog import (  # noqa: E402
 )
 from .db import SessionLocal, get_db  # noqa: E402
 from .models import Artwork, ArtworkLocalization, InstitutionProfile, Museum, RecognitionAttempt, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
+from .visual_retrieval import rank_visual_candidates  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -1060,6 +1061,63 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict, allow_rem
     return json.loads(resp.choices[0].message.content)
 
 
+def visual_verify_reference_candidates(
+    image_base64: str,
+    ranked: list[dict],
+    allow_remote_reference_fetch: bool = True,
+) -> dict:
+    """Choose among at most three real references in one bounded model call.
+
+    This is used only after cheap institution-scoped retrieval.  It replaces
+    sequential candidate calls; canonical attachment still requires explicit
+    same-object visual evidence and the model may always return NO_MATCH.
+    """
+    usable = [
+        row for row in ranked[:3]
+        if row["candidate"].get("image_url") and _reference_verification_allowed(row["candidate"])
+    ]
+    if not usable:
+        return {"decision": "NO_MATCH", "chosen_id": None, "confidence": 0.0, "reason": "no_reference_candidates"}
+    from openai import OpenAI
+    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
+    allowed_ids = [row["candidate"]["id"] for row in usable]
+    content: list[dict] = [
+        {"type": "text", "text": "Visitor photo:"},
+        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+    ]
+    for index, row in enumerate(usable, 1):
+        candidate = row["candidate"]
+        reference = _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch)
+        content.extend([
+            {"type": "text", "text": f"Reference {index}: {json.dumps(_candidate_summary(candidate), ensure_ascii=False)}"},
+            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{reference}"}},
+        ])
+    content.append({"type": "text", "text": "Return the same physical artwork only, or NO_MATCH."})
+    response = _openai_chat_completion_with_retries(
+        client,
+        model=VISUAL_VERIFY_MODEL,
+        max_tokens=180,
+        response_format={"type": "json_object"},
+        messages=[
+            {"role": "system", "content": (
+                "Compare the visitor photo against at most three institution-scoped reference images. "
+                "Choose an id only when it is the SAME specific physical artwork. Similar subject, palette, "
+                "artist, series, or title is insufficient. Prefer NO_MATCH over a wrong attachment. Return "
+                "strict JSON: {\"decision\":\"MATCH|NEEDS_CONFIRMATION|NO_MATCH\",\"chosen_id\":"
+                "\"<provided id or null>\",\"confidence\":<0-1>,\"reason\":\"short evidence\"}."
+            )},
+            {"role": "user", "content": content},
+        ],
+    )
+    data = json.loads(response.choices[0].message.content)
+    if data.get("chosen_id") not in allowed_ids:
+        data.update({"decision": "NO_MATCH", "chosen_id": None, "confidence": 0.0})
+    data.setdefault("decision", "NO_MATCH"); data.setdefault("chosen_id", None)
+    data.setdefault("confidence", 0.0); data.setdefault("reason", "")
+    data["reference_candidate_count"] = len(usable)
+    return data
+
+
 def _candidate_summary(candidate: dict) -> dict:
     return {
         "id": candidate.get("id"),
@@ -1237,7 +1295,46 @@ def recognize_with_vision(
     if not ident.get("recognized") and not title and not ident.get("visual_clues"):
         return {"artwork_id": None, "confidence": 0.0, "alternatives": []}  # fast path: nothing recognized
 
-    ranked = rank_catalog_candidates(ident, candidates, hall_hint=hall_hint, limit=candidate_limit)
+    # Metadata ranking is cheap, so retain a wider diagnostic/retrieval pool
+    # even though expensive verification remains strictly bounded.
+    metadata_ranked = rank_catalog_candidates(
+        ident, candidates, hall_hint=hall_hint, limit=max(candidate_limit, 20)
+    )
+    ranked = metadata_ranked[:candidate_limit]
+    if policy == "ASSET_VERIFY" and any(candidate.get("visual_descriptor") for candidate in candidates):
+        visual_ranked = rank_visual_candidates(image_base64, candidates, limit=candidate_limit)
+        # Preserve the strongest metadata hypothesis first.  A visual
+        # candidate becomes the bounded runner-up (or first when metadata is
+        # weak); the existing reference verifier remains the only component
+        # allowed to attach canonical identity.
+        ordered: list[dict] = []
+        metadata_first = metadata_ranked[0] if metadata_ranked else None
+        if metadata_first and float(metadata_first["score"]) >= fuzzy_threshold:
+            ordered.append(metadata_first)
+        for visual in visual_ranked:
+            candidate = visual["candidate"]
+            metadata = next((row for row in metadata_ranked if row["candidate"]["id"] == candidate["id"]), None)
+            ordered.append(metadata or {
+                "candidate": candidate,
+                "score": 0.0,
+                "signals": {},
+            })
+            ordered[-1]["signals"] = {
+                **ordered[-1].get("signals", {}),
+                "visual_retrieval_rank": visual["visual_rank"],
+                "visual_descriptor_distance": visual["distance"],
+            }
+        ordered.extend(metadata_ranked)
+        seen: set[str] = set()
+        ranked = []
+        for row in ordered:
+            candidate_id = row["candidate"]["id"]
+            if candidate_id in seen:
+                continue
+            seen.add(candidate_id)
+            ranked.append(row)
+            if len(ranked) >= candidate_limit:
+                break
     if not ranked:
         return {
             "artwork_id": None,
@@ -1326,6 +1423,28 @@ def recognize_with_vision(
         }
 
     if _reference_verification_allowed(match):
+        if any(row["candidate"].get("visual_descriptor") for row in ranked):
+            verdict = visual_verify_reference_candidates(image_base64, ranked)
+            chosen_id = verdict.get("chosen_id")
+            if verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
+                return {
+                    "artwork_id": chosen_id,
+                    "confidence": float(verdict.get("confidence", 0) or 0),
+                    "alternatives": [row["candidate"]["id"] for row in ranked if row["candidate"]["id"] != chosen_id][:3],
+                    "recognition_mode": "VISION_PLUS_ASSET",
+                    "vision": ident,
+                    "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
+                    "stage2_verifier": verdict,
+                }
+            return {
+                "artwork_id": None,
+                "confidence": float(verdict.get("confidence", 0) or 0),
+                "alternatives": [row["candidate"]["id"] for row in ranked[:3]],
+                "recognized_but_not_cataloged": {"artist": artist, "title": title},
+                "vision": ident,
+                "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
+                "stage2_verifier": verdict,
+            }
         verdict = visual_verify_single_candidate(image_base64, match)  # slow path
         if verdict.get("is_match"):
             visual_confidence = float(verdict.get("confidence", 0) or 0)

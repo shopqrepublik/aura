@@ -22,6 +22,7 @@ COPY data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08
 COPY data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json
 COPY data/onboarding/national_gallery_london/controlled_catalog_500_v1.json data/onboarding/national_gallery_london/controlled_catalog_500_v1.json
 COPY data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json
+COPY data/onboarding/national_gallery_london/controlled_catalog_500_visual_descriptors_v1.json data/onboarding/national_gallery_london/controlled_catalog_500_visual_descriptors_v1.json
 
 # Reference cache warming is an operational step, not required to build the
 # app image. Keeping it out of Docker build avoids deployment-time network

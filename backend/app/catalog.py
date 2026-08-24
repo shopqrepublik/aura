@@ -212,6 +212,7 @@ def artwork_to_catalog_dict(
         "inventory_number": artwork.inventory_number,
         "image_url": recognition_image_url,
         "recognition_asset_id": recognition_asset_id,
+        "visual_descriptor": recognition_asset.visual_descriptor if recognition_asset is not None else None,
         "priority": artwork.priority,
         "tags": artwork.tags or [],
         "source_urls": artwork.source_urls or [],

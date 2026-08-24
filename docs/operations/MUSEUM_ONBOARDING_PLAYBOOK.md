@@ -57,6 +57,9 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 
 - Configure profile universe/policy/version/modes/thresholds and independent readiness dimensions.
 - Benchmark self/gallery/partial/decoy/wrong-institution/non-art/uncataloged sets; record auto-accepted, confirmation-required, no-match, confident-wrong, latency and cost.
+- Audit every primary reference for object association role, media type, resolution, crop/background and checksum uniqueness. Contextual media must not become a recognition primary merely because it is technically eligible.
+- Measure metadata and visual candidate recall@1/3/5/10/20 before changing confidence. Cheap versioned descriptors may improve retrieval, but only same-object verification may attach canonical identity.
+- Profile Stage 1, metadata ranking, visual retrieval, verification and finalization. Catalog growth must not increase expensive model calls linearly.
 - Approve gates and rollback before activation; no provider-specific core branch.
 
 ## 10. Frontend/content/SEO
@@ -78,7 +81,7 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 
 ## National Gallery London controlled result (2026-08-24)
 
-**YES: 500 works are available for controlled real-world scan testing, not public activation.** See `../recognition/NATIONAL_GALLERY_CONTROLLED_500_BENCHMARK_2026-08-24.md`. Expansion to 1,000 is not yet approved because the new-work sample is fallback-heavy and tail latency increased.
+**YES: 500 works are available for controlled real-world scan testing, not public activation.** See `../recognition/NATIONAL_GALLERY_CONTROLLED_500_BENCHMARK_2026-08-24.md` and the subsequent `../recognition/NATIONAL_GALLERY_500_QUALITY_RECOVERY_2026-08-24.md`. Runtime retrieval recovery materially improved added-work recall while preserving zero confident wrong results; any move toward 1,000 remains a separate controlled expansion, never public activation.
 
 | Item | Required |
 |---|---|
