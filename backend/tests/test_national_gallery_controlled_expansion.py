@@ -19,6 +19,8 @@ class NationalGalleryControlledExpansionTests(unittest.TestCase):
         cls.baseline = list(NationalGalleryLondonAdapter(DATA / "pre_eminent_review_snapshot_2026-08-23.json").records())
         cls.selection_1000 = json.loads((DATA / "controlled_catalog_1000_v1.json").read_text(encoding="utf-8"))
         cls.readiness_1000 = json.loads((DATA / "controlled_catalog_1000_recognition_readiness_v1.json").read_text(encoding="utf-8"))
+        cls.selection_2000 = json.loads((DATA / "controlled_catalog_2000_v1.json").read_text(encoding="utf-8"))
+        cls.readiness_2000 = json.loads((DATA / "controlled_catalog_2000_recognition_readiness_v1.json").read_text(encoding="utf-8"))
 
     def test_selection_preserves_170_and_has_exactly_500_unique_records(self):
         rows = self.selection["records"]
@@ -69,6 +71,27 @@ class NationalGalleryControlledExpansionTests(unittest.TestCase):
         self.assertEqual(
             {row["provider_record_id"] for row in self.readiness_1000["records"]},
             {row["provider_record_id"] for row in self.selection_1000["records"]},
+        )
+
+    def test_2000_selection_preserves_every_controlled_1000_identity(self):
+        old = {row["provider_record_id"] for row in self.selection_1000["records"]}
+        rows = self.selection_2000["records"]
+        selected = {row["provider_record_id"] for row in rows}
+        self.assertEqual(len(rows), 2000)
+        self.assertEqual(len(selected), 2000)
+        self.assertTrue(old.issubset(selected))
+        self.assertEqual(sum(not row["prior_controlled"] for row in rows), 1000)
+        self.assertEqual(self.selection_2000["summary"]["new_with_image_media"], 1000)
+        self.assertEqual(self.selection_2000["summary"]["new_metadata_only"], 0)
+
+    def test_2000_readiness_is_exact(self):
+        self.assertEqual(self.readiness_2000["summary"], {
+            "total": 2000, "vision_plus_asset": 2000,
+            "vision_ready": 0, "not_ready": 0,
+        })
+        self.assertEqual(
+            {row["provider_record_id"] for row in self.readiness_2000["records"]},
+            {row["provider_record_id"] for row in self.selection_2000["records"]},
         )
 
     def test_controlled_apply_is_bounded_before_activation(self):

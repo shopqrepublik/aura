@@ -4,6 +4,9 @@
   "records": [
     {"provider_record_id": "0BE6-000B-0000-0000", "status": "HTTP_403"},
     {"provider_record_id": "0HVL-0001-0000-0000", "status": "HTTP_404"},
-    {"provider_record_id": "0OCB-000B-0000-0000", "status": "HTTP_403"}
+    {"provider_record_id": "0OCB-000B-0000-0000", "status": "HTTP_403"},
+    {"provider_record_id": "0HF6-000B-0000-0000", "status": "HTTP_403"},
+    {"provider_record_id": "0HF7-000B-0000-0000", "status": "HTTP_403"},
+    {"provider_record_id": "0RCP-000B-0000-0000", "status": "HTTP_404"}
   ]
 }

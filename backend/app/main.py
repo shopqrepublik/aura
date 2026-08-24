@@ -1283,7 +1283,21 @@ def recognize_with_vision(
         if verdict.get("decision") != "MATCH" or not verdict.get("chosen_id"):
             return verdict
         chosen_row = next((row for row in candidate_rows if row["candidate"]["id"] == verdict["chosen_id"]), None)
-        if not chosen_row or chosen_row.get("signals", {}).get("visual_retrieval_rank") is not None:
+        if not chosen_row:
+            return verdict
+        # A reference verifier can establish strong same-image evidence, but
+        # a confident Stage-1 attribution to another artist is contradictory
+        # evidence. Keep the candidate visible for confirmation rather than
+        # silently auto-attaching it. This is especially important for
+        # visually related panels, versions and workshop compositions.
+        if not _stage2_artist_match_allowed(ident, chosen_row["candidate"]):
+            verdict["decision"] = "NEEDS_CONFIRMATION"
+            verdict["reason"] = (
+                f'{verdict.get("reason", "")} '
+                "Stage-1 artist attribution conflicts with the reference candidate."
+            ).strip()
+            return verdict
+        if chosen_row.get("signals", {}).get("visual_retrieval_rank") is not None:
             return verdict
         chosen_artist = str(chosen_row["candidate"].get("artist") or "").strip().casefold()
         if not chosen_artist:

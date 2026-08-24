@@ -28,14 +28,14 @@ SCRIPT = Path(__file__).resolve()
 ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
 BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
 SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json"
-SELECTION = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_1000_v1.json"
-READINESS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_1000_recognition_readiness_v1.json"
-DESCRIPTORS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_1000_visual_descriptors_v1.json"
+SELECTION = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_2000_v1.json"
+READINESS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_2000_recognition_readiness_v1.json"
+DESCRIPTORS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_2000_visual_descriptors_v1.json"
 CONFIG = BACKEND_ROOT / "data/onboarding/national_gallery_london/config.json"
 INSTITUTION_ID = "national-gallery-london"
 PROVIDER_ID = "national_gallery_london"
-CATALOG_VERSION = "ng-controlled-1000-v1-retrieval"
-CONTROLLED_SIZE = 1000
+CATALOG_VERSION = "ng-controlled-2000-v1-retrieval"
+CONTROLLED_SIZE = 2000
 
 
 def selection() -> tuple[list[str], set[str]]:

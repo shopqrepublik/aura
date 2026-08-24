@@ -70,6 +70,16 @@ class VisualCandidateRetrievalTests(unittest.TestCase):
             {row["provider_record_id"] for row in selection["records"]},
         )
 
+    def test_2000_descriptor_manifest_has_exact_selection_parity(self):
+        selection = json.loads((DATA / "controlled_catalog_2000_v1.json").read_text(encoding="utf-8"))
+        descriptors = json.loads((DATA / "controlled_catalog_2000_visual_descriptors_v1.json").read_text(encoding="utf-8"))
+        self.assertEqual(descriptors["descriptor_version"], DESCRIPTOR_VERSION)
+        self.assertEqual(len(descriptors["records"]), 2000)
+        self.assertEqual(
+            {row["provider_record_id"] for row in descriptors["records"]},
+            {row["provider_record_id"] for row in selection["records"]},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

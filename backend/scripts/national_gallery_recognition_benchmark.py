@@ -1,7 +1,7 @@
 """Controlled National Gallery recognition benchmark; no DB/public mutation."""
 from __future__ import annotations
 
-import argparse, base64, json, os, shutil, statistics, time, threading
+import argparse, base64, hashlib, json, os, shutil, statistics, time, threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -14,12 +14,14 @@ try:
     from backend.app.catalog import InstitutionRuntimeConfig
     from backend.app.ingestion import stable_id
     from backend.app.main import REFERENCE_CACHE_DIR, recognize_with_vision
+    from backend.app.visual_retrieval import descriptor_distance, descriptor_from_base64
 except ModuleNotFoundError:
     import app.main as recognition_module
     from app.adapters.national_gallery_london import NationalGalleryLondonAdapter
     from app.catalog import InstitutionRuntimeConfig
     from app.ingestion import stable_id
     from app.main import REFERENCE_CACHE_DIR, recognize_with_vision
+    from app.visual_retrieval import descriptor_distance, descriptor_from_base64
 
 SCRIPT = Path(__file__).resolve()
 ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
@@ -127,6 +129,14 @@ def main():
         selected_payload=json.loads(Path(args.catalog_selection).read_text(encoding="utf-8"))
         catalog_selected={str(r["provider_record_id"]) for r in selected_payload["records"]}
     catalog_rows=[r for r in NationalGalleryLondonAdapter(args.catalog_snapshot).records() if r.provider_record_id in catalog_selected]
+    catalog_row_ids = {row.provider_record_id for row in catalog_rows}
+    missing_catalog_rows = catalog_selected - catalog_row_ids
+    if missing_catalog_rows:
+        raise SystemExit(
+            "catalog snapshot/selection parity failed: "
+            f"selected={len(catalog_selected)} rows={len(catalog_rows)} "
+            f"missing={len(missing_catalog_rows)}"
+        )
     visual_descriptors = {}
     if args.visual_descriptors:
         payload = json.loads(Path(args.visual_descriptors).read_text(encoding="utf-8"))
@@ -148,9 +158,22 @@ def main():
     def run(row):
         expected=stable_id("artwork",row.provider_id,row.provider_record_id); m=by_provider[row.provider_record_id]
         image=base64.b64encode((ROOT/m["files"][args.variant]["path"]).read_bytes()).decode(); start=time.perf_counter()
+        # Keep concurrent benchmark cases isolated from any candidate-row
+        # annotations made by the recognition path. Production loads a fresh
+        # scoped candidate payload per request; the harness must model that
+        # instead of sharing mutable dictionaries between worker threads.
+        case_candidates = [{**item, "visual_descriptor": dict(item["visual_descriptor"]) if item.get("visual_descriptor") else None} for item in candidates]
+        pre_visual = recognition_module.rank_visual_candidates(image, case_candidates, limit=len(case_candidates)) if args.diagnose_retrieval else []
+        pre_visual_ids = [item["candidate"]["id"] for item in pre_visual]
+        pre_visual_rank = pre_visual_ids.index(expected) + 1 if expected in pre_visual_ids else None
+        expected_candidate = next((item for item in case_candidates if item["id"] == expected), None)
+        expected_visual_distance = descriptor_distance(
+            descriptor_from_base64(image),
+            (expected_candidate or {}).get("visual_descriptor", {}).get("values", []),
+        ) if args.diagnose_retrieval and expected_candidate else None
         _profile.timings = {}
         try:
-            result=recognize_with_vision(image,"national-gallery-london",None,candidates,institution_config=cfg); error=None
+            result=recognize_with_vision(image,"national-gallery-london",None,case_candidates,institution_config=cfg); error=None
         except Exception as exc: result={}; error=f"{type(exc).__name__}: {exc}"
         latency=time.perf_counter()-start; chosen=result.get("artwork_id"); confidence=float(result.get("confidence",0) or 0)
         resolution="AUTO_ACCEPTED" if chosen and confidence>=cfg.confidence_auto else "CONFIRMATION_REQUIRED" if chosen and confidence>=cfg.confidence_review else "AI_UNCATALOGED" if result.get("recognized_but_not_cataloged") else "UNRESOLVED"
@@ -162,10 +185,12 @@ def main():
             diagnostic_metadata = recognition_module.rank_catalog_candidates(result["vision"], candidates, hall_hint=None, limit=len(candidates))
             metadata_ids = [item["candidate"]["id"] for item in diagnostic_metadata]
             metadata_rank = metadata_ids.index(expected) + 1 if expected in metadata_ids else None
-            diagnostic_visual = recognition_module.rank_visual_candidates(image, candidates, limit=len(candidates))
+            diagnostic_visual = recognition_module.rank_visual_candidates(image, case_candidates, limit=len(case_candidates))
             visual_ids = [item["candidate"]["id"] for item in diagnostic_visual]
-            visual_rank = visual_ids.index(expected) + 1 if expected in visual_ids else None
-        return {"expected_artwork_id":expected,"expected_in_catalog":not args.expect_out_of_catalog,"provider_record_id":row.provider_record_id,"title":row.title_original,"artist":row.creator_display,"variant":args.variant,"mode":args.mode,"chosen_artwork_id":chosen,"confidence":confidence,"correct_top1":chosen==expected,"correct_topk":expected in top,"metadata_candidate_rank":metadata_rank,"visual_candidate_rank":visual_rank,"top_candidates":result.get("top_candidates",[]),"engine_outcome":"CATALOG_CANDIDATE_MATCHED" if chosen else "UNCATALOGED_IDENTIFIED" if result.get("recognized_but_not_cataloged") else "NO_MATCH","visitor_resolution":resolution,"recognition_mode":result.get("recognition_mode"),"latency_s":latency,"stage_timings_s":stage_timings,"failure_reason":error or (result.get("stage2_verifier") or {}).get("reason"),"stage2":result.get("stage2_verifier"),"ai_candidate":result.get("recognized_but_not_cataloged")}
+            visual_rank = visual_ids.index(expected) + 1 if expected in visual_ids else pre_visual_rank
+        elif args.diagnose_retrieval:
+            visual_rank = pre_visual_rank
+        return {"expected_artwork_id":expected,"expected_in_catalog":not args.expect_out_of_catalog,"provider_record_id":row.provider_record_id,"title":row.title_original,"artist":row.creator_display,"variant":args.variant,"mode":args.mode,"chosen_artwork_id":chosen,"confidence":confidence,"correct_top1":chosen==expected,"correct_topk":expected in top,"metadata_candidate_rank":metadata_rank,"visual_candidate_rank":visual_rank,"expected_visual_distance":expected_visual_distance,"input_sha256":hashlib.sha256(base64.b64decode(image)).hexdigest(),"pre_visual_top_ids":[item["candidate"]["id"] for item in pre_visual[:5]],"top_candidates":result.get("top_candidates",[]),"engine_outcome":"CATALOG_CANDIDATE_MATCHED" if chosen else "UNCATALOGED_IDENTIFIED" if result.get("recognized_but_not_cataloged") else "NO_MATCH","visitor_resolution":resolution,"recognition_mode":result.get("recognition_mode"),"latency_s":latency,"stage_timings_s":stage_timings,"failure_reason":error or (result.get("stage2_verifier") or {}).get("reason"),"stage1":result.get("vision"),"stage2":result.get("stage2_verifier"),"ai_candidate":result.get("recognized_but_not_cataloged")}
     results=[]
     with ThreadPoolExecutor(max_workers=max(1,args.workers)) as pool:
         futures=[pool.submit(run,r) for r in rows]

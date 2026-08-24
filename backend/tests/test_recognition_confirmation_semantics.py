@@ -72,6 +72,37 @@ class RecognitionConfirmationSemanticsTests(unittest.TestCase):
         self.assertGreaterEqual(result["confidence"], config.confidence_review)
         self.assertLess(result["confidence"], config.confidence_auto)
 
+    def test_confident_stage1_artist_conflict_requires_confirmation(self):
+        candidate = {
+            "id": "artwork:panel", "museum_id": "test", "title": "Related Panel",
+            "artist": "Catalog Artist", "year": "1450", "image_url": "https://example.org/panel.jpg",
+            "recognition_asset_id": "asset:panel",
+            "visual_descriptor": {"version": "elyio-lowfreq-rgb-v1", "values": [0.0]},
+        }
+        ranked = [{"candidate": candidate, "score": .8, "signals": {"visual_retrieval_rank": 1}}]
+        config = InstitutionRuntimeConfig(
+            institution_id="test", display_name="Test", visitor_catalog_version="test-v1",
+            candidate_universe="ACTIVE_CATALOG", recognition_policy="ASSET_VERIFY",
+            supported_modes=("normal",), max_candidates=5, confidence_auto=.92,
+            confidence_review=.82, fuzzy_candidate_threshold=.55,
+            prompt_context="Test institution", allow_recognition_asset_substitution=True,
+        )
+        with patch("backend.app.main.recognize_open", return_value={
+            "recognized": True, "artist": "Different Artist", "title": "Related Panel",
+            "confidence_artist": .95, "confidence_title": .9, "confidence": .95,
+        }), patch("backend.app.main.rank_catalog_candidates", return_value=ranked), patch(
+            "backend.app.main.rank_visual_candidates", return_value=[]
+        ), patch("backend.app.main._reference_verification_allowed", return_value=True), patch(
+            "backend.app.main.visual_verify_reference_candidates", return_value={
+                "decision": "MATCH", "chosen_id": "artwork:panel", "confidence": .99,
+            }
+        ):
+            result = recognize_with_vision("aW1hZ2U=", "test", None, [candidate], institution_config=config)
+        self.assertEqual(result["artwork_id"], "artwork:panel")
+        self.assertEqual(result["stage2_verifier"]["decision"], "NEEDS_CONFIRMATION")
+        self.assertGreaterEqual(result["confidence"], config.confidence_review)
+        self.assertLess(result["confidence"], config.confidence_auto)
+
 
 if __name__ == "__main__":
     unittest.main()

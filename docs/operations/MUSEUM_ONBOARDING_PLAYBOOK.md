@@ -80,9 +80,9 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 - Large controlled snapshots use bounded idempotent ingestion batches; never materialize a full raw-provider plan merely to activate one catalog version. On auto-stop platforms, run explicit single-batch commands and a separate `--activate-only` parity step. Switch membership/profile only after every batch reaches parity.
 - Roll back by restoring membership/profile/catalog version; retain object/source/media evidence. Roll back code/content separately and account for SW/cache/SEO.
 
-## National Gallery London controlled result (2026-08-24)
+## National Gallery London controlled result (2026-08-25)
 
-**YES: 1,000 works are available for controlled testing, not public activation.** See [the 1,000-work benchmark](../recognition/NATIONAL_GALLERY_CONTROLLED_1000_BENCHMARK_2026-08-24.md). The additive expansion preserves all prior identities, retains bounded verification and produces zero confident-wrong results after the same-artist caution regression. Any move toward 2,000 remains a separate controlled expansion.
+**YES: 2,000 works are available for controlled testing, not public activation.** See [the 2,000-work benchmark](../recognition/NATIONAL_GALLERY_CONTROLLED_2000_BENCHMARK_2026-08-25.md). The additive expansion preserves all prior identities, retains bounded verification and produces zero confident-wrong results after the artist-conflict caution regression. The next recommended tranche is the remaining image-backed cohort; metadata-only holdings require an independently sourced test-image corpus before their AI-first quality can be measured.
 
 | Item | Required |
 |---|---|

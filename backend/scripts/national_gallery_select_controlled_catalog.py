@@ -154,17 +154,27 @@ def main() -> None:
             new_sample.append(row)
         if len(new_sample) == 60:
             break
-    outside = [row for row in full if row.provider_record_id not in set(selected_ids) and any(media.media_type == "IMAGE" for media in row.media)]
+    outside = [row for row in full if row.provider_record_id not in set(selected_ids) and row.provider_record_id not in exclusions and any(media.media_type == "IMAGE" for media in row.media)]
     outside_sample = sorted(outside, key=lambda row: stable_rank("outside", period(row.date_display), visual_proxy(row.title_original, row.object_type), row.provider_record_id))[:20]
-    prior_regression = []
+    prior_samples_by_name = {}
     if args.prior_samples:
         prior_samples = json.loads(Path(args.prior_samples).read_text(encoding="utf-8"))["samples"]
-        prior_regression = list(prior_samples.get("new_work_60") or prior_samples.get("works_171_500") or [])
+        prior_samples_by_name = {
+            name: list(values)
+            for name, values in prior_samples.items()
+            if name not in {"original_170", "confusion_30", "out_of_catalog_20"}
+        }
+        # The preceding expansion's new-work cohort becomes a named frozen
+        # regression cohort in the new package. Keep older cohort names too.
+        prior_new = list(prior_samples.get("new_work_60") or [])
+        if prior_new:
+            prior_floor = len(preserved) // 2 + 1
+            prior_samples_by_name[f"works_{prior_floor}_{len(preserved)}"] = prior_new
     sample_payload = {
         "schema_version": 1, "catalog_version": f"ng-controlled-{args.target}-v1",
         "samples": {
             "original_170": [row.provider_record_id for row in baseline],
-            "works_171_500": prior_regression,
+            **prior_samples_by_name,
             "new_work_60": [row.provider_record_id for row in new_sample],
             "confusion_30": [row.provider_record_id for row in confusable],
             "out_of_catalog_20": [row.provider_record_id for row in outside_sample],
