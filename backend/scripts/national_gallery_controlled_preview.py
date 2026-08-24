@@ -7,6 +7,7 @@ returned by the public directory and its artworks are not publicly readable.
 from __future__ import annotations
 
 import argparse
+import gc
 import json
 from pathlib import Path
 from sqlalchemy import create_engine
@@ -45,8 +46,34 @@ def selection() -> tuple[list[str], set[str]]:
     return ordered, set(ordered)
 
 
-def selected_adapter() -> NationalGalleryLondonAdapter:
-    return NationalGalleryLondonAdapter(SNAPSHOT, provider_record_ids=selection()[1])
+def selected_adapter(provider_record_ids: set[str] | None = None) -> NationalGalleryLondonAdapter:
+    return NationalGalleryLondonAdapter(SNAPSHOT, provider_record_ids=provider_record_ids or selection()[1])
+
+
+def apply_in_bounded_batches(db, *, operator: str, batch_size: int = 100) -> dict:
+    """Apply source records without materializing a 1,000-record raw plan.
+
+    Source ingestion is additive and idempotent; controlled membership/profile
+    activation remains a single, separate final step. A failed batch can be
+    retried safely and can never expose a partial public catalog.
+    """
+    ordered, _ = selection()
+    summaries: list[dict] = []
+    run_ids: list[str] = []
+    for offset in range(0, len(ordered), batch_size):
+        batch = set(ordered[offset:offset + batch_size])
+        adapter = selected_adapter(batch)
+        plan = build_plan(db, adapter, INSTITUTION_ID, mode="PLAN")
+        summaries.append(plan.summary)
+        run_ids.append(apply_plan(db, plan, operator_id=operator))
+        db.expunge_all()
+        del plan, adapter
+        gc.collect()
+    totals = {
+        key: sum(int(summary.get(key, 0)) for summary in summaries)
+        for key in summaries[0]
+    } if summaries else {}
+    return {"batch_size": batch_size, "batches": len(summaries), "ingestion_run_ids": run_ids, "summary": totals}
 
 
 def recognition_ready_ids() -> set[str]:
@@ -197,10 +224,9 @@ def main() -> None:
             if args.mode == "STATUS": result = status(db)
             else:
                 register(db)
-                adapter = selected_adapter()
-                plan = build_plan(db, adapter, INSTITUTION_ID, mode="PLAN")
-                result = {"plan": plan.summary, "production_public_activation": False}
-                result["ingestion_run_id"] = apply_plan(db, plan, operator_id=args.operator)
+                db.commit()
+                result = {"production_public_activation": False}
+                result["ingestion"] = apply_in_bounded_batches(db, operator=args.operator)
                 result["controlled_catalog"] = activate_controlled_catalog(db)
                 result["status"] = status(db)
     print(json.dumps(result, indent=2, default=str))

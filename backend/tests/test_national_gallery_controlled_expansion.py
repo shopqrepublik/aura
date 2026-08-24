@@ -1,8 +1,10 @@
 import json
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
+from backend.scripts.national_gallery_controlled_preview import apply_in_bounded_batches
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -68,6 +70,24 @@ class NationalGalleryControlledExpansionTests(unittest.TestCase):
             {row["provider_record_id"] for row in self.readiness_1000["records"]},
             {row["provider_record_id"] for row in self.selection_1000["records"]},
         )
+
+    def test_controlled_apply_is_bounded_before_activation(self):
+        class FakePlan:
+            summary = {"records_inspected": 100, "new_objects": 100}
+        with patch("backend.scripts.national_gallery_controlled_preview.selection", return_value=(list(map(str, range(1000))), set())), patch(
+            "backend.scripts.national_gallery_controlled_preview.selected_adapter", return_value=object()
+        ) as adapter, patch(
+            "backend.scripts.national_gallery_controlled_preview.build_plan", return_value=FakePlan()
+        ), patch(
+            "backend.scripts.national_gallery_controlled_preview.apply_plan", side_effect=[f"run-{i}" for i in range(10)]
+        ) as apply:
+            class DB:
+                def expunge_all(self): pass
+            result = apply_in_bounded_batches(DB(), operator="test", batch_size=100)
+        self.assertEqual(result["batches"], 10)
+        self.assertEqual(result["summary"]["records_inspected"], 1000)
+        self.assertEqual(adapter.call_count, 10)
+        self.assertEqual(apply.call_count, 10)
 
 
 if __name__ == "__main__":

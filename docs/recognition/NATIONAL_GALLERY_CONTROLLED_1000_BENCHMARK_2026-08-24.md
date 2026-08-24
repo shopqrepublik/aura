@@ -40,3 +40,5 @@ The official snapshot contains 3,785 objects. After the controlled 1,000, 2,785 
 ## Decision
 
 The controlled 1,000 is suitable to continue toward a controlled 2,000-work package: confident incorrect is zero after the generic caution fix, long-tail and hard-negative behavior remain safe, and expensive model work remains bounded. This does not authorize public National Gallery activation.
+
+Production ingestion applies this package in idempotent 100-record batches so the source adapter, normalized raw payload and reconciliation plan do not exceed the 256 MB Fly machine. Membership/profile activation remains a separate final step after complete parity; a failed batch leaves only inactive canonical evidence and is safely retryable.
