@@ -102,6 +102,7 @@ export default function UncatalogedCardScreen({
               locale={state.locale}
               mode={state.mode}
               museumCity={state.museumCity}
+              artworkId={sighting.id}
             />
           </div>
         ) : (

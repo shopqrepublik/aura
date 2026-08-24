@@ -157,6 +157,7 @@ export default function CardScreen({
           locale={state.locale}
           mode={state.mode}
           museumCity={state.museumCity}
+          artworkId={artwork.id}
         />
 
         {!excluded && (

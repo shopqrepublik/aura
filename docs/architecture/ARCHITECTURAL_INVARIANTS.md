@@ -17,6 +17,8 @@
 - EUR-grounded Value Engine output cannot be relabelled GBP or another currency.
 - A responsible numeric viewed-work estimate must render methodology/disclaimer and deterministic scale comparisons. A no-responsible-estimate or unsupported state must not fabricate monetary equivalents.
 - Local scale-comparison geography derives from Institution context. Paris is not the global default; unknown cities fall back to global comparison categories.
+- Scale-comparison reference prices are reviewed/versioned configuration, never live AI inventions. Selection is deterministic by artwork identity, engine version and Institution context.
+- The rare founder easter egg is a non-monetary replacement row only: it has no reference value, never affects valuation arithmetic, and never appears without a responsible numeric estimate.
 
 Status: CURRENT rules future changes must preserve.
 

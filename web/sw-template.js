@@ -151,6 +151,10 @@ self.addEventListener("fetch", (e) => {
     e.respondWith(cacheFirst(e.request));
   } else if (isApiOrCrossOrigin(url)) {
     e.respondWith(networkFirst(e.request));
+  } else if (e.request.mode === "navigate" && url.pathname === "/visit" && url.searchParams.get("controlled-preview") === "1") {
+    // Internal evidence collection must prefer the current comparison
+    // engine instead of serving one stale HTML/build cycle.
+    e.respondWith(networkFirst(e.request));
   } else {
     e.respondWith(staleWhileRevalidate(e));
   }

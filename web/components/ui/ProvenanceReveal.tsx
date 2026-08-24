@@ -54,6 +54,7 @@ export default function ProvenanceReveal({
   locale,
   mode,
   museumCity,
+  artworkId,
 }: {
   valueReveal: ValueReveal | null;
   accent: string;
@@ -62,6 +63,7 @@ export default function ProvenanceReveal({
   locale: Locale;
   mode: Mode;
   museumCity?: string | null;
+  artworkId?: string | null;
 }) {
   const hasEstimate = valueReveal?.mode === "ESTIMATED_VALUE" && valueReveal.aggregateValueEligible;
   const hasIndicativeEstimate = valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
@@ -121,7 +123,7 @@ export default function ProvenanceReveal({
   // monetary scale analogies. Market context and beyond-market states are
   // useful context, but are not the value of this artwork.
   const analogies = hasEstimate || hasIndicativeEstimate
-    ? resolveValueRevealScaleComparisons(valueReveal, locale, mode, { city: museumCity })
+    ? resolveValueRevealScaleComparisons(valueReveal, locale, mode, { city: museumCity, artworkId })
     : [];
 
   const priceSize = tier ? PRICE_SIZE_PX[tier] : PRICE_SIZE_PX.standard;

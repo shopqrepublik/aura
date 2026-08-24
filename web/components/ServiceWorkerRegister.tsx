@@ -39,10 +39,18 @@ export default function ServiceWorkerRegister() {
 
     let registration: ServiceWorkerRegistration | null = null;
     let reloaded = false;
+    const controlledPreview = new URLSearchParams(window.location.search).get("controlled-preview") === "1";
 
     const armWaitingWorker = (worker: ServiceWorker | null) => {
       if (!worker) return;
       waitingWorkerRef.current = worker;
+      // Controlled QA must never keep producing evidence with a stale
+      // comparison-engine bundle. It is safe to refresh this internal flow;
+      // ordinary museum visits retain the explicit, non-disruptive banner.
+      if (controlledPreview) {
+        worker.postMessage("SKIP_WAITING");
+        return;
+      }
       setUpdateAvailable(true);
     };
 

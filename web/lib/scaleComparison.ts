@@ -1,22 +1,20 @@
 import type { Locale, Mode, ValueReveal } from "./types";
+import {
+  COMPARISON_ENGINE_VERSION,
+  COMPARISON_REFERENCES,
+  localPropertyReference,
+  type ComparisonCategory,
+  type ScaleAudience,
+  type ScaleReference,
+} from "./comparisonReferences";
 
-export type ScaleAudience = "adult" | "kids";
-
-export interface ScaleReference {
-  id: string;
-  label: Record<Locale, string>;
-  unitValueMillions: { low: number; high: number };
-  currency: "USD_MILLION" | "EUR_MILLION" | "GBP_MILLION";
-  source: string;
-  methodology: string;
-  lastReviewedDate: string;
-  allowedLocales: Locale[];
-  ageSuitability: ScaleAudience[];
-  usefulAmountMillions: { min: number; max: number };
-}
+export { COMPARISON_ENGINE_VERSION, COMPARISON_REFERENCES } from "./comparisonReferences";
 
 export interface ScaleComparison {
   referenceId: string;
+  category: ComparisonCategory | "FOUNDER_EASTER_EGG";
+  engineVersion: string;
+  monetary: boolean;
   icon: string;
   label: string;
   sentence: string;
@@ -27,155 +25,9 @@ export interface ScaleComparison {
 
 export interface ScaleComparisonContext {
   city?: string | null;
+  countryCode?: string | null;
+  artworkId?: string | null;
 }
-
-interface CityPropertyConfig {
-  city: string;
-  labels: Record<Locale, string>;
-  unitValueMillions: { low: number; high: number };
-  currency: "EUR_MILLION" | "GBP_MILLION";
-  source: string;
-}
-
-const CITY_PROPERTY_CONFIGS: Record<string, CityPropertyConfig> = {
-  paris: {
-    city: "Paris",
-    labels: {
-      en: "prime central-Paris apartments",
-      fr: "appartements haut de gamme au centre de Paris",
-      "zh-Hans": "巴黎市中心高端公寓",
-    },
-    unitValueMillions: { low: 1.5, high: 3 },
-    currency: "EUR_MILLION",
-    source: "ELYIO editorial central-Paris prime-property order-of-magnitude benchmark.",
-  },
-  london: {
-    city: "London",
-    labels: {
-      en: "prime central-London apartments",
-      fr: "appartements haut de gamme au centre de Londres",
-      "zh-Hans": "伦敦市中心高端公寓",
-    },
-    unitValueMillions: { low: 1.5, high: 3 },
-    currency: "GBP_MILLION",
-    source: "ELYIO editorial central-London prime-property order-of-magnitude benchmark.",
-  },
-};
-
-export const SCALE_REFERENCES: ScaleReference[] = [
-  {
-    id: "wide_body_aircraft",
-    label: {
-      en: "modern wide-body aircraft",
-      fr: "avion long-courrier moderne",
-      "zh-Hans": "大型现代宽体客机",
-    },
-    unitValueMillions: { low: 110, high: 140 },
-    currency: "USD_MILLION",
-    source: "Editorial benchmark from recent wide-body aircraft market/list-price ranges; reviewed as a scale analogy, not a purchase quote.",
-    methodology: "Use for nine-figure art-market context where one or several aircraft communicates magnitude.",
-    lastReviewedDate: "2026-08-13",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult", "kids"],
-    usefulAmountMillions: { min: 70, max: 1200 },
-  },
-  {
-    id: "ferrari_class_supercar",
-    label: {
-      en: "Ferrari-class supercars",
-      fr: "supercars de type Ferrari",
-      "zh-Hans": "法拉利级别超跑",
-    },
-    unitValueMillions: { low: 0.35, high: 0.45 },
-    currency: "USD_MILLION",
-    source: "Editorial benchmark from current high-end supercar order-of-magnitude pricing.",
-    methodology: "Use rounded ranges only; never exact car counts.",
-    lastReviewedDate: "2026-08-13",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult", "kids"],
-    usefulAmountMillions: { min: 0.1, max: 1200 },
-  },
-  {
-    id: "luxury_yacht",
-    label: {
-      en: "50-metre luxury yachts",
-      fr: "yachts de luxe de 50 mètres",
-      "zh-Hans": "50米级豪华游艇",
-    },
-    unitValueMillions: { low: 25, high: 45 },
-    currency: "USD_MILLION",
-    source: "Editorial benchmark from specialist yacht-build cost ranges.",
-    methodology: "Use for mid/high eight-figure art-market context.",
-    lastReviewedDate: "2026-08-13",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 20, max: 600 },
-  },
-  {
-    id: "football_transfer",
-    label: {
-      en: "elite football transfer fees",
-      fr: "transferts de football de très haut niveau",
-      "zh-Hans": "顶级足球转会费",
-    },
-    unitValueMillions: { low: 70, high: 120 },
-    currency: "EUR_MILLION",
-    source: "Editorial benchmark from recent elite European football transfer-fee ranges.",
-    methodology: "Use only as a broad cultural scale comparison.",
-    lastReviewedDate: "2026-08-13",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 50, max: 600 },
-  },
-  {
-    id: "ice_cream",
-    label: {
-      en: "ice creams",
-      fr: "glaces",
-      "zh-Hans": "冰淇淋",
-    },
-    unitValueMillions: { low: 0.000004, high: 0.000006 },
-    currency: "EUR_MILLION",
-    source: "Editorial everyday-price benchmark for children's scale copy.",
-    methodology: "Use only rounded million-level quantities.",
-    lastReviewedDate: "2026-08-13",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["kids"],
-    usefulAmountMillions: { min: 1, max: 1200 },
-  },
-  {
-    id: "bicycle",
-    label: {
-      en: "bicycles",
-      fr: "vélos",
-      "zh-Hans": "自行车",
-    },
-    unitValueMillions: { low: 0.0007, high: 0.001 },
-    currency: "EUR_MILLION",
-    source: "Editorial everyday-price benchmark for children's scale copy.",
-    methodology: "Use broad rounded quantities only.",
-    lastReviewedDate: "2026-08-14",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["kids"],
-    usefulAmountMillions: { min: 1, max: 1200 },
-  },
-  {
-    id: "family_holiday",
-    label: {
-      en: "family holidays",
-      fr: "vacances en famille",
-      "zh-Hans": "家庭旅行",
-    },
-    unitValueMillions: { low: 0.004, high: 0.007 },
-    currency: "EUR_MILLION",
-    source: "Editorial everyday-price benchmark for children's scale copy.",
-    methodology: "Use broad rounded quantities only.",
-    lastReviewedDate: "2026-08-14",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult", "kids"],
-    usefulAmountMillions: { min: 0.1, max: 1200 },
-  },
-];
 
 const CURRENCY_TO_USD: Record<string, number> = {
   USD_MILLION: 1,
@@ -207,21 +59,27 @@ export function resolveScaleComparisonsForAmount(
   const amountUsdMillions = toUsdMillions(amountMillions, currency);
   if (amountUsdMillions == null || amountUsdMillions <= 0) return [];
   const audience: ScaleAudience = mode === "kids" ? "kids" : "adult";
-  const contextualReferences = mode === "kids" ? [] : localPropertyReferences(context);
-  const candidates = [...SCALE_REFERENCES, ...contextualReferences].filter(
+  const localReference = mode === "kids" ? null : localPropertyReference(context?.city);
+  const candidates = [...COMPARISON_REFERENCES, ...(localReference ? [localReference] : [])].filter(
     (reference) =>
+      reference.active &&
       reference.allowedLocales.includes(locale) &&
       reference.ageSuitability.includes(audience) &&
       amountUsdMillions >= toUsdMillions(reference.usefulAmountMillions.min, reference.currency)! &&
-      amountUsdMillions <= toUsdMillions(reference.usefulAmountMillions.max, reference.currency)!
+      amountUsdMillions <= toUsdMillions(reference.usefulAmountMillions.max, reference.currency)! &&
+      quantityIsUseful(amountUsdMillions, reference)
   );
-  const ordered = orderReferences(amountUsdMillions, candidates, mode);
-  return ordered.slice(0, limit ?? (mode === "normal" ? 3 : mode === "simple" ? 2 : 3)).map((reference) => {
+  const rowLimit = limit ?? (mode === "normal" ? 3 : mode === "simple" ? 2 : 3);
+  const ordered = orderReferences(candidates, context, amountUsdMillions);
+  const monetaryRows = ordered.slice(0, rowLimit).map((reference): ScaleComparison | null => {
     const range = comparisonRange(amountUsdMillions, reference);
     if (!range) return null;
     return {
       referenceId: reference.id,
-      icon: iconFor(reference.id),
+      category: reference.category,
+      engineVersion: COMPARISON_ENGINE_VERSION,
+      monetary: true,
+      icon: iconFor(reference.category),
       label: reference.label[locale] || reference.label.en,
       sentence: sentenceFor(reference, range, locale, mode),
       shortSentence: shortSentenceFor(reference, range, locale, mode),
@@ -229,6 +87,10 @@ export function resolveScaleComparisonsForAmount(
       source: reference.source,
     };
   }).filter((comparison): comparison is ScaleComparison => !!comparison);
+  if (rowLimit >= 3 && monetaryRows.length === rowLimit && shouldShowFounderEasterEgg(context)) {
+    monetaryRows[monetaryRows.length - 1] = founderEasterEgg(locale);
+  }
+  return monetaryRows;
 }
 
 export function resolveScaleComparisonSentence(
@@ -249,15 +111,39 @@ export function resolveKidsScaleComparison(low: number | null, high: number | nu
 }
 
 export function resolveValueRevealScaleComparison(valueReveal: ValueReveal | null, locale: Locale, mode: Mode, context?: ScaleComparisonContext): ScaleComparison | null {
+  if (!isResponsibleNumericEstimate(valueReveal)) return null;
   const numeric = valueRevealNumericContext(valueReveal);
   if (!numeric) return null;
   return resolveScaleComparisonForAmount(numeric.amountMillions, numeric.currency, locale, mode, context);
 }
 
 export function resolveValueRevealScaleComparisons(valueReveal: ValueReveal | null, locale: Locale, mode: Mode, context?: ScaleComparisonContext): ScaleComparison[] {
+  if (!isResponsibleNumericEstimate(valueReveal)) return [];
   const numeric = valueRevealNumericContext(valueReveal);
   if (!numeric) return [];
   return resolveScaleComparisonsForAmount(numeric.amountMillions, numeric.currency, locale, mode, undefined, context);
+}
+
+export function isResponsibleNumericEstimate(valueReveal: ValueReveal | null): boolean {
+  if (valueReveal?.mode === "ESTIMATED_VALUE") {
+    return valueReveal.aggregateValueEligible === true
+      && Number.isFinite(valueReveal.estimatedValue.low)
+      && Number.isFinite(valueReveal.estimatedValue.high)
+      && valueReveal.estimatedValue.low > 0
+      && valueReveal.estimatedValue.high >= valueReveal.estimatedValue.low;
+  }
+  if (valueReveal?.mode === "AI_INDICATIVE_ESTIMATE") {
+    const estimate = valueReveal.aiIndicativeEstimate;
+    return valueReveal.indicativeAggregateEligible === true
+      && estimate.version === "ai-indicative-estimate-v4"
+      && estimate.currency === "EUR"
+      && Number.isFinite(estimate.lowEur)
+      && Number.isFinite(estimate.highEur)
+      && estimate.lowEur > 0
+      && estimate.highEur > estimate.lowEur
+      && estimate.highEur <= 1_000_000_000;
+  }
+  return false;
 }
 
 export function valueRevealNumericContext(valueReveal: ValueReveal | null): { amountMillions: number; currency: string | undefined } | null {
@@ -296,32 +182,31 @@ export function valueRevealNumericContext(valueReveal: ValueReveal | null): { am
   return { amountMillions: number, currency };
 }
 
-function orderReferences(amountUsdMillions: number, candidates: ScaleReference[], mode: Mode): ScaleReference[] {
-  const wanted = mode === "kids"
-    ? ["ferrari_class_supercar", "ice_cream", "bicycle", "family_holiday", "wide_body_aircraft"]
-    : mode === "simple"
-      ? amountUsdMillions >= 70
-        ? ["wide_body_aircraft", "ferrari_class_supercar", "prime_local_apartment"]
-        : ["ferrari_class_supercar", "prime_local_apartment", "luxury_yacht"]
-      : amountUsdMillions >= 70
-        ? ["wide_body_aircraft", "ferrari_class_supercar", "prime_local_apartment", "luxury_yacht", "football_transfer"]
-        : ["ferrari_class_supercar", "prime_local_apartment", "luxury_yacht", "football_transfer"];
-  const byId = new Map(candidates.map((candidate) => [candidate.id, candidate]));
-  return [
-    ...wanted.map((id) => byId.get(id)).filter((candidate): candidate is ScaleReference => !!candidate),
-    ...candidates.filter((candidate) => !wanted.includes(candidate.id)),
-  ];
+function orderReferences(candidates: ScaleReference[], context: ScaleComparisonContext | undefined, amountUsdMillions: number): ScaleReference[] {
+  const seed = `${COMPARISON_ENGINE_VERSION}|${context?.artworkId || amountUsdMillions.toFixed(3)}|${context?.city || "global"}|${context?.countryCode || ""}`;
+  const uniqueByCategory = new Map<ComparisonCategory, ScaleReference>();
+  for (const candidate of [...candidates].sort((a, b) => stableHash(`${seed}|${a.id}`) - stableHash(`${seed}|${b.id}`))) {
+    if (!uniqueByCategory.has(candidate.category)) uniqueByCategory.set(candidate.category, candidate);
+  }
+  const local = uniqueByCategory.get("PRIME_PROPERTY");
+  const global = [...uniqueByCategory.values()].filter((reference) => reference.category !== "PRIME_PROPERTY");
+  // A local row appears often enough to feel contextual, without making
+  // property one of the same three rows on every artwork.
+  if (!local) return global;
+  return stableHash(`${seed}|local-property`) % 100 < 55 ? [local, ...global] : [...global, local];
 }
 
-function iconFor(id: string): string {
-  if (id === "wide_body_aircraft") return "✈";
-  if (id === "ferrari_class_supercar") return "🏎";
-  if (id === "prime_local_apartment") return "⌂";
-  if (id === "luxury_yacht") return "◈";
-  if (id === "football_transfer") return "⚽";
-  if (id === "ice_cream") return "🍦";
-  if (id === "bicycle") return "🚲";
-  if (id === "family_holiday") return "☀";
+function iconFor(category: ComparisonCategory): string {
+  if (category === "LIGHT_PRIVATE_JET" || category === "LARGE_BUSINESS_JET" || category === "COMMERCIAL_AIRCRAFT") return "✈";
+  if (category === "SUPERCAR") return "🏎";
+  if (category === "PRIME_PROPERTY") return "⌂";
+  if (category === "YACHT") return "◈";
+  if (category === "SPACEFLIGHT") return "🚀";
+  if (category === "LUXURY_HOLIDAY") return "☀";
+  if (category === "LUXURY_HOTEL") return "▣";
+  if (category === "PRIVATE_ISLAND") return "🏝";
+  if (category === "EDUCATION") return "🎓";
+  if (category === "ENTERTAINMENT_BUDGET") return "🎬";
   return "•";
 }
 
@@ -385,7 +270,7 @@ function countLabelFor(range: { low: number; high: number }, reference: ScaleRef
     if (range.low === 1) {
       if (locale === "fr") return `un ${label}`;
       if (locale === "zh-Hans") return `一架${label}`;
-      return `one ${label}`;
+      return `one ${reference.singularLabel?.[locale] || label}`;
     }
     return `${range.low} ${label}`;
   }
@@ -419,20 +304,46 @@ function toUsdMillions(amount: number, currency: string | undefined): number | n
   return amount * multiplier;
 }
 
-function localPropertyReferences(context?: ScaleComparisonContext): ScaleReference[] {
-  const cityKey = context?.city?.trim().toLocaleLowerCase("en") || "";
-  const config = CITY_PROPERTY_CONFIGS[cityKey];
-  if (!config) return [];
-  return [{
-    id: "prime_local_apartment",
-    label: config.labels,
-    unitValueMillions: config.unitValueMillions,
-    currency: config.currency,
-    source: config.source,
-    methodology: `Use rounded ranges only as a broad ${config.city} property-scale analogy.`,
-    lastReviewedDate: "2026-08-24",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 1, max: 1200 },
-  }];
+function quantityIsUseful(amountUsdMillions: number, reference: ScaleReference): boolean {
+  const range = comparisonRange(amountUsdMillions, reference);
+  return !!range && range.low >= reference.usefulQuantity.min && range.high <= reference.usefulQuantity.max;
+}
+
+function stableHash(value: string): number {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  hash ^= hash >>> 16;
+  hash = Math.imul(hash, 0x85ebca6b);
+  hash ^= hash >>> 13;
+  hash = Math.imul(hash, 0xc2b2ae35);
+  hash ^= hash >>> 16;
+  return hash >>> 0;
+}
+
+function shouldShowFounderEasterEgg(context?: ScaleComparisonContext): boolean {
+  if (!context?.artworkId) return false;
+  return stableHash(`${COMPARISON_ENGINE_VERSION}|founder|${context.artworkId}`) % 100 < 4;
+}
+
+function founderEasterEgg(locale: Locale): ScaleComparison {
+  const copy = locale === "fr"
+    ? "une rencontre avec le fondateur d’ELYIO — apparemment inestimable"
+    : locale === "zh-Hans"
+      ? "与 ELYIO 创始人见一次面——据说无价"
+      : "one meeting with ELYIO’s founder — apparently priceless";
+  return {
+    referenceId: "elyio_founder_easter_egg_v1",
+    category: "FOUNDER_EASTER_EGG",
+    engineVersion: COMPARISON_ENGINE_VERSION,
+    monetary: false,
+    icon: "🤝",
+    label: copy,
+    sentence: copy,
+    shortSentence: copy,
+    countLabel: copy,
+    source: "ELYIO product easter egg; no monetary reference or valuation role.",
+  };
 }
