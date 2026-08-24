@@ -19,7 +19,7 @@ Status: CURRENT Block 3 review. Content facts inside the checked-in France SEO/e
 | `web/lib/api.ts` legal copy | France string-pattern policy removed; structured policy code/localizations returned from DB | SAFE_CONFIGURATION / RESOLVED | New jurisdiction claims require explicit reviewed policy content. |
 | `backend/app/main.py`, `web/lib/valueReveal.ts` | Value Engine V4 uses explicit EUR ladder; institution can configure display currency but no FX exists | SAFE_CURRENT_POLICY / P1 PRODUCT LIMITATION | Do not relabel EUR values as GBP; future reviewed multi-currency value block. |
 | `web/lib/international.ts` | Generic `Intl` currency/date helpers; no conversion | SAFE_CONFIGURATION | Adopt on new institution surfaces. |
-| `web/lib/scaleComparison.ts` | Paris/European comparison packs remain content-specific | SHOULD_GENERALIZE P1 | Select reviewed comparison pack by locale/market; arithmetic stays shared. |
+| `web/lib/scaleComparison.ts` | RESOLVED 2026-08-24: local property comparison is selected from Institution city; Paris is no longer the implicit global property reference | SAFE_CONFIGURATION | Add reviewed city packs as institutions launch; unknown cities retain global comparisons without a fabricated local label. |
 | `web/lib/seo-content.ts`, `web/app/[locale]` | France 12-museum/117-work, three-locale checked-in SEO package | SAFE_CONTENT_PACKAGE | New country SEO requires approved package/routes; do not treat as core directory. |
 | `web/components/seo/SeoNav.tsx` | Three shipped locale links | SHOULD_GENERALIZE | Generate from approved SEO locale package later. |
 | `web/next.config.ts` | Current provider origin allowlist | SAFE_DEPLOYMENT_CONFIGURATION | Add a reviewed provider origin when onboarding sources. |

@@ -6,7 +6,7 @@ export interface ScaleReference {
   id: string;
   label: Record<Locale, string>;
   unitValueMillions: { low: number; high: number };
-  currency: "USD_MILLION" | "EUR_MILLION";
+  currency: "USD_MILLION" | "EUR_MILLION" | "GBP_MILLION";
   source: string;
   methodology: string;
   lastReviewedDate: string;
@@ -24,6 +24,43 @@ export interface ScaleComparison {
   countLabel: string;
   source: string;
 }
+
+export interface ScaleComparisonContext {
+  city?: string | null;
+}
+
+interface CityPropertyConfig {
+  city: string;
+  labels: Record<Locale, string>;
+  unitValueMillions: { low: number; high: number };
+  currency: "EUR_MILLION" | "GBP_MILLION";
+  source: string;
+}
+
+const CITY_PROPERTY_CONFIGS: Record<string, CityPropertyConfig> = {
+  paris: {
+    city: "Paris",
+    labels: {
+      en: "prime central-Paris apartments",
+      fr: "appartements haut de gamme au centre de Paris",
+      "zh-Hans": "巴黎市中心高端公寓",
+    },
+    unitValueMillions: { low: 1.5, high: 3 },
+    currency: "EUR_MILLION",
+    source: "ELYIO editorial central-Paris prime-property order-of-magnitude benchmark.",
+  },
+  london: {
+    city: "London",
+    labels: {
+      en: "prime central-London apartments",
+      fr: "appartements haut de gamme au centre de Londres",
+      "zh-Hans": "伦敦市中心高端公寓",
+    },
+    unitValueMillions: { low: 1.5, high: 3 },
+    currency: "GBP_MILLION",
+    source: "ELYIO editorial central-London prime-property order-of-magnitude benchmark.",
+  },
+};
 
 export const SCALE_REFERENCES: ScaleReference[] = [
   {
@@ -56,23 +93,7 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     lastReviewedDate: "2026-08-13",
     allowedLocales: ["en", "fr", "zh-Hans"],
     ageSuitability: ["adult", "kids"],
-    usefulAmountMillions: { min: 5, max: 1200 },
-  },
-  {
-    id: "central_paris_apartment",
-    label: {
-      en: "prime central-Paris apartments",
-      fr: "appartements haut de gamme au centre de Paris",
-      "zh-Hans": "巴黎市中心高端公寓",
-    },
-    unitValueMillions: { low: 2.5, high: 4.5 },
-    currency: "EUR_MILLION",
-    source: "Editorial benchmark using central Paris luxury-apartment order-of-magnitude pricing.",
-    methodology: "Use ranges to communicate urban real-estate scale without implying exact valuation.",
-    lastReviewedDate: "2026-08-13",
-    allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["adult"],
-    usefulAmountMillions: { min: 8, max: 1200 },
+    usefulAmountMillions: { min: 0.1, max: 1200 },
   },
   {
     id: "luxury_yacht",
@@ -151,8 +172,8 @@ export const SCALE_REFERENCES: ScaleReference[] = [
     methodology: "Use broad rounded quantities only.",
     lastReviewedDate: "2026-08-14",
     allowedLocales: ["en", "fr", "zh-Hans"],
-    ageSuitability: ["kids"],
-    usefulAmountMillions: { min: 1, max: 1200 },
+    ageSuitability: ["adult", "kids"],
+    usefulAmountMillions: { min: 0.1, max: 1200 },
   },
 ];
 
@@ -169,9 +190,10 @@ export function resolveScaleComparisonForAmount(
   amountMillions: number,
   currency: string | undefined,
   locale: Locale,
-  mode: Mode
+  mode: Mode,
+  context?: ScaleComparisonContext
 ): ScaleComparison | null {
-  return resolveScaleComparisonsForAmount(amountMillions, currency, locale, mode, 1)[0] || null;
+  return resolveScaleComparisonsForAmount(amountMillions, currency, locale, mode, 1, context)[0] || null;
 }
 
 export function resolveScaleComparisonsForAmount(
@@ -179,12 +201,14 @@ export function resolveScaleComparisonsForAmount(
   currency: string | undefined,
   locale: Locale,
   mode: Mode,
-  limit?: number
+  limit?: number,
+  context?: ScaleComparisonContext
 ): ScaleComparison[] {
   const amountUsdMillions = toUsdMillions(amountMillions, currency);
   if (amountUsdMillions == null || amountUsdMillions <= 0) return [];
   const audience: ScaleAudience = mode === "kids" ? "kids" : "adult";
-  const candidates = SCALE_REFERENCES.filter(
+  const contextualReferences = mode === "kids" ? [] : localPropertyReferences(context);
+  const candidates = [...SCALE_REFERENCES, ...contextualReferences].filter(
     (reference) =>
       reference.allowedLocales.includes(locale) &&
       reference.ageSuitability.includes(audience) &&
@@ -224,16 +248,16 @@ export function resolveKidsScaleComparison(low: number | null, high: number | nu
   return comparison?.sentence ?? null;
 }
 
-export function resolveValueRevealScaleComparison(valueReveal: ValueReveal | null, locale: Locale, mode: Mode): ScaleComparison | null {
+export function resolveValueRevealScaleComparison(valueReveal: ValueReveal | null, locale: Locale, mode: Mode, context?: ScaleComparisonContext): ScaleComparison | null {
   const numeric = valueRevealNumericContext(valueReveal);
   if (!numeric) return null;
-  return resolveScaleComparisonForAmount(numeric.amountMillions, numeric.currency, locale, mode);
+  return resolveScaleComparisonForAmount(numeric.amountMillions, numeric.currency, locale, mode, context);
 }
 
-export function resolveValueRevealScaleComparisons(valueReveal: ValueReveal | null, locale: Locale, mode: Mode): ScaleComparison[] {
+export function resolveValueRevealScaleComparisons(valueReveal: ValueReveal | null, locale: Locale, mode: Mode, context?: ScaleComparisonContext): ScaleComparison[] {
   const numeric = valueRevealNumericContext(valueReveal);
   if (!numeric) return [];
-  return resolveScaleComparisonsForAmount(numeric.amountMillions, numeric.currency, locale, mode);
+  return resolveScaleComparisonsForAmount(numeric.amountMillions, numeric.currency, locale, mode, undefined, context);
 }
 
 export function valueRevealNumericContext(valueReveal: ValueReveal | null): { amountMillions: number; currency: string | undefined } | null {
@@ -277,11 +301,11 @@ function orderReferences(amountUsdMillions: number, candidates: ScaleReference[]
     ? ["ferrari_class_supercar", "ice_cream", "bicycle", "family_holiday", "wide_body_aircraft"]
     : mode === "simple"
       ? amountUsdMillions >= 70
-        ? ["wide_body_aircraft", "ferrari_class_supercar", "central_paris_apartment"]
-        : ["ferrari_class_supercar", "central_paris_apartment", "luxury_yacht"]
+        ? ["wide_body_aircraft", "ferrari_class_supercar", "prime_local_apartment"]
+        : ["ferrari_class_supercar", "prime_local_apartment", "luxury_yacht"]
       : amountUsdMillions >= 70
-        ? ["wide_body_aircraft", "ferrari_class_supercar", "central_paris_apartment", "luxury_yacht", "football_transfer"]
-        : ["ferrari_class_supercar", "central_paris_apartment", "luxury_yacht", "football_transfer"];
+        ? ["wide_body_aircraft", "ferrari_class_supercar", "prime_local_apartment", "luxury_yacht", "football_transfer"]
+        : ["ferrari_class_supercar", "prime_local_apartment", "luxury_yacht", "football_transfer"];
   const byId = new Map(candidates.map((candidate) => [candidate.id, candidate]));
   return [
     ...wanted.map((id) => byId.get(id)).filter((candidate): candidate is ScaleReference => !!candidate),
@@ -292,7 +316,7 @@ function orderReferences(amountUsdMillions: number, candidates: ScaleReference[]
 function iconFor(id: string): string {
   if (id === "wide_body_aircraft") return "✈";
   if (id === "ferrari_class_supercar") return "🏎";
-  if (id === "central_paris_apartment") return "⌂";
+  if (id === "prime_local_apartment") return "⌂";
   if (id === "luxury_yacht") return "◈";
   if (id === "football_transfer") return "⚽";
   if (id === "ice_cream") return "🍦";
@@ -393,4 +417,22 @@ function toUsdMillions(amount: number, currency: string | undefined): number | n
   const multiplier = CURRENCY_TO_USD[key];
   if (!multiplier || !Number.isFinite(amount)) return null;
   return amount * multiplier;
+}
+
+function localPropertyReferences(context?: ScaleComparisonContext): ScaleReference[] {
+  const cityKey = context?.city?.trim().toLocaleLowerCase("en") || "";
+  const config = CITY_PROPERTY_CONFIGS[cityKey];
+  if (!config) return [];
+  return [{
+    id: "prime_local_apartment",
+    label: config.labels,
+    unitValueMillions: config.unitValueMillions,
+    currency: config.currency,
+    source: config.source,
+    methodology: `Use rounded ranges only as a broad ${config.city} property-scale analogy.`,
+    lastReviewedDate: "2026-08-24",
+    allowedLocales: ["en", "fr", "zh-Hans"],
+    ageSuitability: ["adult"],
+    usefulAmountMillions: { min: 1, max: 1200 },
+  }];
 }

@@ -45,7 +45,7 @@ Country/Institution configuration supports ISO country code, arbitrary BCP-47 lo
 | Media | Presentation != reference != recognition asset != private capture. |
 | Rights | UNKNOWN is explicit and never auto-promoted. |
 | Localization | Source metadata preserved; localized visitor copy separate. |
-| Value | Value V4 semantics unchanged; currency selection is not conversion. |
+| Value | Value V4 remains EUR-grounded; responsible numeric ranges always receive deterministic scale context, while no-estimate states receive no fabricated equivalents. Local wording derives from Institution city and currency selection is not conversion. |
 | Recognition metrics | Engine terminal outcome and visitor resolution are separately named. |
 | Deployment | Ordered migration ledger; reviewed main/release source reports SHA. |
 

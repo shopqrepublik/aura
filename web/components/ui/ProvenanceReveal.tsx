@@ -53,6 +53,7 @@ export default function ProvenanceReveal({
   inventoryNumber,
   locale,
   mode,
+  museumCity,
 }: {
   valueReveal: ValueReveal | null;
   accent: string;
@@ -60,6 +61,7 @@ export default function ProvenanceReveal({
   inventoryNumber: string;
   locale: Locale;
   mode: Mode;
+  museumCity?: string | null;
 }) {
   const hasEstimate = valueReveal?.mode === "ESTIMATED_VALUE" && valueReveal.aggregateValueEligible;
   const hasIndicativeEstimate = valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
@@ -115,7 +117,12 @@ export default function ProvenanceReveal({
   const kidsBump = mode === "kids" ? 0.02 : 0;
   const tintOpacity = (tier ? TINT_OPACITY[tier] : TINT_OPACITY.standard) + kidsBump;
 
-  const analogies = resolveValueRevealScaleComparisons(valueReveal, locale, mode);
+  // Only a responsible range displayed as the viewed work's estimate earns
+  // monetary scale analogies. Market context and beyond-market states are
+  // useful context, but are not the value of this artwork.
+  const analogies = hasEstimate || hasIndicativeEstimate
+    ? resolveValueRevealScaleComparisons(valueReveal, locale, mode, { city: museumCity })
+    : [];
 
   const priceSize = tier ? PRICE_SIZE_PX[tier] : PRICE_SIZE_PX.standard;
   const priceText = estimate

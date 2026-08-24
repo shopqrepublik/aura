@@ -75,6 +75,7 @@ The current production application is ahead of `origin/main`. Production deploym
 | Current architecture | [architecture/SYSTEM_OVERVIEW.md](architecture/SYSTEM_OVERVIEW.md) |
 | Current/target data | [architecture/DATA_MODEL.md](architecture/DATA_MODEL.md) |
 | Recognition | [recognition/RECOGNITION_PIPELINE.md](recognition/RECOGNITION_PIPELINE.md) |
+| Value experience | [architecture/VALUE_EXPERIENCE.md](architecture/VALUE_EXPERIENCE.md) |
 | Catalog and provenance | [catalog/CATALOG_ARCHITECTURE.md](catalog/CATALOG_ARCHITECTURE.md) |
 | First-party analytics | [analytics/ANALYTICS_ARCHITECTURE.md](analytics/ANALYTICS_ARCHITECTURE.md) |
 | Operations | [operations/DEPLOYMENT_RUNBOOK.md](operations/DEPLOYMENT_RUNBOOK.md) |

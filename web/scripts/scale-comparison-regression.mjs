@@ -51,6 +51,17 @@ assert(kidsComparisons.length >= 3, "Kids scale game should show three playful c
 assert(kidsComparisons.some((c) => /ice creams|bicycles/.test(c.shortSentence)), "Kids scale game should include child-friendly units");
 assert(resolveScaleComparisonForAmount(20, "CATEGORY_SOURCE", "en", "normal") === null, "Unsupported currency must not produce analogy");
 
+const arnolfiniLondon = resolveScaleComparisonsForAmount(1.5, "EUR_MILLION", "en", "normal", undefined, { city: "London" });
+assert(arnolfiniLondon.length >= 2, "A valid €1–2M London estimate must have useful scale comparisons");
+assert(arnolfiniLondon.some((c) => /central-London/.test(c.shortSentence)), "London context must produce a London property comparison");
+assert(!arnolfiniLondon.some((c) => /Paris/.test(c.shortSentence)), "London context must never leak Paris comparisons");
+const bathersLondon = resolveScaleComparisonsForAmount(95, "EUR_MILLION", "en", "normal", undefined, { city: "London" });
+assert(bathersLondon.length >= 3, "A major numeric estimate must retain three scale comparisons");
+assert(bathersLondon.some((c) => /central-London/.test(c.shortSentence)), "Bathers in a London institution must use London geography");
+const louvreParis = resolveScaleComparisonsForAmount(95, "EUR_MILLION", "en", "normal", undefined, { city: "Paris" });
+assert(louvreParis.some((c) => /central-Paris/.test(c.shortSentence)), "Paris institutions must retain Paris-local context");
+assert(!resolveScaleComparisonsForAmount(1.5, "CATEGORY_SOURCE", "en", "normal", undefined, { city: "London" }).length, "Unavailable value must not fabricate comparisons");
+
 const marketContextReveal = {
   mode: "MARKET_CONTEXT",
   aggregateValueEligible: false,

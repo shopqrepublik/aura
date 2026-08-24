@@ -156,6 +156,7 @@ export default function CardScreen({
           inventoryNumber={artwork.inventoryNumber}
           locale={state.locale}
           mode={state.mode}
+          museumCity={state.museumCity}
         />
 
         {!excluded && (

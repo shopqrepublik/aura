@@ -101,6 +101,7 @@ export default function UncatalogedCardScreen({
               inventoryNumber={sighting.id}
               locale={state.locale}
               mode={state.mode}
+              museumCity={state.museumCity}
             />
           </div>
         ) : (
