@@ -55,13 +55,14 @@ class NationalGalleryLondonAdapter:
     adapter_key = "national_gallery_ciim_v1"
     provider_id = "national_gallery_london"
 
-    def __init__(self, path: str | Path, provider_id: str = "national_gallery_london", institution_id: str = "national-gallery-london"):
+    def __init__(self, path: str | Path, provider_id: str = "national_gallery_london", institution_id: str = "national-gallery-london", provider_record_ids: set[str] | None = None):
         if provider_id != self.provider_id:
             raise ValueError("National Gallery adapter requires provider national_gallery_london")
         self.path = Path(path)
         self.institution_id = institution_id
         self._bytes = self.path.read_bytes()
         self.snapshot = json.loads(self._bytes)
+        self.provider_record_ids = provider_record_ids
         self._hits = self.snapshot.get("records")
         if not isinstance(self._hits, list):
             raise ValueError("National Gallery snapshot must contain records")
@@ -73,6 +74,8 @@ class NationalGalleryLondonAdapter:
         for hit in self._hits:
             source = hit.get("_source") or hit
             pid = (source.get("@admin") or {}).get("uid") or _identifier(source, "PID")
+            if self.provider_record_ids is not None and str(pid or "") not in self.provider_record_ids:
+                continue
             accession = _identifier(source, "object number")
             title = (source.get("summary") or {}).get("title") or _typed_value(source.get("title"), "full title")
             if not pid or not title:

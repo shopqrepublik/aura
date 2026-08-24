@@ -15,11 +15,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app/ app/
 COPY scripts/ scripts/
 COPY migrations/ migrations/
-# Frozen metadata-only input required by the explicit controlled-preview
-# provisioner. The 30 MB full source snapshot and all generated image/benchmark
-# artifacts remain outside the runtime image.
+# Frozen metadata-only inputs required by the explicit controlled-preview
+# provisioner. Generated image/benchmark binaries remain outside the image.
 COPY data/onboarding/national_gallery_london/config.json data/onboarding/national_gallery_london/config.json
 COPY data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json
+COPY data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json
+COPY data/onboarding/national_gallery_london/controlled_catalog_500_v1.json data/onboarding/national_gallery_london/controlled_catalog_500_v1.json
+COPY data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json
 
 # Reference cache warming is an operational step, not required to build the
 # app image. Keeping it out of Docker build avoids deployment-time network

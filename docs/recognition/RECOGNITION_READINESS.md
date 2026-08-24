@@ -19,6 +19,8 @@ Admin Catalog exposes aggregate provenance categories without redesigning Overvi
 
 Technical readiness is separate from public activation. A `controlled_preview_only` institution can have an active benchmark catalog/profile while public directory, artwork detail and recognition requests remain inaccessible without the server-trusted QA token. `VISION_READY` requires stable institution/object/holding identity and useful title metadata; `VISION_PLUS_ASSET` additionally requires an explicitly selected RecognitionAsset. Neither state implies public presentation or SEO activation.
 
+National Gallery `ng-controlled-500-v1` deliberately activates 500 `VISION_PLUS_ASSET` works. A metadata-only safety sample had unacceptable confident-wrong behavior, so metadata-qualified long-tail records remain outside this controlled candidate universe and continue through uncataloged AI fallback. This is a catalog-content decision backed by the dated benchmark, not a change to the global VISION_READY definition.
+
 ## Activation checklist
 
 - [ ] CulturalObject, Holding and provider SourceRecord are stable; no title-derived identity.

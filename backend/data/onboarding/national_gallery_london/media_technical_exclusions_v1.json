@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "reason": "Provider image derivatives were not technically retrievable during bounded corpus preparation; keep metadata-ready but out of the ASSET_VERIFY controlled catalog.",
+  "records": [
+    {"provider_record_id": "0BE6-000B-0000-0000", "status": "HTTP_403"},
+    {"provider_record_id": "0HVL-0001-0000-0000", "status": "HTTP_404"},
+    {"provider_record_id": "0OCB-000B-0000-0000", "status": "HTTP_403"}
+  ]
+}

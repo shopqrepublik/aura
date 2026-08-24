@@ -140,8 +140,13 @@ def main() -> None:
     parser.add_argument("--workers", type=int, default=6); parser.add_argument("--limit", type=int)
     parser.add_argument("--exclude-manifest", help="Skip provider record IDs already present in another corpus manifest")
     parser.add_argument("--require-image", action="store_true", help="Select only records declaring at least one image relationship")
+    parser.add_argument("--selection-manifest", help="Restrict preparation to provider IDs in a controlled selection manifest")
     args = parser.parse_args(); out = Path(args.out).resolve(); out.mkdir(parents=True, exist_ok=True)
     adapter = NationalGalleryLondonAdapter(args.snapshot); records = list(adapter.records())
+    if args.selection_manifest:
+        selection = json.loads(Path(args.selection_manifest).read_text(encoding="utf-8"))
+        selected = {str(row["provider_record_id"]) for row in selection["records"]}
+        records = [row for row in records if row.provider_record_id in selected]
     if args.exclude_manifest:
         prior = json.loads(Path(args.exclude_manifest).read_text(encoding="utf-8"))
         excluded = {row.get("provider_record_id") for row in prior.get("records", [])}
@@ -156,7 +161,7 @@ def main() -> None:
             try: results.append(future.result())
             except Exception as exc: results.append({"provider_record_id": futures[future], "status": "ERROR", "error": f"{type(exc).__name__}: {exc}"})
     results.sort(key=lambda row: row.get("provider_record_id", ""))
-    manifest = {"schema_version": 1, "created_at": datetime.now(timezone.utc).isoformat(), "source_snapshot": adapter.source_snapshot(), "selection": "official_pre_eminent_work_flag", "production_mutations": 0, "records": results}
+    manifest = {"schema_version": 1, "created_at": datetime.now(timezone.utc).isoformat(), "source_snapshot": adapter.source_snapshot(), "selection": str(Path(args.selection_manifest).resolve()) if args.selection_manifest else "adapter_snapshot", "production_mutations": 0, "records": results}
     encoded = json.dumps(manifest, ensure_ascii=False, indent=2).encode("utf-8") + b"\n"
     (out / "manifest.json").write_bytes(encoded)
     print(json.dumps({"records": len(results), "ready": sum(r["status"] == "READY" for r in results), "no_image": sum(r["status"] == "NO_IMAGE" for r in results), "errors": sum(r["status"] == "ERROR" for r in results), "manifest_sha256": sha256(encoded), "output": str(out)}, indent=2))

@@ -34,16 +34,16 @@ def candidate(row, manifest_row, plus_asset: bool) -> dict:
         "title": row.title_original, "year": row.date_display, "inventory_number": row.institution_record_id,
         "department": row.department, "hall": row.room, "object_type": row.object_type,
         "description": row.description, "source_record_id": row.provider_record_id,
-        "image_url": manifest_row.get("source_url") if plus_asset else None,
-        "recognition_asset_id": f"benchmark:{manifest_row.get('source_media_id')}" if plus_asset else None,
+        "image_url": manifest_row.get("source_url") if plus_asset and manifest_row else None,
+        "recognition_asset_id": f"benchmark:{manifest_row.get('source_media_id')}" if plus_asset and manifest_row else None,
         "priority": 50, "tags": [], "source_urls": [row.source_url] if row.source_url else [],
     }
 
 
-def config(mode: str) -> InstitutionRuntimeConfig:
+def config(mode: str, catalog_version: str) -> InstitutionRuntimeConfig:
     return InstitutionRuntimeConfig(
         institution_id="national-gallery-london", display_name="The National Gallery",
-        visitor_catalog_version="ng-controlled-170-v1", candidate_universe="ACTIVE_CATALOG",
+        visitor_catalog_version=catalog_version, candidate_universe="ACTIVE_CATALOG",
         recognition_policy="TOP_N_METADATA" if mode == "vision_ready" else "ASSET_VERIFY",
         supported_modes=("normal",), max_candidates=5, confidence_auto=.92,
         confidence_review=.82, fuzzy_candidate_threshold=.55,
@@ -63,23 +63,44 @@ def main():
     ap.add_argument("--variant",choices=("pristine","visitor_like","partial"),default="pristine")
     ap.add_argument("--limit",type=int); ap.add_argument("--workers",type=int,default=2)
     ap.add_argument("--snapshot",default=str(DEFAULT_SNAPSHOT),help="Snapshot containing benchmark inputs")
-    ap.add_argument("--manifest",default=str(DEFAULT_CORPUS),help="Corpus manifest containing benchmark inputs")
+    ap.add_argument("--manifest",action="append",help="Repeatable corpus manifest containing benchmark inputs")
     ap.add_argument("--catalog-snapshot",default=str(DEFAULT_SNAPSHOT),help="Snapshot defining the controlled candidate universe")
-    ap.add_argument("--catalog-manifest",default=str(DEFAULT_CORPUS),help="Manifest defining candidate reference assets")
+    ap.add_argument("--catalog-manifest",action="append",help="Repeatable corpus manifest defining candidate reference assets")
+    ap.add_argument("--catalog-selection",help="Controlled selection manifest defining the complete candidate universe")
+    ap.add_argument("--catalog-version",default="ng-controlled-170-v1")
     ap.add_argument("--expect-out-of-catalog",action="store_true")
+    ap.add_argument("--input-selection",help="JSON manifest containing named provider-ID benchmark samples")
+    ap.add_argument("--sample-name",help="Sample name under input-selection.samples")
     ap.add_argument("--out",default=str(DEFAULT_OUT),help="Ignored output directory")
     args=ap.parse_args()
     if not os.getenv("OPENAI_API_KEY"): raise SystemExit("OPENAI_API_KEY required")
-    manifest=json.loads(Path(args.manifest).read_text(encoding="utf-8")); by_provider={r["provider_record_id"]:r for r in manifest["records"] if r["status"]=="READY"}
-    catalog_manifest=json.loads(Path(args.catalog_manifest).read_text(encoding="utf-8")); catalog_media={r["provider_record_id"]:r for r in catalog_manifest["records"] if r["status"]=="READY"}
+    by_provider={}
+    for manifest_path in args.manifest or [str(DEFAULT_CORPUS)]:
+        manifest=json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+        by_provider.update({r["provider_record_id"]:r for r in manifest["records"] if r["status"]=="READY"})
+    catalog_media={}
+    for manifest_path in args.catalog_manifest or [str(DEFAULT_CORPUS)]:
+        catalog_manifest=json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+        catalog_media.update({r["provider_record_id"]:r for r in catalog_manifest["records"] if r["status"]=="READY"})
     rows=[r for r in NationalGalleryLondonAdapter(args.snapshot).records() if r.provider_record_id in by_provider]
+    if args.input_selection:
+        if not args.sample_name: ap.error("--sample-name is required with --input-selection")
+        sample_payload=json.loads(Path(args.input_selection).read_text(encoding="utf-8"))
+        sample_ids=set(sample_payload["samples"][args.sample_name])
+        rows=[r for r in rows if r.provider_record_id in sample_ids]
     if args.limit: rows=rows[:args.limit]
-    catalog_rows=[r for r in NationalGalleryLondonAdapter(args.catalog_snapshot).records() if r.provider_record_id in catalog_media]
-    candidates=[candidate(r,catalog_media[r.provider_record_id],args.mode=="vision_plus_asset") for r in catalog_rows]
+    catalog_selected = set(catalog_media)
+    if args.catalog_selection:
+        selected_payload=json.loads(Path(args.catalog_selection).read_text(encoding="utf-8"))
+        catalog_selected={str(r["provider_record_id"]) for r in selected_payload["records"]}
+    catalog_rows=[r for r in NationalGalleryLondonAdapter(args.catalog_snapshot).records() if r.provider_record_id in catalog_selected]
+    candidates=[candidate(r,catalog_media.get(r.provider_record_id),args.mode=="vision_plus_asset") for r in catalog_rows]
     if args.mode=="vision_plus_asset":
         Path(REFERENCE_CACHE_DIR).mkdir(parents=True,exist_ok=True)
-        for c,r in zip(candidates,catalog_rows): shutil.copyfile(ROOT/catalog_media[r.provider_record_id]["files"]["reference"]["path"],Path(REFERENCE_CACHE_DIR)/f'{c["id"]}.jpg')
-    cfg=config(args.mode)
+        for c,r in zip(candidates,catalog_rows):
+            if r.provider_record_id in catalog_media:
+                shutil.copyfile(ROOT/catalog_media[r.provider_record_id]["files"]["reference"]["path"],Path(REFERENCE_CACHE_DIR)/f'{c["id"]}.jpg')
+    cfg=config(args.mode,args.catalog_version)
     def run(row):
         expected=stable_id("artwork",row.provider_id,row.provider_record_id); m=by_provider[row.provider_record_id]
         image=base64.b64encode((ROOT/m["files"][args.variant]["path"]).read_bytes()).decode(); start=time.perf_counter()

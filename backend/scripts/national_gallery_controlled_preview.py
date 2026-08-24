@@ -15,22 +15,41 @@ from sqlalchemy.orm import sessionmaker
 try:  # repository execution
     from backend.app.adapters.national_gallery_london import NationalGalleryLondonAdapter
     from backend.app.db import SessionLocal
-    from backend.app.ingestion import apply_plan, build_plan
+    from backend.app.ingestion import apply_plan, build_plan, stable_id
     from backend.app.models import Artwork, ArtworkCatalogMembership, Base, Country, Institution, InstitutionProfile, MediaAsset, MediaAssetAssociation, RecognitionAsset, SourceProvider
 except ModuleNotFoundError:  # Fly image execution from /app
     from app.adapters.national_gallery_london import NationalGalleryLondonAdapter
     from app.db import SessionLocal
-    from app.ingestion import apply_plan, build_plan
+    from app.ingestion import apply_plan, build_plan, stable_id
     from app.models import Artwork, ArtworkCatalogMembership, Base, Country, Institution, InstitutionProfile, MediaAsset, MediaAssetAssociation, RecognitionAsset, SourceProvider
 
 SCRIPT = Path(__file__).resolve()
 ROOT = SCRIPT.parents[2] if (SCRIPT.parents[2] / "backend").exists() else SCRIPT.parents[1]
 BACKEND_ROOT = ROOT / "backend" if (ROOT / "backend").exists() else ROOT
-SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json"
+SNAPSHOT = BACKEND_ROOT / "data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json"
+SELECTION = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_v1.json"
+READINESS = BACKEND_ROOT / "data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json"
 CONFIG = BACKEND_ROOT / "data/onboarding/national_gallery_london/config.json"
 INSTITUTION_ID = "national-gallery-london"
 PROVIDER_ID = "national_gallery_london"
-CATALOG_VERSION = "ng-controlled-170-v1"
+CATALOG_VERSION = "ng-controlled-500-v1"
+
+
+def selection() -> tuple[list[str], set[str]]:
+    rows = json.loads(SELECTION.read_text(encoding="utf-8"))["records"]
+    ordered = [str(row["provider_record_id"]) for row in rows]
+    if len(ordered) != 500 or len(set(ordered)) != 500:
+        raise RuntimeError("controlled selection must contain exactly 500 unique provider IDs")
+    return ordered, set(ordered)
+
+
+def selected_adapter() -> NationalGalleryLondonAdapter:
+    return NationalGalleryLondonAdapter(SNAPSHOT, provider_record_ids=selection()[1])
+
+
+def recognition_ready_ids() -> set[str]:
+    rows = json.loads(READINESS.read_text(encoding="utf-8"))["records"]
+    return {stable_id("artwork", PROVIDER_ID, str(row["provider_record_id"])) for row in rows if row["readiness"] == "VISION_PLUS_ASSET"}
 
 
 def register(db) -> None:
@@ -54,7 +73,12 @@ def register(db) -> None:
     if profile is None:
         profile = InstitutionProfile(institution_id=INSTITUTION_ID)
         db.add(profile)
-    profile.visitor_catalog_version = CATALOG_VERSION; profile.candidate_universe = "ACTIVE_CATALOG"
+    # Keep the currently active controlled version until the replacement
+    # memberships have been applied successfully. Fresh isolated databases
+    # can point directly at the target version.
+    if not profile.visitor_catalog_version:
+        profile.visitor_catalog_version = CATALOG_VERSION
+    profile.candidate_universe = "ACTIVE_CATALOG"
     profile.recognition_policy = "ASSET_VERIFY"; profile.supported_modes = ["normal", "simple", "kids"]
     profile.max_candidates = 5; profile.confidence_auto = .92; profile.confidence_review = .82
     profile.fuzzy_candidate_threshold = .55; profile.allow_recognition_asset_substitution = True
@@ -66,18 +90,33 @@ def register(db) -> None:
         db.add(provider)
     provider.base_url = data["provider"]["endpoint"]; provider.adapter_key = "national_gallery_ciim_v1"
     provider.adapter_config = {"institution_ids": [INSTITUTION_ID]}; provider.active = True
-    db.commit()
+    db.flush()
 
 
 def activate_controlled_catalog(db) -> dict:
-    artworks = db.query(Artwork).filter(Artwork.museum_id == INSTITUTION_ID).all()
+    ordered_provider_ids, _ = selection()
+    plus_asset_ids = recognition_ready_ids()
+    order = {stable_id("artwork", PROVIDER_ID, provider_id): position for position, provider_id in enumerate(ordered_provider_ids)}
+    artworks = db.query(Artwork).filter(Artwork.id.in_(tuple(order))).all()
+    if len(artworks) != len(order):
+        raise RuntimeError(f"selected artwork parity failed: expected {len(order)}, found {len(artworks)}")
     memberships = assets = 0
-    for position, artwork in enumerate(artworks):
+    # Historical controlled versions remain auditable but are not active
+    # candidate universes after this explicit version switch.
+    db.query(ArtworkCatalogMembership).filter(
+        ArtworkCatalogMembership.museum_id == INSTITUTION_ID,
+        ArtworkCatalogMembership.catalog_version != CATALOG_VERSION,
+        ArtworkCatalogMembership.active.is_(True),
+    ).update({ArtworkCatalogMembership.active: False}, synchronize_session=False)
+    for artwork in artworks:
+        position = order[artwork.id]
         membership = db.query(ArtworkCatalogMembership).filter_by(artwork_id=artwork.id, catalog_version=CATALOG_VERSION).first()
         if membership is None:
             membership = ArtworkCatalogMembership(artwork_id=artwork.id, museum_id=INSTITUTION_ID, catalog_version=CATALOG_VERSION)
             db.add(membership); memberships += 1
-        membership.active = True; membership.tier = "CONTROLLED_PREVIEW"; membership.visitor_priority = float(170 - position)
+        membership.active = True; membership.tier = "CONTROLLED_PREVIEW"; membership.visitor_priority = float(500 - position)
+        if artwork.id not in plus_asset_ids:
+            continue
         association = (
             db.query(MediaAssetAssociation, MediaAsset)
             .join(MediaAsset, MediaAsset.id == MediaAssetAssociation.media_asset_id)
@@ -101,16 +140,24 @@ def activate_controlled_catalog(db) -> dict:
         recognition.rights_status = (media.rights_status or "unknown").lower()
         recognition.ai_tdm_eligible = True; recognition.embedding_eligible = True
         recognition.local_storage_status = "not_fetched"
+    db.get(InstitutionProfile, INSTITUTION_ID).visitor_catalog_version = CATALOG_VERSION
     db.commit()
     return {"artworks": len(artworks), "memberships_created": memberships, "recognition_assets_created": assets}
 
 
 def status(db) -> dict:
+    selected_ids = tuple(stable_id("artwork", PROVIDER_ID, provider_id) for provider_id in selection()[0])
+    asset_artworks = db.query(RecognitionAsset.artwork_id).filter(RecognitionAsset.artwork_id.in_(selected_ids)).distinct().count()
+    memberships = db.query(ArtworkCatalogMembership).filter_by(museum_id=INSTITUTION_ID, catalog_version=CATALOG_VERSION, active=True).count()
     return {
         "institution": db.get(Institution, INSTITUTION_ID) is not None,
         "artworks": db.query(Artwork).filter_by(museum_id=INSTITUTION_ID).count(),
-        "active_controlled_memberships": db.query(ArtworkCatalogMembership).filter_by(museum_id=INSTITUTION_ID, catalog_version=CATALOG_VERSION, active=True).count(),
+        "catalog_version": CATALOG_VERSION,
+        "active_controlled_memberships": memberships,
         "recognition_assets": db.query(RecognitionAsset).join(Artwork, Artwork.id == RecognitionAsset.artwork_id).filter(Artwork.museum_id == INSTITUTION_ID).count(),
+        "vision_plus_asset": asset_artworks,
+        "vision_ready": memberships - asset_artworks,
+        "not_ready": 0,
         "public_selector": False,
         "seo": False,
     }
@@ -125,7 +172,7 @@ def main() -> None:
         Session = sessionmaker(bind=engine)
         with Session() as db:
             register(db)
-            adapter = NationalGalleryLondonAdapter(SNAPSHOT)
+            adapter = selected_adapter()
             plan = build_plan(db, adapter, INSTITUTION_ID, mode="PLAN")
             result = {"environment": "isolated_in_memory_sqlite", "production_mutations": 0, "plan": plan.summary, "production_public_activation": False}
         engine.dispose()
@@ -134,7 +181,7 @@ def main() -> None:
             if args.mode == "STATUS": result = status(db)
             else:
                 register(db)
-                adapter = NationalGalleryLondonAdapter(SNAPSHOT)
+                adapter = selected_adapter()
                 plan = build_plan(db, adapter, INSTITUTION_ID, mode="PLAN")
                 result = {"plan": plan.summary, "production_public_activation": False}
                 result["ingestion_run_id"] = apply_plan(db, plan, operator_id=args.operator)

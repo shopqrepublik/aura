@@ -4,7 +4,7 @@ Media validation must compare both unique media entities and relationship edges.
 
 The hybrid visitor invariant remains independent of media readiness: configured + catalog match uses canonical content; configured + no reliable match uses truthful AI uncataloged fallback and records the sighting; unknown/unconfigured institution fails closed. Catalog when we know. AI when we don't. Learn from what visitors scan.
 
-Status: CURRENT. National Gallery London now has a frozen 170-work controlled recognition package and benchmark tooling; it is not publicly activated.
+Status: CURRENT. National Gallery London now has a frozen 500-work controlled recognition package and benchmark tooling; it is not publicly activated.
 
 Block 4 path: register provider/adapter/institution mapping, then DISCOVER → DRY_RUN → PLAN → RECONCILE → reviewed APPLY using [Source Adapter Guide](SOURCE_ADAPTER_GUIDE.md). Complete [provenance review](PROVENANCE_REVIEW_RUNBOOK.md), readiness and benchmark before separate activation. New institutions must not use legacy direct-upsert scripts.
 
@@ -78,7 +78,7 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 
 ## National Gallery London controlled result (2026-08-24)
 
-**YES: technically ready for controlled real-world scan testing, not public activation.** See `../recognition/NATIONAL_GALLERY_BENCHMARK_2026-08-24.md`.
+**YES: 500 works are available for controlled real-world scan testing, not public activation.** See `../recognition/NATIONAL_GALLERY_CONTROLLED_500_BENCHMARK_2026-08-24.md`. Expansion to 1,000 is not yet approved because the new-work sample is fallback-heavy and tail latency increased.
 
 | Item | Required |
 |---|---|

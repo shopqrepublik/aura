@@ -6,7 +6,7 @@ Status: CURRENT practice and required standard.
 
 `backend/scripts/latency_test.py`, catalog regression/parity checks, reference-cache tooling and many `backend/scripts/louvre_*benchmark*.py` scripts exist. Louvre scripts are research/operations tools, not a universal framework. Some call OpenAI/Wikimedia and create local outputs; some import/migrate. Read CLI/source and target DB before execution.
 
-National Gallery controlled tooling is `backend/scripts/national_gallery_prepare_recognition_corpus.py`, `backend/scripts/national_gallery_recognition_benchmark.py`, and `backend/scripts/national_gallery_controlled_preview.py`. Corpus/benchmark output is ignored under `exports/`; only tooling, frozen metadata input and dated aggregate report belong in Git. The benchmark runner keeps the candidate snapshot separate from the test snapshot so out-of-catalog behavior is testable without contaminating the controlled 170-work universe.
+National Gallery controlled tooling is `backend/scripts/national_gallery_select_controlled_catalog.py`, `backend/scripts/national_gallery_prepare_recognition_corpus.py`, `backend/scripts/national_gallery_finalize_recognition_readiness.py`, `backend/scripts/national_gallery_recognition_benchmark.py`, and `backend/scripts/national_gallery_controlled_preview.py`. Corpus/benchmark output is ignored under `exports/`; only tooling, frozen metadata/selection input and dated aggregate reports belong in Git. The benchmark runner keeps the candidate snapshot/selection separate from test manifests so out-of-catalog behavior is testable without contaminating the controlled universe. The current controlled version is `ng-controlled-500-v1`; see `NATIONAL_GALLERY_CONTROLLED_500_BENCHMARK_2026-08-24.md`.
 
 ## Benchmark dimensions
 
