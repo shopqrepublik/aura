@@ -2,5 +2,15 @@ venv/
 __pycache__/
 *.pyc
 test_photos/
+.reference_cache/
+.image_proxy_cache/
+data/**
+!data/onboarding/
+!data/onboarding/national_gallery_london/
+!data/onboarding/national_gallery_london/config.json
+!data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json
+!data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json
+!data/onboarding/national_gallery_london/controlled_catalog_500_v1.json
+!data/onboarding/national_gallery_london/controlled_catalog_500_recognition_readiness_v1.json
 .env
 .git
