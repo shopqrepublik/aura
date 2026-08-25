@@ -96,3 +96,7 @@ Block 4 path: register provider/adapter/institution mapping, then DISCOVER → D
 | Optional | City entity, richer loans/collections, en-GB distinctions, automation/B2B roles |
 
 No National Gallery-specific core catalog or recognition conditional is required. The server-side `controlled_preview_only` policy and trusted QA token isolate the catalog. Public content, selector and SEO activation remain separate decisions.
+
+## National Gallery complete image-backed coverage audit (2026-08-25)
+
+The frozen source snapshot reconciles to 3,785 holdings: 2,000 controlled image-backed works, 566 remaining image relationships, 6 explicit technical exclusions, 560 remaining image-backed candidates, and 1,219 metadata-only holdings. A deterministic 2,560 selection manifest is prepared, but controlled activation remains at 2,000 until the existing image corpus/descriptor pipeline produces a reproducible 560-record reference manifest. Metadata-only holdings remain inactive.

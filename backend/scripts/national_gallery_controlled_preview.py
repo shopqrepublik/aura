@@ -38,6 +38,20 @@ CATALOG_VERSION = "ng-controlled-2000-v1-retrieval"
 CONTROLLED_SIZE = 2000
 
 
+def configure_catalog(selection_path: str | Path | None = None, catalog_version: str | None = None) -> None:
+    """Select a versioned controlled package without changing public policy."""
+    global SELECTION, READINESS, DESCRIPTORS, CATALOG_VERSION, CONTROLLED_SIZE
+    if selection_path is not None:
+        SELECTION = Path(selection_path)
+    payload = json.loads(SELECTION.read_text(encoding="utf-8"))
+    CONTROLLED_SIZE = int(payload["summary"]["target"])
+    CATALOG_VERSION = catalog_version or f"ng-controlled-{CONTROLLED_SIZE}-v1-retrieval"
+    stem = SELECTION.stem
+    prefix = stem.removesuffix("_v1")
+    READINESS = SELECTION.with_name(f"{prefix}_recognition_readiness_v1.json")
+    DESCRIPTORS = SELECTION.with_name(f"{prefix}_visual_descriptors_v1.json")
+
+
 def selection() -> tuple[list[str], set[str]]:
     rows = json.loads(SELECTION.read_text(encoding="utf-8"))["records"]
     ordered = [str(row["provider_record_id"]) for row in rows]
@@ -245,9 +259,12 @@ def status(db) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser(); parser.add_argument("mode", choices=("PLAN", "APPLY", "STATUS")); parser.add_argument("--operator")
+    parser.add_argument("--selection", help="Versioned controlled selection manifest")
+    parser.add_argument("--catalog-version", help="Explicit runtime catalog version")
     parser.add_argument("--batch-index", type=int, help="Apply one zero-based 100-record batch without catalog activation")
     parser.add_argument("--activate-only", action="store_true", help="Activate only after all batches have been applied")
     args = parser.parse_args()
+    configure_catalog(args.selection, args.catalog_version)
     if args.mode == "APPLY" and not args.operator: parser.error("--operator is required for APPLY")
     if args.mode == "PLAN":
         engine = create_engine("sqlite+pysqlite:///:memory:"); Base.metadata.create_all(engine)
