@@ -363,20 +363,63 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
         '"alternative_candidates": [{"artist": "<artist or null>", "title": "<title or null>", "confidence": <0-1 float>}]}'
     )
 
-    resp = _openai_chat_completion_with_retries(
-        client,
-        model=RECOGNITION_MODEL,
-        max_tokens=700,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": [
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
-                {"type": "text", "text": "Analyze this museum visitor photo for artwork recognition."}
-            ]}
-        ]
-    )
-    data = json.loads(resp.choices[0].message.content)
+    request_started = time.perf_counter()
+    retry_count = 0
+    parse_failures = 0
+    provider_outcome = "OTHER_PROVIDER_EXCEPTION"
+    response_shape = "unknown"
+    data = None
+    max_empty_attempts = 2
+    for attempt in range(max_empty_attempts):
+        try:
+            resp = _openai_chat_completion_with_retries(
+                client,
+                model=RECOGNITION_MODEL,
+                max_tokens=700,
+                response_format={"type": "json_object"},
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": [
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+                        {"type": "text", "text": "Analyze this museum visitor photo for artwork recognition."}
+                    ]}
+                ]
+            )
+            choice = resp.choices[0] if getattr(resp, "choices", None) else None
+            content = getattr(getattr(choice, "message", None), "content", None)
+            response_shape = "choices_message_content" if content is not None else "missing_message_content"
+            if not isinstance(content, str) or not content.strip():
+                provider_outcome = "SUCCESS_EMPTY"
+                if attempt + 1 < max_empty_attempts:
+                    retry_count += 1
+                    continue
+                data = {}
+                break
+            try:
+                data = json.loads(content)
+            except (TypeError, json.JSONDecodeError):
+                parse_failures += 1
+                provider_outcome = "MALFORMED_RESPONSE"
+                if attempt + 1 < max_empty_attempts:
+                    retry_count += 1
+                    continue
+                data = {}
+                break
+            provider_outcome = "SUCCESS_RECOGNIZED" if data.get("recognized") else "SUCCESS_UNRECOGNIZED_WITH_CLUES"
+            break
+        except Exception as exc:
+            status = getattr(exc, "status_code", None)
+            if status == 429:
+                provider_outcome = "PROVIDER_RATE_LIMIT"
+            elif isinstance(status, int) and status >= 500:
+                provider_outcome = "PROVIDER_5XX"
+            elif isinstance(exc, (TimeoutError, ConnectionError)):
+                provider_outcome = "PROVIDER_TIMEOUT" if isinstance(exc, TimeoutError) else "NETWORK_ERROR"
+            else:
+                provider_outcome = "OTHER_PROVIDER_EXCEPTION"
+            raise
+    if data is None:
+        data = {}
     data.setdefault("recognized", bool(data.get("likely_title") or data.get("likely_artist") or data.get("dominant_visual_features") or data.get("distinctive_features")))
     data.setdefault("is_artwork_photo", bool(data.get("recognized")))
     data.setdefault("image_quality", "unknown")
@@ -404,6 +447,27 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
     ]
     data.setdefault("alternative_candidates", [])
     data.setdefault("confidence", 0.0)
+    if provider_outcome.startswith("SUCCESS_"):
+        provider_outcome = (
+            "SUCCESS_RECOGNIZED"
+            if data.get("recognized")
+            else "SUCCESS_UNRECOGNIZED_WITH_CLUES"
+            if data.get("title") or data.get("visual_clues")
+            else "SUCCESS_EMPTY"
+        )
+    data["_stage1_diagnostic"] = {
+        "model": RECOGNITION_MODEL,
+        "provider_outcome": provider_outcome,
+        "response_shape": response_shape,
+        "parse_success": parse_failures == 0 and provider_outcome.startswith("SUCCESS_"),
+        "recognized_present": "recognized" in data,
+        "recognized": bool(data.get("recognized")),
+        "title_present": bool(data.get("title")),
+        "visual_clues_count": len(data.get("visual_clues") or []),
+        "retry_count": retry_count,
+        "parse_failures": parse_failures,
+        "latency_s": round(time.perf_counter() - request_started, 4),
+    }
     return data
 
 
