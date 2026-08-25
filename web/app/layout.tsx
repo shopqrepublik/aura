@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+import "../components/landing/landing.css";
 
 // Editorial serif for artwork titles / Reveal price / Recap value -- next/font
 // self-hosts the font files at build time (no runtime request to Google's

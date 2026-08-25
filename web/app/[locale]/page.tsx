@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
-import Link from "@/components/seo/SeoLink";
 import { notFound } from "next/navigation";
-import SeoNav from "@/components/seo/SeoNav";
-import { LOCALES, SITE_URL, alternatesFor, museums, type SeoLocale } from "@/lib/seo-content";
+import LandingPage from "@/components/landing/LandingPage";
+import { LOCALES, SITE_URL, alternatesFor, type SeoLocale } from "@/lib/seo-content";
 
-const copy = {
-  en:{title:"ELYIO — AI Museum Guide for France | Identify Art, Discover Its Story",description:"Explore French museums with ELYIO. Identify an artwork, understand its story, notice the details and see carefully labelled value context.",eyebrow:"A different way to see the museum",h1:"Look closer. The story is already there.",body:"ELYIO turns the artwork in front of you into a clear, thoughtful guide: what it is, why it matters and where to look next.",cta:"Begin your visit",browse:"Explore museum guides",section:"Curated museum guides",method:"Point your camera at an artwork once you are inside a supported museum. ELYIO returns the story, visual details and contextual scale without pretending that a museum masterpiece is for sale."},
-  fr:{title:"ELYIO — Guide IA des musées de France | Identifier et comprendre l’art",description:"Explorez les musées français avec ELYIO. Identifiez une œuvre, comprenez son histoire, observez ses détails et découvrez un contexte de valeur clairement expliqué.",eyebrow:"Une autre façon de voir le musée",h1:"Regardez mieux. L’histoire est déjà là.",body:"ELYIO transforme l’œuvre devant vous en guide clair et attentif : ce qu’elle est, pourquoi elle compte et où regarder ensuite.",cta:"Commencer la visite",browse:"Explorer les guides",section:"Guides de musées sélectionnés",method:"Une fois dans un musée couvert, pointez l’appareil photo vers une œuvre. ELYIO présente son histoire, ses détails visuels et son échelle contextuelle, sans prétendre qu’un chef-d’œuvre de musée est à vendre."},
-  "zh-hans":{title:"ELYIO — 法国博物馆 AI 导览 | 识别艺术，读懂故事",description:"使用 ELYIO 探索法国博物馆：识别艺术品、理解故事、观察细节，并查看明确说明的价值背景。",eyebrow:"用另一种方式观看博物馆",h1:"再看近一点，故事就在眼前。",body:"ELYIO 把您面前的作品变成清晰而有深度的导览：它是什么、为何重要、接下来该看哪里。",cta:"开始参观",browse:"浏览博物馆指南",section:"精选博物馆指南",method:"进入支持的博物馆后，将相机对准作品。ELYIO 会呈现故事、视觉细节和背景尺度，同时明确说明博物馆珍品并非待售商品。"}
+const metadataCopy = {
+  en: { title: "ELYIO — AI Museum Guide for France | Identify Art, Discover Its Story", description: "Explore French museums with ELYIO. Identify an artwork, understand its story, notice the details and see carefully labelled value context." },
+  fr: { title: "ELYIO — Guide IA des musées de France | Identifier et comprendre l’art", description: "Explorez les musées français avec ELYIO. Identifiez une œuvre, comprenez son histoire, observez ses détails et découvrez un contexte de valeur clairement expliqué." },
+  "zh-hans": { title: "ELYIO — 法国博物馆 AI 导览 | 识别艺术，读懂故事", description: "使用 ELYIO 探索法国博物馆：识别艺术品、理解故事，并查看明确说明的价值背景。" },
 } as const;
 
-export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{const {locale}=await params;if(!LOCALES.includes(locale as SeoLocale))return{};const c=copy[locale as SeoLocale];return{title:c.title,description:c.description,alternates:alternatesFor(`/${locale}`),openGraph:{title:c.title,description:c.description,url:`${SITE_URL}/${locale}`,siteName:"ELYIO",type:"website",images:[{url:"/icons/icon-512.png",width:512,height:512,alt:"ELYIO museum guide"}]},twitter:{card:"summary_large_image",title:c.title,description:c.description,images:["/icons/icon-512.png"]}}}
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  if (!LOCALES.includes(locale as SeoLocale)) return {};
+  const copy = metadataCopy[locale as SeoLocale];
+  return { title: copy.title, description: copy.description, alternates: alternatesFor(`/${locale}`), openGraph: { title: copy.title, description: copy.description, url: `${SITE_URL}/${locale}`, siteName: "ELYIO", type: "website", images: [{ url: "/icons/icon-512.png", width: 512, height: 512, alt: "ELYIO museum guide" }] }, twitter: { card: "summary_large_image", title: copy.title, description: copy.description, images: ["/icons/icon-512.png"] } };
+}
 
-export default async function LocaleHome({params}:{params:Promise<{locale:string}>}){const {locale}=await params;if(!LOCALES.includes(locale as SeoLocale))notFound();const l=locale as SeoLocale,c=copy[l];const jsonLd={"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":`${SITE_URL}/#organization`,name:"ELYIO",url:SITE_URL,logo:`${SITE_URL}/icons/icon-512.png`},{"@type":"WebApplication",name:"ELYIO",url:`${SITE_URL}/${l}`,applicationCategory:"TravelApplication",operatingSystem:"Web",description:c.description,publisher:{"@id":`${SITE_URL}/#organization`}}]};return <><SeoNav locale={l}/><main><section className="seo-hero"><p className="seo-eyebrow">{c.eyebrow}</p><h1>{c.h1}</h1><p className="seo-lede">{c.body}</p><div className="seo-actions"><Link className="seo-primary" href={`/visit?from=organic&locale=${l}&landing=home`}>{c.cta}</Link><Link href={`/${l}/museums`}>{c.browse} →</Link></div></section><section className="seo-section"><h2>{c.section}</h2><div className="seo-grid">{museums.map(m=><article key={m.id}><p>{m.city}</p><h3><Link href={`/${l}/museums/${m.slug}`}>{m.name}</Link></h3><p>{m.intro[l]}</p></article>)}</div></section><section className="seo-method"><h2>ELYIO</h2><p>{c.method}</p></section></main><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/></>}
+export default async function LocaleHome({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!LOCALES.includes(locale as SeoLocale)) notFound();
+  const selectedLocale = locale as SeoLocale;
+  const jsonLd = { "@context": "https://schema.org", "@graph": [{ "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "ELYIO", url: SITE_URL, logo: `${SITE_URL}/icons/icon-512.png` }, { "@type": "WebApplication", name: "ELYIO", url: `${SITE_URL}/${selectedLocale}`, applicationCategory: "TravelApplication", operatingSystem: "Web", description: metadataCopy[selectedLocale].description, publisher: { "@id": `${SITE_URL}/#organization` } }] };
+  return <><LandingPage locale={selectedLocale} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /></>;
+}
