@@ -1,0 +1,4483 @@
+{
+  "audited": 559,
+  "good_primary_references": 507,
+  "weak_references": 52,
+  "contextual_or_wrong_references": 0,
+  "duplicate_checksums": 0,
+  "median_width": 768,
+  "median_height": 736,
+  "records": [
+    {
+      "provider_record_id": "0CFS-0001-0000-0000",
+      "width": 768,
+      "height": 553,
+      "aspect_ratio": 1.3888,
+      "sha256": "9db7e878c5ab51d185bfeb7485f33fee5c25443e223816e20654070b95af4932",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CI8-0001-0000-0000",
+      "width": 628,
+      "height": 800,
+      "aspect_ratio": 0.785,
+      "sha256": "9f9aabec197c4829159ab77d94ebcaa265f2fa0d5be5eac2cef431a2fcd35f4f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CKK-0001-0000-0000",
+      "width": 768,
+      "height": 555,
+      "aspect_ratio": 1.3838,
+      "sha256": "49c3a5c1667dc5fefb7632fd9c20dc078e49b1ecb7b2016359a2a2e453bcad8a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CLS-0001-0000-0000",
+      "width": 593,
+      "height": 800,
+      "aspect_ratio": 0.7412,
+      "sha256": "198689eba3769fc7fa4fa78819120a77082439d33acba07b0e41a7bcd07f4792",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CM2-0001-0000-0000",
+      "width": 379,
+      "height": 800,
+      "aspect_ratio": 0.4738,
+      "sha256": "444da2e1fa7e4410c6cbd364e04f9508bba279d06a409ebed3a3cee47a1cdae5",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0CMA-0001-0000-0000",
+      "width": 768,
+      "height": 584,
+      "aspect_ratio": 1.3151,
+      "sha256": "0915e7ac903940fcd7766f1589c65efa08e49888a35ee968f5f645d32ca38344",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CNF-0001-0000-0000",
+      "width": 577,
+      "height": 800,
+      "aspect_ratio": 0.7212,
+      "sha256": "b83e82089a9fb3bfe1fb00be12bcde95f513815db94d90b0fa3a19ec5339730e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CPE-0001-0000-0000",
+      "width": 502,
+      "height": 800,
+      "aspect_ratio": 0.6275,
+      "sha256": "92d9d18f5530e03c512ad7938df8142e1395d017116df02b9efbb082a378f17e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CPK-0001-0000-0000",
+      "width": 754,
+      "height": 800,
+      "aspect_ratio": 0.9425,
+      "sha256": "8965fc8d59b2e757337ff0ccc034cfe00d53ace5dc069aeab78acccb24e61fad",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CR3-0001-0000-0000",
+      "width": 768,
+      "height": 563,
+      "aspect_ratio": 1.3641,
+      "sha256": "216d853e30d7c888a7f9bb6aec56edc928541dfbda128a7f18da5a980d029912",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CRC-0001-0000-0000",
+      "width": 637,
+      "height": 800,
+      "aspect_ratio": 0.7963,
+      "sha256": "39414c449d7865a9ab6a66ab429d3532cec3fb0f5c29a13076083e719ab0f04a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CRI-0001-0000-0000",
+      "width": 768,
+      "height": 650,
+      "aspect_ratio": 1.1815,
+      "sha256": "eec6d3656322eee34959019540df8045bb7a0f0c4ac0cf6b408a9e44e6836c23",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CS4-0001-0000-0000",
+      "width": 768,
+      "height": 798,
+      "aspect_ratio": 0.9624,
+      "sha256": "8f7a7fa0eedacb16cd6c8e2319566fdf99df806fd3314598558e7ccc5d7ad73c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CTI-0001-0000-0000",
+      "width": 666,
+      "height": 800,
+      "aspect_ratio": 0.8325,
+      "sha256": "75db24a16db4c3f6e16215ac0c55de955e6a760f50a50a9d64fc105cb25a9053",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CTM-0001-0000-0000",
+      "width": 371,
+      "height": 800,
+      "aspect_ratio": 0.4637,
+      "sha256": "61ffcc181837aeeb6ddf3edbaf337acb4d1d93c78c5294f2cee890981a441cbf",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0CUD-0001-0000-0000",
+      "width": 768,
+      "height": 710,
+      "aspect_ratio": 1.0817,
+      "sha256": "429dac1f6b54dde9e50e56f1b683244938e569e894dd8b7ac4414a975d80b461",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CUT-0001-0000-0000",
+      "width": 587,
+      "height": 800,
+      "aspect_ratio": 0.7338,
+      "sha256": "943e43902fc626778ddaa1d6c736213789230c672dfa9f0f33d8785f8533e570",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CUV-0001-0000-0000",
+      "width": 768,
+      "height": 610,
+      "aspect_ratio": 1.259,
+      "sha256": "96e5d45445c4a710a63d76b64c7e87a23ccea8eee474acfecad2007aa3f1abbf",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CV6-0001-0000-0000",
+      "width": 682,
+      "height": 800,
+      "aspect_ratio": 0.8525,
+      "sha256": "797da151404d228b0ba85d65362f0319e82bf295908e94e786bdee692dbd76bb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CVA-0001-0000-0000",
+      "width": 449,
+      "height": 800,
+      "aspect_ratio": 0.5613,
+      "sha256": "d66666556f7f5e186aff13246635857111bd588e19187b0d60b7aef78a539833",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CVU-0001-0000-0000",
+      "width": 418,
+      "height": 800,
+      "aspect_ratio": 0.5225,
+      "sha256": "cf2cd8d02815a094728e0c106dda84662b4e33e7c8e0379f617b14aa505de792",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CW6-0001-0000-0000",
+      "width": 768,
+      "height": 644,
+      "aspect_ratio": 1.1925,
+      "sha256": "d8fe4d3d6b8941615d2ca70566a74fc2619a224104fed8844dda18b534146d12",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CWA-0001-0000-0000",
+      "width": 567,
+      "height": 800,
+      "aspect_ratio": 0.7087,
+      "sha256": "c51642ee61d4faca0cda7d0a14379e8a842e0ae1c9532c51c713efdcdcbb7b24",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CWQ-0001-0000-0000",
+      "width": 768,
+      "height": 571,
+      "aspect_ratio": 1.345,
+      "sha256": "96917947b62915d219e087ccf3f3564c64d5c1cd52cf9386ed96656072097b27",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CWZ-0001-0000-0000",
+      "width": 768,
+      "height": 505,
+      "aspect_ratio": 1.5208,
+      "sha256": "9da333f7b5a7ae7225da2975b9ef17bfb6f0f2b7cb495546334df5afe2be9914",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CXF-0001-0000-0000",
+      "width": 651,
+      "height": 800,
+      "aspect_ratio": 0.8137,
+      "sha256": "8a7cfbe1c909b78c6b8cfbc0c62963ce896927f1e46ebc5e76aab8aaf47653e4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CXM-0001-0000-0000",
+      "width": 511,
+      "height": 800,
+      "aspect_ratio": 0.6388,
+      "sha256": "7adc95495bab414889bee56b9826c70c90d62e66e5e10fa013728e06e4431d69",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CXP-0001-0000-0000",
+      "width": 640,
+      "height": 800,
+      "aspect_ratio": 0.8,
+      "sha256": "e75c64ac44b1c9fd2eab5bbcc50a3f3b8b9c45d3f167a2b05d876ba29ddaa6bb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CXU-0001-0000-0000",
+      "width": 768,
+      "height": 554,
+      "aspect_ratio": 1.3863,
+      "sha256": "bdb2bb7f57c98bce486cfe9c15b4a9ceafb4e405dd6c08507cb466294321dabd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CYE-0001-0000-0000",
+      "width": 768,
+      "height": 349,
+      "aspect_ratio": 2.2006,
+      "sha256": "364e2cf702a1195868b7a0a2fb4f3d0c8422e754c55a45ca47c3488e19b75972",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CYG-0001-0000-0000",
+      "width": 609,
+      "height": 800,
+      "aspect_ratio": 0.7612,
+      "sha256": "d9310b7f000db28738460262f903b73968814f7c4afe4512345b3ced892896cc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CYN-0001-0000-0000",
+      "width": 768,
+      "height": 480,
+      "aspect_ratio": 1.6,
+      "sha256": "bb3ea757089932e2e1b55ab16f2c8c6928a087477d5dabb85617bd0ea85381ad",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CYY-0001-0000-0000",
+      "width": 768,
+      "height": 568,
+      "aspect_ratio": 1.3521,
+      "sha256": "5bdbb15c7c7722b97b1bc42191c03abc695dd35a1362bba44b6763fe4d1ce06e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CZN-0001-0000-0000",
+      "width": 768,
+      "height": 604,
+      "aspect_ratio": 1.2715,
+      "sha256": "773c91418952fc0a8d323fab89b2195eb2f8685e08457d39fbf129d6e271b227",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0CZQ-0001-0000-0000",
+      "width": 249,
+      "height": 800,
+      "aspect_ratio": 0.3113,
+      "sha256": "ad2d05a48deea134afc90a4abf14486a3b3ab63a5ff64b83c53620efa4a0b6e4",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0D1P-0001-0000-0000",
+      "width": 768,
+      "height": 632,
+      "aspect_ratio": 1.2152,
+      "sha256": "742f48698ae922811133fa02feacd970a64527cda7846137d975171297d85754",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D2B-0001-0000-0000",
+      "width": 768,
+      "height": 559,
+      "aspect_ratio": 1.3739,
+      "sha256": "1ca453d1502db2eda6c514ee8c8ad086b4e836f5b1a6f837b5574d508c95a3ab",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D2S-0001-0000-0000",
+      "width": 768,
+      "height": 473,
+      "aspect_ratio": 1.6237,
+      "sha256": "1a14fa71635e826cec082422d75ede73d35bf332bda4697ae90411ba33d3119e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D31-0001-0000-0000",
+      "width": 768,
+      "height": 647,
+      "aspect_ratio": 1.187,
+      "sha256": "15f3dc6eeee52e96a9c1d1bb557b1b2dfb165ed41c14ce37d59424092d0f6b63",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D32-0001-0000-0000",
+      "width": 768,
+      "height": 642,
+      "aspect_ratio": 1.1963,
+      "sha256": "a1f3ece04309995d59d836439f845cd6807096f9482ba314622bb36236cb1d07",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D3F-0001-0000-0000",
+      "width": 768,
+      "height": 647,
+      "aspect_ratio": 1.187,
+      "sha256": "d25a3553e5790e295a5ea100a936085d4849d9ee28e7483a1a4cf7e8e277c450",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D42-0001-0000-0000",
+      "width": 768,
+      "height": 798,
+      "aspect_ratio": 0.9624,
+      "sha256": "aa02d41443e8ad0c421ed575bfec35cf16c10bef6132c935becac62d4be32125",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D4I-0001-0000-0000",
+      "width": 768,
+      "height": 655,
+      "aspect_ratio": 1.1725,
+      "sha256": "b1b668b6ab06e33dadc7dc9d06b3bcf87a21152ea9e99e8129c93526f1947c96",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D4K-0001-0000-0000",
+      "width": 768,
+      "height": 532,
+      "aspect_ratio": 1.4436,
+      "sha256": "f8a8990558788f8375762550cce7b81773089641246365e64a9905ba7b32e80d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D4Q-0001-0000-0000",
+      "width": 768,
+      "height": 579,
+      "aspect_ratio": 1.3264,
+      "sha256": "a647a4f2ec23a50989eda62ae63c0d0102c45cba16719f4df07a97c5b87d4ebd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D5A-0001-0000-0000",
+      "width": 768,
+      "height": 567,
+      "aspect_ratio": 1.3545,
+      "sha256": "86db3a4c3895fe825036fce227a684aca3c1bf0a6010a72db18f7e4285c37f18",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D5P-0001-0000-0000",
+      "width": 768,
+      "height": 797,
+      "aspect_ratio": 0.9636,
+      "sha256": "48b9060528ff694ceae39ac799c3ccc62c7c882927551e6e1b0810f6874941c5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D5Z-0001-0000-0000",
+      "width": 768,
+      "height": 539,
+      "aspect_ratio": 1.4249,
+      "sha256": "fc58812bba91b3ba4e204788b8f983f2017a73e05f3b1279cfe42f54a11e9eb2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D66-0001-0000-0000",
+      "width": 719,
+      "height": 800,
+      "aspect_ratio": 0.8988,
+      "sha256": "43ca5ba9025bbe7bc8d8e33131c14ae9f669210edb52cbe8951b8dfdf4f9065e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D6K-0001-0000-0000",
+      "width": 596,
+      "height": 800,
+      "aspect_ratio": 0.745,
+      "sha256": "0f504be471023150b32293d096a6fb5431751092297f2b68b1f93efd881d67fd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D6L-0001-0000-0000",
+      "width": 655,
+      "height": 800,
+      "aspect_ratio": 0.8187,
+      "sha256": "9cd6a1b6f9ef49fc3adc0be323b218e9db7ddcea7cebb2a2747722fcbd4933ba",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D6O-0001-0000-0000",
+      "width": 580,
+      "height": 800,
+      "aspect_ratio": 0.725,
+      "sha256": "1146b30e555d0cd77ad0adfb22829a5f82a09d8934ecaa95d81c1c628cf69696",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D7U-0001-0000-0000",
+      "width": 768,
+      "height": 737,
+      "aspect_ratio": 1.0421,
+      "sha256": "455ad43a71c7ed44d281e9177b89d9ad84987e679e9a78cd46b4767a1a3c2c5a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D9E-0001-0000-0000",
+      "width": 768,
+      "height": 585,
+      "aspect_ratio": 1.3128,
+      "sha256": "844d9352863e5c6bb225ea0677d52429578b164a9a528422ddff578b499cc6b8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0D9H-0001-0000-0000",
+      "width": 627,
+      "height": 800,
+      "aspect_ratio": 0.7837,
+      "sha256": "19417d74fa5627846e664eee2b178289b65dded33e82d33a48f42ada63e9eb2d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DA2-0001-0000-0000",
+      "width": 768,
+      "height": 481,
+      "aspect_ratio": 1.5967,
+      "sha256": "810a60b20bcd8ab070892ebc109c7d73a358a41d9b69a5bd9d249f8d7d28556b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DA8-0001-0000-0000",
+      "width": 768,
+      "height": 684,
+      "aspect_ratio": 1.1228,
+      "sha256": "f39dac2f904d365217fa04b28a7ede3e2c5f32945b265a435bf78c0a6ab2753c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DAB-0001-0000-0000",
+      "width": 597,
+      "height": 800,
+      "aspect_ratio": 0.7462,
+      "sha256": "50adc1be5796e6641c0d2d88622de512a1f2e56f2606e683567d2bd7da263f54",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DAQ-0001-0000-0000",
+      "width": 768,
+      "height": 488,
+      "aspect_ratio": 1.5738,
+      "sha256": "6066eca526740b41020f8c972487421af06003bf41547891f0b952f1aec707a0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DB7-0001-0000-0000",
+      "width": 768,
+      "height": 556,
+      "aspect_ratio": 1.3813,
+      "sha256": "4fed3bba375f35d859cee33440ce59610ae6e3deb40e8fe769fba9ddcfc12924",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DBL-0001-0000-0000",
+      "width": 768,
+      "height": 736,
+      "aspect_ratio": 1.0435,
+      "sha256": "2fa59e434c0ee37ee70723870a2adcf9184b072c4715195ebcf996e97f268f7d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DBZ-0001-0000-0000",
+      "width": 768,
+      "height": 477,
+      "aspect_ratio": 1.6101,
+      "sha256": "5b17da558e1e4bc0886256344c9cb3796c24fd3e31bfd570e67b55668ac5477c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DC4-0001-0000-0000",
+      "width": 416,
+      "height": 800,
+      "aspect_ratio": 0.52,
+      "sha256": "e5f34caeb2a55ffb49a5b501809a9607133cafee7e079b8c6ac75540e472d3ec",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DC6-0001-0000-0000",
+      "width": 633,
+      "height": 800,
+      "aspect_ratio": 0.7913,
+      "sha256": "e9082236d04be7d81344ea7f4058d632bd22da14ccc6c6a39f09a3317c2fa476",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DCQ-0001-0000-0000",
+      "width": 566,
+      "height": 800,
+      "aspect_ratio": 0.7075,
+      "sha256": "d9522ebb66e08d427dd9ba53d9222e5aaaa7348ed8785a5e546c36155b1bac42",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DD7-0001-0000-0000",
+      "width": 663,
+      "height": 800,
+      "aspect_ratio": 0.8287,
+      "sha256": "4194be8efa8bb03908157040155b7dbaccd7c56ebf32292831f5c8b19e588fb0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DE8-0001-0000-0000",
+      "width": 768,
+      "height": 457,
+      "aspect_ratio": 1.6805,
+      "sha256": "58895d1095f9fffcc935f468ba2346d0a63fb0aca841ba305f25d318f70ebaf3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DEA-0001-0000-0000",
+      "width": 768,
+      "height": 134,
+      "aspect_ratio": 5.7313,
+      "sha256": "745fe98d4603c117b10eabf9162c6175ae7121853c8ac3cff9647b169861782c",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0DG4-0001-0000-0000",
+      "width": 768,
+      "height": 575,
+      "aspect_ratio": 1.3357,
+      "sha256": "4779812fdb4009a424a2a580ac4ef9c0e6408e402e8a2fe7abbca842d634c3c4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DGT-0001-0000-0000",
+      "width": 565,
+      "height": 800,
+      "aspect_ratio": 0.7063,
+      "sha256": "d82115699e5164070df34a31bd46862e1f02389b031ca9e6528597eaee2478ff",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DHO-0001-0000-0000",
+      "width": 768,
+      "height": 534,
+      "aspect_ratio": 1.4382,
+      "sha256": "6af641d7124168f34d4f6b786d208a488a72cb502f2facb33716d6c0489ca167",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DIA-0001-0000-0000",
+      "width": 768,
+      "height": 335,
+      "aspect_ratio": 2.2925,
+      "sha256": "e5c4e514c0cd700964f42e7bbfcff3c2851e5e0e360203238ec21a0b848aa181",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DK7-0001-0000-0000",
+      "width": 768,
+      "height": 651,
+      "aspect_ratio": 1.1797,
+      "sha256": "459160eda7ceb7a8acc03ee9eb824a218375c84727ac9d2a210cf7eabe868ca3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0DWU-0001-0000-0000",
+      "width": 636,
+      "height": 800,
+      "aspect_ratio": 0.795,
+      "sha256": "d7cb1df44c14ee0b311df5c248cfa6df2402d03c521d1cb1f9ace4bce5ec90c1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E36-0001-0000-0000",
+      "width": 470,
+      "height": 800,
+      "aspect_ratio": 0.5875,
+      "sha256": "85064478b1bbb5c425a43c557ee4c0e8fb086f74e3cf678e1b1760cecbc13b9d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E45-0001-0000-0000",
+      "width": 768,
+      "height": 403,
+      "aspect_ratio": 1.9057,
+      "sha256": "f29b8f58a640afe7ee5be4e4e88caad3dddda66be13dfbebea9e598fc26899f0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E65-0001-0000-0000",
+      "width": 768,
+      "height": 634,
+      "aspect_ratio": 1.2114,
+      "sha256": "581014c9d00f3a665da8f82e1ccf1ff196a2660a8ce4bd343390f157b32ac68e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E67-0001-0000-0000",
+      "width": 667,
+      "height": 800,
+      "aspect_ratio": 0.8337,
+      "sha256": "e9ac60b6d368a1d8170f69652ad51545f3052589391bf90ca6b61be49447ff8c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E6C-0001-0000-0000",
+      "width": 711,
+      "height": 800,
+      "aspect_ratio": 0.8888,
+      "sha256": "bd9cf2c3b101a69d53260184f9135056ed0df6a7c91b4360c6717f71e6d2d68b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E6Q-0001-0000-0000",
+      "width": 768,
+      "height": 534,
+      "aspect_ratio": 1.4382,
+      "sha256": "4108a15ca44768daeb3503f76422827f529fa2ac09a1f9c0ef9975db1c3d3b14",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E6V-0001-0000-0000",
+      "width": 768,
+      "height": 500,
+      "aspect_ratio": 1.536,
+      "sha256": "af4087a018b8a8f9df1d39a220f8a866676cac0049bc94a570a5b19c56202e83",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E7B-0001-0000-0000",
+      "width": 478,
+      "height": 800,
+      "aspect_ratio": 0.5975,
+      "sha256": "49d0facb350ec243ef625837bdef5d2278c47276b6a0bfcb8f81aa47c51e3ab2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E7M-0001-0000-0000",
+      "width": 768,
+      "height": 643,
+      "aspect_ratio": 1.1944,
+      "sha256": "d57e75e041e9afcd6f9e792c49f4bffe9a60359581279069ee6c1559e9a47e90",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E7V-0001-0000-0000",
+      "width": 591,
+      "height": 800,
+      "aspect_ratio": 0.7388,
+      "sha256": "eb365a27de390bef070caeb25acba23b859ae8e2adbabf84b1d8710db7d2e1c9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E7Y-0001-0000-0000",
+      "width": 768,
+      "height": 635,
+      "aspect_ratio": 1.2094,
+      "sha256": "9c92aafbbd3b445d124180f1fe0ad7e13884ea50f9f82ad644ca5873a04bb778",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E8F-0001-0000-0000",
+      "width": 610,
+      "height": 800,
+      "aspect_ratio": 0.7625,
+      "sha256": "d1bf92543c0bffaed961997a2cf2272527a09503e17f26ed032766ba9d60dec6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E9D-0001-0000-0000",
+      "width": 415,
+      "height": 800,
+      "aspect_ratio": 0.5188,
+      "sha256": "4a8f98cdf82d45f08a9abb137f6521d37a88ea53a7128d8ef60f801faa62b9d0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E9N-0001-0000-0000",
+      "width": 599,
+      "height": 800,
+      "aspect_ratio": 0.7488,
+      "sha256": "a1ebf746fdb3371af6778fedd3278a7dfa43250c913fa46cb16397ef0723978e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0E9O-0001-0000-0000",
+      "width": 768,
+      "height": 194,
+      "aspect_ratio": 3.9588,
+      "sha256": "e934c61c64b1bdede164bb08ea80410af354267958b059f233effc0782d153c0",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EA0-0001-0000-0000",
+      "width": 521,
+      "height": 800,
+      "aspect_ratio": 0.6512,
+      "sha256": "8fb9f2b8ba2188a28b77819e18fde7748be7958bbd9073f10d0e4f24f9fe256b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EA1-0001-0000-0000",
+      "width": 638,
+      "height": 800,
+      "aspect_ratio": 0.7975,
+      "sha256": "55de5504ea9aa464efe9f5ad3c9ee16d0fb4d2699cb730131585c28819da009c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EA2-0001-0000-0000",
+      "width": 478,
+      "height": 800,
+      "aspect_ratio": 0.5975,
+      "sha256": "d951a0510a448e5ee618d4c6f0e54c3e30187021235fba7385e10c2043ae4234",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EA3-0001-0000-0000",
+      "width": 317,
+      "height": 800,
+      "aspect_ratio": 0.3962,
+      "sha256": "5706fd09451f7592440e3df8a731661a3a0711cf94666e76eba667679a602697",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EAA-0001-0000-0000",
+      "width": 318,
+      "height": 800,
+      "aspect_ratio": 0.3975,
+      "sha256": "22ed5d37c01fad1ce543b0c7e261826737009043a61accb8c8bf9d0670e5a799",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EBA-0001-0000-0000",
+      "width": 768,
+      "height": 530,
+      "aspect_ratio": 1.4491,
+      "sha256": "6057bf9bea664ca5daeffaa48ccb581d4543d6417dac77cdf0a2f082fbe41be6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EBF-0001-0000-0000",
+      "width": 768,
+      "height": 314,
+      "aspect_ratio": 2.4459,
+      "sha256": "b1a046d2a5a6c3048bd5beb602f7dae713f3e73245d575c456c4476fa3cefb45",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EBL-0001-0000-0000",
+      "width": 768,
+      "height": 560,
+      "aspect_ratio": 1.3714,
+      "sha256": "ab614e85e4b2361dd4640341ee961e1cb6f0297f199ba90805f07baca4a73bcf",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EBQ-0001-0000-0000",
+      "width": 768,
+      "height": 417,
+      "aspect_ratio": 1.8417,
+      "sha256": "a4df457ef0624aebf2a41af60c3ec44e27baa80173f2ab4aa91ba66502718c2d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EBS-0001-0000-0000",
+      "width": 768,
+      "height": 346,
+      "aspect_ratio": 2.2197,
+      "sha256": "5b344ebe8bb10e1bfca79be97f50c116462065b1be4ea2caeee41175d258b479",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EBX-0001-0000-0000",
+      "width": 488,
+      "height": 800,
+      "aspect_ratio": 0.61,
+      "sha256": "ed35003e0c2f8b34ab717855867f2d2bd022803e74e8e9bff4592c9d86ba3036",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EC0-0001-0000-0000",
+      "width": 632,
+      "height": 800,
+      "aspect_ratio": 0.79,
+      "sha256": "f264dd5a9eff6534d1f35e68575e3898063c860406497a97f80f519fb5665c03",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ED8-0001-0000-0000",
+      "width": 768,
+      "height": 625,
+      "aspect_ratio": 1.2288,
+      "sha256": "96b515a496f65e726f615eae3cc4f90079b678b3d9ee2e5ef4bf648299138918",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EDB-0001-0000-0000",
+      "width": 493,
+      "height": 800,
+      "aspect_ratio": 0.6162,
+      "sha256": "5d754d2182e2437c31122145a323f96107685ad26483c05b209f4518c49271dc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EDP-0001-0000-0000",
+      "width": 768,
+      "height": 401,
+      "aspect_ratio": 1.9152,
+      "sha256": "82ca453e092d6cfca1214447898855a8947771fa9e1941abfbf9452499003a8e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EE5-0001-0000-0000",
+      "width": 645,
+      "height": 800,
+      "aspect_ratio": 0.8063,
+      "sha256": "d73e288732800f139427a78b3709e10b330842292687e25e098c773ec1f8c428",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EER-0001-0000-0000",
+      "width": 768,
+      "height": 771,
+      "aspect_ratio": 0.9961,
+      "sha256": "7e18d09f1340573053b6a1cd9654204fcf60fa295a11237746310148dffa9c68",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EES-0001-0000-0000",
+      "width": 768,
+      "height": 420,
+      "aspect_ratio": 1.8286,
+      "sha256": "d36a80c023423c707c267f5eba451fffeb6e5dc7e01137bb7070f1fc14c8e61d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EET-0001-0000-0000",
+      "width": 768,
+      "height": 593,
+      "aspect_ratio": 1.2951,
+      "sha256": "3192ec48e74682025ae4400a525279337d8e9355596710e8405acc4d242f3191",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EF8-0001-0000-0000",
+      "width": 768,
+      "height": 595,
+      "aspect_ratio": 1.2908,
+      "sha256": "1f54e88a4aa9792af1ae397bb15a5c61f0d53228b7703764bfeefe3bdca2ca97",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EFA-0001-0000-0000",
+      "width": 676,
+      "height": 800,
+      "aspect_ratio": 0.845,
+      "sha256": "a5daae520b4e51acd2c425d12b1243582f4e3a3a35aa25c83a4afcdc079c50c7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EFC-0001-0000-0000",
+      "width": 768,
+      "height": 539,
+      "aspect_ratio": 1.4249,
+      "sha256": "e788d0bd1820a668802089711b0a06bb76cb277bdc12232599b49ffae9bc3133",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EFN-0001-0000-0000",
+      "width": 768,
+      "height": 569,
+      "aspect_ratio": 1.3497,
+      "sha256": "c3831f37d459a86fe2fd475673309cce048d7788db53450c9ee8ec90b1d67ec2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EFR-0001-0000-0000",
+      "width": 768,
+      "height": 713,
+      "aspect_ratio": 1.0771,
+      "sha256": "1bc6d658fdd88a1fce9eaeb68f76fee2023fd7e3b2ddc55787507d4079cd493a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EFU-0001-0000-0000",
+      "width": 768,
+      "height": 772,
+      "aspect_ratio": 0.9948,
+      "sha256": "e7256f5abd2298adc3ff46c4f4b4debe3d81e762b176842f3ec413f58d95b36b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EFZ-0001-0000-0000",
+      "width": 662,
+      "height": 800,
+      "aspect_ratio": 0.8275,
+      "sha256": "2cb281302bed44f6811ce7d8bb5c97bb3f6ac75442d4b84e996a82bb6580dd61",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EG9-0001-0000-0000",
+      "width": 597,
+      "height": 800,
+      "aspect_ratio": 0.7462,
+      "sha256": "0fc8eb4ed5bc89a9a899164c78015b0456f4e6d0bbb41bd946a93ef33c4e37cb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EGS-0001-0000-0000",
+      "width": 555,
+      "height": 800,
+      "aspect_ratio": 0.6937,
+      "sha256": "b6b7c716986a0007ac96079d3b5a99685bbcab3b3c68464b50cf858246e97e07",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EHI-0001-0000-0000",
+      "width": 656,
+      "height": 800,
+      "aspect_ratio": 0.82,
+      "sha256": "40a7fa43166253dc60209af1546f34339438ecb289a70981e714fc5d7b6547cd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EIM-0001-0000-0000",
+      "width": 768,
+      "height": 604,
+      "aspect_ratio": 1.2715,
+      "sha256": "0741162f029cbfc9b09df4132ceac93614376b196283b8c2d36125e8f8bc601c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EIS-0001-0000-0000",
+      "width": 768,
+      "height": 621,
+      "aspect_ratio": 1.2367,
+      "sha256": "af9f7ed605118ae1314d3e49d83cb2bb01aa2a94287f9a06bd7203b90024f10c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EJ1-0001-0000-0000",
+      "width": 612,
+      "height": 800,
+      "aspect_ratio": 0.765,
+      "sha256": "4b3119a85b03e1cc940132ccaa75a1e21328770ad56e0c28a40d88e0cf5982fa",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EJK-0001-0000-0000",
+      "width": 684,
+      "height": 800,
+      "aspect_ratio": 0.855,
+      "sha256": "cbaf8e41161c47743e9c145b27d5abc9692ca91a34489a863b312f8a5321fc07",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EJN-0001-0000-0000",
+      "width": 421,
+      "height": 800,
+      "aspect_ratio": 0.5262,
+      "sha256": "6a5f8aca63218feb6aa384de38bfb3b79cfa3de8da6a32be0c1fa93f2b022aac",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EJP-0001-0000-0000",
+      "width": 646,
+      "height": 800,
+      "aspect_ratio": 0.8075,
+      "sha256": "bbcc892418f6276d76b8b6d1d768f35747662c0ff0bcdddaf944744a51c7cfd7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EKD-0001-0000-0000",
+      "width": 768,
+      "height": 543,
+      "aspect_ratio": 1.4144,
+      "sha256": "38489c8ba74af8038a71ee17ba059c83dba03050d99d86affe3d9bd0128dfe2f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EKH-0001-0000-0000",
+      "width": 604,
+      "height": 800,
+      "aspect_ratio": 0.755,
+      "sha256": "9bc9e4b9ce7c379a4ff6ad644819a464c48a35629dc28606bd20b471ceafa5ff",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ELB-0001-0000-0000",
+      "width": 553,
+      "height": 800,
+      "aspect_ratio": 0.6913,
+      "sha256": "69f0d4f8283b2686470cffc159a7627b544437a5ccfed0c7fb954a285e357fd7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EMB-0001-0000-0000",
+      "width": 768,
+      "height": 673,
+      "aspect_ratio": 1.1412,
+      "sha256": "240b267802a2e6ccd42c83fb8990613d2947e04a74a544f14c943b378af265be",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EML-0001-0000-0000",
+      "width": 768,
+      "height": 304,
+      "aspect_ratio": 2.5263,
+      "sha256": "ac8937da4331c8059023f7a91b9067f1e07f396c092050f408e7aa96d9fa5291",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EN2-0001-0000-0000",
+      "width": 667,
+      "height": 800,
+      "aspect_ratio": 0.8337,
+      "sha256": "026d3ef20b3c2fea6afe5f42f33aac6ddd274275ac2f18d67055b56d4b6f3b3a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EN8-0001-0000-0000",
+      "width": 540,
+      "height": 800,
+      "aspect_ratio": 0.675,
+      "sha256": "e7832be55fc297d84c375437944bb0fff78d9a1aa092055e8db1cf3835ebf093",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EO1-0001-0000-0000",
+      "width": 768,
+      "height": 365,
+      "aspect_ratio": 2.1041,
+      "sha256": "81cb79bcb939bb1234ecf0fa62863698ffaed32fcb1da792f1234536b3f3884a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EO7-0001-0000-0000",
+      "width": 768,
+      "height": 444,
+      "aspect_ratio": 1.7297,
+      "sha256": "b093fbd984dfaaf5fdeef092001330ac097689f4d01f190b0ace2e54b4576f3b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EOD-0001-0000-0000",
+      "width": 631,
+      "height": 800,
+      "aspect_ratio": 0.7887,
+      "sha256": "801cdc7251e4dcf410778bbf0b66f40ec2f80c56d42c697c880d9b37e5d21dcd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EOU-0001-0000-0000",
+      "width": 648,
+      "height": 800,
+      "aspect_ratio": 0.81,
+      "sha256": "18b77a93bd5c6f2b7ef2be9fa4bdaf7c133d8756e87f31a07e6b2fa71a48d22f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EOW-0001-0000-0000",
+      "width": 477,
+      "height": 800,
+      "aspect_ratio": 0.5962,
+      "sha256": "20dcef46b9477a81b80a899165f908ee286f814b9231429f475554d593bf439d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EP7-0001-0000-0000",
+      "width": 768,
+      "height": 454,
+      "aspect_ratio": 1.6916,
+      "sha256": "1e349360cd6572956e3f561a3dcbca6fabc6f1d0ad95ed9d2c4f70a3e5bcf34b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EPG-0001-0000-0000",
+      "width": 768,
+      "height": 532,
+      "aspect_ratio": 1.4436,
+      "sha256": "8cf2b7eae958197afd3657cfedd250b4b6845ea93de7bdca547bea2701ef66f5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EQA-0001-0000-0000",
+      "width": 490,
+      "height": 800,
+      "aspect_ratio": 0.6125,
+      "sha256": "ca63c456ace5a2f74fdd8a3d4930277155f7e5a93c0213b82ff2a8e2452f400d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EQD-0001-0000-0000",
+      "width": 768,
+      "height": 600,
+      "aspect_ratio": 1.28,
+      "sha256": "80aca1058852475eb14abda659a18e42678354de81f108764ebf4c82422a06ee",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EQE-0001-0000-0000",
+      "width": 578,
+      "height": 800,
+      "aspect_ratio": 0.7225,
+      "sha256": "8c0a4ac4cd996269a856799c5aa103bf45e6b221d53eb5986af5466a30318d81",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EQI-0001-0000-0000",
+      "width": 635,
+      "height": 800,
+      "aspect_ratio": 0.7937,
+      "sha256": "fe54315ed69377eb70aa629c31ec9243fb21dd26aca1eb9e593c6bfe7b4e5e3f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EQK-0001-0000-0000",
+      "width": 768,
+      "height": 618,
+      "aspect_ratio": 1.2427,
+      "sha256": "85144fba8e2e7c1c0facebecbc8c3c25a6f8fc2ce4f9b7018a7d6cf8d274d68c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EQW-0001-0000-0000",
+      "width": 768,
+      "height": 512,
+      "aspect_ratio": 1.5,
+      "sha256": "237fbf84e2deb84a742d058c65ac9f3bf71de9eaff092ae935116b01593dda59",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ER2-0001-0000-0000",
+      "width": 768,
+      "height": 485,
+      "aspect_ratio": 1.5835,
+      "sha256": "1ae740cf72cbb1f618b714a03502be8c383a68b078bee6c505e1ffc21c123f28",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ERL-0001-0000-0000",
+      "width": 768,
+      "height": 438,
+      "aspect_ratio": 1.7534,
+      "sha256": "1f38ada3a9c35db0cd9dec52aa125b1ecff9be60a121843e4a05633b02e5c69c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ERQ-0001-0000-0000",
+      "width": 768,
+      "height": 575,
+      "aspect_ratio": 1.3357,
+      "sha256": "b5fc3f279f9397347c9ce5bd8e717a911cab951abb9179478f9b857f7ad49759",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ESA-0001-0000-0000",
+      "width": 768,
+      "height": 571,
+      "aspect_ratio": 1.345,
+      "sha256": "72e966ae07853be078f2320f4508b4c8b06a659c0906dbe2028bbe9126e743b8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ESK-0001-0000-0000",
+      "width": 768,
+      "height": 530,
+      "aspect_ratio": 1.4491,
+      "sha256": "721f6bd6b1602537370ea853f59a7f4bc9c0a9904654b7bd0c4fa156cf96a0f2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ESM-0001-0000-0000",
+      "width": 728,
+      "height": 800,
+      "aspect_ratio": 0.91,
+      "sha256": "2c3634c61419c1e9ad7737c17581ec0920a996fc746ea4feb06558c381253191",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ET0-0001-0000-0000",
+      "width": 342,
+      "height": 800,
+      "aspect_ratio": 0.4275,
+      "sha256": "3211df78b873692aa6c5a3b28d5f40147db3f9e999dd9d66130eb994f55efa8d",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0ETB-0001-0000-0000",
+      "width": 227,
+      "height": 800,
+      "aspect_ratio": 0.2838,
+      "sha256": "fb28099d3700d2e79b3fdaf27cb95308972f36eb9012a1ebfd1f159e4efb1e05",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0ETJ-0001-0000-0000",
+      "width": 768,
+      "height": 593,
+      "aspect_ratio": 1.2951,
+      "sha256": "54167df51d82b0acca5cd83dfe91decdfd434b56528c3b93894887e84e59df86",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ETL-0001-0000-0000",
+      "width": 768,
+      "height": 601,
+      "aspect_ratio": 1.2779,
+      "sha256": "3287d7c7515b259ebed16a716311038c67d0bbf418ac2f68bd47f03117c163ad",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0ETO-0001-0000-0000",
+      "width": 471,
+      "height": 800,
+      "aspect_ratio": 0.5887,
+      "sha256": "5f3a4ec2af103769e6c5ce90d08fb1b3e756dbf0b02fbc4b28732b5f3fd63a37",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EU0-0001-0000-0000",
+      "width": 677,
+      "height": 800,
+      "aspect_ratio": 0.8462,
+      "sha256": "f15e644dda605639a02d7a6bc2a0d94a921cd77862837b2fa140e325d2c60787",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EU5-0001-0000-0000",
+      "width": 364,
+      "height": 800,
+      "aspect_ratio": 0.455,
+      "sha256": "e7a4e1fdbc1510f2a7c8d878beb29902214d8147690fc7a0f3d36f44dbb127ce",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EUA-0001-0000-0000",
+      "width": 545,
+      "height": 800,
+      "aspect_ratio": 0.6813,
+      "sha256": "990024579bf5f60ca408567777b2c669c2a73b3012222a4c682b55b894256401",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUE-0001-0000-0000",
+      "width": 549,
+      "height": 800,
+      "aspect_ratio": 0.6863,
+      "sha256": "1dcf17fbf0c04dc7418f829a20fe0fd4985fd37b3fe857d1e942dc021c654a25",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUF-0001-0000-0000",
+      "width": 768,
+      "height": 402,
+      "aspect_ratio": 1.9104,
+      "sha256": "21e9274fe5dd6b45a9d1c5fb38562a527f38689101c7bbc9275f8e4c3393e239",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUI-0001-0000-0000",
+      "width": 701,
+      "height": 800,
+      "aspect_ratio": 0.8762,
+      "sha256": "933bee400570ba6020ec6a9d4f8b713108704da42fa91c0e89fa09773c5e6aa7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUM-0001-0000-0000",
+      "width": 604,
+      "height": 800,
+      "aspect_ratio": 0.755,
+      "sha256": "c12c18b91deee85bebe8da40e5fa808d63c0ee4f4458305047040c83c92eb329",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUN-0001-0000-0000",
+      "width": 768,
+      "height": 487,
+      "aspect_ratio": 1.577,
+      "sha256": "e5b3c2b049916b569fa8f0cdf5de91d2ef0603abf4a4860bdac466bb0e6b82c2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUQ-0001-0000-0000",
+      "width": 768,
+      "height": 612,
+      "aspect_ratio": 1.2549,
+      "sha256": "5843ad42137f6f600a66b2e92e508c37715251a4d2697d0b18ff1928fc775dd0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUR-0001-0000-0000",
+      "width": 601,
+      "height": 800,
+      "aspect_ratio": 0.7512,
+      "sha256": "b580e00bae2559597e6f4f10f17b7e5f8b7d5d5cfcec6f70eb67a6e9b79d1a2f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EUZ-0001-0000-0000",
+      "width": 462,
+      "height": 800,
+      "aspect_ratio": 0.5775,
+      "sha256": "193e2be64e7519a9867356945b15870abc75c2db9f693f5d80507e245cfbebb0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EV5-0001-0000-0000",
+      "width": 642,
+      "height": 800,
+      "aspect_ratio": 0.8025,
+      "sha256": "b15edc41e55d2260fd3fd738f3fafe9ce99877ddcb998c25b9c1854466c09bd1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EV8-0001-0000-0000",
+      "width": 768,
+      "height": 611,
+      "aspect_ratio": 1.257,
+      "sha256": "df598617bae0e7f1101248f73f276b4d2c321ca0736822afcea6dce86f4b2ae6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EV9-0001-0000-0000",
+      "width": 768,
+      "height": 506,
+      "aspect_ratio": 1.5178,
+      "sha256": "a232c5ac0ad81917fc5a31b64a32b064325f261be21d3b6f837c097a3a362026",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EVB-0001-0000-0000",
+      "width": 768,
+      "height": 681,
+      "aspect_ratio": 1.1278,
+      "sha256": "1824840f1518dd8f8e9eec46ac75d920ce39aba9e6e4f5387597299f53f74c34",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EVM-0001-0000-0000",
+      "width": 591,
+      "height": 800,
+      "aspect_ratio": 0.7388,
+      "sha256": "781f48196dbe2f1a20ce2e9bc0d87067bfdff7af538bd04650bb21f0a8b0d533",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EVZ-0001-0000-0000",
+      "width": 768,
+      "height": 602,
+      "aspect_ratio": 1.2757,
+      "sha256": "84149064785d5a42f9ef837143aa3f9ed9fac9b2dea8ea8b845db8f625a56fac",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EW1-0001-0000-0000",
+      "width": 768,
+      "height": 573,
+      "aspect_ratio": 1.3403,
+      "sha256": "28ea1e8a029244a9b9c0fe7c927082fe63eba743775998e62fc525f894e253c5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EW5-0001-0000-0000",
+      "width": 768,
+      "height": 550,
+      "aspect_ratio": 1.3964,
+      "sha256": "e7d04c323d3f0fbd62b986cd3e1b4b1afd73521b2e7df753f81f10440dee11c0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EWH-0001-0000-0000",
+      "width": 358,
+      "height": 800,
+      "aspect_ratio": 0.4475,
+      "sha256": "b5fb97505e7a7675a18e3f9b1c9936b8d4b2b9c531651d55888eb4f5dcf65393",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EWJ-0001-0000-0000",
+      "width": 768,
+      "height": 391,
+      "aspect_ratio": 1.9642,
+      "sha256": "3d29bb8e62a7cf822aa14d8aa269d3b3d4982d4f27e2bedb9f1c06b353b044fe",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EWP-0001-0000-0000",
+      "width": 768,
+      "height": 576,
+      "aspect_ratio": 1.3333,
+      "sha256": "99aba53f874c0eff75ab25f76fde96f22e9dbcd1897a7d7a2479c7d62f26e1c3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EWR-0001-0000-0000",
+      "width": 623,
+      "height": 800,
+      "aspect_ratio": 0.7788,
+      "sha256": "14d33c0a5697f5217408938306bbd34ca795cce71bf9505a7a68c95bd5b94758",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EWT-0001-0000-0000",
+      "width": 639,
+      "height": 800,
+      "aspect_ratio": 0.7987,
+      "sha256": "c3b317b035e2218d96f679bb14d0f1051cfb6198839e334f6e0c6943458cf2b8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EWU-0001-0000-0000",
+      "width": 768,
+      "height": 666,
+      "aspect_ratio": 1.1532,
+      "sha256": "f2760dd97b14325ec4cdf09fd3471dc2add275bcbcfdf01a44b594d00f65026e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EWZ-0001-0000-0000",
+      "width": 768,
+      "height": 553,
+      "aspect_ratio": 1.3888,
+      "sha256": "ead4317069e194d937d7fd0f111f982cde8555eabf29323f01e677e50484ffba",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EX0-0001-0000-0000",
+      "width": 222,
+      "height": 800,
+      "aspect_ratio": 0.2775,
+      "sha256": "c0d2e226f7b72cf23f232a62ce829e32019d00f124a442db6319ff9874e3f034",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EX2-0001-0000-0000",
+      "width": 768,
+      "height": 402,
+      "aspect_ratio": 1.9104,
+      "sha256": "2074874fc66174c56988d5576ee388c2ee141e2b49cf60cb7d75b40c1cb7780f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EX6-0001-0000-0000",
+      "width": 617,
+      "height": 800,
+      "aspect_ratio": 0.7712,
+      "sha256": "6a05eee68029e89cc54bbbad5679b2cdf44055495131476799c2171c35ab8504",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EX8-0001-0000-0000",
+      "width": 768,
+      "height": 540,
+      "aspect_ratio": 1.4222,
+      "sha256": "d330b5f17dc0c7e94ced09aefec56262180d5fb900f955045d3e89e8ab40f307",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EXQ-0001-0000-0000",
+      "width": 548,
+      "height": 800,
+      "aspect_ratio": 0.685,
+      "sha256": "0956968866117a24c4a2cc224911c906cb168e6da17e8d623313d1ef18772b5a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EY0-0001-0000-0000",
+      "width": 534,
+      "height": 800,
+      "aspect_ratio": 0.6675,
+      "sha256": "12b3100cf97a1cd38aacbd41336e00f59a35b8fce901412c839386ba01b0475b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EY9-0001-0000-0000",
+      "width": 768,
+      "height": 465,
+      "aspect_ratio": 1.6516,
+      "sha256": "69c0ff1ecdbf5250bafd3140d1e375b1f77497790e68b1fa9e613f8fde9c9221",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EYB-0001-0000-0000",
+      "width": 531,
+      "height": 800,
+      "aspect_ratio": 0.6637,
+      "sha256": "3d10e867519c03d4eeb2f657ad5b61d52804f223d35aa79cc27879250b3c3b33",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EYS-0001-0000-0000",
+      "width": 768,
+      "height": 521,
+      "aspect_ratio": 1.4741,
+      "sha256": "7493e42396349243ed7091ccf7c24ef15639d7e1ff21e6b19209c42c16e25a93",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EYT-0001-0000-0000",
+      "width": 641,
+      "height": 800,
+      "aspect_ratio": 0.8013,
+      "sha256": "e351001eacbb18b2ff7269f87c33ae5c643dc03c670df73f5e17c43f5951458b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EYV-0001-0000-0000",
+      "width": 768,
+      "height": 505,
+      "aspect_ratio": 1.5208,
+      "sha256": "d9a37e22b34b12d7276652c3347f1f43523c7a9db4a4bee1262532c96ef62570",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EYX-0001-0000-0000",
+      "width": 768,
+      "height": 573,
+      "aspect_ratio": 1.3403,
+      "sha256": "aab069f8ca1c458068d4c8e10923bac7d46f53605f345ca501c627f6197d9ec7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZ5-0001-0000-0000",
+      "width": 768,
+      "height": 625,
+      "aspect_ratio": 1.2288,
+      "sha256": "f255f1470eeadf6d4a7e5dc31a5910c92c696fb27f2dc818d634920f8c72e992",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZ6-0001-0000-0000",
+      "width": 676,
+      "height": 800,
+      "aspect_ratio": 0.845,
+      "sha256": "582368e1b65b572627ff5b90b2aab00f030692f1dde96e55b36ecddab18eb790",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZ7-0001-0000-0000",
+      "width": 488,
+      "height": 800,
+      "aspect_ratio": 0.61,
+      "sha256": "e3138d9acc1709ff53b72b49c124664c9500688d048cfbfa3f68c004c207f782",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZB-0001-0000-0000",
+      "width": 768,
+      "height": 291,
+      "aspect_ratio": 2.6392,
+      "sha256": "9fdbe186ccc31cba8f1724292f853ede6ced8709ceb1e397db48183bc3396607",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0EZG-0001-0000-0000",
+      "width": 768,
+      "height": 688,
+      "aspect_ratio": 1.1163,
+      "sha256": "5b6a3436db36c4119776445e9a43701724544c75add550eec79541afd680a81e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZH-0001-0000-0000",
+      "width": 768,
+      "height": 531,
+      "aspect_ratio": 1.4463,
+      "sha256": "ce1a60e63547f84f79b55c6c692831c65bdf73ae6ab34788ee809f22a365f2eb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZU-0001-0000-0000",
+      "width": 604,
+      "height": 800,
+      "aspect_ratio": 0.755,
+      "sha256": "20a7b8b14f763daa07dcc1235b3f71fe743843da3152f599cc3426014d029d3b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZV-0001-0000-0000",
+      "width": 574,
+      "height": 800,
+      "aspect_ratio": 0.7175,
+      "sha256": "cbbefafec6c6e5b5901954ea571170cfd337f81c7bb9f1b7693f6bc79574ca3f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0EZY-0001-0000-0000",
+      "width": 768,
+      "height": 509,
+      "aspect_ratio": 1.5088,
+      "sha256": "7202e841af902f5190500661c60fb962ee8609f19230bcc21ac6f318be737edc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F00-0001-0000-0000",
+      "width": 768,
+      "height": 595,
+      "aspect_ratio": 1.2908,
+      "sha256": "c9b9f6b6437ffbe0ef0dbd12c69279a9deaf213ea7793b14cb0fb683fbfa213c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F07-0001-0000-0000",
+      "width": 355,
+      "height": 800,
+      "aspect_ratio": 0.4437,
+      "sha256": "6f662946286d07bcdcb7345a8748be7900f95112e3952810002da66b83254bce",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F0B-0001-0000-0000",
+      "width": 768,
+      "height": 491,
+      "aspect_ratio": 1.5642,
+      "sha256": "38984c867cef9d685c0325df0b44a08f30c7b97254da062c8c5e2cbea2572d96",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F0C-0001-0000-0000",
+      "width": 768,
+      "height": 559,
+      "aspect_ratio": 1.3739,
+      "sha256": "1464f09be3677c9637339b079a6adfa7095d1f938558e77519129f0eadc5a7fb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F0I-0001-0000-0000",
+      "width": 768,
+      "height": 639,
+      "aspect_ratio": 1.2019,
+      "sha256": "b293b7c3219b277f8a6bd3236998bd15a1f964e80574d04294c37fe36bb5a5bb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F0L-0001-0000-0000",
+      "width": 578,
+      "height": 800,
+      "aspect_ratio": 0.7225,
+      "sha256": "cd9d930c8cb8ac5570dcc8b6efc141fb2d242e3b17867c51b78f386e19dd4eed",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F0S-0001-0000-0000",
+      "width": 768,
+      "height": 566,
+      "aspect_ratio": 1.3569,
+      "sha256": "825957e82b64905151cd18721e527f34e85b61cf7ce9fea58598f076f1d75518",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F0X-0001-0000-0000",
+      "width": 631,
+      "height": 800,
+      "aspect_ratio": 0.7887,
+      "sha256": "dc086e3e857e9645682fd7ff8a841aa67077b929cd6c3e65a3c43220b45b43d0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F17-0001-0000-0000",
+      "width": 768,
+      "height": 606,
+      "aspect_ratio": 1.2673,
+      "sha256": "f71691abc625e446f9bbb78ed57ffcf3320d7e6026fcd8fb931e3d06493b4920",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F1E-0001-0000-0000",
+      "width": 768,
+      "height": 596,
+      "aspect_ratio": 1.2886,
+      "sha256": "e11b92a4a74395d32662b3547e74b422e71205679620dae4241cfcabcaa42d03",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F1I-0001-0000-0000",
+      "width": 768,
+      "height": 547,
+      "aspect_ratio": 1.404,
+      "sha256": "e273385a1d5683e3874d6eb3cde8a764e1ffa22ffeda82fe6b42fcd7886f1c1e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F1K-0001-0000-0000",
+      "width": 768,
+      "height": 475,
+      "aspect_ratio": 1.6168,
+      "sha256": "352fce73514b67bbaad85754a88cd4592030b0bc7d15cc020cac8b549252c4a5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F1N-0001-0000-0000",
+      "width": 768,
+      "height": 507,
+      "aspect_ratio": 1.5148,
+      "sha256": "2d7d0aae20f678b8f6fd3ef318f0e6944caa38ed246b450c70f268a819c017ec",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F1P-0001-0000-0000",
+      "width": 326,
+      "height": 800,
+      "aspect_ratio": 0.4075,
+      "sha256": "b391a38808d1a89ca5ce594df832e88a54ae8ba83b0ca9cefaaf86fbe3fab0bb",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F1V-0001-0000-0000",
+      "width": 598,
+      "height": 800,
+      "aspect_ratio": 0.7475,
+      "sha256": "23ae47cb70552f4228ca7d53db723205e3db3568706d5ace512a56b149f2c70b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F1X-0001-0000-0000",
+      "width": 610,
+      "height": 800,
+      "aspect_ratio": 0.7625,
+      "sha256": "c7e0e71c9742201868646f2b07a7fde67bf8058b0077a38cd24b615581519ba4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F22-0001-0000-0000",
+      "width": 768,
+      "height": 606,
+      "aspect_ratio": 1.2673,
+      "sha256": "41b59f676a40fcb8cce2b638fbf9875642d841a0c509229d8ebd57875d5ba017",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F24-0001-0000-0000",
+      "width": 542,
+      "height": 800,
+      "aspect_ratio": 0.6775,
+      "sha256": "bdee9cee2218a9d0e7d85a732a628cb9d166eb18c6fdef88910ed864acfc955f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F2C-0001-0000-0000",
+      "width": 768,
+      "height": 384,
+      "aspect_ratio": 2.0,
+      "sha256": "5a6161650b50c36d85b05e139684b5564fd7d26f687b0bc9cbdaa40ef4a748a3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F2D-0001-0000-0000",
+      "width": 584,
+      "height": 800,
+      "aspect_ratio": 0.73,
+      "sha256": "9037db548ba46043897e198f9b228c818d71d301b03d9a70b31c0f8e3b7ef325",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F2E-0001-0000-0000",
+      "width": 768,
+      "height": 569,
+      "aspect_ratio": 1.3497,
+      "sha256": "76b9a62a831b46b3463d964746797553354bb870e99b6d98c469fbeefb4ec911",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F2L-0001-0000-0000",
+      "width": 226,
+      "height": 800,
+      "aspect_ratio": 0.2825,
+      "sha256": "a0f53d1e656728ed12866c6596ff348361d3780d6de2d1e74485efde79c6e58e",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F2Z-0001-0000-0000",
+      "width": 523,
+      "height": 800,
+      "aspect_ratio": 0.6538,
+      "sha256": "2a6f920d0d78d219429348996c372c67247a6141cff0d7a8905461a29813f6fd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F34-0001-0000-0000",
+      "width": 655,
+      "height": 800,
+      "aspect_ratio": 0.8187,
+      "sha256": "30affb8db11bd50d6939360f4b5803df831e1a89e379a60f5b23ef75ff9ec030",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F35-0001-0000-0000",
+      "width": 601,
+      "height": 800,
+      "aspect_ratio": 0.7512,
+      "sha256": "d83a37fc6b06c59b6ce03608836fbc70d2ef2e4bef7c8dc2157bc02f6ecffcd8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F3I-0001-0000-0000",
+      "width": 768,
+      "height": 511,
+      "aspect_ratio": 1.5029,
+      "sha256": "01787327bb30e84f310191775dd063a32ae60cc2293f36c68ede740ccc4fa767",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F3O-0001-0000-0000",
+      "width": 768,
+      "height": 527,
+      "aspect_ratio": 1.4573,
+      "sha256": "73fca3d03ff61c7d49f049e0e7eb9196b3522b92799056a3769971440dcef6f4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F3S-0001-0000-0000",
+      "width": 768,
+      "height": 579,
+      "aspect_ratio": 1.3264,
+      "sha256": "01172329706f21c9e67e45f995ab2ba67c1015b62670a3329a2723c2bc42ea88",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F3T-0001-0000-0000",
+      "width": 768,
+      "height": 596,
+      "aspect_ratio": 1.2886,
+      "sha256": "53a89fffc519608121c4894c26febc74b08d61be8636e29443169444d8b67e5e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F3V-0001-0000-0000",
+      "width": 380,
+      "height": 800,
+      "aspect_ratio": 0.475,
+      "sha256": "d571ded95edaf8c06c12bd25f52d30a046b7651353d281f5aa8ef449de841a3e",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F40-0001-0000-0000",
+      "width": 607,
+      "height": 800,
+      "aspect_ratio": 0.7588,
+      "sha256": "b4efff7d256fd39c43dcbde8760a801f20b7aad4f09bfc8fcbcf361997c8ba61",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F42-0001-0000-0000",
+      "width": 768,
+      "height": 304,
+      "aspect_ratio": 2.5263,
+      "sha256": "545f90a89ecf824dd5f5993e0f4deb0a13c7fb392f284c1f8387fb1e53639958",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F48-0001-0000-0000",
+      "width": 768,
+      "height": 631,
+      "aspect_ratio": 1.2171,
+      "sha256": "142168d3cf00b7f12fb2dbb37290129605582cb7018ce69f6d0db61e748177fb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F49-0001-0000-0000",
+      "width": 647,
+      "height": 800,
+      "aspect_ratio": 0.8087,
+      "sha256": "55fe64838b84c98c29509bc8e39354004fb9bacc53c3b2db90fdff4ee76443f9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F4E-0001-0000-0000",
+      "width": 768,
+      "height": 568,
+      "aspect_ratio": 1.3521,
+      "sha256": "88c6d3bc6915695feb920e4e15096418e7a0beb435a6b381fca039bda941c5db",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F4F-0001-0000-0000",
+      "width": 768,
+      "height": 541,
+      "aspect_ratio": 1.4196,
+      "sha256": "f254e181afe508a5de934ee7e6d56035cddc3900eff32b0bdb0284874eff1d79",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F4H-0001-0000-0000",
+      "width": 683,
+      "height": 800,
+      "aspect_ratio": 0.8538,
+      "sha256": "29bd76d622ed1888ae883de74066ea6c6bddd60c693936f828272f49152fd82a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F4P-0001-0000-0000",
+      "width": 768,
+      "height": 510,
+      "aspect_ratio": 1.5059,
+      "sha256": "fb4c7ea3f89762838a0b7fc75114778b0b39d843b08a2e01f5abff7f80b4b71b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F4Q-0001-0000-0000",
+      "width": 351,
+      "height": 800,
+      "aspect_ratio": 0.4387,
+      "sha256": "bf109ee4a3ce858435405d4084ac3608a69c92d9793d3416c659a346f3ab3c7f",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F50-0001-0000-0000",
+      "width": 768,
+      "height": 704,
+      "aspect_ratio": 1.0909,
+      "sha256": "91fb5e22d4714d42b07ce0b8bbfc6335af8a97c2d4263c6a3a078a6c99073d6b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F53-0001-0000-0000",
+      "width": 768,
+      "height": 630,
+      "aspect_ratio": 1.219,
+      "sha256": "cc3967aba862376092b492539d71aeea12a51b1d22dc89e9c752f8ebb7c79310",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F54-0001-0000-0000",
+      "width": 768,
+      "height": 633,
+      "aspect_ratio": 1.2133,
+      "sha256": "bf2e8d682d9b17647f015755080d2249305ad05679e29b3c5b8798d51d8ba07b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F58-0001-0000-0000",
+      "width": 647,
+      "height": 800,
+      "aspect_ratio": 0.8087,
+      "sha256": "6ba7d3f2dea04338b15386817d9b55e249648279cad0959d7f401502c5b38fbb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5B-0001-0000-0000",
+      "width": 768,
+      "height": 549,
+      "aspect_ratio": 1.3989,
+      "sha256": "0ab9826d5d289ccc0aa8d2fce5baee5febdbf2f81dfd299be47968f341bcd913",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5C-0001-0000-0000",
+      "width": 768,
+      "height": 492,
+      "aspect_ratio": 1.561,
+      "sha256": "08dc7b45159aa5a90451531ca2726db57fe39273da3e99d4404d9574adfcf694",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5D-0001-0000-0000",
+      "width": 768,
+      "height": 588,
+      "aspect_ratio": 1.3061,
+      "sha256": "77807f7b9c848ca1277ac7937366ee021f4329e01c2d5341cf8f35d2e67de7b4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5F-0001-0000-0000",
+      "width": 396,
+      "height": 800,
+      "aspect_ratio": 0.495,
+      "sha256": "4a907b69a86c82d1c77fa0447d7d9f5d4f14281378ca33a2a09585c51eca60cb",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F5P-0001-0000-0000",
+      "width": 768,
+      "height": 628,
+      "aspect_ratio": 1.2229,
+      "sha256": "dbee09d9e59052424b5501c3d978c4dd48d2cd58155325f9cf2ea7c7b3f3adc1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5Q-0001-0000-0000",
+      "width": 768,
+      "height": 535,
+      "aspect_ratio": 1.4355,
+      "sha256": "425f35bdfaf25e328f21cfbfd84fe592a9e840bb391b4b2bf0641d664d8f06e8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5R-0001-0000-0000",
+      "width": 633,
+      "height": 800,
+      "aspect_ratio": 0.7913,
+      "sha256": "6be1440a20487933d29686e146d51ad4a353af86d5306a5719025d3bebe5a720",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5S-0001-0000-0000",
+      "width": 768,
+      "height": 413,
+      "aspect_ratio": 1.8596,
+      "sha256": "b4e67e73b01feaccee8ffa3274f08e17a3f5d16b8c8b778e71d05f0e217ecc53",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F5Y-0001-0000-0000",
+      "width": 393,
+      "height": 800,
+      "aspect_ratio": 0.4913,
+      "sha256": "616814a50827a377b2035b5f670755af7cce20a4ee57cf5d215fee0cfbc258fd",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F63-0001-0000-0000",
+      "width": 355,
+      "height": 800,
+      "aspect_ratio": 0.4437,
+      "sha256": "ffdd405e02f8cf7bb69c4632241839b471cec7998c9e401f01dd1c4dbc2380ba",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F65-0001-0000-0000",
+      "width": 768,
+      "height": 654,
+      "aspect_ratio": 1.1743,
+      "sha256": "e8a6ad607128af0fbba188211867c19c9203e305d3df48dfcc3c2aa99b387bbb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F67-0001-0000-0000",
+      "width": 627,
+      "height": 800,
+      "aspect_ratio": 0.7837,
+      "sha256": "d6fd67d3ab18aa71d506f5654fa12a12d35e792d1741c51ae678fb0bff7f5f68",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F6B-0001-0000-0000",
+      "width": 563,
+      "height": 800,
+      "aspect_ratio": 0.7037,
+      "sha256": "cf9bec86a09ec5ba19790bf56c550475226a1220eae21b48ab000458ea709225",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F6H-0001-0000-0000",
+      "width": 768,
+      "height": 571,
+      "aspect_ratio": 1.345,
+      "sha256": "db6c8f342d705717fb93b0b383696ce96a21770522005a93149b2d9156b1d134",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F6L-0001-0000-0000",
+      "width": 649,
+      "height": 800,
+      "aspect_ratio": 0.8113,
+      "sha256": "b8d44d7d9be130afc646c771584563efff94769802166f3b52715b9861b17783",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F6S-0001-0000-0000",
+      "width": 768,
+      "height": 553,
+      "aspect_ratio": 1.3888,
+      "sha256": "08d4cb9aa7ae51e77408e35e2889ae21076880cb51be42523351f8e2826030cd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F6X-0001-0000-0000",
+      "width": 768,
+      "height": 508,
+      "aspect_ratio": 1.5118,
+      "sha256": "a2c746eaac1ec50543b7d9a4d8256f2c601cf28eeed057177ce3ec83b2a73e0b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F72-0001-0000-0000",
+      "width": 768,
+      "height": 453,
+      "aspect_ratio": 1.6954,
+      "sha256": "1d20b4a5d98653dc8afc09749d94be0470dba767e505c8dded5877d8e7707a04",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F73-0001-0000-0000",
+      "width": 768,
+      "height": 542,
+      "aspect_ratio": 1.417,
+      "sha256": "bb0c86082911e9a66b244475b1024e08182a0728396b68176503be1b1bfa2c0f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F7D-0001-0000-0000",
+      "width": 559,
+      "height": 800,
+      "aspect_ratio": 0.6987,
+      "sha256": "c620e88696e520c17a814b13eac83eb5e1b4ad6d0a817c2ed944536eb5dd6c74",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F7M-0001-0000-0000",
+      "width": 388,
+      "height": 800,
+      "aspect_ratio": 0.485,
+      "sha256": "7b0cc4170bb7bd3bc6c92984669361dbc0b273d0bdb7507dd310079f63bf9371",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F7P-0001-0000-0000",
+      "width": 768,
+      "height": 605,
+      "aspect_ratio": 1.2694,
+      "sha256": "6fa7f56a8a0d504a7d20549f649fae972b65a2fb1f34c6e6b7c3939f19e89dee",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F7Q-0001-0000-0000",
+      "width": 393,
+      "height": 800,
+      "aspect_ratio": 0.4913,
+      "sha256": "91ad5d434953b04a27f2e38f7e0dec25f995a55f4a82ba6a0516cb02d2f3356e",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F7S-0001-0000-0000",
+      "width": 768,
+      "height": 648,
+      "aspect_ratio": 1.1852,
+      "sha256": "39af5264cee633b4a6d085010d1b6753163f0274897411885f74cbba20588059",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F7V-0001-0000-0000",
+      "width": 768,
+      "height": 651,
+      "aspect_ratio": 1.1797,
+      "sha256": "e83c0b6627a32dc1b0b90546eced1cd5bf4e87d63b5081d7621f6fd8154f6b28",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F7X-0001-0000-0000",
+      "width": 620,
+      "height": 800,
+      "aspect_ratio": 0.775,
+      "sha256": "02d42833fd256072fd816c4545b313e401b00ffa74e27944c2d1bc7c58db092a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F80-0001-0000-0000",
+      "width": 611,
+      "height": 800,
+      "aspect_ratio": 0.7638,
+      "sha256": "7b15612053a8d6a8cb68959aae51e8aa278fae95dfc984dcae9e1fb61636dffd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F88-0001-0000-0000",
+      "width": 680,
+      "height": 800,
+      "aspect_ratio": 0.85,
+      "sha256": "9db167b11b7bd69dd83c41dd969047c0d37bb68008d5851d08066963d76fd7ad",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F89-0001-0000-0000",
+      "width": 388,
+      "height": 800,
+      "aspect_ratio": 0.485,
+      "sha256": "e7579404fc0e199254abcb99052c8651286efe368b31828b3c4143345f87f2f3",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F8D-0001-0000-0000",
+      "width": 336,
+      "height": 800,
+      "aspect_ratio": 0.42,
+      "sha256": "5b5cf56fb7b533a34d884705ccb4889455e79f91d066a3e60304fa36011c2d3c",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F8K-0001-0000-0000",
+      "width": 768,
+      "height": 749,
+      "aspect_ratio": 1.0254,
+      "sha256": "c6ec6c3c69835e734f6038e34b6c9b7d6019abee60270e5edd3ed0037c71d95c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F8O-0001-0000-0000",
+      "width": 584,
+      "height": 800,
+      "aspect_ratio": 0.73,
+      "sha256": "204b45336f87b30a93beb98684db45570d9204fc5721a695c6aff92e51404225",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F8P-0001-0000-0000",
+      "width": 386,
+      "height": 800,
+      "aspect_ratio": 0.4825,
+      "sha256": "2c75af11bedf38911c806179264886a71447e6835d7e6f3f84ccd83608d94668",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0F8S-0001-0000-0000",
+      "width": 768,
+      "height": 577,
+      "aspect_ratio": 1.331,
+      "sha256": "4b416244ff082bb576d89c9269f4af127aeddceab3bcfad7cfbcf758f7fac522",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F8V-0001-0000-0000",
+      "width": 768,
+      "height": 733,
+      "aspect_ratio": 1.0477,
+      "sha256": "c17d62d1b1e12f27a708664b3659e8c9c5861ad8ceaff7084937e772a3a4d2a4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F8Z-0001-0000-0000",
+      "width": 657,
+      "height": 800,
+      "aspect_ratio": 0.8213,
+      "sha256": "aefd12af4441f274b55ff91a13bcce7b19220f20bddc10b39e4914b985fba57a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F90-0001-0000-0000",
+      "width": 768,
+      "height": 533,
+      "aspect_ratio": 1.4409,
+      "sha256": "84d31cc744c3dddd076a9ab08a0cefc769709461d2625e4cfafb158f0a206da0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F98-0001-0000-0000",
+      "width": 768,
+      "height": 759,
+      "aspect_ratio": 1.0119,
+      "sha256": "b87bb85d8a9a57c8d6448b371578c8401563072a153c89ec5d693c9005804902",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F9G-0001-0000-0000",
+      "width": 768,
+      "height": 666,
+      "aspect_ratio": 1.1532,
+      "sha256": "768b7a2e09368f12cea598241e96972c742e966fe84f5e5c9acc4998e4e25d07",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F9I-0001-0000-0000",
+      "width": 768,
+      "height": 552,
+      "aspect_ratio": 1.3913,
+      "sha256": "c524f66d2046341e2a286d592d32c9f3c43d08677933c1cdd09a3063405c8789",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F9J-0001-0000-0000",
+      "width": 694,
+      "height": 800,
+      "aspect_ratio": 0.8675,
+      "sha256": "b6fb0751ef6bc29a1a74b5cbfc403ff8255973fb5412662782a397ee1b09f6c6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F9M-0001-0000-0000",
+      "width": 444,
+      "height": 800,
+      "aspect_ratio": 0.555,
+      "sha256": "9f6a89a100324f60b14b5f53860c73cfc18ff5a29a86bf94b2cbc5af15d0122b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F9R-0001-0000-0000",
+      "width": 583,
+      "height": 800,
+      "aspect_ratio": 0.7288,
+      "sha256": "98aecde96b7911796761b8dd98ac3b4bef714a70abb0a0064ca1256388a6e698",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0F9S-0001-0000-0000",
+      "width": 602,
+      "height": 800,
+      "aspect_ratio": 0.7525,
+      "sha256": "a665a5bbb20eddb522510044de97749dd1c96f4eb95d5d72592d28d74874e586",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FA9-0001-0000-0000",
+      "width": 349,
+      "height": 800,
+      "aspect_ratio": 0.4363,
+      "sha256": "8b9c6e68f9e75dc6a337e8bf52f0dfaf26aeee090a384582a82f00363da724ea",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FAA-0001-0000-0000",
+      "width": 768,
+      "height": 593,
+      "aspect_ratio": 1.2951,
+      "sha256": "f7d2038013592e212901762986305b934c6b1debe87b60eb1f79c3a5f93d5eb1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FAG-0001-0000-0000",
+      "width": 574,
+      "height": 800,
+      "aspect_ratio": 0.7175,
+      "sha256": "01467b8e041c7fd3b290a18b2bd02ef3ba575ce2ab49669f1940feec354b8669",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FAJ-0001-0000-0000",
+      "width": 768,
+      "height": 482,
+      "aspect_ratio": 1.5934,
+      "sha256": "37de084e18aed220ccd16af344c23837568ddcd016cdeb6276289df8e1cdc15c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FAM-0001-0000-0000",
+      "width": 595,
+      "height": 800,
+      "aspect_ratio": 0.7438,
+      "sha256": "661589e734814fed6d7cb653e86b4b86241ec2a281c92cf3dcd96b43bd66ce60",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FAS-0001-0000-0000",
+      "width": 768,
+      "height": 543,
+      "aspect_ratio": 1.4144,
+      "sha256": "de1d43a8957f4d635eaceb405812b0dd33b3fc669a0a94b9bda654db7f43ba07",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FAU-0001-0000-0000",
+      "width": 768,
+      "height": 643,
+      "aspect_ratio": 1.1944,
+      "sha256": "4f92faef46188ccf73fd6a56b7228fc17369a2dbec5e3e4bc8cbc8aecc672434",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FAY-0001-0000-0000",
+      "width": 578,
+      "height": 800,
+      "aspect_ratio": 0.7225,
+      "sha256": "bd5c1ea89c43032c2fa7c500aee08e4262c2176b069422d7013c6ae8a008bf01",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FB0-0001-0000-0000",
+      "width": 768,
+      "height": 483,
+      "aspect_ratio": 1.5901,
+      "sha256": "263ae9f598ecbade478000a1309990319f7d6d031da1f8be8d1a1641c930fde9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FB4-0001-0000-0000",
+      "width": 652,
+      "height": 800,
+      "aspect_ratio": 0.815,
+      "sha256": "de881cddf2e142a083f848b67176ab82557f314317819de721185c0759289776",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FBD-0001-0000-0000",
+      "width": 768,
+      "height": 572,
+      "aspect_ratio": 1.3427,
+      "sha256": "637193fd5c302dd6be48fd842493f284ecff1664ca0b93225fac879172dc3f68",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FBN-0001-0000-0000",
+      "width": 768,
+      "height": 393,
+      "aspect_ratio": 1.9542,
+      "sha256": "a0bbfe04f5c860696eaecb35fafe3fdc87dc6bbc1df4b3091a58967a5a1d0ce2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FBU-0001-0000-0000",
+      "width": 583,
+      "height": 800,
+      "aspect_ratio": 0.7288,
+      "sha256": "d6bff6c0895f568768aefe2af6c3b0ad6923d2e9f22b1b9212f8e4300150d5c7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FBW-0001-0000-0000",
+      "width": 768,
+      "height": 484,
+      "aspect_ratio": 1.5868,
+      "sha256": "2bf5a78f019562baa59068832c718f561ef27bb1511a7f1c8724b23010cfd7e0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FCF-0001-0000-0000",
+      "width": 768,
+      "height": 587,
+      "aspect_ratio": 1.3083,
+      "sha256": "1608b3856f7b4868bc9867c95707aa5981030e803b69ae1924f75d3cd2a9002f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FCG-0001-0000-0000",
+      "width": 225,
+      "height": 800,
+      "aspect_ratio": 0.2812,
+      "sha256": "915275e3d1e1a2edb755543ceea4e69377b849ac2394701ba79aa20af6e604ce",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FCJ-0001-0000-0000",
+      "width": 768,
+      "height": 598,
+      "aspect_ratio": 1.2843,
+      "sha256": "52f060ca2a13c0231bddba9314c3496599bb33e803ad7f64875d19e0073a5478",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FCL-0001-0000-0000",
+      "width": 768,
+      "height": 619,
+      "aspect_ratio": 1.2407,
+      "sha256": "e093900cea7073b28642d7854270018b70234ebb879697325df72c5d9d5c722b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FCN-0001-0000-0000",
+      "width": 768,
+      "height": 541,
+      "aspect_ratio": 1.4196,
+      "sha256": "9c9bfca626375a49d3df1363a74b3d4db9be5075acd479fa46cf419a84e51d3e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FCY-0001-0000-0000",
+      "width": 609,
+      "height": 800,
+      "aspect_ratio": 0.7612,
+      "sha256": "456c5d1468d0d748636e8b8b422d27da39630acb034be674b0e912b2689fa492",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FCZ-0001-0000-0000",
+      "width": 655,
+      "height": 800,
+      "aspect_ratio": 0.8187,
+      "sha256": "fd607be4a9297d81b1fd9afe9f0f93a8b4be2e85700d5f01f0cd7112811a7403",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FD0-0001-0000-0000",
+      "width": 683,
+      "height": 800,
+      "aspect_ratio": 0.8538,
+      "sha256": "564307404c18e284e1cc3cfa32f9e810d1b3b864934e045648ca15cd16da695b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FD3-0001-0000-0000",
+      "width": 768,
+      "height": 643,
+      "aspect_ratio": 1.1944,
+      "sha256": "088b09a2c24456d68aa3dcfaf4653abbaee831df2b11f7a2dcb370f482799e8f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FD4-0001-0000-0000",
+      "width": 768,
+      "height": 571,
+      "aspect_ratio": 1.345,
+      "sha256": "864262fc29c3757ea070b539073120124567946c693d8a7b1b0367429446ceec",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FDM-0001-0000-0000",
+      "width": 768,
+      "height": 675,
+      "aspect_ratio": 1.1378,
+      "sha256": "d9b068166eedbe4fb38835e60a2b33d15e13e95cd2d6d36658aad355300efdd6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FDQ-0001-0000-0000",
+      "width": 768,
+      "height": 577,
+      "aspect_ratio": 1.331,
+      "sha256": "337f58da3844526ad9e5f706df555a1fdb390e15efff75f58fdea45ef89fb8a4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FE0-0001-0000-0000",
+      "width": 768,
+      "height": 560,
+      "aspect_ratio": 1.3714,
+      "sha256": "b816651dea858d84a48487b39f1cd9935e9021d012a273822466ee46ce6a3f52",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FE1-0001-0000-0000",
+      "width": 768,
+      "height": 586,
+      "aspect_ratio": 1.3106,
+      "sha256": "fa45082a4ef2c75d3cd03a4b71632fd2cec72f6451f3d47d7c1e42a6cdc5a78b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FE4-0001-0000-0000",
+      "width": 582,
+      "height": 800,
+      "aspect_ratio": 0.7275,
+      "sha256": "e2f1a355064dc7ac3b23d971ff9f3b2a44a097ecc2bc04cc472fd2f271031950",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FE6-0001-0000-0000",
+      "width": 768,
+      "height": 626,
+      "aspect_ratio": 1.2268,
+      "sha256": "ab994fe6ffeba75b6a92d669c9268d01d74da8c1940e47a0cc13258188af2351",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FE9-0001-0000-0000",
+      "width": 768,
+      "height": 586,
+      "aspect_ratio": 1.3106,
+      "sha256": "36d465464fc686f771cbb6b6010fa7bbf17253a030e61260f027132d8dab59de",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FEE-0001-0000-0000",
+      "width": 768,
+      "height": 548,
+      "aspect_ratio": 1.4015,
+      "sha256": "81ae72c19584bbea7011b4752cc3bb0f70c5582a6ef6aae3c7bb5d3854c8af0d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FEF-0001-0000-0000",
+      "width": 768,
+      "height": 595,
+      "aspect_ratio": 1.2908,
+      "sha256": "36b27307355d1995c3f6dbe622527f4340da8225ea4252aa29343f543768554d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FEG-0001-0000-0000",
+      "width": 768,
+      "height": 468,
+      "aspect_ratio": 1.641,
+      "sha256": "9af160e8569c7bc4f108b68fe0be59148013efd1b1d3dae3b6d12f156417073c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FEL-0001-0000-0000",
+      "width": 768,
+      "height": 545,
+      "aspect_ratio": 1.4092,
+      "sha256": "f7ab35262613c807dd0e4dfbf149853ecd0ca9944457c95261f2ba9b19075193",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FES-0001-0000-0000",
+      "width": 548,
+      "height": 800,
+      "aspect_ratio": 0.685,
+      "sha256": "b2e90b0766f85a7b6a9e4768790824c0b19bf5061d2185b653401f6d42485ff0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FET-0001-0000-0000",
+      "width": 768,
+      "height": 622,
+      "aspect_ratio": 1.2347,
+      "sha256": "c4d2b094c26a637fd3f805403f0df3303b17a1787920b27ce5a7a9e75233cd13",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FF9-0001-0000-0000",
+      "width": 622,
+      "height": 800,
+      "aspect_ratio": 0.7775,
+      "sha256": "7fa7c0ee5b4545c1b209a75fe9a29bf7534951697aa74ee3dd2141c0a042f964",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FFC-0001-0000-0000",
+      "width": 640,
+      "height": 800,
+      "aspect_ratio": 0.8,
+      "sha256": "0ec5e83ee75cb1c00e2fffae23b532fe13ce0b946bfaa94d3688eae0b4767fe5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FFE-0001-0000-0000",
+      "width": 768,
+      "height": 546,
+      "aspect_ratio": 1.4066,
+      "sha256": "3d01bd02b02cc09a11471b1efe92864ef0368719c740d3fa2b074bceeb977384",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FFG-0001-0000-0000",
+      "width": 579,
+      "height": 800,
+      "aspect_ratio": 0.7238,
+      "sha256": "e8a2a3bcf81c7cc2adfe983e61be2a4853817d3e56aca74a7a7c134c2595f00b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FFI-0001-0000-0000",
+      "width": 768,
+      "height": 568,
+      "aspect_ratio": 1.3521,
+      "sha256": "4f891458e5311a00007a6662313eb9a22c1bd050d6c33c92a611e10a59660ad3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FFS-0001-0000-0000",
+      "width": 616,
+      "height": 800,
+      "aspect_ratio": 0.77,
+      "sha256": "5b04195b387034bb1e6db6e81d96b6082a0a99f81ba49c573fcbf06c98260404",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FFT-0001-0000-0000",
+      "width": 768,
+      "height": 685,
+      "aspect_ratio": 1.1212,
+      "sha256": "5cf342fd57536ba97c4e87fcf1d4debee853e15826bc0389f75db4658fbeac5f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FG2-0001-0000-0000",
+      "width": 587,
+      "height": 800,
+      "aspect_ratio": 0.7338,
+      "sha256": "517bf5009f3c765489d39e1d99e2b6bcbb71b015a168d8bcae9b5a7889c540b1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FGL-0001-0000-0000",
+      "width": 768,
+      "height": 589,
+      "aspect_ratio": 1.3039,
+      "sha256": "1f9956d89583a9e4111750a93e3019d4dc4dedf41e60a0d314185cc45a6a9acf",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FGQ-0001-0000-0000",
+      "width": 768,
+      "height": 566,
+      "aspect_ratio": 1.3569,
+      "sha256": "8733833aa746a3bc2742df0a39daffd3d2632e44c78e312dcb664039531e35b4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FGR-0001-0000-0000",
+      "width": 768,
+      "height": 597,
+      "aspect_ratio": 1.2864,
+      "sha256": "45932b1fba01be02817df8df7034df099ef554efcdacde43f58295e56beed73d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FGU-0001-0000-0000",
+      "width": 768,
+      "height": 515,
+      "aspect_ratio": 1.4913,
+      "sha256": "bf99eb377704c19c9e146348b188ac6343bf17515d0e3688d40c1cad129da3a1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FGV-0001-0000-0000",
+      "width": 576,
+      "height": 800,
+      "aspect_ratio": 0.72,
+      "sha256": "f5ad7a729b4d1c24c7c046b419a362253354b15b131c16e8e2d3bfc3f4fa1215",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FGY-0001-0000-0000",
+      "width": 496,
+      "height": 800,
+      "aspect_ratio": 0.62,
+      "sha256": "eae6c240de7d30d234011443890316cec7c66d101d5c14969b743126360779f9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FH3-0001-0000-0000",
+      "width": 557,
+      "height": 800,
+      "aspect_ratio": 0.6963,
+      "sha256": "4934a253fb3794d9606e6437c639288d0d1fcd5fe52e915e66974ab5b003dfe4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHA-0001-0000-0000",
+      "width": 595,
+      "height": 800,
+      "aspect_ratio": 0.7438,
+      "sha256": "f823beed9e2dacf5e10531f103a2e88d51af27da5696362ad9b3058d3b1c3d6b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHB-0001-0000-0000",
+      "width": 768,
+      "height": 678,
+      "aspect_ratio": 1.1327,
+      "sha256": "2756b2cd15a1a05977b30328879d12600217ef5aa4189d486e78f837927cc37e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHG-0001-0000-0000",
+      "width": 768,
+      "height": 593,
+      "aspect_ratio": 1.2951,
+      "sha256": "674407dba1255df7c7a70c605922ea7c5204c083385d2cc205d165f49205d70d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHL-0001-0000-0000",
+      "width": 768,
+      "height": 468,
+      "aspect_ratio": 1.641,
+      "sha256": "8d12a0cf069e464082cd46d8f0b6e2761e8fb2b66906c05b431e9a39fc93e60b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHR-0001-0000-0000",
+      "width": 644,
+      "height": 800,
+      "aspect_ratio": 0.805,
+      "sha256": "68fdf9886f1406d7b06d83a67ef35d12008e45ccbcc0461536eeb609af996231",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHS-0001-0000-0000",
+      "width": 573,
+      "height": 800,
+      "aspect_ratio": 0.7163,
+      "sha256": "8bf0297c8500fe47c20e17cb29e0139b2f3b2f988dd6ddd008cf0301e9c1b755",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FHT-0001-0000-0000",
+      "width": 768,
+      "height": 440,
+      "aspect_ratio": 1.7455,
+      "sha256": "90f0a1ae7da30d17b74a75bef407b50c1b088cf182ba0fb333e4e4620c763085",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FI1-0001-0000-0000",
+      "width": 626,
+      "height": 800,
+      "aspect_ratio": 0.7825,
+      "sha256": "52e4c037fda4e9894cc54166f6461d2fde70e0657555df9d2599a3b10fcc6308",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FI3-0001-0000-0000",
+      "width": 768,
+      "height": 503,
+      "aspect_ratio": 1.5268,
+      "sha256": "e9afeaac71316b85d7f5af4accc6945c4e85fff388af618947117addc1cf293b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FIV-0001-0000-0000",
+      "width": 265,
+      "height": 800,
+      "aspect_ratio": 0.3312,
+      "sha256": "34a9d1b18716fe8bde167e46f2ed4f7dbfdc316b446739111a2156af3a1cc138",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FJ1-0001-0000-0000",
+      "width": 377,
+      "height": 800,
+      "aspect_ratio": 0.4713,
+      "sha256": "cfb32fce5909cca09f1318b6e126588eea1ab9459414ff3334a0a83165b03ff9",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FJ4-0001-0000-0000",
+      "width": 768,
+      "height": 629,
+      "aspect_ratio": 1.221,
+      "sha256": "dbf8887d3d804a33aee424ce2eb9bef1f15016272d0fcef3b1e7157da0625495",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FJB-0001-0000-0000",
+      "width": 453,
+      "height": 800,
+      "aspect_ratio": 0.5663,
+      "sha256": "df8004724c6e5cf6e98d44f51ed1e33db2a80299bca907b12904529ebf571a76",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FJD-0001-0000-0000",
+      "width": 576,
+      "height": 800,
+      "aspect_ratio": 0.72,
+      "sha256": "e0b57064ecdf6ee0e3e140bca3c340b636678a74399ded7e78d8ee2712860e75",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FJH-0001-0000-0000",
+      "width": 768,
+      "height": 570,
+      "aspect_ratio": 1.3474,
+      "sha256": "4b3140baf35da9428c64d96f8f22a00cae857a6ff8f0880c79783d45cf70ec06",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FJN-0001-0000-0000",
+      "width": 768,
+      "height": 788,
+      "aspect_ratio": 0.9746,
+      "sha256": "d26245b958509e75ad80d359f1863c8c64898c0ac25025a3ae4749e061d91963",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FJO-0001-0000-0000",
+      "width": 687,
+      "height": 800,
+      "aspect_ratio": 0.8588,
+      "sha256": "90ea828aa1ad2e5c596e74e174e33d239081c86e18cf8674edb7643ff2e2bd8c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FJT-0001-0000-0000",
+      "width": 768,
+      "height": 597,
+      "aspect_ratio": 1.2864,
+      "sha256": "f864e49676caacc193774fd3993bab7b7ed31af46e3c6879f030534f273de966",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FK1-0001-0000-0000",
+      "width": 523,
+      "height": 800,
+      "aspect_ratio": 0.6538,
+      "sha256": "aa6e20bf8019ba8990b26388233638b545abc703113f84521717cb95381ec1fd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FK5-0001-0000-0000",
+      "width": 278,
+      "height": 800,
+      "aspect_ratio": 0.3475,
+      "sha256": "70e74bfc91115b6bc7d266efd904169645fbd4509d7c16a1ed0e06381046fd33",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FKE-0001-0000-0000",
+      "width": 640,
+      "height": 800,
+      "aspect_ratio": 0.8,
+      "sha256": "31cc0558dd384782c8eb0823900054f3098e68ed860895fe5d84a348b76f8e07",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKG-0001-0000-0000",
+      "width": 661,
+      "height": 800,
+      "aspect_ratio": 0.8263,
+      "sha256": "42b89fd446c3804033f8c95795176f5d8368988b1efc69345f3d3ffd9ee0136b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKL-0001-0000-0000",
+      "width": 586,
+      "height": 800,
+      "aspect_ratio": 0.7325,
+      "sha256": "9b8b6a214c3dbd5dd12de4006d08c9206d7c7d6196b5183a44563bcaab9f9f2e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKN-0001-0000-0000",
+      "width": 768,
+      "height": 701,
+      "aspect_ratio": 1.0956,
+      "sha256": "f947d8f8953970efcfa48d26dd5580b97dab68a0d0f731e08a00d2badd4fccea",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKU-0001-0000-0000",
+      "width": 735,
+      "height": 800,
+      "aspect_ratio": 0.9187,
+      "sha256": "ce692867c6d2c43a28d4d382c45428f51c9f129794c5c5049100446f7ad817bd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKV-0001-0000-0000",
+      "width": 768,
+      "height": 403,
+      "aspect_ratio": 1.9057,
+      "sha256": "a6cdc99e03b9a7220f8bf22e70ea788c82afb41287a49f045bda03074aebfbc7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKW-0001-0000-0000",
+      "width": 612,
+      "height": 800,
+      "aspect_ratio": 0.765,
+      "sha256": "3e36e7ea7528d8bacbb2a671fc3124e2f95eb4bc494aefded357117e28e886c7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FKX-0001-0000-0000",
+      "width": 637,
+      "height": 800,
+      "aspect_ratio": 0.7963,
+      "sha256": "ea671a8844b3b707a0b9b399d65a8a33953e09d03b50e78b029a30bcc90c2f5e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FL6-0001-0000-0000",
+      "width": 258,
+      "height": 800,
+      "aspect_ratio": 0.3225,
+      "sha256": "8b1740584d7ae5408e6cab93ee1b80aa98b5a68637be57cf204783eede2d1037",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FLH-0001-0000-0000",
+      "width": 598,
+      "height": 800,
+      "aspect_ratio": 0.7475,
+      "sha256": "f1ade7b0a4d0711c94868a324795cacfdeb2a0a44802038f92504c45f89a916b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FLJ-0001-0000-0000",
+      "width": 642,
+      "height": 800,
+      "aspect_ratio": 0.8025,
+      "sha256": "909ef2d8ad81162b210a30236db8d52fc0a6442504013dcc3aee35701f13cfa9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FLK-0001-0000-0000",
+      "width": 520,
+      "height": 800,
+      "aspect_ratio": 0.65,
+      "sha256": "eccd9eeffa7bb3194be9afbdce50434a7b0e13d91eb889f290e1825f0a446c75",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FLN-0001-0000-0000",
+      "width": 574,
+      "height": 800,
+      "aspect_ratio": 0.7175,
+      "sha256": "9be57ec958d28f9d0cb0fa66a8704a99336f01060b09a1ade716fa7ecba8d1c0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FLQ-0001-0000-0000",
+      "width": 473,
+      "height": 800,
+      "aspect_ratio": 0.5913,
+      "sha256": "b66d4e49f98cf3a0dab3af73ff601b9ba4c6dddf4cee5fb64b3d0ba9a9125bf0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FLR-0001-0000-0000",
+      "width": 768,
+      "height": 594,
+      "aspect_ratio": 1.2929,
+      "sha256": "60abb05299ee709c49970d8751d74ba3fc83a8d9e5859c423c205177b109673a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FLX-0001-0000-0000",
+      "width": 493,
+      "height": 800,
+      "aspect_ratio": 0.6162,
+      "sha256": "fbe2a5e3a63ac29e8cdcead56bdfc45219768a0b9e2319dd32e22f96573931e8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FM4-0001-0000-0000",
+      "width": 768,
+      "height": 505,
+      "aspect_ratio": 1.5208,
+      "sha256": "0e062e9e425877a58a95a2febac6d189ec3d98fef9012d703140aa711ff744b5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FM6-0001-0000-0000",
+      "width": 768,
+      "height": 629,
+      "aspect_ratio": 1.221,
+      "sha256": "fb5e3251759dfd769fb42a040763221fb05834912e9d1ede6769968bba10de1c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FMA-0001-0000-0000",
+      "width": 542,
+      "height": 800,
+      "aspect_ratio": 0.6775,
+      "sha256": "a8c63903627689dbd33aab99d302462223fed5ba75f2f66324bcb3d167a0f989",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FMG-0001-0000-0000",
+      "width": 607,
+      "height": 800,
+      "aspect_ratio": 0.7588,
+      "sha256": "ffcdfa8790178b862c8671b4f29c33f8bf305262def665d76e48c95cd11b1cc3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FMJ-0001-0000-0000",
+      "width": 768,
+      "height": 486,
+      "aspect_ratio": 1.5802,
+      "sha256": "49317c67d78c7eb773a2ed562edef2eef70f683b0f9125676bada2038e6e14c6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FMO-0001-0000-0000",
+      "width": 768,
+      "height": 593,
+      "aspect_ratio": 1.2951,
+      "sha256": "490557a0b74fd76f9e173ce1b8c89a58b4761534a847078b25fe37ed7cb1d135",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FMT-0001-0000-0000",
+      "width": 768,
+      "height": 583,
+      "aspect_ratio": 1.3173,
+      "sha256": "801c5d17150df7a012145e1834addce4283e17fd06c8975948e32caf1fdd2f12",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FMW-0001-0000-0000",
+      "width": 534,
+      "height": 800,
+      "aspect_ratio": 0.6675,
+      "sha256": "36a957f3340a7b4dc0f34e80b847c2e13c5f296d67bcaf17229db36de9b15370",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FN0-0001-0000-0000",
+      "width": 768,
+      "height": 451,
+      "aspect_ratio": 1.7029,
+      "sha256": "73ccdab571f52d03957e1cd0f42de4df5267ed839805db78d37fa1e43ec50026",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FN2-0001-0000-0000",
+      "width": 626,
+      "height": 800,
+      "aspect_ratio": 0.7825,
+      "sha256": "d2272fd958bb107c588bf6af8555f5d79c32ad84ded9767b217ccef1efaf5424",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FN3-0001-0000-0000",
+      "width": 571,
+      "height": 800,
+      "aspect_ratio": 0.7137,
+      "sha256": "735d653575fd615a1e4ac8ed18f21b59973423577cabd341b9d329eaa5bc67e6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FN9-0001-0000-0000",
+      "width": 687,
+      "height": 800,
+      "aspect_ratio": 0.8588,
+      "sha256": "7a3f888023bb3b5acc403f47bd2a76fd86a55df49063913d7801b73ad25132f6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FNB-0001-0000-0000",
+      "width": 669,
+      "height": 800,
+      "aspect_ratio": 0.8363,
+      "sha256": "06d969fcd4f28435b98e5fe859a2b9ac2b4e8a96f443148a03cd2bff00ec9fc2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FNF-0001-0000-0000",
+      "width": 674,
+      "height": 800,
+      "aspect_ratio": 0.8425,
+      "sha256": "f30a1f213af59d506ed3243f9cefc5e3f7c5768a55ab566a6da1c0a45888504b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FNJ-0001-0000-0000",
+      "width": 768,
+      "height": 526,
+      "aspect_ratio": 1.4601,
+      "sha256": "bb358ec2a02f8931f7af43f8be357c257ef75028232434b7096c4014b2b71667",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FNL-0001-0000-0000",
+      "width": 618,
+      "height": 800,
+      "aspect_ratio": 0.7725,
+      "sha256": "87a08ce4d88e7d3ecb145f8ac48d1a938cad4e7387f9bb1843167ce5c3590b8d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FNO-0001-0000-0000",
+      "width": 768,
+      "height": 584,
+      "aspect_ratio": 1.3151,
+      "sha256": "87a4565df1660d3cd72496fc4c6f5f90feb52a11b91672894342e345e36b51a8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FO3-0001-0000-0000",
+      "width": 768,
+      "height": 494,
+      "aspect_ratio": 1.5547,
+      "sha256": "cd649535aeebf585b61a44c7cae50a720592c501b08e46f8ac0cf4967a89557a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FOE-0001-0000-0000",
+      "width": 615,
+      "height": 800,
+      "aspect_ratio": 0.7688,
+      "sha256": "43c16315cd12530ca51056eca1ee9d80b4e1fb1f42970ab3100af68248e71705",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FOF-0001-0000-0000",
+      "width": 580,
+      "height": 800,
+      "aspect_ratio": 0.725,
+      "sha256": "5a3b20b51186f81d305ca0342b7b385d6507621ab7ecc9d7334723bd6fdd7bab",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FOQ-0001-0000-0000",
+      "width": 768,
+      "height": 652,
+      "aspect_ratio": 1.1779,
+      "sha256": "e9e51fca4784f9e2812477f7d42a17c1842cadd6c87d40324b2f253fd3814b53",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FOR-0001-0000-0000",
+      "width": 620,
+      "height": 800,
+      "aspect_ratio": 0.775,
+      "sha256": "2c17567eebde94d24d38319514bcccbed9ebcd033e130908e29bac544913e019",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FOV-0001-0000-0000",
+      "width": 768,
+      "height": 604,
+      "aspect_ratio": 1.2715,
+      "sha256": "299186fbf531dffd2d5246c8fcf49f705fdb7ac7bbcba29e6b0c46aee35ef7f8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FOZ-0001-0000-0000",
+      "width": 768,
+      "height": 488,
+      "aspect_ratio": 1.5738,
+      "sha256": "bc9a615baf30f35524edbfe86e5414979505db2a8c605b7a87b0857be9cb6477",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FP2-0001-0000-0000",
+      "width": 625,
+      "height": 800,
+      "aspect_ratio": 0.7812,
+      "sha256": "6f277f737563964d0bd34d04d2eb0ada8e455a8597d104e651628d90bade88fd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FP3-0001-0000-0000",
+      "width": 509,
+      "height": 800,
+      "aspect_ratio": 0.6362,
+      "sha256": "2e4383bae61276522887b835eb8a067403b667ea9a2948cf71f177cef8ff0ff5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FP4-0001-0000-0000",
+      "width": 657,
+      "height": 800,
+      "aspect_ratio": 0.8213,
+      "sha256": "7caaa08c1a802e08b4779acd7f8966130849edc99a97e6a7d83a901798016eb4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FP5-0001-0000-0000",
+      "width": 535,
+      "height": 800,
+      "aspect_ratio": 0.6687,
+      "sha256": "75f5d23ec31f8d22dd3fb7657421ef9babfc5ffcedcff1e86f66fd72d5dce082",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FP8-0001-0000-0000",
+      "width": 536,
+      "height": 800,
+      "aspect_ratio": 0.67,
+      "sha256": "2b98965d07752ba3b1242ff746990292329c9f39c192ddc97d0ebca39e35f930",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FPE-0001-0000-0000",
+      "width": 768,
+      "height": 777,
+      "aspect_ratio": 0.9884,
+      "sha256": "46c1b7b6c7686abc8a898f933686b0919b8a522956db9b30bc26e8a4a6e31449",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FPF-0001-0000-0000",
+      "width": 360,
+      "height": 800,
+      "aspect_ratio": 0.45,
+      "sha256": "461b7030e9aae7a1f97baa95cc02e87fd8743de285b9e84ac0fa2391bc01c6eb",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FPH-0001-0000-0000",
+      "width": 760,
+      "height": 800,
+      "aspect_ratio": 0.95,
+      "sha256": "fa1d9dcb6c790b7effd9437f5362728bc4d83883284ed06edd0f2ba11772ba16",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FPK-0001-0000-0000",
+      "width": 768,
+      "height": 534,
+      "aspect_ratio": 1.4382,
+      "sha256": "5bb4d71756060466c5cc84c4193b8f6fdb3813f3d3830192f8a9f5d3d17ca370",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FPP-0001-0000-0000",
+      "width": 768,
+      "height": 767,
+      "aspect_ratio": 1.0013,
+      "sha256": "e111cbcb2e6346e67560b790e1ed2dd3bdaf5bf3a5193dd5cdacb326dbf78da2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FPV-0001-0000-0000",
+      "width": 669,
+      "height": 800,
+      "aspect_ratio": 0.8363,
+      "sha256": "4060591b6d20e181dcc064c720b86456e4462e033d8516251401566ed014cf95",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FPY-0001-0000-0000",
+      "width": 768,
+      "height": 193,
+      "aspect_ratio": 3.9793,
+      "sha256": "212465047d07ac25181adb23451918bab690adf2ee366879dd155c9ecf35f6a3",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FPZ-0001-0000-0000",
+      "width": 708,
+      "height": 800,
+      "aspect_ratio": 0.885,
+      "sha256": "30cb63b51a6939448624b3f79222de8b9d132bbf7c5d757264dc8d22e3ea47cc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FQ1-0001-0000-0000",
+      "width": 768,
+      "height": 708,
+      "aspect_ratio": 1.0847,
+      "sha256": "5188a2205ca3ae33f30742b73a04fe530e351ee22097b57018898413f8352e45",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FQ3-0001-0000-0000",
+      "width": 768,
+      "height": 605,
+      "aspect_ratio": 1.2694,
+      "sha256": "5862fd78321005c55163b6e2777561ccb9b38696d2d60b60098c3e930077879d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FQ8-0001-0000-0000",
+      "width": 768,
+      "height": 659,
+      "aspect_ratio": 1.1654,
+      "sha256": "bf1f50bbed2e9450dfb1be4c9dc63108157ea49ecd5f4fe4b69a7fa214c466c0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FQH-0001-0000-0000",
+      "width": 467,
+      "height": 800,
+      "aspect_ratio": 0.5837,
+      "sha256": "6cf12ba12c55cf496230eb88d4b1b0b511ee32869e98e573e20ad998b91f6739",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FQK-0001-0000-0000",
+      "width": 768,
+      "height": 602,
+      "aspect_ratio": 1.2757,
+      "sha256": "a2e5839bcb3d4a4f5695625e99e3f332da6304362b8496a9ae4fa94544f85047",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FQO-0001-0000-0000",
+      "width": 768,
+      "height": 586,
+      "aspect_ratio": 1.3106,
+      "sha256": "85b918d1b79d2d1e186266345506dd38ce6e324495a0c00a285a313df45409f4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FR5-0001-0000-0000",
+      "width": 768,
+      "height": 557,
+      "aspect_ratio": 1.3788,
+      "sha256": "d0150dad06da8476963a4ebb99a3e3184449d832d3a7997be10b9ddab4c9b8c6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FR7-0001-0000-0000",
+      "width": 598,
+      "height": 800,
+      "aspect_ratio": 0.7475,
+      "sha256": "e38b9da359b3dd289ba31b1aadd577c280466cd5b43363d881d5d5fc0a6b0309",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRA-0001-0000-0000",
+      "width": 768,
+      "height": 550,
+      "aspect_ratio": 1.3964,
+      "sha256": "9af26a1de1b3b8ad8c1c7503bfc084ee17915385927295f9c9b979cbbd95247a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRC-0001-0000-0000",
+      "width": 768,
+      "height": 268,
+      "aspect_ratio": 2.8657,
+      "sha256": "34365b701a2f94235a4496957d3609d246ea6c066529d39d7fa873ded493126f",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FRD-0001-0000-0000",
+      "width": 537,
+      "height": 800,
+      "aspect_ratio": 0.6713,
+      "sha256": "95c4ca5b92c021b457ae774590532b686dfbb0bc386d1a8565acbd956aebc9bc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRE-0001-0000-0000",
+      "width": 253,
+      "height": 800,
+      "aspect_ratio": 0.3162,
+      "sha256": "97b3121602872842cc5cbdfd01adf9d4c2f13d59739193b5528c37e2d4bbb67b",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FRF-0001-0000-0000",
+      "width": 768,
+      "height": 547,
+      "aspect_ratio": 1.404,
+      "sha256": "025f425805345ce265e4c239d20d8a5ecec7deaf725b748a1c1e696a65ca3a62",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRG-0001-0000-0000",
+      "width": 768,
+      "height": 639,
+      "aspect_ratio": 1.2019,
+      "sha256": "d5fdbbc87430509d644feeabc2e03c9710eeb1aa61bc4550053bbdb26c34ee74",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRK-0001-0000-0000",
+      "width": 768,
+      "height": 588,
+      "aspect_ratio": 1.3061,
+      "sha256": "1ec9b5489909fbdb8313756f0204d7585eefbb87cb759fce9b67075fe446ebd2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRO-0001-0000-0000",
+      "width": 768,
+      "height": 642,
+      "aspect_ratio": 1.1963,
+      "sha256": "5c2ddb27fca69cbabd0415fdaa274bd88d64fd4ca42897f52cb4ce677f13b04f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FRY-0001-0000-0000",
+      "width": 356,
+      "height": 800,
+      "aspect_ratio": 0.445,
+      "sha256": "29000115e27aab87d556264de9f055d03e94628156ce5cd9a48fb57c48303fe8",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FS6-0001-0000-0000",
+      "width": 638,
+      "height": 800,
+      "aspect_ratio": 0.7975,
+      "sha256": "14a405e039614b84e0666a3e6f0bc1d492621928de9759c25241e44c686f1c55",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FS8-0001-0000-0000",
+      "width": 768,
+      "height": 649,
+      "aspect_ratio": 1.1834,
+      "sha256": "465ac03085f2d94fd4a23ced1a9b3a6f5f467ac97b56fa7a84f5840747b6e803",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FSF-0001-0000-0000",
+      "width": 768,
+      "height": 558,
+      "aspect_ratio": 1.3763,
+      "sha256": "0487815f60f547a076b5f0f587c040a895dd89cc7d7e69d5e4f6a23bb6745a2e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FSI-0001-0000-0000",
+      "width": 696,
+      "height": 800,
+      "aspect_ratio": 0.87,
+      "sha256": "39a69c9102c6af226f8e4b1c03bf6042fa80f2e108f87519b90bf03a6bc9519a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FSL-0001-0000-0000",
+      "width": 768,
+      "height": 712,
+      "aspect_ratio": 1.0787,
+      "sha256": "da983ec989b7b825299407afc31576cef41f108c274e8c1956ef5cb70da5f332",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FSX-0001-0000-0000",
+      "width": 768,
+      "height": 192,
+      "aspect_ratio": 4.0,
+      "sha256": "b09daf2e88463035b38c80e8740c7b50d42ed125ec5d71ef84e2ab142b2133ab",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FSZ-0001-0000-0000",
+      "width": 768,
+      "height": 703,
+      "aspect_ratio": 1.0925,
+      "sha256": "79aee2c95afccc8ce4f0746eb56b6e3bfd916680bf8c7a7740ecc83bfd53365d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FT1-0001-0000-0000",
+      "width": 768,
+      "height": 776,
+      "aspect_ratio": 0.9897,
+      "sha256": "234959c2715b542053195e2652a2f81bd90b9eb8a3e6ca7bc4489767b3d45b79",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FT3-0001-0000-0000",
+      "width": 651,
+      "height": 800,
+      "aspect_ratio": 0.8137,
+      "sha256": "d346e4c0f1f5c4a65d177eba5fc5f1d4964c81af655d199615dc1198ebade2fc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FT6-0001-0000-0000",
+      "width": 768,
+      "height": 791,
+      "aspect_ratio": 0.9709,
+      "sha256": "dec777c136eee24eecd6fef1a6aa7b068acbb8408fcc02b1d22b80cd9776f0f5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FTA-0001-0000-0000",
+      "width": 768,
+      "height": 566,
+      "aspect_ratio": 1.3569,
+      "sha256": "f3f822cb2305df8d1e4644132913ead34a0afcbe2c307906a80b10bd0541e068",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FTB-0001-0000-0000",
+      "width": 665,
+      "height": 800,
+      "aspect_ratio": 0.8313,
+      "sha256": "fd2168db18e9fdb43c8ea6f7e0a743184b42f1f9bef2be31905a1a885011c982",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FTM-0001-0000-0000",
+      "width": 654,
+      "height": 800,
+      "aspect_ratio": 0.8175,
+      "sha256": "7d71f892afdec261bb82609c8197324a6b1894a86a6b7500ce33bb3233e9612f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FTO-0001-0000-0000",
+      "width": 677,
+      "height": 800,
+      "aspect_ratio": 0.8462,
+      "sha256": "e4e6b8a593e2e8b4bf1e058b3b5ab766d662b7035f1968590df63cf54b7ba6b0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FTQ-0001-0000-0000",
+      "width": 768,
+      "height": 578,
+      "aspect_ratio": 1.3287,
+      "sha256": "e5aadceffaa46896303841cad486b81d126242724e97dcbe6fb7b68f4cb4dc2f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FTS-0001-0000-0000",
+      "width": 719,
+      "height": 800,
+      "aspect_ratio": 0.8988,
+      "sha256": "84b5d8c9ad0ee83462884632555e272d4d440e70141ca0c617de2167180d8bcd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FU2-0001-0000-0000",
+      "width": 768,
+      "height": 585,
+      "aspect_ratio": 1.3128,
+      "sha256": "b417b3b9cf8c100fbb553370ea91c272dffcb885c441380bdf6702a85c3d4d35",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FU6-0001-0000-0000",
+      "width": 768,
+      "height": 618,
+      "aspect_ratio": 1.2427,
+      "sha256": "0609994f9e4ef59349a55d0b4c86a7c5de2f3a2ec9a9da2d66a5d0cdc520b9a5",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUE-0001-0000-0000",
+      "width": 768,
+      "height": 555,
+      "aspect_ratio": 1.3838,
+      "sha256": "d71332beb2a814427b9c041313b775152ad61dcbdce418b11786fd4ec2eac9a6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUF-0001-0000-0000",
+      "width": 768,
+      "height": 549,
+      "aspect_ratio": 1.3989,
+      "sha256": "a2e4cd876e5aa45eeca04d9f37f22c405c43f1264da7d6fcfaa620ac3285bf3e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUH-0001-0000-0000",
+      "width": 768,
+      "height": 494,
+      "aspect_ratio": 1.5547,
+      "sha256": "dc00eb296b844d693ae242737e2329578e3c7ee708b6e627164dc462530df52e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUO-0001-0000-0000",
+      "width": 768,
+      "height": 610,
+      "aspect_ratio": 1.259,
+      "sha256": "de52ef66ef7604da174fae6bda3da83a3c7ed1d34167e806f125ac016f5f594c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUS-0001-0000-0000",
+      "width": 768,
+      "height": 691,
+      "aspect_ratio": 1.1114,
+      "sha256": "39e885b6016e6c3f0631ce522d0c6164964eb92e63eb9d966bdd747c887d31b6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUU-0001-0000-0000",
+      "width": 721,
+      "height": 800,
+      "aspect_ratio": 0.9012,
+      "sha256": "4ff9a8693d87021d684f6c9b3a3debbacdc67b3ceda5358076bdcdb46327cbc7",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FUY-0001-0000-0000",
+      "width": 768,
+      "height": 555,
+      "aspect_ratio": 1.3838,
+      "sha256": "25a437a1c1b7e65e468f6ed21b99d27fed907acfced455b9b9b6d790e945e41d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FV0-0001-0000-0000",
+      "width": 614,
+      "height": 800,
+      "aspect_ratio": 0.7675,
+      "sha256": "07103517685074e13ab610fe0956a49994e8d0495b225ccbba0650edb213bd22",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FV4-0001-0000-0000",
+      "width": 396,
+      "height": 800,
+      "aspect_ratio": 0.495,
+      "sha256": "827effff532555dac8f86aa581a609c992cf6bd2c3e5ded5971409586b284b56",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FVF-0001-0000-0000",
+      "width": 768,
+      "height": 570,
+      "aspect_ratio": 1.3474,
+      "sha256": "ff2652f95e4d1a0c2698394b5280b1d9e43202764462d19aadbf918a91fa0b19",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FVH-0001-0000-0000",
+      "width": 768,
+      "height": 735,
+      "aspect_ratio": 1.0449,
+      "sha256": "ae878ed1717a04dc293ca64ff04f541e1ad8d459239b672e64d2c0dd1addd42c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FVI-0001-0000-0000",
+      "width": 654,
+      "height": 800,
+      "aspect_ratio": 0.8175,
+      "sha256": "9ded4d0213d189f9364ec452fe867b9847f98aeee5bb6f60a5d3868e4b22fa34",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FVL-0001-0000-0000",
+      "width": 768,
+      "height": 507,
+      "aspect_ratio": 1.5148,
+      "sha256": "35979170eca8179a248ba7cc0fa3e2f776013159fe9127b005852aeb4ea58879",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FVV-0001-0000-0000",
+      "width": 625,
+      "height": 800,
+      "aspect_ratio": 0.7812,
+      "sha256": "4528f980c89a3b43e00d298e2f0197322a444ff6e57a824b8dc0577b6d5e7098",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FW2-0001-0000-0000",
+      "width": 420,
+      "height": 800,
+      "aspect_ratio": 0.525,
+      "sha256": "1450fab960e0bd7d43b27a96032c52b8bb60ac2381405ce25f8a1342fc8af82a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FWC-0001-0000-0000",
+      "width": 232,
+      "height": 800,
+      "aspect_ratio": 0.29,
+      "sha256": "6e40dd24e5682a74314c8598125f00785a7fdc8908259aee166336d372b8b6c1",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FWE-0001-0000-0000",
+      "width": 768,
+      "height": 689,
+      "aspect_ratio": 1.1147,
+      "sha256": "98ff1bb28a57a373a872446873f1f2b1d61115af7b54bdac40941a3e60b696b6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FWP-0001-0000-0000",
+      "width": 653,
+      "height": 800,
+      "aspect_ratio": 0.8163,
+      "sha256": "4f11eb2811816b502a7f77b1a7212e06fd3f2ab863c00073fa86ca77d5298d42",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FWR-0001-0000-0000",
+      "width": 523,
+      "height": 800,
+      "aspect_ratio": 0.6538,
+      "sha256": "d970bf5f51902577984b788daf0a92bcf7c2706b7327a8edbd55b44a0bbe6d98",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FWT-0001-0000-0000",
+      "width": 565,
+      "height": 800,
+      "aspect_ratio": 0.7063,
+      "sha256": "69a6cb7c440d3138f12ddff3ccb5d683da96925e90930aeb6264dba72163c213",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FX5-0001-0000-0000",
+      "width": 233,
+      "height": 800,
+      "aspect_ratio": 0.2913,
+      "sha256": "7c9da9c368573b377442abfad874980f96445e7126d9af345cc0d3e51b566488",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FX9-0001-0000-0000",
+      "width": 437,
+      "height": 800,
+      "aspect_ratio": 0.5463,
+      "sha256": "78d1aab80cf4bfcee17a0568e2cbd7dcc9159d5ca1d1d5bec1d0619e39a4605a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FXF-0001-0000-0000",
+      "width": 768,
+      "height": 474,
+      "aspect_ratio": 1.6203,
+      "sha256": "07658a9212547288b70ad15789e781ddf9e80dbb5a318e5a80d75067a4dff946",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FXG-0001-0000-0000",
+      "width": 663,
+      "height": 800,
+      "aspect_ratio": 0.8287,
+      "sha256": "e3e19808afeafd84baa13c88658f9b1ced559cbefd35071afc2fc3801b39996b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FY6-0001-0000-0000",
+      "width": 768,
+      "height": 530,
+      "aspect_ratio": 1.4491,
+      "sha256": "e5bc756fd7cb9183a1badc754c0c581ff56784c6c22716bbe8723f3b9634a5b6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FY7-0001-0000-0000",
+      "width": 768,
+      "height": 738,
+      "aspect_ratio": 1.0407,
+      "sha256": "29c8fd176702f3cf764f9d34691387c91fece52780ac4e791cc0d246891fd7d1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FYK-0001-0000-0000",
+      "width": 768,
+      "height": 538,
+      "aspect_ratio": 1.4275,
+      "sha256": "be6d47b9651bc792c43c2adf7b55cf3589ee00b6f1d90cf6b056ad3d0ed6cb8c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FYV-0001-0000-0000",
+      "width": 569,
+      "height": 800,
+      "aspect_ratio": 0.7113,
+      "sha256": "0fc8b8c3929393f334f2d0111be3d738bc49d888f4e51935105f8b5fc7247fb0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FYX-0001-0000-0000",
+      "width": 518,
+      "height": 800,
+      "aspect_ratio": 0.6475,
+      "sha256": "3d580b8f0b48e8a1e11045c85dc17c849d57e472d6e60ca426aadcb1d8c6e25c",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0FZE-0001-0000-0000",
+      "width": 348,
+      "height": 800,
+      "aspect_ratio": 0.435,
+      "sha256": "205223d0a41a4a988832b3a9b802ee84cb3448e06c2f9ebfa5b4da39c70932be",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0FZK-0001-0000-0000",
+      "width": 768,
+      "height": 636,
+      "aspect_ratio": 1.2075,
+      "sha256": "0aff2256cf08d1701acdaf2752c5dbe5bbfa4977a7e560095004f0d599d0207d",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G00-0001-0000-0000",
+      "width": 504,
+      "height": 800,
+      "aspect_ratio": 0.63,
+      "sha256": "a677d2b9439403f635acd36fb90e2124ffb0c35a5ad86b2e99fb15cd1ff7c390",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G07-0001-0000-0000",
+      "width": 768,
+      "height": 252,
+      "aspect_ratio": 3.0476,
+      "sha256": "c160d63169019206a27eec24e8ad1d3827fae31d612d48a392e46f6b4adebe5c",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0G09-0001-0000-0000",
+      "width": 768,
+      "height": 647,
+      "aspect_ratio": 1.187,
+      "sha256": "04265f9841db60a02a33f41d4743ce21af026c231239952c5e2d41e1a5c36e47",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G1L-0001-0000-0000",
+      "width": 768,
+      "height": 528,
+      "aspect_ratio": 1.4545,
+      "sha256": "f4d39b274558742e0d83989523acd95f30dddd5651f634f537df8ff9905f5277",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G1N-0001-0000-0000",
+      "width": 768,
+      "height": 675,
+      "aspect_ratio": 1.1378,
+      "sha256": "51420427d753a5dfdf170c105e5b4ccaa568b9d81bf2dab469f9ad5f02a1eaec",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G1X-0001-0000-0000",
+      "width": 392,
+      "height": 800,
+      "aspect_ratio": 0.49,
+      "sha256": "7c683fa9a97a97d8471978e457d02713e34929e050a2ea4d6d1acbf1be0368bd",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0G24-0001-0000-0000",
+      "width": 576,
+      "height": 800,
+      "aspect_ratio": 0.72,
+      "sha256": "ef4654e66a15a05c3ab3dbebded87db5608f1da2f51ad9f9af36b3a7b94bd79b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G2F-0001-0000-0000",
+      "width": 768,
+      "height": 564,
+      "aspect_ratio": 1.3617,
+      "sha256": "00aa6b51c06b9c30083d08ecbd8156a63a6b2c53f907e452902153ef621a58a3",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G2N-0001-0000-0000",
+      "width": 768,
+      "height": 684,
+      "aspect_ratio": 1.1228,
+      "sha256": "d6d17ec09450f7a360649c9392ca6e2b4c93fdf4e355c620bd29018209567315",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G30-0001-0000-0000",
+      "width": 768,
+      "height": 494,
+      "aspect_ratio": 1.5547,
+      "sha256": "78888908204635a9859fe795fb86781bcdab57b9e479b6b6090d2d19d651889a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G31-0001-0000-0000",
+      "width": 768,
+      "height": 536,
+      "aspect_ratio": 1.4328,
+      "sha256": "f5e5a0fb675e5502b9b8215e03e12f4f6053c961edfa60cf7a25fdd0ae4523b4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G38-0001-0000-0000",
+      "width": 527,
+      "height": 800,
+      "aspect_ratio": 0.6587,
+      "sha256": "ceafbd0d9e817dfa46f757d7b5f080336e06fa384486830369e76dab64e1f9dd",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G49-0001-0000-0000",
+      "width": 768,
+      "height": 564,
+      "aspect_ratio": 1.3617,
+      "sha256": "960d92f4af82903534651d6b7d61ea4261f207aaa30d88da6b2dfdfc15585c6f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G4A-0001-0000-0000",
+      "width": 768,
+      "height": 771,
+      "aspect_ratio": 0.9961,
+      "sha256": "7662172f8b6225aec11a46f6b5e695e0b5c6fdecaea4b3857eb5985b3acad13b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G4C-0001-0000-0000",
+      "width": 768,
+      "height": 580,
+      "aspect_ratio": 1.3241,
+      "sha256": "a167a3ac247e844c866307c718a45be635dd42d05b8bc4902064538e4dc8dc67",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G4U-0001-0000-0000",
+      "width": 768,
+      "height": 591,
+      "aspect_ratio": 1.2995,
+      "sha256": "ceda548dac79e74365cdefa4c6893003a02d43968def6411a89d46c5224a6120",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G54-0001-0000-0000",
+      "width": 615,
+      "height": 800,
+      "aspect_ratio": 0.7688,
+      "sha256": "2a6634448f9e755d14d90c18cfc1254eee33bb97e22b51c51644c42fe6aeedbc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G58-0001-0000-0000",
+      "width": 618,
+      "height": 800,
+      "aspect_ratio": 0.7725,
+      "sha256": "997425adc68b80a0f80fb6228fab26f4acec44ab86a6866593c6cee6fb9707f8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G6L-0001-0000-0000",
+      "width": 671,
+      "height": 800,
+      "aspect_ratio": 0.8387,
+      "sha256": "b688cdd5a7169e787f6a553cbfd5d6c566d28a1afff2ec352d75a3578bfc2601",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G6Y-0001-0000-0000",
+      "width": 648,
+      "height": 800,
+      "aspect_ratio": 0.81,
+      "sha256": "163c02ac81913a9400aeeac34814e4904a2488d09d6abe8aee276682326cc7c0",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G7D-0001-0000-0000",
+      "width": 281,
+      "height": 800,
+      "aspect_ratio": 0.3513,
+      "sha256": "df86af49505ab8495308dfc4dcbbeb844821eeaf809c22df5c4318dac891c154",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0G7N-0001-0000-0000",
+      "width": 768,
+      "height": 583,
+      "aspect_ratio": 1.3173,
+      "sha256": "c661e3c40770e7d45214669f85f1493c9fb488e1587cee5b2b08f567e0d27fce",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G7O-0001-0000-0000",
+      "width": 556,
+      "height": 800,
+      "aspect_ratio": 0.695,
+      "sha256": "bb94daba5bf0854048e3e393cf7046c2326dee7eeff3cbdb64151309e0e7ba4b",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G7P-0001-0000-0000",
+      "width": 592,
+      "height": 800,
+      "aspect_ratio": 0.74,
+      "sha256": "9b1d056adea2b2e71462ff5d2cb05ee2323c1aec6fb3dde17c6dfeda88e14384",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G8B-0001-0000-0000",
+      "width": 560,
+      "height": 800,
+      "aspect_ratio": 0.7,
+      "sha256": "3c350a3aca68e08d9b1c3dddff57dc18899e4f04c7cf98808ff642c96b9b1007",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G8E-0001-0000-0000",
+      "width": 768,
+      "height": 604,
+      "aspect_ratio": 1.2715,
+      "sha256": "4b6326c58dca874d582cba09fe25ab6470cf97c278503d9569b77e675e79ce89",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0G8Y-0001-0000-0000",
+      "width": 768,
+      "height": 252,
+      "aspect_ratio": 3.0476,
+      "sha256": "f27b73ff6445847988f5dc83db91aaa150f133e87ec3f76f12d5b8388c0524b1",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0G93-0001-0000-0000",
+      "width": 768,
+      "height": 501,
+      "aspect_ratio": 1.5329,
+      "sha256": "cdce3509ea4a7de65338cdbd4b657797cb00031151b4a0730e01e39ab49ff3f9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GAH-0001-0000-0000",
+      "width": 768,
+      "height": 568,
+      "aspect_ratio": 1.3521,
+      "sha256": "9be472e1947b89aed109860c7961a417b7c8660393aad4a1ab512f2a2cf15805",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GAS-0001-0000-0000",
+      "width": 768,
+      "height": 619,
+      "aspect_ratio": 1.2407,
+      "sha256": "01cd0a65bc5a04ed530ebf4777613b95e71b6e293d99aa3e3175cc9732589100",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GAU-0001-0000-0000",
+      "width": 768,
+      "height": 420,
+      "aspect_ratio": 1.8286,
+      "sha256": "5ff15869bc88b076cfe85d47a820d79df390e10b84cb6e1c21b91f3dcf2e88fa",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GB9-0001-0000-0000",
+      "width": 768,
+      "height": 376,
+      "aspect_ratio": 2.0426,
+      "sha256": "5e99c76c01f1c07b80e444cf6ae455ea2ce787315ec61ab47ab2c512c399eedb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GBT-0001-0000-0000",
+      "width": 768,
+      "height": 540,
+      "aspect_ratio": 1.4222,
+      "sha256": "7946f1a05e88639ec3d166de0bde7f3cfa67f20f5bcfa89be71f037ac60defce",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GC3-0001-0000-0000",
+      "width": 768,
+      "height": 567,
+      "aspect_ratio": 1.3545,
+      "sha256": "928d89ae3ebc81c25592bfe38b8dfb0282f252e77d2db19df1cd285c758bd021",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GCE-0001-0000-0000",
+      "width": 768,
+      "height": 324,
+      "aspect_ratio": 2.3704,
+      "sha256": "6103d2a7655ee82023b8794bb85d578451545bdcc0e0bc93a6797007f6fed725",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GCH-0001-0000-0000",
+      "width": 768,
+      "height": 763,
+      "aspect_ratio": 1.0066,
+      "sha256": "7199fa50ed03080abe83c9c3ebbde1836559d5a2f9fd182b52f952cd60a6fd89",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GCM-0001-0000-0000",
+      "width": 631,
+      "height": 800,
+      "aspect_ratio": 0.7887,
+      "sha256": "3323ff5bf2734bde528bb839965243dae089e056e087f63e51f4fc960dc29645",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GCV-0001-0000-0000",
+      "width": 284,
+      "height": 800,
+      "aspect_ratio": 0.355,
+      "sha256": "b161392d6463a1603549c60fcb378cff31f64a49d41974dedcc9ba4848e72482",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0GCY-0001-0000-0000",
+      "width": 410,
+      "height": 800,
+      "aspect_ratio": 0.5125,
+      "sha256": "e2643b36c52389b818f293ad8e06c1c383ae4d3359c70a059424bdd43b3db341",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GDQ-0001-0000-0000",
+      "width": 768,
+      "height": 570,
+      "aspect_ratio": 1.3474,
+      "sha256": "494847696be724e62fb37e39d2d602c466e5595ff3b0b0db8104fe7e649f8d5e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GDR-0001-0000-0000",
+      "width": 768,
+      "height": 435,
+      "aspect_ratio": 1.7655,
+      "sha256": "2b0b18bb2ddfd18a2b18ad535c2aeedffae5b14137cba44306e35080dc1e7213",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GDT-0001-0000-0000",
+      "width": 611,
+      "height": 800,
+      "aspect_ratio": 0.7638,
+      "sha256": "3289d31e49ce606805e9ae0fd6b306f30e173686fa712584ace3834f2e8d7dc6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GE7-0001-0000-0000",
+      "width": 768,
+      "height": 216,
+      "aspect_ratio": 3.5556,
+      "sha256": "606b60fd94ff6b479693c97e0033e3e5f00c49c80083d9bfe45b1c4fd2261df6",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0GFO-0001-0000-0000",
+      "width": 540,
+      "height": 800,
+      "aspect_ratio": 0.675,
+      "sha256": "f88a0a0d403a2a2e9146a47ae2290bcd43adf55072c7bc844edacf9f90d6b79f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GFP-0001-0000-0000",
+      "width": 276,
+      "height": 800,
+      "aspect_ratio": 0.345,
+      "sha256": "67d9b2a6825e16d969426395b18f08fa3cdf3cb54fb00c026afb4ce695b5617a",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0GG9-0001-0000-0000",
+      "width": 567,
+      "height": 800,
+      "aspect_ratio": 0.7087,
+      "sha256": "e5f4a4ce37b40ce553b2cb25d4acd235fb280f482caeddaeecc469d1c1b29917",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GGZ-0001-0000-0000",
+      "width": 768,
+      "height": 578,
+      "aspect_ratio": 1.3287,
+      "sha256": "a0216ad39a8efb931ae3e16207d9a36f7e6c8e09be119f1726d020d7dff2aed1",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GH0-0001-0000-0000",
+      "width": 652,
+      "height": 800,
+      "aspect_ratio": 0.815,
+      "sha256": "550d9a40c2fa2bc0d0461a66c3a780d897e7b7addbbef0747721ec1f4aa2de22",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GHD-0001-0000-0000",
+      "width": 579,
+      "height": 800,
+      "aspect_ratio": 0.7238,
+      "sha256": "8799b10daa5d17e277c867ab19eaabeecc305d9a55d9237511cc2cba995d247a",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GIJ-0001-0000-0000",
+      "width": 768,
+      "height": 436,
+      "aspect_ratio": 1.7615,
+      "sha256": "f561a70b85acfcac776d7c51737119b653f9b00c597f3779df7866b29db8c15e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GIR-0001-0000-0000",
+      "width": 768,
+      "height": 655,
+      "aspect_ratio": 1.1725,
+      "sha256": "4c5ac010d5f12b77081d1a1de2011bf1961053aa12371225ca48066d7da361e2",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GKE-0001-0000-0000",
+      "width": 768,
+      "height": 348,
+      "aspect_ratio": 2.2069,
+      "sha256": "1d858ec746a89ae103b16bc3d3d548db157989477e8be2f6ae9ae1f6f5cc31ca",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GKP-0001-0000-0000",
+      "width": 768,
+      "height": 539,
+      "aspect_ratio": 1.4249,
+      "sha256": "06037d7d4e17dadd3ed2e0791a964b8e0373390445f16decb763f58a1b402a62",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GLJ-0001-0000-0000",
+      "width": 696,
+      "height": 800,
+      "aspect_ratio": 0.87,
+      "sha256": "954f3183dc41863d7b7a36847d2b07fed13ac90fe8f3d55f60ebb8d0b4d24937",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0GLV-0001-0000-0000",
+      "width": 768,
+      "height": 544,
+      "aspect_ratio": 1.4118,
+      "sha256": "79ebfc5ed80775dd08016be4dac0755c6bd21c8e6785018f517d7a23839cf0e9",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0HIR-0001-0000-0000",
+      "width": 628,
+      "height": 800,
+      "aspect_ratio": 0.785,
+      "sha256": "6cd7d8114b641dcc9b110d5f40b28d10d1e59d4b300f2567b25ce93166641d06",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0HJD-0001-0000-0000",
+      "width": 285,
+      "height": 800,
+      "aspect_ratio": 0.3563,
+      "sha256": "8eb81b5efb7172ee864f516ae28bfe8954aa92b9504e7ca46bf42dc61cb11925",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0HJF-0001-0000-0000",
+      "width": 317,
+      "height": 800,
+      "aspect_ratio": 0.3962,
+      "sha256": "e7e17721ca3c0153fbe22b181f2739b644d7384f7dd781a198ee77e3354f6923",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0HSF-0001-0000-0000",
+      "width": 768,
+      "height": 613,
+      "aspect_ratio": 1.2529,
+      "sha256": "9b8b7955cbb526ee00be8004e698d2e7eeb2acd02337111f3eac86815663c55e",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0HYJ-0001-0000-0000",
+      "width": 768,
+      "height": 138,
+      "aspect_ratio": 5.5652,
+      "sha256": "0b8a643aa8fce3977016d7d42db94d8dfe72fb850f380dcbf83c41846a446273",
+      "quality": "WEAK_LOW_RESOLUTION"
+    },
+    {
+      "provider_record_id": "0J1X-0001-0000-0000",
+      "width": 768,
+      "height": 609,
+      "aspect_ratio": 1.2611,
+      "sha256": "77cd852e4d252b0d9e54a06901ffc5358768650b04b87280451e3bf393e2c2a6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0JHN-0001-0000-0000",
+      "width": 768,
+      "height": 609,
+      "aspect_ratio": 1.2611,
+      "sha256": "defe808564b2501f56eb0a1b4a90ba2bbb2ae629e49905f8d3650b20c9eeecfc",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0KAG-0001-0000-0000",
+      "width": 639,
+      "height": 800,
+      "aspect_ratio": 0.7987,
+      "sha256": "0d3063fe019e73045fe04d4866fb31ed5f46524aed301ace16ee5b7b36e18787",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0MG0-0001-0000-0000",
+      "width": 610,
+      "height": 800,
+      "aspect_ratio": 0.7625,
+      "sha256": "5d599539fd46f8315ac62968144a699b6bf3ac8e71535f09c8b7d0d179887904",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0NDV-0001-0000-0000",
+      "width": 768,
+      "height": 748,
+      "aspect_ratio": 1.0267,
+      "sha256": "2e740d98a2f23aa1905e7709ff3c3eb7cc26af613a35de5b411ea1bebdd9aaa8",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0NQ1-0001-0000-0000",
+      "width": 768,
+      "height": 626,
+      "aspect_ratio": 1.2268,
+      "sha256": "e8cc42870dddd32207d7bbe46297d09285e0aa42ce7c8e41efe204bab53243d4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0OI6-0001-0000-0000",
+      "width": 768,
+      "height": 741,
+      "aspect_ratio": 1.0364,
+      "sha256": "3070133a8f73f577fc87ee88362760e0fd7bd3b2d2e3e8ae8d9cef3a1b6e824f",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0OIT-0001-0000-0000",
+      "width": 502,
+      "height": 800,
+      "aspect_ratio": 0.6275,
+      "sha256": "73cb361981fc892abb4c7fc58eed88fef96da4bafacaea99bda2dfbcd20c59f4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0OOF-0001-0000-0000",
+      "width": 768,
+      "height": 672,
+      "aspect_ratio": 1.1429,
+      "sha256": "f2e5c9f1e67e58d95893f66e96852309426b7f721a10b133937a7e416f11b076",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0OTY-0001-0000-0000",
+      "width": 768,
+      "height": 552,
+      "aspect_ratio": 1.3913,
+      "sha256": "541fb2aa3ffbbbf5b76f68f4241b75c49530735c65920cbdebf71cb876a961ea",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0OVT-0001-0000-0000",
+      "width": 602,
+      "height": 800,
+      "aspect_ratio": 0.7525,
+      "sha256": "bc3c7b0435eec231b96066330f14d45a0fca3d197556dcba859a79ddb20ef5db",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0Q72-000A-0000-0000",
+      "width": 519,
+      "height": 800,
+      "aspect_ratio": 0.6488,
+      "sha256": "04176cbdc2d136f0547e0f6e8f38c4090eb3274202399f7a72a9aad4ac403244",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0Q74-000A-0000-0000",
+      "width": 768,
+      "height": 602,
+      "aspect_ratio": 1.2757,
+      "sha256": "60cbedf9bc19b2717f50c8b2741916db5078828461b394ab3fe391cccc78c917",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0SER-0009-0000-0000",
+      "width": 768,
+      "height": 574,
+      "aspect_ratio": 1.338,
+      "sha256": "e2d30fc1972f969c611bc731396ddea934b5212787fc994494782d6cc077f493",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0SEU-0009-0000-0000",
+      "width": 768,
+      "height": 560,
+      "aspect_ratio": 1.3714,
+      "sha256": "3b4099de5be1d10687cd7d0fc8da91c5bcc4d1478b60f66a577d6e759c36ac81",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0WZS-0009-0000-0000",
+      "width": 768,
+      "height": 741,
+      "aspect_ratio": 1.0364,
+      "sha256": "5167e839f6e0b3dfdbe6ecd80117784680bbdfa7720c9fc7e0ee1cd81cdb97d6",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0WZU-0009-0000-0000",
+      "width": 768,
+      "height": 739,
+      "aspect_ratio": 1.0392,
+      "sha256": "31efec98e357b13ecd3c7dfc28ac9f87e8700d5bdfe8581ad5f9156ffe421dfb",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0WZV-0009-0000-0000",
+      "width": 768,
+      "height": 742,
+      "aspect_ratio": 1.035,
+      "sha256": "50e3ab49bfa941e5536504b3bd34d30a7293c246cd4d096275635f7256c78aee",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    },
+    {
+      "provider_record_id": "0WZW-0009-0000-0000",
+      "width": 768,
+      "height": 740,
+      "aspect_ratio": 1.0378,
+      "sha256": "d704d85c11306b238101613e2805aad69c70f5d82d18dfef0ba6e1ee048f51b4",
+      "quality": "GOOD_TECHNICAL_PRIMARY"
+    }
+  ]
+}

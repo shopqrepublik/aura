@@ -17,6 +17,15 @@ The six exclusions remain explicit in `media_technical_exclusions_v1.json` (thre
 - `controlled_catalog_2560_v1.json`
 - `controlled_catalog_2560_benchmark_samples_v1.json`
 
-No 2,560 recognition-readiness or descriptor package is marked current yet. The host used for this run does not have the image-processing dependency required by the existing corpus/descriptor pipeline, and the 560 new reference bytes were therefore not fabricated or substituted. Controlled membership and runtime activation must remain at 2,000 until a reproducible reference corpus and descriptor manifest are generated and parity-tested.
+The canonical backend environment is Python 3.11 from `backend/Dockerfile` with the pinned `requirements.txt`. The local default Python 3.14 installation was malformed (`logging` resolved as an incomplete namespace package); it was not modified. An isolated Python 3.11 environment restored Pillow 12.3.0, standard-library logging, derivative generation, checksums and 456-value descriptors.
+
+The acquisition produced 559 READY references and one additional HTTP 403 (`0IAJ-0001-0000-0000`, media `0VEC-000B-0000-0000`). The valid package is therefore 2,559 works, not 2,560. The generated package is:
+
+- `controlled_catalog_2559_v1.json`
+- `controlled_catalog_2559_recognition_readiness_v1.json`
+- `controlled_catalog_2559_visual_descriptors_v1.json`
+- `controlled_catalog_2559_reference_audit_v1.json`
+
+The 559-reference audit found 507 strong and 52 low-resolution-but-usable references, with zero contextual/wrong references and zero duplicate checksums. Production controlled membership and runtime activation remain at 2,000 until the OpenAI-backed recognition benchmark and all safety gates are run.
 
 Metadata-only holdings remain inactive and are not converted into `VISION_PLUS_ASSET`.
