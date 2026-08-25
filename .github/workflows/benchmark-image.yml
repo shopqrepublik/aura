@@ -11,11 +11,6 @@ on:
         description: Non-serving Fly Registry tag
         required: true
         default: benchmark-2559-b9045cb
-  push:
-    branches: [main]
-    paths:
-      - 'backend/**'
-      - '.github/workflows/benchmark-image.yml'
 
 permissions:
   contents: read
