@@ -369,9 +369,12 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
     provider_outcome = "OTHER_PROVIDER_EXCEPTION"
     response_shape = "unknown"
     data = None
+    provider_attempts = 0
+    retry_reasons = []
     max_empty_attempts = 2
     for attempt in range(max_empty_attempts):
         try:
+            provider_attempts += 1
             resp = _openai_chat_completion_with_retries(
                 client,
                 model=RECOGNITION_MODEL,
@@ -392,6 +395,7 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
                 provider_outcome = "SUCCESS_EMPTY"
                 if attempt + 1 < max_empty_attempts:
                     retry_count += 1
+                    retry_reasons.append("empty_response")
                     continue
                 data = {}
                 break
@@ -402,6 +406,7 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
                 provider_outcome = "MALFORMED_RESPONSE"
                 if attempt + 1 < max_empty_attempts:
                     retry_count += 1
+                    retry_reasons.append("malformed_response")
                     continue
                 data = {}
                 break
@@ -417,6 +422,23 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
                 provider_outcome = "PROVIDER_TIMEOUT" if isinstance(exc, TimeoutError) else "NETWORK_ERROR"
             else:
                 provider_outcome = "OTHER_PROVIDER_EXCEPTION"
+            provider_attempts += OPENAI_RECOGNITION_RETRIES
+            diagnostic = {
+                "model": RECOGNITION_MODEL,
+                "provider_outcome": provider_outcome,
+                "response_shape": response_shape,
+                "parse_success": False,
+                "recognized_present": False,
+                "recognized": False,
+                "title_present": False,
+                "visual_clues_count": 0,
+                "retry_count": retry_count,
+                "retry_reasons": retry_reasons,
+                "provider_attempts": provider_attempts,
+                "parse_failures": parse_failures,
+                "latency_s": round(time.perf_counter() - request_started, 4),
+            }
+            setattr(exc, "_stage1_diagnostic", diagnostic)
             raise
     if data is None:
         data = {}
@@ -465,6 +487,8 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
         "title_present": bool(data.get("title")),
         "visual_clues_count": len(data.get("visual_clues") or []),
         "retry_count": retry_count,
+        "retry_reasons": retry_reasons,
+        "provider_attempts": provider_attempts,
         "parse_failures": parse_failures,
         "latency_s": round(time.perf_counter() - request_started, 4),
     }
