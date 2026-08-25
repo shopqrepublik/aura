@@ -20,5 +20,6 @@ data/onboarding/national_gallery_london/*
 !data/onboarding/national_gallery_london/controlled_catalog_2559_v1.json
 !data/onboarding/national_gallery_london/controlled_catalog_2559_recognition_readiness_v1.json
 !data/onboarding/national_gallery_london/controlled_catalog_2559_visual_descriptors_v1.json
+!data/onboarding/national_gallery_london/controlled_catalog_2559_benchmark_samples_v1.json
 .env
 .git
