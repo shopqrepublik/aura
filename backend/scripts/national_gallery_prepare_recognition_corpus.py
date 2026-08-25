@@ -95,7 +95,7 @@ def partial_variant(source: Image.Image, seed: str) -> Image.Image:
     return ImageEnhance.Brightness(crop).enhance(rng.uniform(.72, 1.05))
 
 
-def prepare_one(record, out: Path) -> dict:
+def prepare_one(record, out: Path, manifest_root: Path) -> dict:
     image_media_rows = [m for m in record.media if m.media_type == "IMAGE" and m.provider_asset_id]
     if not image_media_rows:
         return {"provider_record_id": record.provider_record_id, "status": "NO_IMAGE"}
@@ -121,7 +121,7 @@ def prepare_one(record, out: Path) -> dict:
     }
     for name, data in variants.items():
         path = target / f"{name}.jpg"; path.write_bytes(data)
-        files[name] = {"path": path.relative_to(ROOT).as_posix(), "sha256": sha256(data), "bytes": len(data)}
+        files[name] = {"path": path.relative_to(manifest_root).as_posix(), "sha256": sha256(data), "bytes": len(data)}
     return {
         "status": "READY", "artwork_id": artwork_id, "provider_record_id": record.provider_record_id,
         "accession_id": record.institution_record_id, "title": record.title_original,
@@ -137,11 +137,13 @@ def prepare_one(record, out: Path) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--snapshot", default=str(DEFAULT_SNAPSHOT)); parser.add_argument("--out", default=str(DEFAULT_OUT))
+    parser.add_argument("--manifest-root", default=str(ROOT), help="Filesystem root used for manifest-relative media paths")
     parser.add_argument("--workers", type=int, default=6); parser.add_argument("--limit", type=int)
     parser.add_argument("--exclude-manifest", action="append", help="Skip provider record IDs already present in another corpus manifest")
     parser.add_argument("--require-image", action="store_true", help="Select only records declaring at least one image relationship")
     parser.add_argument("--selection-manifest", help="Restrict preparation to provider IDs in a controlled selection manifest")
     args = parser.parse_args(); out = Path(args.out).resolve(); out.mkdir(parents=True, exist_ok=True)
+    manifest_root = Path(args.manifest_root).resolve()
     adapter = NationalGalleryLondonAdapter(args.snapshot); records = list(adapter.records())
     if args.selection_manifest:
         selection = json.loads(Path(args.selection_manifest).read_text(encoding="utf-8"))
@@ -158,7 +160,7 @@ def main() -> None:
     records = records[:args.limit]
     results = []
     with ThreadPoolExecutor(max_workers=max(1, args.workers)) as pool:
-        futures = {pool.submit(prepare_one, row, out): row.provider_record_id for row in records}
+        futures = {pool.submit(prepare_one, row, out, manifest_root): row.provider_record_id for row in records}
         for future in as_completed(futures):
             try: results.append(future.result())
             except Exception as exc: results.append({"provider_record_id": futures[future], "status": "ERROR", "error": f"{type(exc).__name__}: {exc}"})
