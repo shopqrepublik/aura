@@ -4,6 +4,7 @@ __pycache__/
 test_photos/
 .reference_cache/
 .image_proxy_cache/
+!benchmark_media/
 data/**
 !data/onboarding/
 !data/onboarding/national_gallery_london/

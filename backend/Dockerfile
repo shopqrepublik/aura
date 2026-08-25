@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.11-slim AS runtime
 
 ARG GIT_COMMIT_SHA=unknown
 ARG BUILD_TIMESTAMP=unknown
@@ -39,6 +39,11 @@ COPY data/onboarding/national_gallery_london/controlled_catalog_2559_benchmark_s
 # fetches; runtime verification still uses the same safe thumbnail-first
 # cache path in app/main.py.
 
+FROM runtime AS benchmark
+# CI supplies this directory only for the non-serving benchmark target.
+COPY benchmark_media/ benchmark_media/
+
+FROM runtime AS production
 EXPOSE 8080
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
