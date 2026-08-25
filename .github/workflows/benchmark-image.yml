@@ -46,7 +46,7 @@ jobs:
         env:
           PYTHONPATH: backend
         run: |
-          python -m pip install --disable-pip-version-check Pillow==12.3.0
+          python -m pip install --disable-pip-version-check -r backend/requirements.txt Pillow==12.3.0
           python backend/scripts/national_gallery_prepare_recognition_corpus.py \
             --snapshot backend/data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json \
             --selection-manifest backend/data/onboarding/national_gallery_london/controlled_catalog_2559_v1.json \
