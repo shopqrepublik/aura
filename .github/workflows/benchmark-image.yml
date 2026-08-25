@@ -6,7 +6,7 @@ on:
       source_sha:
         description: Canonical commit to build
         required: true
-        default: b9045cb9981bd9ef9f78afd2396519b2a20447e0
+        default: 453c3579226683c3eb443234c4cf49d29ba122e9
       image_tag:
         description: Non-serving Fly Registry tag
         required: true
@@ -51,7 +51,6 @@ jobs:
             --snapshot backend/data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json \
             --selection-manifest backend/data/onboarding/national_gallery_london/controlled_catalog_2559_v1.json \
             --out backend/benchmark_media/corpus_2559_v1 \
-            --manifest-root backend \
             --workers 8 --require-image
           cp backend/benchmark_media/corpus_2559_v1/manifest.json \
             backend/benchmark_media/national_gallery_benchmark_media_2559_v1.json
