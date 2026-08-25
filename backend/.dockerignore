@@ -7,6 +7,7 @@ test_photos/
 data/**
 !data/onboarding/
 !data/onboarding/national_gallery_london/
+data/onboarding/national_gallery_london/*
 !data/onboarding/national_gallery_london/config.json
 !data/onboarding/national_gallery_london/pre_eminent_review_snapshot_2026-08-23.json
 !data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json
