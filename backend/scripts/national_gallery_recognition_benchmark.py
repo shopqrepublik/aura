@@ -51,6 +51,7 @@ def install_stage_profiler() -> None:
         original = getattr(recognition_module, function_name)
         def wrapped(*args, __original=original, __stage=stage_name, **kwargs):
             started = time.perf_counter()
+            _profile.current_stage = __stage
             try:
                 return __original(*args, **kwargs)
             finally:
@@ -59,6 +60,7 @@ def install_stage_profiler() -> None:
                     timings[__stage] = timings.get(__stage, 0.0) + time.perf_counter() - started
                     if __stage in {"stage1_visual_analysis", "metadata_verification", "asset_verification"}:
                         timings["model_calls"] = timings.get("model_calls", 0) + 1
+                _profile.current_stage = None
         setattr(recognition_module, function_name, wrapped)
 
 
@@ -234,7 +236,7 @@ def main():
         try:
             return run(row)
         except BenchmarkCaseTimeout:
-            return {"provider_record_id": row.provider_record_id, "expected_artwork_id": stable_id("artwork", row.provider_id, row.provider_record_id), "case_started_at": datetime.now(timezone.utc).isoformat(), "case_finished_at": datetime.now(timezone.utc).isoformat(), "latency_s": time.perf_counter() - started, "stage_timings_s": {"benchmark_watchdog": time.perf_counter() - started}, "visitor_resolution": "BENCHMARK_CASE_TIMEOUT", "terminal_outcome": "BENCHMARK_CASE_TIMEOUT", "failure_reason": "benchmark_case_timeout", "stage1_calls": 0, "verifier_calls": 0, "total_provider_calls": 0, "correct_top1": False, "correct_topk": False, "chosen_artwork_id": None, "confidence": 0.0}
+            return {"provider_record_id": row.provider_record_id, "expected_artwork_id": stable_id("artwork", row.provider_id, row.provider_record_id), "case_started_at": datetime.now(timezone.utc).isoformat(), "case_finished_at": datetime.now(timezone.utc).isoformat(), "latency_s": time.perf_counter() - started, "stage_timings_s": {"benchmark_watchdog": time.perf_counter() - started}, "benchmark_current_stage": getattr(_profile, "current_stage", None), "visitor_resolution": "BENCHMARK_CASE_TIMEOUT", "terminal_outcome": "BENCHMARK_CASE_TIMEOUT", "failure_reason": "benchmark_case_timeout", "stage1_calls": 0, "verifier_calls": 0, "total_provider_calls": 0, "correct_top1": False, "correct_topk": False, "chosen_artwork_id": None, "confidence": 0.0}
         finally:
             signal.setitimer(signal.ITIMER_REAL, 0)
             signal.signal(signal.SIGALRM, old_handler)
