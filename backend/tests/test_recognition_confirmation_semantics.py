@@ -103,6 +103,37 @@ class RecognitionConfirmationSemanticsTests(unittest.TestCase):
         self.assertGreaterEqual(result["confidence"], config.confidence_review)
         self.assertLess(result["confidence"], config.confidence_auto)
 
+    def test_metadata_only_verifier_match_requires_visual_concordance(self):
+        candidate = {
+            "id": "artwork:metadata-seed", "museum_id": "test", "title": "Flowers in a Terracotta Vase",
+            "artist": "Jan van Huysum", "year": "1700", "image_url": "https://example.org/reference.jpg",
+            "recognition_asset_id": "asset:metadata-seed",
+            "visual_descriptor": {"version": "elyio-lowfreq-rgb-v1", "values": [0.0]},
+        }
+        ranked = [{"candidate": candidate, "score": .85, "signals": {}}]
+        config = InstitutionRuntimeConfig(
+            institution_id="test", display_name="Test", visitor_catalog_version="test-v1",
+            candidate_universe="ACTIVE_CATALOG", recognition_policy="ASSET_VERIFY",
+            supported_modes=("normal",), max_candidates=5, confidence_auto=.92,
+            confidence_review=.82, fuzzy_candidate_threshold=.55,
+            prompt_context="Test institution", allow_recognition_asset_substitution=True,
+        )
+        with patch("backend.app.main.recognize_open", return_value={
+            "recognized": True, "artist": "Jan van Huysum", "title": "Flowers in a Terracotta Vase", "confidence": .99,
+        }), patch("backend.app.main.rank_catalog_candidates", return_value=ranked), patch(
+            "backend.app.main.rank_visual_candidates", return_value=[]
+        ), patch("backend.app.main._reference_verification_allowed", return_value=True), patch(
+            "backend.app.main.visual_verify_reference_candidates", return_value={
+                "decision": "MATCH", "chosen_id": "artwork:metadata-seed", "confidence": .99,
+            }
+        ):
+            result = recognize_with_vision("aW1hZ2U=", "test", None, [candidate], institution_config=config)
+        self.assertEqual(result["artwork_id"], "artwork:metadata-seed")
+        self.assertEqual(result["stage2_verifier"]["decision"], "NEEDS_CONFIRMATION")
+        self.assertEqual(result["stage2_verifier"]["finalization_reason"], "CONFIRMATION_WEAK_VISUAL_CONCORDANCE")
+        self.assertGreaterEqual(result["confidence"], config.confidence_review)
+        self.assertLess(result["confidence"], config.confidence_auto)
+
 
 if __name__ == "__main__":
     unittest.main()

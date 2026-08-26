@@ -1369,6 +1369,9 @@ def recognize_with_vision(
         this rule only controls visitor resolution.
         """
         if verdict.get("decision") != "MATCH" or not verdict.get("chosen_id"):
+            if verdict.get("decision") == "NEEDS_CONFIRMATION" and verdict.get("chosen_id"):
+                verdict = dict(verdict)
+                verdict.setdefault("finalization_reason", "CONFIRMATION_VERIFIER_AMBIGUITY")
             return verdict
         chosen_row = next((row for row in candidate_rows if row["candidate"]["id"] == verdict["chosen_id"]), None)
         if not chosen_row:
@@ -1379,14 +1382,30 @@ def recognize_with_vision(
         # silently auto-attaching it. This is especially important for
         # visually related panels, versions and workshop compositions.
         if not _stage2_artist_match_allowed(ident, chosen_row["candidate"]):
+            verdict = dict(verdict)
             verdict["decision"] = "NEEDS_CONFIRMATION"
+            verdict["finalization_reason"] = "CONFIRMATION_VERIFIER_AMBIGUITY"
             verdict["reason"] = (
                 f'{verdict.get("reason", "")} '
                 "Stage-1 artist attribution conflicts with the reference candidate."
             ).strip()
             return verdict
-        if chosen_row.get("signals", {}).get("visual_retrieval_rank") is not None:
+        # Stage 1 and the verifier are both model-mediated and therefore are
+        # not independent visual evidence.  A metadata-seeded candidate that
+        # never appears in local visual retrieval must not become a confident
+        # canonical attachment solely because those two model calls agree.
+        # Keep the candidate available for explicit visitor confirmation.
+        if chosen_row.get("signals", {}).get("visual_retrieval_rank") is None:
+            verdict = dict(verdict)
+            verdict["decision"] = "NEEDS_CONFIRMATION"
+            verdict["finalization_reason"] = "CONFIRMATION_WEAK_VISUAL_CONCORDANCE"
+            verdict["reason"] = (
+                f'{verdict.get("reason", "")} '
+                "Independent visual retrieval did not support this metadata candidate."
+            ).strip()
             return verdict
+        verdict = dict(verdict)
+        verdict.setdefault("finalization_reason", "AUTO_ACCEPT_VISUAL_CONCORDANCE")
         chosen_artist = str(chosen_row["candidate"].get("artist") or "").strip().casefold()
         if not chosen_artist:
             return verdict
@@ -1398,6 +1417,7 @@ def recognize_with_vision(
         if same_artist_competitor:
             verdict = dict(verdict)
             verdict["decision"] = "NEEDS_CONFIRMATION"
+            verdict["finalization_reason"] = "CONFIRMATION_VERIFIER_AMBIGUITY"
             verdict["reason"] = f'{verdict.get("reason", "")} Same-artist retrieval evidence remains ambiguous.'.strip()
         return verdict
     if not prompt_context and institution_config:
@@ -1523,6 +1543,7 @@ def recognize_with_vision(
 
     if policy == "TOP_N_METADATA":
         topn_verdict = verify_top_candidates_with_openai(image_base64, ident, ranked[:candidate_limit])
+        topn_verdict = preserve_same_artist_confusion(topn_verdict, ranked)
         chosen_id = topn_verdict.get("chosen_id")
         if topn_verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
             chosen = next((row["candidate"] for row in ranked if row["candidate"]["id"] == chosen_id), None)
