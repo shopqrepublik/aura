@@ -107,6 +107,8 @@ def main():
     ap.add_argument("--out",default=str(DEFAULT_OUT),help="Ignored output directory")
     ap.add_argument("--profile-stages",action="store_true")
     ap.add_argument("--diagnose-retrieval",action="store_true")
+    ap.add_argument("--checkpoint", help="Checkpoint JSON written after each completed case")
+    ap.add_argument("--resume", action="store_true", help="Resume from a compatible checkpoint")
     args=ap.parse_args()
     if not os.getenv("OPENAI_API_KEY"): raise SystemExit("OPENAI_API_KEY required")
     by_provider={}
@@ -155,9 +157,20 @@ def main():
                 shutil.copyfile(ROOT/catalog_media[r.provider_record_id]["files"]["reference"]["path"],Path(REFERENCE_CACHE_DIR)/f'{c["id"]}.jpg')
     cfg=config(args.mode,args.catalog_version)
     if args.profile_stages: install_stage_profiler()
+    checkpoint_path = Path(args.checkpoint) if args.checkpoint else None
+    checkpoint_key = hashlib.sha256(json.dumps({"code_sha": os.getenv("GIT_COMMIT_SHA") or "working-tree", "catalog": args.catalog_version, "sample": args.sample_name, "manifest": [str(x) for x in (args.manifest or [])]}, sort_keys=True).encode()).hexdigest()
+    completed_ids = set()
+    if args.resume and checkpoint_path and checkpoint_path.exists():
+        cp = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+        if cp.get("checkpoint_key") != checkpoint_key:
+            raise SystemExit("incompatible benchmark checkpoint")
+        completed_ids = set(cp.get("completed_provider_record_ids", []))
+
     def run(row):
         expected=stable_id("artwork",row.provider_id,row.provider_record_id); m=by_provider[row.provider_record_id]
-        image=base64.b64encode((ROOT/m["files"][args.variant]["path"]).read_bytes()).decode(); start=time.perf_counter()
+        case_started_at = datetime.now(timezone.utc).isoformat()
+        image_bytes = (ROOT/m["files"][args.variant]["path"]).read_bytes()
+        image=base64.b64encode(image_bytes).decode(); start=time.perf_counter()
         # Keep concurrent benchmark cases isolated from any candidate-row
         # annotations made by the recognition path. Production loads a fresh
         # scoped candidate payload per request; the harness must model that
@@ -195,12 +208,19 @@ def main():
             visual_rank = pre_visual_rank
         stage1 = result.get("vision") or {}
         stage1_diagnostic = stage1.get("_stage1_diagnostic") if isinstance(stage1, dict) else None
-        return {"expected_artwork_id":expected,"expected_in_catalog":not args.expect_out_of_catalog,"provider_record_id":row.provider_record_id,"title":row.title_original,"artist":row.creator_display,"variant":args.variant,"mode":args.mode,"chosen_artwork_id":chosen,"confidence":confidence,"correct_top1":chosen==expected,"correct_topk":expected in top,"metadata_candidate_rank":metadata_rank,"visual_candidate_rank":visual_rank,"expected_visual_distance":expected_visual_distance,"input_sha256":hashlib.sha256(base64.b64decode(image)).hexdigest(),"pre_visual_top_ids":[item["candidate"]["id"] for item in pre_visual[:5]],"top_candidates":result.get("top_candidates",[]),"engine_outcome":"CATALOG_CANDIDATE_MATCHED" if chosen else "UNCATALOGED_IDENTIFIED" if result.get("recognized_but_not_cataloged") else "NO_MATCH","visitor_resolution":resolution,"recognition_mode":result.get("recognition_mode"),"finalization_reason":(result.get("stage2_verifier") or {}).get("finalization_reason"),"latency_s":latency,"stage_timings_s":stage_timings,"failure_reason":error or (result.get("stage2_verifier") or {}).get("reason"),"stage1":stage1,"stage1_diagnostic":stage1_diagnostic,"stage2":result.get("stage2_verifier"),"ai_candidate":result.get("recognized_but_not_cataloged")}
+        verifier = result.get("stage2_verifier") or {}
+        stage1_calls = int((stage1_diagnostic or {}).get("provider_attempts", 0) or 0)
+        verifier_calls = int(verifier.get("provider_attempts", 1) or 1) if verifier else 0
+        return {"case_started_at":case_started_at,"case_finished_at":datetime.now(timezone.utc).isoformat(),"expected_artwork_id":expected,"expected_in_catalog":not args.expect_out_of_catalog,"provider_record_id":row.provider_record_id,"title":row.title_original,"artist":row.creator_display,"variant":args.variant,"mode":args.mode,"chosen_artwork_id":chosen,"confidence":confidence,"correct_top1":chosen==expected,"correct_topk":expected in top,"metadata_candidate_rank":metadata_rank,"visual_candidate_rank":visual_rank,"expected_visual_distance":expected_visual_distance,"input_sha256":hashlib.sha256(image_bytes).hexdigest(),"pre_visual_top_ids":[item["candidate"]["id"] for item in pre_visual[:5]],"top_candidates":result.get("top_candidates",[]),"engine_outcome":"CATALOG_CANDIDATE_MATCHED" if chosen else "UNCATALOGED_IDENTIFIED" if result.get("recognized_but_not_cataloged") else "NO_MATCH","visitor_resolution":resolution,"recognition_mode":result.get("recognition_mode"),"finalization_reason":verifier.get("finalization_reason"),"latency_s":latency,"stage_timings_s":stage_timings,"failure_reason":error or verifier.get("reason"),"stage1":stage1,"stage1_diagnostic":stage1_diagnostic,"stage2":verifier,"stage1_calls":stage1_calls,"verifier_calls":verifier_calls,"total_provider_calls":stage1_calls+verifier_calls,"ai_candidate":result.get("recognized_but_not_cataloged")}
     results=[]
+    rows = [r for r in rows if r.provider_record_id not in completed_ids]
     with ThreadPoolExecutor(max_workers=max(1,args.workers)) as pool:
         futures=[pool.submit(run,r) for r in rows]
         for i,f in enumerate(as_completed(futures),1):
             results.append(f.result()); print(f"{i}/{len(futures)}",flush=True)
+            if checkpoint_path:
+                checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+                checkpoint_path.write_text(json.dumps({"checkpoint_key":checkpoint_key,"completed_provider_record_ids":[x["provider_record_id"] for x in results]}, indent=2), encoding="utf-8")
     results.sort(key=lambda r:r["provider_record_id"]); lat=[r["latency_s"] for r in results]
     stage_names=sorted({key for row in results for key in row.get("stage_timings_s",{})})
     stage_summary={name:{"average_s":statistics.mean([row["stage_timings_s"].get(name,0) for row in results]),"p50_s":percentile([row["stage_timings_s"].get(name,0) for row in results],.5),"p95_s":percentile([row["stage_timings_s"].get(name,0) for row in results],.95)} for name in stage_names if name!="model_calls"}
@@ -212,7 +232,7 @@ def main():
         outcome = diagnostic.get("provider_outcome") or ("OTHER_PROVIDER_EXCEPTION" if row.get("failure_reason") else "UNINSTRUMENTED")
         stage1_outcomes[outcome] = stage1_outcomes.get(outcome, 0) + 1
         retry_cases += int(diagnostic.get("retry_count", 0) > 0)
-    provider_attempts = [int((row.get("stage1_diagnostic") or {}).get("provider_attempts", row.get("stage_timings_s",{}).get("model_calls",0)) or 0) for row in results]
+    provider_attempts = [int(row.get("total_provider_calls", (row.get("stage1_diagnostic") or {}).get("provider_attempts", row.get("stage_timings_s",{}).get("model_calls",0))) or 0) for row in results]
     summary={"generated_at":datetime.now(timezone.utc).isoformat(),"code_sha":os.getenv("GIT_COMMIT_SHA") or "working-tree","catalog_version":cfg.visitor_catalog_version,"mode":args.mode,"variant":args.variant,"expected_out_of_catalog":args.expect_out_of_catalog,"cases":len(results),"correct_top1":sum(r["correct_top1"] for r in results),"correct_topk":sum(r["correct_topk"] for r in results),"confirmation_required":sum(r["visitor_resolution"]=="CONFIRMATION_REQUIRED" for r in results),"auto_accepted":sum(r["visitor_resolution"]=="AUTO_ACCEPTED" for r in results),"ai_fallback":sum(r["visitor_resolution"]=="AI_UNCATALOGED" for r in results),"unresolved":sum(r["visitor_resolution"]=="UNRESOLVED" for r in results),"incorrect_catalog_match":sum(bool(r["chosen_artwork_id"]) and not r["correct_top1"] for r in results),"confident_incorrect":sum(bool(r["chosen_artwork_id"]) and not r["correct_top1"] and r["confidence"]>=cfg.confidence_auto for r in results),"latency_average_s":statistics.mean(lat) if lat else None,"latency_p50_s":percentile(lat,.5),"latency_p95_s":percentile(lat,.95),"model_calls_average":statistics.mean(provider_attempts) if provider_attempts else 0,"max_provider_calls":max(provider_attempts) if provider_attempts else 0,"stage1_outcomes":stage1_outcomes,"stage1_retry_cases":retry_cases,"visual_candidate_recall":recall,"stage_timings":stage_summary}
     out=Path(args.out);out.mkdir(parents=True,exist_ok=True); slug=f'{args.mode}_{args.variant}_{len(results)}'; (out/f'{slug}.jsonl').write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in results),encoding="utf-8"); (out/f'{slug}_summary.json').write_text(json.dumps(summary,indent=2)+"\n",encoding="utf-8"); print(json.dumps(summary,indent=2))
 
