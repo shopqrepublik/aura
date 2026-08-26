@@ -1,7 +1,7 @@
 """Controlled National Gallery recognition benchmark; no DB/public mutation."""
 from __future__ import annotations
 
-import argparse, base64, hashlib, json, os, shutil, statistics, time, threading
+import argparse, base64, hashlib, json, os, shutil, statistics, time, threading, signal
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
@@ -32,6 +32,10 @@ DEFAULT_OUT = ROOT / "exports/national_gallery/recognition_benchmark"
 
 
 _profile = threading.local()
+
+
+class BenchmarkCaseTimeout(Exception):
+    """Benchmark-only watchdog signal; never used by production recognition."""
 
 
 def install_stage_profiler() -> None:
@@ -109,7 +113,14 @@ def main():
     ap.add_argument("--diagnose-retrieval",action="store_true")
     ap.add_argument("--checkpoint", help="Checkpoint JSON written after each completed case")
     ap.add_argument("--resume", action="store_true", help="Resume from a compatible checkpoint")
+    ap.add_argument("--case-timeout", type=float, default=120.0, help="Benchmark-only per-case watchdog ceiling in seconds")
     args=ap.parse_args()
+    if args.case_timeout <= 0:
+        ap.error("--case-timeout must be positive")
+    # SIGALRM is process-scoped; force a single worker whenever the watchdog
+    # is enabled so a stuck case cannot leave an orphaned worker thread.
+    if args.case_timeout and args.workers != 1:
+        args.workers = 1
     if not os.getenv("OPENAI_API_KEY"): raise SystemExit("OPENAI_API_KEY required")
     by_provider={}
     for manifest_path in args.manifest or [str(DEFAULT_CORPUS)]:
@@ -212,15 +223,37 @@ def main():
         stage1_calls = int((stage1_diagnostic or {}).get("provider_attempts", 0) or 0)
         verifier_calls = int(verifier.get("provider_attempts", 1) or 1) if verifier else 0
         return {"case_started_at":case_started_at,"case_finished_at":datetime.now(timezone.utc).isoformat(),"expected_artwork_id":expected,"expected_in_catalog":not args.expect_out_of_catalog,"provider_record_id":row.provider_record_id,"title":row.title_original,"artist":row.creator_display,"variant":args.variant,"mode":args.mode,"chosen_artwork_id":chosen,"confidence":confidence,"correct_top1":chosen==expected,"correct_topk":expected in top,"metadata_candidate_rank":metadata_rank,"visual_candidate_rank":visual_rank,"expected_visual_distance":expected_visual_distance,"input_sha256":hashlib.sha256(image_bytes).hexdigest(),"pre_visual_top_ids":[item["candidate"]["id"] for item in pre_visual[:5]],"top_candidates":result.get("top_candidates",[]),"engine_outcome":"CATALOG_CANDIDATE_MATCHED" if chosen else "UNCATALOGED_IDENTIFIED" if result.get("recognized_but_not_cataloged") else "NO_MATCH","visitor_resolution":resolution,"recognition_mode":result.get("recognition_mode"),"finalization_reason":verifier.get("finalization_reason"),"latency_s":latency,"stage_timings_s":stage_timings,"failure_reason":error or verifier.get("reason"),"stage1":stage1,"stage1_diagnostic":stage1_diagnostic,"stage2":verifier,"stage1_calls":stage1_calls,"verifier_calls":verifier_calls,"total_provider_calls":stage1_calls+verifier_calls,"ai_candidate":result.get("recognized_but_not_cataloged")}
+
+    def watchdog_handler(signum, frame):
+        raise BenchmarkCaseTimeout
+
+    def run_guarded(row):
+        started = time.perf_counter()
+        old_handler = signal.signal(signal.SIGALRM, watchdog_handler)
+        signal.setitimer(signal.ITIMER_REAL, args.case_timeout)
+        try:
+            return run(row)
+        except BenchmarkCaseTimeout:
+            return {"provider_record_id": row.provider_record_id, "expected_artwork_id": stable_id("artwork", row.provider_id, row.provider_record_id), "case_started_at": datetime.now(timezone.utc).isoformat(), "case_finished_at": datetime.now(timezone.utc).isoformat(), "latency_s": time.perf_counter() - started, "stage_timings_s": {"benchmark_watchdog": time.perf_counter() - started}, "visitor_resolution": "BENCHMARK_CASE_TIMEOUT", "terminal_outcome": "BENCHMARK_CASE_TIMEOUT", "failure_reason": "benchmark_case_timeout", "stage1_calls": 0, "verifier_calls": 0, "total_provider_calls": 0, "correct_top1": False, "correct_topk": False, "chosen_artwork_id": None, "confidence": 0.0}
+        finally:
+            signal.setitimer(signal.ITIMER_REAL, 0)
+            signal.signal(signal.SIGALRM, old_handler)
     results=[]
     rows = [r for r in rows if r.provider_record_id not in completed_ids]
-    with ThreadPoolExecutor(max_workers=max(1,args.workers)) as pool:
-        futures=[pool.submit(run,r) for r in rows]
-        for i,f in enumerate(as_completed(futures),1):
-            results.append(f.result()); print(f"{i}/{len(futures)}",flush=True)
+    if args.workers == 1:
+        for i, row in enumerate(rows, 1):
+            results.append(run_guarded(row)); print(f"{i}/{len(rows)}", flush=True)
             if checkpoint_path:
                 checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
                 checkpoint_path.write_text(json.dumps({"checkpoint_key":checkpoint_key,"completed_provider_record_ids":[x["provider_record_id"] for x in results]}, indent=2), encoding="utf-8")
+    else:
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            futures=[pool.submit(run,r) for r in rows]
+            for i,f in enumerate(as_completed(futures),1):
+                results.append(f.result()); print(f"{i}/{len(futures)}",flush=True)
+                if checkpoint_path:
+                    checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+                    checkpoint_path.write_text(json.dumps({"checkpoint_key":checkpoint_key,"completed_provider_record_ids":[x["provider_record_id"] for x in results]}, indent=2), encoding="utf-8")
     results.sort(key=lambda r:r["provider_record_id"]); lat=[r["latency_s"] for r in results]
     stage_names=sorted({key for row in results for key in row.get("stage_timings_s",{})})
     stage_summary={name:{"average_s":statistics.mean([row["stage_timings_s"].get(name,0) for row in results]),"p50_s":percentile([row["stage_timings_s"].get(name,0) for row in results],.5),"p95_s":percentile([row["stage_timings_s"].get(name,0) for row in results],.95)} for name in stage_names if name!="model_calls"}
