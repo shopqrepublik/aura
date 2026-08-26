@@ -1,0 +1,2233 @@
+{
+  "schema_version": 1,
+  "catalog_version": "rijksmuseum-controlled-443-v1",
+  "corpus_manifests": [
+    {
+      "manifest": "manifest.json",
+      "sha256": "ad78c987ca21bcd7f9cbeef382e1aa0981b8330156741d7473f970ada60db613"
+    }
+  ],
+  "summary": {
+    "total": 443,
+    "vision_plus_asset": 443,
+    "vision_ready": 0,
+    "not_ready": 0
+  },
+  "records": [
+    {
+      "provider_record_id": "200108008",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108224",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108225",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107880",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108365",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108366",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108367",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108368",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107824",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107821",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107822",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107825",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107820",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107823",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108351",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107879",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107781",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107782",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108181",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108180",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108291",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107815",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107978",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107977",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108197",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107767",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107768",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107811",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107812",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107989",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108137",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108138",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107832",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107833",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107834",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107835",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107836",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107837",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107838",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107839",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107840",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107841",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107842",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107843",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107844",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107845",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107846",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107847",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107848",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107849",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107850",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108296",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108148",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108301",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107993",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108190",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108262",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108263",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200105971",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108238",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106086",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107784",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107787",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106079",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108222",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108223",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108232",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108233",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107762",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108135",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108391",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108230",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107967",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108387",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108388",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107955",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108139",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108141",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108142",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108010",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107854",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107855",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107856",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108165",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108352",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108245",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108246",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108247",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108249",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108250",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108251",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108252",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108253",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108254",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108256",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108257",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108248",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108128",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107883",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107884",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107887",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107886",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107885",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107972",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107990",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108383",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108302",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108310",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108311",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108312",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108316",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108318",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108308",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108309",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108319",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108304",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108306",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108307",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108313",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108228",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108227",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108226",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108271",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108272",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108273",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108274",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108276",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108277",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107792",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108212",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108214",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108215",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108216",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108217",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108218",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108011",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107976",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107975",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108261",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108162",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108163",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108164",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108390",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107991",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107992",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108131",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107980",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108385",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108386",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200105889",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108183",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200105887",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107988",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107968",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108236",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107853",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107827",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108167",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108136",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108205",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108206",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107958",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107959",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107974",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107891",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108000",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107979",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108013",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107953",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108161",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108202",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108204",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107994",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108144",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108145",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108146",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108292",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108293",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108294",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108373",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108374",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107997",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107998",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107999",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108012",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107772",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107773",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107940",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107857",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107858",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107859",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107860",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107861",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107862",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107863",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107864",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107865",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107866",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107867",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107868",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107916",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107763",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107756",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107757",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108235",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200100988",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108378",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108381",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108382",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108380",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108168",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108173",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108278",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107983",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107985",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107986",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108027",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108029",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108031",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108034",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108035",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108036",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108038",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108039",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108041",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108049",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108050",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108051",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108054",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108060",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108065",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108066",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108067",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108069",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108072",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108073",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108076",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108078",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108081",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108083",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108084",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108085",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108086",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108087",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108088",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107971",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108219",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108077",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108015",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108279",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108016",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108369",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108371",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108377",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107829",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108149",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108150",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108151",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108152",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108153",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108154",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108155",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108156",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108157",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108158",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107828",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108234",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108376",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107764",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108126",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108176",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108177",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108179",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108174",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107987",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108361",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108299",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108300",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108001",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108002",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108003",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108004",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108005",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108006",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108007",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107776",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107777",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107778",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108023",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108022",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108195",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108196",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107869",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107761",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107779",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108208",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108209",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108210",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107770",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107771",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107888",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107889",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108184",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108185",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107876",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107877",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108122",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108123",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107819",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107817",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107818",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107964",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107965",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107963",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107966",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108239",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107890",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108129",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108130",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108320",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107793",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106038",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107928",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107929",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107930",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107931",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107934",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107935",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107936",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107941",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107942",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107944",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107945",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107952",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107937",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107933",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107946",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107947",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108298",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108389",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108384",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108240",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107981",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108024",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107810",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107949",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107950",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107951",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107948",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108019",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108020",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108090",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107882",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108354",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108355",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108356",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108357",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108358",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108359",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108360",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106078",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108017",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108018",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106077",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200105901",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106799",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106839",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106864",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107007",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107780",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107795",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107796",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107852",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107960",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108021",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200105903",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200105905",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106080",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200106865",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107794",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107797",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107954",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108037",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108082",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108028",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108030",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108033",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108045",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108046",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108052",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108055",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108056",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108057",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108061",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108063",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108064",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108074",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108080",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107798",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108255",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108171",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108189",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107774",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107786",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108353",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108170",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108285",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107808",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107790",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108290",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107809",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108286",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108287",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108284",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108288",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108289",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107939",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108260",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107969",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107938",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107984",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108134",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107816",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108026",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108032",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108040",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108042",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108043",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108044",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108047",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108048",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108053",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108058",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108059",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108062",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108068",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108070",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108071",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108075",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108079",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108089",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200108160",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    },
+    {
+      "provider_record_id": "200107943",
+      "readiness": "VISION_PLUS_ASSET",
+      "reason": "technical reference derivative prepared"
+    }
+  ]
+}

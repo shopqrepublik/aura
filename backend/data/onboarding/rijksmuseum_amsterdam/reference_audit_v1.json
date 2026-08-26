@@ -1,0 +1,4441 @@
+{
+  "records": [
+    {
+      "provider_record_id": "200100988",
+      "source_url": "https://iiif.micr.io/mPymb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200100988.jpg",
+      "sha256": "df01bfb99ceec3f7abaa3fd118c42ba9d74d62c13687e3b92ad79c5228af57c6",
+      "bytes": 276980,
+      "width": 1200,
+      "height": 1064,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200105887",
+      "source_url": "https://iiif.micr.io/YAxov/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200105887.jpg",
+      "sha256": "abfe44ca4c16eb591368f9fd93c03abb5948b1860917194b7a729db663844cee",
+      "bytes": 1463989,
+      "width": 3720,
+      "height": 2696,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200105889",
+      "source_url": "https://iiif.micr.io/PbGmB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200105889.jpg",
+      "sha256": "3c6cb9d453311518ea11415cb509a6098bdb3e609a5c0acf200205a6677c9524",
+      "bytes": 231079,
+      "width": 1600,
+      "height": 787,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200105901",
+      "source_url": "https://iiif.micr.io/JdGJx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200105901.jpg",
+      "sha256": "d8d3242000ec6a856a20ded9dc981f2a397a5ef567027d632699a2048601a96a",
+      "bytes": 606479,
+      "width": 2786,
+      "height": 3688,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200105903",
+      "source_url": "https://iiif.micr.io/eUtaz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200105903.jpg",
+      "sha256": "a5446a30dbdd7dda8d4fa0b984d995e8345ef47d49e80ccfab9fb8967d008394",
+      "bytes": 1067780,
+      "width": 2956,
+      "height": 3484,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200105905",
+      "source_url": "https://iiif.micr.io/WTgck/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200105905.jpg",
+      "sha256": "77d3c4ceb63ee9cccf5a0b0e284f034b1f6fccc97f7a9fd2a6371fcdad8e3ed8",
+      "bytes": 1041345,
+      "width": 3360,
+      "height": 5100,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200105971",
+      "source_url": "https://iiif.micr.io/QVEGH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200105971.jpg",
+      "sha256": "15ff4fcb64fb3e87655c91f03515c8683802edc37ad3b6d9a40bb20411638f09",
+      "bytes": 356251,
+      "width": 1600,
+      "height": 1920,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106038",
+      "source_url": "https://iiif.micr.io/hodeb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106038.jpg",
+      "sha256": "9eaae0b84c8ff2a4b4cb496823e6ba3a27267ddc8963eef01ebb725a6ac1b7ea",
+      "bytes": 263077,
+      "width": 1600,
+      "height": 1127,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106077",
+      "source_url": "https://iiif.micr.io/LsoAQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106077.jpg",
+      "sha256": "93f5f2ba3aa0a0fead93a45a461249fd90635e92e9693b7f6720fb9be932b537",
+      "bytes": 3174659,
+      "width": 4678,
+      "height": 5422,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106078",
+      "source_url": "https://iiif.micr.io/vHCad/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106078.jpg",
+      "sha256": "8e1766401997e766856c9a6dfa75cf8fd380444af05a8cebb0040bf48bf1c779",
+      "bytes": 486971,
+      "width": 1600,
+      "height": 1881,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106079",
+      "source_url": "https://iiif.micr.io/pNXoS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106079.jpg",
+      "sha256": "9beddfa7db369facf513849b1a80239efb5184afc7d8b937bd0b975c5af82872",
+      "bytes": 483369,
+      "width": 1600,
+      "height": 2028,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106080",
+      "source_url": "https://iiif.micr.io/HhzPC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106080.jpg",
+      "sha256": "a7253e3ca8e4f808389acffe718f9ecdf9d29927dd601cc70f2ba4ba6f4d69ff",
+      "bytes": 668646,
+      "width": 1600,
+      "height": 2780,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106086",
+      "source_url": "https://iiif.micr.io/nuhhV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106086.jpg",
+      "sha256": "1e7f14ad0112d9cc0388558bc3505e546eeab1b67fd95908c3c81790ce7ee125",
+      "bytes": 348818,
+      "width": 1600,
+      "height": 1914,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106799",
+      "source_url": "https://iiif.micr.io/tdAPv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106799.jpg",
+      "sha256": "a9cdbff9d9dd936cbf1103383022f32f5fc4ab408a9db34bd0072484f81bdd3b",
+      "bytes": 369459,
+      "width": 1600,
+      "height": 1571,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106839",
+      "source_url": "https://iiif.micr.io/ywbNv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106839.jpg",
+      "sha256": "54a57f59bc28b5d99e3d38ff5a5b0d1c36f2f8980610e194b97e027902d56033",
+      "bytes": 335307,
+      "width": 1600,
+      "height": 1113,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106864",
+      "source_url": "https://iiif.micr.io/Yvgrq/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106864.jpg",
+      "sha256": "7c3b19088adb7ca7f698686907f4979da11d90223b9bbe1504cf66d5e1e24916",
+      "bytes": 233325,
+      "width": 1600,
+      "height": 831,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200106865",
+      "source_url": "https://iiif.micr.io/VtGLU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200106865.jpg",
+      "sha256": "bee931d588d21a0de78a51af7e558ab3358051292928c25a1597bd9fdd529fe1",
+      "bytes": 743432,
+      "width": 1600,
+      "height": 2951,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107007",
+      "source_url": "https://iiif.micr.io/PYMfr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107007.jpg",
+      "sha256": "b96770d98378d20ecf86b049e95987a46b199bdb3d2f4c9eefc95c3da362bb23",
+      "bytes": 171591,
+      "width": 1600,
+      "height": 958,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107756",
+      "source_url": "https://iiif.micr.io/hQYKU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107756.jpg",
+      "sha256": "255aff72c2499afad03a6c6c2e49a1d3e51328c1e640d5761d6d3d6516ca6845",
+      "bytes": 300478,
+      "width": 1600,
+      "height": 1239,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107757",
+      "source_url": "https://iiif.micr.io/cdqwm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107757.jpg",
+      "sha256": "c6d20cc1d0c155a0d540465639045ddac0067b4df1e4d6270d848d5f45f20ed3",
+      "bytes": 550288,
+      "width": 1600,
+      "height": 1854,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107761",
+      "source_url": "https://iiif.micr.io/NxFOh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107761.jpg",
+      "sha256": "b381a3029a351d29714fe8ca75b3622a0cc3634e13ff4c0f68545abba1e672e0",
+      "bytes": 400515,
+      "width": 1600,
+      "height": 1069,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107762",
+      "source_url": "https://iiif.micr.io/ClOve/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107762.jpg",
+      "sha256": "92a7fcd68403d96e641b158c6b2f78727a82ae6cbe8b1e17aa4d11ae3896f113",
+      "bytes": 445248,
+      "width": 1600,
+      "height": 1429,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107763",
+      "source_url": "https://iiif.micr.io/PGbAW/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107763.jpg",
+      "sha256": "e2df8f5d3ec34430bce9a1274252b463b87bbc0e5d1ce9a1e5f81f1e7919e873",
+      "bytes": 569565,
+      "width": 1600,
+      "height": 2075,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107764",
+      "source_url": "https://iiif.micr.io/VkLgO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107764.jpg",
+      "sha256": "a339c791c3a3c781e7f5c685eb8a86ea7a7c27757b1f10d56098db3ba8917cca",
+      "bytes": 744881,
+      "width": 1600,
+      "height": 2197,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107767",
+      "source_url": "https://iiif.micr.io/HBBRZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107767.jpg",
+      "sha256": "27c82f91b243ae4cc6d5698b8eb9bff2b911c3a60ffea341c39b02e31b5c1226",
+      "bytes": 362419,
+      "width": 1600,
+      "height": 1879,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107768",
+      "source_url": "https://iiif.micr.io/UxuTv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107768.jpg",
+      "sha256": "b1cca929d44410f32d132fcdddf2671bb674159439f5dd25dba35a6339ba98cc",
+      "bytes": 297738,
+      "width": 1600,
+      "height": 1890,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107770",
+      "source_url": "https://iiif.micr.io/Vsdnv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107770.jpg",
+      "sha256": "2a873fe3101d08a1c54003b669a055ef730be7f675dc00f0d2914e9a17538da6",
+      "bytes": 510623,
+      "width": 1600,
+      "height": 2011,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107771",
+      "source_url": "https://iiif.micr.io/ApPZn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107771.jpg",
+      "sha256": "c0bc4d3abc8c81fb42bcb98cdc3d8a83f2d09b1f69faea1f035959625ad715a2",
+      "bytes": 485514,
+      "width": 1600,
+      "height": 2133,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107772",
+      "source_url": "https://iiif.micr.io/XCRvo/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107772.jpg",
+      "sha256": "2f197074535cd10e3c6a3dd41bdfb2e4bfc03f89faa61e5bc0602cc8ea8db5f3",
+      "bytes": 513500,
+      "width": 1600,
+      "height": 2099,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107773",
+      "source_url": "https://iiif.micr.io/gwTXR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107773.jpg",
+      "sha256": "4bece966bdb3af7e242953f1cac51961498bb692cfe5825b3f3005feb23c46d7",
+      "bytes": 861569,
+      "width": 1600,
+      "height": 2233,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107774",
+      "source_url": "https://iiif.micr.io/LcfFk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107774.jpg",
+      "sha256": "4f4430c7edc4737e8f69291e8276a6d83de2f041d356b8e5d6119fbb59a3b89d",
+      "bytes": 1080555,
+      "width": 1600,
+      "height": 2413,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107776",
+      "source_url": "https://iiif.micr.io/fVXPc/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107776.jpg",
+      "sha256": "b2324d6fea3baba215a96d0bb720253c8270a346bdaaad9f7eb2618a013572a8",
+      "bytes": 492221,
+      "width": 1600,
+      "height": 1761,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107777",
+      "source_url": "https://iiif.micr.io/wfHCM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107777.jpg",
+      "sha256": "ff873aac8d5bc00dd2fccdfb23fcb585e13f8079392d0bc2676421b83a922abf",
+      "bytes": 418503,
+      "width": 1600,
+      "height": 1846,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107778",
+      "source_url": "https://iiif.micr.io/XhPSD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107778.jpg",
+      "sha256": "15e823aa2e174ed91a569be14d4ad8be7d993d6b685015f9c0226f33c1432716",
+      "bytes": 583589,
+      "width": 1600,
+      "height": 1860,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107779",
+      "source_url": "https://iiif.micr.io/NXvPP/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107779.jpg",
+      "sha256": "595d610adce4965a54e0c1313e99e5f8ebe55d5998fe647ac4d216716d56edd6",
+      "bytes": 474119,
+      "width": 1600,
+      "height": 2107,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107780",
+      "source_url": "https://iiif.micr.io/LXvGk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107780.jpg",
+      "sha256": "d7ce5ace6f4c54bf095b87eccd023680829472531286dc2cdc760a4a77d1debf",
+      "bytes": 454684,
+      "width": 1600,
+      "height": 1784,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107781",
+      "source_url": "https://iiif.micr.io/VzZmq/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107781.jpg",
+      "sha256": "0983a953f82c12f0fc4abb693eae4d1b0cdb05648372403ed421ae0c838cbb41",
+      "bytes": 204324,
+      "width": 1600,
+      "height": 839,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107782",
+      "source_url": "https://iiif.micr.io/QJbNB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107782.jpg",
+      "sha256": "446f235fbc56b677495e443d90367c798b45b37dd384574591d2445c0b34ac40",
+      "bytes": 552935,
+      "width": 1600,
+      "height": 1387,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107784",
+      "source_url": "https://iiif.micr.io/kqTHb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107784.jpg",
+      "sha256": "e9353d6e4c80219ed6766b179f3ed258641f3b89cd69369fb38c77f3d2645115",
+      "bytes": 726020,
+      "width": 1600,
+      "height": 1972,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107786",
+      "source_url": "https://iiif.micr.io/bInZk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107786.jpg",
+      "sha256": "e2abcac999d7b5ae76ea88af58f783ae7fab4a9c29c147059ac339444a7a9f0f",
+      "bytes": 422879,
+      "width": 1600,
+      "height": 1996,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107787",
+      "source_url": "https://iiif.micr.io/xtDbB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107787.jpg",
+      "sha256": "69e6b50ea8a7a8905f6281e0e979269a6d090ecffdbf57b4da389dfd36199894",
+      "bytes": 360484,
+      "width": 1600,
+      "height": 1914,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107790",
+      "source_url": "https://iiif.micr.io/whnXa/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107790.jpg",
+      "sha256": "49e91b4b167e74c9bd518063138627e8e079a0c86640997fc9e265f756027643",
+      "bytes": 869155,
+      "width": 1600,
+      "height": 2522,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107792",
+      "source_url": "https://iiif.micr.io/OfGsE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107792.jpg",
+      "sha256": "1e8afe71c4b24a98be91374bcde1c5712bf5d570269761c4493792bd63116849",
+      "bytes": 374626,
+      "width": 1600,
+      "height": 1110,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107793",
+      "source_url": "https://iiif.micr.io/apxGf/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107793.jpg",
+      "sha256": "db2a47e069bcfdc869c3a692011fe7b77d05ee6470af76acc28030e708c28be6",
+      "bytes": 184660,
+      "width": 1600,
+      "height": 955,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107794",
+      "source_url": "https://iiif.micr.io/JMmkC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107794.jpg",
+      "sha256": "ce43ab2c19bef5442293a2826bba1727da9aab93c8224536d41bc987c9f64b48",
+      "bytes": 4975715,
+      "width": 4509,
+      "height": 5895,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107795",
+      "source_url": "https://iiif.micr.io/uykLv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107795.jpg",
+      "sha256": "4364d90192e42fe99c2a032e2b5267da2bccf296d465696d85da567bfba18b05",
+      "bytes": 8168036,
+      "width": 5433,
+      "height": 6941,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107796",
+      "source_url": "https://iiif.micr.io/fBoPg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107796.jpg",
+      "sha256": "2ef222344e29203090190f65ffef61289bbcd92f01756db4ec507a1d0dffaab1",
+      "bytes": 7481725,
+      "width": 5117,
+      "height": 8255,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107797",
+      "source_url": "https://iiif.micr.io/SJSRT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107797.jpg",
+      "sha256": "150dfeb18e9c01e678b1d412dbd22a56e5b3cc78b58e9db5bfbc311eae9a1eb3",
+      "bytes": 5754443,
+      "width": 5468,
+      "height": 7725,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107798",
+      "source_url": "https://iiif.micr.io/MsOUQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107798.jpg",
+      "sha256": "3b30be51f53618684e5fb5b8be9a9fd99f404ca61a6617392d1891395b298bc6",
+      "bytes": 3672838,
+      "width": 5450,
+      "height": 3800,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107808",
+      "source_url": "https://iiif.micr.io/OqNQV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107808.jpg",
+      "sha256": "315973fe7dcd5685780639a0ffcb4a716545192ce655069b67325307f3913daf",
+      "bytes": 3703362,
+      "width": 4468,
+      "height": 6111,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107809",
+      "source_url": "https://iiif.micr.io/fSKcw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107809.jpg",
+      "sha256": "454c3d91b8a5ce7900ca9596605ba261ead56402935459f66b53ab3fc060e27f",
+      "bytes": 4036019,
+      "width": 4537,
+      "height": 5911,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107810",
+      "source_url": "https://iiif.micr.io/DeWrv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107810.jpg",
+      "sha256": "e1f420e316655d8c7458f0fcb5c585f6d27b7b9a8d0d70fa2eb63bdaf2d3d717",
+      "bytes": 4419500,
+      "width": 6171,
+      "height": 4568,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107811",
+      "source_url": "https://iiif.micr.io/qDdZe/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107811.jpg",
+      "sha256": "f2dadf8e53fc521013fad9755301edd4777e4736e2dba4dcd55057237395c238",
+      "bytes": 5116612,
+      "width": 5293,
+      "height": 5931,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107812",
+      "source_url": "https://iiif.micr.io/zRfVE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107812.jpg",
+      "sha256": "26695ac7acdbe7afdf12f00a481d6e61c38e44bcbef4d5c1dd6b709f8af2b8ea",
+      "bytes": 3914180,
+      "width": 4968,
+      "height": 5460,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107815",
+      "source_url": "https://iiif.micr.io/QtBeY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107815.jpg",
+      "sha256": "cdfe59f5634368ec5c2866a736ba659bf18280a62be468ce9f082b6580ca0ed1",
+      "bytes": 6985735,
+      "width": 5641,
+      "height": 6678,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107816",
+      "source_url": "https://iiif.micr.io/QjyVP/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107816.jpg",
+      "sha256": "fa168d009bbd9fa0010f84f33b6f5b7fb05d85876cdedbc2eaed8d9903967d04",
+      "bytes": 5019739,
+      "width": 4551,
+      "height": 6024,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107817",
+      "source_url": "https://iiif.micr.io/hYTso/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107817.jpg",
+      "sha256": "7c1bafd1a11d30913e8c7256c7a62c702310affefe51dca74f292acbb25683cd",
+      "bytes": 4689556,
+      "width": 5458,
+      "height": 6754,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107818",
+      "source_url": "https://iiif.micr.io/NdHpv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107818.jpg",
+      "sha256": "8b1718b5c3a9a467df846b622ef8fd5b33e60d0d94ec8c70fd88f4734a32f766",
+      "bytes": 4247728,
+      "width": 4414,
+      "height": 5568,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107819",
+      "source_url": "https://iiif.micr.io/ZdeHJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107819.jpg",
+      "sha256": "7d554afb8fab3bdacfc3d24cf72b49625314f6529f1ba0579a1ee21d7dbf6b8f",
+      "bytes": 4282696,
+      "width": 4350,
+      "height": 5846,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107820",
+      "source_url": "https://iiif.micr.io/vFvZz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107820.jpg",
+      "sha256": "c93cca09508e897d1906ad7439e960bb85b786a45a4a80f4bdcf0d88917ce682",
+      "bytes": 4030743,
+      "width": 5903,
+      "height": 4105,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107821",
+      "source_url": "https://iiif.micr.io/NFDsy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107821.jpg",
+      "sha256": "2b1f7675ba5ecfbc022b3be6106a5b935d83f7937f8d5559cec69e7790fd72eb",
+      "bytes": 4603666,
+      "width": 6085,
+      "height": 4713,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107822",
+      "source_url": "https://iiif.micr.io/tCDXa/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107822.jpg",
+      "sha256": "86571c31c3199ace787cc9d80c93e4cd9cdc82e93fdd1f3815e40c7e2173f035",
+      "bytes": 4685019,
+      "width": 4425,
+      "height": 5487,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107823",
+      "source_url": "https://iiif.micr.io/LEaJn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107823.jpg",
+      "sha256": "7ef6a27663000e3639721fcdb808e9fb4cec3b049d0d23f82ec871f73b742e66",
+      "bytes": 5399649,
+      "width": 4396,
+      "height": 5339,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107824",
+      "source_url": "https://iiif.micr.io/cWAta/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107824.jpg",
+      "sha256": "dfe0089b3cc8cec168135e5f711c42d864908000a6825d714d5c58b3a80bccce",
+      "bytes": 3411139,
+      "width": 4583,
+      "height": 4994,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107825",
+      "source_url": "https://iiif.micr.io/VrDZC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107825.jpg",
+      "sha256": "2b2f4f6d543595121e16035a02afddca85f48a587f0e42b76894c6524fafb690",
+      "bytes": 4196414,
+      "width": 4706,
+      "height": 5393,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107827",
+      "source_url": "https://iiif.micr.io/wkUPM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107827.jpg",
+      "sha256": "71087cb73e42f4752b51085f314c17263baae96c2b88faa31e548dba666874ba",
+      "bytes": 4431043,
+      "width": 6138,
+      "height": 4567,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107828",
+      "source_url": "https://iiif.micr.io/QtDLU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107828.jpg",
+      "sha256": "a477870d5617c8935d67fb33d7d5e86976ea31473f020d381f4b976361545467",
+      "bytes": 4239179,
+      "width": 4635,
+      "height": 5348,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107829",
+      "source_url": "https://iiif.micr.io/kmGDy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107829.jpg",
+      "sha256": "81393d3b1a8039d987bd377eeb82cebc21f3c0f4c71235dfd3ee50ea33fd9b37",
+      "bytes": 3375056,
+      "width": 4385,
+      "height": 5181,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107832",
+      "source_url": "https://iiif.micr.io/geLfp/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107832.jpg",
+      "sha256": "2ff82758d8ff0dffb53c62034bf80105ba674e3f0f46547092291a07dd1a5e86",
+      "bytes": 1360186,
+      "width": 2796,
+      "height": 3442,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107833",
+      "source_url": "https://iiif.micr.io/isJXx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107833.jpg",
+      "sha256": "0b96475a9baff5635f52e2d02128550553ddc6fa8081cbe7044cc6f9976186c7",
+      "bytes": 1786413,
+      "width": 2960,
+      "height": 3520,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107834",
+      "source_url": "https://iiif.micr.io/fuLxv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107834.jpg",
+      "sha256": "a67559bb712041d2a524b449931b7ef8f782d8d844070d2b8ec9eba923b085eb",
+      "bytes": 1361281,
+      "width": 3000,
+      "height": 3563,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107835",
+      "source_url": "https://iiif.micr.io/DNvYn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107835.jpg",
+      "sha256": "f11a7ebb53afe0b3e6575c652ffecb47112f47dc7004eaef3d414ed6dfda44cb",
+      "bytes": 1611158,
+      "width": 2952,
+      "height": 3522,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107836",
+      "source_url": "https://iiif.micr.io/Rtuvh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107836.jpg",
+      "sha256": "3cc45a18cc77e651e79301ba0b9a49396ab3c84bc41bd3139ae88eb5845de982",
+      "bytes": 2256004,
+      "width": 3000,
+      "height": 3598,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107837",
+      "source_url": "https://iiif.micr.io/OKhyZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107837.jpg",
+      "sha256": "a448ca7674b612a8d03196a7fb114122776460165af21de098149e7a5e7542f0",
+      "bytes": 2682408,
+      "width": 3044,
+      "height": 3936,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107838",
+      "source_url": "https://iiif.micr.io/tFLnu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107838.jpg",
+      "sha256": "145dbf02e066fa4979cd12da916b638ef93e35d468516d5fa665ceceba1e01fc",
+      "bytes": 2419033,
+      "width": 3018,
+      "height": 3886,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107839",
+      "source_url": "https://iiif.micr.io/SfyuC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107839.jpg",
+      "sha256": "d36d9e068b02bf5982859d8ae3c7f3c92b2ecf0f819cd5572e736f6b88ff9066",
+      "bytes": 2408944,
+      "width": 3000,
+      "height": 3690,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107840",
+      "source_url": "https://iiif.micr.io/uNUuk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107840.jpg",
+      "sha256": "e91bcb3d79d9a03c81c391f06f47e41fa98ad93f049da6c18fee9884352f24b1",
+      "bytes": 2735814,
+      "width": 3116,
+      "height": 3906,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107841",
+      "source_url": "https://iiif.micr.io/ucddO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107841.jpg",
+      "sha256": "e8fd521ad45795930dcb48067cdafb7efd309e91948f8b22f296689679ec7a55",
+      "bytes": 230902,
+      "width": 967,
+      "height": 1275,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107842",
+      "source_url": "https://iiif.micr.io/MrLgM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107842.jpg",
+      "sha256": "e21ab7696d16087c07ac93d8b534a93115c94aa0add8e7625cdb6e7392bdf7f5",
+      "bytes": 2411073,
+      "width": 3402,
+      "height": 3944,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107843",
+      "source_url": "https://iiif.micr.io/tLJKd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107843.jpg",
+      "sha256": "2c5daad63ebdfcc6805e63c40856ea13f001b7bcf326045d668aac94eca8078e",
+      "bytes": 2119156,
+      "width": 3000,
+      "height": 3504,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107844",
+      "source_url": "https://iiif.micr.io/wHaEG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107844.jpg",
+      "sha256": "8f07519bbd050a52519fc6cd5e187ad5a3d361d3d9073aca03c40b706c3e49a4",
+      "bytes": 2949384,
+      "width": 3110,
+      "height": 3888,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107845",
+      "source_url": "https://iiif.micr.io/CKDdN/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107845.jpg",
+      "sha256": "e99d777efa074aae34e3e5835ea1d75a83b0aaf58c5312bfc9634390d2382bee",
+      "bytes": 1609793,
+      "width": 3162,
+      "height": 3828,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107846",
+      "source_url": "https://iiif.micr.io/TuZPo/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107846.jpg",
+      "sha256": "5d7c829ae4e70a360e78906c02dd106c2e7d32b06c67257d8fbee10cbb48a04b",
+      "bytes": 234942,
+      "width": 1023,
+      "height": 1282,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107847",
+      "source_url": "https://iiif.micr.io/lfHrS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107847.jpg",
+      "sha256": "f856687fc4d98ed9fd62ee0837c8a791b5b98e88c371792cf90e164d3dac0916",
+      "bytes": 1657615,
+      "width": 3154,
+      "height": 3886,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107848",
+      "source_url": "https://iiif.micr.io/hGEhw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107848.jpg",
+      "sha256": "f7d05ca14df9f27064936b147a6d3c7842b4c4aed0efcb3fa680c46ad909f98d",
+      "bytes": 1826457,
+      "width": 3208,
+      "height": 3854,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107849",
+      "source_url": "https://iiif.micr.io/WyNEI/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107849.jpg",
+      "sha256": "4cf708ab3dbec1a70756c28ef32bb0b11f8c6dd2e0fcc96493551857fdc93c19",
+      "bytes": 1814672,
+      "width": 3178,
+      "height": 3896,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107850",
+      "source_url": "https://iiif.micr.io/mnyan/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107850.jpg",
+      "sha256": "a2e6d4343a010cf3598dba61b40f2312b4b495dffe0c0cd6282deb54566be9b7",
+      "bytes": 1635673,
+      "width": 3118,
+      "height": 3830,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107852",
+      "source_url": "https://iiif.micr.io/LylnT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107852.jpg",
+      "sha256": "3a272689cbe19ffbc467fdc9dfa249238c1883277ab6c0a5113420119e03b221",
+      "bytes": 1105082,
+      "width": 3176,
+      "height": 3816,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107853",
+      "source_url": "https://iiif.micr.io/uuQSH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107853.jpg",
+      "sha256": "2f25b5248c1d5731aad6d60365203545415622729954fddfc53ad79f4c54cedd",
+      "bytes": 2264703,
+      "width": 3701,
+      "height": 4384,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107854",
+      "source_url": "https://iiif.micr.io/bAtnA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107854.jpg",
+      "sha256": "aed7d9b9b910b70eb8be8e32b62cd34e9c4c1e466cdcbb028239eb11b3c1ba5c",
+      "bytes": 5148905,
+      "width": 4843,
+      "height": 6125,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107855",
+      "source_url": "https://iiif.micr.io/pfdny/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107855.jpg",
+      "sha256": "480de435205794f4ec0ed498153524effd73475d6ae56d9065c40a390067a911",
+      "bytes": 2108386,
+      "width": 3657,
+      "height": 4356,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107856",
+      "source_url": "https://iiif.micr.io/TtHDW/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107856.jpg",
+      "sha256": "94e3a0835f4a867538d9fef56f9c3686b375fd552f1f626f49a61b36d8aacade",
+      "bytes": 1955538,
+      "width": 3734,
+      "height": 4364,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107857",
+      "source_url": "https://iiif.micr.io/GSrDt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107857.jpg",
+      "sha256": "291aeed458da0ccdcebc1191d182de491faf9d62a4292ee86d55fc14418059ee",
+      "bytes": 2432571,
+      "width": 3000,
+      "height": 3730,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107858",
+      "source_url": "https://iiif.micr.io/xSzCb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107858.jpg",
+      "sha256": "5a04c485e263463f23b06a707395fc8fbfac5c90a13d5c75ec028a2a38864b3e",
+      "bytes": 2074848,
+      "width": 2968,
+      "height": 3556,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107859",
+      "source_url": "https://iiif.micr.io/xmuDL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107859.jpg",
+      "sha256": "d14c0f4058b7c967883c11dfe6f651d3e85fc9f7bee1967aa993c4eb23b5582e",
+      "bytes": 2799321,
+      "width": 3158,
+      "height": 3924,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107860",
+      "source_url": "https://iiif.micr.io/OcjJh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107860.jpg",
+      "sha256": "f2748143b33124bc22c15d1b4bc750696802b03bac341ca226695bb2795e0332",
+      "bytes": 5198924,
+      "width": 5110,
+      "height": 6157,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107861",
+      "source_url": "https://iiif.micr.io/qIxZA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107861.jpg",
+      "sha256": "d7677fe7af9988f6d743646cae88fc80fff86fc50307d8a61c9f9e1a609c27b4",
+      "bytes": 1874752,
+      "width": 2978,
+      "height": 3514,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107862",
+      "source_url": "https://iiif.micr.io/muhEb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107862.jpg",
+      "sha256": "f2a0be4e48c1ef3550758dd3f2121d7eac1f70335fbfc3869dad937d5e426e2b",
+      "bytes": 4339028,
+      "width": 4616,
+      "height": 5901,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107863",
+      "source_url": "https://iiif.micr.io/RpUTR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107863.jpg",
+      "sha256": "c86898f099625560da3627aa366c81081c452d65f2bc012e2976ae8d7f895209",
+      "bytes": 2507752,
+      "width": 3533,
+      "height": 4171,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107864",
+      "source_url": "https://iiif.micr.io/rVtsv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107864.jpg",
+      "sha256": "fdde5120df5585162b34fe8ee960e5ca70ac9eba328635fb5e7297e8097dea88",
+      "bytes": 2287276,
+      "width": 3665,
+      "height": 4326,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107865",
+      "source_url": "https://iiif.micr.io/Wzxon/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107865.jpg",
+      "sha256": "34856738c7e856f94a530e9b2b21a4fb03db255cf940b914dce3a2904be22ef6",
+      "bytes": 4230117,
+      "width": 4580,
+      "height": 5896,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107866",
+      "source_url": "https://iiif.micr.io/WHKAX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107866.jpg",
+      "sha256": "9dfb7fb45377d9bfe0f9195eaa600463b88d2705b123aa028fbbe1a61bd91fd9",
+      "bytes": 6078314,
+      "width": 5062,
+      "height": 6712,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107867",
+      "source_url": "https://iiif.micr.io/JYXbc/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107867.jpg",
+      "sha256": "e0a54ca5aa66e0c28af1a512e743c64059518cbe6cb11d0b6b9feee8685f0474",
+      "bytes": 1272892,
+      "width": 3192,
+      "height": 3838,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107868",
+      "source_url": "https://iiif.micr.io/vvSrc/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107868.jpg",
+      "sha256": "6835ad446cc6831aa279921db3e55e8ec682978490bfe67e401c8d84a698cf98",
+      "bytes": 1830713,
+      "width": 2962,
+      "height": 3508,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107869",
+      "source_url": "https://iiif.micr.io/pQbcK/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107869.jpg",
+      "sha256": "79ba3ee735dfe3471ec02732a441e5593ed08118ff8e812a1c9712e80056a7fa",
+      "bytes": 4672620,
+      "width": 4855,
+      "height": 6369,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107876",
+      "source_url": "https://iiif.micr.io/RXrQw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107876.jpg",
+      "sha256": "6ac835a86495001dd42878388754d958ff86a3d13b0f11a966a3b676df9a1ebe",
+      "bytes": 2062279,
+      "width": 2602,
+      "height": 3752,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107877",
+      "source_url": "https://iiif.micr.io/DokhU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107877.jpg",
+      "sha256": "ad7c4f6e5e8830aff2ce81f66773e0f944c222d2d7b7f3bdb18c12ffaa897419",
+      "bytes": 5912918,
+      "width": 6278,
+      "height": 4413,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107879",
+      "source_url": "https://iiif.micr.io/hFCRi/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107879.jpg",
+      "sha256": "c3ec847b8875d660d0ca6c581f2b257d98c09406deb6895bd2dccf9fdb4b21d4",
+      "bytes": 1198096,
+      "width": 3982,
+      "height": 1478,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107880",
+      "source_url": "https://iiif.micr.io/YBsRY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107880.jpg",
+      "sha256": "e14a26bf8f64ed344d2e9fdc25e09eca40f5c0350f45a3b0f73663aa5a1d41aa",
+      "bytes": 4382039,
+      "width": 4771,
+      "height": 5521,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107882",
+      "source_url": "https://iiif.micr.io/zXTtV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107882.jpg",
+      "sha256": "16a9134e6974c61c899053f475eccba0cf3af54f3a0a0424c8f65567584410c8",
+      "bytes": 4132603,
+      "width": 4509,
+      "height": 5809,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107883",
+      "source_url": "https://iiif.micr.io/UWhBb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107883.jpg",
+      "sha256": "b2042da9e972a2d967f5599b1cd44a8daea841cfdf41108c615fcc37f865474d",
+      "bytes": 8546351,
+      "width": 6779,
+      "height": 5127,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107884",
+      "source_url": "https://iiif.micr.io/yhhAc/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107884.jpg",
+      "sha256": "2b3f1944902cb3eebc44140fb53ded5b388509341936102a1193b2310c4ab7cd",
+      "bytes": 8518369,
+      "width": 7128,
+      "height": 4660,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107885",
+      "source_url": "https://iiif.micr.io/VbDvr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107885.jpg",
+      "sha256": "73a946cdc19ca834f2853ecfb69d5ea8f79985ac3a0e64ec0c895b6731163bc4",
+      "bytes": 5739265,
+      "width": 6120,
+      "height": 4772,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107886",
+      "source_url": "https://iiif.micr.io/nykBz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107886.jpg",
+      "sha256": "b8b4117cb856189ef578b946dd8756619a3b60828526dc4ff3ef08aaceb3271c",
+      "bytes": 5550174,
+      "width": 5652,
+      "height": 4543,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107887",
+      "source_url": "https://iiif.micr.io/zcGWb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107887.jpg",
+      "sha256": "d400002440b2b83ef3ac94d11cf2cc6e3afcebfc9369821acf5d56f59f2fb3e8",
+      "bytes": 5635003,
+      "width": 6857,
+      "height": 4227,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107888",
+      "source_url": "https://iiif.micr.io/yovsf/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107888.jpg",
+      "sha256": "4349dc3d6d5b89369fa2bf8940d72a6cb1b126cd935b28d0e7f1a1d984495b58",
+      "bytes": 5934520,
+      "width": 5850,
+      "height": 4274,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107889",
+      "source_url": "https://iiif.micr.io/ynTUE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107889.jpg",
+      "sha256": "ca1e456e1a8f01f5c4af27c3c15cea39e19a6c358595423087e140952c5f237b",
+      "bytes": 7425685,
+      "width": 6181,
+      "height": 5336,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107890",
+      "source_url": "https://iiif.micr.io/YnMVy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107890.jpg",
+      "sha256": "d5ef2a18d5aa1935bcca9573cd81a37cc4958b0b49571419034bb608c1d48871",
+      "bytes": 4935204,
+      "width": 4496,
+      "height": 5345,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107891",
+      "source_url": "https://iiif.micr.io/kPsrG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107891.jpg",
+      "sha256": "34aa11a99ca0310606af517e7aef4e82782d16dd27c63d0ca5077fa00909234e",
+      "bytes": 1353177,
+      "width": 3720,
+      "height": 2264,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107916",
+      "source_url": "https://iiif.micr.io/WrGWw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107916.jpg",
+      "sha256": "fe5d78279553d63a5908362c39844853d63e3096c4d58df1d8c904159a614699",
+      "bytes": 1873070,
+      "width": 3690,
+      "height": 4368,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107928",
+      "source_url": "https://iiif.micr.io/PJEZO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107928.jpg",
+      "sha256": "95fcc04f61316196a822d575064c4e9799ccee401e23b2860b8b66285c495c29",
+      "bytes": 5700362,
+      "width": 7133,
+      "height": 5922,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107929",
+      "source_url": "https://iiif.micr.io/cWWQE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107929.jpg",
+      "sha256": "73267917a18fd30d92fd8e134fe817787cc7044b740c3486afed8b8c9ef70817",
+      "bytes": 11300709,
+      "width": 7896,
+      "height": 5350,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107930",
+      "source_url": "https://iiif.micr.io/VzuFK/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107930.jpg",
+      "sha256": "7d1dfa29110d7f0f643f902160dfcf559ad22bf23561947acd551d33d1e648e1",
+      "bytes": 4547812,
+      "width": 4193,
+      "height": 5569,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107931",
+      "source_url": "https://iiif.micr.io/vBXKy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107931.jpg",
+      "sha256": "274a2cc26ee9b20a5eb827e855bdff5af97c0e410825ec260008087b9b18f76d",
+      "bytes": 5131373,
+      "width": 4474,
+      "height": 4759,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107933",
+      "source_url": "https://iiif.micr.io/bAqDD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107933.jpg",
+      "sha256": "d93c28ac156ad92d2002e587521555c679ea279b15ec2546ea2afb9bd2aa7a13",
+      "bytes": 3448467,
+      "width": 5071,
+      "height": 4568,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107934",
+      "source_url": "https://iiif.micr.io/uRWXq/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107934.jpg",
+      "sha256": "a07dc46c33c711ad81540ebb69e909f17db8501c955ea88a49d735c0d168ffe0",
+      "bytes": 8469486,
+      "width": 7620,
+      "height": 5542,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107935",
+      "source_url": "https://iiif.micr.io/hdvov/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107935.jpg",
+      "sha256": "707178146909efe1692b3684ca603a83e5c54ce0e5131d38047626d754a46e7a",
+      "bytes": 9351729,
+      "width": 4765,
+      "height": 6352,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107936",
+      "source_url": "https://iiif.micr.io/pNusU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107936.jpg",
+      "sha256": "5439db4158af89f7e7fcf98d2ad0bf744e19086574f57370b77bedf42c009b13",
+      "bytes": 5956977,
+      "width": 5685,
+      "height": 7431,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107937",
+      "source_url": "https://iiif.micr.io/OzDjp/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107937.jpg",
+      "sha256": "708626eebfb69bfa7a13d2be03f14beb809390b5f0f4bab3cd72161c15ef1d67",
+      "bytes": 3504484,
+      "width": 4670,
+      "height": 5525,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107938",
+      "source_url": "https://iiif.micr.io/pVyUn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107938.jpg",
+      "sha256": "84dc6052971431648ae50d4316cae6051fe5267275679c3c8c8ed5d55a1f2493",
+      "bytes": 5626306,
+      "width": 7345,
+      "height": 5752,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107939",
+      "source_url": "https://iiif.micr.io/wRxpz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107939.jpg",
+      "sha256": "2926e3e20d8688df6902f02076fd20fa4bb62db7f52413df242d3f38c22b7ce6",
+      "bytes": 6315276,
+      "width": 5846,
+      "height": 7225,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107940",
+      "source_url": "https://iiif.micr.io/jjmVB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107940.jpg",
+      "sha256": "f8584dc73795aa34f7d2596f14158d691cddb6128e8abf359a5be77fc693a2eb",
+      "bytes": 4208125,
+      "width": 6058,
+      "height": 4627,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107941",
+      "source_url": "https://iiif.micr.io/YfhED/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107941.jpg",
+      "sha256": "63a2c544c45b5cc03948f33c7f39d2db79f8b6b60432ed77d0f852cb420be78c",
+      "bytes": 6473156,
+      "width": 5952,
+      "height": 7098,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107942",
+      "source_url": "https://iiif.micr.io/FeurF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107942.jpg",
+      "sha256": "4281f80f0caf597c84d04c98416eb3c581766b358c5618325e67ab49cdeab927",
+      "bytes": 5248877,
+      "width": 5684,
+      "height": 7432,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107943",
+      "source_url": "https://iiif.micr.io/OgAJr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107943.jpg",
+      "sha256": "e910d3236cf648dc2a11d0c57693820ec1100940db2814cfe0ed409e6ded865c",
+      "bytes": 2324111,
+      "width": 5946,
+      "height": 4430,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107944",
+      "source_url": "https://iiif.micr.io/ryBbQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107944.jpg",
+      "sha256": "64b84ac734767209687af264a681a51d84da380f7d4a44a880c1309b69c7424c",
+      "bytes": 4490758,
+      "width": 4770,
+      "height": 5867,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107945",
+      "source_url": "https://iiif.micr.io/myXdn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107945.jpg",
+      "sha256": "2af2e25d3322c0bf01d0159da57e9d33fcd9fea0fe69ee2bb1334766f07eb526",
+      "bytes": 8678523,
+      "width": 5626,
+      "height": 7509,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107946",
+      "source_url": "https://iiif.micr.io/zQBxS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107946.jpg",
+      "sha256": "3be280b9086cd469bbe159dfa2d9aeede7f5370a6f374b361bd0ce7bf51484cc",
+      "bytes": 2571163,
+      "width": 3869,
+      "height": 4874,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107947",
+      "source_url": "https://iiif.micr.io/CNSQg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107947.jpg",
+      "sha256": "c7a5b284429aae4055b1ec7b40fa47d9885ab8fed73c363016ecec868a6678ea",
+      "bytes": 8951796,
+      "width": 5808,
+      "height": 7273,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107948",
+      "source_url": "https://iiif.micr.io/xQTZV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107948.jpg",
+      "sha256": "df72e8ca228a507266e66af50c91754bae7830344a763dcbec75619a91c3754e",
+      "bytes": 4460927,
+      "width": 5972,
+      "height": 3855,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107949",
+      "source_url": "https://iiif.micr.io/rkbGp/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107949.jpg",
+      "sha256": "4063485ca88cf52a5c52aa388c02d02d0b17372705cf9cc854e2b94fd5ea9b4e",
+      "bytes": 4590263,
+      "width": 5864,
+      "height": 3587,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107950",
+      "source_url": "https://iiif.micr.io/ATzRy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107950.jpg",
+      "sha256": "4dfad5726fa3a7f453329e6652c54aab2e08d7390fa71a7c853ffe20e577023e",
+      "bytes": 4152510,
+      "width": 6038,
+      "height": 3721,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107951",
+      "source_url": "https://iiif.micr.io/erkDb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107951.jpg",
+      "sha256": "7bd7c27e908bca5a6f11afd87337db7dc38a0ba40eb64f1389a633ea03388a17",
+      "bytes": 4950063,
+      "width": 5707,
+      "height": 3749,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107952",
+      "source_url": "https://iiif.micr.io/wqcDn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107952.jpg",
+      "sha256": "a403823dbcb9a852d55d81351ea636d48fee34aea3b962f553dfd6519ab1ae0d",
+      "bytes": 8906347,
+      "width": 5977,
+      "height": 7068,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107953",
+      "source_url": "https://iiif.micr.io/EJsKB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107953.jpg",
+      "sha256": "0f6b3322d874e46aa253da8dc0d5f6c71410713413671e3a4e8b110a1d061890",
+      "bytes": 7607542,
+      "width": 6823,
+      "height": 5204,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107954",
+      "source_url": "https://iiif.micr.io/CUAVx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107954.jpg",
+      "sha256": "c120d783a9a2316c9099bc12ea807d76de67af1ea3afbc807d2e41c7c0f9476f",
+      "bytes": 6827107,
+      "width": 4989,
+      "height": 8468,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107955",
+      "source_url": "https://iiif.micr.io/ByXXO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107955.jpg",
+      "sha256": "eb71d5348a5653949aead1c64381bac1365b387717b23e4ef4a9b68671a42d3a",
+      "bytes": 4282411,
+      "width": 5114,
+      "height": 4990,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107958",
+      "source_url": "https://iiif.micr.io/dNkMA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107958.jpg",
+      "sha256": "91a58dd0c7b2ee2e79515cb44bb9b803daa2587152c0251f2d542ad39d07a184",
+      "bytes": 3386892,
+      "width": 4468,
+      "height": 5010,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107959",
+      "source_url": "https://iiif.micr.io/XWEFp/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107959.jpg",
+      "sha256": "8c31b4bd385db47393602e7b7bc196744e79b8e160088b018f45627f9bb6d99f",
+      "bytes": 11266813,
+      "width": 7021,
+      "height": 5952,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107960",
+      "source_url": "https://iiif.micr.io/AwhZO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107960.jpg",
+      "sha256": "ba984f0559b0f22bf6eca949d1c59f5f07da5f9e03568fc38d22cc0ec059f4a5",
+      "bytes": 5823426,
+      "width": 4342,
+      "height": 5284,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107963",
+      "source_url": "https://iiif.micr.io/DVZRG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107963.jpg",
+      "sha256": "6407cbf7d36e2a157de360bbf28cf230cd2d86f74555a3f411138843587e65c0",
+      "bytes": 4244059,
+      "width": 3642,
+      "height": 6160,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107964",
+      "source_url": "https://iiif.micr.io/oYVBj/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107964.jpg",
+      "sha256": "486e73bb59bc20411506fc48b80996b70bf102604625b1f35cec1d2f036a5d79",
+      "bytes": 4311654,
+      "width": 4406,
+      "height": 5542,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107965",
+      "source_url": "https://iiif.micr.io/fjTNG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107965.jpg",
+      "sha256": "905108e1025f3b5e366f6c8383e0eddc5a68af8ccafc0daa55b12271b0d49e72",
+      "bytes": 4056081,
+      "width": 6385,
+      "height": 4157,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107966",
+      "source_url": "https://iiif.micr.io/xgUtS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107966.jpg",
+      "sha256": "eb48aec39d83be53ff5ba4d0a77932567d2ce8fbad088c176bb570bbf059fdaa",
+      "bytes": 4473978,
+      "width": 5710,
+      "height": 4406,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107967",
+      "source_url": "https://iiif.micr.io/vkhWE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107967.jpg",
+      "sha256": "1c83c301b27a8e1acaed161384d6b1de0a04e45accc0926b459730f78b252967",
+      "bytes": 5681768,
+      "width": 7229,
+      "height": 5425,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107968",
+      "source_url": "https://iiif.micr.io/yuZXn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107968.jpg",
+      "sha256": "edc06e6a32d76b386340a654b39eb68261f5aa84d424a86d2b5f69fb53f53404",
+      "bytes": 4595564,
+      "width": 6351,
+      "height": 4231,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107969",
+      "source_url": "https://iiif.micr.io/DbjAO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107969.jpg",
+      "sha256": "b6a3c6e563a8db435721d9b0729cc11ad43af8b7798a4462fefb4dd6c7914013",
+      "bytes": 7292283,
+      "width": 4884,
+      "height": 6112,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107971",
+      "source_url": "https://iiif.micr.io/nWJyj/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107971.jpg",
+      "sha256": "994448a5629fceb6d918b6563b8984f1fc066fb30ed1d611b5ad3d5c43830da0",
+      "bytes": 4969340,
+      "width": 4986,
+      "height": 6636,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107972",
+      "source_url": "https://iiif.micr.io/PGbwL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107972.jpg",
+      "sha256": "28e765826fcab3bd460388e371c73e2f0105a4939b7f8b375473c7ac8504c7db",
+      "bytes": 2020675,
+      "width": 2718,
+      "height": 3230,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107974",
+      "source_url": "https://iiif.micr.io/gjksg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107974.jpg",
+      "sha256": "8b03b92877e4dcf62a4823bcc99a84430ea1901f6244e8838857dc28f79f6f88",
+      "bytes": 4399477,
+      "width": 5710,
+      "height": 3332,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107975",
+      "source_url": "https://iiif.micr.io/mMjMX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107975.jpg",
+      "sha256": "6d0c851cf71cd87642c045b41d34130f2927b04ad5abfe4f9a44b890e7c6521e",
+      "bytes": 5321651,
+      "width": 4615,
+      "height": 5585,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107976",
+      "source_url": "https://iiif.micr.io/CWuDt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107976.jpg",
+      "sha256": "b9cdf7172bfeb1ef6c6eafd7bc6ae5ac875add82b6b76b19302703cd15503e55",
+      "bytes": 3408698,
+      "width": 4570,
+      "height": 5252,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107977",
+      "source_url": "https://iiif.micr.io/RxZZh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107977.jpg",
+      "sha256": "74c8f069ba8e576f14b168849a51dcaabe8c61563f691050150aca6d3f61d6a2",
+      "bytes": 7128858,
+      "width": 5133,
+      "height": 5303,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107978",
+      "source_url": "https://iiif.micr.io/RPjbD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107978.jpg",
+      "sha256": "463e8bd1bea9d9943b11a2f89b0292a6eb543c8c734af0bb7a124d40c615442f",
+      "bytes": 5357576,
+      "width": 6307,
+      "height": 4168,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107979",
+      "source_url": "https://iiif.micr.io/pKWWE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107979.jpg",
+      "sha256": "daf61f5ff82d8d24d595ef0081b4ffadaa1486cfe5ed2904efafbb7de2fa83f6",
+      "bytes": 3464353,
+      "width": 4907,
+      "height": 5705,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107980",
+      "source_url": "https://iiif.micr.io/tkrHY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107980.jpg",
+      "sha256": "c2db6fc79f4868098125f917a2a80265136c838ddc59146b53a3cd38430e9c61",
+      "bytes": 5145771,
+      "width": 5590,
+      "height": 4234,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107981",
+      "source_url": "https://iiif.micr.io/zkwTG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107981.jpg",
+      "sha256": "e580dc86a08caf3bcfa0f9abceab61149029c3b0c55f0f7f9064dc46aa76117e",
+      "bytes": 4527825,
+      "width": 4129,
+      "height": 5118,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107983",
+      "source_url": "https://iiif.micr.io/wYOLd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107983.jpg",
+      "sha256": "c17d0a067cf847759bbe40ad64b0adae058d875e5c7428a862c15171a009e600",
+      "bytes": 4881779,
+      "width": 5877,
+      "height": 4101,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107984",
+      "source_url": "https://iiif.micr.io/yyaLS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107984.jpg",
+      "sha256": "ccfdd2122ade3da8169d6625e3f1f6f7f1a25d987c2a279233658872cc6a6048",
+      "bytes": 4028818,
+      "width": 5659,
+      "height": 3288,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107985",
+      "source_url": "https://iiif.micr.io/VGOCe/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107985.jpg",
+      "sha256": "7c70b4a57500a300da52d70c2c9aa0fa8b8030bad8683ab305b91bea0ad1adc2",
+      "bytes": 5570219,
+      "width": 5186,
+      "height": 4495,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107986",
+      "source_url": "https://iiif.micr.io/BGQRV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107986.jpg",
+      "sha256": "92eb9277ee0e4f4c9895a7e03c5351dd92afe3f074a264a938118b4fcc99c238",
+      "bytes": 5898116,
+      "width": 5537,
+      "height": 7629,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107987",
+      "source_url": "https://iiif.micr.io/xErjU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107987.jpg",
+      "sha256": "f8a01810443625483cc03062000cb778a8b0e28929cd936ff180c4947718cb64",
+      "bytes": 4589480,
+      "width": 4951,
+      "height": 4322,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107988",
+      "source_url": "https://iiif.micr.io/PHqQR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107988.jpg",
+      "sha256": "9e56b5c49cd07c18c26a18108ee7c9c36a1b08bd52ba99d86840c63ec7e24f2b",
+      "bytes": 4462973,
+      "width": 5977,
+      "height": 3322,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107989",
+      "source_url": "https://iiif.micr.io/CgesX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107989.jpg",
+      "sha256": "61a4099a528c1634489bf259d1b7dfd5a3763aa5d53b63f07acd5c21990672fd",
+      "bytes": 7589680,
+      "width": 5207,
+      "height": 6825,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107990",
+      "source_url": "https://iiif.micr.io/BPTNf/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107990.jpg",
+      "sha256": "f20ad26484a582460574463d5efc73913fef8c82a1017e8f99145ffb4981c7d7",
+      "bytes": 4819662,
+      "width": 6347,
+      "height": 3993,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107991",
+      "source_url": "https://iiif.micr.io/NRfCv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107991.jpg",
+      "sha256": "942cad861a09b02a9e2ae23df090fb90e5375e229247121db7240d4601b1e9da",
+      "bytes": 3946933,
+      "width": 6231,
+      "height": 4428,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107992",
+      "source_url": "https://iiif.micr.io/mDaro/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107992.jpg",
+      "sha256": "3121a14bceb1bef2e9961446b1080fd04d702729816da4e71445d150ca00e8c9",
+      "bytes": 4478146,
+      "width": 4365,
+      "height": 5627,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107993",
+      "source_url": "https://iiif.micr.io/VrJDu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107993.jpg",
+      "sha256": "02f30c44a9ae34ceb7de66e81a7f8a0809a7215c4dd12c7d97207f81e429c7fc",
+      "bytes": 6406313,
+      "width": 5132,
+      "height": 6316,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107994",
+      "source_url": "https://iiif.micr.io/ZwFav/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107994.jpg",
+      "sha256": "cecb58110a15c54043b488c9d2a7fb01373f1cd4aa5001f59d54f050e64650ce",
+      "bytes": 6268616,
+      "width": 4350,
+      "height": 5193,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107997",
+      "source_url": "https://iiif.micr.io/zpbFV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107997.jpg",
+      "sha256": "0b0733021fa97aa757b4caab3f240044ade674c142de5c2bc5a666b6b7661379",
+      "bytes": 3566919,
+      "width": 4632,
+      "height": 5377,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107998",
+      "source_url": "https://iiif.micr.io/agWzx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107998.jpg",
+      "sha256": "bab68a34b67473fb9700811159d078ab770e01981ff3144067ec192a3357a899",
+      "bytes": 4273610,
+      "width": 4908,
+      "height": 3582,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200107999",
+      "source_url": "https://iiif.micr.io/QQSGo/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200107999.jpg",
+      "sha256": "91433f60179dac5956a92a67ee1cf28f7935646703f5c3fec3bf836bed676bb8",
+      "bytes": 3748360,
+      "width": 5005,
+      "height": 6734,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108000",
+      "source_url": "https://iiif.micr.io/Kmqnt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108000.jpg",
+      "sha256": "ebbf735f3e3d1a2a919128996db4cba03467ef6dd3015638bdf5013964b59669",
+      "bytes": 4621791,
+      "width": 6978,
+      "height": 4664,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108001",
+      "source_url": "https://iiif.micr.io/pAjvX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108001.jpg",
+      "sha256": "119c8c987f0d7d9ee778d4ed7f97738fc283887bb8e736c3be4b32c55539e075",
+      "bytes": 5877425,
+      "width": 6338,
+      "height": 4602,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108002",
+      "source_url": "https://iiif.micr.io/pWxcX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108002.jpg",
+      "sha256": "89f0649385ece3397c93c1ddb8c3fb6495fe31ad661568bbf162a091151ebcdf",
+      "bytes": 5236558,
+      "width": 4533,
+      "height": 5791,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108003",
+      "source_url": "https://iiif.micr.io/eFySd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108003.jpg",
+      "sha256": "702ba199c3f078b3042e351550a0e931524e39c28546305e3af2f032f48bc549",
+      "bytes": 4656334,
+      "width": 6165,
+      "height": 4616,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108004",
+      "source_url": "https://iiif.micr.io/mygdE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108004.jpg",
+      "sha256": "641d0bb2c9f21108d52185685a7a62add32a16322ed580a3f740ede26666408e",
+      "bytes": 4090774,
+      "width": 6088,
+      "height": 4537,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108005",
+      "source_url": "https://iiif.micr.io/ZSgbb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108005.jpg",
+      "sha256": "1af68029c73dfe34eda5bdceee86c069dbdbaa7497324249b2a50ff8626eaf22",
+      "bytes": 3313568,
+      "width": 4098,
+      "height": 5363,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108006",
+      "source_url": "https://iiif.micr.io/rCoVs/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108006.jpg",
+      "sha256": "029426addfc4976b4f89b05260ce5bb971f53b18b3dd879edd1e7b9cfb880fb1",
+      "bytes": 4843005,
+      "width": 6111,
+      "height": 4506,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108007",
+      "source_url": "https://iiif.micr.io/TYTyL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108007.jpg",
+      "sha256": "dbef60225893cd7a6a7ef37c212bf134adbb1e5656538671a465fcea3b957616",
+      "bytes": 3549606,
+      "width": 4753,
+      "height": 4542,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108008",
+      "source_url": "https://iiif.micr.io/psrnF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108008.jpg",
+      "sha256": "59069fe28cfedb4c08be6a76ce68ab001254c1819d13de84972de280566b24b2",
+      "bytes": 7145118,
+      "width": 6159,
+      "height": 4347,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108010",
+      "source_url": "https://iiif.micr.io/aUjUX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108010.jpg",
+      "sha256": "73b1e147538ac0c3962f5ebfaedb5e6d0e8c724f57898b8667f96ed75b6682ba",
+      "bytes": 5466502,
+      "width": 6793,
+      "height": 5016,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108011",
+      "source_url": "https://iiif.micr.io/kJorn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108011.jpg",
+      "sha256": "179167a1905cacee130c788c4f36f19d2ddb4bb8630b5f2961d18639131aa31b",
+      "bytes": 6327445,
+      "width": 3614,
+      "height": 6689,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108012",
+      "source_url": "https://iiif.micr.io/SbsFC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108012.jpg",
+      "sha256": "96e83e1703ee6a117e6e16db5a9fd82aad224b4b6973a8a0f04f677efb936ae6",
+      "bytes": 7791250,
+      "width": 5876,
+      "height": 4619,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108013",
+      "source_url": "https://iiif.micr.io/RZoQg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108013.jpg",
+      "sha256": "0bd9c536fbbe39d7cac7cf59f83e21e52636d4bc6b9aa7edc9926987b35846c4",
+      "bytes": 5308197,
+      "width": 4651,
+      "height": 5821,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108015",
+      "source_url": "https://iiif.micr.io/ZFTDv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108015.jpg",
+      "sha256": "6ca26bdb09ab18ee50f3d82697a93bd759ef20fdaed0a106a3e9e79a0f6d967a",
+      "bytes": 5881411,
+      "width": 5103,
+      "height": 6299,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108016",
+      "source_url": "https://iiif.micr.io/NpNam/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108016.jpg",
+      "sha256": "c2151a1718e6deb36881bf656a40ba7d261ce575094f15ebfb3e6b5aafc38b53",
+      "bytes": 4092544,
+      "width": 4673,
+      "height": 4775,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108017",
+      "source_url": "https://iiif.micr.io/quBNB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108017.jpg",
+      "sha256": "41438844f8328b4659bb69da9b5cefc29e1d89ddd77cee10adcd0cb45a4205a6",
+      "bytes": 6653198,
+      "width": 5137,
+      "height": 6832,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108018",
+      "source_url": "https://iiif.micr.io/MboOL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108018.jpg",
+      "sha256": "ecb6929f7d6dec775a23cc14cb55f0aa8a9fb681a2ea9f907089635ac74d4ceb",
+      "bytes": 7272031,
+      "width": 6461,
+      "height": 5328,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108019",
+      "source_url": "https://iiif.micr.io/dbqPx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108019.jpg",
+      "sha256": "e33333e90736abc851e614bd7b758eabd94de76db0757336c29352d1d1960d29",
+      "bytes": 1274695,
+      "width": 2770,
+      "height": 3560,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108020",
+      "source_url": "https://iiif.micr.io/UncUO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108020.jpg",
+      "sha256": "ab234da9b5cfbcd2d720e37a2fb0cc2e5284ccf7596911d2aebdd164a2a121ef",
+      "bytes": 3502827,
+      "width": 4378,
+      "height": 4828,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108021",
+      "source_url": "https://iiif.micr.io/bEzBe/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108021.jpg",
+      "sha256": "d10bc23e6eb4a226ea880fff048dcd1bb31813c9c2a6d6ef402a5b44c4e700b5",
+      "bytes": 4454028,
+      "width": 5716,
+      "height": 4438,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108022",
+      "source_url": "https://iiif.micr.io/mtKTt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108022.jpg",
+      "sha256": "b74658921e57ce1e6a0780095f6a9ef302493b989e569fb6c2623e4d60f0eea6",
+      "bytes": 461607,
+      "width": 1600,
+      "height": 1838,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108023",
+      "source_url": "https://iiif.micr.io/BORuG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108023.jpg",
+      "sha256": "43b72da7e3e89a6092eebf82763aa4052b83137b2582d31415e4c63db4e41a60",
+      "bytes": 6384646,
+      "width": 6597,
+      "height": 4818,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108024",
+      "source_url": "https://iiif.micr.io/pAJRo/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108024.jpg",
+      "sha256": "cfd53179b4c00d2db64cf9e1d3ed4b2284004933c3ac2029ea7af421726ad446",
+      "bytes": 2997380,
+      "width": 4217,
+      "height": 5666,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108026",
+      "source_url": "https://iiif.micr.io/BtjjQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108026.jpg",
+      "sha256": "4af9c20a401d0508e5d674016b7330cca874d35b9f2f81dd19a02840875db513",
+      "bytes": 6159679,
+      "width": 4991,
+      "height": 6229,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108027",
+      "source_url": "https://iiif.micr.io/mNPoJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108027.jpg",
+      "sha256": "5328dd7c2a3db73a6aca055c6364cca7616868a593e31e6dfcdc75f61212cce5",
+      "bytes": 6037890,
+      "width": 4324,
+      "height": 5457,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108028",
+      "source_url": "https://iiif.micr.io/NuVts/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108028.jpg",
+      "sha256": "c183f0c2cb3bbf5858a5272d280154ba9ee0fca52ede633ed40badb2f1a9ea50",
+      "bytes": 5268606,
+      "width": 4098,
+      "height": 5241,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108029",
+      "source_url": "https://iiif.micr.io/nGYkB/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108029.jpg",
+      "sha256": "b16006f10f98e82947fa7cd0f0ca813d36c274c70cad771dac4f76d31f4e6f67",
+      "bytes": 3221186,
+      "width": 4176,
+      "height": 5401,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108030",
+      "source_url": "https://iiif.micr.io/VgCMJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108030.jpg",
+      "sha256": "04470aa54d9dc022cade77a2fa1622de215a2c57c32fddc02985360885179f10",
+      "bytes": 6193497,
+      "width": 4917,
+      "height": 6314,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108031",
+      "source_url": "https://iiif.micr.io/MvsuJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108031.jpg",
+      "sha256": "9e57fd9377790b5d60c2cbdcf532b268e9edc9840a4d089fe3f753effcfbe635",
+      "bytes": 5181472,
+      "width": 5592,
+      "height": 4199,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108032",
+      "source_url": "https://iiif.micr.io/PvCmJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108032.jpg",
+      "sha256": "73d413047e971759ac90ed1ca0e91d25fe744cb9c80a7f7ab31d4966a76bc087",
+      "bytes": 605053,
+      "width": 1600,
+      "height": 2037,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108033",
+      "source_url": "https://iiif.micr.io/zewMg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108033.jpg",
+      "sha256": "699d50b7ef76c06d830d868d232a11a16ead9647b1461b3b63e8203d47774b95",
+      "bytes": 5207996,
+      "width": 4836,
+      "height": 6112,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108034",
+      "source_url": "https://iiif.micr.io/OvWst/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108034.jpg",
+      "sha256": "a63c9ea0784c8a2db1a0fd83f6929189c8b3db2fefa3e07b7cad55812eeb6c8b",
+      "bytes": 5219837,
+      "width": 6278,
+      "height": 3860,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108035",
+      "source_url": "https://iiif.micr.io/dRQhZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108035.jpg",
+      "sha256": "3f5e8783229a4394d307ebc8d5aa73b7a36cd9138d98760ca86ca0fcf7b5ad90",
+      "bytes": 4321855,
+      "width": 4807,
+      "height": 6193,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108036",
+      "source_url": "https://iiif.micr.io/pUqCQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108036.jpg",
+      "sha256": "6b600c3e85d79488422b2db57223f7f4e723426a915edbc01613e071b2d21a95",
+      "bytes": 5269921,
+      "width": 5902,
+      "height": 4282,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108037",
+      "source_url": "https://iiif.micr.io/DEfhZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108037.jpg",
+      "sha256": "7f2bae7a8adc0a7914c7943f409999666000d7654976379dbd04d3a3846f8262",
+      "bytes": 4925283,
+      "width": 5626,
+      "height": 4024,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108038",
+      "source_url": "https://iiif.micr.io/buEmQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108038.jpg",
+      "sha256": "efb24d42db257acc7b2d2ccde1a53d66d6eb0d2e9426bf7ac4b38c16180a0caf",
+      "bytes": 5921141,
+      "width": 5973,
+      "height": 4390,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108039",
+      "source_url": "https://iiif.micr.io/cQdcu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108039.jpg",
+      "sha256": "5a255f81028d5a8b746e089ba948cc47a72c70298c41e41b38ca8598a218ef76",
+      "bytes": 5711097,
+      "width": 4139,
+      "height": 5271,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108040",
+      "source_url": "https://iiif.micr.io/HQVWe/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108040.jpg",
+      "sha256": "c78ca6bdd80b2909dedf23e25230f3df3feaf8d9f145464e69c9f60d6a35810f",
+      "bytes": 736007,
+      "width": 1600,
+      "height": 1996,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108041",
+      "source_url": "https://iiif.micr.io/RpBvj/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108041.jpg",
+      "sha256": "3c69fa79cc5b64508e6bc36b01c5bbae09d24f4a53c9d8400f74f58e9f1d3dca",
+      "bytes": 311474,
+      "width": 1600,
+      "height": 1158,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108042",
+      "source_url": "https://iiif.micr.io/ZdQxh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108042.jpg",
+      "sha256": "f7a5d9548ef0fcb3516aa19694a0bb503e5d461fc5a33eb932ff6cd9cc5b6b40",
+      "bytes": 4968359,
+      "width": 4878,
+      "height": 6086,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108043",
+      "source_url": "https://iiif.micr.io/MSqWv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108043.jpg",
+      "sha256": "849b4df28ff2c1b02e37f16d6f38e3b298d8eec5cb7f8aa75809eb31f18db02a",
+      "bytes": 765364,
+      "width": 1600,
+      "height": 2044,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108044",
+      "source_url": "https://iiif.micr.io/BhLkW/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108044.jpg",
+      "sha256": "01fb393de4317efc67095087ae606665e2aefe49ceae82b18b0289bc292b1b1e",
+      "bytes": 594001,
+      "width": 1600,
+      "height": 2039,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108045",
+      "source_url": "https://iiif.micr.io/AyOnC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108045.jpg",
+      "sha256": "4da6ffc4495e0c874cdc3ffb2a675cef67515426f6aa9f3d54cd9282ea6ce1c8",
+      "bytes": 5135900,
+      "width": 4209,
+      "height": 5362,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108046",
+      "source_url": "https://iiif.micr.io/RVPaG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108046.jpg",
+      "sha256": "77a56a2edc5470ea64cd7c85a71195709440810feb0295223b6f3d227127722f",
+      "bytes": 573945,
+      "width": 1600,
+      "height": 2038,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108047",
+      "source_url": "https://iiif.micr.io/DouHt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108047.jpg",
+      "sha256": "80d6e460980cd4d4331956dff5f750dab3af559377b7fc3a2711a43dda9f07d2",
+      "bytes": 635580,
+      "width": 1600,
+      "height": 2001,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108048",
+      "source_url": "https://iiif.micr.io/YGUhR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108048.jpg",
+      "sha256": "29c816e232ade75a1b9b7b8f1c8b943909ffa93822c4ec8e3118a27bb6743f78",
+      "bytes": 5512058,
+      "width": 4845,
+      "height": 6300,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108049",
+      "source_url": "https://iiif.micr.io/dXtqv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108049.jpg",
+      "sha256": "aa8aaf67493663cfbfb3a745c8db5f0b61bb21ea87f1f07b684ab3c71c46538f",
+      "bytes": 262299,
+      "width": 1600,
+      "height": 1203,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108050",
+      "source_url": "https://iiif.micr.io/HaWus/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108050.jpg",
+      "sha256": "c11e658fb3db6463cb920ffa9f094d64145b97c0593b5ac05f9a3c6c98bc4ac9",
+      "bytes": 540073,
+      "width": 1600,
+      "height": 2141,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108051",
+      "source_url": "https://iiif.micr.io/DCnbX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108051.jpg",
+      "sha256": "8237c13622240517609c774c03b60e14610fa740a6e44061f2e088e3b4a113d1",
+      "bytes": 263340,
+      "width": 1600,
+      "height": 972,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108052",
+      "source_url": "https://iiif.micr.io/UwbXd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108052.jpg",
+      "sha256": "3754881cb63563c5af5925607171eaab488bbf0166e9d73bca4cec27d66b7b5a",
+      "bytes": 557671,
+      "width": 1600,
+      "height": 2037,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108053",
+      "source_url": "https://iiif.micr.io/UdjMD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108053.jpg",
+      "sha256": "b38727dbe89c6b3a5cd703564de17b07aa400c4665832e2d83704e2cbe69b7d2",
+      "bytes": 861648,
+      "width": 1600,
+      "height": 2050,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108054",
+      "source_url": "https://iiif.micr.io/fMoCm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108054.jpg",
+      "sha256": "9781adcf0ab67ae37e0e3a61a6b0d5cb723d291715d48d5f71a537e95fa45b88",
+      "bytes": 263003,
+      "width": 1600,
+      "height": 1218,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108055",
+      "source_url": "https://iiif.micr.io/FStMD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108055.jpg",
+      "sha256": "265c540ca9f602ed5f04309d491ce8cd57fbb8ac1ffc8ebc7a81162fb4f9aa7d",
+      "bytes": 605189,
+      "width": 1600,
+      "height": 1988,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108056",
+      "source_url": "https://iiif.micr.io/eReUy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108056.jpg",
+      "sha256": "7f6e819e74a434940cd4b17ee3473c05400d7b8630666558151e582917b4a521",
+      "bytes": 486483,
+      "width": 1600,
+      "height": 2037,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108057",
+      "source_url": "https://iiif.micr.io/kevVR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108057.jpg",
+      "sha256": "c2dd08467650f50c79e3b32d8c51e6f971cb3d4add04f74af081d545070abd0b",
+      "bytes": 558421,
+      "width": 1600,
+      "height": 2053,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108058",
+      "source_url": "https://iiif.micr.io/tvJAS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108058.jpg",
+      "sha256": "da390cfadb7a8dd197f7bd6f6d7118c7ac5a4106d1d2f90c432de21a7b18400e",
+      "bytes": 610479,
+      "width": 1600,
+      "height": 2052,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108059",
+      "source_url": "https://iiif.micr.io/oefzT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108059.jpg",
+      "sha256": "2eb2d6a5d30d7aa4f9d05b75891c864e7192d50b2bf902baaface805aba1e7ec",
+      "bytes": 640859,
+      "width": 1600,
+      "height": 2029,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108060",
+      "source_url": "https://iiif.micr.io/QvExu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108060.jpg",
+      "sha256": "b9e3a797cc6b1480cca169521725281fb257221c55666438af86cd5e53c77808",
+      "bytes": 411664,
+      "width": 1600,
+      "height": 1210,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108061",
+      "source_url": "https://iiif.micr.io/LNDYn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108061.jpg",
+      "sha256": "c3b118e053d70c0d3e21087ca328311f9d89f914f881309adca966dc0899f0b5",
+      "bytes": 673739,
+      "width": 1600,
+      "height": 2019,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108062",
+      "source_url": "https://iiif.micr.io/ZAEQK/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108062.jpg",
+      "sha256": "600cba1d022f2c020c898fd521473a5b7fc9f072b9916093f0306ab71d513722",
+      "bytes": 619583,
+      "width": 1600,
+      "height": 2042,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108063",
+      "source_url": "https://iiif.micr.io/HrEuh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108063.jpg",
+      "sha256": "7cc205f024a534416fa5995e7e71537c841ea875f6a092fb0212e45cae0410f9",
+      "bytes": 810929,
+      "width": 1600,
+      "height": 2053,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108064",
+      "source_url": "https://iiif.micr.io/kEgKy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108064.jpg",
+      "sha256": "a9572a7949da5e89dad732df09d894822a7910225848a17a2881e59ff36d4071",
+      "bytes": 627461,
+      "width": 1600,
+      "height": 1964,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108065",
+      "source_url": "https://iiif.micr.io/HuKBe/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108065.jpg",
+      "sha256": "a80534f9613a9b442a62a2208042c3ccf253bc201aa5215fae221de59bee4080",
+      "bytes": 489808,
+      "width": 1600,
+      "height": 2141,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108066",
+      "source_url": "https://iiif.micr.io/kYesm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108066.jpg",
+      "sha256": "622681e29d6d98b249ea3e453d7ecbb888c3b517db0fdf8f65105bcc714f96d0",
+      "bytes": 317402,
+      "width": 1600,
+      "height": 1161,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108067",
+      "source_url": "https://iiif.micr.io/qCrSS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108067.jpg",
+      "sha256": "7aac9ce7dab13948f0ecc8bd5820f5f41b3798de4c0cd5f38059ec0bf9dd3ec1",
+      "bytes": 553009,
+      "width": 1600,
+      "height": 2039,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108068",
+      "source_url": "https://iiif.micr.io/topcQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108068.jpg",
+      "sha256": "9932499d1e398de1d63f89b4c2eb63e98ee76ac30460de1898461bc09c8f30a2",
+      "bytes": 760800,
+      "width": 1600,
+      "height": 2011,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108069",
+      "source_url": "https://iiif.micr.io/JcpYV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108069.jpg",
+      "sha256": "75d87582a2d0a48f97b7a1b0142d692ca7a2ab60e4ad4798a21982f3c91b7b12",
+      "bytes": 383278,
+      "width": 1600,
+      "height": 1207,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108070",
+      "source_url": "https://iiif.micr.io/uuYnF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108070.jpg",
+      "sha256": "7d9cca152d5a2c684490bf2a3d4a1e644248bddd148e6646668968fcadc94e37",
+      "bytes": 595736,
+      "width": 1600,
+      "height": 2032,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108071",
+      "source_url": "https://iiif.micr.io/rjeQR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108071.jpg",
+      "sha256": "7a7e0d546b92794857af8a90d2e50897b0ce48f1b3041d9cb2b5641ce0d14dca",
+      "bytes": 658768,
+      "width": 1600,
+      "height": 1996,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108072",
+      "source_url": "https://iiif.micr.io/vBMfa/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108072.jpg",
+      "sha256": "f485cb63e75af44936e238c1d9e346a075cff05c4fb1b6b4efc54e865ea99ead",
+      "bytes": 218835,
+      "width": 1600,
+      "height": 987,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108073",
+      "source_url": "https://iiif.micr.io/KLNFD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108073.jpg",
+      "sha256": "e47ea768fd60e6190caa864f8d7fe671b49604fea25bf87726c3b79dfdd0369e",
+      "bytes": 234918,
+      "width": 1600,
+      "height": 1218,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108074",
+      "source_url": "https://iiif.micr.io/XutMu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108074.jpg",
+      "sha256": "0d7afd50591b01a0542b57d15c5e4916623e96103a15abb2cf3121160835599c",
+      "bytes": 754654,
+      "width": 1600,
+      "height": 2029,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108075",
+      "source_url": "https://iiif.micr.io/BNgXk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108075.jpg",
+      "sha256": "7a7d19da7945da5624d249b01107ca14ead5f1c82a05e15bdbd224e8462d5613",
+      "bytes": 833150,
+      "width": 1600,
+      "height": 1998,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108076",
+      "source_url": "https://iiif.micr.io/sHYQA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108076.jpg",
+      "sha256": "fabf3943dbb2b6997dbdaa170f9e6bfc00ff665936b472fe89bad3b581d6c3e5",
+      "bytes": 418308,
+      "width": 1600,
+      "height": 2068,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108077",
+      "source_url": "https://iiif.micr.io/qgecZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108077.jpg",
+      "sha256": "efa374457f620183daa077b537799406897492f81bdafbae56e5f77c3f604de5",
+      "bytes": 268589,
+      "width": 1600,
+      "height": 1292,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108078",
+      "source_url": "https://iiif.micr.io/ZvsRj/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108078.jpg",
+      "sha256": "4d70e8980a7e611da7158deefcb57778db70bfe337276b762b779c631fde58d0",
+      "bytes": 595238,
+      "width": 1600,
+      "height": 2061,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108079",
+      "source_url": "https://iiif.micr.io/ocEWu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108079.jpg",
+      "sha256": "6df08992454100c9c0a081fb04a5f24aac6dab018e053af1365cea4531326346",
+      "bytes": 807302,
+      "width": 1600,
+      "height": 2049,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108080",
+      "source_url": "https://iiif.micr.io/JRtHx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108080.jpg",
+      "sha256": "ff2673a2bc4222df9fb59c70931dd149e6cf99a0c64bc05e9de4ee65cdd75f75",
+      "bytes": 637064,
+      "width": 1600,
+      "height": 2051,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108081",
+      "source_url": "https://iiif.micr.io/jeoAx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108081.jpg",
+      "sha256": "fc7284d1f94d9487e1b4f7faafc31dd49cec12400313f8d5044d9d061c0c3957",
+      "bytes": 402767,
+      "width": 1600,
+      "height": 1188,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108082",
+      "source_url": "https://iiif.micr.io/fTONy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108082.jpg",
+      "sha256": "40128bef5560f5c40a4525c123c61d5aa7cec9379c8746637b3cc0df49eb0aa5",
+      "bytes": 311162,
+      "width": 1600,
+      "height": 937,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108083",
+      "source_url": "https://iiif.micr.io/WWphG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108083.jpg",
+      "sha256": "4551b08cfeff5bca3e0e20b2cc5ac018bd8536bc2f061ef3629bdac93f805b12",
+      "bytes": 256552,
+      "width": 1600,
+      "height": 1184,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108084",
+      "source_url": "https://iiif.micr.io/WYwRX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108084.jpg",
+      "sha256": "ff2d7aac14d6404394a060a515874841b17c456449bd35881f73ea59365e6a0e",
+      "bytes": 294726,
+      "width": 1600,
+      "height": 1161,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108085",
+      "source_url": "https://iiif.micr.io/qadjF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108085.jpg",
+      "sha256": "22c65f44b4308fa8eb7d30e5029807221d49047b3ca359400517e76501afece3",
+      "bytes": 469295,
+      "width": 1600,
+      "height": 2039,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108086",
+      "source_url": "https://iiif.micr.io/qjLAm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108086.jpg",
+      "sha256": "058077e98d1f13e59a93bceb04bcb31432c7e3d587e8d3504ad61c797362a4cf",
+      "bytes": 230516,
+      "width": 1600,
+      "height": 1190,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108087",
+      "source_url": "https://iiif.micr.io/JAMvJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108087.jpg",
+      "sha256": "f4b33508f0189f2e80bfec22e9e918b7b2a0bc5d9ef14b4451e0cb4f16ee8500",
+      "bytes": 231648,
+      "width": 1600,
+      "height": 978,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108088",
+      "source_url": "https://iiif.micr.io/LVFGm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108088.jpg",
+      "sha256": "09d615957b924a45be1054340baa33c9c20a4adaeb5fec68a6df3504c1e2b9a6",
+      "bytes": 227830,
+      "width": 1600,
+      "height": 1019,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108089",
+      "source_url": "https://iiif.micr.io/XKaab/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108089.jpg",
+      "sha256": "57553352bd14895200f66dda123754a6b8eb94d30af592d457a6bbf790395e64",
+      "bytes": 482732,
+      "width": 1600,
+      "height": 1284,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108090",
+      "source_url": "https://iiif.micr.io/qsXqb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108090.jpg",
+      "sha256": "4e909bc20a8c2529fe200dee06cd66d2d46cb1cd654a832db979d8c2bb4316e7",
+      "bytes": 3247425,
+      "width": 4181,
+      "height": 5244,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108122",
+      "source_url": "https://iiif.micr.io/hsWLZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108122.jpg",
+      "sha256": "4e5ebc14e045e8dc6ad604b6810cf06da428fed0f758829b476cc16846e92148",
+      "bytes": 3898389,
+      "width": 4790,
+      "height": 4462,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108123",
+      "source_url": "https://iiif.micr.io/mReXJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108123.jpg",
+      "sha256": "606e6f1f78a26fa3b22a0fbfcf3282f527cb6a7c62b33ed471bf5f82e3cdba0f",
+      "bytes": 4051119,
+      "width": 7221,
+      "height": 3501,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108126",
+      "source_url": "https://iiif.micr.io/rfeVO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108126.jpg",
+      "sha256": "ff94be0a07535058e8f42f824f2881504046cd506d7480fd9cb94f238b7e5090",
+      "bytes": 7220177,
+      "width": 6134,
+      "height": 4626,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108128",
+      "source_url": "https://iiif.micr.io/VkxAm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108128.jpg",
+      "sha256": "ed5ca0c320e37ff89b7bad07519962d5b3e2b01ec2ad9c2d81687f559c98c4fa",
+      "bytes": 8516136,
+      "width": 5136,
+      "height": 7437,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108129",
+      "source_url": "https://iiif.micr.io/KuunN/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108129.jpg",
+      "sha256": "36a6cfa8c85e9b1864a6415cc4b18030066e86d007ee739b04fb0e29a47ca6b5",
+      "bytes": 3411591,
+      "width": 4436,
+      "height": 5408,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108130",
+      "source_url": "https://iiif.micr.io/fedYA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108130.jpg",
+      "sha256": "6251aceb1287f7510dc229980c60b95912767e2167d1a4f9212a91ad31cee553",
+      "bytes": 3972309,
+      "width": 4592,
+      "height": 5609,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108131",
+      "source_url": "https://iiif.micr.io/CpAyu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108131.jpg",
+      "sha256": "a7a011086557e852a39e28d37c60cb96f2ce59d6f939b2fd81f5307c1fee65b2",
+      "bytes": 6716607,
+      "width": 6336,
+      "height": 4609,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108134",
+      "source_url": "https://iiif.micr.io/gpmAq/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108134.jpg",
+      "sha256": "bb759589a16adca15450a55eebb6b354d72c6f0a68b0ab273a6d1c57b44b6ba1",
+      "bytes": 10628881,
+      "width": 12299,
+      "height": 3435,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108135",
+      "source_url": "https://iiif.micr.io/cWYkO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108135.jpg",
+      "sha256": "c4c771706d92f65bad427b98a3c302094458984104da5b5f20cd73e313cb23c5",
+      "bytes": 1403454,
+      "width": 3882,
+      "height": 2838,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108136",
+      "source_url": "https://iiif.micr.io/fKEye/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108136.jpg",
+      "sha256": "7e3956793378b5e15b683353d96c6ab82e546d4b52da3be9a405888eb6038d1b",
+      "bytes": 4991666,
+      "width": 4595,
+      "height": 5847,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108137",
+      "source_url": "https://iiif.micr.io/oXsSN/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108137.jpg",
+      "sha256": "ffdb4cd351210142818ee4db93d2e6d4b0d8c979445d9301aca9419f3782092f",
+      "bytes": 276927,
+      "width": 1600,
+      "height": 800,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108138",
+      "source_url": "https://iiif.micr.io/FEfal/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108138.jpg",
+      "sha256": "be8db97176833cba4da1748f0f1ebba437189f5f103af2149a3fddeda4dbd293",
+      "bytes": 202452,
+      "width": 1600,
+      "height": 792,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108139",
+      "source_url": "https://iiif.micr.io/TOCJG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108139.jpg",
+      "sha256": "3d0e903d178f5c89362096a0fbfc4dc40598d1955110f229687292b521825284",
+      "bytes": 834406,
+      "width": 1600,
+      "height": 2319,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108141",
+      "source_url": "https://iiif.micr.io/kNdFS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108141.jpg",
+      "sha256": "bd2579cd13dbc4a157e9c7e27248440895a1b8e286afc1afb46355572f97d638",
+      "bytes": 321541,
+      "width": 1600,
+      "height": 1088,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108142",
+      "source_url": "https://iiif.micr.io/DfDhr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108142.jpg",
+      "sha256": "80c761c18dff5c24307155f699f0c475e21414c87e1440c9f4f278cf032af37d",
+      "bytes": 334191,
+      "width": 1600,
+      "height": 1190,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108144",
+      "source_url": "https://iiif.micr.io/rIgfp/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108144.jpg",
+      "sha256": "4f74fe331057fce8fc2c63ad7beda7cc54dca6ded2caa3abf8e428aa48bc47dd",
+      "bytes": 174377,
+      "width": 1600,
+      "height": 1042,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108145",
+      "source_url": "https://iiif.micr.io/pnynH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108145.jpg",
+      "sha256": "d23c92c02842a6d07a7849f1095c5b381d9517faea006b7449e13a78b0e2a66b",
+      "bytes": 253008,
+      "width": 1600,
+      "height": 1306,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108146",
+      "source_url": "https://iiif.micr.io/hZepb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108146.jpg",
+      "sha256": "89b10e70862a6f3ef44dd5885f3bc0b9d3a0f905187bec1c9537840925aa5071",
+      "bytes": 277510,
+      "width": 1600,
+      "height": 1331,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108148",
+      "source_url": "https://iiif.micr.io/aasHz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108148.jpg",
+      "sha256": "3baa01cbe93012378d20793700b6ef51c4a0defafb07a7a1c14a41cee06a3d53",
+      "bytes": 643511,
+      "width": 1600,
+      "height": 2286,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108149",
+      "source_url": "https://iiif.micr.io/sKnPv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108149.jpg",
+      "sha256": "f3ad0e4f9622a520b97396762a7b1914001cf62b7e1750e3ce57e62b398b1cb8",
+      "bytes": 608282,
+      "width": 1600,
+      "height": 2105,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108150",
+      "source_url": "https://iiif.micr.io/wEkdJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108150.jpg",
+      "sha256": "f3293f9477d694d50de912fc281337769ab4c4e04ab9c2b157d22f99129b8b51",
+      "bytes": 790919,
+      "width": 1600,
+      "height": 3336,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108151",
+      "source_url": "https://iiif.micr.io/wtuTZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108151.jpg",
+      "sha256": "38a26459ebfa9a190d04fe375990185153f08b63e12f70d2f8b7c71d0564426a",
+      "bytes": 603315,
+      "width": 1600,
+      "height": 2038,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108152",
+      "source_url": "https://iiif.micr.io/fzhfE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108152.jpg",
+      "sha256": "91651fd840808ba8ae3f1a54a61206df765d48f84af3764eed98cba4c0a5b413",
+      "bytes": 1523193,
+      "width": 1200,
+      "height": 7309,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108153",
+      "source_url": "https://iiif.micr.io/bSbrM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108153.jpg",
+      "sha256": "28b24987321c6e1ae75cd359e270a5b66c08615fca0ffe7f57dc208294e57a14",
+      "bytes": 506808,
+      "width": 1600,
+      "height": 1818,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108154",
+      "source_url": "https://iiif.micr.io/cwkFn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108154.jpg",
+      "sha256": "4df0f5f5af95aeb1bef64ddd4ac2440dc419b87450598cd9a8825882566f2204",
+      "bytes": 697308,
+      "width": 1600,
+      "height": 2463,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108155",
+      "source_url": "https://iiif.micr.io/TyPtd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108155.jpg",
+      "sha256": "d0251d648e790249929d1aa559f4eaff6d0fcb9f32a5238fd2b1ffb7633851d9",
+      "bytes": 481784,
+      "width": 1600,
+      "height": 1804,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108156",
+      "source_url": "https://iiif.micr.io/JDQqT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108156.jpg",
+      "sha256": "a109c5e00bbb4c0e204f69b6cd4fec85aeb19bed4fcd78823e40e55dba1913d0",
+      "bytes": 2599607,
+      "width": 1600,
+      "height": 9980,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108157",
+      "source_url": "https://iiif.micr.io/JQfYD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108157.jpg",
+      "sha256": "7c1aec217cdb9749c7004d2fd0e824cdc605c51e15af719123cabaae150b24d6",
+      "bytes": 620167,
+      "width": 1600,
+      "height": 1953,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108158",
+      "source_url": "https://iiif.micr.io/MRTwj/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108158.jpg",
+      "sha256": "695c30567b0104bafb492d096547ce9254e83eddb0ded89f9d9a00540137ed7b",
+      "bytes": 650104,
+      "width": 1600,
+      "height": 1977,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108160",
+      "source_url": "https://iiif.micr.io/dTRts/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108160.jpg",
+      "sha256": "ce7d390aad2fc66974fc31ee27ce4db8738e7c7bf4db0f837c42495ae9ee9353",
+      "bytes": 1479665,
+      "width": 1600,
+      "height": 7477,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108161",
+      "source_url": "https://iiif.micr.io/VXYYu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108161.jpg",
+      "sha256": "6a63cbbe602ee9df030b399f76a21679a74aec4e771a062e642a56810b1ff9ee",
+      "bytes": 715047,
+      "width": 1600,
+      "height": 2550,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108162",
+      "source_url": "https://iiif.micr.io/NafaR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108162.jpg",
+      "sha256": "3eea0490f9a5172dc64ede7e8b3a795a0b2e67ef890e11ab883a86a372d72656",
+      "bytes": 223583,
+      "width": 1600,
+      "height": 793,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108163",
+      "source_url": "https://iiif.micr.io/aXnzA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108163.jpg",
+      "sha256": "40963f1590f50ccff53af539566101a72de261ef3f75e9b4629edb69b849d14c",
+      "bytes": 311904,
+      "width": 1600,
+      "height": 928,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108164",
+      "source_url": "https://iiif.micr.io/WwEzP/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108164.jpg",
+      "sha256": "ecd77082f746a4fd15f17dbabe2c35b62146367f43121b2e9a221353b10de98f",
+      "bytes": 309946,
+      "width": 1600,
+      "height": 1065,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108165",
+      "source_url": "https://iiif.micr.io/QDJoL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108165.jpg",
+      "sha256": "f517879fb08f8a78bdc3863873cffa7b56c203660097142501382355a018b69c",
+      "bytes": 477451,
+      "width": 1600,
+      "height": 1770,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108167",
+      "source_url": "https://iiif.micr.io/OxCtg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108167.jpg",
+      "sha256": "f2304f7ac6fa48ae5d37971965dcfce2e38e4a3a0a698f97c25d2b93217eaa1a",
+      "bytes": 379465,
+      "width": 1600,
+      "height": 2046,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108168",
+      "source_url": "https://iiif.micr.io/XCRkS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108168.jpg",
+      "sha256": "818d40e7abc9841143f7d17014a78ab48633035cee609dc5bef4f1efeb61b819",
+      "bytes": 379521,
+      "width": 1600,
+      "height": 2038,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108170",
+      "source_url": "https://iiif.micr.io/EjJOg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108170.jpg",
+      "sha256": "0043c5e783e30533619cdc2462c5546fca74ce4e93f214db19e3167375dee6e1",
+      "bytes": 198796,
+      "width": 1600,
+      "height": 1189,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108171",
+      "source_url": "https://iiif.micr.io/OkRwZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108171.jpg",
+      "sha256": "1fd142420a57e1b2dab455eb2012827c486a17a36a6f26d0021a61ebe95d9eb8",
+      "bytes": 547830,
+      "width": 1600,
+      "height": 2012,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108173",
+      "source_url": "https://iiif.micr.io/LqJWs/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108173.jpg",
+      "sha256": "b0b1e6c581d15e2508d1cfee837d0a209e89ff71b9264e2321045ebbfa46bf70",
+      "bytes": 630619,
+      "width": 1600,
+      "height": 2183,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108174",
+      "source_url": "https://iiif.micr.io/oFLMO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108174.jpg",
+      "sha256": "d762cffcffda4cabcfd0f9c6209c6093b68cbb20b0f47ee0b202c011510e8df2",
+      "bytes": 259897,
+      "width": 1600,
+      "height": 1147,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108176",
+      "source_url": "https://iiif.micr.io/WFThZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108176.jpg",
+      "sha256": "05aa5f17acd07019f2ff11fc93cc3b326e460f6f8c42d303e9061b24833f170a",
+      "bytes": 186445,
+      "width": 1600,
+      "height": 1064,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108177",
+      "source_url": "https://iiif.micr.io/YBpdt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108177.jpg",
+      "sha256": "83fd02866e306540f074e0e56d1c8a6202bfa395f65c6cf447fa6fbf42e341c1",
+      "bytes": 307077,
+      "width": 1600,
+      "height": 1225,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108179",
+      "source_url": "https://iiif.micr.io/PjJXT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108179.jpg",
+      "sha256": "09575ce4fd65767bedf42b7bed01cd53fd3dcf23bfd0e4db2cb1975aad3f71bd",
+      "bytes": 285870,
+      "width": 1600,
+      "height": 1319,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108180",
+      "source_url": "https://iiif.micr.io/CquKM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108180.jpg",
+      "sha256": "417eec39d8227c63acd42a494da11d58210607f35e280282356b0241564b0ea4",
+      "bytes": 669273,
+      "width": 1600,
+      "height": 2110,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108181",
+      "source_url": "https://iiif.micr.io/YApfK/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108181.jpg",
+      "sha256": "9d733934205216591624034c002336231366ccf7410331d45f8778a286e9bbd3",
+      "bytes": 732628,
+      "width": 1600,
+      "height": 2103,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108183",
+      "source_url": "https://iiif.micr.io/HFzyu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108183.jpg",
+      "sha256": "c0492979dc5c225de4ee2e3f69e438cf800155fc9af49511e9f73231429d30de",
+      "bytes": 314105,
+      "width": 1600,
+      "height": 1169,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108184",
+      "source_url": "https://iiif.micr.io/kiICv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108184.jpg",
+      "sha256": "2ab9d9c55a33f226618d37c28fdad57fdd52903755b07ad76830081b1aa2b85a",
+      "bytes": 415450,
+      "width": 1600,
+      "height": 1175,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108185",
+      "source_url": "https://iiif.micr.io/aMdtQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108185.jpg",
+      "sha256": "79a688f7d9603218d1de5c0398707b260de2775d2b122c844c692a55fd63edbd",
+      "bytes": 403953,
+      "width": 1600,
+      "height": 1124,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108189",
+      "source_url": "https://iiif.micr.io/Ssguu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108189.jpg",
+      "sha256": "1e4c98886d00d993db49d63bde51bcd1ab862cb5c020f9b1b391ec65cfbef530",
+      "bytes": 363471,
+      "width": 1600,
+      "height": 2269,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108190",
+      "source_url": "https://iiif.micr.io/mHKLO/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108190.jpg",
+      "sha256": "dacb52c99690d1797746e9466e31edefbcb0f9538a69cab3ae4eb3ec64b04aa3",
+      "bytes": 317262,
+      "width": 1600,
+      "height": 1110,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108195",
+      "source_url": "https://iiif.micr.io/zAHRn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108195.jpg",
+      "sha256": "1fcac48ea8ec5b6a39a69ab0e429d59b76154b918868aca9d0b904a1ee80336d",
+      "bytes": 218192,
+      "width": 1600,
+      "height": 1167,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108196",
+      "source_url": "https://iiif.micr.io/wKstf/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108196.jpg",
+      "sha256": "cb6ee2bd131cf102789aa65b564de285ac3019c31dfa7f8a54c14535de03d104",
+      "bytes": 172375,
+      "width": 1600,
+      "height": 1149,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108197",
+      "source_url": "https://iiif.micr.io/gbnGP/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108197.jpg",
+      "sha256": "3b915cd454aba01f73ca3f40d8f5359f2eedd6e08e55553fe0efed65abd18a86",
+      "bytes": 352953,
+      "width": 1600,
+      "height": 1142,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108202",
+      "source_url": "https://iiif.micr.io/UXQNw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108202.jpg",
+      "sha256": "55ce78073f6645ea66f1112eac6fb38ee83d36b11579088202cbf58ab5681434",
+      "bytes": 263315,
+      "width": 1600,
+      "height": 972,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108204",
+      "source_url": "https://iiif.micr.io/YpGBS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108204.jpg",
+      "sha256": "c4009d64c357142f76730ab247dace13ca479f5ded9cb2b182be0901701e5882",
+      "bytes": 405996,
+      "width": 1600,
+      "height": 1329,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108205",
+      "source_url": "https://iiif.micr.io/jaRcd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108205.jpg",
+      "sha256": "ec14340bff687fc2794d2d00ad9989798fadcbb6add555e4ad10728fc36b1a22",
+      "bytes": 243747,
+      "width": 1600,
+      "height": 879,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108206",
+      "source_url": "https://iiif.micr.io/TYrhd/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108206.jpg",
+      "sha256": "140565e461414170a67c0e00b2673f86023f5fa69b29b2653f81e30e1e34ab61",
+      "bytes": 239142,
+      "width": 1600,
+      "height": 1106,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108208",
+      "source_url": "https://iiif.micr.io/OYdfF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108208.jpg",
+      "sha256": "32b7f16a3bfa4836676e5bc2997799836ddc220060fc62d1849210128ec1298f",
+      "bytes": 302203,
+      "width": 1600,
+      "height": 1255,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108209",
+      "source_url": "https://iiif.micr.io/rmdGK/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108209.jpg",
+      "sha256": "c31850853c34045a80c40353bc41e3b6af3a87cc48229d9bccb0fba5014893cf",
+      "bytes": 225618,
+      "width": 1600,
+      "height": 1051,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108210",
+      "source_url": "https://iiif.micr.io/SsOOn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108210.jpg",
+      "sha256": "71a3e710f4c9d0194354b99e671f2e5ac52768c0a1d67dbf3c4406214042e372",
+      "bytes": 520971,
+      "width": 1600,
+      "height": 1976,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108212",
+      "source_url": "https://iiif.micr.io/xtfTS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108212.jpg",
+      "sha256": "535cb9f4e503652731639f3cc5e7a524d92f8312905a7671220fe178657bb582",
+      "bytes": 348224,
+      "width": 1600,
+      "height": 1351,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108214",
+      "source_url": "https://iiif.micr.io/pvcQC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108214.jpg",
+      "sha256": "146564f1ea2a1a1e2bdec871a5c6741122d595cc29d58027c9fc2b8f5297b728",
+      "bytes": 436375,
+      "width": 1600,
+      "height": 1304,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108215",
+      "source_url": "https://iiif.micr.io/rguTY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108215.jpg",
+      "sha256": "82bf5ff74a2947ab5b52652d22f5e80f82860f59b3ecb0885a994a5b59f802dd",
+      "bytes": 296239,
+      "width": 1600,
+      "height": 1206,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108216",
+      "source_url": "https://iiif.micr.io/Abihw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108216.jpg",
+      "sha256": "fad589d91579ef3a7980c67b3b8a208c090c667e4bfe16f2cecd1e86aee2a5c5",
+      "bytes": 278809,
+      "width": 1600,
+      "height": 1137,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108217",
+      "source_url": "https://iiif.micr.io/DSVKf/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108217.jpg",
+      "sha256": "2b190cb1ad8ffd01cf431ea72c28f7011b47ebd81683867cc2028f5b7970f71f",
+      "bytes": 350946,
+      "width": 1600,
+      "height": 1205,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108218",
+      "source_url": "https://iiif.micr.io/opJfz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108218.jpg",
+      "sha256": "4c775926d700fbbce6707e052dde009fdf6c4c55786475aafc4cea32d2d1a0aa",
+      "bytes": 456978,
+      "width": 1600,
+      "height": 1324,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108219",
+      "source_url": "https://iiif.micr.io/UjWJT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108219.jpg",
+      "sha256": "ad5b6afd9d487debe754cff95347ca193ba4fce4c923cbdea20c36023c1c54d0",
+      "bytes": 265306,
+      "width": 1600,
+      "height": 1223,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108222",
+      "source_url": "https://iiif.micr.io/xtXnn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108222.jpg",
+      "sha256": "0a66e13baf5b699a8e940f6485a1f4ac3d26c237d2215bb51d6710d3936be8bd",
+      "bytes": 620077,
+      "width": 1600,
+      "height": 1938,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108223",
+      "source_url": "https://iiif.micr.io/SaBmk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108223.jpg",
+      "sha256": "0c672712da0eba3befe78bbfe931dc81cbb85c51a387b48e47384114a6d90443",
+      "bytes": 582876,
+      "width": 1600,
+      "height": 1930,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108224",
+      "source_url": "https://iiif.micr.io/vxuRe/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108224.jpg",
+      "sha256": "6745894f0314f62fe124f6f7f4f9b844b1881cff668db464f367c704087a7e6f",
+      "bytes": 607982,
+      "width": 1600,
+      "height": 2267,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108225",
+      "source_url": "https://iiif.micr.io/kdZgt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108225.jpg",
+      "sha256": "e595d0f4c890e32e835cd30c362c1dbe0aa26759dc8dc37ad0677acdafaaf168",
+      "bytes": 198938,
+      "width": 1600,
+      "height": 1179,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108226",
+      "source_url": "https://iiif.micr.io/ffnha/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108226.jpg",
+      "sha256": "d11af1786287e1a0813f2487fae72d783cea16266a6eb1c447d8a756765a1f27",
+      "bytes": 311088,
+      "width": 1600,
+      "height": 986,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108227",
+      "source_url": "https://iiif.micr.io/CELNr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108227.jpg",
+      "sha256": "253c8ba906670371a8bb068d135662276b244852b94453ccd3bc817f42aac123",
+      "bytes": 533380,
+      "width": 1600,
+      "height": 1141,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108228",
+      "source_url": "https://iiif.micr.io/FLhJr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108228.jpg",
+      "sha256": "48e92bd2ae2c813643a2274798aa27bacd0946425cb255c152183ba485ec4f9e",
+      "bytes": 799305,
+      "width": 1600,
+      "height": 2268,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108230",
+      "source_url": "https://iiif.micr.io/YReeo/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108230.jpg",
+      "sha256": "d73c067fe7b9e022b3f80452ba7eada8b487d808e1f42b350869c561faac84b4",
+      "bytes": 833210,
+      "width": 1600,
+      "height": 1823,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108232",
+      "source_url": "https://iiif.micr.io/CPLQu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108232.jpg",
+      "sha256": "87daf08ae373fc96154487379fd582f8a02fdb4f06591633ef50ef9fd3391734",
+      "bytes": 532778,
+      "width": 1600,
+      "height": 1860,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108233",
+      "source_url": "https://iiif.micr.io/iOSdt/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108233.jpg",
+      "sha256": "9a55331c3ac6c6428e02a755e5ad7d558e2cdd3654ead920c4066cd4e3fa5681",
+      "bytes": 812422,
+      "width": 1600,
+      "height": 2056,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108234",
+      "source_url": "https://iiif.micr.io/zoDeo/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108234.jpg",
+      "sha256": "a8fd1da6a509252074791ba0bdfa46da05e989c1fa43f3628e98ea73f7f130db",
+      "bytes": 674005,
+      "width": 1600,
+      "height": 2441,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108235",
+      "source_url": "https://iiif.micr.io/iLfNl/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108235.jpg",
+      "sha256": "c5723b4d9114916170fb004c3799a3b9806ae2b2723f1589db3611073878c365",
+      "bytes": 284121,
+      "width": 1600,
+      "height": 1168,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108236",
+      "source_url": "https://iiif.micr.io/BANOR/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108236.jpg",
+      "sha256": "b06f68545d2f14c030bfb0fe394fc8954144cf72d1731987c4a36b03ba1bdc90",
+      "bytes": 442165,
+      "width": 1600,
+      "height": 1579,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108238",
+      "source_url": "https://iiif.micr.io/QaoFf/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108238.jpg",
+      "sha256": "45e9d495527b4d9ab36fcf528132bd86d0d6cfe523d3deef91ff85269140a035",
+      "bytes": 766893,
+      "width": 1600,
+      "height": 2311,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108239",
+      "source_url": "https://iiif.micr.io/ZtjNL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108239.jpg",
+      "sha256": "f57fcd0c0644baf9dbfb70800d3e66293ffebfeedad6b38e963c1e0b3eb1f263",
+      "bytes": 269438,
+      "width": 1600,
+      "height": 1142,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108240",
+      "source_url": "https://iiif.micr.io/bdmdp/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108240.jpg",
+      "sha256": "05f6e5ec55acb13c35d563f7cd2b2f012a12c82ad8549a334a1f0527540e629a",
+      "bytes": 210494,
+      "width": 1600,
+      "height": 1124,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108245",
+      "source_url": "https://iiif.micr.io/uajBk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108245.jpg",
+      "sha256": "2ffb8ff6e350b7a8f46a40cdf183a4761f78b481aa1e9e755289a33b8fe2c44d",
+      "bytes": 302209,
+      "width": 1600,
+      "height": 1593,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108246",
+      "source_url": "https://iiif.micr.io/qxANh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108246.jpg",
+      "sha256": "4de5992a6fde981ac86144b419f3937cde66d13c970d40d40f0c1ad781da88e7",
+      "bytes": 464354,
+      "width": 1600,
+      "height": 1763,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108247",
+      "source_url": "https://iiif.micr.io/urKzm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108247.jpg",
+      "sha256": "8584c82c06e01dbbbc2ee888efe9b5b5325d702a6771f496df86964805d3a35a",
+      "bytes": 480279,
+      "width": 1600,
+      "height": 1500,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108248",
+      "source_url": "https://iiif.micr.io/vNmhc/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108248.jpg",
+      "sha256": "d757a66572d105b9edcefb8e442df49b529b89824cd6b264d6bf7966207b4def",
+      "bytes": 317736,
+      "width": 1600,
+      "height": 1291,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108249",
+      "source_url": "https://iiif.micr.io/PSUKG/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108249.jpg",
+      "sha256": "06dac98a190084bf6e5ba490427ae094983d9b02585e1df7398104eaa34349a3",
+      "bytes": 411041,
+      "width": 1600,
+      "height": 1893,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108250",
+      "source_url": "https://iiif.micr.io/TQEUH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108250.jpg",
+      "sha256": "658eeaef088ca8ec7fd851f743c36530b1e0e1a806b144187acea00f971c21ca",
+      "bytes": 332031,
+      "width": 1600,
+      "height": 1504,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108251",
+      "source_url": "https://iiif.micr.io/cFyRX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108251.jpg",
+      "sha256": "7155fa847d958060e4360e3d773fdb884132c85d07916c95f3f40d4f7fadcd5b",
+      "bytes": 485496,
+      "width": 1600,
+      "height": 2468,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108252",
+      "source_url": "https://iiif.micr.io/BzuXh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108252.jpg",
+      "sha256": "51e2b9ba50d423e3a205c4f423177f6069449e0e3417b6030ca19bf98bb7f1f5",
+      "bytes": 326825,
+      "width": 1600,
+      "height": 1586,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108253",
+      "source_url": "https://iiif.micr.io/heOvK/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108253.jpg",
+      "sha256": "77bb717815b2729adb7b8266b18fce2bd264147411cb9e5bfb6f5a88152b441c",
+      "bytes": 357985,
+      "width": 1600,
+      "height": 1330,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108254",
+      "source_url": "https://iiif.micr.io/HrTCC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108254.jpg",
+      "sha256": "638cd28f3d291c1377f26e3c422ce263ecf9ce0a0dbad521f0125dbd571ce4f1",
+      "bytes": 583950,
+      "width": 1600,
+      "height": 2214,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108255",
+      "source_url": "https://iiif.micr.io/ZSgTH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108255.jpg",
+      "sha256": "8975e5d0248f3443e97dc7895c67e56fcdaba845659123cd03c8f47fbe28c6f5",
+      "bytes": 425902,
+      "width": 1600,
+      "height": 1534,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108256",
+      "source_url": "https://iiif.micr.io/DUvOY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108256.jpg",
+      "sha256": "a8e19be0ad268afdf39756b27489999fe57bf88e06e41179434d607cdbb5e57b",
+      "bytes": 525390,
+      "width": 1600,
+      "height": 1968,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108257",
+      "source_url": "https://iiif.micr.io/qXjWA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108257.jpg",
+      "sha256": "b4c5e62bf17185a586bbac4f8b2b82343efa2cd7a5d1f510f6b800a8908c7cd8",
+      "bytes": 441113,
+      "width": 1600,
+      "height": 1849,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108260",
+      "source_url": "https://iiif.micr.io/otwWP/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108260.jpg",
+      "sha256": "a1a00b97bdda3d4d64b9c201de12f3dcfb55b1d1c80ce4fdf79cb747d4b299d9",
+      "bytes": 402872,
+      "width": 1600,
+      "height": 2057,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108261",
+      "source_url": "https://iiif.micr.io/hoBLZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108261.jpg",
+      "sha256": "faf2b5b5d82e407f263c34c9da04dea6b0f9b42b3aef44b22521ceb714cce5e6",
+      "bytes": 325804,
+      "width": 1600,
+      "height": 2035,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108262",
+      "source_url": "https://iiif.micr.io/EVTVX/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108262.jpg",
+      "sha256": "0bd7e82538c9c30d47b129b7f5085d123766fbd9d700b5ad206df0c0a5a55e84",
+      "bytes": 1050903,
+      "width": 1600,
+      "height": 3025,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108263",
+      "source_url": "https://iiif.micr.io/HEflY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108263.jpg",
+      "sha256": "eac2781fd770bb8e1f91a23b3d386ae6f02923c8f27594923dd76adabb544e42",
+      "bytes": 833585,
+      "width": 1600,
+      "height": 3403,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108271",
+      "source_url": "https://iiif.micr.io/HUjVm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108271.jpg",
+      "sha256": "466fa9544f209728178d26b04d7694dd5afac748b326ea60d1337dd9051c60e6",
+      "bytes": 572084,
+      "width": 1600,
+      "height": 1940,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108272",
+      "source_url": "https://iiif.micr.io/vnkjW/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108272.jpg",
+      "sha256": "aca6e74c0177884dc735f0a5624774953133a7689637ca7953d63b51e2942468",
+      "bytes": 595640,
+      "width": 1600,
+      "height": 1983,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108273",
+      "source_url": "https://iiif.micr.io/dcwVS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108273.jpg",
+      "sha256": "648531fc9b1e84d596b34bccfaa877af3289f1771427f1daeec9b96c5de5fa3b",
+      "bytes": 431956,
+      "width": 1600,
+      "height": 1982,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108274",
+      "source_url": "https://iiif.micr.io/fwFsx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108274.jpg",
+      "sha256": "85c374b9e9223600d30a02c080ac858f68722a7949e82e63347c8da87a06992d",
+      "bytes": 481687,
+      "width": 1600,
+      "height": 1939,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108276",
+      "source_url": "https://iiif.micr.io/hXWwz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108276.jpg",
+      "sha256": "927639d9e4ae2e82b6a36a889eb1ded3e3b78b3e425b0890667fa5b63e2b39da",
+      "bytes": 610860,
+      "width": 1600,
+      "height": 2070,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108277",
+      "source_url": "https://iiif.micr.io/RxOuM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108277.jpg",
+      "sha256": "5b668f4927903b8575b0810697fbd418f5ae80225ca8f19d0bbb38b7befe2321",
+      "bytes": 341858,
+      "width": 1600,
+      "height": 1553,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108278",
+      "source_url": "https://iiif.micr.io/tvMKA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108278.jpg",
+      "sha256": "a5354c35850338c06aa4fb1ea297bdfff2046e0b8f127929018859debde00185",
+      "bytes": 166506,
+      "width": 1600,
+      "height": 1189,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108279",
+      "source_url": "https://iiif.micr.io/aqDHu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108279.jpg",
+      "sha256": "40287e6ee5df539b4896b0bee5ea85dac74658bd10a3f7fc22733fc466ceab40",
+      "bytes": 334484,
+      "width": 1600,
+      "height": 1294,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108284",
+      "source_url": "https://iiif.micr.io/KCBSr/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108284.jpg",
+      "sha256": "b902de68a762a8323ca98cee33b173dae8fa3589ab0789df612a5d6d57a146f8",
+      "bytes": 212675,
+      "width": 1600,
+      "height": 567,
+      "quality": "LOW_RESOLUTION_BUT_USABLE"
+    },
+    {
+      "provider_record_id": "200108285",
+      "source_url": "https://iiif.micr.io/Kuwwh/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108285.jpg",
+      "sha256": "929b55e3d138f8dfa9b73289da890db38cf1dfd033076f154f7117470b4147c4",
+      "bytes": 708865,
+      "width": 1600,
+      "height": 2139,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108286",
+      "source_url": "https://iiif.micr.io/CvFtF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108286.jpg",
+      "sha256": "ef3f7c6109e734ef66657755d0bc0cda32d95f34f8bc84400d6e0ee769513bce",
+      "bytes": 388001,
+      "width": 1600,
+      "height": 1009,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108287",
+      "source_url": "https://iiif.micr.io/AxKzY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108287.jpg",
+      "sha256": "cda1bbb16ae858ab714cc0fde5be2ca7c4f1c2814c64af2c9aa353055d99b687",
+      "bytes": 358766,
+      "width": 1600,
+      "height": 1233,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108288",
+      "source_url": "https://iiif.micr.io/djtYz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108288.jpg",
+      "sha256": "e28cb50d40efc9761024df21c622d9746f7a46a4c19cce770c7cc5f6ce946267",
+      "bytes": 815063,
+      "width": 1600,
+      "height": 2133,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108289",
+      "source_url": "https://iiif.micr.io/uGRCD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108289.jpg",
+      "sha256": "9de1c3007c81ac2438313545e1ef37d07969b2f9dca004a286340fd94c01aeb9",
+      "bytes": 344615,
+      "width": 1600,
+      "height": 1208,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108290",
+      "source_url": "https://iiif.micr.io/dFurv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108290.jpg",
+      "sha256": "b25dfca2962b7cb1ea84768e974409b0af8c6227d596fc911b665e504be7e563",
+      "bytes": 368331,
+      "width": 1600,
+      "height": 1248,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108291",
+      "source_url": "https://iiif.micr.io/orvhH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108291.jpg",
+      "sha256": "ec5c2d31d320df1394e60cc64df3a856fa09c38d1571c84eeee06014364083d5",
+      "bytes": 550862,
+      "width": 1600,
+      "height": 2248,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108292",
+      "source_url": "https://iiif.micr.io/rjPSU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108292.jpg",
+      "sha256": "633720c5b70ace08d7be7dc9df91e4f462d22ab17bcc55afb546b4c9b3907bf7",
+      "bytes": 357791,
+      "width": 1600,
+      "height": 1215,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108293",
+      "source_url": "https://iiif.micr.io/PpsTW/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108293.jpg",
+      "sha256": "c808f5f4834c21cf2b446062afefd206a83ebac2f564fd8cf555dcddb9b10a7b",
+      "bytes": 281215,
+      "width": 1600,
+      "height": 1266,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108294",
+      "source_url": "https://iiif.micr.io/cHNtQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108294.jpg",
+      "sha256": "51a993f59791ab12c2e26a889b8946411eb9612f3d92e7b9d1dbfe500e4f3803",
+      "bytes": 273319,
+      "width": 1600,
+      "height": 1285,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108296",
+      "source_url": "https://iiif.micr.io/Qoyfi/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108296.jpg",
+      "sha256": "7aa2d7b3f99a3226376bf6c60eadd405c7cb7c222ef7661bd82da99ab15c09fc",
+      "bytes": 925841,
+      "width": 1600,
+      "height": 1996,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108298",
+      "source_url": "https://iiif.micr.io/wyNkk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108298.jpg",
+      "sha256": "10c12c484b14830308a25885f70adfa74061cf1537162863cd7a7f0bc3f9be8b",
+      "bytes": 277567,
+      "width": 1600,
+      "height": 1209,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108299",
+      "source_url": "https://iiif.micr.io/WyEtm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108299.jpg",
+      "sha256": "90dde11b4cff1c1b8b907ed6d84dcd308931d59c1a1e9b756c1335cf8af9f21b",
+      "bytes": 558589,
+      "width": 1600,
+      "height": 1975,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108300",
+      "source_url": "https://iiif.micr.io/pxakU/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108300.jpg",
+      "sha256": "fd6ce87948df98bda73976529e2be824d417b1d26431c8bb6013b928d75ab856",
+      "bytes": 346141,
+      "width": 1600,
+      "height": 1280,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108301",
+      "source_url": "https://iiif.micr.io/sFpgb/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108301.jpg",
+      "sha256": "e06a9edcca8ae4402167704c141e27fe688e77dcee6b635a012753180ee4124d",
+      "bytes": 310213,
+      "width": 1600,
+      "height": 1161,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108302",
+      "source_url": "https://iiif.micr.io/qSdGE/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108302.jpg",
+      "sha256": "ed52f7cdb089a5705f6ba58bf178d32539c9fd35e7e042f1f0c79d1f3c45c16c",
+      "bytes": 899323,
+      "width": 1600,
+      "height": 2357,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108304",
+      "source_url": "https://iiif.micr.io/cQMKz/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108304.jpg",
+      "sha256": "6b8dad1aab685fca1d464417a245edeca3e3420ed0cb9570bff63013a6922e5f",
+      "bytes": 643051,
+      "width": 1600,
+      "height": 1648,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108306",
+      "source_url": "https://iiif.micr.io/lkjOY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108306.jpg",
+      "sha256": "05c6e89fcf7b2bdefec75a4ef2967b2f8b2d319ea5bc0618f5c6288e674c5479",
+      "bytes": 697730,
+      "width": 1600,
+      "height": 2539,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108307",
+      "source_url": "https://iiif.micr.io/DBLqH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108307.jpg",
+      "sha256": "cd228247b8a046cbb8fbfd40c807a49f4ba208a3f804ee6e0c6dbdbd3b329861",
+      "bytes": 560333,
+      "width": 1600,
+      "height": 1317,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108308",
+      "source_url": "https://iiif.micr.io/PhjVT/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108308.jpg",
+      "sha256": "eeeb622414d6bc2f6ea0bb15c28d65396b4b66dc971ba209555c206098d08bd0",
+      "bytes": 1280642,
+      "width": 1600,
+      "height": 2037,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108309",
+      "source_url": "https://iiif.micr.io/xIbrN/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108309.jpg",
+      "sha256": "301336402417eabdc525befdcbfc4cd1cec0fc79a608815e2efcd9bca1706f98",
+      "bytes": 455079,
+      "width": 1600,
+      "height": 1291,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108310",
+      "source_url": "https://iiif.micr.io/kPAhS/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108310.jpg",
+      "sha256": "0f43f95a41797cf096bedd0f5b8048f1f813b12d3fe2aadb6c6dfdecf01faad9",
+      "bytes": 260713,
+      "width": 1600,
+      "height": 839,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108311",
+      "source_url": "https://iiif.micr.io/QTbsl/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108311.jpg",
+      "sha256": "25bbdf5067e4924856fe5933dff1c0e89e9d7fe55f102e4a192849d270a3097a",
+      "bytes": 302381,
+      "width": 1600,
+      "height": 1318,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108312",
+      "source_url": "https://iiif.micr.io/CsHyH/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108312.jpg",
+      "sha256": "ef7d5c8307adbeadf7a91dc7ccfdfd51689192bc9aed4eac5773856ebcbb367b",
+      "bytes": 477043,
+      "width": 1600,
+      "height": 1171,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108313",
+      "source_url": "https://iiif.micr.io/pcOPg/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108313.jpg",
+      "sha256": "afcb303c12336903dba919fdd0393a3a0891c936dcbb38111e329e450495300a",
+      "bytes": 428736,
+      "width": 1600,
+      "height": 1182,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108316",
+      "source_url": "https://iiif.micr.io/UKMgl/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108316.jpg",
+      "sha256": "9621c19b843ebc5f29cb88cbbb6a194ce80fffc728d71dd74fd2aeb55160954b",
+      "bytes": 387807,
+      "width": 1600,
+      "height": 909,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108318",
+      "source_url": "https://iiif.micr.io/JPVgI/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108318.jpg",
+      "sha256": "3dd0ebb4a83b86498dfb6778ea95d8f377da7091fd19f39cb9e6a8c7ec71493d",
+      "bytes": 876842,
+      "width": 1600,
+      "height": 2033,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108319",
+      "source_url": "https://iiif.micr.io/Jbhct/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108319.jpg",
+      "sha256": "bb977a02dbf8a9ca6be952d17ded181d375205109a5829c0f56d4dc09996af47",
+      "bytes": 490875,
+      "width": 1600,
+      "height": 1180,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108320",
+      "source_url": "https://iiif.micr.io/ddSsm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108320.jpg",
+      "sha256": "139f303be90bc80ae723aba4adc45c0a9791ffe7588d2a1917195c30c43f7300",
+      "bytes": 549951,
+      "width": 1600,
+      "height": 1996,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108351",
+      "source_url": "https://iiif.micr.io/qtaTQ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108351.jpg",
+      "sha256": "2d9455d4f4bc83bece609d504480a779c243e16544a21c32c1f64fde469f39cb",
+      "bytes": 595373,
+      "width": 1600,
+      "height": 1892,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108352",
+      "source_url": "https://iiif.micr.io/Lamtm/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108352.jpg",
+      "sha256": "bb315120f0e2787eb6466ce700f6b0285015c164f38e338225b2f2865a944aca",
+      "bytes": 291454,
+      "width": 1600,
+      "height": 1082,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108353",
+      "source_url": "https://iiif.micr.io/pHjfW/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108353.jpg",
+      "sha256": "9f5aea415909d17cb6438c6b9f3d2fded49a2acadba5dcd9acac66f2403b19ef",
+      "bytes": 168973,
+      "width": 1600,
+      "height": 737,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108354",
+      "source_url": "https://iiif.micr.io/YTVgN/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108354.jpg",
+      "sha256": "ec686caf7d4668d0ee742973d691318b72a97970da939f53725e7162edab1f2a",
+      "bytes": 275643,
+      "width": 1600,
+      "height": 1025,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108355",
+      "source_url": "https://iiif.micr.io/cOyAv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108355.jpg",
+      "sha256": "fc384e2d3bdb78343fd9b24bbf3d1e7046a2765e7700d13d5082d6ca6156d558",
+      "bytes": 233153,
+      "width": 1600,
+      "height": 942,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108356",
+      "source_url": "https://iiif.micr.io/vWrNx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108356.jpg",
+      "sha256": "7635e5f42976818df2991d93d70e7a6f4df67f5c686466d91563fdb4c71d22a9",
+      "bytes": 285163,
+      "width": 1600,
+      "height": 1090,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108357",
+      "source_url": "https://iiif.micr.io/FUmRx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108357.jpg",
+      "sha256": "37d2a5d543ecd28ba884ced5f6dfac7272749abab4c631bb909fce1ac2efd9e8",
+      "bytes": 131193,
+      "width": 1600,
+      "height": 938,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108358",
+      "source_url": "https://iiif.micr.io/YtpJy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108358.jpg",
+      "sha256": "1d0431953695207ab4b8f50dad8b2c2b87828e0b5761bbc9907fc4999873afe5",
+      "bytes": 235835,
+      "width": 1600,
+      "height": 1146,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108359",
+      "source_url": "https://iiif.micr.io/eBrWZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108359.jpg",
+      "sha256": "05f887fd6389cc76b657681159086ea2482f55e6e5f67cf197df8a7643d732ea",
+      "bytes": 586119,
+      "width": 1600,
+      "height": 1943,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108360",
+      "source_url": "https://iiif.micr.io/GnNNF/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108360.jpg",
+      "sha256": "be7f80d776a279bd590850140161a8132bb66f698a3a821f0f945b8abef1e4e5",
+      "bytes": 547791,
+      "width": 1600,
+      "height": 1880,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108361",
+      "source_url": "https://iiif.micr.io/mPqdw/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108361.jpg",
+      "sha256": "89163bda543171575fd73645bf7e4d09d6534c2c3e42da3e2913c1e0b67f4c85",
+      "bytes": 471155,
+      "width": 1600,
+      "height": 1519,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108365",
+      "source_url": "https://iiif.micr.io/fGLky/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108365.jpg",
+      "sha256": "abeee13d4ba594abbfbaf54c951e939ab27530ed9fcd8dc505aabac7dff3887e",
+      "bytes": 315117,
+      "width": 1600,
+      "height": 942,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108366",
+      "source_url": "https://iiif.micr.io/MDQch/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108366.jpg",
+      "sha256": "297770b01c7c0f09f93cd4eeb3928dd95700a813bc33f3768e58fc9e78d56ace",
+      "bytes": 268380,
+      "width": 1600,
+      "height": 952,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108367",
+      "source_url": "https://iiif.micr.io/qGZVJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108367.jpg",
+      "sha256": "6e69d882a3f006f6fbe6a4dce1225cff5d8666fbd719677fe0016c6d420ab971",
+      "bytes": 208514,
+      "width": 1600,
+      "height": 771,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108368",
+      "source_url": "https://iiif.micr.io/SPtCC/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108368.jpg",
+      "sha256": "88ac0fc1e81b41ea81300ae3e0b0d87cdbabf8fe2d8b47a0967fbb5efddd2a8d",
+      "bytes": 205297,
+      "width": 1600,
+      "height": 627,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108369",
+      "source_url": "https://iiif.micr.io/QkOGy/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108369.jpg",
+      "sha256": "226219b9b4309c7dfbd48ce3f7a663e36802df691bf7238646c3da99b5affe12",
+      "bytes": 563930,
+      "width": 1600,
+      "height": 1782,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108371",
+      "source_url": "https://iiif.micr.io/VWEov/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108371.jpg",
+      "sha256": "e6799e6edcc64086925931db4ab61e7ebc8b61cdc882d9dda83c5f5ebbcc0ec9",
+      "bytes": 734029,
+      "width": 1600,
+      "height": 1956,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108373",
+      "source_url": "https://iiif.micr.io/crXuY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108373.jpg",
+      "sha256": "c40ca364c6be2b20c52a8027b4dc8845298270a4ab28850162dfe0e862e6c526",
+      "bytes": 259626,
+      "width": 1600,
+      "height": 1253,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108374",
+      "source_url": "https://iiif.micr.io/KuTkZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108374.jpg",
+      "sha256": "57d1121905e32184d0991c5c252b6733d2e402343b37ccc559aaa43f82660f65",
+      "bytes": 333273,
+      "width": 1600,
+      "height": 1859,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108376",
+      "source_url": "https://iiif.micr.io/jhOxY/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108376.jpg",
+      "sha256": "d9a4f4fe76f8b44b8328c1946e2d7267b50534582e4d2ca2acd2aed8f82c003d",
+      "bytes": 220215,
+      "width": 1600,
+      "height": 855,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108377",
+      "source_url": "https://iiif.micr.io/GYQQk/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108377.jpg",
+      "sha256": "4cdb84587ca5c04eb1cd48c9f696480b3c616feecdeb69819fac6995db26cf78",
+      "bytes": 519603,
+      "width": 1600,
+      "height": 1913,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108378",
+      "source_url": "https://iiif.micr.io/cPppu/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108378.jpg",
+      "sha256": "a29489f9bbf593fbe261d5c156c0f25bd4feb4fcf84ee5a44affdadbd5033360",
+      "bytes": 213560,
+      "width": 1600,
+      "height": 1279,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108380",
+      "source_url": "https://iiif.micr.io/vjXyn/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108380.jpg",
+      "sha256": "b78aeacc17dd7831cb0bf8d05022434aa210fb68c1865a6acb2f7755be7ad36b",
+      "bytes": 399316,
+      "width": 1600,
+      "height": 1314,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108381",
+      "source_url": "https://iiif.micr.io/CKaoL/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108381.jpg",
+      "sha256": "fef42834f67e33972fa2e82764579cfaf4e4a46d65281ec987e6fcb98711aa43",
+      "bytes": 360760,
+      "width": 1600,
+      "height": 1438,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108382",
+      "source_url": "https://iiif.micr.io/hgyAA/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108382.jpg",
+      "sha256": "e13e8eaa5b545896c02798906ead61136786ca8131291ae0ed210fc56239851b",
+      "bytes": 282607,
+      "width": 1600,
+      "height": 1270,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108383",
+      "source_url": "https://iiif.micr.io/XMRRq/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108383.jpg",
+      "sha256": "9ebf6c694bce1f45d19ffbc42faaa65c430bc3acd0bb63df0f304f1f2d65b121",
+      "bytes": 410590,
+      "width": 1600,
+      "height": 2102,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108384",
+      "source_url": "https://iiif.micr.io/odYYZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108384.jpg",
+      "sha256": "1588d106ad10abb06aeeeb3d0f742befaea7a26afe84e1c4f1c6ff731b2abd6b",
+      "bytes": 171248,
+      "width": 1600,
+      "height": 929,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108385",
+      "source_url": "https://iiif.micr.io/FDLZM/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108385.jpg",
+      "sha256": "4223f743c22d0bef3a27b317e885de9eaeedf2a59012f649c9259b0e0d35d94d",
+      "bytes": 367348,
+      "width": 1600,
+      "height": 1155,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108386",
+      "source_url": "https://iiif.micr.io/TwvEJ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108386.jpg",
+      "sha256": "20fd64fa2992aaa6c82636365477567954eecc74eec9b87afd44b41a53c02fee",
+      "bytes": 320036,
+      "width": 1600,
+      "height": 1278,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108387",
+      "source_url": "https://iiif.micr.io/nAUAZ/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108387.jpg",
+      "sha256": "1ffdf7134280a8b53a27fa298cf39188de35de9cc60dd93eb61719d825aa052f",
+      "bytes": 330438,
+      "width": 1600,
+      "height": 2201,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108388",
+      "source_url": "https://iiif.micr.io/jZoPV/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108388.jpg",
+      "sha256": "3abdd0d4bd7cd2ed2032d4a8bc6d9e1ca2d810f64991b9c97a00782f3f3feb93",
+      "bytes": 573070,
+      "width": 1600,
+      "height": 2146,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108389",
+      "source_url": "https://iiif.micr.io/HNYHv/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108389.jpg",
+      "sha256": "c03a3d420d34daab5a5f4105190e7b7dd8f8ba595c7b78e63539c209e61b0389",
+      "bytes": 260812,
+      "width": 1600,
+      "height": 1209,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108390",
+      "source_url": "https://iiif.micr.io/Hnprx/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108390.jpg",
+      "sha256": "984bfc2a9528cfdb3e2ee73d09293667a160e8261bb75c9e9e8870f91b1ef41f",
+      "bytes": 191660,
+      "width": 1600,
+      "height": 811,
+      "quality": "STRONG"
+    },
+    {
+      "provider_record_id": "200108391",
+      "source_url": "https://iiif.micr.io/AXBXD/full/max/0/default.jpg",
+      "path": "exports\\rijksmuseum_amsterdam\\reference\\200108391.jpg",
+      "sha256": "4c857ff422f7f792d9368affa22edc48425914da228a16734a479485db930dc8",
+      "bytes": 307942,
+      "width": 1600,
+      "height": 1149,
+      "quality": "STRONG"
+    }
+  ],
+  "summary": {
+    "audited": 443,
+    "strong": 442,
+    "low_resolution_usable": 1,
+    "unsuitable": 0,
+    "unavailable": 0
+  }
+}

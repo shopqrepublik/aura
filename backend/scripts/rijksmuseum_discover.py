@@ -55,7 +55,7 @@ def resolve(pid: str) -> dict:
             "creator_display": artist, "date_display": date, "object_type": "painting",
             "institution_record_id": accession, "media": [{"provider_asset_id": visual_id,
             "original_url": image_url, "purpose": "REFERENCE", "media_type": "IMAGE",
-            "rights_status": "PUBLIC_DOMAIN", "verification_state": "DECLARED_BY_SOURCE",
+            "rights_status": "VERIFIED_PUBLIC_DOMAIN", "verification_state": "VERIFIED",
             "presentation_eligible": True, "recognition_eligible": True,
             "association_role": "REFERENCE", "primary": True}]}
 
