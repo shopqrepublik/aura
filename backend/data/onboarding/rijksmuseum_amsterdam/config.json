@@ -1,0 +1,19 @@
+{
+  "institution_id": "rijksmuseum-amsterdam",
+  "name": "Rijksmuseum",
+  "country_code": "NL",
+  "city": "Amsterdam",
+  "timezone": "Europe/Amsterdam",
+  "default_locale": "en",
+  "supported_locales": ["en", "nl"],
+  "display_currency": "EUR",
+  "provider_id": "rijksmuseum_amsterdam",
+  "adapter": "normalized_json_v1",
+  "source": {
+    "search": "https://data.rijksmuseum.nl/search/collection?type=painting",
+    "resolver": "https://id.rijksmuseum.nl/",
+    "iiif": "https://iiif.micr.io/"
+  },
+  "selection": {"object_type": "painting", "target": 500, "controlled_mode": "VISION_PLUS_ASSET"},
+  "public_exposure": false
+}
