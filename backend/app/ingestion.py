@@ -256,6 +256,14 @@ def build_plan(
     """Read-only planning. This function never adds, flushes or commits."""
     validate_target(db, adapter, institution_id)
     records = tuple(adapter.records())
+    # Fetch batch identities once.  Planning is read-only and must not issue
+    # a remote existence query for every record when used by Factory batches.
+    provider_ids = [record.provider_record_id for record in records]
+    source_rows = db.query(SourceRecord).filter(
+        SourceRecord.provider_id == adapter.provider_id,
+        SourceRecord.provider_record_id.in_(provider_ids or ["__empty__"]),
+    ).all()
+    sources_by_provider_id = {row.provider_record_id: row for row in source_rows}
     seen_batch: set[str] = set()
     seen_media_assets: set[tuple[str, str]] = set()
     seen_media_edges: set[str] = set()
@@ -269,10 +277,7 @@ def build_plan(
             planned.append(PlannedRecord(record.provider_record_id, "INVALID", "HIGH_RISK", "; ".join(errors), record=record))
             continue
         checksum = record_checksum(record)
-        source = db.query(SourceRecord).filter(
-            SourceRecord.provider_id == adapter.provider_id,
-            SourceRecord.provider_record_id == record.provider_record_id,
-        ).first()
+        source = sources_by_provider_id.get(record.provider_record_id)
         issues = _provenance_issues(record.media)
         if source:
             media_count, edge_count = _media_plan_counts(db, record, source.cultural_object_id, source.institution_holding_id, seen_media_assets, seen_media_edges)
