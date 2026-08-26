@@ -14,11 +14,31 @@ def main():
     import importlib, backend.app.db as db_module
     db_module = importlib.reload(db_module)
     with db_module.SessionLocal() as db:
+        try:
+            db.execute(__import__("sqlalchemy").text("SET statement_timeout = '120s'"))
+        except Exception:
+            pass
         if db.get(Country,"NL") is None: db.add(Country(code="NL",name="Netherlands",default_locale="en",default_timezone="Europe/Amsterdam",default_currency="EUR"))
         inst=db.get(Institution,INST) or Institution(id=INST,slug=INST,name="Rijksmuseum"); inst.common_name="Rijksmuseum"; inst.city="Amsterdam"; inst.country_code="NL"; inst.timezone="Europe/Amsterdam"; inst.default_locale="en"; inst.supported_locales=["en","nl"]; inst.display_currency="EUR"; inst.experience_level="CURATED"; inst.active=True; inst.content_policy={"controlled_preview_only":True,"seo_enabled":False}; db.add(inst); db.flush()
         prof=db.get(InstitutionProfile,INST) or InstitutionProfile(institution_id=INST); prof.visitor_catalog_version=VERSION; prof.candidate_universe="ACTIVE_CATALOG"; prof.recognition_policy="ASSET_VERIFY"; prof.supported_modes=["normal","simple","kids"]; prof.max_candidates=5; prof.confidence_auto=.92; prof.confidence_review=.82; prof.fuzzy_candidate_threshold=.55; prof.allow_recognition_asset_substitution=True; prof.active=True; db.add(prof)
         provider=db.get(SourceProvider,PROVIDER) or SourceProvider(id=PROVIDER,name="Rijksmuseum",provider_type="MUSEUM"); provider.base_url="https://data.rijksmuseum.nl"; provider.adapter_key="normalized_json_v1"; provider.adapter_config={"institution_ids":[INST]}; provider.active=True; db.add(provider); db.flush()
-        adapter=JsonFileAdapter(SNAPSHOT,PROVIDER,INST); plan=build_plan(db,adapter,INST,mode="PLAN"); run_id=apply_plan(db,plan,operator_id=a.operator)
+        adapter=JsonFileAdapter(SNAPSHOT,PROVIDER,INST)
+        selected_ids=[str(x["provider_record_id"]) for x in json.loads(SELECTION.read_text())["records"]]
+        class BatchAdapter:
+            adapter_key=adapter.adapter_key; provider_id=adapter.provider_id
+            def __init__(self, rows): self._rows=tuple(rows)
+            def records(self): return iter(self._rows)
+            def source_snapshot(self): return adapter.source_snapshot()
+        rows=list(adapter.records()); by_id={r.provider_record_id:r for r in rows}; run_ids=[]
+        for offset in range(0,len(selected_ids),50):
+            batch=BatchAdapter([by_id[x] for x in selected_ids[offset:offset+50]])
+            plan=build_plan(db,batch,INST,mode="PLAN")
+            try:
+                db.execute(__import__("sqlalchemy").text("SET statement_timeout = '120s'"))
+            except Exception:
+                pass
+            run_ids.append(apply_plan(db,plan,operator_id=a.operator)); print(f"batch {offset//50+1}/{(len(selected_ids)+49)//50} committed",flush=True)
+        run_id=run_ids[-1] if run_ids else None
         if a.activate:
             selected=[str(x["provider_record_id"]) for x in json.loads(SELECTION.read_text())["records"]]; ready={str(x["provider_record_id"]) for x in json.loads(READINESS.read_text())["records"] if x["readiness"]=="VISION_PLUS_ASSET"}; desc={str(x["provider_record_id"]):x for x in json.loads(DESCRIPTORS.read_text())["records"]}; arts={x.id:x for x in db.query(Artwork).filter(Artwork.museum_id==INST).all()}; created=0
             for pid in selected:
