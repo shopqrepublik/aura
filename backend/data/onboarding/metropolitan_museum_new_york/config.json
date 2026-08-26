@@ -1,0 +1,15 @@
+{
+  "institution_id": "metropolitan-museum-new-york",
+  "name": "The Metropolitan Museum of Art",
+  "country_code": "US",
+  "city": "New York",
+  "timezone": "America/New_York",
+  "default_locale": "en",
+  "supported_locales": ["en"],
+  "display_currency": "USD",
+  "provider_id": "metropolitan_museum_open_access",
+  "adapter": "normalized_json_v1",
+  "source": {"api": "https://collectionapi.metmuseum.org/public/collection/v1", "open_access": true},
+  "selection": {"object_type": "Painting", "target": 500},
+  "public_exposure": false
+}

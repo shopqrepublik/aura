@@ -1,0 +1,17 @@
+{
+  "snapshot": {"provider": "The Metropolitan Museum of Art", "provider_id": "metropolitan_museum_open_access", "endpoint": "https://collectionapi.metmuseum.org/public/collection/v1", "selection": "official_open_access_painting_canary"},
+  "records": [{
+    "provider_record_id": "437881",
+    "source_url": "https://www.metmuseum.org/art/collection/search/437881",
+    "source_language": "en",
+    "title_original": "Young Woman with a Water Pitcher",
+    "title_locale": "en",
+    "creator_display": "Johannes Vermeer",
+    "date_display": "1662",
+    "object_type": "Painting",
+    "institution_record_id": "14.40.626",
+    "department": "European Paintings",
+    "description": "Open Access object from The Metropolitan Museum of Art.",
+    "media": [{"provider_asset_id": "437881-primary", "original_url": "https://images.metmuseum.org/CRDImages/ep/original/DP353257.jpg", "purpose": "REFERENCE", "media_type": "IMAGE", "rights_status": "VERIFIED_PUBLIC_DOMAIN", "verification_state": "VERIFIED", "presentation_eligible": true, "recognition_eligible": true, "association_role": "REFERENCE", "primary": true}]
+  }]
+}
