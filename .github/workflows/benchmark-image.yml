@@ -51,9 +51,21 @@ jobs:
             --snapshot backend/data/onboarding/national_gallery_london/source_snapshot_2026-08-23.json \
             --selection-manifest backend/data/onboarding/national_gallery_london/controlled_catalog_2559_v1.json \
             --out backend/benchmark_media/corpus_2559_v1 \
+            --manifest-root backend \
             --workers 8 --require-image
           cp backend/benchmark_media/corpus_2559_v1/manifest.json \
             backend/benchmark_media/national_gallery_benchmark_media_2559_v1.json
+
+      - name: Validate benchmark package integrity
+        env:
+          PYTHONPATH: backend
+        run: |
+          python backend/scripts/validate_benchmark_package.py \
+            --manifest backend/benchmark_media/corpus_2559_v1/manifest.json \
+            --root backend \
+            --catalog backend/data/onboarding/national_gallery_london/controlled_catalog_2559_v1.json \
+            --readiness backend/data/onboarding/national_gallery_london/controlled_catalog_2559_recognition_readiness_v1.json \
+            --descriptors backend/data/onboarding/national_gallery_london/controlled_catalog_2559_visual_descriptors_v1.json
 
       - name: Log in to Fly Registry
         uses: docker/login-action@v3
