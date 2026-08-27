@@ -1,0 +1,17 @@
+{
+  "institution_id": "princeton-art-museum-princeton",
+  "name": "Princeton University Art Museum",
+  "country_code": "US",
+  "city": "Princeton",
+  "region": "New Jersey",
+  "timezone": "America/New_York",
+  "default_locale": "en",
+  "supported_locales": ["en"],
+  "display_currency": "USD",
+  "provider_id": "princeton_art_museum",
+  "adapter": "normalized_json_v1",
+  "source": {"api": "https://data.artmuseum.princeton.edu", "authentication": "none"},
+  "selection": {"object_type": "Paintings", "target": 25},
+  "public_exposure": false,
+  "catalog_version": "princeton-art-museum-controlled-25-v1"
+}

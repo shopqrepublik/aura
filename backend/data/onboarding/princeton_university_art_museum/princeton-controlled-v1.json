@@ -1,0 +1,1110 @@
+{
+  "snapshot": {
+    "provider": "Princeton University Art Museum",
+    "provider_id": "princeton_art_museum",
+    "source_url": "https://data.artmuseum.princeton.edu",
+    "retrieved_records": 35
+  },
+  "records": [
+    {
+      "provider_record_id": "21797",
+      "institution_record_id": "y1942-18",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/21797",
+      "title_original": "Painting",
+      "creator_display": "Yun Shouping 惲壽平, 1633–1690",
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "21797-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV03165/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Yun Shouping 惲壽平, 1633–1690",
+        "objectnumber": "y1942-18",
+        "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV03165"
+        ],
+        "medium": null,
+        "displaytitle": "Painting",
+        "objectid": 21797,
+        "dimensions": "Painting: 24 x 34.5 cm (9 7/16 x 13 9/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "21847",
+      "institution_record_id": "y1942-38",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/21847",
+      "title_original": "Painting",
+      "creator_display": "Dongxin",
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "21847-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV02782/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Dongxin",
+        "objectnumber": "y1942-38",
+        "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV02782"
+        ],
+        "medium": null,
+        "displaytitle": "Painting",
+        "objectid": 21847,
+        "dimensions": "Painting: 93.5 x 40.5 cm (36 13/16 x 15 15/16 in.); Overall: 98.4 x 48.6 cm (38 3/4 x 19 1/8 in.)"
+      }
+    },
+    {
+      "provider_record_id": "21861",
+      "institution_record_id": "y1942-17",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/21861",
+      "title_original": "Painting",
+      "creator_display": "Yun Shouping 惲壽平, 1633–1690",
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "21861-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV03166/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Yun Shouping 惲壽平, 1633–1690",
+        "objectnumber": "y1942-17",
+        "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV03166"
+        ],
+        "medium": null,
+        "displaytitle": "Painting",
+        "objectid": 21861,
+        "dimensions": "Painting: 24 x 34.5 cm (9 7/16 x 13 9/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "6237",
+      "institution_record_id": "x1948-1016",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/6237",
+      "title_original": "Children painting",
+      "creator_display": "Miguel Mackinlay, 1895–1958; born Guadalajara, Spain; active Australia and London, England",
+      "date_display": null,
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Pen and blue wash",
+      "media": [
+        {
+          "provider_asset_id": "6237-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV33472/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Bequest of Dan Fellows Platt, Class of 1895",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Miguel Mackinlay, 1895–1958; born Guadalajara, Spain; active Australia and London, England",
+        "objectnumber": "x1948-1016",
+        "creditline": "Bequest of Dan Fellows Platt, Class of 1895",
+        "displaydate": null,
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV33472"
+        ],
+        "medium": "Pen and blue wash",
+        "displaytitle": "Children painting",
+        "objectid": 6237,
+        "dimensions": "33.6 x 34.2 cm. (13 1/4 x 13 7/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "56738",
+      "institution_record_id": "2008-736",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/56738",
+      "title_original": "House Painting",
+      "creator_display": "Ruth Bernhard, 1905–2006; born Berlin, Germany; died San Francisco, CA",
+      "date_display": "1958",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Gelatin silver print",
+      "media": [
+        {
+          "provider_asset_id": "56738-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV13134/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Bequest of Ruth Bernhard",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Ruth Bernhard, 1905–2006; born Berlin, Germany; died San Francisco, CA",
+        "objectnumber": "2008-736",
+        "creditline": "Bequest of Ruth Bernhard",
+        "displaydate": "1958",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV13134"
+        ],
+        "medium": "Gelatin silver print",
+        "displaytitle": "House Painting",
+        "objectid": 56738,
+        "dimensions": "29 × 16 cm (11 7/16 × 6 5/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "13369",
+      "institution_record_id": "x1975-384",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/13369",
+      "title_original": "Henri Painting",
+      "creator_display": "Randall Davey, American, 1887–1964",
+      "date_display": "1911",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Graphite",
+      "media": [
+        {
+          "provider_asset_id": "13369-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV31765/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Stuart P. Feld, Class of 1957, and Mrs. Feld",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Randall Davey, American, 1887–1964",
+        "objectnumber": "x1975-384",
+        "creditline": "Gift of Stuart P. Feld, Class of 1957, and Mrs. Feld",
+        "displaydate": "1911",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV31765"
+        ],
+        "medium": "Graphite",
+        "displaytitle": "Henri Painting",
+        "objectid": 13369,
+        "dimensions": "25.3 x 20.5 cm (9 15/16 x 8 1/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "32648",
+      "institution_record_id": "y1984-58",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/32648",
+      "title_original": "Bamboo and Sparrows",
+      "creator_display": "Gao Qipei 高其佩, attributed to, 1672–1734",
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Hanging scroll; ink on satin",
+      "media": [
+        {
+          "provider_asset_id": "32648-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/y1984-58/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Mr. and Mrs. Jerome Straka",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Gao Qipei 高其佩, attributed to, 1672–1734",
+        "objectnumber": "y1984-58",
+        "creditline": "Gift of Mr. and Mrs. Jerome Straka",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/y1984-58"
+        ],
+        "medium": "Hanging scroll; ink on satin",
+        "displaytitle": "Bamboo and Sparrows",
+        "objectid": 32648,
+        "dimensions": "Painting: 121 x 46.4 cm. (47 5/8 x 18 1/4 in.)\r\nMount: 206 x 62.2 cm. (81 1/8 x 24 1/2 in.)"
+      }
+    },
+    {
+      "provider_record_id": "125459",
+      "institution_record_id": "2016-44",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/125459",
+      "title_original": "Moon Beam",
+      "creator_display": "Pat Steir, 1938–2026; born Newark, NJ; died New York, NY; active New York",
+      "date_display": "2005",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Oil on canvas",
+      "media": [
+        {
+          "provider_asset_id": "125459-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/TC2016-23_VEN/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Museum purchase, Fowler McCormick, Class of 1921, Fund",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Pat Steir, 1938–2026; born Newark, NJ; died New York, NY; active New York",
+        "objectnumber": "2016-44",
+        "creditline": "Museum purchase, Fowler McCormick, Class of 1921, Fund",
+        "displaydate": "2005",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/TC2016-23_VEN"
+        ],
+        "medium": "Oil on canvas",
+        "displaytitle": "Moon Beam",
+        "objectid": 125459,
+        "dimensions": "279.4 × 348 × 5.7 cm (110 × 137 × 2 1/4 in.)"
+      }
+    },
+    {
+      "provider_record_id": "142894",
+      "institution_record_id": "2024-114",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/142894",
+      "title_original": "Providence",
+      "creator_display": "Dona Nelson, born 1947, Grand Island, NE; active New York, NY, and Lansdale, PA",
+      "date_display": "2023",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Acrylic paint and acrylic mediums on canvas",
+      "media": [
+        {
+          "provider_asset_id": "142894-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAMANX25_250326_20361/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Museum purchase, Fowler McCormick, Class of 1921, Fund and gift of Sueyun Locks",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Dona Nelson, born 1947, Grand Island, NE; active New York, NY, and Lansdale, PA",
+        "objectnumber": "2024-114",
+        "creditline": "Museum purchase, Fowler McCormick, Class of 1921, Fund and gift of Sueyun Locks",
+        "displaydate": "2023",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAMANX25_250326_20361"
+        ],
+        "medium": "Acrylic paint and acrylic mediums on canvas",
+        "displaytitle": "Providence",
+        "objectid": 142894,
+        "dimensions": "269.2 × 223.5 cm (106 × 88 in.)"
+      }
+    },
+    {
+      "provider_record_id": "18753",
+      "institution_record_id": "x1993-248",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/18753",
+      "title_original": "Painting Study 1",
+      "creator_display": "Brice Marden, American, 1938-2023 | Printed and published by Styria Studio, Inc. | Published by Multiples, Inc.",
+      "date_display": "1974",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Screenprint with wax on Dutch Etching ivory wove paper",
+      "media": [
+        {
+          "provider_asset_id": "18753-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/x1993-248/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of James Kraft, Class of 1957",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Brice Marden, American, 1938-2023 | Printed and published by Styria Studio, Inc. | Published by Multiples, Inc.",
+        "objectnumber": "x1993-248",
+        "creditline": "Gift of James Kraft, Class of 1957",
+        "displaydate": "1974",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/x1993-248"
+        ],
+        "medium": "Screenprint with wax on Dutch Etching ivory wove paper",
+        "displaytitle": "Painting Study 1",
+        "objectid": 18753,
+        "dimensions": "image: 24.2 x 17 cm. (9 1/2 x 6 11/16 in.)\r\nsheet: 75 x 55 cm. (29 1/2 x 21 5/8 in.)"
+      }
+    },
+    {
+      "provider_record_id": "58061",
+      "institution_record_id": "2009-142",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/58061",
+      "title_original": "Painting Installation, Piers",
+      "creator_display": "Peter Hujar, 1934–1987; born Trenton, NJ; died New York, NY; active New York",
+      "date_display": "ca. 1985",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Gelatin silver print",
+      "media": [
+        {
+          "provider_asset_id": "58061-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV17797/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Stephen Koch and Frances Cohen",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Peter Hujar, 1934–1987; born Trenton, NJ; died New York, NY; active New York",
+        "objectnumber": "2009-142",
+        "creditline": "Gift of Stephen Koch and Frances Cohen",
+        "displaydate": "ca. 1985",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV17797"
+        ],
+        "medium": "Gelatin silver print",
+        "displaytitle": "Painting Installation, Piers",
+        "objectid": 58061,
+        "dimensions": "image: 20.5 x 20.3 cm. (8 1/16 x 8 in.)\r\nsheet: 35.6 x 27.9 cm. (14 x 11 in.)"
+      }
+    },
+    {
+      "provider_record_id": "10477",
+      "institution_record_id": "x1963-32",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/10477",
+      "title_original": "Pompeian wall-painting",
+      "creator_display": null,
+      "date_display": "ca. 1900",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Watercolor",
+      "media": [
+        {
+          "provider_asset_id": "10477-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV45794/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Cleveland H. Dodge, Class of 1879",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": null,
+        "objectnumber": "x1963-32",
+        "creditline": "Gift of Cleveland H. Dodge, Class of 1879",
+        "displaydate": "ca. 1900",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV45794"
+        ],
+        "medium": "Watercolor",
+        "displaytitle": "Pompeian wall-painting",
+        "objectid": 10477,
+        "dimensions": "87.3 x 85 cm (34 3/8 x 33 7/16 in.)\r\nframe: 90.5 × 89 × 2.5 cm (35 5/8 × 35 1/16 × 1 in.)"
+      }
+    },
+    {
+      "provider_record_id": "137160",
+      "institution_record_id": "2020-6",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/137160",
+      "title_original": "The Origin of Painting",
+      "creator_display": "George Woodall, 1850–1925; born and died Kingswinford, United Kingdom",
+      "date_display": "late 1880s",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Cameo glass",
+      "media": [
+        {
+          "provider_asset_id": "137160-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAM22_2740/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Museum purchase, Fowler McCormick, Class of 1921, Fund",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "George Woodall, 1850–1925; born and died Kingswinford, United Kingdom",
+        "objectnumber": "2020-6",
+        "creditline": "Museum purchase, Fowler McCormick, Class of 1921, Fund",
+        "displaydate": "late 1880s",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAM22_2740"
+        ],
+        "medium": "Cameo glass",
+        "displaytitle": "The Origin of Painting",
+        "objectid": 137160,
+        "dimensions": "h. 23 cm (9 1/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "18808",
+      "institution_record_id": "x1993-249",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/18808",
+      "title_original": "Painting Study 2",
+      "creator_display": "Brice Marden, American, 1938-2023 | Printed and published by Styria Studio, Inc. | Published by Multiples, Inc.",
+      "date_display": "1974",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Screenprint with wax and graphite on Dutch Etching ivory wove paper",
+      "media": [
+        {
+          "provider_asset_id": "18808-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV09315/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of James Kraft, Class of 1957",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Brice Marden, American, 1938-2023 | Printed and published by Styria Studio, Inc. | Published by Multiples, Inc.",
+        "objectnumber": "x1993-249",
+        "creditline": "Gift of James Kraft, Class of 1957",
+        "displaydate": "1974",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV09315"
+        ],
+        "medium": "Screenprint with wax and graphite on Dutch Etching ivory wove paper",
+        "displaytitle": "Painting Study 2",
+        "objectid": 18808,
+        "dimensions": "image: 24.2 x 17 cm. (9 1/2 x 6 11/16 in.)\r\nsheet: 75 x 55 cm. (29 1/2 x 21 5/8 in.)"
+      }
+    },
+    {
+      "provider_record_id": "21863",
+      "institution_record_id": "y1942-25",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/21863",
+      "title_original": "Cats and Butterflies",
+      "creator_display": "Zhang Youtang",
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "21863-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV02777/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Zhang Youtang",
+        "objectnumber": "y1942-25",
+        "creditline": "Frederick Peterson Collection, Gift of William Bingham II",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV02777"
+        ],
+        "medium": null,
+        "displaytitle": "Cats and Butterflies",
+        "objectid": 21863,
+        "dimensions": "Painting: 43 x 89 cm (16 15/16 x 35 1/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "30743",
+      "institution_record_id": "y1968-183",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/30743",
+      "title_original": "Painting: June 10, 1965",
+      "creator_display": "Pierre Soulages, French, born 1919",
+      "date_display": "1965",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Oil on canvas",
+      "media": [
+        {
+          "provider_asset_id": "30743-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/y1968-183/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Museum purchase, gift of Elias Wolf, Class of 1920, and Mrs. Wolf",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Pierre Soulages, French, born 1919",
+        "objectnumber": "y1968-183",
+        "creditline": "Museum purchase, gift of Elias Wolf, Class of 1920, and Mrs. Wolf",
+        "displaydate": "1965",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/y1968-183"
+        ],
+        "medium": "Oil on canvas",
+        "displaytitle": "Painting: June 10, 1965",
+        "objectid": 30743,
+        "dimensions": "92 x 73 cm (36 1/4 x 28 3/4 in.)\r\nframe: 94.5 × 74.8 × 3.9 cm (37 3/16 × 29 7/16 × 1 9/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "22646",
+      "institution_record_id": "y1945-211",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/22646",
+      "title_original": "Two Dragons",
+      "creator_display": null,
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "22646-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/y1945-211/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Frank Jewett Mather Jr.",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": null,
+        "objectnumber": "y1945-211",
+        "creditline": "Gift of Frank Jewett Mather Jr.",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/y1945-211"
+        ],
+        "medium": null,
+        "displaytitle": "Two Dragons",
+        "objectid": 22646,
+        "dimensions": "Painting: 82 x 214 cm. (32 5/16 x 84 1/4 in.)"
+      }
+    },
+    {
+      "provider_record_id": "21910",
+      "institution_record_id": "y1942-44",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/21910",
+      "title_original": "Saint Paraskeve",
+      "creator_display": "Stroganoff School of Novgorod",
+      "date_display": "early 15th century",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Painting",
+      "media": [
+        {
+          "provider_asset_id": "21910-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV46906/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Frank Jewett Mather Jr.",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Stroganoff School of Novgorod",
+        "objectnumber": "y1942-44",
+        "creditline": "Gift of Frank Jewett Mather Jr.",
+        "displaydate": "early 15th century",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV46906"
+        ],
+        "medium": "Painting",
+        "displaytitle": "Saint Paraskeve",
+        "objectid": 21910,
+        "dimensions": "28.5 x 23.5 x 2 cm (11 1/4 x 9 1/4 x 13/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "135184",
+      "institution_record_id": "2018-158",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/135184",
+      "title_original": "Portrait of Old John, Head Waiter at the King's Head Inn in Derby",
+      "creator_display": "Joseph Wright of Derby, 1734–1797; born and died Derby, United Kingdom",
+      "date_display": "ca. 1780",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Oil on canvas",
+      "media": [
+        {
+          "provider_asset_id": "135184-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAMSTU2018-1952533/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Museum purchase, Surdna Fund",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Joseph Wright of Derby, 1734–1797; born and died Derby, United Kingdom",
+        "objectnumber": "2018-158",
+        "creditline": "Museum purchase, Surdna Fund",
+        "displaydate": "ca. 1780",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAMSTU2018-1952533"
+        ],
+        "medium": "Oil on canvas",
+        "displaytitle": "Portrait of Old John, Head Waiter at the King's Head Inn in Derby",
+        "objectid": 135184,
+        "dimensions": "77 × 64.2 cm (30 5/16 × 25 1/4 in.)\r\nframe: 89.9 × 77.2 × 5.7 cm (35 3/8 × 30 3/8 × 2 1/4 in.)"
+      }
+    },
+    {
+      "provider_record_id": "125460",
+      "institution_record_id": "2016-45",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/125460",
+      "title_original": "Winter Sky",
+      "creator_display": "Pat Steir, 1938–2026; born Newark, NJ; died New York, NY; active New York",
+      "date_display": "2002",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Oil on canvas",
+      "media": [
+        {
+          "provider_asset_id": "125460-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/TC2016-24_VEN/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of the artist and Locks Gallery",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Pat Steir, 1938–2026; born Newark, NJ; died New York, NY; active New York",
+        "objectnumber": "2016-45",
+        "creditline": "Gift of the artist and Locks Gallery",
+        "displaydate": "2002",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/TC2016-24_VEN"
+        ],
+        "medium": "Oil on canvas",
+        "displaytitle": "Winter Sky",
+        "objectid": 125460,
+        "dimensions": "320 × 274.3 cm (126 × 108 in.)"
+      }
+    },
+    {
+      "provider_record_id": "24616",
+      "institution_record_id": "y1954-125",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/24616",
+      "title_original": "Crabs",
+      "creator_display": "Qi Baishi 齊白石, Chinese, 1863–1957",
+      "date_display": null,
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Ink on paper",
+      "media": [
+        {
+          "provider_asset_id": "24616-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/INV03295/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Wen C. Fong, Class of 1951 and Graduate School Class of 1958, and Constance Tang Fong",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Qi Baishi 齊白石, Chinese, 1863–1957",
+        "objectnumber": "y1954-125",
+        "creditline": "Gift of Wen C. Fong, Class of 1951 and Graduate School Class of 1958, and Constance Tang Fong",
+        "displaydate": null,
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/INV03295"
+        ],
+        "medium": "Ink on paper",
+        "displaytitle": "Crabs",
+        "objectid": 24616,
+        "dimensions": "Painting: 68.7 x 33.7 cm. (27 1/16 x 13 1/4 in.)\r\nMat: 80 x 40.5 cm. (31 1/2 x 15 15/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "32539",
+      "institution_record_id": "y1980-41",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/32539",
+      "title_original": "Mallows and Garden Rock",
+      "creator_display": "Chen Chun 陳淳 (Chen Daofu 陳道復), 1483–1544",
+      "date_display": "undated; ca. 1541",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Hanging scroll; ink on paper",
+      "media": [
+        {
+          "provider_asset_id": "32539-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/y1980-41/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Mrs. Edward Elliott",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Chen Chun 陳淳 (Chen Daofu 陳道復), 1483–1544",
+        "objectnumber": "y1980-41",
+        "creditline": "Gift of Mrs. Edward Elliott",
+        "displaydate": "undated; ca. 1541",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/y1980-41"
+        ],
+        "medium": "Hanging scroll; ink on paper",
+        "displaytitle": "Mallows and Garden Rock",
+        "objectid": 32539,
+        "dimensions": "Painting: 116.5 x 60 cm. (45 7/8 x 23 5/8 in.)\r\nMount: 209 x 74.3 cm. (82 5/16 x 29 1/4 in.)"
+      }
+    },
+    {
+      "provider_record_id": "23230",
+      "institution_record_id": "y1947-2",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/23230",
+      "title_original": "White Eagle (Bai ying tu 白鷹圖)",
+      "creator_display": "Anonymous",
+      "date_display": "14th century",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Hanging scroll; colors on silk",
+      "media": [
+        {
+          "provider_asset_id": "23230-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/y1947-2/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of DuBois Schanck Morris, Class of 1893 ",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Anonymous",
+        "objectnumber": "y1947-2",
+        "creditline": "Gift of DuBois Schanck Morris, Class of 1893 ",
+        "displaydate": "14th century",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/y1947-2"
+        ],
+        "medium": "Hanging scroll; colors on silk",
+        "displaytitle": "White Eagle (Bai ying tu 白鷹圖)",
+        "objectid": 23230,
+        "dimensions": "Painting: 140 x 69 cm. (55 1/8 x 27 3/16 in.)\r\nMount: 278.5 x 86.4 cm. (109 5/8 x 34 in.)"
+      }
+    },
+    {
+      "provider_record_id": "23276",
+      "institution_record_id": "y1947-259",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/23276",
+      "title_original": "Bamboo",
+      "creator_display": "Wu Zhen 吳鎮, attributed to, 1280 - 1354",
+      "date_display": "undated",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Handscroll; ink on paper",
+      "media": [
+        {
+          "provider_asset_id": "23276-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/y1947-259_1/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of DuBois Schanck Morris, Class of 1893 ",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Wu Zhen 吳鎮, attributed to, 1280 - 1354",
+        "objectnumber": "y1947-259",
+        "creditline": "Gift of DuBois Schanck Morris, Class of 1893 ",
+        "displaydate": "undated",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/y1947-259_1"
+        ],
+        "medium": "Handscroll; ink on paper",
+        "displaytitle": "Bamboo",
+        "objectid": 23276,
+        "dimensions": "Painting: 26.5 x 246 cm. (10 7/16 x 96 7/8 in.)\r\nMount: h. 31 cm. (12 3/16 in.)"
+      }
+    },
+    {
+      "provider_record_id": "20106",
+      "institution_record_id": "y1935-5",
+      "source_url": "https://data.artmuseum.princeton.edu/objects/20106",
+      "title_original": "Attributes of the Architect",
+      "creator_display": "Jean-Baptiste-Siméon Chardin, 1699–1779; born and died Paris, France",
+      "date_display": "ca. 1725–27",
+      "object_type": "Paintings",
+      "department": null,
+      "description": "Oil on canvas",
+      "media": [
+        {
+          "provider_asset_id": "20106-primary",
+          "original_url": "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAM21GA41125/full/max/0/default.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "source_rights_metadata": {
+            "restrictions": null,
+            "nowebuse": null,
+            "creditline": "Gift of Helen Clay Frick",
+            "creditlinerepro": null
+          }
+        }
+      ],
+      "raw_payload": {
+        "displaymaker": "Jean-Baptiste-Siméon Chardin, 1699–1779; born and died Paris, France",
+        "objectnumber": "y1935-5",
+        "creditline": "Gift of Helen Clay Frick",
+        "displaydate": "ca. 1725–27",
+        "primaryimage": [
+          "https://media.artmuseum.princeton.edu/iiif/3/collection/PUAM21GA41125"
+        ],
+        "medium": "Oil on canvas",
+        "displaytitle": "Attributes of the Architect",
+        "objectid": 20106,
+        "dimensions": "50 × 86 cm (19 11/16 × 33 7/8 in.)\r\nframe: 70.8 × 108.9 × 7.6 cm (27 7/8 × 42 7/8 × 3 in.)"
+      }
+    }
+  ]
+}
