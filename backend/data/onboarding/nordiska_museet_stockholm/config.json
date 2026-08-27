@@ -1,0 +1,16 @@
+{
+  "institution_id": "nordiska-museet-stockholm",
+  "name": "Nordiska museet",
+  "country_code": "SE",
+  "city": "Stockholm",
+  "timezone": "Europe/Stockholm",
+  "default_locale": "sv",
+  "supported_locales": ["sv", "en"],
+  "display_currency": "SEK",
+  "provider_id": "digitaltmuseum_s_nm",
+  "adapter": "normalized_json_v1",
+  "source": {"api": "https://api.dimu.org", "owner": "S-NM", "api_key": "demo"},
+  "selection": {"object_type": "Fineart", "target": 25},
+  "public_exposure": false,
+  "catalog_version": "nordiska-museet-stockholm-controlled-25-v1"
+}

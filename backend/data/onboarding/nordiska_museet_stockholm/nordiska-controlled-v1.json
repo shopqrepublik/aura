@@ -1,0 +1,1681 @@
+{
+  "snapshot": {
+    "provider": "DigitaltMuseum / KulturIT",
+    "provider_id": "digitaltmuseum_s_nm",
+    "owner": "S-NM",
+    "source_url": "https://api.dimu.org"
+  },
+  "records": [
+    {
+      "provider_record_id": "011023358303",
+      "institution_record_id": "NM.0026760",
+      "source_url": "https://digitaltmuseum.org/NM.0026760",
+      "title_original": "Målning",
+      "creator_display": "Nilsson, Johannes",
+      "date_display": "1827",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "04VVQiwMgr",
+          "original_url": "https://ems.dimu.org/image/04VVQiwMgr?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "c918f7e7f3b034bbf6edc4de9110de6863f1143ce5ab0b164fb178883b301d04",
+          "bytes": 87094,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0026760",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "13e78b0d-e76f-41c5-9a1d-e2cddbd8588a",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023358303",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.production.place": "Sverige, Halland, Tönnersjö hd, Breared, Gyltige",
+        "artifact.ingress.producer": "Nilsson, Johannes",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1827,
+        "artifact.updatedDate": "2024-05-04T10:21:44.527Z",
+        "artifact.publishedDate": "2014-04-09T21:10:07.607Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Damkläder",
+          "Kläder : Herrkläder"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "04VVQiwMgr",
+        "artifact.defaultPictureIndex": 34863,
+        "artifact.defaultPictureDimension": "800x600"
+      }
+    },
+    {
+      "provider_record_id": "011023082720",
+      "institution_record_id": "NM.0004870",
+      "source_url": "https://digitaltmuseum.org/NM.0004870",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "01TzsbMTWw",
+          "original_url": "https://ems.dimu.org/image/01TzsbMTWw?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "3b54f7e6211170bd6709062802288b08bf4b5a287d4337e3a50323aeecca0bc0",
+          "bytes": 91610,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0004870",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "9ef09db7-5c96-49a6-b8aa-177cc16ef7b7",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023082720",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning från Delsbo sn.\"",
+        "artifact.updatedDate": "2024-04-26T11:16:31.734Z",
+        "artifact.publishedDate": "2014-03-27T10:17:12.467Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Herrkläder",
+          "Uniform"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "01TzsbMTWw",
+        "artifact.defaultPictureIndex": 36887,
+        "artifact.defaultPictureDimension": "600x800"
+      }
+    },
+    {
+      "provider_record_id": "011023362701",
+      "institution_record_id": "NM.0028109A-B",
+      "source_url": "https://digitaltmuseum.org/NM.0028109A-B",
+      "title_original": "Målning",
+      "creator_display": "Andersson, Anders",
+      "date_display": "1835",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "01VVX7Yaf2",
+          "original_url": "https://ems.dimu.org/image/01VVX7Yaf2?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "5b618ec6c1311240bcfb1736dde3c557d8da4fcf13de301c03874eef66112c4e",
+          "bytes": 108306,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0028109A-B",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "fb803583-d23e-4319-b472-b894da711676",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023362701",
+        "artifact.hasChildren": true,
+        "artifact.childCount": 2,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"a-b Målningar från Järfsö sn. Målade af en dalkarl (gammelgosse) Ol Jonsson. a.   b.   G[åva] af hem.eg. Per Hansson i Föränge gm dr A. Hazelius i Stockholm 14/8 1880. [Insamlingsnummer:] 160.\" \n\nBilaga:\nInget utöver huvudliggaren.\n\nUtdrag ur katalogkort 28 109a:\n\"...Inskriften: ' Saul hade i sinet trug och hot mot de Christna. Och wid han war i wägen Kringsken honom hastiliga m. m. A.G 9' [ska vara U B 9/CJK] H. 1,07 m. L. 1,25 m.\"\n\nUtdrag ur katalogkort 28.109b: \n\"Motiv Sacheus i trädet. Text: 'Sachee stig snarliga ned i dag måste jag gästa i dit hus Luce 19 v 5: AAS' \". Anders Andersson f. 1796 Nittsjö. Litt: R. Andersson, Hälsingerunor 1996, s 135 [som i sin tur anger S.Svärdström som källa - troligen Svärdströms arkiv].\" ",
+        "artifact.ingress.production.place": "Sverige, Dalarna, Rättvik",
+        "artifact.ingress.producer": "Andersson, Anders",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1835,
+        "artifact.updatedDate": "2024-05-04T18:21:57.366Z",
+        "artifact.publishedDate": "2014-04-09T21:45:12.205Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 2,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "01VVX7Yaf2",
+        "artifact.defaultPictureIndex": 57193,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023079646",
+      "institution_record_id": "NM.0001852",
+      "source_url": "https://digitaltmuseum.org/NM.0001852",
+      "title_original": "Målning",
+      "creator_display": "Erlandsson, Sven",
+      "date_display": "1853",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "04TzsZqTt2",
+          "original_url": "https://ems.dimu.org/image/04TzsZqTt2?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "b60201fec5f91247bf687b949364c6bd651e19f7717fb6078e3f4e041d93fde7",
+          "bytes": 122944,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0001852",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "d46cdf91-30d1-4001-a938-b0ea2b9787b1",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023079646",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.production.place": "Sverige, Västergötland, Kinds hd, Östra Frölunda, Karsbo",
+        "artifact.ingress.producer": "Erlandsson, Sven",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1853,
+        "artifact.updatedDate": "2024-04-25T07:26:02.872Z",
+        "artifact.publishedDate": "2014-03-27T08:54:54.260Z",
+        "artifact.ingress.classification": [
+          "353"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Damkläder",
+          "Kläder : Herrkläder",
+          "Djur : Husdjur"
+        ],
+        "artifact.ingress.names": [
+          "Målning",
+          "Gyltingemålning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "04TzsZqTt2",
+        "artifact.defaultPictureIndex": 50931,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023079644",
+      "institution_record_id": "NM.0001850",
+      "source_url": "https://digitaltmuseum.org/NM.0001850",
+      "title_original": "Målning",
+      "creator_display": "Erlandsson, Sven",
+      "date_display": "1853",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "03TzsZqTt1",
+          "original_url": "https://ems.dimu.org/image/03TzsZqTt1?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "67bbc91690b87a54f6e99759b4062626923e3f572cc5769321f9e71c807ae88a",
+          "bytes": 104484,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0001850",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "b3fc5e1f-3ae8-4384-9d31-01191c413238",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023079644",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.production.place": "Sverige, Västergötland, Kinds hd, Östra Frölunda, Karsbo",
+        "artifact.ingress.producer": "Erlandsson, Sven",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1853,
+        "artifact.updatedDate": "2024-04-25T07:26:02.025Z",
+        "artifact.publishedDate": "2014-03-27T08:54:50.575Z",
+        "artifact.ingress.classification": [
+          "353"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Damkläder",
+          "Kläder : Herrkläder",
+          "Djur : Vilda djur",
+          "Fartyg"
+        ],
+        "artifact.ingress.names": [
+          "Målning",
+          "Gyltingemålning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "03TzsZqTt1",
+        "artifact.defaultPictureIndex": 51230,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023711018",
+      "institution_record_id": "NM.0206349",
+      "source_url": "https://digitaltmuseum.org/NM.0206349",
+      "title_original": "Målning",
+      "creator_display": "Sunnerboskolan",
+      "date_display": "1857",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s8YK7p5wt",
+          "original_url": "https://ems.dimu.org/image/032s8YK7p5wt?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "15935fe04d470cf5e2d44bc02eb08e6ba5fd4b6b13a6417ffceec6106ae6f879",
+          "bytes": 86742,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0206349",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "967adf44-9f70-4a53-9d0b-b056461d7861",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023711018",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.production.place": "Sverige, Småland, Sunnerbo hd",
+        "artifact.ingress.producer": "Sunnerboskolan",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1857,
+        "artifact.ingress.production.toYear": 1857,
+        "artifact.updatedDate": "2024-05-07T15:17:02.625Z",
+        "artifact.publishedDate": "2014-04-12T15:18:40.620Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s8YK7p5wt",
+        "artifact.defaultPictureIndex": 34449,
+        "artifact.defaultPictureDimension": "800x600"
+      }
+    },
+    {
+      "provider_record_id": "011023665667",
+      "institution_record_id": "NM.0161203",
+      "source_url": "https://digitaltmuseum.org/NM.0161203",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s84LUQpvp",
+          "original_url": "https://ems.dimu.org/image/032s84LUQpvp?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "3be7c1f7da92fe32a38fabd513248600160ee2be051fd9db60792fcfabc25cd8",
+          "bytes": 55920,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0161203",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "0b3e8961-835a-4407-95d6-d1b4d6cb48a5",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023665667",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning på papper, liten, limfärg, portal m. utkommande män- o kvinnofig., Östbjörka, Rättviks sn, Dalar. I[nköpt] 22/2 1927 [från] Mats Jon Andersson [genom] Intendenten Sigurd Erixon. [Insamlingsnummer:] 117.\"",
+        "artifact.updatedDate": "2024-05-07T09:31:03.891Z",
+        "artifact.publishedDate": "2014-04-12T00:49:09.057Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s84LUQpvp",
+        "artifact.defaultPictureIndex": 50145,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023709434",
+      "institution_record_id": "NM.0204777A-L",
+      "source_url": "https://digitaltmuseum.org/NM.0204777A-L",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s8YK6MmPQ",
+          "original_url": "https://ems.dimu.org/image/032s8YK6MmPQ?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "809deb29e8c20dffbaa0e9f1c082445bf7977e28c82232f57cceff38971d99be",
+          "bytes": 131554,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0204777A-L",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "6ba5a974-0524-4538-ae5a-91348e742e10",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023709434",
+        "artifact.hasChildren": true,
+        "artifact.childCount": 12,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målningar, 12 bitar, på säckväv, jaktscener m.m. från Bjelkogård, Heda sn, Östra hd, Småland.\" ",
+        "artifact.updatedDate": "2024-05-07T15:04:43.361Z",
+        "artifact.publishedDate": "2014-04-12T14:46:22.508Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 11,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s8YK6MmPQ",
+        "artifact.defaultPictureIndex": 54770,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023665113",
+      "institution_record_id": "NM.0160653A-C",
+      "source_url": "https://digitaltmuseum.org/NM.0160653A-C",
+      "title_original": "Målning",
+      "creator_display": "Wikström, Hans",
+      "date_display": "1824",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "012s84LUQ9ta",
+          "original_url": "https://ems.dimu.org/image/012s84LUQ9ta?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "f4795b42d44cdfe2fa7c02c742c369978b1086b9706db287ad9a07277004c9f8",
+          "bytes": 77728,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0160653A-C",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "b7a411cf-3e61-4d83-9739-4a4f8a51bb7f",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023665113",
+        "artifact.hasChildren": true,
+        "artifact.childCount": 3,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"a-c Målningar på väv, 3 del., till rumsinredn., fältindeln. m. bibliska o. historiska fig., 'Målat år 1824 af Hans Wikström, fr. Berg, Hedesunda sn, Gästrikland.\"",
+        "artifact.ingress.producer": "Wikström, Hans",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1824,
+        "artifact.ingress.production.toYear": 1824,
+        "artifact.updatedDate": "2024-05-07T09:26:33.288Z",
+        "artifact.publishedDate": "2014-04-12T00:38:13.125Z",
+        "artifact.ingress.classification": [
+          "353",
+          "531"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Tapeter : Målade tapeter",
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Damkläder",
+          "Kläder : Herrkläder",
+          "Kunglighet",
+          "Djur : Husdjur",
+          "Djur : Sällskapsdjur",
+          "Natur",
+          "Uniform"
+        ],
+        "artifact.ingress.names": [
+          "Målning",
+          "Rumsinredning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 2,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "012s84LUQ9ta",
+        "artifact.defaultPictureIndex": 34542,
+        "artifact.defaultPictureDimension": "800x600"
+      }
+    },
+    {
+      "provider_record_id": "011023763580",
+      "institution_record_id": "NM.0258455",
+      "source_url": "https://digitaltmuseum.org/NM.0258455",
+      "title_original": "Målning",
+      "creator_display": "Mats, Anders Olsson",
+      "date_display": "1850",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "012s8YYEN4mT",
+          "original_url": "https://ems.dimu.org/image/012s8YYEN4mT?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "afa49c1ca537346a91bec5e4e3c1bb973ee73d91029f75c3657f8129427eaae0",
+          "bytes": 138272,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0258455",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "1efa78d6-8d2a-4397-b73d-f15c61da6631",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023763580",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning på papper, 'ålderstrappen', fragmentarisk, attr. (Svante Svärdström) Mats Anders Olsson, Västanå, Boda, Rättviks sn, Dalarna, 1850-talet. L. 113 cm, Br 69 cm. G[åva] 22/12 1959 [av] Godsägare Carl-Axel Wattrang, Björnlunda.\"",
+        "artifact.ingress.production.place": "Sverige, Dalarna, Rättvik",
+        "artifact.ingress.producer": "Mats, Anders Olsson",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1850,
+        "artifact.updatedDate": "2024-05-07T22:11:38.817Z",
+        "artifact.publishedDate": "2014-04-13T09:20:49.748Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Herrkläder",
+          "Ungdom",
+          "Ålderdom"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "012s8YYEN4mT",
+        "artifact.defaultPictureIndex": 48823,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023811139",
+      "institution_record_id": "NM.0307566+",
+      "source_url": "https://digitaltmuseum.org/NM.0307566+",
+      "title_original": "Målning",
+      "creator_display": "Kylberg, Carl",
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s8YeprsQ4",
+          "original_url": "https://ems.dimu.org/image/032s8YeprsQ4?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "8397a0e0eff655f372ff757353467baa97b3ec72bd591535c3b1587fea3218ae",
+          "bytes": 44358,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0307566+",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "5a52b201-ad3c-45f2-887c-51dcb4c49bfe",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023811139",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning, 2 st: papper, mycket skört; jordbrukslandskap: akvarell, använda som bakgrund vid lantbruksutställning: enligt uppgift möjligen målade av Kylberg, ej signerade, den ena mycket trasig.\"\n\nDen ena målningen visar handsådd, harvning och plöjning efter hästar, ogräsrensning, gallring. Två stora vita mangårdsbyggnader, röda ekonomibyggnader. Den andra målningen visar skörd, höbärgning med människor som räfsar och hässjar hö och hästförspända räfsor. Denna målning har en lång reva horisontalt från den ena kortsidan ett par meter in på motivet.\n/Maria Maxén, 2007-12-11\n\nEn liten del lossnat från varje akvarell, delarna är 10 x 3, 5 cm., respektive 16, 5 x 4 cm.\n/Marie Tornehave 2008-01-11",
+        "artifact.ingress.producer": "Kylberg, Carl",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.updatedDate": "2024-05-08T07:48:52.540Z",
+        "artifact.publishedDate": "2014-04-14T00:51:18.777Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Konst : Tavlor : Akvareller",
+          "Jordbruk : Jordens beredning",
+          "Jordbruk : Slåtter och skörd",
+          "Jordbruksarbete",
+          "Kulturlandskap",
+          "Djur",
+          "Redskap / Verktyg",
+          "Teknik : Arbetsmaskiner"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 2,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s8YeprsQ4",
+        "artifact.defaultPictureIndex": 89852,
+        "artifact.defaultPictureDimension": "2787x1665"
+      }
+    },
+    {
+      "provider_record_id": "011023688218",
+      "institution_record_id": "NM.0183523A-B",
+      "source_url": "https://digitaltmuseum.org/NM.0183523A-B",
+      "title_original": "Målning",
+      "creator_display": "Andersson, Anders",
+      "date_display": "1816",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "022s8YCekDZS",
+          "original_url": "https://ems.dimu.org/image/022s8YCekDZS?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "41919d31744ab15541e33761887e917c32f006161641324b15d2d0750ec9342f",
+          "bytes": 157196,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0183523A-B",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "4ec6099f-77a3-496d-bd63-f744e43c5c8e",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023688218",
+        "artifact.hasChildren": true,
+        "artifact.childCount": 2,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"a-b Målningar, limfärg på papper, klistrad på väv. Den samaritiska kvinnan o Jesu bön i örtagården, skarpa färger mot vit botten, märkt A. A.S. 1 stort fält samt 1 litet stycke, fr. Olarsgården, Delsbo sn, Häls. G[åva] 30/8 1930 [av] Herr Lars Munter, Nyåker, Fredriksfors.\"\n\nUtdrag ur katalogkort 183523a: \n\"Sign AAS =  Anders Andersson f. 1796 Nittsjö. Litt: R. Andersson, Hälsingerunor 1996, s 135 [som i sin tur anger S.Svärdström som källa - troligen Svärdströms arkiv]... Två figurscener skilda av ett träd. Överskrifter: t.v. 'Om den Samaritiska Qwinnan. Joh. 4. v. 6. A A S' . . h. \"Om Frälsarens Bön i örtagården. Luce. 22. v. 3 A A S\" \n\nUtdrag ur katalogkort 183.523b:\n\"Sign AAS =  Anders Andersson f. 1796 Nittsjö. Litt: R. Andersson, Hälsingerunor 1996, s 135 [som i sin tur anger S.Svärdström som källa - troligen Svärdströms arkiv]. [...] T.v. Bileam på sin åsna som knäböjer, t. h. ängeln' \" ",
+        "artifact.ingress.production.place": "Sverige, Dalarna, Rättvik",
+        "artifact.ingress.producer": "Andersson, Anders",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1816,
+        "artifact.updatedDate": "2024-05-07T12:17:57.959Z",
+        "artifact.publishedDate": "2014-04-12T07:57:40.776Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 2,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "022s8YCekDZS",
+        "artifact.defaultPictureIndex": 34551,
+        "artifact.defaultPictureDimension": "800x600"
+      }
+    },
+    {
+      "provider_record_id": "011023665690",
+      "institution_record_id": "NM.0161226",
+      "source_url": "https://digitaltmuseum.org/NM.0161226",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s84LUQq1E",
+          "original_url": "https://ems.dimu.org/image/032s84LUQq1E?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "8714abf3a633255a4750ca9caf60be15cd6f800390ba4c14e50404b8987510e7",
+          "bytes": 103866,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0161226",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "4da255fa-771a-48a1-906d-8bd246113f46",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023665690",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning på papper, hus m.m. i rött o svart, 'Drottningen av Rika Arabien kommer till _ _', defekt, fr. Gropa, Bjursås sn, Dalar. G[åva] 22/2 1927 [av] Finngården, Bjursås [genom] Intendenten Sigurd Erixon. [Insamlingsnummer:] 139.\"",
+        "artifact.updatedDate": "2024-05-07T09:31:14.552Z",
+        "artifact.publishedDate": "2014-04-12T00:49:33.641Z",
+        "artifact.ingress.classification": [
+          "532",
+          "853"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s84LUQq1E",
+        "artifact.defaultPictureIndex": 54730,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023454460",
+      "institution_record_id": "NM.0059489",
+      "source_url": "https://digitaltmuseum.org/NM.0059489",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "022s7YtWBCxv",
+          "original_url": "https://ems.dimu.org/image/022s7YtWBCxv?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "713a61f20f2fef0c0d0b8a15215a73f8e6dcdb5d18aff6d79b8bc3edea06b07d",
+          "bytes": 90640,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0059489",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "e761713d-e588-45db-8f1c-fce69152487f",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023454460",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.updatedDate": "2024-05-06T15:55:50.823Z",
+        "artifact.publishedDate": "2014-04-10T09:29:20.361Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "022s7YtWBCxv",
+        "artifact.defaultPictureIndex": 36898,
+        "artifact.defaultPictureDimension": "600x800"
+      }
+    },
+    {
+      "provider_record_id": "011023420806",
+      "institution_record_id": "NM.0047811",
+      "source_url": "https://digitaltmuseum.org/NM.0047811",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "022s7YYvYgii",
+          "original_url": "https://ems.dimu.org/image/022s7YYvYgii?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "a350d3485087fe9be0b7d2c5a76e72beed35422de46c343c5b06cf29a1bab035",
+          "bytes": 86816,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0047811",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "70a7d34e-7395-4f5a-b744-32cc3972b4fa",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023420806",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.updatedDate": "2024-05-06T14:14:15.664Z",
+        "artifact.publishedDate": "2014-04-10T05:07:15.110Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Damkläder"
+        ],
+        "artifact.ingress.names": [
+          "Målning",
+          "Fru"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "022s7YYvYgii",
+        "artifact.defaultPictureIndex": 36894,
+        "artifact.defaultPictureDimension": "600x800"
+      }
+    },
+    {
+      "provider_record_id": "011023082718",
+      "institution_record_id": "NM.0004868",
+      "source_url": "https://digitaltmuseum.org/NM.0004868",
+      "title_original": "Målning",
+      "creator_display": "Ersson, Erik",
+      "date_display": "1760",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "02TzsbMTSe",
+          "original_url": "https://ems.dimu.org/image/02TzsbMTSe?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "ee162e4af42dca0eee5b1d0417c9cadc64a3c31d93c519a751b5b9f2fa86270d",
+          "bytes": 139520,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0004868",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "b8fdc4f5-dc49-4541-a225-6f0355796071",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023082718",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning från Delsbo sn. Med inskrift: 'Jag heter knut den som Illa Låter den kiör iag uth'.\"",
+        "artifact.ingress.producer": "Ersson, Erik",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1760,
+        "artifact.ingress.production.toYear": 1800,
+        "artifact.updatedDate": "2024-04-26T11:16:14.332Z",
+        "artifact.publishedDate": "2014-03-27T10:17:09.464Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kläder : Herrkläder",
+          "Uniform",
+          "Vapen"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "02TzsbMTSe",
+        "artifact.defaultPictureIndex": 54782,
+        "artifact.defaultPictureDimension": "1920x2560"
+      }
+    },
+    {
+      "provider_record_id": "011023082719",
+      "institution_record_id": "NM.0004869",
+      "source_url": "https://digitaltmuseum.org/NM.0004869",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "04TzsbMTSf",
+          "original_url": "https://ems.dimu.org/image/04TzsbMTSf?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "e52aff91ab8231df4449a4ea30b210ec565b4feb45b05d4aceb2eef807d1e3b5",
+          "bytes": 149962,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0004869",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "c88a9eee-3162-4345-8747-d07bfe37783a",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023082719",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning från Delsbo sn. Med inskrift: '24 Januari 1712' m.m.\"",
+        "artifact.updatedDate": "2024-04-26T11:16:31.772Z",
+        "artifact.publishedDate": "2014-03-27T10:17:11.111Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Kunglighet",
+          "Kläder : Herrkläder",
+          "Uniform",
+          "Djur : Husdjur"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 2,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "04TzsbMTSf",
+        "artifact.defaultPictureIndex": 54802,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023361762",
+      "institution_record_id": "NM.0027850",
+      "source_url": "https://digitaltmuseum.org/NM.0027850",
+      "title_original": "Målning",
+      "creator_display": "Åsskolan",
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "02VVX65GVF",
+          "original_url": "https://ems.dimu.org/image/02VVX65GVF?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "6afda6b979ffcb5184bb7d738dfca1f2668baa3489eadcae0bc6269b07cad2fb",
+          "bytes": 58670,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0027850",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "9765d1f9-47e2-4b23-a832-9d19ec815224",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023361762",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.production.place": "Sverige, Småland, Västbo hd, Ås",
+        "artifact.ingress.producer": "Åsskolan",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.updatedDate": "2024-05-04T16:22:13.964Z",
+        "artifact.publishedDate": "2014-04-09T21:37:29.784Z",
+        "artifact.ingress.classification": [
+          "531"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Djur : Vilda djur"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "02VVX65GVF",
+        "artifact.defaultPictureIndex": 48778,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023642617",
+      "institution_record_id": "NM.0138172",
+      "source_url": "https://digitaltmuseum.org/NM.0138172",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "022s84LGXbCo",
+          "original_url": "https://ems.dimu.org/image/022s84LGXbCo?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "6339bee35c6aef69584d38da56804c6a5097b9dc6a7683bd9c2ebbb0c5bd9cad",
+          "bytes": 169318,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0138172",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "b05867d4-faec-489c-aa2e-5a96deaffe2f",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023642617",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning på väv, till väggbeklädnad; limfärgad. Från Näsbyn. Har suttit i Schols.\"",
+        "artifact.updatedDate": "2024-05-07T03:01:57.810Z",
+        "artifact.publishedDate": "2014-04-11T16:20:14.425Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning",
+          "Väggbeklädnad"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "022s84LGXbCo",
+        "artifact.defaultPictureIndex": 50140,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023454452",
+      "institution_record_id": "NM.0059486A-B",
+      "source_url": "https://digitaltmuseum.org/NM.0059486A-B",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "022s7YtWBCtU",
+          "original_url": "https://ems.dimu.org/image/022s7YtWBCtU?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "f1ebd20c688fdcc8a4740fe56a23c09cbb177661cc277ac481e26f2ab148a138",
+          "bytes": 88686,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0059486A-B",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "62e0656f-d1db-4ade-8635-4c5faebe10ac",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023454452",
+        "artifact.hasChildren": true,
+        "artifact.childCount": 2,
+        "artifact.ingress.title": "Målning",
+        "artifact.updatedDate": "2024-05-06T15:55:48.454Z",
+        "artifact.publishedDate": "2014-04-10T09:29:17.031Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "022s7YtWBCtU",
+        "artifact.defaultPictureIndex": 48832,
+        "artifact.defaultPictureDimension": "1920x2560"
+      }
+    },
+    {
+      "provider_record_id": "011023665663",
+      "institution_record_id": "NM.0161199",
+      "source_url": "https://digitaltmuseum.org/NM.0161199",
+      "title_original": "Målning",
+      "creator_display": "Hansson, Winter Carl",
+      "date_display": "1805",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "042s84LUQpvm",
+          "original_url": "https://ems.dimu.org/image/042s84LUQpvm?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "82c2a4346ad6fd8a618d6cc435e0eb18a99884d20925b54217ffd283ceedb6b2",
+          "bytes": 170088,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0161199",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "6254ace2-9803-4216-8790-e001d6fc7c4c",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023665663",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning på väv, limfärg, 2 fält m. fig. framställn. ur Josefs historia, fr. Östbjörka, Rättviks sn, Dalar. I[nköpt] 22/2 1927 [från] Säter Jon Eriksson, Rättvik [genom] Intendenten Sigurd Erixon. [Insamlingsnummer:] 114.\"\n\nUtdrag ur katalogkort:\n\"att Winter Carl Hansson, från Yttermo, Leksands sn. omkr. 1800 /Svt [Svante Svärdström] / \"\n",
+        "artifact.ingress.production.place": "Sverige, Dalarna, Leksand",
+        "artifact.ingress.producer": "Hansson, Winter Carl",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1805,
+        "artifact.updatedDate": "2024-05-07T09:31:01.980Z",
+        "artifact.publishedDate": "2014-04-12T00:49:03.883Z",
+        "artifact.ingress.classification": [
+          "352"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "042s84LUQpvm",
+        "artifact.defaultPictureIndex": 34429,
+        "artifact.defaultPictureDimension": "800x600"
+      }
+    },
+    {
+      "provider_record_id": "011023457433",
+      "institution_record_id": "NM.0060563A-B",
+      "source_url": "https://digitaltmuseum.org/NM.0060563A-B",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s7YtadqhM",
+          "original_url": "https://ems.dimu.org/image/032s7YtadqhM?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "9e41d7d9c51b104e896880fd2336122720a227a3e42ad82cefe73c20c1ee6a0e",
+          "bytes": 267404,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0060563A-B",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "1d4bf3c9-cdcd-4851-9ec5-a05d96f33cf7",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023457433",
+        "artifact.hasChildren": true,
+        "artifact.childCount": 2,
+        "artifact.ingress.title": "Målning",
+        "artifact.updatedDate": "2024-05-06T16:05:26.244Z",
+        "artifact.publishedDate": "2014-04-10T09:57:24.116Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Konst : Tavlor",
+          "Park",
+          "Uppvaktning / Romantik",
+          "Man",
+          "Kvinna",
+          "Livets högtider : Lysning"
+        ],
+        "artifact.ingress.names": [
+          "Målning",
+          "Landskapsbild"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 4,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s7YtadqhM",
+        "artifact.defaultPictureIndex": 140252,
+        "artifact.defaultPictureDimension": "3000x2892"
+      }
+    },
+    {
+      "provider_record_id": "011023403285",
+      "institution_record_id": "NM.0042157",
+      "source_url": "https://digitaltmuseum.org/NM.0042157",
+      "title_original": "Miniatyrporträtt",
+      "creator_display": null,
+      "date_display": "1820",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "032s7YSH6upM",
+          "original_url": "https://ems.dimu.org/image/032s7YSH6upM?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "4436758ca00c0e2114b5de26e12c21aec8f79b82c3fce687e274379adbaf4cba",
+          "bytes": 80166,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0042157",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "92185f4a-23ed-4a15-9ad7-35f075f3b60e",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023403285",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Miniatyrporträtt",
+        "artifact.ingress.production.fromYear": 1820,
+        "artifact.ingress.production.toYear": 1829,
+        "artifact.updatedDate": "2024-05-06T13:17:16.354Z",
+        "artifact.publishedDate": "2014-04-10T02:56:09.246Z",
+        "artifact.ingress.classification": [
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Konst : Tavlor : Akvareller",
+          "Konst : Tavlor : Miniatyrer",
+          "Kvinna",
+          "Handarbete",
+          "Tidsanda : 1800-talets första hälft",
+          "Motivkategori : Porträtt"
+        ],
+        "artifact.ingress.names": [
+          "Miniatyrporträtt",
+          "Målning",
+          "Porträtt"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 2,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "032s7YSH6upM",
+        "artifact.defaultPictureIndex": 140998,
+        "artifact.defaultPictureDimension": "2178x3222"
+      }
+    },
+    {
+      "provider_record_id": "011023665740",
+      "institution_record_id": "NM.0161276",
+      "source_url": "https://digitaltmuseum.org/NM.0161276",
+      "title_original": "Målning",
+      "creator_display": null,
+      "date_display": "",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "012s84LUQqA2",
+          "original_url": "https://ems.dimu.org/image/012s84LUQqA2?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "6c2b4425c05c0bb06b928f067b9e245ffc88696fa1ce82949ab96a39242bad66",
+          "bytes": 246314,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0161276",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "c57b366d-c930-45f7-93ef-a1b152cf6c58",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023665740",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.description": "Huvudliggaren:\n\"Målning på väv m. limfärg, 3 fält m. blomsterkrukor i färg mot vit botten, fr. Lenåsen, Boda sn, Dalar. G[åva] 22/2 1927 [av] Brita Jonsdotter, Stötgården, Lenåsen, Boda [genom] Intendenten Sigurd Erixon. [Insamlingsnummer:] 82.\"",
+        "artifact.updatedDate": "2024-05-07T09:31:38.546Z",
+        "artifact.publishedDate": "2014-04-12T00:50:33.920Z",
+        "artifact.ingress.classification": [
+          "353",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "012s84LUQqA2",
+        "artifact.defaultPictureIndex": 50146,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    },
+    {
+      "provider_record_id": "011023388974",
+      "institution_record_id": "NM.0037276",
+      "source_url": "https://digitaltmuseum.org/NM.0037276",
+      "title_original": "Målning",
+      "creator_display": "Sunnerboskolan",
+      "date_display": "1800",
+      "object_type": "Fineart",
+      "department": "Nordiska museet",
+      "description": null,
+      "media": [
+        {
+          "provider_asset_id": "02VVkBAwpG",
+          "original_url": "https://ems.dimu.org/image/02VVkBAwpG?dimension=1200x1200",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/webp",
+          "checksum_sha256": "4af061c4a61899ca2ed4a1abf10663cf7641ce818ea518728217c31fcdd0e148",
+          "bytes": 66108,
+          "source_rights_metadata": {
+            "owner": "S-NM",
+            "license": [
+              "CC by-nc-nd"
+            ]
+          }
+        }
+      ],
+      "raw_payload": {
+        "identifier.id": "NM.0037276",
+        "identifier.owner": "S-NM",
+        "artifact.uuid": "b9322e74-ce10-4548-8246-92506b15d04c",
+        "artifact.type": "Thing",
+        "artifact.uniqueId": "011023388974",
+        "artifact.hasChildren": false,
+        "artifact.ingress.title": "Målning",
+        "artifact.ingress.production.place": "Sverige, Småland, Sunnerbo hd",
+        "artifact.ingress.producer": "Sunnerboskolan",
+        "artifact.ingress.producerRole": "Tillverkare",
+        "artifact.ingress.production.fromYear": 1800,
+        "artifact.updatedDate": "2024-05-06T12:36:22.538Z",
+        "artifact.publishedDate": "2014-04-10T01:07:32.579Z",
+        "artifact.ingress.classification": [
+          "283",
+          "532"
+        ],
+        "artifact.ingress.subjects": [
+          "Heminredning : Väggprydnader : Målade bonader",
+          "Textilt arbete : Spinning : Linfästen",
+          "Handarbete",
+          "Kvinna",
+          "Djur : Husdjur",
+          "Stad"
+        ],
+        "artifact.ingress.names": [
+          "Målning"
+        ],
+        "artifact.ingress.license": [
+          "CC by-nc-nd"
+        ],
+        "artifact.pictureCount": 1,
+        "artifact.hasPictures": true,
+        "artifact.defaultMediaIdentifier": "02VVkBAwpG",
+        "artifact.defaultPictureIndex": 75948,
+        "artifact.defaultPictureDimension": "2560x1920"
+      }
+    }
+  ]
+}
