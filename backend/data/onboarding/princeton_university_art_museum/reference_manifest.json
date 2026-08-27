@@ -1,0 +1,279 @@
+{
+  "records": [
+    {
+      "status": "READY",
+      "provider_record_id": "21797",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/21797.jpg",
+          "sha256": "75d902378eb4204474dbd5d2e8a1933aaba9d53eab2ca5c95a2bb033c0806d49",
+          "bytes": 633428
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "21847",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/21847.jpg",
+          "sha256": "e833d39592a624fcdd4dd4c3b8a24073ba2fc798e0925830f629cc211431b8ef",
+          "bytes": 248955
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "21861",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/21861.jpg",
+          "sha256": "13357571caf547b43e5737e2c01ac1994070178c543b6733eeed733197240dd9",
+          "bytes": 588770
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "6237",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/6237.jpg",
+          "sha256": "03156a93a3d5cda2084871e64f007655ac0b315dd73d569627617ae21de5fe95",
+          "bytes": 347400
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "56738",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/56738.jpg",
+          "sha256": "df86d59b76dbb44154d4d94266282b47f635c8db143418e024b6235113198016",
+          "bytes": 51294
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "13369",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/13369.jpg",
+          "sha256": "3f60f9ae459c2a7948750e2491b0f05d77b0acd2286c36fc255f44d5ace52bad",
+          "bytes": 285015
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "32648",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/32648.jpg",
+          "sha256": "9e4fdc2678122ef377fd8183b1690056c08fa5021a81f536ed3056be4ce8cf3b",
+          "bytes": 132344
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "125459",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/125459.jpg",
+          "sha256": "8ad46ed3f3d3598f678e114f3d3d4447414ada1cb67dfbaec817b2cacbfaf7e9",
+          "bytes": 783791
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "142894",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/142894.jpg",
+          "sha256": "8df96a0f760f28623e6a97d2dcd26fd519592bee8af10b69974b2059eed03f4e",
+          "bytes": 10306480
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "18753",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/18753.jpg",
+          "sha256": "0b6ce1bf21ff1ba0752d107045651b2efd1be976bb093b892b0e1bc0d304d267",
+          "bytes": 6937
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "58061",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/58061.jpg",
+          "sha256": "d4c5ead064a4cfc28b1e9df22acd1272c8344f6f49dc3fd3bb6f5491d3d127c0",
+          "bytes": 84587
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "10477",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/10477.jpg",
+          "sha256": "a2b748cadbf35354e2cf5d7a630e2a3b1259a29324270957d44d62c49d8940c1",
+          "bytes": 1494502
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "137160",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/137160.jpg",
+          "sha256": "5900b96a4c1861d936a004fb424813af074c678fe5ae5919442859c8e380d2e1",
+          "bytes": 2148892
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "18808",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/18808.jpg",
+          "sha256": "f1c51876a551cd1d316c9f88c184c3f445651fb670b36fcd11a6f8e8027ecc70",
+          "bytes": 87403
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "21863",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/21863.jpg",
+          "sha256": "5346bb3138b11cbca4b2860a3d7e16db466e255b676d43980ef3cf776e76f320",
+          "bytes": 223965
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "30743",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/30743.jpg",
+          "sha256": "be19f4cff98629e591a11e97bb0017b51a4bceaa40f1e564cdc799f61e26caa4",
+          "bytes": 89673
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "22646",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/22646.jpg",
+          "sha256": "609e6ae939eab04dfb55afb1e68ab09d54f92fbc7eac48db5170dff729827d6e",
+          "bytes": 275884
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "21910",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/21910.jpg",
+          "sha256": "59bb7aaad4bb48997df49b1bc7bdf0cae3575e1378ee503aad29258a0c3ff31c",
+          "bytes": 2479384
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "135184",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/135184.jpg",
+          "sha256": "ac17dee6886f5b70287de762d3be8e0473dca638a9e6e0a67d1af390984548ba",
+          "bytes": 2152740
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "125460",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/125460.jpg",
+          "sha256": "c0d7056cf5e6d1742700aa3a57fd43c4f94853e7470f3a117fd9f00942718412",
+          "bytes": 171541
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "24616",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/24616.jpg",
+          "sha256": "1e1eec14d7f0cbdb34d58925dabadab42b48ab45de6634fe9a24e17edd48d523",
+          "bytes": 40937
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "32539",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/32539.jpg",
+          "sha256": "9f3c36f17645e9d827b508f81671eb644bfcf477c8bd6e28b99310ed309fa11e",
+          "bytes": 321038
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "23230",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/23230.jpg",
+          "sha256": "6bd0329a6bf8a5ae9222bb8a815b9e2bad7f6519c1e79ef21460de4044253064",
+          "bytes": 233129
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "23276",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/23276.jpg",
+          "sha256": "13097f760fbc0a240d4438ee15feec7255d954fb7e1191cdaa163f1aa88914ae",
+          "bytes": 241972
+        }
+      }
+    },
+    {
+      "status": "READY",
+      "provider_record_id": "20106",
+      "files": {
+        "reference": {
+          "path": "backend/data/onboarding/princeton_university_art_museum/reference_images/20106.jpg",
+          "sha256": "ea10adc3cf8dfd1a090f66fa2cba6bb2e6742a98ad9d4d3b486273dc61454a83",
+          "bytes": 2251405
+        }
+      }
+    }
+  ]
+}
