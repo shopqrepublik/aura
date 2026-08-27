@@ -1,0 +1,625 @@
+{
+  "snapshot": {
+    "provider": "Europeana",
+    "provider_id": "europeana_khm_vienna",
+    "data_provider": "Fine Arts Museum Vienna"
+  },
+  "records": [
+    {
+      "provider_record_id": "/15502/GG_739",
+      "institution_record_id": "GG_739",
+      "source_url": "http://www.khm.at/de/objektdb/detail/1897/",
+      "title_original": "Erzherzog Leopold Wilhelm in seiner GemГ¤ldegalerie",
+      "creator_display": "David Teniers d. J. (KГјnstler/in)",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_739-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F1897%2FGG_739_Web.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "b47c32817e63a3d64831769e3142b099e905496ef5f7cf35de87d3e49d8a64b2",
+          "bytes": 90217
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1672",
+      "institution_record_id": "GG_1672",
+      "source_url": "http://www.khm.at/de/objektdb/detail/217/",
+      "title_original": "Die Dominikanerkirche in Wien",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1672-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F217%2FGG_1672_HP.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "d461e7077da7e360751771154147450264107df32737c8ee9af3a71f2092f539",
+          "bytes": 76494
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1668",
+      "institution_record_id": "GG_1668",
+      "source_url": "http://www.khm.at/de/objektdb/detail/214/",
+      "title_original": "Der Mehlmarkt in Wien",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1668-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F214%2FGG_1668x.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "a2532b34d27451716902618bfbe59842527c50b3089c092eae826ca333d54e39",
+          "bytes": 69370
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1670",
+      "institution_record_id": "GG_1670",
+      "source_url": "http://www.khm.at/de/objektdb/detail/215/",
+      "title_original": "Der UniversitГ¤tsplatz in Wien",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1670-image",
+          "original_url": "http://imageapi.khm.at/images/215/GG_1670x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "58ce338b4139a779f5bcdd53bc17d69b2a37744309a6b0bf729a379863737085",
+          "bytes": 820939
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1669",
+      "institution_record_id": "GG_1669",
+      "source_url": "http://www.khm.at/de/objektdb/detail/205/",
+      "title_original": "Wien, vom Belvedere aus gesehen",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1669-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F205%2FGG_1669_Web.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "43541f0b3b978373d876abca12addbd1e44062a036240696570d16bf5bd56387",
+          "bytes": 62608
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1671",
+      "institution_record_id": "GG_1671",
+      "source_url": "http://www.khm.at/de/objektdb/detail/216/",
+      "title_original": "Der Lobkowitzplatz in Wien",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1671-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F216%2FGG_1671x.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "7432c807c79294a0c87f9b788f9c3c60932529212ab98fc5dc7661d977a964d3",
+          "bytes": 61658
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1752",
+      "institution_record_id": "GG_1752",
+      "source_url": "http://www.khm.at/de/objektdb/detail/980/",
+      "title_original": "The inner Burgplatz in Vienna",
+      "creator_display": "http://d-nb.info/119265931",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1752-image",
+          "original_url": "http://imageapi.khm.at/images/980/GG_1752x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "44b5641fb15dd4e373a46352b7f2b96bbfc17294dcd3c55a302bb28f6ccd9067",
+          "bytes": 1026636
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1652",
+      "institution_record_id": "GG_1652",
+      "source_url": "http://www.khm.at/de/objektdb/detail/212/",
+      "title_original": "The Freyung in Vienna, view from the northwest",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1652-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F212%2FGG_1652x.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "c6e3bdc7c5905282a4160020955679cccf40c781eda0d036ede86e703f4cb9e1",
+          "bytes": 77275
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1654",
+      "institution_record_id": "GG_1654",
+      "source_url": "http://www.khm.at/de/objektdb/detail/213/",
+      "title_original": "The Freyung in Vienna, View of the Southeast",
+      "creator_display": "http://d-nb.info/118637819",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1654-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F213%2FGG_1654_2x.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "e85a75ef807e22ff1516f2ac5d3eafe5a6720a657c4f166ed46adb0724aaf399",
+          "bytes": 63220
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_5990",
+      "institution_record_id": "GG_5990",
+      "source_url": "http://www.khm.at/de/objektdb/detail/2193/",
+      "title_original": "Die ErГ¶ffnung des Kunsthistorischen Museums durch Kaiser Franz Joseph I. am 17.10.1891",
+      "creator_display": "http://d-nb.info/110982291X",
+      "date_display": "1891",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_5990-image",
+          "original_url": "http://imageapi.khm.at/images/2193/GG_5990.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "7199d109ce1636b757bee07624c4ac3e515c69c7137b91ffea78ee939244b497",
+          "bytes": 930004
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_2503",
+      "institution_record_id": "GG_2503",
+      "source_url": "http://www.khm.at/de/objektdb/detail/1981/",
+      "title_original": "Fantastic Landscape with Shepherds and Trees",
+      "creator_display": "Frederik I. van Valckenborch (Werkstatt)",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_2503-image",
+          "original_url": "http://imageapi.khm.at/images/1981/GG_2503x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "dc5d3931d3185ca07f70327df7d43dba7abc8de209369a9064ad8c2d17472d2e",
+          "bytes": 452451
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1793",
+      "institution_record_id": "GG_1793",
+      "source_url": "http://www.khm.at/de/objektdb/detail/783/",
+      "title_original": "Trompe lвЂ™oeil: Basrelief mit Amor und Psyche",
+      "creator_display": "#Marten_Joseph_Geeraerts_KГјnstler/in",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1793-image",
+          "original_url": "http://imageapi.khm.at/images/783/GG_1793x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "5f98d48ce9e8fffae9a1ce8fe9dea7e7d627d8c483c2af89ce192e02bb020966",
+          "bytes": 526493
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_146",
+      "institution_record_id": "GG_146",
+      "source_url": "http://www.khm.at/de/objektdb/detail/1671/",
+      "title_original": "Trunkenheit Noahs",
+      "creator_display": "http://d-nb.info/118793977",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_146-image",
+          "original_url": "http://imageapi.khm.at/images/1671/GG_146x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "f3aebd4c44b1953cbc629e874cfd896f275f515371030c31b7bf23447fc60874",
+          "bytes": 324848
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_2263",
+      "institution_record_id": "GG_2263",
+      "source_url": "http://www.khm.at/de/objektdb/detail/1479/",
+      "title_original": "Gastmahl im Park",
+      "creator_display": "http://d-nb.info/118882929",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_2263-image",
+          "original_url": "http://imageapi.khm.at/images/1479/GG_2263x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "cb4864be6f5cfb2b157176c2cec7800230c308bf9bb090e84f2e951475aa77c7",
+          "bytes": 435547
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_33",
+      "institution_record_id": "GG_33",
+      "source_url": "http://www.khm.at/de/objektdb/detail/2054/",
+      "title_original": "Bildnis einer vornehmen Dame",
+      "creator_display": "Venezianisch (Zugeschrieben an)",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_33-image",
+          "original_url": "http://imageapi.khm.at/images/2054/GG_33x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "93fdf5c1e9909dc418e9897d12c6196b67b97be406d381d7ddffcaccf96f5f5a",
+          "bytes": 311376
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_385",
+      "institution_record_id": "GG_385",
+      "source_url": "http://www.khm.at/de/objektdb/detail/499/",
+      "title_original": "Tote Wildenten",
+      "creator_display": "http://d-nb.info/138887993",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_385-image",
+          "original_url": "http://imageapi.khm.at/images/499/GG_385x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "b020fe004b2cf0606958ae4f707027654f614be4b3568e8ddd4f06a4e080fa87",
+          "bytes": 388728
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_5660",
+      "institution_record_id": "GG_5660",
+      "source_url": "http://www.khm.at/de/objektdb/detail/1430/",
+      "title_original": "Schlacht bei Pavia",
+      "creator_display": "http://d-nb.info/118591975",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_5660-image",
+          "original_url": "http://imageapi.khm.at/images/1430/GG_5660x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "de9d889540fb9d094a235099a70ac2de1569aaee368793cfd27c03adf30e6195",
+          "bytes": 672853
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_726",
+      "institution_record_id": "GG_726",
+      "source_url": "http://www.khm.at/de/objektdb/detail/2094/",
+      "title_original": "Salbung Salomos",
+      "creator_display": "http://d-nb.info/119055252",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_726-image",
+          "original_url": "http://imageapi.khm.at/images/2094/GG_726x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "96a78261348c5b868c670f55ca03a40276f87f635acd24b6917401f7216b313b",
+          "bytes": 454674
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_707",
+      "institution_record_id": "GG_707",
+      "source_url": "http://www.khm.at/de/objektdb/detail/2098/",
+      "title_original": "Fuchsjagd",
+      "creator_display": "#Paul_de_Vos_KГјnstler/in",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_707-image",
+          "original_url": "http://imageapi.khm.at/images/2098/GG_707x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "44ec9055dc03d039a6e05a28501969886e897794c5bf2f18d8127b4689cdc7ee",
+          "bytes": 397291
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_7641",
+      "institution_record_id": "GG_7641",
+      "source_url": "http://www.khm.at/de/objektdb/detail/1749/",
+      "title_original": "Geisselung Christi",
+      "creator_display": "http://d-nb.info/138194742",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_7641-image",
+          "original_url": "http://imageapi.khm.at/images/1749/GG_7641x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "750324bd8b69322e231f7b457f4f5c77f1f5733c7437a84f13b1e62ad9d0b2ff",
+          "bytes": 340350
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_9677",
+      "institution_record_id": "GG_9677",
+      "source_url": "http://www.khm.at/de/objektdb/detail/797/",
+      "title_original": "Anbetung der KГ¶nige",
+      "creator_display": "http://d-nb.info/119195976",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_9677-image",
+          "original_url": "https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fimageapi.khm.at%2Fimages%2F797%2FGG_9677x.jpg&type=IMAGE",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "6046756c9773db5f97f676418edf2071996a54a3c9223d41ace56ad10065ab3d",
+          "bytes": 59746
+        }
+      ]
+    },
+    {
+      "provider_record_id": "/15502/GG_1030",
+      "institution_record_id": "GG_1030",
+      "source_url": "http://www.khm.at/de/objektdb/detail/921/",
+      "title_original": "Male Portrait",
+      "creator_display": "http://d-nb.info/124643809",
+      "date_display": "",
+      "object_type": "GemГ¤lde",
+      "department": "GemГ¤ldegalerie",
+      "collection": "GemГ¤ldegalerie",
+      "description": "Kunsthistorisches Museum Wien; transported via Europeana.",
+      "media": [
+        {
+          "provider_asset_id": "/15502/GG_1030-image",
+          "original_url": "http://imageapi.khm.at/images/921/GG_1030x.jpg",
+          "purpose": "REFERENCE",
+          "media_type": "IMAGE",
+          "rights_status": "UNKNOWN",
+          "verification_state": "VERIFIED",
+          "recognition_eligible": true,
+          "association_role": "REFERENCE",
+          "http_status": 200,
+          "content_type": "image/jpeg",
+          "sha256": "baed7a7f173e0d72faa77b2f7afead633002a7e5566d3518d52a553074b02eaa",
+          "bytes": 274281
+        }
+      ]
+    }
+  ]
+}

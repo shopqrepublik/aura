@@ -587,9 +587,13 @@ def readiness_report(db: Session, institution_id: str) -> dict[str, Any]:
         "presentation_eligible": len(presentation_ids),
         "recognition_eligible": len(recognition_ids),
         "vision_plus_asset": len(recognition_ids),
-        "vision_ready": len(artwork_ids - recognition_ids - missing_metadata),
+        # Technical recognition readiness is deliberately independent from
+        # rights/compliance metadata.  UNKNOWN rights remain visible through
+        # provenance_blockers and publication policy, but do not disable a
+        # valid RecognitionAsset + descriptor for controlled recognition.
+        "vision_ready": len(recognition_ids - missing_metadata),
         "not_ready": len(missing_metadata),
         "missing_metadata": len(missing_metadata),
         "provenance_blockers": len({value for value in provenance_blocked if value}),
-        "ready_for_benchmark": bool(artwork_ids) and not missing_metadata and not provenance_blocked,
+        "ready_for_benchmark": bool(artwork_ids) and not missing_metadata,
     }
