@@ -4,16 +4,17 @@ import LandingPage from "@/components/landing/LandingPage";
 import { LOCALES, SITE_URL, alternatesFor, type SeoLocale } from "@/lib/seo-content";
 
 const metadataCopy = {
-  en: { title: "ELYIO — AI Museum Guide for France | Identify Art, Discover Its Story", description: "Explore French museums with ELYIO. Identify an artwork, understand its story, notice the details and see carefully labelled value context." },
-  fr: { title: "ELYIO — Guide IA des musées de France | Identifier et comprendre l’art", description: "Explorez les musées français avec ELYIO. Identifiez une œuvre, comprenez son histoire, observez ses détails et découvrez un contexte de valeur clairement expliqué." },
-  "zh-hans": { title: "ELYIO — 法国博物馆 AI 导览 | 识别艺术，读懂故事", description: "使用 ELYIO 探索法国博物馆：识别艺术品、理解故事，并查看明确说明的价值背景。" },
+  en: { title: "ELYIO — AI Museum Guide for Art & Museums", description: "Point your camera at an artwork and ELYIO helps you recognize it, understand the story behind it, and explore museums from Paris to New York and beyond." },
+  fr: { title: "ELYIO — Votre compagnon IA pour les musées du monde", description: "Pointez votre appareil photo vers une œuvre : ELYIO vous aide à la reconnaître, à comprendre son histoire et à explorer les musées de Paris à New York et au-delà." },
+  "zh-hans": { title: "ELYIO — 全球博物馆 AI 艺术伴侣", description: "用相机对准艺术品，ELYIO 帮助您识别作品、了解背后的故事，并探索从巴黎到纽约及更远的博物馆。" },
 } as const;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!LOCALES.includes(locale as SeoLocale)) return {};
   const copy = metadataCopy[locale as SeoLocale];
-  return { title: copy.title, description: copy.description, alternates: alternatesFor(`/${locale}`), openGraph: { title: copy.title, description: copy.description, url: `${SITE_URL}/${locale}`, siteName: "ELYIO", type: "website", images: [{ url: "/icons/icon-512.png", width: 512, height: 512, alt: "ELYIO museum guide" }] }, twitter: { card: "summary_large_image", title: copy.title, description: copy.description, images: ["/icons/icon-512.png"] } };
+  const canonicalPath = locale === "en" ? "/" : `/${locale}`;
+  return { title: copy.title, description: copy.description, alternates: alternatesFor(canonicalPath), openGraph: { title: "ELYIO — Your AI Museum Companion", description: "See an artwork. Point your camera. Discover what you’re looking at and why it matters.", url: `${SITE_URL}${canonicalPath}`, siteName: "ELYIO", type: "website", images: [{ url: "/icons/icon-512.png", width: 512, height: 512, alt: "ELYIO AI museum companion" }] }, twitter: { card: "summary_large_image", title: "ELYIO — Your AI Museum Companion", description: "See an artwork. Point your camera. Discover what you’re looking at and why it matters.", images: ["/icons/icon-512.png"] } };
 }
 
 export default async function LocaleHome({ params }: { params: Promise<{ locale: string }> }) {
