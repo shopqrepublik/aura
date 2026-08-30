@@ -16,17 +16,14 @@ const features = [
 ] as const;
 
 const museums = [
-  ["Musée du Louvre", "12,000+ works • Paintings, sculptures, antiquities", "Live • 12k works"],
-  ["Musée d'Orsay", "Impressionism to Post-Impressionism", "Live"],
-  ["Musée de l'Orangerie", "Monet Water Lilies & early modern masters", "Live"],
-  ["Musée Carnavalet", "History of Paris", "Guide"],
-  ["Musée de Cluny", "Medieval art & artifacts", ""],
-  ["Musée de l'Armée", "Military history at Les Invalides", ""],
-  ["Musée du quai Branly", "Non-Western arts & cultures", ""],
-  ["Musée Guimet", "Asian art collection", ""],
-  ["Musée Picasso", "Picasso life and work", ""],
-  ["Musée Rodin", "Sculpture garden & studio", ""],
-  ["Petit Palais", "Fine arts from antiquity to 1920s", ""],
+  ["Musée Carnavalet", "History of Paris"],
+  ["Musée de Cluny", "Medieval art and artifacts"],
+  ["Musée de l'Armée", "Military history at Les Invalides"],
+  ["Musée du quai Branly — Jacques Chirac", "Non-Western arts and cultures"],
+  ["Musée Guimet", "Asian art collection"],
+  ["Musée Picasso Paris", "Picasso's life and work"],
+  ["Musée Rodin", "Sculpture garden and studio"],
+  ["Petit Palais", "Fine arts from antiquity to the 1920s"],
 ] as const;
 
 const usagePrimary = [
@@ -48,6 +45,11 @@ const usageSecondary = [
   ["WASHINGTON", "National Gallery of Art"],
   ["NEW HAVEN", "Yale University Art Gallery"],
 ] as const;
+
+const usageIndex: ReadonlyArray<readonly [string, string, readonly string[]]> = [
+  ...usagePrimary,
+  ...usageSecondary.map(([city, name], index) => [String(index + 7).padStart(2, "0"), city, [name]] as const),
+];
 
 function PhoneResult({ floating = false }: { floating?: boolean }) {
   return (
@@ -100,7 +102,7 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
               <Link className="landing-button" href={visitHref}>Begin your visit</Link>
               <Link className="landing-text-link" href={guidesHref}>Explore museum guides →</Link>
             </div>
-            <p className="landing-live">Live at Louvre, Musée d&apos;Orsay, Orangerie • London coming next</p>
+            <p className="landing-live">Live in Paris • Visitors exploring museums worldwide</p>
           </div>
           <div className="landing-hero-visual">
             <Image src="/landing/elyio-museum-visitor.webp" alt="A visitor using ELYIO in a museum" fill priority sizes="(max-width: 900px) 100vw, 520px" />
@@ -151,34 +153,25 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
           <h2>Catalog when we know.<br />AI when we don&apos;t.</h2>
           <p>A hybrid system designed to never leave you without context. Verified when possible, helpful when not — always transparent about which it is.</p>
           <div className="landing-hybrid-grid">
-            <article><small><i className="green" /> VERIFIED CATALOG</small><h3>Exact match, curated story</h3><ul><li>Louvre (12k+ works) — paintings, sculptures, objects</li><li>Musée d&apos;Orsay, Orangerie — recognition + AI fallback</li><li>Visual clues, not just text — where to look in the frame</li></ul><span className="landing-pill green-pill">● Curated by ELYIO</span></article>
+            <article><small><i className="green" /> VERIFIED CATALOG</small><h3>Exact match, curated story</h3><ul><li>Louvre — curated painting, sculpture and object coverage</li><li>Musée d&apos;Orsay, Orangerie — recognition + AI fallback</li><li>Visual clues, not just text — where to look in the frame</li></ul><span className="landing-pill green-pill">● Curated by ELYIO</span></article>
             <article><small><i className="gold" /> AI INSIGHT — FALLBACK</small><h3>Helpful even when not in catalog</h3><p>If the work isn&apos;t yet in the verified catalog, ELYIO still explains what you see: period, technique, likely subject, why it might matter. Clearly labeled, never pretending to be catalog.</p><div className="landing-note">Your scans of unknown works help ELYIO understand which pieces to add next. No data sold, no gallery push.</div></article>
           </div>
         </section>
 
-        <section className="landing-usage landing-container" aria-labelledby="landing-usage-title">
-          <div className="landing-usage-intro">
-            <div>
-              <p className="landing-eyebrow">A growing geography of visits</p>
-              <h2 id="landing-usage-title">From the Louvre to The Met.<br />ELYIO is already being used around the world.</h2>
-            </div>
-            <p>Visitors are already pointing ELYIO at art in some of the world&#8217;s great museums — from Paris and London to New York, Amsterdam and Vienna.</p>
-          </div>
-          <div className="landing-usage-stats" aria-label="17 museums, 14 cities, 8 countries">
-            <div><strong>17</strong><span>MUSEUMS</span></div><div><strong>14</strong><span>CITIES</span></div><div><strong>8</strong><span>COUNTRIES</span></div>
-          </div>
-          <div className="landing-usage-primary">{usagePrimary.map(([number, city, names]) => <article key={city}><div className="landing-usage-city"><span>{number}</span><b>{city}</b></div><ul>{names.map(name => <li key={name}>{name}</li>)}</ul></article>)}</div>
-          <div className="landing-usage-secondary">{usageSecondary.map(([city, name]) => <div key={city}><small>{city}</small><span>{name}</span></div>)}</div>
-          <div className="landing-usage-note"><p>These aren&#8217;t integrations. They&#8217;re museums where visitors have already explored with ELYIO.</p><small>ELYIO is an independent visitor product and is not affiliated with or endorsed by the museums listed.</small></div>
-        </section>
-
         <section className="landing-coverage">
           <div className="landing-container">
-            <div className="landing-coverage-heading"><h2>Curated when we know.<br />Useful wherever you go.</h2><p>Curated museum knowledge is one layer of ELYIO. Where a guide is available, start with the collection; everywhere else, AI keeps the visit useful and clearly labeled.</p></div>
-            <div className="landing-city-heading"><b>PARIS</b><span>Live now • 3 verified catalogs, 8 guides</span></div>
-            <div className="landing-museum-grid">{museums.map(([name,body,badge]) => <article key={name}><small>PARIS • MUSÉE</small><h3>{name}</h3><p>{body}</p>{badge && <span className={badge.startsWith("Live") ? "live" : "guide"}>{badge}</span>}</article>)}</div>
-            <div className="landing-city-heading london"><b>LONDON</b><span>Guide coverage where available</span></div>
-            <article className="landing-london-card"><small>LONDON • NATIONAL GALLERY</small><h3>National Gallery, London</h3><p>Curated guide layer alongside ELYIO&apos;s AI fallback.</p></article>
+            <div className="landing-coverage-ticker"><span>Already explored with ELYIO</span><p>Louvre <i>·</i> The Met <i>·</i> Rijksmuseum <i>·</i> National Gallery <i>·</i> Orsay <i>·</i> Getty <i>·</i> KHM <i>·</i> Alte Pinakothek <em>· +9</em></p></div>
+            <div className="landing-coverage-heading"><div><p className="landing-eyebrow">Museum coverage</p><h2>Curated where we know.<br />Useful wherever you go.</h2></div><p>ELYIO combines a growing catalog of museum knowledge with AI that stays useful beyond it.</p></div>
+            <div className="landing-curated-label"><b>CURATED COVERAGE</b><span>3 LIVE IN PARIS · LONDON IN TESTING</span></div>
+            <div className="landing-curated-primary">
+              <article><small>01 · PARIS</small><h3>Musée du Louvre</h3><span>LIVE</span><p>Curated catalog</p></article>
+              <article><small>02 · PARIS</small><h3>Musée d&apos;Orsay</h3><span>LIVE</span><p>Curated catalog</p></article>
+              <article><small>03 · PARIS</small><h3>Musée de l&apos;Orangerie</h3><span>LIVE</span><p>Curated catalog</p></article>
+              <article className="testing"><small>04 · LONDON</small><h3>National Gallery</h3><span>IN TESTING</span><p>Guide + AI fallback</p></article>
+            </div>
+            <div className="landing-paris-index"><p className="landing-index-label">More Paris guides</p><div>{museums.map(([name,body]) => <article key={name}><h3>{name}</h3><span>{body}</span></article>)}</div></div>
+            <div className="landing-global-index"><div className="landing-global-heading"><p className="landing-index-label">Also explored · beyond curated</p><div className="landing-usage-stats"><b>17 <small>MUSEUMS</small></b><b>14 <small>CITIES</small></b><b>8 <small>COUNTRIES</small></b></div><p>Usage footprint reflects museums where visitors have already used ELYIO. Curated catalog status is shown separately.</p></div><div className="landing-city-index">{usageIndex.map(([number,city,names]) => <article key={city}><b>{number} · {city}</b><span>{names.join(" · ")}</span></article>)}</div></div>
+            <div className="landing-usage-note"><p>These aren&apos;t integrations. They&apos;re museums where visitors have already explored with ELYIO.</p><small>ELYIO is an independent visitor product and is not affiliated with or endorsed by the museums listed.</small></div>
           </div>
         </section>
 
