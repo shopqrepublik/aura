@@ -29,6 +29,26 @@ const museums = [
   ["Petit Palais", "Fine arts from antiquity to 1920s", ""],
 ] as const;
 
+const usagePrimary = [
+  ["01", "PARIS", ["Musée du Louvre", "Musée d'Orsay", "Musée de l'Orangerie"]],
+  ["02", "LONDON", ["National Gallery", "Victoria and Albert Museum"]],
+  ["03", "NEW YORK", ["The Metropolitan Museum of Art"]],
+  ["04", "AMSTERDAM", ["Rijksmuseum"]],
+  ["05", "VIENNA", ["Kunsthistorisches Museum"]],
+  ["06", "LOS ANGELES", ["Getty"]],
+] as const;
+
+const usageSecondary = [
+  ["BERLIN", "Gemäldegalerie, Staatliche Museen zu Berlin"],
+  ["MUNICH", "Alte Pinakothek"],
+  ["COPENHAGEN", "SMK — Statens Museum for Kunst"],
+  ["STOCKHOLM", "Nordiska Museet"],
+  ["PRINCETON", "Princeton University Art Museum"],
+  ["CLEVELAND", "Cleveland Museum of Art"],
+  ["WASHINGTON", "National Gallery of Art"],
+  ["NEW HAVEN", "Yale University Art Gallery"],
+] as const;
+
 function PhoneResult({ floating = false }: { floating?: boolean }) {
   return (
     <div className={`landing-phone ${floating ? "landing-phone-floating" : ""}`} aria-label="Example ELYIO artwork result">
@@ -103,6 +123,15 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
           </div>
         </div>
 
+        <section className="landing-proof-strip landing-container" aria-label="ELYIO visitor usage">
+          <div>
+            <p className="landing-eyebrow">Already explored with ELYIO</p>
+            <p className="landing-proof-museums landing-proof-desktop">Louvre <span>·</span> The Met <span>·</span> Rijksmuseum <span>·</span> National Gallery <span>·</span> Musée d&apos;Orsay <span>·</span> Getty <span>·</span> KHM <span>·</span> Alte Pinakothek <span>· +9</span></p>
+            <p className="landing-proof-museums landing-proof-mobile">Louvre <span>·</span> The Met <span>·</span> Rijksmuseum <span>·</span> National Gallery <span>· +13</span></p>
+          </div>
+          <div className="landing-proof-stats"><b>17 <small>MUSEUMS</small></b><b>14 <small>CITIES</small></b><b>8 <small>COUNTRIES</small></b></div>
+        </section>
+
         <section className="landing-steps landing-container">
           <h2>Enter. Point. Recognize. Discover.</h2>
           <div className="landing-step-grid">{steps.map(([number,title,body]) => <article key={number}><strong>{number}</strong><h3>{title}</h3><p>{body}</p></article>)}</div>
@@ -127,21 +156,36 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
           </div>
         </section>
 
+        <section className="landing-usage landing-container" aria-labelledby="landing-usage-title">
+          <div className="landing-usage-intro">
+            <div>
+              <p className="landing-eyebrow">A growing geography of visits</p>
+              <h2 id="landing-usage-title">From the Louvre to The Met.<br />ELYIO is already being used around the world.</h2>
+            </div>
+            <p>Visitors are already pointing ELYIO at art in some of the world&#8217;s great museums — from Paris and London to New York, Amsterdam and Vienna.</p>
+          </div>
+          <div className="landing-usage-stats" aria-label="17 museums, 14 cities, 8 countries">
+            <div><strong>17</strong><span>MUSEUMS</span></div><div><strong>14</strong><span>CITIES</span></div><div><strong>8</strong><span>COUNTRIES</span></div>
+          </div>
+          <div className="landing-usage-primary">{usagePrimary.map(([number, city, names]) => <article key={city}><div className="landing-usage-city"><span>{number}</span><b>{city}</b></div><ul>{names.map(name => <li key={name}>{name}</li>)}</ul></article>)}</div>
+          <div className="landing-usage-secondary">{usageSecondary.map(([city, name]) => <div key={city}><small>{city}</small><span>{name}</span></div>)}</div>
+          <div className="landing-usage-note"><p>These aren&#8217;t integrations. They&#8217;re museums where visitors have already explored with ELYIO.</p><small>ELYIO is an independent visitor product and is not affiliated with or endorsed by the museums listed.</small></div>
+        </section>
+
         <section className="landing-coverage">
           <div className="landing-container">
-            <div className="landing-coverage-heading"><h2>Curated guides.<br />Global from day one.</h2><p>ELYIO is built as one interface for museums worldwide, starting with Paris. Architecture: Country → City → Museum → Collection → Artwork.</p></div>
+            <div className="landing-coverage-heading"><h2>Curated when we know.<br />Useful wherever you go.</h2><p>Curated museum knowledge is one layer of ELYIO. Where a guide is available, start with the collection; everywhere else, AI keeps the visit useful and clearly labeled.</p></div>
             <div className="landing-city-heading"><b>PARIS</b><span>Live now • 3 verified catalogs, 8 guides</span></div>
             <div className="landing-museum-grid">{museums.map(([name,body,badge]) => <article key={name}><small>PARIS • MUSÉE</small><h3>{name}</h3><p>{body}</p>{badge && <span className={badge.startsWith("Live") ? "live" : "guide"}>{badge}</span>}</article>)}</div>
-            <div className="landing-city-heading london"><b>LONDON</b><span>Coming next • Official catalog loaded</span><i>London coming next</i></div>
-            <article className="landing-london-card"><small>LONDON • NATIONAL GALLERY</small><h3>National Gallery, London</h3><p>British configuration • Controlled recognition catalog • In testing</p><span>• Expanding coverage across collection</span></article>
-            <div className="landing-coming"><b>COMING</b><span>Venice</span><i>·</i><span>Madrid</span><i>·</i><span>New York</span><em>More cities in 2026</em></div>
+            <div className="landing-city-heading london"><b>LONDON</b><span>Guide coverage where available</span></div>
+            <article className="landing-london-card"><small>LONDON • NATIONAL GALLERY</small><h3>National Gallery, London</h3><p>Curated guide layer alongside ELYIO&apos;s AI fallback.</p></article>
           </div>
         </section>
 
         <section className="landing-final">
           <div className="landing-container landing-final-inner">
-            <div><h2>ELYIO</h2><p>Point your camera at an artwork once you are inside a supported museum. ELYIO returns the story, visual details and contextual scale without pretending that a museum masterpiece is for sale.</p></div>
-            <div><Link className="landing-final-button" href={visitHref}>Begin your visit at the Louvre</Link><Link href={guidesHref}>See all museums →</Link></div>
+            <div><h2>ELYIO</h2><p>Take ELYIO to your next museum. Point your camera at an artwork and start exploring — with a catalog match when we have one, and AI context when we don&apos;t.</p></div>
+            <div><Link className="landing-final-button" href={visitHref}>Begin your visit</Link><Link href={guidesHref}>See all museums →</Link></div>
           </div>
           <div className="landing-container landing-final-meta"><span>© 2026 ELYIO • Premium cultural companion</span><span>Catalog when we know. AI when we don&apos;t.</span></div>
         </section>
