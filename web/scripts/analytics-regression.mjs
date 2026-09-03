@@ -38,18 +38,43 @@ try {
   assert.equal(acceptedCalls.filter((call) => call[0] === "js").length, 1, "single GA bootstrap after late consent");
   assert.equal(acceptedCalls.filter((call) => call[0] === "config" && call[1] === "G-GP3VEHLNE2").length, 1, "single GA config after late consent");
   assert.equal(acceptedCount("page_view"), 1, "single current page_view after late consent");
+  assert.ok(acceptedCalls.some((call) => call[0] === "consent" && call[1] === "default" && call[2].analytics_storage === "denied"));
+  assert.ok(acceptedCalls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].analytics_storage === "granted"));
+  assert.ok(acceptedCalls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].ad_storage === "denied" && call[2].ad_user_data === "denied" && call[2].ad_personalization === "denied"));
+  const queuedWithoutGtag = await page.evaluate(() => {
+    const before = (window.dataLayer || []).filter((entry) => Array.from(entry)[0] === "event" && Array.from(entry)[1] === "begin_visit").length;
+    const original = window.gtag;
+    window.gtag = undefined;
+    const probe = document.createElement("button");
+    probe.dataset.gaBeginVisit = "landing_hero";
+    document.body.appendChild(probe);
+    probe.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
+    probe.remove();
+    window.gtag = original;
+    const after = (window.dataLayer || []).filter((entry) => Array.from(entry)[0] === "event" && Array.from(entry)[1] === "begin_visit").length;
+    return after - before;
+  });
+  assert.equal(queuedWithoutGtag, 1, "granted consent must queue begin_visit if gtag is not ready");
+  await page.evaluate(() => {
+    const original = window.gtag;
+    window.gtag = (...args) => {
+      const stored = JSON.parse(window.sessionStorage.getItem("elyio-test-gtag-calls") || "[]");
+      stored.push(args);
+      window.sessionStorage.setItem("elyio-test-gtag-calls", JSON.stringify(stored));
+      return original?.(...args);
+    };
+  });
   await page.locator('[data-ga-begin-visit="landing_hero"]').click();
   await page.waitForURL(/\/visit\?/);
 
-  const calls = await page.evaluate(() => (window.dataLayer || []).map((entry) => Array.from(entry)));
-  const count = (name) => calls.filter((call) => call[0] === "event" && call[1] === name).length;
-  assert.equal(calls.filter((call) => call[0] === "js").length, 1, "single GA bootstrap");
-  assert.equal(calls.filter((call) => call[0] === "config" && call[1] === "G-GP3VEHLNE2").length, 1, "single GA config");
-  assert.equal(count("begin_visit"), 1, "single begin_visit per CTA click");
-  assert.equal(count("page_view"), 1, "single current page_view");
-  assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "default" && call[2].analytics_storage === "denied"));
-  assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].analytics_storage === "granted"));
-  assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].ad_storage === "denied" && call[2].ad_user_data === "denied" && call[2].ad_personalization === "denied"));
+  const visitUrl = new URL(page.url());
+  assert.equal(visitUrl.pathname, "/visit", "landing CTA must navigate to /visit");
+  assert.equal(visitUrl.searchParams.get("from"), "organic", "landing CTA must preserve from");
+  assert.equal(visitUrl.searchParams.get("landing"), "home", "landing CTA must preserve landing");
+  assert.equal(visitUrl.searchParams.get("locale"), "en", "landing CTA must preserve locale");
+  const beginVisitCalls = await page.evaluate(() => JSON.parse(window.sessionStorage.getItem("elyio-test-gtag-calls") || "[]"));
+  const beginVisitCount = beginVisitCalls.filter((call) => call[0] === "event" && call[1] === "begin_visit").length;
+  assert.equal(beginVisitCount, 1, "single begin_visit per CTA click");
 
   await page.locator("button:has(.lucide-chevron-down)").click();
   await page.getByRole("button", { name: /Musée du Louvre/ }).first().click();

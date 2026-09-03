@@ -63,10 +63,22 @@ function googleConsent(): GoogleConsentChoice | undefined {
 }
 
 export function trackGoogleEvent(event: GoogleEventName, parameters: GoogleEventParameters = {}) {
-  if (typeof window === "undefined" || googleConsent() !== "granted" || typeof window.gtag !== "function") return;
+  if (typeof window === "undefined" || googleConsent() !== "granted") return;
+  const args: [string, GoogleEventName, GoogleEventParameters] = ["event", event, parameters];
   try {
-    window.gtag("event", event, parameters);
-  } catch { /* Google analytics must never interfere with the visit */ }
+    if (typeof window.gtag === "function") {
+      window.gtag(...args);
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    const queueGtagCommand: NonNullable<Window["gtag"]> = function queueGtagCommand() {
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer?.push(arguments);
+    };
+    queueGtagCommand(...args);
+  } catch {
+    /* Google analytics must never interfere with the visit */
+  }
 }
 
 let initialized = false;

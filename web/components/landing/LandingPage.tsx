@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "@/components/seo/SeoLink";
+import LandingVisitLink from "@/components/landing/LandingVisitLink";
 import type { SeoLocale } from "@/lib/seo-content";
 
 const steps = [
@@ -75,7 +76,7 @@ function PhoneResult({ floating = false }: { floating?: boolean }) {
 }
 
 export default function LandingPage({ locale }: { locale: SeoLocale }) {
-  const visitHref = `/visit?from=organic&locale=${locale}&landing=home`;
+  const visitHref = `/visit?from=organic&landing=home&locale=${locale}`;
   const guidesHref = `/${locale}/museums`;
   return (
     <div className="landing-page">
@@ -88,7 +89,7 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
             <Link href="/fr" aria-current={locale === "fr" ? "page" : undefined}>Français</Link>
             <Link href="/zh-hans" aria-current={locale === "zh-hans" ? "page" : undefined}>简体中文</Link>
           </div>
-          <Link className="landing-button landing-header-button" href={visitHref} data-ga-begin-visit="landing_header">Begin your visit</Link>
+          <LandingVisitLink className="landing-button landing-header-button" href={visitHref} sourceSurface="landing_header">Begin your visit</LandingVisitLink>
         </nav>
       </header>
 
@@ -99,7 +100,7 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
             <h1>See a painting.<br />Scan it.<br />Understand it.</h1>
             <p className="landing-lede">Your AI companion for the world&apos;s museums. Point your camera at an artwork. ELYIO recognizes it, explains it, and gives you the story worth knowing — what it is, why it matters, and where to look next.</p>
             <div className="landing-actions">
-              <Link className="landing-button" href={visitHref} data-ga-begin-visit="landing_hero">Begin your visit</Link>
+              <LandingVisitLink className="landing-button" href={visitHref} sourceSurface="landing_hero">Begin your visit</LandingVisitLink>
               <Link className="landing-text-link" href={guidesHref}>Explore museum guides →</Link>
             </div>
             <p className="landing-live">Live in Paris • Visitors exploring museums worldwide</p>
@@ -178,7 +179,7 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
         <section className="landing-final">
           <div className="landing-container landing-final-inner">
             <div><h2>ELYIO</h2><p>Take ELYIO to your next museum. Point your camera at an artwork and start exploring — with a catalog match when we have one, and AI context when we don&apos;t.</p></div>
-            <div><Link className="landing-final-button" href={visitHref} data-ga-begin-visit="landing_footer">Begin your visit</Link><Link href={guidesHref}>See all museums →</Link></div>
+            <div><LandingVisitLink className="landing-final-button" href={visitHref} sourceSurface="landing_footer">Begin your visit</LandingVisitLink><Link href={guidesHref}>See all museums →</Link></div>
           </div>
           <div className="landing-container landing-final-meta"><span>© 2026 ELYIO • Premium cultural companion</span><span>Catalog when we know. AI when we don&apos;t.</span></div>
         </section>

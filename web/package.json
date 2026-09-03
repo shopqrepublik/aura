@@ -16,6 +16,7 @@
     "test:visit": "node scripts/visit-game-regression.mjs",
     "test:pwa": "node scripts/pwa-runtime-check.mjs",
     "test:analytics": "node scripts/analytics-regression.mjs",
+    "test:landing-cta": "node scripts/landing-cta-regression.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {

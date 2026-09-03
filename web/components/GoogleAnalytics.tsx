@@ -34,6 +34,9 @@ let consentDefaultsInitialized = false;
 let gaBootstrapInitialized = false;
 let gaConfigured = false;
 let currentPageViewSent = false;
+let pointerTrackedBeginVisitTarget: HTMLElement | null = null;
+
+type TrackedNativeEvent = Event & { __elyioBeginVisitTracked?: boolean };
 
 function localeFromPath() {
   const locale = window.location.pathname.split("/")[1]?.toLowerCase();
@@ -95,6 +98,13 @@ function updateConsent(choice: GoogleConsentChoice) {
   window.gtag?.("consent", "update", DENIED_CONSENT_FIELDS);
 }
 
+function trackBeginVisit(target: HTMLElement) {
+  trackGoogleEvent("begin_visit", {
+    locale: localeFromPath(),
+    source_surface: (target.dataset.gaBeginVisit || "direct") as "landing_hero" | "landing_header" | "landing_footer" | "museum_page" | "direct",
+  });
+}
+
 export default function GoogleAnalytics() {
   const enabled = process.env.NODE_ENV === "production" && Boolean(GA_MEASUREMENT_ID);
   const [choice, setChoice] = useState<GoogleConsentChoice | null | undefined>(undefined);
@@ -131,19 +141,32 @@ export default function GoogleAnalytics() {
     history.replaceState = function (...args) { originalReplaceState.apply(this, args); queueMicrotask(onNavigation); };
     window.addEventListener("popstate", onNavigation);
 
-    const onClick = (event: MouseEvent) => {
+    const onPointerDown = (event: PointerEvent) => {
+      if ((event as TrackedNativeEvent).__elyioBeginVisitTracked) return;
       const target = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-ga-begin-visit]") : null;
       if (!target) return;
-      trackGoogleEvent("begin_visit", {
-        locale: localeFromPath(),
-        source_surface: (target.dataset.gaBeginVisit || "direct") as "landing_hero" | "landing_header" | "landing_footer" | "museum_page" | "direct",
-      });
+      (event as TrackedNativeEvent).__elyioBeginVisitTracked = true;
+      pointerTrackedBeginVisitTarget = target;
+      trackBeginVisit(target);
     };
+    const onClick = (event: MouseEvent) => {
+      if ((event as TrackedNativeEvent).__elyioBeginVisitTracked) return;
+      const target = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-ga-begin-visit]") : null;
+      if (!target) return;
+      if (pointerTrackedBeginVisitTarget === target) {
+        pointerTrackedBeginVisitTarget = null;
+        return;
+      }
+      (event as TrackedNativeEvent).__elyioBeginVisitTracked = true;
+      trackBeginVisit(target);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("click", onClick);
     return () => {
       history.pushState = originalPushState;
       history.replaceState = originalReplaceState;
       window.removeEventListener("popstate", onNavigation);
+      document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("click", onClick);
     };
   }, [enabled]);
