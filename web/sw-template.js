@@ -25,11 +25,22 @@ self.addEventListener("activate", (e) => {
   e.waitUntil(
     caches.keys()
       .then((keys) => Promise.all(keys.filter((key) => key.startsWith(CACHE_PREFIX)).map((key) => caches.delete(key))))
-      .then(() => self.registration.unregister())
+      .then(() => self.clients.claim())
+      .then(() => new Promise((resolve) => setTimeout(resolve, 3000)))
       .then(() => self.clients.matchAll({ type: "window", includeUncontrolled: true }))
-      .then((clients) => {
-        for (const client of clients) client.navigate(client.url);
-      })
+      .then((clients) =>
+        Promise.all(
+          clients.map((client) => {
+            try {
+              const url = new URL(client.url);
+              if (url.origin !== self.location.origin) return undefined;
+              return client.navigate(client.url).catch(() => undefined);
+            } catch {
+              return undefined;
+            }
+          })
+        )
+      )
+      .then(() => self.registration.unregister())
   );
-  self.clients.claim();
 });

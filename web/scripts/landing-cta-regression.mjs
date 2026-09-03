@@ -60,7 +60,7 @@ async function runCase(browser, viewportName, viewport, consent, ctaName, select
   assert.equal(await link.getAttribute("href"), "/visit?from=organic&landing=home&locale=en");
   const beforeUrl = page.url();
   await link.click();
-  await page.waitForURL(/\/visit\?/, { timeout: 10000 });
+  await page.waitForURL(/\/visit\?/, { waitUntil: "domcontentloaded", timeout: 10000 });
   assert.notEqual(page.url(), beforeUrl, `${viewportName}/${consent}/${ctaName} did not navigate`);
   assertVisitUrl(page.url());
   assert.deepEqual(pageErrors, [], `${viewportName}/${consent}/${ctaName} had page errors`);

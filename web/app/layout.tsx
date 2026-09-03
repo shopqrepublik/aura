@@ -3,6 +3,7 @@ import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import "../components/landing/landing.css";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 
 // Editorial serif for artwork titles / Reveal price / Recap value -- next/font
 // self-hosts the font files at build time (no runtime request to Google's
@@ -64,6 +65,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#F7F3EC] text-[#181714]">
         {children}
         <GoogleAnalytics />
+        <ServiceWorkerRegister />
       </body>
     </html>
   );
