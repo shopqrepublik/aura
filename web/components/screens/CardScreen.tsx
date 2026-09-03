@@ -14,6 +14,8 @@ import { track, trackGoogleEvent } from "@/lib/analytics";
 import { proxyImageUrl } from "@/lib/visitPalette";
 import type { AppState } from "@/lib/app-state";
 
+const viewedStoryKeys = new Set<string>();
+
 function displayImageUrl(url: string): string {
   if (/^https?:\/\/(upload|commons)\.wikimedia\.org\//i.test(url)) {
     return proxyImageUrl(url, 1200);
@@ -80,8 +82,16 @@ export default function CardScreen({
     if (!trackingEnabled || !artwork || state.cardOpenedAt == null) return;
     const artworkId = artwork.id;
     const openedAt = state.cardOpenedAt;
-    track("artwork_card_opened", { artwork_id: artworkId });
-    trackGoogleEvent("story_viewed", { locale: state.locale, museum_slug: state.museumId || undefined, museum_city: state.museumCity || undefined, artwork_id: artworkId, recognition_mode: "catalog", catalog_status: "catalog", source_surface: "scanner" });
+    const storyKey = `${openedAt}:${artworkId}`;
+    if (!viewedStoryKeys.has(storyKey)) {
+      viewedStoryKeys.add(storyKey);
+      trackGoogleEvent("story_viewed", { locale: state.locale, museum_slug: state.museumId || undefined, museum_city: state.museumCity || undefined, artwork_id: artworkId, recognition_mode: "catalog", catalog_status: "catalog", source_surface: "scanner" });
+    }
+    try {
+      track("artwork_card_opened", { artwork_id: artworkId });
+    } catch {
+      // First-party analytics must never prevent GA story_viewed or card use.
+    }
     return () => {
       track("artwork_card_read_time", { artwork_id: artworkId, read_time_ms: Date.now() - openedAt });
     };

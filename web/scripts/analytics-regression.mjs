@@ -2,6 +2,88 @@ import assert from "node:assert/strict";
 import { chromium } from "playwright";
 
 const baseUrl = process.env.ANALYTICS_TEST_URL || "http://localhost:3100";
+const louvreMuseum = { id: "louvre", name: "Musée du Louvre", city: "Paris", lat: null, lng: null, geofence_radius_m: 500, experience_level: "CURATED" };
+
+async function runRecognitionScenario(browser, name, recognizeBody, expected) {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await context.addInitScript(() => {
+    Object.defineProperty(HTMLVideoElement.prototype, "videoWidth", { get: () => 512 });
+    Object.defineProperty(HTMLVideoElement.prototype, "videoHeight", { get: () => 384 });
+    if (!navigator.mediaDevices) Object.defineProperty(navigator, "mediaDevices", { value: {}, configurable: true });
+    navigator.mediaDevices.getUserMedia = async () => new MediaStream();
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (...args) {
+      const ctx = original.apply(this, args);
+      if (ctx) ctx.drawImage = () => undefined;
+      return ctx;
+    };
+    HTMLCanvasElement.prototype.toDataURL = () => "data:image/jpeg;base64,ZmFrZQ==";
+  });
+  const page = await context.newPage();
+  await page.route("https://www.googletagmanager.com/**", (route) => route.fulfill({ status: 200, contentType: "application/javascript", body: "" }));
+  await page.route("**/v1/museums**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify([louvreMuseum]) }));
+  await page.route("**/v1/events", (route) => route.fulfill({ status: 204, body: "" }));
+  await page.route("**/v1/visits", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ id: `${name}-visit`, museum_id: "louvre", locale: "en", started_at: new Date().toISOString(), completed_at: null, artworks: [] }) }));
+  await page.route("**/v1/visits/**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true, count: 1 }) }));
+  await page.route("**/v1/indicative-value", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ eligible: false, estimate: null }) }));
+  await page.route("**/v1/artworks/cl010062370**", (route) => route.fulfill({
+    status: 200,
+    contentType: "application/json",
+    body: JSON.stringify({
+      id: "cl010062370",
+      museum_id: "louvre",
+      artist: "Leonardo da Vinci",
+      title: "Mona Lisa",
+      year: "c. 1503-1519",
+      hall: null,
+      inventory_number: "CL010062370",
+      image_url: null,
+      priority: "golden20",
+      estimate_low: null,
+      estimate_high: null,
+      value_reveal: null,
+      needs_editorial_review: false,
+      metadata_status: "reviewed",
+      localizations: [{
+        locale: "en",
+        mode: "normal",
+        title: "Mona Lisa",
+        why_it_matters: "Why it matters regression text.",
+        where_to_look: "Look closer regression text.",
+        rarity_note: "Context regression text.",
+      }],
+    }),
+  }));
+  await page.route("**/v1/recognize", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(recognizeBody) }));
+
+  await page.goto(`${baseUrl}/visit?from=organic&landing=home&locale=en`);
+  await page.evaluate(() => {
+    localStorage.clear();
+    sessionStorage.clear();
+  });
+  await page.reload({ waitUntil: "domcontentloaded" });
+  await page.getByRole("button", { name: "Accept" }).click();
+  await page.locator("#elyio-ga4").waitFor({ state: "attached" });
+  await page.locator("button:has(.lucide-chevron-down)").click();
+  await page.locator("button").filter({ hasText: /Curated guide/ }).first().click();
+  await page.waitForTimeout(200);
+  await page.getByRole("button", { name: "Begin your visit" }).first().click();
+  await page.getByRole("button", { name: "Capture" }).waitFor();
+  await page.getByRole("button", { name: "Capture" }).click();
+  if (expected.story_viewed) {
+    await page.waitForSelector("text=/Mona Lisa|Test Uncataloged|Why it matters|Look closer/i");
+  } else {
+    await page.waitForSelector("text=/could not identify|identify/i");
+  }
+  await page.waitForTimeout(300);
+  const calls = await page.evaluate(() => (window.dataLayer || []).map((entry) => Array.from(entry)));
+  const count = (eventName) => calls.filter((call) => call[0] === "event" && call[1] === eventName).length;
+  assert.equal(count("artwork_recognized"), expected.artwork_recognized, `${name}: artwork_recognized count`);
+  assert.equal(count("story_viewed"), expected.story_viewed, `${name}: story_viewed count`);
+  assert.equal(count("recognition_failed"), expected.recognition_failed, `${name}: recognition_failed count`);
+  await context.close();
+}
+
 const browser = await chromium.launch({ headless: true });
 try {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
@@ -93,7 +175,38 @@ try {
   await page.goto(`${baseUrl}/visit`);
   assert.equal(await page.locator("#elyio-ga4").count(), 0, "denied consent must not load tag");
   assert.equal(googleRequests.length, 0, "denied consent must not contact Google");
-  console.log("analytics-regression: PASS (UTM, consent denied/granted, single tag, page_view, begin_visit, camera_opened, scan_started)");
+
+  await runRecognitionScenario(browser, "catalog success", {
+    status: "matched",
+    artwork_id: "cl010062370",
+    confidence: 0.99,
+    alternatives: [],
+    recognition_mode: "catalog",
+  }, { artwork_recognized: 1, story_viewed: 1, recognition_failed: 0 });
+  await runRecognitionScenario(browser, "ai fallback success", {
+    status: "no_match",
+    artwork_id: null,
+    confidence: 0.88,
+    alternatives: [],
+    recognition_mode: "VISION_READY",
+    vision: { recognized: true, confidence: 0.88 },
+    recognized_but_not_cataloged: {
+      artist: "Test Artist",
+      title: "Test Uncataloged",
+      date: "1900",
+      object_type: "painting",
+      confidence: 0.88,
+    },
+  }, { artwork_recognized: 1, story_viewed: 1, recognition_failed: 0 });
+  await runRecognitionScenario(browser, "terminal failure", {
+    status: "no_match",
+    artwork_id: null,
+    confidence: 0.1,
+    alternatives: [],
+    recognition_mode: "VISION_READY",
+    recognized_but_not_cataloged: null,
+  }, { artwork_recognized: 0, story_viewed: 0, recognition_failed: 1 });
+  console.log("analytics-regression: PASS (UTM, consent, GA lifecycle, CTA, scan events, successful catalog/AI fallback analytics, terminal failure analytics)");
 } finally {
   await browser.close();
 }

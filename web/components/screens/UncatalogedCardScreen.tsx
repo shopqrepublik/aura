@@ -10,6 +10,8 @@ import type { AppState } from "@/lib/app-state";
 import type { Mode } from "@/lib/types";
 import { trackGoogleEvent } from "@/lib/analytics";
 
+const viewedStoryKeys = new Set<string>();
+
 export default function UncatalogedCardScreen({
   state,
   onBack,
@@ -27,9 +29,12 @@ export default function UncatalogedCardScreen({
 }) {
   const sighting = state.uncatalogedSighting;
   useEffect(() => {
-    if (!sighting) return;
+    if (!sighting || state.cardOpenedAt == null) return;
+    const storyKey = `${state.cardOpenedAt}:${sighting.id}`;
+    if (viewedStoryKeys.has(storyKey)) return;
+    viewedStoryKeys.add(storyKey);
     trackGoogleEvent("story_viewed", { locale: state.locale, museum_slug: state.museumId || undefined, museum_city: state.museumCity || undefined, recognition_mode: "ai_fallback", catalog_status: "uncataloged", source_surface: "scanner" });
-  }, [sighting, state.locale, state.museumCity, state.museumId]);
+  }, [sighting, state.cardOpenedAt, state.locale, state.museumCity, state.museumId]);
   if (!sighting) return null;
 
   const enrichment = sighting.enrichment;
