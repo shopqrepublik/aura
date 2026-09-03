@@ -53,7 +53,7 @@ PostHog remains a separate client destination. The first-party PostgreSQL/admin 
 
 The production web stream uses measurement ID `G-GP3VEHLNE2`, supplied once as `NEXT_PUBLIC_GA_MEASUREMENT_ID`. `web/components/GoogleAnalytics.tsx` owns tag loading, Consent Mode, page views and landing/guide navigation signals; `web/lib/analytics.ts` provides the typed, failure-safe `trackGoogleEvent()` API used by real product actions. Local and development builds do not load Google Analytics.
 
-Google Consent Mode defaults `analytics_storage`, `ad_storage`, `ad_user_data` and `ad_personalization` to `denied`. The Google tag is not requested until an explicit acceptance, and the choice is persisted in `localStorage` under `elyio-google-consent`. Declining does not alter the first-party product, scanner, guide or PWA behavior.
+Google Consent Mode defaults `analytics_storage`, `ad_storage`, `ad_user_data` and `ad_personalization` to `denied`. Explicit acceptance grants only `analytics_storage`; the advertising signals remain denied because the current UI does not request advertising permission. The Google tag is not requested until analytics acceptance, and the choice is persisted in `localStorage` under `elyio-google-consent`. Declining does not alter the first-party product, scanner, guide or PWA behavior.
 
 GA4 retains its automatic/enhanced `page_view`, scroll, outbound-click and download collection. The initial configuration emits one page view; subsequent Next.js history navigation emits one manual `page_view`. The root-to-locale redirect preserves its full query string so GA can read `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` and `utm_term` from the landing URL.
 

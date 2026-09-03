@@ -43,6 +43,7 @@ try {
   assert.equal(count("page_view"), 1, "single manual SPA page_view");
   assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "default" && call[2].analytics_storage === "denied"));
   assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].analytics_storage === "granted"));
+  assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].ad_storage === "denied" && call[2].ad_user_data === "denied" && call[2].ad_personalization === "denied"));
 
   await page.locator("button:has(.lucide-chevron-down)").click();
   await page.getByRole("button", { name: /Musée du Louvre/ }).first().click();

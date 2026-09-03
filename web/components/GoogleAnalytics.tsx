@@ -39,12 +39,13 @@ function loadGoogleTag() {
 
 function updateConsent(choice: GoogleConsentChoice) {
   ensureConsentDefaults();
-  const value = choice === "granted" ? "granted" : "denied";
   window.gtag?.("consent", "update", {
-    analytics_storage: value,
-    ad_storage: value,
-    ad_user_data: value,
-    ad_personalization: value,
+    analytics_storage: choice === "granted" ? "granted" : "denied",
+    // This UI asks only for analytics permission. Advertising consent must
+    // remain denied unless ELYIO later presents a separate explicit choice.
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
   });
   if (choice === "granted") loadGoogleTag();
 }
