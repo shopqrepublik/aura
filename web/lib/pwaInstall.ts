@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { track } from "./analytics";
+import { track, trackGoogleEvent } from "./analytics";
 
 export interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -55,6 +55,7 @@ export function usePwaInstall() {
       setInstalled(true);
       setInstallPrompt(null);
       track("pwa_installed");
+      trackGoogleEvent("pwa_installed");
     };
 
     window.addEventListener("beforeinstallprompt", onBeforeInstallPrompt);
@@ -70,6 +71,7 @@ export function usePwaInstall() {
   const promptInstall = useCallback(async () => {
     if (!installPrompt || installed) return;
     track("pwa_install_cta_clicked");
+    trackGoogleEvent("pwa_install_prompt");
     await installPrompt.prompt();
     const choice = await installPrompt.userChoice;
     track(choice.outcome === "accepted" ? "pwa_install_prompt_accepted" : "pwa_install_prompt_dismissed", {

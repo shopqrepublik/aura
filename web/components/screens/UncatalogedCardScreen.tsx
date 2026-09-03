@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { ArrowLeft, Heart } from "lucide-react";
 import SegmentControl from "@/components/ui/SegmentControl";
 import ProvenanceReveal from "@/components/ui/ProvenanceReveal";
@@ -7,6 +8,7 @@ import { tt } from "@/lib/i18n";
 import { generatedValueReveal, quietNoTrustedContext } from "@/lib/generated-enrichment";
 import type { AppState } from "@/lib/app-state";
 import type { Mode } from "@/lib/types";
+import { trackGoogleEvent } from "@/lib/analytics";
 
 export default function UncatalogedCardScreen({
   state,
@@ -24,6 +26,10 @@ export default function UncatalogedCardScreen({
   onGoProgress: () => void;
 }) {
   const sighting = state.uncatalogedSighting;
+  useEffect(() => {
+    if (!sighting) return;
+    trackGoogleEvent("story_viewed", { locale: state.locale, museum_slug: state.museumId || undefined, museum_city: state.museumCity || undefined, recognition_mode: "ai_fallback", catalog_status: "uncataloged", source_surface: "scanner" });
+  }, [sighting, state.locale, state.museumCity, state.museumId]);
   if (!sighting) return null;
 
   const enrichment = sighting.enrichment;

@@ -20,11 +20,11 @@ const SUPABASE_ORIGIN = "https://smjvufoavwmenodxcmlg.supabase.co";
 // ask here is a starter policy that doesn't break the app today.
 const CSP = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://us-assets.i.posthog.com https://eu-assets.i.posthog.com",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://us-assets.i.posthog.com https://eu-assets.i.posthog.com",
   "style-src 'self' 'unsafe-inline'",
   `img-src 'self' data: ${BACKEND_ORIGIN} https://*.wikimedia.org`,
   "font-src 'self' data:",
-  `connect-src 'self' ${BACKEND_ORIGIN} ${SUPABASE_ORIGIN} https://us.i.posthog.com https://eu.i.posthog.com https://us-assets.i.posthog.com https://eu-assets.i.posthog.com`,
+  `connect-src 'self' ${BACKEND_ORIGIN} ${SUPABASE_ORIGIN} https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://us.i.posthog.com https://eu.i.posthog.com https://us-assets.i.posthog.com https://eu-assets.i.posthog.com`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

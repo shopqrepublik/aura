@@ -21,6 +21,53 @@ import { BACKEND_URL } from "./api";
 // go, and HomeScreen's privacy_footer_note (lib/i18n.ts) says so too.
 const KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 const HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+export const GA_CONSENT_KEY = "elyio-google-consent";
+
+export type GoogleConsentChoice = "granted" | "denied";
+export type GoogleEventName =
+  | "begin_visit"
+  | "camera_opened"
+  | "scan_started"
+  | "artwork_recognized"
+  | "recognition_failed"
+  | "story_viewed"
+  | "museum_guide_opened"
+  | "pwa_install_prompt"
+  | "pwa_installed";
+
+export interface GoogleEventParameters {
+  locale?: string;
+  museum_slug?: string;
+  museum_city?: string;
+  recognition_mode?: "catalog" | "ai_fallback" | "other";
+  source_surface?: "landing_hero" | "landing_header" | "landing_footer" | "museum_page" | "guide" | "scanner" | "direct";
+  artwork_id?: string;
+  catalog_status?: "catalog" | "uncataloged" | "no_match" | "error";
+}
+
+declare global {
+  interface Window {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+function googleConsent(): GoogleConsentChoice | undefined {
+  try {
+    const value = window.localStorage.getItem(GA_CONSENT_KEY);
+    return value === "granted" || value === "denied" ? value : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+export function trackGoogleEvent(event: GoogleEventName, parameters: GoogleEventParameters = {}) {
+  if (typeof window === "undefined" || googleConsent() !== "granted" || typeof window.gtag !== "function") return;
+  try {
+    window.gtag("event", event, parameters);
+  } catch { /* Google analytics must never interfere with the visit */ }
+}
 
 let initialized = false;
 

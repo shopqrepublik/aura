@@ -10,7 +10,7 @@ import ListenButton from "@/components/ui/ListenButton";
 import { resolveCardText, resolveTitle, isExcludedInKids } from "@/lib/artworks";
 import { getArtworkValueReveal } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
-import { track } from "@/lib/analytics";
+import { track, trackGoogleEvent } from "@/lib/analytics";
 import { proxyImageUrl } from "@/lib/visitPalette";
 import type { AppState } from "@/lib/app-state";
 
@@ -81,6 +81,7 @@ export default function CardScreen({
     const artworkId = artwork.id;
     const openedAt = state.cardOpenedAt;
     track("artwork_card_opened", { artwork_id: artworkId });
+    trackGoogleEvent("story_viewed", { locale: state.locale, museum_slug: state.museumId || undefined, museum_city: state.museumCity || undefined, artwork_id: artworkId, recognition_mode: "catalog", catalog_status: "catalog", source_surface: "scanner" });
     return () => {
       track("artwork_card_read_time", { artwork_id: artworkId, read_time_ms: Date.now() - openedAt });
     };

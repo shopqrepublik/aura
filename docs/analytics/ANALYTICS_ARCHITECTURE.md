@@ -48,3 +48,13 @@ Controlled QA sends `X-ELYIO-QA-Token`, matched in constant time against server 
 `product_events` preserves validated UI observations. `recognition_attempts` is the authoritative recognition ledger. Admin visitor/activity queries require schema v2, `business_eligible=true`, trusted `internal_test=false`, identity, and a meaningful allowlisted action; recognition metrics use linked attempt rows. Health checks, identityless backend smoke, QA and legacy rows cannot activate a visitor.
 
 PostHog remains a separate client destination. The first-party PostgreSQL/admin definitions in `METRIC_DEFINITIONS.md` are canonical for founder metrics.
+
+## GA4 acquisition and product funnel
+
+The production web stream uses measurement ID `G-GP3VEHLNE2`, supplied once as `NEXT_PUBLIC_GA_MEASUREMENT_ID`. `web/components/GoogleAnalytics.tsx` owns tag loading, Consent Mode, page views and landing/guide navigation signals; `web/lib/analytics.ts` provides the typed, failure-safe `trackGoogleEvent()` API used by real product actions. Local and development builds do not load Google Analytics.
+
+Google Consent Mode defaults `analytics_storage`, `ad_storage`, `ad_user_data` and `ad_personalization` to `denied`. The Google tag is not requested until an explicit acceptance, and the choice is persisted in `localStorage` under `elyio-google-consent`. Declining does not alter the first-party product, scanner, guide or PWA behavior.
+
+GA4 retains its automatic/enhanced `page_view`, scroll, outbound-click and download collection. The initial configuration emits one page view; subsequent Next.js history navigation emits one manual `page_view`. The root-to-locale redirect preserves its full query string so GA can read `utm_source`, `utm_medium`, `utm_campaign`, `utm_content` and `utm_term` from the landing URL.
+
+For browser QA, use a production build with `NEXT_PUBLIC_GA_MEASUREMENT_ID` set, clear `elyio-google-consent`, verify no Google script/request before choosing, then accept and inspect `collect` requests or GA4 DebugView. Test one action at a time and confirm a single event request. Do not use fabricated recognition traffic.

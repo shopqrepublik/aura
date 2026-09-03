@@ -122,3 +122,29 @@ html, body {
 .animate-scan-dot {
   animation: scan-dot 1.2s ease-in-out infinite;
 }
+/* Consent stays independent of product state and above the installed-PWA shell. */
+.ga-consent {
+  position: fixed;
+  z-index: 10000;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  color: #f7f3ec;
+  background: rgba(24, 23, 20, .97);
+  border: 1px solid rgba(218, 180, 100, .45);
+  border-radius: 16px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .35);
+}
+.ga-consent strong { font-family: var(--font-editorial), serif; font-size: 20px; font-weight: 500; }
+.ga-consent p { max-width: 520px; margin: 4px 0 0; color: rgba(247, 243, 236, .78); font-size: 13px; line-height: 1.45; }
+.ga-consent-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.ga-consent button { padding: 10px 14px; color: #f7f3ec; background: transparent; border: 1px solid rgba(247, 243, 236, .35); border-radius: 999px; cursor: pointer; }
+.ga-consent button.ga-consent-accept { color: #181714; background: #dab464; border-color: #dab464; }
+@media (max-width: 620px) { .ga-consent { align-items: stretch; flex-direction: column; gap: 14px; } .ga-consent-actions { justify-content: flex-end; } }

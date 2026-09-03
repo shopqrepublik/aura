@@ -22,6 +22,12 @@ Unknown events and malformed envelopes return 422; spoofed `user_id` or invalid 
 
 Adding an event requires updating the producer taxonomy, backend allowlist, tests and this contract; increment schema version for incompatible semantic changes.
 
+## GA4 funnel contract
+
+GA4 is an additional consent-gated acquisition destination; it does not replace or rename the first-party schema above. Its canonical events are `begin_visit`, `camera_opened`, `scan_started`, `artwork_recognized`, `recognition_failed`, `story_viewed`, `museum_guide_opened`, and the secondary reliable browser signals `pwa_install_prompt` and `pwa_installed`. `artwork_recognized` is the activation event; key-event configuration remains a GA4 property setting and is not performed in code.
+
+Allowed GA4 parameters are factual, bounded, non-PII values already present at the action: `locale`, `museum_slug`, `museum_city`, `recognition_mode` (`catalog`, `ai_fallback`, `other`), `source_surface`, `artwork_id`, and `catalog_status`. Camera/image content, image URLs, user-entered text, identity data, model scores, tokens and precise location are never sent. `begin_visit` is emitted by the actual CTA click, `camera_opened` when a selected museum opens the scanner, `scan_started` on submission, recognition terminal events from the real response/error branch, and `story_viewed` only when the result is opened.
+
 ## Recognition linkage
 
 One `recognition_attempt_id` is shared by scan/recognition events, backend request/row/response, terminal companions and relevant result/artwork events. The server-owned terminal outcome is the business fact. `success` and `uncataloged_result` are successful; `no_match`, `invalid_image`, `timeout`, and `failed` are failed. `institution_not_ready` is operational configuration state and not a valid visitor-attempt KPI.

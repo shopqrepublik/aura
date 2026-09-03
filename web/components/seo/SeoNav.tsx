@@ -7,7 +7,7 @@ export default function SeoNav({ locale }: { locale: SeoLocale }) {
     <Link className="seo-logo" href={`/${locale}`}>ELYIO</Link>
     <nav aria-label="Main navigation">
       <Link href={`/${locale}/museums`}>{locale === "fr" ? "Musées" : locale === "zh-hans" ? "博物馆" : "Museums"}</Link>
-      <Link className="seo-start" href={`/visit?from=organic&locale=${locale}`}>{locale === "fr" ? "Commencer la visite" : locale === "zh-hans" ? "开始参观" : "Begin your visit"}</Link>
+      <Link className="seo-start" data-ga-begin-visit="direct" href={`/visit?from=organic&locale=${locale}`}>{locale === "fr" ? "Commencer la visite" : locale === "zh-hans" ? "开始参观" : "Begin your visit"}</Link>
     </nav>
     <div className="seo-langs" aria-label="Language">{(["en","fr","zh-hans"] as const).map((l)=><Link key={l} href={`/${l}`} hrefLang={l === "zh-hans" ? "zh-Hans" : l} aria-current={l===locale?"page":undefined}>{localeNames[l]}</Link>)}</div>
   </header>;
