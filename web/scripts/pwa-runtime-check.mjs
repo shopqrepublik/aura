@@ -94,18 +94,13 @@ async function runtimeChecks() {
     const preControl = await send(ws, "Runtime.evaluate", {
       awaitPromise: true,
       returnByValue: true,
-      expression: `navigator.serviceWorker.ready.then(() => ({
-        controller: Boolean(navigator.serviceWorker.controller)
-      }))`,
+      expression: `Promise.resolve({
+        controller: Boolean(navigator.serviceWorker?.controller)
+      })`,
     });
 
     if (!preControl.result.value.controller) {
       await send(ws, "Page.reload", { ignoreCache: false });
-      await send(ws, "Runtime.evaluate", {
-        awaitPromise: true,
-        returnByValue: true,
-        expression: "navigator.serviceWorker.ready.then(() => true)",
-      });
       await delay(2500);
     }
 
@@ -115,12 +110,14 @@ async function runtimeChecks() {
       awaitPromise: true,
       returnByValue: true,
       expression: `Promise.resolve().then(async () => {
-        const ready = await navigator.serviceWorker.ready;
+        const registrations = 'serviceWorker' in navigator ? await navigator.serviceWorker.getRegistrations() : [];
+        const cacheNames = 'caches' in window ? await caches.keys() : [];
         return {
           secure: window.isSecureContext,
           manifestHref: document.querySelector('link[rel="manifest"]')?.href || null,
           controller: Boolean(navigator.serviceWorker.controller),
-          swScope: ready.scope,
+          registrationCount: registrations.length,
+          elyioCacheCount: cacheNames.filter((name) => name.startsWith('elyio-')).length,
           bipFired: Boolean(window.__elyioBipFired),
           installTextVisible: document.body.innerText.includes('Install ELYIO'),
           appleCapable: document.querySelector('meta[name="apple-mobile-web-app-capable"]')?.content || null,
@@ -182,10 +179,11 @@ const failures = [];
 if (runtime.manifestErrors.length) failures.push("manifest errors present");
 if (runtime.installabilityErrors.length) failures.push("Chromium installability errors present");
 if (!runtime.runtime.secure) failures.push("page is not a secure context");
-if (!runtime.runtime.controller) failures.push("service worker does not control page");
-if (!runtime.runtime.bipFired) failures.push("beforeinstallprompt did not fire");
+if (runtime.runtime.controller) failures.push("service worker still controls page");
+if (runtime.runtime.registrationCount !== 0) failures.push("service worker registration still present");
+if (runtime.runtime.elyioCacheCount !== 0) failures.push("ELYIO cache storage still present");
 if (runtime.runtime.appleCapable !== "yes") failures.push("apple-mobile-web-app-capable=yes missing");
-if (!runtime.offline.bodyHasElyio || !runtime.offline.controller) failures.push("offline shell reload failed");
+if (runtime.offline.controller) failures.push("offline reload unexpectedly controlled by service worker");
 for (const [key, value] of Object.entries(source)) {
   if (!value) failures.push(`source guard failed: ${key}`);
 }
