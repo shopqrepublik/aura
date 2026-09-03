@@ -16,6 +16,25 @@ const CONSENT_FIELDS = {
   wait_for_update: 500,
 } as const;
 
+const GRANTED_CONSENT_FIELDS = {
+  analytics_storage: "granted",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+} as const;
+
+const DENIED_CONSENT_FIELDS = {
+  analytics_storage: "denied",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+} as const;
+
+let consentDefaultsInitialized = false;
+let gaBootstrapInitialized = false;
+let gaConfigured = false;
+let currentPageViewSent = false;
+
 function localeFromPath() {
   const locale = window.location.pathname.split("/")[1]?.toLowerCase();
   return locale === "fr" || locale === "zh-hans" ? locale : "en";
@@ -23,8 +42,12 @@ function localeFromPath() {
 
 function ensureConsentDefaults() {
   window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function gtag(...args: unknown[]) { window.dataLayer?.push(args); };
+  // Google documents the gtag shim with the Arguments object; keep this shape so gtag.js drains the queue correctly.
+  // eslint-disable-next-line prefer-rest-params
+  window.gtag = window.gtag || function gtag() { window.dataLayer?.push(arguments); };
+  if (consentDefaultsInitialized) return;
   window.gtag("consent", "default", CONSENT_FIELDS);
+  consentDefaultsInitialized = true;
 }
 
 function loadGoogleTag() {
@@ -33,21 +56,43 @@ function loadGoogleTag() {
   script.id = "elyio-ga4";
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_MEASUREMENT_ID)}`;
-  script.onload = () => window.gtag?.("config", GA_MEASUREMENT_ID, { send_page_view: true });
   document.head.appendChild(script);
+}
+
+function sendCurrentPageView() {
+  if (currentPageViewSent) return;
+  window.gtag?.("event", "page_view", {
+    page_location: window.location.href,
+    page_title: document.title,
+  });
+  currentPageViewSent = true;
+}
+
+function initializeGrantedAnalytics() {
+  if (!GA_MEASUREMENT_ID) return;
+  ensureConsentDefaults();
+  loadGoogleTag();
+  if (!gaBootstrapInitialized) {
+    window.gtag?.("js", new Date());
+    gaBootstrapInitialized = true;
+  }
+  window.gtag?.("consent", "update", GRANTED_CONSENT_FIELDS);
+  if (!gaConfigured) {
+    window.gtag?.("config", GA_MEASUREMENT_ID, { send_page_view: false });
+    gaConfigured = true;
+  }
+  sendCurrentPageView();
 }
 
 function updateConsent(choice: GoogleConsentChoice) {
   ensureConsentDefaults();
-  window.gtag?.("consent", "update", {
-    analytics_storage: choice === "granted" ? "granted" : "denied",
-    // This UI asks only for analytics permission. Advertising consent must
-    // remain denied unless ELYIO later presents a separate explicit choice.
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-  });
-  if (choice === "granted") loadGoogleTag();
+  if (choice === "granted") {
+    initializeGrantedAnalytics();
+    return;
+  }
+  // This UI asks only for analytics permission. Advertising consent must
+  // remain denied unless ELYIO later presents a separate explicit choice.
+  window.gtag?.("consent", "update", DENIED_CONSENT_FIELDS);
 }
 
 export default function GoogleAnalytics() {
@@ -67,9 +112,6 @@ export default function GoogleAnalytics() {
 
     let previousUrl = window.location.href;
     let previousGuide = "";
-    const hasAnalyticsConsent = () => {
-      try { return window.localStorage.getItem(GA_CONSENT_KEY) === "granted"; } catch { return false; }
-    };
     const trackGuide = () => {
       const match = window.location.pathname.match(/^\/(en|fr|zh-hans)\/museums\/([^/]+)\/?$/i);
       if (match && match[2] !== previousGuide) {
@@ -80,7 +122,6 @@ export default function GoogleAnalytics() {
     const onNavigation = () => {
       if (window.location.href === previousUrl) return;
       previousUrl = window.location.href;
-      if (hasAnalyticsConsent()) window.gtag?.("event", "page_view", { page_location: previousUrl, page_title: document.title });
       trackGuide();
     };
     if (stored === "granted") trackGuide();

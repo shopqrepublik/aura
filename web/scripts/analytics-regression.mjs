@@ -21,7 +21,7 @@ try {
     if (/google(tagmanager|analytics)\.com/.test(request.url())) googleRequests.push(request.url());
   });
   await page.route("https://www.googletagmanager.com/**", (route) => route.fulfill({ status: 200, contentType: "application/javascript", body: "" }));
-  await page.route("https://api.elyio.co/v1/museums**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify([{ id: "musee-du-louvre", name: "Musée du Louvre", city: "Paris", lat: null, lng: null, geofence_radius_m: 500, experience_level: "CURATED" }]) }));
+  await page.route("**/v1/museums**", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify([{ id: "musee-du-louvre", name: "Musée du Louvre", city: "Paris", lat: null, lng: null, geofence_radius_m: 500, experience_level: "CURATED" }]) }));
   await page.route("**/v1/recognize", (route) => route.abort());
 
   await page.goto(`${baseUrl}/?utm_source=qa&utm_medium=test&utm_campaign=analytics3&utm_content=root&utm_term=art`);
@@ -33,14 +33,20 @@ try {
   await page.getByRole("button", { name: "Accept" }).click();
   await page.locator("#elyio-ga4").waitFor({ state: "attached" });
   assert.equal(await page.locator("#elyio-ga4").count(), 1, "exactly one Google tag");
+  const acceptedCalls = await page.evaluate(() => (window.dataLayer || []).map((entry) => Array.from(entry)));
+  const acceptedCount = (name) => acceptedCalls.filter((call) => call[0] === "event" && call[1] === name).length;
+  assert.equal(acceptedCalls.filter((call) => call[0] === "js").length, 1, "single GA bootstrap after late consent");
+  assert.equal(acceptedCalls.filter((call) => call[0] === "config" && call[1] === "G-GP3VEHLNE2").length, 1, "single GA config after late consent");
+  assert.equal(acceptedCount("page_view"), 1, "single current page_view after late consent");
   await page.locator('[data-ga-begin-visit="landing_hero"]').click();
   await page.waitForURL(/\/visit\?/);
 
   const calls = await page.evaluate(() => (window.dataLayer || []).map((entry) => Array.from(entry)));
   const count = (name) => calls.filter((call) => call[0] === "event" && call[1] === name).length;
+  assert.equal(calls.filter((call) => call[0] === "js").length, 1, "single GA bootstrap");
   assert.equal(calls.filter((call) => call[0] === "config" && call[1] === "G-GP3VEHLNE2").length, 1, "single GA config");
   assert.equal(count("begin_visit"), 1, "single begin_visit per CTA click");
-  assert.equal(count("page_view"), 1, "single manual SPA page_view");
+  assert.equal(count("page_view"), 1, "single current page_view");
   assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "default" && call[2].analytics_storage === "denied"));
   assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].analytics_storage === "granted"));
   assert.ok(calls.some((call) => call[0] === "consent" && call[1] === "update" && call[2].ad_storage === "denied" && call[2].ad_user_data === "denied" && call[2].ad_personalization === "denied"));
