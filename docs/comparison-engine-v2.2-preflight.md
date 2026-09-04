@@ -22,18 +22,15 @@ Date: 2026-09-04
 
 ## Current gate result
 
-Wave 1 verification added six production-eligible records:
-`ferrari_supercar`, `baguette`, `netflix_year`, `paris_studio_year`,
-`london_black_cab`, and `kids_lego_falcon`. The remaining Wave 1 records are
-either `NEEDS_DECISION` (material price/basis discrepancy) or remain
-`REVIEW_REQUIRED` pending an acceptable source and localized labels.
-Production-eligible monetary references: **6** of 59.
+Wave 1 representative-price verification now has 15 production-eligible
+records, including the three Kids launch references and Paris/London/New York
+city rows required by the launch matrix. Remaining records are either
+`NEEDS_DECISION` or `REVIEW_REQUIRED` pending an acceptable source/basis and
+localized labels. Production-eligible monetary references: **15** of 59.
 
 The supplied remote pack contains seven `REVIEW_REQUIRED` records with blank
 required sources. It is invalid for production and is rejected by the loader.
 
-The mode and city minimums are not met (notably three Kids references and
-verified New York/London Simple city coverage). Consequently V2.2 is not
-production-ready. The feature flag defaults to V2.0,
-and a V2.2 request automatically falls back to V2.0 until the complete catalog
-readiness gate passes.
+The Normal, Simple, Kids, Paris, London, New York, and no-city launch gates
+are now satisfied. V2.2 is enabled behind the production feature flag; the
+remote meme pack remains disabled and independently fail-closed.
