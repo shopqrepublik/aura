@@ -2332,7 +2332,8 @@ def recognize(
 
     if not req.image_base64:
         fail_request("invalid_image")
-        raise HTTPException(status_code=400, detail="image_base64 required")
+        _log_recognition_event("recognition.error", recognition_request_id=recognition_request_id, failed_stage="request_validation", error_code="RECOGNITION_INVALID_REQUEST", error_class="ValidationError", sanitized_error_message="image_base64 required", http_status=400, retryable=False)
+        raise HTTPException(status_code=400, detail={"error_code": "RECOGNITION_INVALID_REQUEST", "message": "image_base64 required", "recognition_request_id": recognition_request_id})
     if len(req.image_base64) > MAX_RECOGNITION_IMAGE_BASE64_CHARS:
         fail_request("invalid_image")
         raise HTTPException(status_code=413, detail="image too large")
