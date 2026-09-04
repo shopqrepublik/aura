@@ -357,8 +357,13 @@ def get_recognition_candidates(
         raise CatalogUnavailableError(f"catalog lookup failed for museum_id={museum_id!r}: {exc}") from exc
 
 
-def get_global_recognition_candidates(db: Session, limit: int = 1000) -> list[dict]:
-    """Return active globally eligible artwork candidates for unknown museums."""
+def get_global_recognition_candidates(db: Session, limit: int = 3000) -> list[dict]:
+    """Return a bounded global catalog index for unknown-museum reconciliation.
+
+    This is metadata reconciliation after open visual identification, not a
+    model prompt candidate list. The bound covers the current multi-institution
+    catalog while keeping the shortlist sent to verification small.
+    """
     rows = db.query(Artwork).order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc()).limit(limit).all()
     estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
     value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
