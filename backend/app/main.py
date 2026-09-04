@@ -1923,7 +1923,7 @@ class RecognizeRequest(BaseModel):
     session_id: Optional[str] = None
     acquisition_session_id: Optional[str] = None
 
-    @field_validator("recognition_attempt_id", "anonymous_id", "session_id")
+    @field_validator("recognition_attempt_id", "anonymous_id", "session_id", "acquisition_session_id")
     @classmethod
     def recognition_ids_are_uuids(cls, value: Optional[str]):
         if value is None:
@@ -2341,6 +2341,19 @@ def recognize(
             institution_config = None
             if GENERIC_RECOGNITION_V11_ENABLED or GENERIC_VISUAL_RETRIEVAL_ENABLED:
                 candidates = _timed(profile, "db.recognition_candidates_global", lambda: get_global_recognition_candidates(db))
+                # A small set of already-approved, reference-backed catalog
+                # records predates the relational global catalog (for
+                # example the Orsay controlled benchmark).  Treat these as
+                # supplemental catalog records, never as a demo fallback;
+                # they are admitted only when the visual-retrieval flag is
+                # explicitly enabled and remain subject to the same verifier.
+                if GENERIC_VISUAL_RETRIEVAL_ENABLED:
+                    known_ids = {row.get("id") for row in candidates}
+                    candidates.extend(
+                        {**row, "global_reference_supplement": True}
+                        for row in DEMO_ARTWORKS
+                        if row.get("id") not in known_ids and row.get("image_url")
+                    )
             else:
                 candidates = DEMO_ARTWORKS
         _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else ("visual_retrieval" if GENERIC_VISUAL_RETRIEVAL_ENABLED else ("generic" if GENERIC_RECOGNITION_V11_ENABLED else "legacy_ai_fallback")), museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
