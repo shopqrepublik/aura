@@ -15,6 +15,8 @@ from PIL import Image, ImageOps
 
 
 DESCRIPTOR_VERSION = "elyio-lowfreq-rgb-v1"
+ENCODER_VERSION = DESCRIPTOR_VERSION
+PREPROCESSING_VERSION = "content-crop-rgb48-lowfreq12-v1"
 
 
 def _pixels(image: Image.Image) -> list[tuple[int, int, int]]:
@@ -89,13 +91,33 @@ def rank_visual_candidates(image_base64: str, candidates: list[dict], limit: int
     scored = []
     for candidate in candidates:
         payload = candidate.get("visual_descriptor") or {}
-        if payload.get("version") != DESCRIPTOR_VERSION:
-            continue
-        distance = descriptor_distance(query, payload.get("values") or [])
+        # Early approved descriptor batches stored the vector directly while
+        # later batches stored the versioned object.  Accept both encodings,
+        # but never accept an unknown versioned descriptor.
+        if isinstance(payload, list):
+            values = payload
+        elif isinstance(payload, dict):
+            if payload.get("version") not in {None, DESCRIPTOR_VERSION}:
+                continue
+            values = payload.get("values") or []
+        else:
+            values = []
+        distance = descriptor_distance(query, values)
         if math.isfinite(distance):
             scored.append((distance, candidate))
     scored.sort(key=lambda row: row[0])
+    # One artwork may have several approved reference assets.  Retrieval is
+    # artwork-level: retain only the best reference for deterministic bounded
+    # shortlists and avoid spending verifier calls on duplicate identities.
+    deduped = []
+    seen_artworks: set[str] = set()
+    for distance, candidate in scored:
+        artwork_id = str(candidate.get("id") or "")
+        if artwork_id in seen_artworks:
+            continue
+        seen_artworks.add(artwork_id)
+        deduped.append((distance, candidate))
     return [
         {"candidate": candidate, "distance": round(distance, 6), "visual_rank": index + 1}
-        for index, (distance, candidate) in enumerate(scored[:limit])
+        for index, (distance, candidate) in enumerate(deduped[:limit])
     ]

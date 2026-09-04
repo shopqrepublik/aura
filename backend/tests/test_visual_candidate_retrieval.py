@@ -60,6 +60,13 @@ class VisualCandidateRetrievalTests(unittest.TestCase):
         }])
         self.assertEqual(ranked, [])
 
+    def test_legacy_raw_vector_descriptor_records_are_retrievable(self):
+        query = encoded((180, 20, 20), (250, 220, 40))
+        with Image.open(io.BytesIO(base64.b64decode(query))) as image:
+            descriptor = descriptor_from_image(image)
+        ranked = rank_visual_candidates(query, [{"id": "legacy", "visual_descriptor": descriptor}])
+        self.assertEqual(ranked[0]["candidate"]["id"], "legacy")
+
     def test_1000_descriptor_manifest_has_exact_selection_parity(self):
         selection = json.loads((DATA / "controlled_catalog_1000_v1.json").read_text(encoding="utf-8"))
         descriptors = json.loads((DATA / "controlled_catalog_1000_visual_descriptors_v1.json").read_text(encoding="utf-8"))

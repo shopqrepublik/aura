@@ -111,7 +111,7 @@ from .catalog import (  # noqa: E402
 )
 from .db import SessionLocal, get_db  # noqa: E402
 from .models import Artwork, ArtworkLocalization, InstitutionProfile, Museum, RecognitionAttempt, UncatalogedSighting, User, Visit, VisitArtwork  # noqa: E402
-from .visual_retrieval import rank_visual_candidates  # noqa: E402
+from .visual_retrieval import rank_visual_candidates, ENCODER_VERSION, PREPROCESSING_VERSION  # noqa: E402
 
 app = FastAPI(title="AURA API", version="0.1.0")
 app.add_middleware(
@@ -141,6 +141,7 @@ async def limit_public_event_body(request: Request, call_next):
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
 GENERIC_RECOGNITION_V11_ENABLED = os.environ.get("GENERIC_RECOGNITION_V11_ENABLED", "false").lower() in {"1", "true", "yes"}
+GENERIC_VISUAL_RETRIEVAL_ENABLED = os.environ.get("GENERIC_VISUAL_RETRIEVAL_ENABLED", "false").lower() in {"1", "true", "yes"}
 MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_BASE64_CHARS", "8000000"))
 OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "2"))
 OPENAI_RECOGNITION_TIMEOUT_SECONDS = float(os.environ.get("OPENAI_RECOGNITION_TIMEOUT_SECONDS", "35"))
@@ -1670,13 +1671,26 @@ def recognize_with_vision(
     ranked = metadata_ranked[:candidate_limit]
     if not museum_id and recognition_request_id:
         _log_recognition_event("recognition.generic_shortlist_ready", recognition_request_id=recognition_request_id, stage="global_reconciliation", stage_status="completed", shortlist_count=len(ranked), match_strength=(ranked[0].get("score") if ranked else 0.0))
-    if policy == "ASSET_VERIFY" and any(candidate.get("visual_descriptor") for candidate in candidates):
+    visual_retrieval_enabled = policy == "ASSET_VERIFY" and any(candidate.get("visual_descriptor") for candidate in candidates) and (bool(museum_id) or GENERIC_VISUAL_RETRIEVAL_ENABLED)
+    if visual_retrieval_enabled:
+        visual_started = time.perf_counter()
+        if not museum_id and recognition_request_id:
+            _log_recognition_event("recognition.visual_embedding_started", recognition_request_id=recognition_request_id, stage="visual_embedding", stage_status="started", encoder_version=ENCODER_VERSION, preprocessing_version=PREPROCESSING_VERSION)
+            _log_recognition_event("recognition.visual_retrieval_started", recognition_request_id=recognition_request_id, stage="visual_retrieval", stage_status="started", encoder_version=ENCODER_VERSION, reference_count=len(candidates), top_k=candidate_limit)
         visual_ranked = _timed(
             profile,
             "catalog.visual_descriptor_ranking",
             lambda: rank_visual_candidates(image_base64, candidates, limit=candidate_limit),
             candidate_count=len(candidates),
         )
+        if not museum_id and recognition_request_id:
+            elapsed_ms = round((time.perf_counter() - visual_started) * 1000, 2)
+            top_similarity = None
+            if visual_ranked:
+                top_similarity = round(1.0 / (1.0 + float(visual_ranked[0]["distance"])), 6)
+            _log_recognition_event("recognition.visual_embedding_completed", recognition_request_id=recognition_request_id, stage="visual_embedding", stage_status="completed", encoder_version=ENCODER_VERSION, embedding_ms=elapsed_ms)
+            _log_recognition_event("recognition.visual_retrieval_completed", recognition_request_id=recognition_request_id, stage="visual_retrieval", stage_status="completed", reference_count=len(candidates), candidate_count=len(visual_ranked), top_k=candidate_limit, top1_similarity=top_similarity, retrieval_ms=elapsed_ms)
+            _log_recognition_event("recognition.visual_shortlist_ready", recognition_request_id=recognition_request_id, stage="visual_retrieval", stage_status="completed", shortlist_count=len(visual_ranked), top1_similarity=top_similarity)
         # Preserve the strongest metadata hypothesis first.  A visual
         # candidate becomes the bounded runner-up (or first when metadata is
         # weak); the existing reference verifier remains the only component
@@ -1901,6 +1915,7 @@ class RecognizeRequest(BaseModel):
     recognition_attempt_id: Optional[str] = None
     anonymous_id: Optional[str] = None
     session_id: Optional[str] = None
+    acquisition_session_id: Optional[str] = None
 
     @field_validator("recognition_attempt_id", "anonymous_id", "session_id")
     @classmethod
@@ -2318,11 +2333,11 @@ def recognize(
             # global DB reconciliation remains opt-in until its quality gate
             # passes.
             institution_config = None
-            if GENERIC_RECOGNITION_V11_ENABLED:
+            if GENERIC_RECOGNITION_V11_ENABLED or GENERIC_VISUAL_RETRIEVAL_ENABLED:
                 candidates = _timed(profile, "db.recognition_candidates_global", lambda: get_global_recognition_candidates(db))
             else:
                 candidates = DEMO_ARTWORKS
-        _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else ("generic" if GENERIC_RECOGNITION_V11_ENABLED else "legacy_ai_fallback"), museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
+        _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else ("visual_retrieval" if GENERIC_VISUAL_RETRIEVAL_ENABLED else ("generic" if GENERIC_RECOGNITION_V11_ENABLED else "legacy_ai_fallback")), museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
         _log_recognition_event("recognition.candidates_ready", recognition_request_id=recognition_request_id, candidate_count=len(candidates), stage="candidate_generation", stage_status="completed")
     except InstitutionNotReadyError as e:
         _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready", recognition_attempt_id=attempt_id)
@@ -2377,6 +2392,12 @@ def recognize(
         _timed(profile, "db.attempt_finish_commit", lambda: db.commit())
         _log_recognition_event("recognition.persistence_completed", recognition_request_id=recognition_request_id, stage="result_persistence", stage_status="completed")
         _log_recognition_event("recognition.response_success" if response.status in {"matched", "needs_confirmation"} else "recognition.response_no_match", recognition_request_id=recognition_request_id, stage_status="completed", http_status=200, outcome=response.status)
+        if outcome == "success":
+            try:
+                from .acquisition_transport import emit_scan_success
+                emit_scan_success(acquisition_session_id=req.acquisition_session_id, occurred_at=attempt.completed_at.isoformat(), recognition_attempt_id=attempt_id)
+            except Exception as exc:  # acquisition must never affect recognition
+                _log_recognition_event("acquisition_delivery_error", recognition_attempt_id=attempt_id, error_type=type(exc).__name__)
         response.timings = _latency_profile_summary(profile)
         return response
 
