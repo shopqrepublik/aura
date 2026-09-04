@@ -71,6 +71,7 @@ export default function HeroPhonePreview({ locale }: { locale: Locale }) {
     uncatalogedAdded: new Set(),
     lastConfidence: 0.97,
     scanStatus: null,
+    recognitionRequestId: null,
     pendingRecognitionImageBase64: null,
     cardOpenedAt: null,
     unlockedAchievements: {},
