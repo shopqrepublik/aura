@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useElyioApp, type AppState } from "@/lib/app-state";
 import { useAuth } from "@/lib/useAuth";
 import { identify, track, trackSessionStartedOnce } from "@/lib/analytics";
@@ -191,8 +191,15 @@ export default function ElyioApp({
       <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
         <div className="relative w-full h-full sm:max-w-[430px] sm:h-[min(932px,100vh)] sm:rounded-[44px] sm:overflow-hidden bg-[#FAFAF9] sm:shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
           {directToScanner && !state.visitStarted ? <CameraScreen state={{ ...state, screen: "camera" }} onCapture={actions.recognizeFrame} onGoProgress={() => actions.goto("progress")} onGoHome={() => actions.goto("home")} /> : screens}
+          {directToScanner && state.visitStarted && !state.museumId && detection.status === "manual-prompt" && detection.museums.length > 0 && <OptionalMuseumPicker locale={state.locale} museums={detection.museums} onSelect={(museum) => { actions.setMuseumContext(museum.id, museum.name, museum.city || museum.region || null); track("museum_selected", { museum_id: museum.id, source: "scanner_optional" }); }} />}
         </div>
       </div>
     </main>
   );
+}
+
+function OptionalMuseumPicker({ locale, museums, onSelect }: { locale: Locale; museums: Array<{ id: string; name: string; city?: string | null; region?: string | null }>; onSelect: (museum: { id: string; name: string; city?: string | null; region?: string | null }) => void }) {
+  const [open, setOpen] = useState(false);
+  const label = locale === "fr" ? "Musée non détecté · Choisir un musée" : locale === "zh-Hans" ? "未检测到博物馆 · 选择博物馆" : "Museum not detected · Choose museum";
+  return <div className="absolute left-3 right-3 top-3 z-30"><button type="button" className="rounded-full bg-black/65 px-3 py-2 text-xs text-white backdrop-blur" onClick={() => setOpen((value) => !value)}>{label}</button>{open && <div className="mt-2 max-h-48 overflow-y-auto rounded-2xl bg-black/85 p-2">{museums.map((museum) => <button key={museum.id} type="button" className="block w-full rounded-xl px-3 py-2 text-left text-sm text-white hover:bg-white/10" onClick={() => { onSelect(museum); setOpen(false); }}>{museum.name}</button>)}</div>}</div>;
 }
