@@ -106,6 +106,7 @@ from .catalog import (  # noqa: E402
     get_catalog_artwork,
     get_catalog_artworks_by_ids,
     get_recognition_candidates,
+    get_global_recognition_candidates,
     get_institution_runtime_config,
 )
 from .db import SessionLocal, get_db  # noqa: E402
@@ -2265,7 +2266,7 @@ def recognize(
             # Museum context is optional: open recognition can still identify
             # an uncatalogued work and use the existing AI fallback path.
             institution_config = None
-            candidates = []
+            candidates = _timed(profile, "db.recognition_candidates_global", lambda: get_global_recognition_candidates(db))
         _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else "generic", museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
         _log_recognition_event("recognition.candidates_ready", recognition_request_id=recognition_request_id, candidate_count=len(candidates), stage="candidate_generation", stage_status="completed")
     except InstitutionNotReadyError as e:
@@ -2288,6 +2289,7 @@ def recognize(
     )
     db.add(attempt)
     _timed(profile, "db.attempt_create_commit", lambda: db.commit())
+    _log_recognition_event("recognition.attempt_persisted", recognition_request_id=recognition_request_id, stage="attempt_persistence", stage_status="completed")
     started = time.perf_counter()
 
     def finish(response: RecognizeResponse, outcome: str) -> RecognizeResponse:
@@ -2334,6 +2336,7 @@ def recognize(
         fail_request("invalid_image")
         _log_recognition_event("recognition.error", recognition_request_id=recognition_request_id, failed_stage="request_validation", error_code="RECOGNITION_INVALID_REQUEST", error_class="ValidationError", sanitized_error_message="image_base64 required", http_status=400, retryable=False)
         raise HTTPException(status_code=400, detail={"error_code": "RECOGNITION_INVALID_REQUEST", "message": "image_base64 required", "recognition_request_id": recognition_request_id})
+    _log_recognition_event("recognition.request_validated", recognition_request_id=recognition_request_id, stage="request_validation", stage_status="completed")
     if len(req.image_base64) > MAX_RECOGNITION_IMAGE_BASE64_CHARS:
         fail_request("invalid_image")
         raise HTTPException(status_code=413, detail="image too large")

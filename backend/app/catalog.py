@@ -357,6 +357,15 @@ def get_recognition_candidates(
         raise CatalogUnavailableError(f"catalog lookup failed for museum_id={museum_id!r}: {exc}") from exc
 
 
+def get_global_recognition_candidates(db: Session, limit: int = 1000) -> list[dict]:
+    """Return active globally eligible artwork candidates for unknown museums."""
+    rows = db.query(Artwork).filter(Artwork.active.is_(True)).order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc()).limit(limit).all()
+    estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
+    value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
+    recognition_assets = _recognition_asset_by_artwork_id(db, [row.id for row in rows])
+    return [artwork_to_catalog_dict(row, estimates.get(row.id), value_reveals.get(row.id), recognition_assets.get(row.id), False) for row in rows]
+
+
 def get_catalog_artwork(db: Session, artwork_id: str) -> Optional[dict]:
     try:
         row = db.get(Artwork, artwork_id)
