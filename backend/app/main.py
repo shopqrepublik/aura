@@ -794,6 +794,8 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
         title_queries = [query_title, *[_normalize_for_matching(x) for x in model_title_aliases]]
         if query_title and confidence_title >= 0.35:
             title_score = max((max(fuzz.token_sort_ratio(q, variant), fuzz.partial_ratio(q, variant)) / 100 for q in title_queries if q for variant in candidate_title_variants if variant), default=0.0)
+            if any(q == variant for q in title_queries if q for variant in candidate_title_variants if variant):
+                title_score = 1.0
         alt_title_score = 0.0
         for alt in alt_candidates:
             alt_title = _normalize_for_matching((alt or {}).get("title") or "")
