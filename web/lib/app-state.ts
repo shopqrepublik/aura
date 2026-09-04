@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as api from "./api";
 import { getArtwork } from "./artworks";
 import { getAnonymousId, getSessionId, track, trackGoogleEvent } from "./analytics";
@@ -101,6 +101,14 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
     ...initialState,
     ...(options?.initialLocale ? { locale: options.initialLocale } : {}),
   }));
+  // Recognition callbacks can outlive the render that created them (notably
+  // while the scanner remains mounted during background museum detection).
+  // Keep the latest authoritative context available to every scan without
+  // making geolocation a blocking prerequisite.
+  const museumContextRef = useRef<{ id: string | null; name: string | null; city: string | null }>({ id: null, name: null, city: null });
+  useEffect(() => {
+    museumContextRef.current = { id: state.museumId, name: state.museumName, city: state.museumCity };
+  }, [state.museumId, state.museumName, state.museumCity]);
 
   // Browser persistence is restored after hydration. Reading localStorage in
   // the state initializer made returning visits render different client HTML
@@ -162,14 +170,16 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
   }, [goto]);
 
   const setMuseumContext = useCallback((museumId: string, museumName?: string | null, museumCity?: string | null) => {
+    museumContextRef.current = { id: museumId, name: museumName || null, city: museumCity || null };
     setState((s) => persistVisitState({ ...s, museumId, museumName: museumName || null, museumCity: museumCity || null, lastActivityAt: Date.now() }));
   }, []);
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
+    const latestMuseum = museumContextRef.current;
     setState((s) => persistVisitState({ ...s, scanStatus: "scanning", recognitionRequestId: null, pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
     const recognitionAttemptId = eventId();
-    track("image_captured", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId });
-    track("scan_attempt", { museum_id: state.museumId, seen_count: state.seen.length, recognition_attempt_id: recognitionAttemptId });
+    track("image_captured", { museum_id: latestMuseum.id, recognition_attempt_id: recognitionAttemptId });
+    track("scan_attempt", { museum_id: latestMuseum.id, seen_count: state.seen.length, recognition_attempt_id: recognitionAttemptId });
     if (state.seen.length > 0) {
       track("second_scan_started", { museum_id: state.museumId, seen_count: state.seen.length, recognition_attempt_id: recognitionAttemptId });
     }
@@ -179,7 +189,7 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
       const result = await api.recognize(
         imageBase64,
         state.locale,
-        state.museumId,
+        latestMuseum.id,
         undefined,
         recognitionAttemptId,
         getAnonymousId(),
