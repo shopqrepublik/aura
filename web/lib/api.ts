@@ -237,7 +237,7 @@ async function getJSON<T>(path: string, auth = false): Promise<T> {
 export async function recognize(
   imageBase64: string,
   locale: string,
-  museumId: string,
+  museumId?: string | null,
   hallHint?: string,
   recognitionAttemptId?: string,
   anonymousId?: string,
@@ -253,7 +253,7 @@ export async function recognize(
     headers,
     body: JSON.stringify({
     image_base64: imageBase64,
-    museum_id: museumId,
+    ...(museumId ? { museum_id: museumId } : {}),
     hall_hint: hallHint ?? null,
     locale,
     recognition_attempt_id: recognitionAttemptId,

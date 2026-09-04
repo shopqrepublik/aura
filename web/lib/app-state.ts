@@ -177,7 +177,7 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
       const result = await api.recognize(
         imageBase64,
         state.locale,
-        state.museumId ?? "",
+        state.museumId,
         undefined,
         recognitionAttemptId,
         getAnonymousId(),

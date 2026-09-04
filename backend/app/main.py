@@ -1844,7 +1844,7 @@ def recognize_with_vision(
 # ---- Schemas ----------------------------------------------------------
 class RecognizeRequest(BaseModel):
     image_base64: str
-    museum_id: str
+    museum_id: Optional[str] = None
     hall_hint: Optional[str] = None
     locale: str = "en"
     benchmark_mode: Optional[str] = None  # test-only: vision_metadata_only
@@ -1884,6 +1884,7 @@ class RecognizeResponse(BaseModel):
     recognized_but_not_cataloged: Optional[RecognizedButNotCataloged] = None
     recognition_attempt_id: Optional[str] = None
     timings: Optional[dict] = None
+    recognition_request_id: Optional[str] = None
 
 
 class VisitCreate(BaseModel):
@@ -2236,9 +2237,11 @@ def recognize(
     current_user: Optional[User] = Depends(get_optional_current_user),
 ):
     attempt_id = req.recognition_attempt_id or str(uuid.uuid4())
+    recognition_request_id = f"rec_{uuid.uuid4().hex[:16]}"
+    _log_recognition_event("recognition.request_received", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
     profile = _new_latency_profile(attempt_id) if req.benchmark_mode == "latency_profile" else None
 
-    if _timed(profile, "api.controlled_preview_check", lambda: _controlled_preview_only(db, req.museum_id)) and not _trusted_internal_request(request):
+    if req.museum_id and _timed(profile, "api.controlled_preview_check", lambda: _controlled_preview_only(db, req.museum_id)) and not _trusted_internal_request(request):
         raise HTTPException(status_code=404, detail="institution not found")
     existing_attempt = _timed(profile, "db.attempt_idempotency_lookup", lambda: db.get(RecognitionAttempt, attempt_id))
     if existing_attempt is not None:
@@ -2263,6 +2266,8 @@ def recognize(
             # an uncatalogued work and use the existing AI fallback path.
             institution_config = None
             candidates = []
+        _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else "generic", museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
+        _log_recognition_event("recognition.candidates_ready", recognition_request_id=recognition_request_id, candidate_count=len(candidates), stage="candidate_generation", stage_status="completed")
     except InstitutionNotReadyError as e:
         _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready", recognition_attempt_id=attempt_id)
         raise HTTPException(status_code=409, detail={"code": "institution_not_ready", "message": str(e)})
@@ -2278,7 +2283,7 @@ def recognize(
         anonymous_id=req.anonymous_id,
         user_id=str(current_user.id) if current_user else None,
         session_id=req.session_id,
-        institution_id=req.museum_id,
+        institution_id=req.museum_id or None,
         internal_test=internal_test,
     )
     db.add(attempt)
@@ -2286,6 +2291,7 @@ def recognize(
     started = time.perf_counter()
 
     def finish(response: RecognizeResponse, outcome: str) -> RecognizeResponse:
+        response.recognition_request_id = recognition_request_id
         response.recognition_attempt_id = attempt_id
         attempt.completed_at = datetime.now(timezone.utc)
         attempt.terminal_outcome = outcome
@@ -2334,7 +2340,8 @@ def recognize(
         fail_request("invalid_image")
         raise HTTPException(status_code=400, detail="image_base64 is not valid base64")
 
-    _log_recognition_event("recognition_started", museum_id=req.museum_id, locale=req.locale, recognition_attempt_id=attempt_id)
+    _log_recognition_event("recognition.stage1_started", recognition_request_id=recognition_request_id, stage="stage1_provider", museum_context_present=bool(req.museum_id))
+    _log_recognition_event("recognition_started", museum_id=req.museum_id or None, locale=req.locale, recognition_attempt_id=attempt_id, recognition_request_id=recognition_request_id)
 
     if OPENAI_API_KEY:
         try:
