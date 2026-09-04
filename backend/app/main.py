@@ -840,6 +840,12 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
             )
         if title_score >= 0.95:
             score = max(score, 0.72 + 0.08 * artist_score + priority_score)
+        # A jointly exact normalized title and artist is stronger evidence than
+        # the weighted metadata score alone. This is deterministic catalog
+        # reconciliation, not a threshold change: require both fields and a
+        # strong artist agreement before promoting the score.
+        if query_title and query_artist and query_title == candidate_title and artist_score >= 0.75:
+            score = max(score, 0.82 + priority_score)
         elif title_score >= 0.82 and not query_artist:
             score = max(score, 0.58 + priority_score)
         # Anonymous Louvre antiquities/decorative objects can be identifiable
