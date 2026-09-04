@@ -8,7 +8,7 @@ export const COMPARISON_V22_REMOTE_IDS = [
 ] as const;
 
 export type V22Category = "luxury" | "food" | "everyday" | "tech" | "pop" | "city" | "kids" | "easter_egg";
-export type V22Status = "VERIFIED" | "EASTER_EGG" | "REVIEW_REQUIRED" | "STALE" | "UNSOURCED";
+export type V22Status = "VERIFIED" | "EASTER_EGG" | "REVIEW_REQUIRED" | "STALE" | "UNSOURCED" | "NEEDS_DECISION";
 
 export interface V22Reference {
   id: string;

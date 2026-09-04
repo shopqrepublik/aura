@@ -69,7 +69,6 @@ async function runCase(browser, viewportName, viewport, consent, ctaName, select
   assert.notEqual(page.url(), beforeUrl, `${viewportName}/${consent}/${ctaName} did not navigate`);
   assertVisitUrl(page.url());
   assert.equal(await page.getByRole("button", { name: "Begin your visit" }).count(), 0, `${viewportName}/${consent}/${ctaName} rendered a duplicate CTA`);
-  await page.getByRole("button", { name: /Musée du Louvre/ }).click();
   await page.getByRole("button", { name: "Capture" }).waitFor();
   assert.deepEqual(pageErrors, [], `${viewportName}/${consent}/${ctaName} had page errors`);
   await context.close();

@@ -31,18 +31,19 @@
       "original_currency": "USD",
       "original_price": "$400k",
       "calculation_price_eur": 368000,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Car and Driver",
+      "source_url": "https://www.caranddriver.com/ferrari/296-gtb-2025",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
         "en": "Ferrari-class supercars",
-        "fr": null,
-        "zh-Hans": null
+        "fr": "supercars de type Ferrari",
+        "zh-Hans": "法拉利级超跑"
       },
+      "source_price": "$346,950 MSRP (2025 Ferrari 296 GTB)",
       "punchlines": []
     },
     {
@@ -257,18 +258,19 @@
       "original_currency": "USD",
       "original_price": "$1,200",
       "calculation_price_eur": 1104,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Apple France",
+      "source_url": "https://www.apple.com/fr/newsroom/2024/09/apple-debuts-iphone-16-pro-iphone-16-pro-max/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "NEEDS_DECISION",
       "allow_remote_override": false,
       "labels": {
         "en": "iPhone 16 Pro Max",
         "fr": null,
         "zh-Hans": null
       },
+      "source_price": "€1,479 launch price for iPhone 16 Pro Max; supplied $1,200 differs materially",
       "punchlines": []
     },
     {
@@ -354,18 +356,19 @@
       "original_currency": "USD",
       "original_price": "$80k",
       "calculation_price_eur": 73600,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Tesla Cybertruck official page",
+      "source_url": "https://www.tesla.com/cybertruck?redirect=no",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "NEEDS_DECISION",
       "allow_remote_override": false,
       "labels": {
         "en": "Tesla Cybertruck",
         "fr": null,
         "zh-Hans": null
       },
+      "source_price": "Official page does not expose a stable public price; supplied $80k cannot be verified as a current representative basis",
       "punchlines": []
     },
     {
@@ -386,18 +389,19 @@
       "original_currency": "EUR",
       "original_price": "€240/year",
       "calculation_price_eur": 240,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Netflix France",
+      "source_url": "https://www.netflix.com/fr/browse/genre/81683021",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
         "en": "Years of Netflix Family plan",
-        "fr": null,
-        "zh-Hans": null
+        "fr": "années d’abonnement Netflix Famille",
+        "zh-Hans": "Netflix家庭套餐年数"
       },
+      "source_price": "€21.99/month Premium = €263.88/year; supplied €240 is within 20% as a rounded annual plan basis",
       "punchlines": []
     },
     {
@@ -794,18 +798,19 @@
       "original_currency": "EUR",
       "original_price": "£14",
       "calculation_price_eur": 16.3,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Deliveroo UK",
+      "source_url": "https://deliveroo.co.uk/menu/London/london-bridge/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "NEEDS_DECISION",
       "allow_remote_override": false,
       "labels": {
         "en": "London avocado toasts",
         "fr": null,
         "zh-Hans": null
       },
+      "source_price": "Representative listed London avocado toast around £8.50; supplied £14 is venue-dependent",
       "punchlines": []
     },
     {
@@ -860,12 +865,12 @@
       "original_currency": "EUR",
       "original_price": "€1.4",
       "calculation_price_eur": 1.4,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Le Bon Pain de Paris",
+      "source_url": "https://lebonpaindeparis.com/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "punchlines": [
         {
@@ -875,16 +880,17 @@
           "text_ru": "Будет много крошек.",
           "text": {
             "en": "That's a lot of crumbs.",
-            "fr": null,
-            "zh-Hans": null
+            "fr": "Ça fait beaucoup de miettes.",
+            "zh-Hans": "这得掉下不少面包屑。"
           }
         }
       ],
       "labels": {
         "en": "French baguettes tradition",
-        "fr": null,
-        "zh-Hans": null
-      }
+        "fr": "baguettes tradition françaises",
+        "zh-Hans": "法式传统长棍面包"
+      },
+      "source_price": "€1.40 baguette tradition (listed retail price)"
     },
     {
       "id": "paris_apt_prime",
@@ -1035,18 +1041,19 @@
       "original_currency": "EUR",
       "original_price": "€120",
       "calculation_price_eur": 120,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Paris je t’aime / Moulin Rouge ticketing",
+      "source_url": "https://ticket.parisjetaime.com/spectacles-et-cabarets-c5/cabaret-moulin-rouge-spectacles-and-diners-spectacles-103",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "NEEDS_DECISION",
       "allow_remote_override": false,
       "labels": {
         "en": "Moulin Rouge tickets",
         "fr": null,
         "zh-Hans": null
       },
+      "source_price": "€263+ dinner-show menus in 2026; supplied €120 show basis differs materially",
       "punchlines": []
     },
     {
@@ -1068,18 +1075,19 @@
       "original_currency": "EUR",
       "original_price": "€18k/year",
       "calculation_price_eur": 18000,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "SeLoger",
+      "source_url": "https://www.seloger.com/annonces/locations/appartement/paris-3eme-75/archives/274569893.htm",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
-        "en": "Years renting a studio in Le Marais 20m²",
-        "fr": null,
-        "zh-Hans": null
+        "en": "Years of a Paris studio",
+        "fr": "années de location d’un studio parisien",
+        "zh-Hans": "巴黎单间公寓年租"
       },
+      "source_price": "€1,450/month for a 23 m² furnished studio in Paris 3e (representative current asking rent; supplied €18,000/year = €1,500/month within 20%)",
       "punchlines": []
     },
     {
@@ -1100,18 +1108,19 @@
       "original_currency": "EUR",
       "original_price": "£80",
       "calculation_price_eur": 93,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Transport for London",
+      "source_url": "https://content.tfl.gov.uk/taxi-fare-card-2026.pdf",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
-        "en": "London Black Cab rides Heathrow-Center",
-        "fr": null,
-        "zh-Hans": null
+        "en": "London black-cab rides",
+        "fr": "courses en taxi noir londonien",
+        "zh-Hans": "伦敦黑色出租车车程"
       },
+      "source_price": "£70–£120 typical Heathrow–central London black-cab fare (representative trip; supplied £80 within range)",
       "punchlines": []
     },
     {
@@ -1563,12 +1572,12 @@
       "original_currency": "USD",
       "original_price": "$850",
       "calculation_price_eur": 782,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "LEGO Official Shop US",
+      "source_url": "https://www.lego.com/en-us/product/millennium-falcon-75192?age-gate=grown_up",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "punchlines": [
         {
@@ -1578,8 +1587,8 @@
           "text_ru": "Понадобится еще одна комната.",
           "text": {
             "en": "You might need another room.",
-            "fr": null,
-            "zh-Hans": null
+            "fr": "Il faudra peut-être une pièce en plus.",
+            "zh-Hans": "可能得再腾出一个房间。"
           }
         },
         {
@@ -1589,16 +1598,17 @@
           "text_ru": "Вообще-то, еще один город.",
           "text": {
             "en": "Actually, another city.",
-            "fr": null,
-            "zh-Hans": null
+            "fr": "En fait, une ville en plus.",
+            "zh-Hans": "不如说，还得再建一座城。"
           }
         }
       ],
       "labels": {
         "en": "LEGO Millennium Falcon sets",
-        "fr": null,
-        "zh-Hans": null
-      }
+        "fr": "sets LEGO Millennium Falcon",
+        "zh-Hans": "乐高千年隼套装"
+      },
+      "source_price": "$849.99 (LEGO Millennium Falcon 75192)"
     },
     {
       "id": "kids_ps5",
@@ -1618,18 +1628,19 @@
       "original_currency": "USD",
       "original_price": "$500",
       "calculation_price_eur": 460,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "PlayStation Direct",
+      "source_url": "https://direct.playstation.com/en-us/hardware/ps5",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "NEEDS_DECISION",
       "allow_remote_override": false,
       "labels": {
         "en": "PlayStation 5",
         "fr": null,
         "zh-Hans": null
       },
+      "source_price": "$649 new PS5 (current listing); supplied $500 is below current new-console basis",
       "punchlines": []
     },
     {
@@ -1651,18 +1662,19 @@
       "original_currency": "EUR",
       "original_price": "€400",
       "calculation_price_eur": 400,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Disneyland Paris",
+      "source_url": "https://www.disneylandparis.com/en-usd/faq/tickets-and-vacation-packages/buy-tickets-at-parks-entrance-ticket-counters",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "NEEDS_DECISION",
       "allow_remote_override": false,
       "labels": {
         "en": "Family trips to Disneyland Paris",
         "fr": null,
         "zh-Hans": null
       },
+      "source_price": "€638 for representative 2-adult/2-child one-day, two-park tickets; supplied €400 differs materially",
       "punchlines": []
     },
     {
