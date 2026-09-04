@@ -9,6 +9,17 @@ import type { Artwork, ValueReveal } from "./types";
 
 export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8090";
 
+function acquisitionSessionId(): string | undefined {
+  try {
+    const key = "elyio-acquisition-session";
+    const stored = JSON.parse(window.localStorage.getItem(key) || "null") as { id?: string; expires?: number } | null;
+    if (stored?.id && Number(stored.expires) > Date.now()) return stored.id;
+    const id = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+    window.localStorage.setItem(key, JSON.stringify({ id, expires: Date.now() + 7 * 24 * 60 * 60 * 1000 }));
+    return id;
+  } catch { return undefined; }
+}
+
 // /v1/visits* now requires a real signed-in user (backend/app/auth.py
 // verifies this as a Supabase JWT) -- getSession() reads from supabase-js's
 // own in-memory/localStorage cache and only hits the network to refresh a
@@ -274,6 +285,7 @@ export async function recognize(
     recognition_attempt_id: recognitionAttemptId,
     anonymous_id: anonymousId,
     session_id: sessionId,
+    acquisition_session_id: acquisitionSessionId(),
     }),
   }, 60000);
   if (!res.ok) {

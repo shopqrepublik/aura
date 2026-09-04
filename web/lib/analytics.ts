@@ -175,6 +175,8 @@ export type EventName =
 const ANON_KEY = "elyio-anonymous-id";
 const SESSION_KEY = "elyio-session-id";
 const SESSION_STARTED_KEY = "elyio-session-started";
+const ACQUISITION_KEY = "elyio-acquisition-session";
+const ACQUISITION_URL = process.env.NEXT_PUBLIC_ACQUISITION_URL || "https://agent.elyio.co/acquisition-api";
 const QA_TOKEN_KEY = "elyio-trusted-qa-token";
 let analyticsAuthToken: string | undefined;
 
@@ -209,6 +211,42 @@ export function getSessionId() {
   } catch {
     return undefined;
   }
+}
+
+export function acquisitionSessionId() {
+  try {
+    const now = Date.now();
+    const stored = window.localStorage.getItem(ACQUISITION_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored) as { id?: string; expires?: number };
+      if (parsed.id && typeof parsed.expires === "number" && parsed.expires > now) return parsed.id;
+    }
+    const id = uuid();
+    window.localStorage.setItem(ACQUISITION_KEY, JSON.stringify({ id, expires: now + 7 * 24 * 60 * 60 * 1000 }));
+    return id;
+  } catch { return undefined; }
+}
+
+function acquisitionTouch() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("utm_content")?.startsWith("pub_") ? params.get("utm_content") || undefined : undefined;
+  const source = params.get("utm_source") || undefined;
+  const platform = source && /instagram|facebook|tiktok/i.test(source) ? source.toLowerCase() : undefined;
+  return { source, platform, referrer: document.referrer || undefined, landing_url: window.location.href, utm_source: source, utm_medium: params.get("utm_medium") || undefined, utm_campaign: params.get("utm_campaign") || undefined, utm_content: params.get("utm_content") || undefined, utm_term: params.get("utm_term") || undefined, attribution_token: token };
+}
+
+function sendAcquisition(event: EventName) {
+  if (typeof window === "undefined") return;
+  const acquisition_session_id = acquisitionSessionId();
+  if (!acquisition_session_id) return;
+  const brand = "elyio";
+  const base = { brand, acquisition_session_id, anonymous_visitor_id: getAnonymousId() };
+  const body = JSON.stringify({ ...base, touch: acquisitionTouch() });
+  void fetch(`${ACQUISITION_URL}/v1/attribution`, { method: "POST", headers: { "Content-Type": "application/json" }, body, keepalive: true }).catch(() => undefined);
+  const acquisitionEvents: Record<string, string> = { session_started: "session_started", begin_visit: "begin_visit", visit_started: "visit_started", scan_opened: "scan_opened", camera_opened: "camera_opened", scan_success: "scan_success" };
+  const event_name = acquisitionEvents[event];
+  if (!event_name) return;
+  void fetch(`${ACQUISITION_URL}/v1/events`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...base, event_id: uuid(), event_name, occurred_at: new Date().toISOString(), source: "BROWSER", authority: "CLIENT", platform: acquisitionTouch().platform }), keepalive: true }).catch(() => undefined);
 }
 
 function trustedQaToken() {
@@ -321,6 +359,7 @@ export function track(event: EventName, properties?: Record<string, unknown>) {
     if (stored) landing = JSON.parse(stored) as Record<string, unknown>;
   } catch { /* attribution must never interfere with the visit */ }
   sendFirstPartyEvent(event, properties, landing);
+  sendAcquisition(event);
   if (!KEY) return;
   posthog.capture(event, { ...landing, ...properties });
 }
