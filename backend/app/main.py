@@ -2509,17 +2509,6 @@ def recognize(
                     recognized_but_not_cataloged.get("artist"),
                     recognized_but_not_cataloged.get("title"), req.museum_id, db,
                 )
-            _log_recognition_event(
-                "recognition_completed",
-                museum_id=req.museum_id,
-                status="no_match",
-                catalog_match=False,
-                confidence=confidence,
-                ai_candidate=recognized_but_not_cataloged,
-                resolved_artwork_id=None,
-                recognition_attempt_id=attempt_id,
-                latency_ms=round((time.perf_counter() - started) * 1000),
-            )
             # Catalog reconciliation is enrichment, not the definition of
             # recognition.  A structurally valid, high-confidence AI
             # identification remains useful even when no catalog row matched.
