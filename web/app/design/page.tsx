@@ -125,6 +125,7 @@ function demoState(overrides: Partial<AppState>): AppState {
     uncatalogedAdded: new Set(),
     lastConfidence: 0.94,
     scanStatus: null,
+    recognitionRequestId: null,
     pendingRecognitionImageBase64: null,
     cardOpenedAt: null,
     unlockedAchievements: {},

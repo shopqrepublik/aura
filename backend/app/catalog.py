@@ -359,7 +359,7 @@ def get_recognition_candidates(
 
 def get_global_recognition_candidates(db: Session, limit: int = 1000) -> list[dict]:
     """Return active globally eligible artwork candidates for unknown museums."""
-    rows = db.query(Artwork).filter(Artwork.active.is_(True)).order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc()).limit(limit).all()
+    rows = db.query(Artwork).order_by(Artwork.priority.asc().nullslast(), Artwork.id.asc()).limit(limit).all()
     estimates = _estimate_by_artwork_id(db, [row.id for row in rows])
     value_reveals = _value_reveal_by_artwork_id(db, [row.id for row in rows])
     recognition_assets = _recognition_asset_by_artwork_id(db, [row.id for row in rows])

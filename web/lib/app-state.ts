@@ -53,6 +53,7 @@ export interface AppState {
   uncatalogedAdded: Set<string>;
   lastConfidence: number;
   scanStatus: string | null; // transient message on the camera screen
+  recognitionRequestId: string | null;
   pendingRecognitionImageBase64: string | null;
   cardOpenedAt: number | null; // real wall-clock timestamp, for Deep focus
   unlockedAchievements: Record<string, number>;
@@ -82,6 +83,7 @@ const initialState: AppState = {
   uncatalogedAdded: new Set(),
   lastConfidence: 0,
   scanStatus: null,
+  recognitionRequestId: null,
   pendingRecognitionImageBase64: null,
   cardOpenedAt: null,
   unlockedAchievements: {},
@@ -164,7 +166,7 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
   }, []);
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
-    setState((s) => persistVisitState({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
+    setState((s) => persistVisitState({ ...s, scanStatus: "scanning", recognitionRequestId: null, pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
     const recognitionAttemptId = eventId();
     track("image_captured", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId });
     track("scan_attempt", { museum_id: state.museumId, seen_count: state.seen.length, recognition_attempt_id: recognitionAttemptId });
@@ -183,6 +185,7 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
         getAnonymousId(),
         getSessionId(),
       );
+      setState((s) => ({ ...s, recognitionRequestId: result.recognition_request_id || null }));
       track("recognition_completed", {
         museum_id: state.museumId,
         recognition_attempt_id: recognitionAttemptId,
@@ -304,9 +307,11 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
       track("recognition_failed", { museum_id: state.museumId, recognition_attempt_id: recognitionAttemptId, reason: error instanceof Error ? error.message : "error" });
       trackGoogleEvent("recognition_failed", { locale: state.locale, museum_slug: state.museumId || undefined, museum_city: state.museumCity || undefined, recognition_mode: "other", catalog_status: "error", source_surface: "scanner" });
       const networkError = isRecognitionNetworkError(error);
+      const diagnosticId = error instanceof api.RecognitionHttpError ? error.recognitionRequestId : undefined;
       track("scan_failed", { reason: networkError ? "network_error" : "error", recognition_attempt_id: recognitionAttemptId });
       setState((s) => persistVisitState({
         ...s,
+        recognitionRequestId: diagnosticId || s.recognitionRequestId,
         scanStatus: networkError ? "network_error" : "not_identified",
         pendingRecognitionImageBase64: networkError ? imageBase64 : null,
         lastActivityAt: Date.now(),

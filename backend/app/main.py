@@ -1218,6 +1218,7 @@ def visual_verify_single_candidate(
     candidate: dict,
     allow_remote_reference_fetch: bool = True,
     profile: Optional[dict] = None,
+    recognition_request_id: Optional[str] = None,
 ) -> dict:
     """
     The step that actually catches what text matching structurally cannot:
@@ -1232,6 +1233,8 @@ def visual_verify_single_candidate(
         return {"is_match": False, "confidence": 0.0, "reason": "reference_verification_not_allowed_for_url"}
 
     client = _recognition_openai_client()
+    if recognition_request_id:
+        _log_recognition_event("recognition.reference_fetch_started", recognition_request_id=recognition_request_id, stage="reference_fetch", stage_status="started", artwork_id=candidate.get("id"))
     ref_b64 = _timed(
         profile,
         "reference_image.fetch_single",
@@ -1242,6 +1245,8 @@ def visual_verify_single_candidate(
         ),
         artwork_id=candidate.get("id"),
     )
+    if recognition_request_id:
+        _log_recognition_event("recognition.reference_fetch_completed", recognition_request_id=recognition_request_id, stage="reference_fetch", stage_status="completed", artwork_id=candidate.get("id"))
     candidate_artist = candidate.get("artist") or "creator not specified"
 
     system_prompt = (
@@ -1255,6 +1260,8 @@ def visual_verify_single_candidate(
         '{"is_match": true or false, "confidence": <0-1 float, how confident you are in this judgment>}.'
     )
 
+    if recognition_request_id:
+        _log_recognition_event("recognition.verifier_started", recognition_request_id=recognition_request_id, stage="verifier_provider", stage_status="started")
     resp = _timed(
         profile,
         "external_model.visual_verify_single",
@@ -1278,7 +1285,10 @@ def visual_verify_single_candidate(
         model=VISUAL_VERIFY_MODEL,
         role="single_reference_verifier",
     )
-    return json.loads(resp.choices[0].message.content)
+    verdict = json.loads(resp.choices[0].message.content)
+    if recognition_request_id:
+        _log_recognition_event("recognition.verifier_completed", recognition_request_id=recognition_request_id, stage="verifier_provider", stage_status="completed")
+    return verdict
 
 
 def visual_verify_reference_candidates(
@@ -1461,6 +1471,7 @@ def recognize_with_vision(
     benchmark_mode: Optional[str] = None,
     institution_config: Optional[InstitutionRuntimeConfig] = None,
     profile: Optional[dict] = None,
+    recognition_request_id: Optional[str] = None,
 ) -> dict:
     """
     Hybrid: open recognition (no candidate list) -> fuzzy text match against
@@ -1785,7 +1796,7 @@ def recognize_with_vision(
                 "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
                 "stage2_verifier": verdict,
             }
-        verdict = visual_verify_single_candidate(image_base64, match, profile=profile)  # slow path
+        verdict = visual_verify_single_candidate(image_base64, match, profile=profile, recognition_request_id=recognition_request_id)  # slow path
         if verdict.get("is_match"):
             visual_confidence = float(verdict.get("confidence", 0) or 0)
             final_confidence = min(max(model_confidence, match_score), visual_confidence)
@@ -1801,7 +1812,7 @@ def recognize_with_vision(
         # Top candidate visually rejected -- try the runner-up only if it also
         # has a rights-allowed external reference image.
         if runner_up and _reference_verification_allowed(runner_up):
-            runner_verdict = visual_verify_single_candidate(image_base64, runner_up, profile=profile)
+            runner_verdict = visual_verify_single_candidate(image_base64, runner_up, profile=profile, recognition_request_id=recognition_request_id)
             if runner_verdict.get("is_match"):
                 visual_confidence = float(runner_verdict.get("confidence", 0) or 0)
                 final_confidence = min(max(model_confidence, match_score), visual_confidence)
@@ -2318,6 +2329,7 @@ def recognize(
         attempt.recognition_mode = response.recognition_mode
         attempt.latency_ms = round((time.perf_counter() - started) * 1000)
         attempt.response_payload = response.model_dump(mode="json")
+        _log_recognition_event("recognition.persistence_started", recognition_request_id=recognition_request_id, stage="result_persistence", stage_status="started")
         _timed(profile, "db.attempt_finish_commit", lambda: db.commit())
         _log_recognition_event("recognition.persistence_completed", recognition_request_id=recognition_request_id, stage="result_persistence", stage_status="completed")
         _log_recognition_event("recognition.response_success" if response.status in {"matched", "needs_confirmation"} else "recognition.response_no_match", recognition_request_id=recognition_request_id, stage_status="completed", http_status=200, outcome=response.status)
@@ -2362,8 +2374,10 @@ def recognize(
                     benchmark_mode=req.benchmark_mode,
                     institution_config=institution_config,
                     profile=profile,
+                    recognition_request_id=recognition_request_id,
                 ),
             )
+            _log_recognition_event("recognition.stage1_completed", recognition_request_id=recognition_request_id, stage="stage1_provider", stage_status="completed")
         except Exception as e:
             _log_recognition_event(
                 "recognition_failed",

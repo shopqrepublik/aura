@@ -200,13 +200,12 @@ export default function CameraScreen({
       <canvas ref={canvasRef} className="hidden" />
 
       {networkError && state.pendingRecognitionImageBase64 && (
-        <button
-          type="button"
-          onClick={() => onCapture(state.pendingRecognitionImageBase64 as string)}
-          className="absolute left-1/2 bottom-[132px] -translate-x-1/2 z-20 h-[38px] px-4 rounded-full bg-[#F5E6B8] text-[#181714] text-[13px] font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.32)] active:scale-[0.98] transition-transform"
-        >
-          {tt("retry_recognition", state.locale)}
-        </button>
+        <div className="absolute left-1/2 bottom-[132px] -translate-x-1/2 z-20 flex flex-col items-center gap-1">
+          <button type="button" onClick={() => onCapture(state.pendingRecognitionImageBase64 as string)} className="h-[38px] px-4 rounded-full bg-[#F5E6B8] text-[#181714] text-[13px] font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.32)] active:scale-[0.98] transition-transform">
+            {tt("retry_recognition", state.locale)}
+          </button>
+          {state.recognitionRequestId && <span className="text-[10px] text-white/70">{state.locale === "fr" ? "Référence" : state.locale === "zh-Hans" ? "参考" : "Reference"}: {state.recognitionRequestId.slice(-6).toUpperCase()}</span>}
+        </div>
       )}
 
       <div className="absolute bottom-0 left-0 right-0 z-20 pb-[34px] pt-8 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-center gap-6">

@@ -39,6 +39,21 @@ export interface RecognizeResponse {
     look_closer?: string | null;
     confidence?: number | null;
   } | null;
+  recognition_request_id?: string | null;
+}
+
+export class RecognitionHttpError extends Error {
+  status: number;
+  errorCode?: string;
+  recognitionRequestId?: string;
+  frontendStage = "http_error";
+  constructor(status: number, errorCode?: string, recognitionRequestId?: string) {
+    super(`/v1/recognize failed: ${status}`);
+    this.name = "RecognitionHttpError";
+    this.status = status;
+    this.errorCode = errorCode;
+    this.recognitionRequestId = recognitionRequestId;
+  }
 }
 
 export interface CatalogArtworkResponse {
@@ -261,7 +276,12 @@ export async function recognize(
     session_id: sessionId,
     }),
   }, 60000);
-  if (!res.ok) throw new Error(`/v1/recognize failed: ${res.status}`);
+  if (!res.ok) {
+    let payload: any = null;
+    try { payload = await res.json(); } catch { /* non-JSON response */ }
+    const detail = payload?.detail || payload;
+    throw new RecognitionHttpError(res.status, detail?.error_code, detail?.recognition_request_id);
+  }
   return res.json();
 }
 
