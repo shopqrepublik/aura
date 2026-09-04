@@ -292,10 +292,17 @@ export async function recognize(
     }),
   }, 60000);
   if (!res.ok) {
-    let payload: any = null;
+    let payload: unknown = null;
     try { payload = await res.json(); } catch { /* non-JSON response */ }
-    const detail = payload?.detail || payload;
-    throw new RecognitionHttpError(res.status, detail?.error_code, detail?.recognition_request_id);
+    const payloadRecord = payload && typeof payload === "object" ? payload as Record<string, unknown> : null;
+    const detail = payloadRecord?.detail && typeof payloadRecord.detail === "object"
+      ? payloadRecord.detail as Record<string, unknown>
+      : payloadRecord;
+    throw new RecognitionHttpError(
+      res.status,
+      typeof detail?.error_code === "string" ? detail.error_code : undefined,
+      typeof detail?.recognition_request_id === "string" ? detail.recognition_request_id : undefined,
+    );
   }
   return res.json();
 }
