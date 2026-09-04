@@ -140,6 +140,7 @@ async def limit_public_event_body(request: Request, call_next):
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 ALLOW_RECOGNITION_MOCK = os.environ.get("ALLOW_RECOGNITION_MOCK", "").lower() in {"1", "true", "yes"}
+GENERIC_RECOGNITION_V11_ENABLED = os.environ.get("GENERIC_RECOGNITION_V11_ENABLED", "false").lower() in {"1", "true", "yes"}
 MAX_RECOGNITION_IMAGE_BASE64_CHARS = int(os.environ.get("MAX_RECOGNITION_IMAGE_BASE64_CHARS", "8000000"))
 OPENAI_RECOGNITION_RETRIES = int(os.environ.get("OPENAI_RECOGNITION_RETRIES", "2"))
 OPENAI_RECOGNITION_TIMEOUT_SECONDS = float(os.environ.get("OPENAI_RECOGNITION_TIMEOUT_SECONDS", "35"))
@@ -2311,11 +2312,17 @@ def recognize(
                 lambda: get_recognition_candidates(db, req.museum_id, runtime_config=institution_config),
             )
         else:
-            # Museum context is optional: open recognition can still identify
-            # an uncatalogued work and use the existing AI fallback path.
+            # Preserve the last-known-good no-museum semantics by default:
+            # the original AI-first path reconciled against the in-process
+            # approved catalog without requiring an institution. The newer
+            # global DB reconciliation remains opt-in until its quality gate
+            # passes.
             institution_config = None
-            candidates = _timed(profile, "db.recognition_candidates_global", lambda: get_global_recognition_candidates(db))
-        _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else "generic", museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
+            if GENERIC_RECOGNITION_V11_ENABLED:
+                candidates = _timed(profile, "db.recognition_candidates_global", lambda: get_global_recognition_candidates(db))
+            else:
+                candidates = DEMO_ARTWORKS
+        _log_recognition_event("recognition.context_resolved", recognition_request_id=recognition_request_id, endpoint="/v1/recognize", engine_path="museum_catalog" if req.museum_id else ("generic" if GENERIC_RECOGNITION_V11_ENABLED else "legacy_ai_fallback"), museum_context_present=bool(req.museum_id), museum_id=req.museum_id or None, locale=req.locale)
         _log_recognition_event("recognition.candidates_ready", recognition_request_id=recognition_request_id, candidate_count=len(candidates), stage="candidate_generation", stage_status="completed")
     except InstitutionNotReadyError as e:
         _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready", recognition_attempt_id=attempt_id)
