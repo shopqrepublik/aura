@@ -10,6 +10,8 @@ National Gallery controlled tooling is `backend/scripts/national_gallery_select_
 
 Quality-recovery diagnostics add `national_gallery_reference_asset_audit.py`, `national_gallery_population_quality_audit.py`, and `national_gallery_visual_retrieval_probe.py`. The production benchmark runner records Stage-1 evidence, stage timings and metadata/visual candidate ranks with `--profile-stages --diagnose-retrieval`. Retrieval recall@1/3/5/10/20 must be reported separately from final verified recognition: a descriptor hit is never a successful recognition. Current runtime version `ng-controlled-2000-v1-retrieval` preserves the prior 1,000 works and unchanged thresholds while bounding expensive verification to one call with at most three references.
 
+Production `/v1/recognize` supports `benchmark_mode="latency_profile"` for controlled operations measurements. The response includes monotonic timings for request gating, DB setup, image validation, Stage-1 OpenAI, local ranking, optional visual descriptor ranking, Stage-2 verifier, and final attempt commit. The profile never includes image bytes, base64 payloads, prompts, secrets or tokens. Normal product behavior and recognition thresholds are unchanged.
+
 ## Benchmark dimensions
 
 For every activated museum, maintain separately:
@@ -23,6 +25,14 @@ For every activated museum, maintain separately:
 - low-quality/network/error cases.
 
 Report match, needs-confirmation, no-match, confident-wrong, wrong-museum leakage, p50/p95 latency and AI calls/cost per attempt. Never collapse needs-confirmation into success without showing the policy.
+
+The current production performance budget is:
+
+- catalog recognition: p50 <= 3s, p95 <= 5s to verified identity/basic result;
+- uncataloged AI fallback: p50 <= 6s, p95 <= 10s to useful first result;
+- frontend response-to-visible: p50 <= 1s.
+
+Provider-backed CI should not fail on live external-model latency. Use deterministic unit coverage for timing instrumentation and controlled production runs for budget enforcement.
 
 ## Safety gates
 

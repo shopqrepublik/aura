@@ -53,10 +53,10 @@ _orig_verify = backend.visual_verify_single_candidate
 _last = {"slow_path": False, "verify_latency": None}
 
 
-def _wrapped_verify(image_base64, candidate):
+def _wrapped_verify(image_base64, candidate, *args, **kwargs):
     _last["slow_path"] = True
     t0 = time.perf_counter()
-    result = _orig_verify(image_base64, candidate)
+    result = _orig_verify(image_base64, candidate, *args, **kwargs)
     _last["verify_latency"] = time.perf_counter() - t0
     return result
 

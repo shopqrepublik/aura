@@ -1,3 +1,4 @@
+import json
 import os
 import unittest
 import uuid
@@ -277,6 +278,31 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             self.assertEqual(rows[0].engine_outcome, "CATALOG_CANDIDATE_MATCHED")
             self.assertEqual(rows[0].visitor_resolution, "AUTO_ACCEPTED")
             self.assertEqual(rows[0].artwork_id, "known-work")
+
+    def test_latency_profile_is_opt_in_and_does_not_store_image_payload(self):
+        attempt_id = "90000000-0000-4000-8000-000000000011"
+        response = self.client.post("/v1/recognize", json={
+            "image_base64": "AA==",
+            "museum_id": "louvre",
+            "locale": "en",
+            "benchmark_mode": "latency_profile",
+            "recognition_attempt_id": attempt_id,
+            "anonymous_id": "90000000-0000-4000-8000-000000000012",
+            "session_id": "90000000-0000-4000-8000-000000000013",
+        })
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["recognition_attempt_id"], attempt_id)
+        self.assertEqual(payload["timings"]["attempt_id"], attempt_id)
+        stage_names = {stage["name"] for stage in payload["timings"]["stages"]}
+        self.assertIn("db.institution_runtime_config", stage_names)
+        self.assertIn("db.recognition_candidates", stage_names)
+        self.assertIn("recognition.total", stage_names)
+        self.assertNotIn("AA==", json.dumps(payload["timings"]))
+
+        with self.Session() as db:
+            stored = db.get(RecognitionAttempt, attempt_id)
+            self.assertIsNone(stored.response_payload.get("timings"))
 
     def test_event_body_over_limit_is_rejected_before_ingestion(self):
         response = self.client.post(

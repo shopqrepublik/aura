@@ -71,7 +71,7 @@ import re
 import time
 import uuid
 from datetime import datetime, timezone
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Callable
 
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Query, Request
@@ -323,7 +323,55 @@ def _openai_chat_completion_with_retries(client, **kwargs):
     raise last_error or RuntimeError("OpenAI recognition request failed")
 
 
-def recognize_open(image_base64: str, museum_id: str, institution_context: Optional[str] = None) -> dict:
+_OPENAI_RECOGNITION_CLIENT = None
+
+
+def _recognition_openai_client():
+    """Reuse provider connections across recognition stages in a warm process."""
+    global _OPENAI_RECOGNITION_CLIENT
+    if _OPENAI_RECOGNITION_CLIENT is None:
+        from openai import OpenAI  # imported lazily so UI-only dev can import the module
+
+        _OPENAI_RECOGNITION_CLIENT = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
+    return _OPENAI_RECOGNITION_CLIENT
+
+
+def _new_latency_profile(attempt_id: str) -> dict:
+    return {"attempt_id": attempt_id, "started": time.perf_counter(), "stages": []}
+
+
+def _record_latency_stage(profile: Optional[dict], name: str, started: float, **metadata) -> None:
+    if profile is None:
+        return
+    stage = {"name": name, "ms": round((time.perf_counter() - started) * 1000, 2)}
+    stage.update({key: value for key, value in metadata.items() if value is not None})
+    profile["stages"].append(stage)
+
+
+def _timed(profile: Optional[dict], name: str, fn: Callable[[], Any], **metadata):
+    started = time.perf_counter()
+    try:
+        return fn()
+    finally:
+        _record_latency_stage(profile, name, started, **metadata)
+
+
+def _latency_profile_summary(profile: Optional[dict]) -> Optional[dict]:
+    if profile is None:
+        return None
+    return {
+        "attempt_id": profile["attempt_id"],
+        "total_server_ms": round((time.perf_counter() - profile["started"]) * 1000, 2),
+        "stages": profile["stages"],
+    }
+
+
+def recognize_open(
+    image_base64: str,
+    museum_id: str,
+    institution_context: Optional[str] = None,
+    profile: Optional[dict] = None,
+) -> dict:
     """
     Open recognition — no candidate list in the prompt at all. A 13-photo
     real-world test showed the closed-catalog prompt (and even the two-stage
@@ -333,9 +381,7 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
     way a plain ChatGPT query would, lets the model say "I don't know this
     specific work" instead of guessing from a constrained menu.
     """
-    from openai import OpenAI  # imported lazily so the module still loads without the package during UI-only dev
-
-    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
+    client = _recognition_openai_client()
     museum_context = institution_context or (
         f"{museum_id or 'a configured museum'}. The final identity must later be "
         "resolved against ELYIO's institution-scoped catalog."
@@ -375,18 +421,25 @@ def recognize_open(image_base64: str, museum_id: str, institution_context: Optio
     for attempt in range(max_empty_attempts):
         try:
             provider_attempts += 1
-            resp = _openai_chat_completion_with_retries(
-                client,
+            resp = _timed(
+                profile,
+                "external_model.stage1_openai",
+                lambda: _openai_chat_completion_with_retries(
+                    client,
+                    model=RECOGNITION_MODEL,
+                    max_tokens=700,
+                    response_format={"type": "json_object"},
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": [
+                            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+                            {"type": "text", "text": "Analyze this museum visitor photo for artwork recognition."}
+                        ]}
+                    ],
+                ),
+                provider="openai",
                 model=RECOGNITION_MODEL,
-                max_tokens=700,
-                response_format={"type": "json_object"},
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": [
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
-                        {"type": "text", "text": "Analyze this museum visitor photo for artwork recognition."}
-                    ]}
-                ]
+                role="stage1_visual_analysis",
             )
             choice = resp.choices[0] if getattr(resp, "choices", None) else None
             content = getattr(getattr(choice, "message", None), "content", None)
@@ -1100,7 +1153,12 @@ def _fetch_proxy_image_bytes(url: str, width: int = 512) -> bytes:
         return f.read()
 
 
-def visual_verify_single_candidate(image_base64: str, candidate: dict, allow_remote_reference_fetch: bool = True) -> dict:
+def visual_verify_single_candidate(
+    image_base64: str,
+    candidate: dict,
+    allow_remote_reference_fetch: bool = True,
+    profile: Optional[dict] = None,
+) -> dict:
     """
     The step that actually catches what text matching structurally cannot:
     is this the SAME painting, or just a same-artist/same-title-sounding one?
@@ -1113,10 +1171,13 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict, allow_rem
     if not _reference_verification_allowed(candidate):
         return {"is_match": False, "confidence": 0.0, "reason": "reference_verification_not_allowed_for_url"}
 
-    from openai import OpenAI
-
-    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
-    ref_b64 = _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch)
+    client = _recognition_openai_client()
+    ref_b64 = _timed(
+        profile,
+        "reference_image.fetch_single",
+        lambda: _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch),
+        artwork_id=candidate.get("id"),
+    )
     candidate_artist = candidate.get("artist") or "creator not specified"
 
     system_prompt = (
@@ -1130,21 +1191,28 @@ def visual_verify_single_candidate(image_base64: str, candidate: dict, allow_rem
         '{"is_match": true or false, "confidence": <0-1 float, how confident you are in this judgment>}.'
     )
 
-    resp = _openai_chat_completion_with_retries(
-        client,
+    resp = _timed(
+        profile,
+        "external_model.visual_verify_single",
+        lambda: _openai_chat_completion_with_retries(
+            client,
+            model=VISUAL_VERIFY_MODEL,
+            max_tokens=50,  # {"is_match": true/false, "confidence": 0.NN} needs ~15-20 tokens; 50 leaves margin
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": [
+                    {"type": "text", "text": "Visitor's photo:"},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+                    {"type": "text", "text": "Reference image:"},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{ref_b64}"}},
+                    {"type": "text", "text": "Is this the same specific artwork?"}
+                ]}
+            ],
+        ),
+        provider="openai",
         model=VISUAL_VERIFY_MODEL,
-        max_tokens=50,  # {"is_match": true/false, "confidence": 0.NN} needs ~15-20 tokens; 50 leaves margin
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": [
-                {"type": "text", "text": "Visitor's photo:"},
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
-                {"type": "text", "text": "Reference image:"},
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{ref_b64}"}},
-                {"type": "text", "text": "Is this the same specific artwork?"}
-            ]}
-        ]
+        role="single_reference_verifier",
     )
     return json.loads(resp.choices[0].message.content)
 
@@ -1153,6 +1221,7 @@ def visual_verify_reference_candidates(
     image_base64: str,
     ranked: list[dict],
     allow_remote_reference_fetch: bool = True,
+    profile: Optional[dict] = None,
 ) -> dict:
     """Choose among at most three real references in one bounded model call.
 
@@ -1166,8 +1235,7 @@ def visual_verify_reference_candidates(
     ]
     if not usable:
         return {"decision": "NO_MATCH", "chosen_id": None, "confidence": 0.0, "reason": "no_reference_candidates"}
-    from openai import OpenAI
-    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
+    client = _recognition_openai_client()
     allowed_ids = [row["candidate"]["id"] for row in usable]
     content: list[dict] = [
         {"type": "text", "text": "Visitor photo:"},
@@ -1175,27 +1243,39 @@ def visual_verify_reference_candidates(
     ]
     for index, row in enumerate(usable, 1):
         candidate = row["candidate"]
-        reference = _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch)
+        reference = _timed(
+            profile,
+            "reference_image.fetch_candidate",
+            lambda candidate=candidate: _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch),
+            artwork_id=candidate.get("id"),
+        )
         content.extend([
             {"type": "text", "text": f"Reference {index}: {json.dumps(_candidate_summary(candidate), ensure_ascii=False)}"},
             {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{reference}"}},
         ])
     content.append({"type": "text", "text": "Return the same physical artwork only, or NO_MATCH."})
-    response = _openai_chat_completion_with_retries(
-        client,
+    response = _timed(
+        profile,
+        "external_model.visual_verify_references",
+        lambda: _openai_chat_completion_with_retries(
+            client,
+            model=VISUAL_VERIFY_MODEL,
+            max_tokens=180,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": (
+                    "Compare the visitor photo against at most three institution-scoped reference images. "
+                    "Choose an id only when it is the SAME specific physical artwork. Similar subject, palette, "
+                    "artist, series, or title is insufficient. Prefer NO_MATCH over a wrong attachment. Return "
+                    "strict JSON: {\"decision\":\"MATCH|NEEDS_CONFIRMATION|NO_MATCH\",\"chosen_id\":"
+                    "\"<provided id or null>\",\"confidence\":<0-1>,\"reason\":\"short evidence\"}."
+                )},
+                {"role": "user", "content": content},
+            ],
+        ),
+        provider="openai",
         model=VISUAL_VERIFY_MODEL,
-        max_tokens=180,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": (
-                "Compare the visitor photo against at most three institution-scoped reference images. "
-                "Choose an id only when it is the SAME specific physical artwork. Similar subject, palette, "
-                "artist, series, or title is insufficient. Prefer NO_MATCH over a wrong attachment. Return "
-                "strict JSON: {\"decision\":\"MATCH|NEEDS_CONFIRMATION|NO_MATCH\",\"chosen_id\":"
-                "\"<provided id or null>\",\"confidence\":<0-1>,\"reason\":\"short evidence\"}."
-            )},
-            {"role": "user", "content": content},
-        ],
+        role="reference_candidate_verifier",
     )
     data = json.loads(response.choices[0].message.content)
     if data.get("chosen_id") not in allowed_ids:
@@ -1224,7 +1304,12 @@ def _candidate_summary(candidate: dict) -> dict:
     }
 
 
-def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: list[dict]) -> dict:
+def verify_top_candidates_with_openai(
+    image_base64: str,
+    vision: dict,
+    ranked: list[dict],
+    profile: Optional[dict] = None,
+) -> dict:
     """Second-pass Louvre-style verifier.
 
     OpenAI compares the visitor image with our DB-ranked top candidates only.
@@ -1235,9 +1320,7 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
     if not ranked:
         return {"decision": "NO_MATCH", "chosen_id": None, "confidence": 0.0, "reason": "no_candidates"}
 
-    from openai import OpenAI
-
-    client = OpenAI(api_key=OPENAI_API_KEY, timeout=OPENAI_RECOGNITION_TIMEOUT_SECONDS)
+    client = _recognition_openai_client()
     candidate_summaries = [_candidate_summary(row["candidate"]) for row in ranked[:5]]
     allowed_ids = [c["id"] for c in candidate_summaries if c.get("id")]
     has_space_candidate = any(
@@ -1272,18 +1355,25 @@ def verify_top_candidates_with_openai(image_base64: str, vision: dict, ranked: l
         },
         ensure_ascii=False,
     )
-    resp = _openai_chat_completion_with_retries(
-        client,
+    resp = _timed(
+        profile,
+        "external_model.topn_metadata_verifier",
+        lambda: _openai_chat_completion_with_retries(
+            client,
+            model=VISUAL_VERIFY_MODEL,
+            max_tokens=550,
+            response_format={"type": "json_object"},
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": [
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
+                    {"type": "text", "text": user_text},
+                ]},
+            ],
+        ),
+        provider="openai",
         model=VISUAL_VERIFY_MODEL,
-        max_tokens=550,
-        response_format={"type": "json_object"},
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": [
-                {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{image_base64}"}},
-                {"type": "text", "text": user_text},
-            ]},
-        ],
+        role="topn_metadata_verifier",
     )
     data = json.loads(resp.choices[0].message.content)
     if data.get("chosen_id") not in allowed_ids:
@@ -1306,6 +1396,7 @@ def recognize_with_vision(
     candidates: List[dict],
     benchmark_mode: Optional[str] = None,
     institution_config: Optional[InstitutionRuntimeConfig] = None,
+    profile: Optional[dict] = None,
 ) -> dict:
     """
     Hybrid: open recognition (no candidate list) -> fuzzy text match against
@@ -1425,10 +1516,12 @@ def recognize_with_vision(
             f"{institution_config.display_name}. The final identity must later be resolved "
             "against ELYIO's institution-scoped catalog."
         )
-    ident = (
-        recognize_open(image_base64, museum_id, prompt_context)
+    ident = _timed(
+        profile,
+        "recognition.stage1_open",
+        lambda: recognize_open(image_base64, museum_id, prompt_context, profile=profile)
         if prompt_context
-        else recognize_open(image_base64, museum_id)
+        else recognize_open(image_base64, museum_id, profile=profile),
     )
     artist, title = ident.get("artist"), ident.get("title")
     model_confidence = float(ident.get("confidence", 0) or 0)
@@ -1463,12 +1556,22 @@ def recognize_with_vision(
 
     # Metadata ranking is cheap, so retain a wider diagnostic/retrieval pool
     # even though expensive verification remains strictly bounded.
-    metadata_ranked = rank_catalog_candidates(
-        ident, candidates, hall_hint=hall_hint, limit=max(candidate_limit, 20)
+    metadata_ranked = _timed(
+        profile,
+        "catalog.metadata_ranking",
+        lambda: rank_catalog_candidates(
+            ident, candidates, hall_hint=hall_hint, limit=max(candidate_limit, 20)
+        ),
+        candidate_count=len(candidates),
     )
     ranked = metadata_ranked[:candidate_limit]
     if policy == "ASSET_VERIFY" and any(candidate.get("visual_descriptor") for candidate in candidates):
-        visual_ranked = rank_visual_candidates(image_base64, candidates, limit=candidate_limit)
+        visual_ranked = _timed(
+            profile,
+            "catalog.visual_descriptor_ranking",
+            lambda: rank_visual_candidates(image_base64, candidates, limit=candidate_limit),
+            candidate_count=len(candidates),
+        )
         # Preserve the strongest metadata hypothesis first.  A visual
         # candidate becomes the bounded runner-up (or first when metadata is
         # weak); the existing reference verifier remains the only component
@@ -1542,7 +1645,12 @@ def recognize_with_vision(
             }
 
     if policy == "TOP_N_METADATA":
-        topn_verdict = verify_top_candidates_with_openai(image_base64, ident, ranked[:candidate_limit])
+        topn_verdict = verify_top_candidates_with_openai(
+            image_base64,
+            ident,
+            ranked[:candidate_limit],
+            profile=profile,
+        )
         topn_verdict = preserve_same_artist_confusion(topn_verdict, ranked)
         chosen_id = topn_verdict.get("chosen_id")
         if topn_verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
@@ -1591,7 +1699,7 @@ def recognize_with_vision(
 
     if _reference_verification_allowed(match):
         if any(row["candidate"].get("visual_descriptor") for row in ranked):
-            verdict = visual_verify_reference_candidates(image_base64, ranked)
+            verdict = visual_verify_reference_candidates(image_base64, ranked, profile=profile)
             verdict = preserve_same_artist_confusion(verdict, ranked)
             chosen_id = verdict.get("chosen_id")
             if verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
@@ -1613,7 +1721,7 @@ def recognize_with_vision(
                 "top_candidates": [{"artwork_id": row["candidate"]["id"], "score": row["score"], "signals": row["signals"]} for row in ranked[:5]],
                 "stage2_verifier": verdict,
             }
-        verdict = visual_verify_single_candidate(image_base64, match)  # slow path
+        verdict = visual_verify_single_candidate(image_base64, match, profile=profile)  # slow path
         if verdict.get("is_match"):
             visual_confidence = float(verdict.get("confidence", 0) or 0)
             final_confidence = min(max(model_confidence, match_score), visual_confidence)
@@ -1629,7 +1737,7 @@ def recognize_with_vision(
         # Top candidate visually rejected -- try the runner-up only if it also
         # has a rights-allowed external reference image.
         if runner_up and _reference_verification_allowed(runner_up):
-            runner_verdict = visual_verify_single_candidate(image_base64, runner_up)
+            runner_verdict = visual_verify_single_candidate(image_base64, runner_up, profile=profile)
             if runner_verdict.get("is_match"):
                 visual_confidence = float(runner_verdict.get("confidence", 0) or 0)
                 final_confidence = min(max(model_confidence, match_score), visual_confidence)
@@ -1712,6 +1820,7 @@ class RecognizeResponse(BaseModel):
     # for us to see what the model actually recognized outside the catalog.
     recognized_but_not_cataloged: Optional[RecognizedButNotCataloged] = None
     recognition_attempt_id: Optional[str] = None
+    timings: Optional[dict] = None
 
 
 class VisitCreate(BaseModel):
@@ -2063,18 +2172,28 @@ def recognize(
     db: Session = Depends(get_db),
     current_user: Optional[User] = Depends(get_optional_current_user),
 ):
-    if _controlled_preview_only(db, req.museum_id) and not _trusted_internal_request(request):
-        raise HTTPException(status_code=404, detail="institution not found")
     attempt_id = req.recognition_attempt_id or str(uuid.uuid4())
-    existing_attempt = db.get(RecognitionAttempt, attempt_id)
+    profile = _new_latency_profile(attempt_id) if req.benchmark_mode == "latency_profile" else None
+
+    if _timed(profile, "api.controlled_preview_check", lambda: _controlled_preview_only(db, req.museum_id)) and not _trusted_internal_request(request):
+        raise HTTPException(status_code=404, detail="institution not found")
+    existing_attempt = _timed(profile, "db.attempt_idempotency_lookup", lambda: db.get(RecognitionAttempt, attempt_id))
     if existing_attempt is not None:
         if existing_attempt.response_payload:
             return RecognizeResponse(**existing_attempt.response_payload)
         raise HTTPException(status_code=409, detail="recognition attempt is already in progress")
 
     try:
-        institution_config = get_institution_runtime_config(db, req.museum_id)
-        candidates = get_recognition_candidates(db, req.museum_id)
+        institution_config = _timed(
+            profile,
+            "db.institution_runtime_config",
+            lambda: get_institution_runtime_config(db, req.museum_id),
+        )
+        candidates = _timed(
+            profile,
+            "db.recognition_candidates",
+            lambda: get_recognition_candidates(db, req.museum_id, runtime_config=institution_config),
+        )
     except InstitutionNotReadyError as e:
         _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready", recognition_attempt_id=attempt_id)
         raise HTTPException(status_code=409, detail={"code": "institution_not_ready", "message": str(e)})
@@ -2083,8 +2202,8 @@ def recognize(
         raise HTTPException(status_code=503, detail=str(e))
 
     internal_test = _trusted_internal_request(request)
-    _link_analytics_identity(db, req.anonymous_id, current_user)
-    _validate_analytics_session(db, req.session_id, req.anonymous_id, current_user)
+    _timed(profile, "db.analytics_identity_link", lambda: _link_analytics_identity(db, req.anonymous_id, current_user))
+    _timed(profile, "db.analytics_session_validation", lambda: _validate_analytics_session(db, req.session_id, req.anonymous_id, current_user))
     attempt = RecognitionAttempt(
         recognition_attempt_id=attempt_id,
         anonymous_id=req.anonymous_id,
@@ -2094,7 +2213,7 @@ def recognize(
         internal_test=internal_test,
     )
     db.add(attempt)
-    db.commit()
+    _timed(profile, "db.attempt_create_commit", lambda: db.commit())
     started = time.perf_counter()
 
     def finish(response: RecognizeResponse, outcome: str) -> RecognizeResponse:
@@ -2122,7 +2241,8 @@ def recognize(
         attempt.recognition_mode = response.recognition_mode
         attempt.latency_ms = round((time.perf_counter() - started) * 1000)
         attempt.response_payload = response.model_dump(mode="json")
-        db.commit()
+        _timed(profile, "db.attempt_finish_commit", lambda: db.commit())
+        response.timings = _latency_profile_summary(profile)
         return response
 
     def fail_request(outcome: str) -> None:
@@ -2140,7 +2260,7 @@ def recognize(
         fail_request("invalid_image")
         raise HTTPException(status_code=413, detail="image too large")
     try:
-        base64.b64decode(req.image_base64, validate=True)
+        _timed(profile, "image.base64_validation", lambda: base64.b64decode(req.image_base64, validate=True))
     except Exception:
         fail_request("invalid_image")
         raise HTTPException(status_code=400, detail="image_base64 is not valid base64")
@@ -2149,13 +2269,18 @@ def recognize(
 
     if OPENAI_API_KEY:
         try:
-            result = recognize_with_vision(
-                req.image_base64,
-                req.museum_id,
-                req.hall_hint,
-                candidates,
-                benchmark_mode=req.benchmark_mode,
-                institution_config=institution_config,
+            result = _timed(
+                profile,
+                "recognition.total",
+                lambda: recognize_with_vision(
+                    req.image_base64,
+                    req.museum_id,
+                    req.hall_hint,
+                    candidates,
+                    benchmark_mode=req.benchmark_mode,
+                    institution_config=institution_config,
+                    profile=profile,
+                ),
             )
         except Exception as e:
             _log_recognition_event(

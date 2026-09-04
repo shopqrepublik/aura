@@ -29,9 +29,13 @@ flowchart TD
 
 `POST /v1/recognize` accepts validated base64 image, required `museum_id` (compatible Institution ID), locale, optional hint/benchmark mode, and UUIDs for recognition attempt, anonymous identity and session. The attempt UUID propagates through request, backend ledger, response and companion events. The Institution Profile supplies candidate universe, catalog version, prompt context, thresholds, candidate limit and asset-substitution policy. Missing/invalid configuration returns controlled `institution_not_ready`; candidates never broaden globally.
 
+Production latency profiling is opt-in via `benchmark_mode="latency_profile"`. It reports stage durations tied to the same recognition attempt UUID without storing or logging user images. This mode exists for operations measurement only; it does not change the recognition decision path.
+
 ## Candidate/decision path
 
 Stage 1 extracts observable evidence/OCR and possible identity without inventing catalog IDs. `backend/app/catalog.py` fetches only `ACTIVE_CATALOG`, `INSTITUTION_ARTWORKS`, or `NONE` for the selected institution. Shared Python scoring ranks title/creator/date/location/object/description signals. Policy then uses constrained top-N metadata verification, an eligible single reference comparison, or uncataloged/no-match behavior. Provider/country/currency/locale do not choose algorithm branches.
+
+The process reuses one OpenAI client per warm backend process for recognition calls so Stage 1 and verifier calls can reuse provider transport state. This is a transport optimization only; prompts, models, retries, thresholds and candidate safety gates remain unchanged.
 
 ## Media meaning
 

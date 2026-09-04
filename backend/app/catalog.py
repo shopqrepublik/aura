@@ -299,9 +299,14 @@ def _recognition_asset_by_artwork_id(db: Session, artwork_ids: Iterable[str]) ->
     return by_id
 
 
-def get_recognition_candidates(db: Session, museum_id: str, catalog_version: Optional[str] = None) -> list[dict]:
+def get_recognition_candidates(
+    db: Session,
+    museum_id: str,
+    catalog_version: Optional[str] = None,
+    runtime_config: Optional[InstitutionRuntimeConfig] = None,
+) -> list[dict]:
     try:
-        config = get_institution_runtime_config(db, museum_id)
+        config = runtime_config or get_institution_runtime_config(db, museum_id)
         if catalog_version and catalog_version != config.visitor_catalog_version:
             raise InstitutionNotReadyError(f"institution_not_ready: requested catalog version is not active for {museum_id!r}")
         if config.candidate_universe == "NONE":
