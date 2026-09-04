@@ -829,7 +829,9 @@ class RecognitionAttempt(Base):
     anonymous_id = Column(String, nullable=True)
     user_id = Column(String, nullable=True)
     session_id = Column(String, nullable=True)
-    institution_id = Column(String, ForeignKey("museums.id"), nullable=False)
+    # Unknown-museum recognition is valid; NULL means no reliable institution
+    # context was available for this attempt.
+    institution_id = Column(String, ForeignKey("museums.id"), nullable=True)
     artwork_id = Column(String, ForeignKey("artworks.id"), nullable=True)
     started_at = Column(DateTime, default=now, nullable=False)
     completed_at = Column(DateTime, nullable=True)

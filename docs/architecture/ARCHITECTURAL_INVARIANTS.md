@@ -2,7 +2,7 @@
 
 - **MediaAsset is not MediaAssociation.** Provider media identity is unique independently of all exact CulturalObject/InstitutionHolding relationship edges; no valid source edge may be silently lost or represented by a fake duplicate asset.
 - Media rights/eligibility and association role/eligibility must both permit presentation or recognition. Contextual shared media never becomes a recognition reference by association alone.
-- Configured institution + known reliable catalog work uses the catalog-backed result. Configured institution + no reliable catalog match retains the truthful AI uncataloged fallback and records demand. Unknown/unconfigured institution fails closed. In engineering shorthand: “Catalog when we know. AI when we don't. Learn from what visitors scan.”
+- Known institution + reliable catalog match uses the catalog-backed result. When museum context is absent, or catalog reconciliation cannot safely resolve an AI identification, the truthful AI result remains a valid success. Catalog grounding is preferred enrichment, never a gate; no-match means identification evidence was insufficient.
 - RecognitionAsset absence does not disable metadata-only `VISION_READY` or the configured-institution AI fallback.
 - Controlled-preview institutions are enforced server-side, not hidden only in the frontend; public directory, artwork and recognition access remain closed without trusted QA context.
 - Visual descriptors are versioned, non-authoritative retrieval evidence. They may rank candidates but cannot establish identity; expensive same-object verification remains bounded independently of catalog size.

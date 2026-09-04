@@ -359,6 +359,62 @@ class RecognitionAttemptEndToEndTests(unittest.TestCase):
             sighting = db.query(UncatalogedSighting).filter(UncatalogedSighting.museum_id == "configured-ai-guide").one()
             self.assertEqual(sighting.count, 1)
 
+    def test_unknown_museum_confident_ai_identification_is_success_and_persists(self):
+        main.recognize_with_vision = lambda *_args, **_kwargs: {
+            "artwork_id": None, "confidence": 0.91, "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": "Leonardo da Vinci", "title": "Mona Lisa"},
+            "vision": {"recognized": True, "confidence": 0.91, "confidence_title": 0.94, "confidence_artist": 0.92},
+            "recognition_mode": "AI_UNCATALOGED",
+        }
+        attempt_id = "93000000-0000-4000-8000-000000000001"
+        response = self.client.post("/v1/recognize", json={
+            "image_base64": "AA==", "locale": "en", "recognition_attempt_id": attempt_id,
+        })
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertEqual(payload["status"], "matched")
+        self.assertEqual(payload["result_source"], "ai")
+        self.assertIsNone(payload["artwork_id"])
+        self.assertEqual(payload["catalog_match_status"], "not_matched")
+        with self.Session() as db:
+            row = db.get(RecognitionAttempt, attempt_id)
+            self.assertEqual(row.terminal_outcome, "ai_result")
+            self.assertIsNone(row.artwork_id)
+            self.assertIsNone(row.institution_id)
+
+    def test_ai_identification_catalog_match_is_catalog_result(self):
+        main.recognize_with_vision = lambda *_args, **_kwargs: {
+            "artwork_id": "orsay_rf_1995_10", "confidence": 0.95,
+            "alternatives": [], "recognition_mode": "AI_CATALOG_MATCH",
+        }
+        response = self.client.post("/v1/recognize", json={"image_base64": "AA==", "locale": "en"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["result_source"], "catalog")
+        self.assertEqual(response.json()["artwork_id"], "orsay_rf_1995_10")
+
+    def test_low_confidence_ai_identification_remains_semantic_no_match(self):
+        main.recognize_with_vision = lambda *_args, **_kwargs: {
+            "artwork_id": None, "confidence": 0.41, "alternatives": [],
+            "recognized_but_not_cataloged": {"artist": "Unknown", "title": "Portrait"},
+            "vision": {"recognized": True, "confidence": 0.41, "confidence_title": 0.45, "confidence_artist": 0.35},
+            "recognition_mode": "AI_UNCERTAIN",
+        }
+        response = self.client.post("/v1/recognize", json={"image_base64": "AA==", "locale": "en"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["status"], "no_match")
+        self.assertNotEqual(response.json().get("result_source"), "ai")
+
+    def test_provider_failure_is_retryable_technical_error_with_reference(self):
+        main.recognize_with_vision = lambda *_args, **_kwargs: (_ for _ in ()).throw(TimeoutError("provider timeout"))
+        response = self.client.post("/v1/recognize", json={"image_base64": "AA==", "locale": "en"})
+        self.assertEqual(response.status_code, 502)
+        payload = response.json()["detail"]
+        self.assertEqual(payload["error_code"], "RECOGNITION_PROVIDER_ERROR")
+        self.assertTrue(payload["recognition_request_id"].startswith("rec_"))
+        with self.Session() as db:
+            row = db.query(RecognitionAttempt).order_by(RecognitionAttempt.started_at.desc()).first()
+            self.assertEqual(row.terminal_outcome, "failed")
+
     def test_controlled_preview_is_hidden_and_requires_trusted_qa(self):
         public_directory = self.client.get("/v1/museums").json()
         self.assertNotIn("controlled-gallery", {row["id"] for row in public_directory})

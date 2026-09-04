@@ -19,6 +19,8 @@
     "test:analytics": "node scripts/analytics-regression.mjs",
     "test:landing-cta": "node scripts/landing-cta-regression.mjs",
     "test:direct-scanner": "node scripts/direct-scanner-regression.mjs",
+    "test:museum-context": "node scripts/museum-context-regression.mjs",
+    "test:ai-result": "node scripts/ai-result-regression.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {

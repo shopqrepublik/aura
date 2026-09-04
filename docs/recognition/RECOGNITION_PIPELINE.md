@@ -2,38 +2,32 @@
 
 Media readiness is association-aware: a recognition reference requires an explicitly selected `RecognitionAsset` associated with the correct object/holding. Shared contextual media is never promoted into every linked object's candidate evidence. A selected HTTPS RecognitionAsset may be fetched into the bounded local reference cache at verification time; provider hosts are data, not hardcoded recognition branches.
 
-The hybrid invariant is unchanged: a configured institution and reliable active-catalog match yields a catalog-backed result; a configured institution without a reliable catalog match uses the explicitly uncataloged AI fallback and records demand; an unknown/unconfigured institution fails closed. Media/provenance gates constrain curated assets, not the configured-institution AI fallback.
+Recognition is a cascade. A known museum uses its museum-scoped catalog and existing verifier. When museum context is absent, or catalog reconciliation cannot safely resolve an AI identification, AI visual identification remains a first-class result path. Catalog reconciliation is enrichment, not a success gate. Media/provenance gates constrain curated assets, not the AI-only result path.
 
 Status: CURRENT; Block 3 does not replace ranking or decision algorithms.
 
 ```mermaid
 flowchart TD
-  I[Visitor JPEG + institution + attempt UUID] --> Q[Validate input and Institution Profile]
-  Q -->|invalid/unconfigured| X[Controlled failure / fail closed]
-  Q --> S1[OpenAI Stage 1 visual analysis]
-  Q --> C[Institution-scoped candidate universe]
-  S1 --> R[Shared metadata ranking]
-  C --> R
-  R --> P{Profile recognition policy}
-  P --> T[Top-N constrained verifier]
-  P --> V[Eligible asset verifier]
-  P --> M[Metadata/uncataloged path]
-  T --> D[MATCH / NEEDS_CONFIRMATION / NO_MATCH]
-  V --> D
-  M --> D
-  D --> E[Engine outcome + visitor resolution]
-  E --> A[Catalog card / generated card / retry]
+  I[Scan] --> Q{Museum context available?}
+  Q -->|yes| C[Museum-scoped catalog recognition]
+  C --> V[Existing verifier and confidence policy]
+  V -->|confident catalog match| CR[Catalog result]
+  Q -->|no / catalog cannot resolve| S1[AI visual identification]
+  S1 -->|insufficient evidence| NM[No match]
+  S1 -->|confident identification| R[Optional catalog reconciliation]
+  R -->|safe match| CR
+  R -->|not matched / ambiguous| AIR[AI result]
 ```
 
 ## Request/context
 
-`POST /v1/recognize` accepts validated base64 image, required `museum_id` (compatible Institution ID), locale, optional hint/benchmark mode, and UUIDs for recognition attempt, anonymous identity and session. The attempt UUID propagates through request, backend ledger, response and companion events. The Institution Profile supplies candidate universe, catalog version, prompt context, thresholds, candidate limit and asset-substitution policy. Missing/invalid configuration returns controlled `institution_not_ready`; candidates never broaden globally.
+`POST /v1/recognize` accepts a validated base64 image, optional `museum_id`, locale, optional hint/benchmark mode, and UUIDs for recognition attempt, anonymous identity and session. The attempt UUID propagates through request, backend ledger, response and companion events. A known Institution Profile supplies the museum-scoped candidate universe, catalog version, prompt context, thresholds, candidate limit and asset-substitution policy. Missing museum context is valid and uses the AI-first path; it is not a blocking prerequisite.
 
 Production latency profiling is opt-in via `benchmark_mode="latency_profile"`. It reports stage durations tied to the same recognition attempt UUID without storing or logging user images. This mode exists for operations measurement only; it does not change the recognition decision path.
 
 ## Candidate/decision path
 
-Stage 1 extracts observable evidence/OCR and possible identity without inventing catalog IDs. `backend/app/catalog.py` fetches only `ACTIVE_CATALOG`, `INSTITUTION_ARTWORKS`, or `NONE` for the selected institution. Shared Python scoring ranks title/creator/date/location/object/description signals. Policy then uses constrained top-N metadata verification, an eligible single reference comparison, or uncataloged/no-match behavior. Provider/country/currency/locale do not choose algorithm branches.
+Stage 1 extracts observable evidence/OCR and possible identity without inventing catalog IDs. With a museum, `backend/app/catalog.py` fetches only that institution's eligible candidates and the existing verifier/threshold policy decides the catalog result. Without a museum, AI identification is evaluated first; global reconciliation is optional enrichment. A confident AI identity may return an AI result without an `artwork_id`. Only insufficient identification becomes semantic `no_match`. Provider/country/currency/locale do not choose algorithm branches.
 
 The process reuses one OpenAI client per warm backend process for recognition calls so Stage 1 and verifier calls can reuse provider transport state. This is a transport optimization only; prompts, models, retries, thresholds and candidate safety gates remain unchanged.
 
@@ -57,13 +51,31 @@ Presentation image != source/reference != RecognitionAsset. The generic model ad
 |---|---|---|---|
 | `matched` | `CATALOG_CANDIDATE_MATCHED` | `AUTO_ACCEPTED` | successful usable result |
 | `needs_confirmation` | `CATALOG_CANDIDATE_MATCHED` | `CONFIRMATION_REQUIRED` | engine success/candidate found, not user-confirmed |
-| uncataloged generated result | `UNCATALOGED_IDENTIFIED` | `GENERATED_RESULT` | successful usable uncataloged result |
+| `matched`, `result_source=catalog` | `CATALOG_CANDIDATE_MATCHED` | `AUTO_ACCEPTED` | successful grounded catalog result; `artwork_id` is non-null |
+| `matched`, `result_source=ai` | `AI_IDENTIFIED_CATALOG_NOT_MATCHED` | `GENERATED_RESULT` | successful AI result; `artwork_id` is null and catalog reconciliation is `not_matched`/`ambiguous` |
+| legacy `no_match` with an understood identity | `UNCATALOGED_IDENTIFIED` | `GENERATED_RESULT` | compatibility path for older configured-institution fallback |
 | `no_match` | `NO_MATCH` | `NO_RESULT` | failed/no-match attempt |
 | invalid input | `INVALID_INPUT` | `NO_RESULT` | invalid attempt |
-| exception | `ENGINE_ERROR` | `NO_RESULT` | failed attempt |
+| provider/runtime exception | `ENGINE_ERROR` | `NO_RESULT` | technical error; client receives retryable error with correlation ID |
 
 Admin “engine success” includes a candidate requiring confirmation, matching the canonical terminal attempt definition. It separately reports `confirmation_required`; product reporting must not label this as a confirmed catalog recognition. Future explicit visitor confirmation would be a separate state/event, not a reinterpretation.
 
+### Response contract and terminal states
+
+The production response uses these source semantics:
+
+- Catalog success: `status=matched`, `result_source=catalog`, `artwork_id` non-null, `catalog_match_status=matched`.
+- AI-only success: `status=matched`, `result_source=ai`, `artwork_id=null`, `catalog_match_status=not_matched` or `ambiguous`, with the structured AI identification used by the visitor card.
+- Semantic no-match: `status=no_match`; identification evidence was insufficient. A catalog miss alone is not this state.
+- Provider/runtime failure: retryable HTTP error with `error_code` and `recognition_request_id`; it is not converted into semantic no-match.
+
+The ordered migration `0009_ai_recognition_outcome.sql` extends the production
+`recognition_attempts.terminal_outcome` check constraint with `ai_result`.
+Allowed terminal outcomes are `success`, `ai_result`, `no_match`,
+`uncataloged_result`, `invalid_image`, `timeout`, `failed`, and
+`institution_not_ready` (or NULL while an attempt is in progress). This list
+must remain synchronized with `finish()` and the admin success/failure sets.
+
 ## Behavior and scale
 
-Matched/usable results can create one automatic sighting; repeat dedupe remains visit-state logic. No-match/network failure does not count. Uncataloged results preserve private visitor capture fallback and do not become public catalog/SEO content. Current in-process materialization/ranking remains suitable for current catalogs; indexed retrieval/preselection is future scale work, not changed here.
+Matched/usable results can create one automatic sighting; repeat dedupe remains visit-state logic. No-match/network failure does not count. AI-only results preserve private visitor-card enrichment and do not become public catalog/SEO content. `result_source` is `catalog` or `ai`; `catalog_match_status` is `matched`, `not_matched`, `ambiguous`, or `not_attempted` where present. Learned visual retrieval remains disabled and is a non-blocking future improvement.

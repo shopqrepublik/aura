@@ -2472,15 +2472,26 @@ def recognize(
             _log_recognition_event("recognition.stage1_completed", recognition_request_id=recognition_request_id, stage="stage1_provider", stage_status="completed")
         except Exception as e:
             _log_recognition_event(
-                "recognition_failed",
+                "recognition.error",
+                recognition_request_id=recognition_request_id,
                 museum_id=req.museum_id,
-                reason="ai_error",
-                error_type=type(e).__name__,
-                error_message=str(e)[:500],
-                recognition_attempt_id=attempt_id,
-                latency_ms=round((time.perf_counter() - started) * 1000),
+                failed_stage="stage1_provider",
+                error_code="RECOGNITION_PROVIDER_ERROR",
+                error_class=type(e).__name__,
+                sanitized_error_message=str(e)[:200],
+                http_status=502,
+                retryable=True,
+                duration_ms=round((time.perf_counter() - started) * 1000),
             )
-            return finish(RecognizeResponse(status="no_match", confidence=0.0), "failed")
+            fail_request("failed")
+            raise HTTPException(
+                status_code=502,
+                detail={
+                    "error_code": "RECOGNITION_PROVIDER_ERROR",
+                    "message": "recognition provider unavailable",
+                    "recognition_request_id": recognition_request_id,
+                },
+            )
 
         artwork_id = result.get("artwork_id")
         confidence = float(result.get("confidence", 0))
