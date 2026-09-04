@@ -2317,6 +2317,8 @@ def recognize(
         attempt.latency_ms = round((time.perf_counter() - started) * 1000)
         attempt.response_payload = response.model_dump(mode="json")
         _timed(profile, "db.attempt_finish_commit", lambda: db.commit())
+        _log_recognition_event("recognition.persistence_completed", recognition_request_id=recognition_request_id, stage="result_persistence", stage_status="completed")
+        _log_recognition_event("recognition.response_success" if response.status in {"matched", "needs_confirmation"} else "recognition.response_no_match", recognition_request_id=recognition_request_id, stage_status="completed", http_status=200, outcome=response.status)
         response.timings = _latency_profile_summary(profile)
         return response
 
