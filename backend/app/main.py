@@ -70,7 +70,9 @@ import random
 import re
 import time
 import uuid
+from collections import OrderedDict
 from datetime import datetime, timezone
+from threading import Lock
 from typing import Optional, List, Dict, Any, Callable
 
 from dotenv import load_dotenv
@@ -907,6 +909,9 @@ def _stage2_artist_match_allowed(vision: dict, candidate: Optional[dict]) -> boo
 # Commons rate-limits repeated bot traffic (HTTP 429) on re-fetch.
 REFERENCE_CACHE_DIR = os.path.join(os.path.dirname(__file__), "..", ".reference_cache")
 REFERENCE_IMAGE_UA = "AURA-MVP-backend/1.0 (contact: repo owner)"
+REFERENCE_MEMORY_CACHE_MAX_ENTRIES = int(os.environ.get("REFERENCE_MEMORY_CACHE_MAX_ENTRIES", "128"))
+_REFERENCE_MEMORY_CACHE: OrderedDict[str, str] = OrderedDict()
+_REFERENCE_MEMORY_CACHE_LOCK = Lock()
 
 # One real catalog work (Renoir, Bal du moulin de la Galette) turned out to
 # have a 717MB / 1.24-BILLION-pixel original on Wikimedia — `raw = resp.read()`
@@ -1015,20 +1020,48 @@ def _fetch_reference_image_original_bytes(image_url: str) -> bytes:
         return b"".join(chunks)
 
 
+def _reference_cache_key(artwork: dict) -> str:
+    """Stable identity plus source fingerprint, so changing the approved source
+    invalidates cached bytes without any recognition-policy inference."""
+    identity = artwork.get("recognition_asset_id") or artwork["id"]
+    source = artwork.get("image_url") or ""
+    source_fingerprint = hashlib.sha256(source.encode("utf-8")).hexdigest()[:16]
+    return f"{identity}|{source_fingerprint}|w=512|jpeg-q85"
+
+
 def _reference_cache_path(artwork: dict) -> str:
-    return os.path.join(REFERENCE_CACHE_DIR, f'{artwork["id"]}.jpg')
+    cache_filename = hashlib.sha256(_reference_cache_key(artwork).encode("utf-8")).hexdigest()
+    return os.path.join(REFERENCE_CACHE_DIR, f"{cache_filename}.jpg")
 
 
 def _local_reference_available(artwork: dict) -> bool:
     return os.path.exists(_reference_cache_path(artwork))
 
 
-def _fetch_reference_image_b64(artwork: dict, allow_remote: bool = True) -> str:
+def _fetch_reference_image_b64(
+    artwork: dict,
+    allow_remote: bool = True,
+    profile: Optional[dict] = None,
+) -> str:
+    cache_key = _reference_cache_key(artwork)
+    with _REFERENCE_MEMORY_CACHE_LOCK:
+        cached = _REFERENCE_MEMORY_CACHE.get(cache_key)
+        if cached is not None:
+            _REFERENCE_MEMORY_CACHE.move_to_end(cache_key)
+    if cached is not None:
+        _record_latency_stage(profile, "reference_image.cache_hit", time.perf_counter(), storage="memory")
+        return cached
+
     os.makedirs(REFERENCE_CACHE_DIR, exist_ok=True)
     cache_path = _reference_cache_path(artwork)
     if os.path.exists(cache_path):
         with open(cache_path, "rb") as f:
-            return base64.b64encode(f.read()).decode("ascii")
+            encoded = base64.b64encode(f.read()).decode("ascii")
+        _record_latency_stage(profile, "reference_image.cache_hit", time.perf_counter(), storage="filesystem")
+        _store_reference_memory_cache(cache_key, encoded)
+        return encoded
+
+    _record_latency_stage(profile, "reference_image.cache_miss", time.perf_counter())
     if not allow_remote:
         raise RuntimeError("reference_image_not_cached")
 
@@ -1039,20 +1072,46 @@ def _fetch_reference_image_b64(artwork: dict, allow_remote: bool = True) -> str:
     if thumb_url:
         try:
             req = urllib.request.Request(thumb_url, headers={"User-Agent": REFERENCE_IMAGE_UA})
-            with _urlopen_with_retry(req, timeout=30) as resp:
-                raw = resp.read()  # thumbnails are server-generated and always small
+            raw = _timed(
+                profile,
+                "reference_image.network_fetch",
+                lambda: _read_reference_thumbnail(req),
+                source="wikimedia_thumbnail",
+            )
         except Exception as e:
             print(f"[reference-image] thumbnail fetch failed for {artwork['id']} ({e}), "
                   f"falling back to the original with a hard size cap")
             raw = None
 
     if raw is None:
-        raw = _fetch_reference_image_original_bytes(artwork["image_url"])
+        raw = _timed(
+            profile,
+            "reference_image.network_fetch",
+            lambda: _fetch_reference_image_original_bytes(artwork["image_url"]),
+            source="original",
+        )
 
     img = _decode_and_resize(raw, target_w=512)
     img.save(cache_path, format="JPEG", quality=85)
     with open(cache_path, "rb") as f:
-        return base64.b64encode(f.read()).decode("ascii")
+        encoded = base64.b64encode(f.read()).decode("ascii")
+    _store_reference_memory_cache(cache_key, encoded)
+    return encoded
+
+
+def _read_reference_thumbnail(req) -> bytes:
+    with _urlopen_with_retry(req, timeout=30) as resp:
+        return resp.read()
+
+
+def _store_reference_memory_cache(cache_key: str, encoded: str) -> None:
+    if REFERENCE_MEMORY_CACHE_MAX_ENTRIES <= 0:
+        return
+    with _REFERENCE_MEMORY_CACHE_LOCK:
+        _REFERENCE_MEMORY_CACHE[cache_key] = encoded
+        _REFERENCE_MEMORY_CACHE.move_to_end(cache_key)
+        while len(_REFERENCE_MEMORY_CACHE) > REFERENCE_MEMORY_CACHE_MAX_ENTRIES:
+            _REFERENCE_MEMORY_CACHE.popitem(last=False)
 
 
 def _reference_verification_allowed(candidate: dict) -> bool:
@@ -1175,7 +1234,11 @@ def visual_verify_single_candidate(
     ref_b64 = _timed(
         profile,
         "reference_image.fetch_single",
-        lambda: _fetch_reference_image_b64(candidate, allow_remote=allow_remote_reference_fetch),
+        lambda: _fetch_reference_image_b64(
+            candidate,
+            allow_remote=allow_remote_reference_fetch,
+            profile=profile,
+        ),
         artwork_id=candidate.get("id"),
     )
     candidate_artist = candidate.get("artist") or "creator not specified"
