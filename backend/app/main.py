@@ -1774,7 +1774,15 @@ def recognize_with_vision(
 
     if _reference_verification_allowed(match):
         if any(row["candidate"].get("visual_descriptor") for row in ranked):
+            if recognition_request_id:
+                _log_recognition_event("recognition.reference_fetch_started", recognition_request_id=recognition_request_id, stage="reference_fetch", stage_status="started")
+            if recognition_request_id:
+                _log_recognition_event("recognition.verifier_started", recognition_request_id=recognition_request_id, stage="verifier_provider", stage_status="started")
             verdict = visual_verify_reference_candidates(image_base64, ranked, profile=profile)
+            if recognition_request_id:
+                _log_recognition_event("recognition.reference_fetch_completed", recognition_request_id=recognition_request_id, stage="reference_fetch", stage_status="completed")
+            if recognition_request_id:
+                _log_recognition_event("recognition.verifier_completed", recognition_request_id=recognition_request_id, stage="verifier_provider", stage_status="completed")
             verdict = preserve_same_artist_confusion(verdict, ranked)
             chosen_id = verdict.get("chosen_id")
             if verdict.get("decision") in {"MATCH", "NEEDS_CONFIRMATION"} and chosen_id:
