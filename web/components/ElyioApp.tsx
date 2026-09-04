@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useElyioApp, type AppState } from "@/lib/app-state";
 import { useAuth } from "@/lib/useAuth";
 import { identify, track, trackSessionStartedOnce } from "@/lib/analytics";
 import { useIsDesktop } from "@/lib/useIsDesktop";
+import { useMuseumDetection } from "@/lib/geolocation";
+import { tt } from "@/lib/i18n";
+import type { Locale } from "@/lib/types";
 import HomeScreen from "@/components/screens/HomeScreen";
 import CameraScreen from "@/components/screens/CameraScreen";
 import CardScreen from "@/components/screens/CardScreen";
@@ -111,10 +114,30 @@ function AppScreens({
 // mobile visitor never sees any flash of desktop layout — only a real
 // desktop visitor briefly sees the old boxed layout for one paint before
 // this resolves true.
-export default function ElyioApp() {
-  const { state, seenArtworks, actions } = useElyioApp();
+export default function ElyioApp({
+  directToScanner = false,
+  initialLocale,
+}: {
+  directToScanner?: boolean;
+  initialLocale?: Locale;
+}) {
+  const { state, seenArtworks, actions } = useElyioApp({ directToScanner, initialLocale });
   const { user } = useAuth();
   const isDesktop = useIsDesktop();
+  const detection = useMuseumDetection({ enabled: directToScanner && !state.visitStarted });
+  const startingVisit = useRef(false);
+  const attributed = useRef(false);
+
+  useEffect(() => {
+    if (!directToScanner || state.visitStarted || startingVisit.current || !detection.museum) return;
+    if (detection.status !== "detected" && detection.status !== "manual-confirmed") return;
+    startingVisit.current = true;
+    void actions.startVisit(
+      detection.museum.id,
+      detection.museum.name,
+      detection.museum.city || detection.museum.region || null,
+    );
+  }, [actions, detection.museum, detection.status, directToScanner, state.visitStarted]);
 
   useEffect(() => {
     trackSessionStartedOnce({ locale: state.locale });
@@ -123,7 +146,8 @@ export default function ElyioApp() {
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    if (query.get("from") !== "organic") return;
+    if (query.get("from") !== "organic" || attributed.current) return;
+    attributed.current = true;
     const attribution = { traffic_source: "organic", landing_page: query.get("landing") || "unknown", landing_locale: query.get("locale") || state.locale };
     try { window.sessionStorage.setItem("elyio-organic-landing", JSON.stringify(attribution)); } catch { /* storage is optional */ }
     track("seo_begin_visit", attribution);
@@ -154,7 +178,7 @@ export default function ElyioApp() {
   // as children; its hero phone now renders HeroPhonePreview (a static
   // curated Card-screen reveal) instead, so `screens` isn't passed here at
   // all. Real mobile below is unaffected -- still the live AppScreens tree.
-  if (isDesktop) {
+  if (isDesktop && !directToScanner) {
     return (
       <main style={{ display: "contents" }}>
         <DesktopShell locale={state.locale} onSetLocale={actions.setLocale} />
@@ -166,9 +190,61 @@ export default function ElyioApp() {
     <main style={{ display: "contents" }}>
       <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
         <div className="relative w-full h-full sm:max-w-[430px] sm:h-[min(932px,100vh)] sm:rounded-[44px] sm:overflow-hidden bg-[#FAFAF9] sm:shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
-          {screens}
+          {directToScanner && !state.visitStarted ? (
+            <DirectScannerEntry
+              locale={state.locale}
+              detection={detection}
+              onSelect={detection.confirmManually}
+            />
+          ) : screens}
         </div>
       </div>
     </main>
+  );
+}
+
+function DirectScannerEntry({
+  locale,
+  detection,
+  onSelect,
+}: {
+  locale: Locale;
+  detection: ReturnType<typeof useMuseumDetection>;
+  onSelect: (museumId?: string) => void;
+}) {
+  const resolvedAutomatically = detection.status === "detected";
+  return (
+    <section className="absolute inset-0 flex flex-col justify-end bg-[#0A0A0A] text-white" aria-label="Scanner setup">
+      <div className="absolute inset-0 bg-[radial-gradient(100%_100%_at_50%_35%,#8FA8C8_0%,#4A5A85_52%,#151D2A_100%)] opacity-75" />
+      <div className="relative z-10 p-6 pb-[max(28px,env(safe-area-inset-bottom))] bg-gradient-to-t from-black via-black/90 to-transparent">
+        <div className="text-[11px] font-semibold tracking-[0.16em] uppercase text-white/65">ELYIO · {tt("select_museum_sheet_title", locale)}</div>
+        <h1 className="mt-2 text-[25px] font-medium tracking-[-0.02em]">
+          {resolvedAutomatically ? detection.museum?.name : detection.status === "checking" ? tt("museum_locating", locale) : tt("museum_select_prompt", locale)}
+        </h1>
+        {detection.status === "checking" && detection.museums.length === 0 ? null : !resolvedAutomatically ? (
+          <div className="mt-4 max-h-[42vh] overflow-y-auto rounded-[16px] bg-white/10 backdrop-blur border border-white/15 p-2">
+            {detection.museums.map((museum) => (
+              <button
+                key={museum.id}
+                type="button"
+                onClick={() => {
+                  track("museum_selected", {
+                    museum_id: museum.id,
+                    experience_level: museum.experience_level,
+                    city: museum.city,
+                    source: "direct_scanner_entry",
+                  });
+                  onSelect(museum.id);
+                }}
+                className="w-full min-h-12 px-3 py-2 text-left rounded-[12px] hover:bg-white/10 active:bg-white/20"
+              >
+                <span className="block text-[14px] font-semibold">{museum.name}</span>
+                <span className="block text-[12px] text-white/60">{museum.city || museum.region || museum.country_code}</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </section>
   );
 }

@@ -17,6 +17,7 @@
     "test:pwa": "node scripts/pwa-runtime-check.mjs",
     "test:analytics": "node scripts/analytics-regression.mjs",
     "test:landing-cta": "node scripts/landing-cta-regression.mjs",
+    "test:direct-scanner": "node scripts/direct-scanner-regression.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {

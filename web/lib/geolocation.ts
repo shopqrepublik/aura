@@ -30,7 +30,7 @@ export type MuseumStatus = "checking" | "detected" | "manual-prompt" | "manual-c
 // backend's /v1/museums returns". Adding a second real museum is then a
 // database row (backend/scripts/init_db.py's seed block), not a code change
 // here -- this hook and the endpoint it calls are what make that true.
-export function useMuseumDetection() {
+export function useMuseumDetection({ enabled = true }: { enabled?: boolean } = {}) {
   // Always starts "checking" on BOTH server and client -- a lazy
   // initializer branching on `typeof navigator !== "undefined"` looked safe
   // (a read-only check) but isn't: it runs during render on the server
@@ -48,6 +48,7 @@ export function useMuseumDetection() {
   const [museum, setMuseum] = useState<Museum | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     let cancelled = false;
 
     getMuseums()
@@ -99,7 +100,7 @@ export function useMuseumDetection() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [enabled]);
 
   // Defaults to the first museum in the list when the sheet doesn't specify
   // one (today there's only ever one real row, so this matches the old

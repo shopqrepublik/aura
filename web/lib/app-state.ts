@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import * as api from "./api";
 import { getArtwork } from "./artworks";
 import { getAnonymousId, getSessionId, track, trackGoogleEvent } from "./analytics";
@@ -94,8 +94,31 @@ function eventId() {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 }
 
-export function useElyioApp() {
-  const [state, setState] = useState<AppState>(() => loadVisitState() || initialState);
+export function useElyioApp(options?: { directToScanner?: boolean; initialLocale?: Locale }) {
+  const [state, setState] = useState<AppState>(() => ({
+    ...initialState,
+    ...(options?.initialLocale ? { locale: options.initialLocale } : {}),
+  }));
+
+  // Browser persistence is restored after hydration. Reading localStorage in
+  // the state initializer made returning visits render different client HTML
+  // from the server and caused a real React hydration recovery on /visit.
+  useEffect(() => {
+    const stored = loadVisitState();
+    if (!stored) return;
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
+      setState({
+        ...stored,
+        ...(options?.initialLocale ? { locale: options.initialLocale } : {}),
+        ...(options?.directToScanner && stored.visitStarted ? { screen: "camera" as Screen } : {}),
+      });
+    });
+    return () => { cancelled = true; };
+    // Entry behavior is fixed for the lifetime of an app mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const goto = useCallback((screen: Screen) => setState((s) => persistVisitState({ ...s, screen, lastActivityAt: Date.now() })), []);
   const setLocale = useCallback((locale: Locale) => setState((s) => persistVisitState({ ...s, locale })), []);

@@ -9,8 +9,15 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://www.elyio.co/visit" },
 };
 
-export default async function VisitPage({ searchParams }: { searchParams: Promise<{ "controlled-preview"?: string }> }) {
+export default async function VisitPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const query = await searchParams;
-  const controlledPreview = query["controlled-preview"] === "1";
-  return <ControlledPreviewGate enabled={controlledPreview}><ElyioApp /></ControlledPreviewGate>;
+  const first = (value: string | string[] | undefined) => Array.isArray(value) ? value[0] : value;
+  const controlledPreview = first(query["controlled-preview"]) === "1";
+  const requestedLocale = first(query.locale)?.toLowerCase();
+  const locale = requestedLocale === "fr" || requestedLocale === "zh-hans" ? requestedLocale : requestedLocale === "en" ? "en" : undefined;
+  return (
+    <ControlledPreviewGate enabled={controlledPreview}>
+      <ElyioApp directToScanner initialLocale={locale === "zh-hans" ? "zh-Hans" : locale} />
+    </ControlledPreviewGate>
+  );
 }

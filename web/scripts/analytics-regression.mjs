@@ -64,10 +64,7 @@ async function runRecognitionScenario(browser, name, recognizeBody, expected) {
   await page.reload({ waitUntil: "domcontentloaded" });
   await page.getByRole("button", { name: "Accept" }).click();
   await page.locator("#elyio-ga4").waitFor({ state: "attached" });
-  await page.locator("button:has(.lucide-chevron-down)").click();
-  await page.locator("button").filter({ hasText: /Curated guide/ }).first().click();
-  await page.waitForTimeout(200);
-  await page.getByRole("button", { name: "Begin your visit" }).first().click();
+  await page.getByRole("button", { name: /Musée du Louvre/ }).click();
   await page.getByRole("button", { name: "Capture" }).waitFor();
   await page.getByRole("button", { name: "Capture" }).click();
   if (expected.story_viewed) {
@@ -158,9 +155,8 @@ try {
   const beginVisitCount = beginVisitCalls.filter((call) => call[0] === "event" && call[1] === "begin_visit").length;
   assert.equal(beginVisitCount, 1, "single begin_visit per CTA click");
 
-  await page.locator("button:has(.lucide-chevron-down)").click();
-  await page.getByRole("button", { name: /Musée du Louvre/ }).first().click();
-  await page.getByRole("button", { name: "Begin your visit" }).click();
+  assert.equal(await page.getByRole("button", { name: "Begin your visit" }).count(), 0, "visit route must not render a second Begin your visit action");
+  await page.getByRole("button", { name: /Musée du Louvre/ }).click();
   await page.getByRole("button", { name: "Capture" }).waitFor();
   await page.getByRole("button", { name: "Capture" }).click();
   await page.waitForTimeout(100);
