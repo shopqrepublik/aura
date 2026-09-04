@@ -75,6 +75,7 @@ PUBLIC_EVENT_ALLOWLIST = {
     "mission_completed", "museum_selected", "onboarding_completed", "progress_viewed",
     "pwa_install_cta_clicked", "pwa_install_cta_shown", "pwa_install_prompt_accepted",
     "pwa_install_prompt_dismissed", "pwa_installed", "pwa_ios_instructions_shown",
+    "comparison_set_viewed", "comparison_surprise_clicked",
     "recap_generated", "recap_viewed", "recognition_completed", "recognition_failed",
     "recognition_started", "result_viewed", "scan_attempt", "scan_failed", "scan_opened",
     "scan_success", "second_scan_started", "seo_begin_visit", "session_started",

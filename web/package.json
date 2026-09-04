@@ -13,6 +13,7 @@
     "test:result": "node scripts/generated-enrichment-regression.mjs",
     "test:scale": "node scripts/scale-comparison-regression.mjs",
     "test:comparison-variety": "node scripts/comparison-variety-regression.mjs",
+    "test:comparison-v22": "node scripts/comparison-v22-regression.mjs",
     "test:visit": "node scripts/visit-game-regression.mjs",
     "test:pwa": "node scripts/pwa-runtime-check.mjs",
     "test:analytics": "node scripts/analytics-regression.mjs",

@@ -1,0 +1,42 @@
+{
+  "version": "2.2",
+  "seed": "elyio_landing_fixed_2026_09_04",
+  "demos": [
+    {
+      "demo_id": "orsay_monet_100m_normal",
+      "artwork_id": "monet_vetheuil_1901",
+      "estimated_eur": 100000000,
+      "mode": "normal",
+      "city": "paris",
+      "comparison_ids": [
+        "ferrari_supercar",
+        "croissant_paris",
+        "paris_moulin_rouge"
+      ],
+      "description": "Fixed for SSR - must not change on reload"
+    },
+    {
+      "demo_id": "orsay_monet_100m_simple",
+      "artwork_id": "monet_vetheuil_1901",
+      "estimated_eur": 100000000,
+      "mode": "simple",
+      "city": "paris",
+      "comparison_ids": [
+        "big_mac",
+        "paris_apt_prime"
+      ]
+    },
+    {
+      "demo_id": "orsay_monet_100m_kids",
+      "artwork_id": "monet_vetheuil_1901",
+      "estimated_eur": 100000000,
+      "mode": "kids",
+      "city": "paris",
+      "comparison_ids": [
+        "kids_ice_cream",
+        "kids_ps5",
+        "kids_hamster"
+      ]
+    }
+  ]
+}

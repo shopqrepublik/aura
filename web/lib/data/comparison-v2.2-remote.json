@@ -1,0 +1,241 @@
+{
+  "version": "1.0",
+  "pack_id": "meme_pack_2026_09",
+  "issued_at": "2026-09-04",
+  "expires_at": "2026-10-04",
+  "schema_version": "2.2",
+  "allowlist": true,
+  "fallback_enabled": true,
+  "source_required": true,
+  "comparisons": [
+    {
+      "id": "super_bowl_ad",
+      "emoji": "🏈",
+      "name_en": "30 sec Super Bowl ad",
+      "name_ru": "Реклам на Супербоуле",
+      "base_price_eur": 7360000,
+      "base_price_original": "$8M",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$8M",
+      "calculation_price_eur": 7360000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "30 sec Super Bowl ad",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "film_budget",
+      "emoji": "🎬",
+      "name_en": "Major film-production budgets",
+      "name_ru": "Бюджетов как у фильма",
+      "base_price_eur": 20700000,
+      "base_price_original": "$15-30M",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.9,
+      "original_currency": "USD",
+      "original_price": "$15-30M",
+      "calculation_price_eur": 20700000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Major film-production budgets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "eras_tour_ticket",
+      "emoji": "🎤",
+      "name_en": "Eras Tour tickets",
+      "name_ru": "Билетов на Taylor Swift",
+      "base_price_eur": 1104,
+      "base_price_original": "$1,200",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.7,
+      "original_currency": "USD",
+      "original_price": "$1,200",
+      "calculation_price_eur": 1104,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Eras Tour tickets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "labubu_doll",
+      "emoji": "🧸",
+      "name_en": "Labubu dolls",
+      "name_ru": "Лабубу",
+      "base_price_eur": 73.6,
+      "base_price_original": "$80",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.7,
+      "original_currency": "USD",
+      "original_price": "$80",
+      "calculation_price_eur": 73.6,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Labubu dolls",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "champions_final_ticket",
+      "emoji": "⚽️",
+      "name_en": "Champions League Final tickets",
+      "name_ru": "Билетов на финал ЛЧ",
+      "base_price_eur": 2760,
+      "base_price_original": "$3,000",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.7,
+      "original_currency": "USD",
+      "original_price": "$3,000",
+      "calculation_price_eur": 2760,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Champions League Final tickets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "bored_ape",
+      "emoji": "🐒",
+      "name_en": "Bored Ape NFTs (floor)",
+      "name_ru": "Bored Ape NFT",
+      "base_price_eur": 46000,
+      "base_price_original": "$50k",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.6,
+      "original_currency": "USD",
+      "original_price": "$50k",
+      "calculation_price_eur": 46000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Bored Ape NFTs (floor)",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "lebron_james_rookie_card",
+      "emoji": "🏀",
+      "name_en": "LeBron James rookie cards",
+      "name_ru": "Карточек Леброна",
+      "base_price_eur": 100000,
+      "base_price_original": "$100k+",
+      "category": "pop",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.5,
+      "original_currency": "USD",
+      "original_price": "$100k+",
+      "calculation_price_eur": 100000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "LeBron James rookie cards",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    }
+  ],
+  "governance": {
+    "can_be_disabled_immediately": true,
+    "no_executable_content": true,
+    "cached": true
+  }
+}

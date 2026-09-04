@@ -18,9 +18,13 @@ const require = createRequire(import.meta.url);
 const referencesPath = path.join(process.cwd(), "lib", "comparisonReferences.ts");
 const referencesModule = { exports: {} };
 vm.runInNewContext(compile(referencesPath), { module: referencesModule, exports: referencesModule.exports, require }, { filename: referencesPath });
+const v22Path = path.join(process.cwd(), "lib", "comparisonEngineV22.ts");
+const v22Module = { exports: {} };
+const v22Require = (specifier) => specifier === "./data/comparison-v2.2-core.json" ? require(path.join(process.cwd(), "lib", "data", "comparison-v2.2-core.json")) : require(specifier);
+vm.runInNewContext(compile(v22Path), { module: v22Module, exports: v22Module.exports, require: v22Require, process, URL, Intl, Date, Set, Map }, { filename: v22Path });
 const enginePath = path.join(process.cwd(), "lib", "scaleComparison.ts");
 const engineModule = { exports: {} };
-const localRequire = (specifier) => specifier === "./comparisonReferences" ? referencesModule.exports : require(specifier);
+const localRequire = (specifier) => specifier === "./comparisonReferences" ? referencesModule.exports : specifier === "./comparisonEngineV22" ? v22Module.exports : require(specifier);
 vm.runInNewContext(compile(enginePath), { module: engineModule, exports: engineModule.exports, require: localRequire }, { filename: enginePath });
 
 const { resolveScaleComparisonsForAmount } = engineModule.exports;

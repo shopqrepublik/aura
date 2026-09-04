@@ -1,0 +1,2097 @@
+{
+  "version": "2.2",
+  "engine": "ELYIO Comparison Engine - Viral Scale",
+  "base_currency": "EUR",
+  "governance_note": "All prices require source_url audit before production. Status REVIEW_REQUIRED means not canonical yet.",
+  "rules": {
+    "normal": "Exactly 3 rows: 1 scale/luxury/major-tech + 1 food/everyday + 1 city-specific (fallback pop/tech/universal)",
+    "simple": "Exactly 2 rows: 1 food/everyday + 1 universal/city",
+    "kids": "3 rows, category==kids only, plus optional easter egg punchline",
+    "rotation": "Deterministic per artwork+mode+city+session, Surprise me picks new without repeats",
+    "approximation": "Use ~ and humanized counts",
+    "easter_egg": "Founder meeting 1% chance, not in math, separate line"
+  },
+  "comparisons": [
+    {
+      "id": "ferrari_supercar",
+      "emoji": "🏎️",
+      "name_en": "Ferrari-class supercars",
+      "name_ru": "Феррари",
+      "base_price_eur": 368000,
+      "base_price_original": "$400k",
+      "category": "luxury",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$400k",
+      "calculation_price_eur": 368000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Ferrari-class supercars",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "light_private_jet",
+      "emoji": "✈️",
+      "name_en": "Light private jets",
+      "name_ru": "Легкие джеты",
+      "base_price_eur": 5060000,
+      "base_price_original": "$4-7M",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$4-7M",
+      "calculation_price_eur": 5060000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Light private jets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "large_business_jet",
+      "emoji": "🛩️",
+      "name_en": "Large business jets",
+      "name_ru": "Бизнес-джеты",
+      "base_price_eur": 57500000,
+      "base_price_original": "$50-75M",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$50-75M",
+      "calculation_price_eur": 57500000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Large business jets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "commercial_aircraft",
+      "emoji": "✈️",
+      "name_en": "Commercial-airliner-class aircraft",
+      "name_ru": "Пассажирский Boeing 787",
+      "base_price_eur": 115000000,
+      "base_price_original": "$110-140M",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$110-140M",
+      "calculation_price_eur": 115000000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Commercial-airliner-class aircraft",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "yacht_50m",
+      "emoji": "🛥️",
+      "name_en": "50-metre luxury yachts",
+      "name_ru": "Яхта 50 метров",
+      "base_price_eur": 32200000,
+      "base_price_original": "$25-45M",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$25-45M",
+      "calculation_price_eur": 32200000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "50-metre luxury yachts",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "private_island",
+      "emoji": "🏝️",
+      "name_en": "Private-island-class properties",
+      "name_ru": "Частный остров",
+      "base_price_eur": 11000000,
+      "base_price_original": "$8-15M",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$8-15M",
+      "calculation_price_eur": 11000000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Private-island-class properties",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "suborbital_seat",
+      "emoji": "🚀",
+      "name_en": "Suborbital spaceflight seats",
+      "name_ru": "Билет в космос",
+      "base_price_eur": 460000,
+      "base_price_original": "$450k-600k",
+      "category": "luxury",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$450k-600k",
+      "calculation_price_eur": 460000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Suborbital spaceflight seats",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "iphone_16_pro_max",
+      "emoji": "📱",
+      "name_en": "iPhone 16 Pro Max",
+      "name_ru": "Айфонов",
+      "base_price_eur": 1104,
+      "base_price_original": "$1,200",
+      "category": "tech",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$1,200",
+      "calculation_price_eur": 1104,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "iPhone 16 Pro Max",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "rolex_daytona",
+      "emoji": "⌚️",
+      "name_en": "Rolex Daytona",
+      "name_ru": "Ролексов",
+      "base_price_eur": 32200,
+      "base_price_original": "$35k",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$35k",
+      "calculation_price_eur": 32200,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Rolex Daytona",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "birkin_bag",
+      "emoji": "👜",
+      "name_en": "Hermès Birkin bag",
+      "name_ru": "Сумок Birkin",
+      "base_price_eur": 23000,
+      "base_price_original": "$25k",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$25k",
+      "calculation_price_eur": 23000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Hermès Birkin bag",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "tesla_cybertruck",
+      "emoji": "🤖",
+      "name_en": "Tesla Cybertruck",
+      "name_ru": "Кибертраков",
+      "base_price_eur": 73600,
+      "base_price_original": "$80k",
+      "category": "tech",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$80k",
+      "calculation_price_eur": 73600,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Tesla Cybertruck",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "netflix_year",
+      "emoji": "📺",
+      "name_en": "Years of Netflix Family plan",
+      "name_ru": "Лет подписки Netflix",
+      "base_price_eur": 240,
+      "base_price_original": "€240/year",
+      "category": "everyday",
+      "modes": [
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€240/year",
+      "calculation_price_eur": 240,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years of Netflix Family plan",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "luxury_hotel_suite_year",
+      "emoji": "🏨",
+      "name_en": "Years in a landmark luxury-hotel suite",
+      "name_ru": "Лет в люксе отеля",
+      "base_price_eur": 450000,
+      "base_price_original": "€350k-550k/year",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.8,
+      "original_currency": "EUR",
+      "original_price": "€350k-550k/year",
+      "calculation_price_eur": 450000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years in a landmark luxury-hotel suite",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "family_holiday_exceptional",
+      "emoji": "✈️",
+      "name_en": "Exceptional family holidays",
+      "name_ru": "Отпусков мечты для семьи",
+      "base_price_eur": 55000,
+      "base_price_original": "€40k-70k",
+      "category": "everyday",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€40k-70k",
+      "calculation_price_eur": 55000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Exceptional family holidays",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "university_scholarship",
+      "emoji": "🎓",
+      "name_en": "Four-year university scholarships",
+      "name_ru": "Годовых стипендий в Гарварде",
+      "base_price_eur": 211600,
+      "base_price_original": "$180k-280k",
+      "category": "everyday",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$180k-280k",
+      "calculation_price_eur": 211600,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Four-year university scholarships",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "big_mac",
+      "emoji": "🍔",
+      "name_en": "Big Macs",
+      "name_ru": "Биг-Маков",
+      "base_price_eur": 5.5,
+      "base_price_original": "€5.5",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€5.5",
+      "calculation_price_eur": 5.5,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "punchlines": [
+        {
+          "min_count": 10000000,
+          "max_count": null,
+          "text_en": "You could feed a whole country.",
+          "text_ru": "Можно накормить целую страну.",
+          "text": {
+            "en": "You could feed a whole country.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        }
+      ],
+      "labels": {
+        "en": "Big Macs",
+        "fr": null,
+        "zh-Hans": null
+      }
+    },
+    {
+      "id": "croissant_paris",
+      "emoji": "🥐",
+      "name_en": "Paris croissants",
+      "name_ru": "Круассанов",
+      "base_price_eur": 1.8,
+      "base_price_original": "€1.8",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "paris"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€1.8",
+      "calculation_price_eur": 1.8,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "punchlines": [
+        {
+          "min_count": 0,
+          "max_count": 1000000,
+          "text_en": "Breakfast is sorted.",
+          "text_ru": "Завтрак накрыт.",
+          "text": {
+            "en": "Breakfast is sorted.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        },
+        {
+          "min_count": 1000000,
+          "max_count": 20000000,
+          "text_en": "Paris is going to need more butter.",
+          "text_ru": "Парижу понадобится больше масла.",
+          "text": {
+            "en": "Paris is going to need more butter.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        },
+        {
+          "min_count": 20000000,
+          "max_count": null,
+          "text_en": "Every bakery in France, working overtime.",
+          "text_ru": "Всем пекарням Франции придется работать сверхурочно.",
+          "text": {
+            "en": "Every bakery in France, working overtime.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        }
+      ],
+      "labels": {
+        "en": "Paris croissants",
+        "fr": null,
+        "zh-Hans": null
+      }
+    },
+    {
+      "id": "specialty_coffee",
+      "emoji": "☕️",
+      "name_en": "Specialty coffees",
+      "name_ru": "Латте",
+      "base_price_eur": 6,
+      "base_price_original": "€6",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€6",
+      "calculation_price_eur": 6,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Specialty coffees",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "pizza_napoletana",
+      "emoji": "🍕",
+      "name_en": "Neapolitan pizzas",
+      "name_ru": "Неаполитанских пицц",
+      "base_price_eur": 12,
+      "base_price_original": "€12",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global",
+        "rome"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€12",
+      "calculation_price_eur": 12,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Neapolitan pizzas",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "dom_perignon",
+      "emoji": "🍾",
+      "name_en": "Bottles of Dom Pérignon",
+      "name_ru": "Бутылок Dom Pérignon",
+      "base_price_eur": 220,
+      "base_price_original": "€220",
+      "category": "food",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€220",
+      "calculation_price_eur": 220,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Bottles of Dom Pérignon",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "nutella_ton",
+      "emoji": "🍫",
+      "name_en": "Tons of Nutella",
+      "name_ru": "Тонн Нутеллы",
+      "base_price_eur": 8000,
+      "base_price_original": "€8k/ton",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€8k/ton",
+      "calculation_price_eur": 8000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Tons of Nutella",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kebab_berlin",
+      "emoji": "🌯",
+      "name_en": "Berlin kebabs",
+      "name_ru": "Шаурмы в Берлине",
+      "base_price_eur": 8,
+      "base_price_original": "€8",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "berlin"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€8",
+      "calculation_price_eur": 8,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Berlin kebabs",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "avocado_toast_london",
+      "emoji": "🥑",
+      "name_en": "London avocado toasts",
+      "name_ru": "Авокадо-тостов в Лондоне",
+      "base_price_eur": 16.3,
+      "base_price_original": "£14",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "london"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "£14",
+      "calculation_price_eur": 16.3,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "London avocado toasts",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "gelato",
+      "emoji": "🍦",
+      "name_en": "Gelatos in Rome",
+      "name_ru": "Джелато",
+      "base_price_eur": 3.5,
+      "base_price_original": "€3.5",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "rome"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€3.5",
+      "calculation_price_eur": 3.5,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Gelatos in Rome",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "baguette",
+      "emoji": "🥖",
+      "name_en": "French baguettes tradition",
+      "name_ru": "Багетов",
+      "base_price_eur": 1.4,
+      "base_price_original": "€1.4",
+      "category": "food",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "paris"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€1.4",
+      "calculation_price_eur": 1.4,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "punchlines": [
+        {
+          "min_count": 20000000,
+          "max_count": null,
+          "text_en": "That's a lot of crumbs.",
+          "text_ru": "Будет много крошек.",
+          "text": {
+            "en": "That's a lot of crumbs.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        }
+      ],
+      "labels": {
+        "en": "French baguettes tradition",
+        "fr": null,
+        "zh-Hans": null
+      }
+    },
+    {
+      "id": "paris_apt_prime",
+      "emoji": "🏠",
+      "name_en": "Prime central-Paris apartments",
+      "name_ru": "Квартир в центре Парижа",
+      "base_price_eur": 2250000,
+      "base_price_original": "€1.5-3M",
+      "category": "city",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "paris"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€1.5-3M",
+      "calculation_price_eur": 2250000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Prime central-Paris apartments",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "london_apt_prime",
+      "emoji": "🏠",
+      "name_en": "Prime central-London apartments",
+      "name_ru": "Квартир в центре Лондона",
+      "base_price_eur": 2620000,
+      "base_price_original": "£1.5-3M",
+      "category": "city",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "london"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "£1.5-3M",
+      "calculation_price_eur": 2620000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Prime central-London apartments",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "madrid_apt_prime",
+      "emoji": "🏠",
+      "name_en": "Prime central-Madrid apartments",
+      "name_ru": "Квартир в центре Мадрида",
+      "base_price_eur": 1500000,
+      "base_price_original": "€1-2M",
+      "category": "city",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "madrid"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€1-2M",
+      "calculation_price_eur": 1500000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Prime central-Madrid apartments",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "paris_bouquet_buci",
+      "emoji": "💐",
+      "name_en": "Flower bouquets at Buci market",
+      "name_ru": "Букетов на рынке Buci",
+      "base_price_eur": 40,
+      "base_price_original": "€40",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "paris"
+      ],
+      "rarity": 0.9,
+      "original_currency": "EUR",
+      "original_price": "€40",
+      "calculation_price_eur": 40,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Flower bouquets at Buci market",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "paris_moulin_rouge",
+      "emoji": "💃",
+      "name_en": "Moulin Rouge tickets",
+      "name_ru": "Билетов в Мулен Руж",
+      "base_price_eur": 120,
+      "base_price_original": "€120",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "paris"
+      ],
+      "rarity": 0.9,
+      "original_currency": "EUR",
+      "original_price": "€120",
+      "calculation_price_eur": 120,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Moulin Rouge tickets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "paris_studio_year",
+      "emoji": "🏚️",
+      "name_en": "Years renting a studio in Le Marais 20m²",
+      "name_ru": "Лет аренды студии в Маре",
+      "base_price_eur": 18000,
+      "base_price_original": "€18k/year",
+      "category": "city",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "paris"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€18k/year",
+      "calculation_price_eur": 18000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years renting a studio in Le Marais 20m²",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "london_black_cab",
+      "emoji": "🚕",
+      "name_en": "London Black Cab rides Heathrow-Center",
+      "name_ru": "Поездок на Black Cab",
+      "base_price_eur": 93,
+      "base_price_original": "£80",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "london"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "£80",
+      "calculation_price_eur": 93,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "London Black Cab rides Heathrow-Center",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "london_pint",
+      "emoji": "🍺",
+      "name_en": "Pints in a London pub",
+      "name_ru": "Пинт в пабе",
+      "base_price_eur": 8.7,
+      "base_price_original": "£7.5",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "london"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "£7.5",
+      "calculation_price_eur": 8.7,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Pints in a London pub",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "london_travelcard",
+      "emoji": "🚇",
+      "name_en": "Years of London Zone 1-2 travelcard",
+      "name_ru": "Лет проездного в Лондоне",
+      "base_price_eur": 1860,
+      "base_price_original": "£1,600",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "london"
+      ],
+      "rarity": 0.8,
+      "original_currency": "EUR",
+      "original_price": "£1,600",
+      "calculation_price_eur": 1860,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years of London Zone 1-2 travelcard",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "madrid_jamon",
+      "emoji": "🍖",
+      "name_en": "Iberico ham portions",
+      "name_ru": "Порций хамона",
+      "base_price_eur": 28,
+      "base_price_original": "€28",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "madrid"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€28",
+      "calculation_price_eur": 28,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Iberico ham portions",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "nyc_hotdog",
+      "emoji": "🌭",
+      "name_en": "NYC hot dogs at Central Park",
+      "name_ru": "Хот-догов в Центральном парке",
+      "base_price_eur": 5.5,
+      "base_price_original": "$6",
+      "category": "city",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "newyork"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$6",
+      "calculation_price_eur": 5.5,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "NYC hot dogs at Central Park",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "nyc_apt_month",
+      "emoji": "🏙️",
+      "name_en": "Months renting 1-bed in Manhattan",
+      "name_ru": "Месяцев аренды однушки на Манхэттене",
+      "base_price_eur": 4140,
+      "base_price_original": "$4,500/month",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "newyork"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$4,500/month",
+      "calculation_price_eur": 4140,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Months renting 1-bed in Manhattan",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "broadway_ticket",
+      "emoji": "🎭",
+      "name_en": "Broadway tickets",
+      "name_ru": "Билетов на Бродвей",
+      "base_price_eur": 230,
+      "base_price_original": "$250",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "newyork"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$250",
+      "calculation_price_eur": 230,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Broadway tickets",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "tokyo_ramen",
+      "emoji": "🍜",
+      "name_en": "Ichiran ramen bowls",
+      "name_ru": "Миcок рамена",
+      "base_price_eur": 7.2,
+      "base_price_original": "¥1,200",
+      "category": "city",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "tokyo"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "¥1,200",
+      "calculation_price_eur": 7.2,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Ichiran ramen bowls",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "tokyo_capsule",
+      "emoji": "🏨",
+      "name_en": "Nights in a Tokyo capsule hotel",
+      "name_ru": "Ночей в капсуле в Токио",
+      "base_price_eur": 30,
+      "base_price_original": "¥5,000",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "tokyo"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "¥5,000",
+      "calculation_price_eur": 30,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Nights in a Tokyo capsule hotel",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "rome_vespa",
+      "emoji": "🛵",
+      "name_en": "Vespa Sprint",
+      "name_ru": "Весп",
+      "base_price_eur": 4500,
+      "base_price_original": "€4,500",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "rome"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€4,500",
+      "calculation_price_eur": 4500,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Vespa Sprint",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "dubai_burj_night",
+      "emoji": "🌃",
+      "name_en": "Nights in Burj Al Arab",
+      "name_ru": "Ночей в Burj Al Arab",
+      "base_price_eur": 1800,
+      "base_price_original": "€1,800",
+      "category": "city",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "dubai"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€1,800",
+      "calculation_price_eur": 1800,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Nights in Burj Al Arab",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "chatgpt_pro_year",
+      "emoji": "🤖",
+      "name_en": "Years of ChatGPT Pro",
+      "name_ru": "Лет подписки ChatGPT Pro",
+      "base_price_eur": 220,
+      "base_price_original": "$240/year",
+      "category": "tech",
+      "modes": [
+        "normal",
+        "simple"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.7,
+      "original_currency": "USD",
+      "original_price": "$240/year",
+      "calculation_price_eur": 220,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years of ChatGPT Pro",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "private_chef_year",
+      "emoji": "👨‍🍳",
+      "name_en": "Years of a private chef",
+      "name_ru": "Лет личного повара",
+      "base_price_eur": 80000,
+      "base_price_original": "$80k/year",
+      "category": "luxury",
+      "modes": [
+        "normal"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.8,
+      "original_currency": "USD",
+      "original_price": "$80k/year",
+      "calculation_price_eur": 80000,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years of a private chef",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_ice_cream",
+      "emoji": "🍦",
+      "name_en": "Ice creams",
+      "name_ru": "Мороженых",
+      "base_price_eur": 3,
+      "base_price_original": "€3",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€3",
+      "calculation_price_eur": 3,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "punchlines": [
+        {
+          "min_count": 10000000,
+          "max_count": null,
+          "text_en": "Brain freeze for everyone.",
+          "text_ru": "Заморозка мозга для всех.",
+          "text": {
+            "en": "Brain freeze for everyone.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        }
+      ],
+      "labels": {
+        "en": "Ice creams",
+        "fr": null,
+        "zh-Hans": null
+      }
+    },
+    {
+      "id": "kids_lego_falcon",
+      "emoji": "🧱",
+      "name_en": "LEGO Millennium Falcon sets",
+      "name_ru": "Наборов LEGO Сокол",
+      "base_price_eur": 782,
+      "base_price_original": "$850",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$850",
+      "calculation_price_eur": 782,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "punchlines": [
+        {
+          "min_count": 0,
+          "max_count": 100000,
+          "text_en": "You might need another room.",
+          "text_ru": "Понадобится еще одна комната.",
+          "text": {
+            "en": "You might need another room.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        },
+        {
+          "min_count": 100000,
+          "max_count": null,
+          "text_en": "Actually, another city.",
+          "text_ru": "Вообще-то, еще один город.",
+          "text": {
+            "en": "Actually, another city.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        }
+      ],
+      "labels": {
+        "en": "LEGO Millennium Falcon sets",
+        "fr": null,
+        "zh-Hans": null
+      }
+    },
+    {
+      "id": "kids_ps5",
+      "emoji": "🎮",
+      "name_en": "PlayStation 5",
+      "name_ru": "PlayStation 5",
+      "base_price_eur": 460,
+      "base_price_original": "$500",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "USD",
+      "original_price": "$500",
+      "calculation_price_eur": 460,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "PlayStation 5",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_disneyland_family",
+      "emoji": "🏰",
+      "name_en": "Family trips to Disneyland Paris",
+      "name_ru": "Походов в Диснейленд семьей",
+      "base_price_eur": 400,
+      "base_price_original": "€400",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "paris",
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€400",
+      "calculation_price_eur": 400,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Family trips to Disneyland Paris",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_haribo_year",
+      "emoji": "🐻",
+      "name_en": "Years of Haribo supply",
+      "name_ru": "Лет запаса Haribo",
+      "base_price_eur": 600,
+      "base_price_original": "€600/year",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€600/year",
+      "calculation_price_eur": 600,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Years of Haribo supply",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_harry_potter_book",
+      "emoji": "📚",
+      "name_en": "Harry Potter books",
+      "name_ru": "Книг Гарри Поттера",
+      "base_price_eur": 20,
+      "base_price_original": "€20",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€20",
+      "calculation_price_eur": 20,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Harry Potter books",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_pepperoni_pizza",
+      "emoji": "🍕",
+      "name_en": "Pepperoni pizzas",
+      "name_ru": "Пицц Пепперони",
+      "base_price_eur": 10,
+      "base_price_original": "€10",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€10",
+      "calculation_price_eur": 10,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Pepperoni pizzas",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_hamster",
+      "emoji": "🐹",
+      "name_en": "Hamsters",
+      "name_ru": "Хомяков",
+      "base_price_eur": 30,
+      "base_price_original": "€30",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€30",
+      "calculation_price_eur": 30,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "punchlines": [
+        {
+          "min_count": 0,
+          "max_count": 9999,
+          "text_en": "That's a lot of cages.",
+          "text_ru": "Придется много клеток.",
+          "text": {
+            "en": "That's a lot of cages.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        },
+        {
+          "min_count": 10000,
+          "max_count": 1000000,
+          "text_en": "The pet shop is going to need help.",
+          "text_ru": "Зоомагазин попросит о помощи.",
+          "text": {
+            "en": "The pet shop is going to need help.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        },
+        {
+          "min_count": 1000000,
+          "max_count": null,
+          "text_en": "They would probably take over the museum.",
+          "text_ru": "Они, кажется, захватят музей.",
+          "text": {
+            "en": "They would probably take over the museum.",
+            "fr": null,
+            "zh-Hans": null
+          }
+        }
+      ],
+      "labels": {
+        "en": "Hamsters",
+        "fr": null,
+        "zh-Hans": null
+      }
+    },
+    {
+      "id": "kids_trampoline",
+      "emoji": "🤸",
+      "name_en": "Backyard trampolines",
+      "name_ru": "Батутов",
+      "base_price_eur": 400,
+      "base_price_original": "€400",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€400",
+      "calculation_price_eur": 400,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Backyard trampolines",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_backpack",
+      "emoji": "🎒",
+      "name_en": "Pokémon school backpacks",
+      "name_ru": "Рюкзаков с покемонами",
+      "base_price_eur": 50,
+      "base_price_original": "€50",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€50",
+      "calculation_price_eur": 50,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Pokémon school backpacks",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_cinema_popcorn",
+      "emoji": "🍿",
+      "name_en": "Cinema tickets with popcorn",
+      "name_ru": "Походов в кино с попкорном",
+      "base_price_eur": 15,
+      "base_price_original": "€15",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€15",
+      "calculation_price_eur": 15,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Cinema tickets with popcorn",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_bmx",
+      "emoji": "🚲",
+      "name_en": "BMX bikes",
+      "name_ru": "Великов BMX",
+      "base_price_eur": 300,
+      "base_price_original": "€300",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€300",
+      "calculation_price_eur": 300,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "BMX bikes",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_slime",
+      "emoji": "🟢",
+      "name_en": "Slimes",
+      "name_ru": "Слаймов",
+      "base_price_eur": 8,
+      "base_price_original": "€8",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€8",
+      "calculation_price_eur": 8,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Slimes",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_nintendo_switch",
+      "emoji": "🎮",
+      "name_en": "Nintendo Switch",
+      "name_ru": "Nintendo Switch",
+      "base_price_eur": 300,
+      "base_price_original": "€300",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€300",
+      "calculation_price_eur": 300,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Nintendo Switch",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "kids_pokemon_booster",
+      "emoji": "🃏",
+      "name_en": "Pokémon booster packs",
+      "name_ru": "Пакетов Покемонов",
+      "base_price_eur": 6,
+      "base_price_original": "€6",
+      "category": "kids",
+      "modes": [
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 1,
+      "original_currency": "EUR",
+      "original_price": "€6",
+      "calculation_price_eur": 6,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "REVIEW_REQUIRED",
+      "allow_remote_override": false,
+      "labels": {
+        "en": "Pokémon booster packs",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    },
+    {
+      "id": "founder_meeting",
+      "emoji": "☕️",
+      "name_en": "One meeting with ELYIO's founder — 30 min, coffee included, apparently priceless",
+      "name_ru": "Встреча с фаундером ELYIO",
+      "base_price_eur": 460000000,
+      "base_price_original": "$500M",
+      "category": "easter_egg",
+      "modes": [
+        "normal",
+        "kids"
+      ],
+      "cities": [
+        "global"
+      ],
+      "rarity": 0.01,
+      "is_most_expensive": true,
+      "templates": {
+        "en": "~{count} meetings. He's very busy",
+        "ru_normal": "~{count} встречи с фаундером. Он очень дорого берет за кофе",
+        "ru_kids": "~{count} встречи. Расскажет как прогуливать школу и делать стартапы"
+      },
+      "original_currency": null,
+      "original_price": "$500M",
+      "calculation_price_eur": null,
+      "source_name": "ELYIO Research / public market data",
+      "source_url": "",
+      "verified_at": "2026-09-04",
+      "valid_until": "2027-03-03",
+      "review_interval_days": 180,
+      "status": "EASTER_EGG",
+      "allow_remote_override": false,
+      "is_easter_egg": true,
+      "allow_math": false,
+      "labels": {
+        "en": "One meeting with ELYIO's founder — 30 min, coffee included, apparently priceless",
+        "fr": null,
+        "zh-Hans": null
+      },
+      "punchlines": []
+    }
+  ],
+  "schema_version": "2.2"
+}

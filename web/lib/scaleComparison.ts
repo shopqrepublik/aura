@@ -1,4 +1,5 @@
 import type { Locale, Mode, ValueReveal } from "./types";
+import { isV22Requested, resolveV22Set, type V22Category } from "./comparisonEngineV22";
 import {
   COMPARISON_ENGINE_VERSION,
   COMPARISON_REFERENCES,
@@ -12,7 +13,7 @@ export { COMPARISON_ENGINE_VERSION, COMPARISON_REFERENCES } from "./comparisonRe
 
 export interface ScaleComparison {
   referenceId: string;
-  category: ComparisonCategory | "FOUNDER_EASTER_EGG";
+  category: ComparisonCategory | "FOUNDER_EASTER_EGG" | V22Category;
   engineVersion: string;
   monetary: boolean;
   icon: string;
@@ -21,12 +22,17 @@ export interface ScaleComparison {
   shortSentence: string;
   countLabel: string;
   source: string;
+  punchline?: string;
 }
 
 export interface ScaleComparisonContext {
   city?: string | null;
   countryCode?: string | null;
   artworkId?: string | null;
+  sessionId?: string | null;
+  surpriseCounter?: number;
+  excludeIds?: string[];
+  fixedIds?: string[];
 }
 
 const CURRENCY_TO_USD: Record<string, number> = {
@@ -56,6 +62,37 @@ export function resolveScaleComparisonsForAmount(
   limit?: number,
   context?: ScaleComparisonContext
 ): ScaleComparison[] {
+  if (isV22Requested()) {
+    const estimatedEur = toEurAmount(amountMillions, currency);
+    if (estimatedEur != null) {
+      const set = resolveV22Set({
+        artworkId: context?.artworkId || `value-${amountMillions}`,
+        estimatedEur,
+        mode,
+        city: context?.city,
+        sessionId: context?.sessionId || "no-visit-session",
+        surpriseCounter: context?.surpriseCounter,
+        excludeIds: context?.excludeIds,
+        locale,
+        fixedIds: context?.fixedIds,
+      });
+      if (set) {
+        return [...set.rows, ...(set.easterEgg ? [set.easterEgg] : [])].map((row) => ({
+          referenceId: row.id,
+          category: row.category,
+          engineVersion: set.engineVersion,
+          monetary: row.category !== "easter_egg",
+          icon: row.icon,
+          label: row.label,
+          sentence: row.punchline ? `${row.text}. ${row.punchline}` : row.text,
+          shortSentence: row.text,
+          countLabel: row.humanized,
+          source: row.category === "easter_egg" ? "ELYIO product easter egg; no monetary role." : "Verified V2.2 governed reference.",
+          ...(row.punchline ? { punchline: row.punchline } : {}),
+        }));
+      }
+    }
+  }
   const amountUsdMillions = toUsdMillions(amountMillions, currency);
   if (amountUsdMillions == null || amountUsdMillions <= 0) return [];
   const audience: ScaleAudience = mode === "kids" ? "kids" : "adult";
@@ -91,6 +128,15 @@ export function resolveScaleComparisonsForAmount(
     monetaryRows[monetaryRows.length - 1] = founderEasterEgg(locale);
   }
   return monetaryRows;
+}
+
+function toEurAmount(amountMillions: number, currency: string | undefined): number | null {
+  if (!Number.isFinite(amountMillions)) return null;
+  const key = currency || "USD_MILLION";
+  const unit = key.endsWith("_MILLION") ? 1_000_000 : 1;
+  const code = key.replace("_MILLION", "");
+  const toEur = code === "EUR" ? 1 : code === "USD" ? 1 / 1.09 : code === "GBP" ? 1.29 / 1.09 : null;
+  return toEur == null ? null : amountMillions * unit * toEur;
 }
 
 export function resolveScaleComparisonSentence(

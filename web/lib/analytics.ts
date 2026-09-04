@@ -165,7 +165,9 @@ export type EventName =
   | "pwa_install_prompt_accepted"
   | "pwa_install_prompt_dismissed"
   | "pwa_installed"
-  | "pwa_ios_instructions_shown";
+  | "pwa_ios_instructions_shown"
+  | "comparison_set_viewed"
+  | "comparison_surprise_clicked";
 
 const ANON_KEY = "elyio-anonymous-id";
 const SESSION_KEY = "elyio-session-id";

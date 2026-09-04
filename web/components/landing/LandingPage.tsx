@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { resolveScaleComparisonsForAmount } from "@/lib/scaleComparison";
+import landingDemoSeed from "@/lib/data/comparison-v2.2-landing.json";
 import Link from "@/components/seo/SeoLink";
 import LandingVisitLink from "@/components/landing/LandingVisitLink";
 import type { SeoLocale } from "@/lib/seo-content";
@@ -52,7 +54,8 @@ const usageIndex: ReadonlyArray<readonly [string, string, readonly string[]]> = 
   ...usageSecondary.map(([city, name], index) => [String(index + 7).padStart(2, "0"), city, [name]] as const),
 ];
 
-function PhoneResult({ floating = false }: { floating?: boolean }) {
+function PhoneResult({ locale, floating = false }: { locale: SeoLocale; floating?: boolean }) {
+  const comparisons = landingComparisons("normal", locale);
   return (
     <div className={`landing-phone ${floating ? "landing-phone-floating" : ""}`} aria-label="Example ELYIO artwork result">
       <div className="landing-phone-island" />
@@ -65,10 +68,8 @@ function PhoneResult({ floating = false }: { floating?: boolean }) {
       <p className="landing-why"><span>✦</span> <b>Why it matters:</b> Not Liberty as a woman, but Liberty as action — forward, barefoot, leading.</p>
       <div className="landing-value-card">
         <small>BEYOND THE MARKET <i>Not for sale</i></small>
-        <b>If sold: €400–600M estimate</b>
-        <span>🏠 &nbsp;~45 apartments in Paris (75m²)</span>
-        <span>🏎️ &nbsp;~1,200 supercars</span>
-        <span>🚀 &nbsp;~3 space flights</span>
+        <b>Demo scale: €100M</b>
+        {comparisons.map((comparison) => <span key={comparison.referenceId}>{comparison.icon} &nbsp;{comparison.shortSentence}</span>)}
       </div>
       <div className="landing-scan-again">Scan another artwork</div>
     </div>
@@ -114,7 +115,7 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
               <b>Eugène Delacroix — 1830, Louvre RF 129</b>
               <p>A woman steps over barricades, flag raised. Not a portrait, but an idea of revolution made visible.</p>
               <p>✦ <b>Why it matters:</b> The image that taught the world what liberty looks like.</p>
-              <div>BEYOND THE MARKET <b>≈ 1.8 private jets</b></div>
+              <div>BEYOND THE MARKET <b>{landingComparisons("normal", locale)[0]?.shortSentence}</b></div>
             </div>
           </div>
         </section>
@@ -141,7 +142,7 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
         </section>
 
         <section className="landing-experience landing-container">
-          <div className="landing-experience-phone"><PhoneResult /></div>
+          <div className="landing-experience-phone"><PhoneResult locale={locale} /></div>
           <div className="landing-experience-copy">
             <h2>Understand,<br />don&apos;t just identify.</h2>
             <p>Most guides tell you what it&apos;s called. ELYIO tells you why it&apos;s here, what to notice in 20 seconds, and how it connects to the next room — without turning a museum into a database.</p>
@@ -188,4 +189,15 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
       <footer className="landing-footer landing-container"><span>© 2026 ELYIO</span><nav><a href="#">Privacy</a><a href="#">Instagram</a></nav><p>Every museum becomes understandable the moment you walk in.</p></footer>
     </div>
   );
+}
+
+function landingComparisons(mode: "normal" | "simple" | "kids", locale: SeoLocale) {
+  const comparisonLocale = locale === "zh-hans" ? "zh-Hans" : locale;
+  const demo = landingDemoSeed.demos.find((item) => item.mode === mode) || landingDemoSeed.demos[0];
+  return resolveScaleComparisonsForAmount(demo.estimated_eur / 1_000_000, "EUR_MILLION", comparisonLocale, mode, undefined, {
+    city: demo.city,
+    artworkId: demo.artwork_id,
+    sessionId: landingDemoSeed.seed,
+    fixedIds: demo.comparison_ids,
+  });
 }

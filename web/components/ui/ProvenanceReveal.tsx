@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { haptics } from "@/lib/haptics";
 import { hexToRgba, getPriceTier, usePrefersReducedMotion } from "@/lib/cardReveal";
 import { GRAIN_BACKGROUND_IMAGE } from "@/lib/visitPalette";
 import { resolveValueRevealScaleComparisons } from "@/lib/scaleComparison";
 import { formatEstimatedValueRange, formatValueRevealHeadline, isValidAIIndicativeEstimate } from "@/lib/valueReveal";
 import { tt } from "@/lib/i18n";
+import { track } from "@/lib/analytics";
 import MarketMethodologySheet from "./MarketMethodologySheet";
 import type { Locale, Mode, ValueReveal } from "@/lib/types";
 
@@ -55,6 +56,8 @@ export default function ProvenanceReveal({
   mode,
   museumCity,
   artworkId,
+  comparisonSessionId,
+  museumId,
 }: {
   valueReveal: ValueReveal | null;
   accent: string;
@@ -64,6 +67,8 @@ export default function ProvenanceReveal({
   mode: Mode;
   museumCity?: string | null;
   artworkId?: string | null;
+  comparisonSessionId?: string | null;
+  museumId?: string | null;
 }) {
   const hasEstimate = valueReveal?.mode === "ESTIMATED_VALUE" && valueReveal.aggregateValueEligible;
   const hasIndicativeEstimate = valueReveal?.mode === "AI_INDICATIVE_ESTIMATE"
@@ -81,6 +86,8 @@ export default function ProvenanceReveal({
   const tier = getPriceTier(estimate?.high ?? null);
   const reducedMotion = usePrefersReducedMotion();
   const [methodologyOpen, setMethodologyOpen] = useState(false);
+  const [surpriseCounter, setSurpriseCounter] = useState(0);
+  const [previousComparisonIds, setPreviousComparisonIds] = useState<string[]>([]);
 
   const [containerVisible, setContainerVisible] = useState(reducedMotion);
   const [priceStage, setPriceStage] = useState<"low" | "full">(reducedMotion ? "full" : "low");
@@ -122,9 +129,24 @@ export default function ProvenanceReveal({
   // Only a responsible range displayed as the viewed work's estimate earns
   // monetary scale analogies. Market context and beyond-market states are
   // useful context, but are not the value of this artwork.
-  const analogies = hasEstimate || hasIndicativeEstimate
-    ? resolveValueRevealScaleComparisons(valueReveal, locale, mode, { city: museumCity, artworkId })
-    : [];
+  const analogies = useMemo(() => hasEstimate || hasIndicativeEstimate
+    ? resolveValueRevealScaleComparisons(valueReveal, locale, mode, {
+        city: museumCity,
+        artworkId,
+        sessionId: comparisonSessionId,
+        surpriseCounter,
+        excludeIds: previousComparisonIds,
+      })
+    : [], [hasEstimate, hasIndicativeEstimate, valueReveal, locale, mode, museumCity, artworkId, comparisonSessionId, surpriseCounter, previousComparisonIds]);
+  const usingV22 = analogies.some((row) => row.engineVersion === "scale-comparison-v2.2.0");
+
+  useEffect(() => {
+    if (!usingV22 || !artworkId || !analogies.length) return;
+    const key = `${comparisonSessionId || "direct"}|${artworkId}|${mode}|${analogies.map((row) => row.referenceId).join(",")}`;
+    if (viewedComparisonSets.has(key)) return;
+    viewedComparisonSets.add(key);
+    track("comparison_set_viewed", comparisonAnalytics(analogies, { artworkId, mode, museumCity, museumId }));
+  }, [usingV22, analogies, artworkId, mode, museumCity, museumId, comparisonSessionId]);
 
   const priceSize = tier ? PRICE_SIZE_PX[tier] : PRICE_SIZE_PX.standard;
   const priceText = estimate
@@ -265,12 +287,29 @@ export default function ProvenanceReveal({
           </div>
           <div className="mt-2 space-y-1.5">
             {analogies.map((analogy) => (
-              <div key={analogy.referenceId} className="flex gap-2 text-[15px] leading-[20px] font-semibold text-[#24231f]">
-                <span className="w-5 shrink-0 text-center">{analogy.icon}</span>
-                <span>{analogy.shortSentence}</span>
+              <div key={analogy.referenceId} className="text-[15px] leading-[20px] font-semibold text-[#24231f]">
+                <div className="flex gap-2">
+                  <span className="w-5 shrink-0 text-center">{analogy.icon}</span>
+                  <span>{analogy.shortSentence}</span>
+                </div>
+                {analogy.punchline && <p className="ml-7 mt-0.5 text-[12px] leading-[16px] font-medium text-[#5C564D]">{analogy.punchline}</p>}
               </div>
             ))}
           </div>
+          {usingV22 && (
+            <button
+              type="button"
+              className="mt-3 min-h-11 rounded-full border border-[rgba(45,39,31,0.14)] px-4 text-[12px] font-semibold text-[#3A3731]"
+              onClick={() => {
+                const ids = analogies.filter((row) => row.monetary).map((row) => row.referenceId);
+                setPreviousComparisonIds(ids);
+                setSurpriseCounter((value) => value + 1);
+                track("comparison_surprise_clicked", comparisonAnalytics(analogies, { artworkId: artworkId || "unknown", mode, museumCity, museumId }));
+              }}
+            >
+              {locale === "fr" ? "🎲 Surprenez-moi" : locale === "zh-Hans" ? "🎲 换一组" : "🎲 Surprise me"}
+            </button>
+          )}
           {mode === "kids" && (
             <p className="mt-2 text-[12px] leading-[16px] text-[#5C564D]">
               {locale === "fr" ? "Lequel choisirais-tu : l'œuvre ou toutes ces choses ?" : locale === "zh-Hans" ? "你会选这件作品，还是这些东西？" : "Which would you choose: the artwork or all those things?"}
@@ -319,6 +358,22 @@ export default function ProvenanceReveal({
       />
     </div>
   );
+}
+
+const viewedComparisonSets = new Set<string>();
+
+function comparisonAnalytics(rows: ReturnType<typeof resolveValueRevealScaleComparisons>, context: { artworkId: string; mode: Mode; museumCity?: string | null; museumId?: string | null }) {
+  return {
+    artwork_id: context.artworkId,
+    mode: context.mode,
+    city: context.museumCity || undefined,
+    museum_id: context.museumId || undefined,
+    comparison_ids: rows.map((row) => row.referenceId),
+    categories: rows.map((row) => row.category),
+    engine_version: rows[0]?.engineVersion,
+    has_easter_egg: rows.some((row) => !row.monetary),
+    has_punchline: rows.some((row) => !!row.punchline),
+  };
 }
 
 function indicativeLabel(locale: Locale): string {

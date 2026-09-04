@@ -169,6 +169,8 @@ export default function CardScreen({
           mode={state.mode}
           museumCity={state.museumCity}
           artworkId={artwork.id}
+          comparisonSessionId={state.visitId || String(state.startTime || "direct-session")}
+          museumId={state.museumId}
         />
 
         {!excluded && (

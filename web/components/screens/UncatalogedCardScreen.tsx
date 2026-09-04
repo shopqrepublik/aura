@@ -114,6 +114,8 @@ export default function UncatalogedCardScreen({
               mode={state.mode}
               museumCity={state.museumCity}
               artworkId={sighting.id}
+              comparisonSessionId={state.visitId || String(state.startTime || "direct-session")}
+              museumId={state.museumId}
             />
           </div>
         ) : (
