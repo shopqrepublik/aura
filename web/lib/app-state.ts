@@ -128,25 +128,25 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
   // (detected via GPS or manually confirmed), not a hardcoded constant.
   // Resolved once here and reused for every recognize() call during this
   // visit, rather than re-checking geolocation per scan.
-  const startVisit = useCallback(async (museumId: string, museumName?: string | null, museumCity?: string | null) => {
+  const startVisit = useCallback(async (museumId?: string | null, museumName?: string | null, museumCity?: string | null) => {
     setState((s) => {
       if (s.visitStarted) return s;
-      track("visit_started", { museum_id: museumId });
-      track("scan_opened", { museum_id: museumId, source: "visit_started" });
-      trackGoogleEvent("camera_opened", { locale: s.locale, museum_slug: museumId, museum_city: museumCity || undefined, source_surface: "scanner" });
+      track("visit_started", { museum_id: museumId || undefined });
+      track("scan_opened", { museum_id: museumId || undefined, source: "visit_started" });
+      trackGoogleEvent("camera_opened", { locale: s.locale, museum_slug: museumId || undefined, museum_city: museumCity || undefined, source_surface: "scanner" });
       const now = Date.now();
       return persistVisitState({
         ...s,
         visitStarted: true,
         startTime: now,
         lastActivityAt: now,
-        museumId,
+        museumId: museumId || null,
         museumName: museumName || null,
         museumCity: museumCity || null,
       });
     });
     setState((s) => {
-      if (!s.visitId) {
+      if (!s.visitId && museumId) {
         api.createVisit(s.locale, museumId).then((visit) => {
           setState((s2) => ({ ...s2, visitId: visit.id }));
         }).catch(() => {
@@ -158,6 +158,10 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
     });
     goto("camera");
   }, [goto]);
+
+  const setMuseumContext = useCallback((museumId: string, museumName?: string | null, museumCity?: string | null) => {
+    setState((s) => persistVisitState({ ...s, museumId, museumName: museumName || null, museumCity: museumCity || null, lastActivityAt: Date.now() }));
+  }, []);
 
   const recognizeFrame = useCallback(async (imageBase64: string) => {
     setState((s) => persistVisitState({ ...s, scanStatus: "scanning", pendingRecognitionImageBase64: null, lastActivityAt: Date.now() }));
@@ -437,6 +441,7 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
       setLocale,
       setMode,
       startVisit,
+      setMuseumContext,
       recognizeFrame,
       addToVisit,
       addUncatalogedToVisit,

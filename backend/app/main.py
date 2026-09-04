@@ -2247,16 +2247,22 @@ def recognize(
         raise HTTPException(status_code=409, detail="recognition attempt is already in progress")
 
     try:
-        institution_config = _timed(
-            profile,
-            "db.institution_runtime_config",
-            lambda: get_institution_runtime_config(db, req.museum_id),
-        )
-        candidates = _timed(
-            profile,
-            "db.recognition_candidates",
-            lambda: get_recognition_candidates(db, req.museum_id, runtime_config=institution_config),
-        )
+        if req.museum_id:
+            institution_config = _timed(
+                profile,
+                "db.institution_runtime_config",
+                lambda: get_institution_runtime_config(db, req.museum_id),
+            )
+            candidates = _timed(
+                profile,
+                "db.recognition_candidates",
+                lambda: get_recognition_candidates(db, req.museum_id, runtime_config=institution_config),
+            )
+        else:
+            # Museum context is optional: open recognition can still identify
+            # an uncatalogued work and use the existing AI fallback path.
+            institution_config = None
+            candidates = []
     except InstitutionNotReadyError as e:
         _log_recognition_event("recognition_configuration_error", museum_id=req.museum_id, reason="institution_not_ready", recognition_attempt_id=attempt_id)
         raise HTTPException(status_code=409, detail={"code": "institution_not_ready", "message": str(e)})
@@ -2388,7 +2394,9 @@ def recognize(
                                       recognized_but_not_cataloged=recognized_but_not_cataloged,
                                       vision=vision, top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier), "uncataloged_result" if recognized_but_not_cataloged else "no_match")
-        if confidence >= institution_config.confidence_auto:
+        confidence_auto = institution_config.confidence_auto if institution_config else 0.92
+        confidence_review = institution_config.confidence_review if institution_config else 0.75
+        if confidence >= confidence_auto:
             _log_recognition_event(
                 "recognition_completed",
                 museum_id=req.museum_id,
@@ -2404,7 +2412,7 @@ def recognize(
                                       recognition_mode=recognition_mode, vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier), "success")
-        elif confidence >= institution_config.confidence_review:
+        elif confidence >= confidence_review:
             _log_recognition_event(
                 "recognition_completed",
                 museum_id=req.museum_id,
@@ -2449,9 +2457,11 @@ def recognize(
         return finish(RecognizeResponse(status="no_match", confidence=0.0), "no_match")
     candidate = random.choice(candidates)
     confidence = round(random.uniform(0.75, 0.99), 3)
-    if confidence >= institution_config.confidence_auto:
+    confidence_auto = institution_config.confidence_auto if institution_config else 0.92
+    confidence_review = institution_config.confidence_review if institution_config else 0.75
+    if confidence >= confidence_auto:
         return finish(RecognizeResponse(status="matched", artwork_id=candidate["id"], confidence=confidence), "success")
-    elif confidence >= institution_config.confidence_review:
+    elif confidence >= confidence_review:
         alts = [a["id"] for a in random.sample(candidates, k=min(2, len(candidates)))]
         return finish(RecognizeResponse(status="needs_confirmation", artwork_id=candidate["id"],
                                   confidence=confidence, alternatives=alts), "success")

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getMuseums, type Museum } from "./api";
 
 function haversineDistanceMeters(
@@ -46,11 +46,15 @@ export function useMuseumDetection({ enabled = true }: { enabled?: boolean } = {
   const [status, setStatus] = useState<MuseumStatus>("checking");
   const [museums, setMuseums] = useState<Museum[]>([]);
   const [museum, setMuseum] = useState<Museum | null>(null);
+  const manualChosen = useRef(false);
 
   useEffect(() => {
     if (!enabled) return;
     let cancelled = false;
 
+    const watchdog = window.setTimeout(() => {
+      if (!cancelled) setStatus("manual-prompt");
+    }, 5_000);
     getMuseums()
       .then((list) => {
         if (cancelled) return;
@@ -68,7 +72,7 @@ export function useMuseumDetection({ enabled = true }: { enabled?: boolean } = {
         // both valid paths).
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            if (cancelled) return;
+            if (cancelled || manualChosen.current) return;
             const here = { lat: position.coords.latitude, lng: position.coords.longitude };
             // Nearest-within-its-own-radius, not just nearest overall -- a
             // visitor 2km from museum A and 3km from museum B is inside
@@ -89,7 +93,7 @@ export function useMuseumDetection({ enabled = true }: { enabled?: boolean } = {
               setStatus("manual-prompt");
             }
           },
-          () => setStatus("manual-prompt"),
+          () => { if (!manualChosen.current) setStatus("manual-prompt"); },
           { enableHighAccuracy: true, timeout: 10_000, maximumAge: 60_000 }
         );
       })
@@ -99,6 +103,7 @@ export function useMuseumDetection({ enabled = true }: { enabled?: boolean } = {
 
     return () => {
       cancelled = true;
+      window.clearTimeout(watchdog);
     };
   }, [enabled]);
 
@@ -108,6 +113,7 @@ export function useMuseumDetection({ enabled = true }: { enabled?: boolean } = {
   // picker only matters once a second museum actually exists, which is
   // explicitly a separate decision (not this task's scope).
   const confirmManually = (museumId?: string) => {
+    manualChosen.current = true;
     const picked = (museumId ? museums.find((m) => m.id === museumId) : undefined) ?? museums[0] ?? null;
     setMuseum(picked);
     setStatus("manual-confirmed");
