@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!LOCALES.includes(locale as SeoLocale)) return {};
   const copy = metadataCopy[locale as SeoLocale];
   const canonicalPath = locale === "en" ? "/" : `/${locale}`;
-  return { title: copy.title, description: copy.description, alternates: alternatesFor(canonicalPath), openGraph: { title: "ELYIO — Your AI Museum Companion", description: "See an artwork. Point your camera. Discover what you’re looking at and why it matters.", url: `${SITE_URL}${canonicalPath}`, siteName: "ELYIO", type: "website", images: [{ url: "/icons/icon-512.png", width: 512, height: 512, alt: "ELYIO AI museum companion" }] }, twitter: { card: "summary_large_image", title: "ELYIO — Your AI Museum Companion", description: "See an artwork. Point your camera. Discover what you’re looking at and why it matters.", images: ["/icons/icon-512.png"] } };
+  return { title: copy.title, description: copy.description, manifest: `/manifest/${locale}`, alternates: alternatesFor(canonicalPath), openGraph: { title: copy.title, description: copy.description, url: `${SITE_URL}${canonicalPath}`, siteName: "ELYIO", type: "website", images: [{ url: "/icons/icon-512.png", width: 512, height: 512, alt: "ELYIO AI museum companion" }] }, twitter: { card: "summary_large_image", title: copy.title, description: copy.description, images: ["/icons/icon-512.png"] } };
 }
 
 export default async function LocaleHome({ params }: { params: Promise<{ locale: string }> }) {
