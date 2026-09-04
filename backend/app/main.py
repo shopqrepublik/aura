@@ -386,13 +386,14 @@ def recognize_open(
     """
     client = _recognition_openai_client()
     museum_context = institution_context or (
-        f"{museum_id or 'a configured museum'}. The final identity must later be "
-        "resolved against ELYIO's institution-scoped catalog."
+        f"{museum_id or 'an unknown museum'}. The final identity must later be "
+        "resolved against ELYIO's global catalog."
     )
+    generic_instruction = "When the museum is unknown, identify a recognizable work by likely title and artist from the image alone; do not wait for a museum catalog and use null only when evidence is genuinely insufficient. " if not museum_id else ""
     system_prompt = (
         "You are the first visual-analysis pass for a museum recognition system. "
         f"Context: the visitor is likely inside {museum_context}\n\n"
-        "Identify only what is visually and art-historically supportable from the image. "
+        f"Identify only what is visually and art-historically supportable from the image. {generic_instruction}"
         "If uncertain, keep recognized=false or confidence low. Do not fabricate identifiers. "
         "Do not output an ARK, accession id, database id, or any identifier not visible in the image.\n\n"
         "Describe observable evidence before naming a work. OCR any visible wall-label/frame/inventory text. "
@@ -1591,6 +1592,8 @@ def recognize_with_vision(
             f"{institution_config.display_name}. The final identity must later be resolved "
             "against ELYIO's institution-scoped catalog."
         )
+    if not museum_id and recognition_request_id:
+        _log_recognition_event("recognition.generic_identification_started", recognition_request_id=recognition_request_id, stage="generic_identification", stage_status="started")
     ident = _timed(
         profile,
         "recognition.stage1_open",
@@ -1598,6 +1601,8 @@ def recognize_with_vision(
         if prompt_context
         else recognize_open(image_base64, museum_id, profile=profile),
     )
+    if not museum_id and recognition_request_id:
+        _log_recognition_event("recognition.generic_identification_completed", recognition_request_id=recognition_request_id, stage="generic_identification", stage_status="completed", identified_title_present=bool(ident.get("title")), identified_artist_present=bool(ident.get("artist")), outcome="identified" if ident.get("title") or ident.get("artist") else "unknown")
     artist, title = ident.get("artist"), ident.get("title")
     model_confidence = float(ident.get("confidence", 0) or 0)
 
@@ -1631,6 +1636,8 @@ def recognize_with_vision(
 
     # Metadata ranking is cheap, so retain a wider diagnostic/retrieval pool
     # even though expensive verification remains strictly bounded.
+    if not museum_id and recognition_request_id:
+        _log_recognition_event("recognition.global_reconciliation_started", recognition_request_id=recognition_request_id, stage="global_reconciliation", stage_status="started")
     metadata_ranked = _timed(
         profile,
         "catalog.metadata_ranking",
@@ -1639,7 +1646,11 @@ def recognize_with_vision(
         ),
         candidate_count=len(candidates),
     )
+    if not museum_id and recognition_request_id:
+        _log_recognition_event("recognition.global_reconciliation_completed", recognition_request_id=recognition_request_id, stage="global_reconciliation", stage_status="completed", catalog_match_count=len(metadata_ranked))
     ranked = metadata_ranked[:candidate_limit]
+    if not museum_id and recognition_request_id:
+        _log_recognition_event("recognition.generic_shortlist_ready", recognition_request_id=recognition_request_id, stage="global_reconciliation", stage_status="completed", shortlist_count=len(ranked), match_strength=(ranked[0].get("score") if ranked else 0.0))
     if policy == "ASSET_VERIFY" and any(candidate.get("visual_descriptor") for candidate in candidates):
         visual_ranked = _timed(
             profile,
