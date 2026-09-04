@@ -54,6 +54,12 @@ const usageIndex: ReadonlyArray<readonly [string, string, readonly string[]]> = 
   ...usageSecondary.map(([city, name], index) => [String(index + 7).padStart(2, "0"), city, [name]] as const),
 ];
 
+const landingCopy = {
+  en: { museums:"Museums", language:"Language", visit:"Begin your visit", guides:"Explore museum guides →", eyebrow:"A different way to see the museum", h1:["See a painting.","Scan it.","Understand it."], lede:"Your AI companion for the world's museums. Point your camera at an artwork. ELYIO recognizes it, explains it, and gives you the story worth knowing — what it is, why it matters, and where to look next.", live:"Live in Paris • Visitors exploring museums worldwide", privacy:"Privacy", footer:"Every museum becomes understandable the moment you walk in.", guidesAll:"See all museums →" },
+  fr: { museums:"Musées", language:"Langue", visit:"Commencer la visite", guides:"Explorer les guides des musées →", eyebrow:"Une autre façon de voir le musée", h1:["Voir une œuvre.","La scanner.","La comprendre."], lede:"Votre compagnon IA pour les musées du monde entier. Pointez votre appareil photo vers une œuvre : ELYIO la reconnaît, l’explique et vous donne l’histoire à retenir — ce qu’elle est, pourquoi elle compte et où regarder ensuite.", live:"À Paris et dans les musées du monde entier", privacy:"Confidentialité", footer:"Chaque musée devient plus compréhensible dès que vous y entrez.", guidesAll:"Voir tous les musées →" },
+  "zh-hans": { museums:"博物馆", language:"语言", visit:"开始参观", guides:"探索博物馆指南 →", eyebrow:"换一种方式看博物馆", h1:["看一件作品。","扫描它。","理解它。"], lede:"为全球博物馆准备的 AI 伴侣。用相机对准作品，ELYIO 会识别并解释它，告诉你值得知道的故事——它是什么、为何重要，以及接下来该看哪里。", live:"从巴黎出发，陪你探索世界各地的博物馆", privacy:"隐私", footer:"走进博物馆的那一刻，一切都变得更容易理解。", guidesAll:"查看所有博物馆 →" },
+} as const;
+
 function PhoneResult({ locale, floating = false }: { locale: SeoLocale; floating?: boolean }) {
   const comparisons = landingComparisons("normal", locale);
   return (
@@ -77,6 +83,7 @@ function PhoneResult({ locale, floating = false }: { locale: SeoLocale; floating
 }
 
 export default function LandingPage({ locale }: { locale: SeoLocale }) {
+  const copy = landingCopy[locale];
   const visitHref = `/visit?from=organic&landing=home&locale=${locale}`;
   const guidesHref = `/${locale}/museums`;
   return (
@@ -84,27 +91,27 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
       <header className="landing-header">
         <Link className="landing-logo" href={`/${locale}`}>ELYIO</Link>
         <nav aria-label="Main navigation">
-          <Link className="landing-museums-link" href={guidesHref}>Museums</Link>
-          <div className="landing-languages" aria-label="Language">
-            <Link href="/en" aria-current={locale === "en" ? "page" : undefined}>English</Link>
-            <Link href="/fr" aria-current={locale === "fr" ? "page" : undefined}>Français</Link>
+          <Link className="landing-museums-link" href={guidesHref}>{copy.museums}</Link>
+          <div className="landing-languages" aria-label={copy.language}>
+            <Link href="/en" aria-current={locale === "en" ? "page" : undefined}>EN</Link>
+            <Link href="/fr" aria-current={locale === "fr" ? "page" : undefined}>FR</Link>
             <Link href="/zh-hans" aria-current={locale === "zh-hans" ? "page" : undefined}>简体中文</Link>
           </div>
-          <LandingVisitLink className="landing-button landing-header-button" href={visitHref} sourceSurface="landing_header">Begin your visit</LandingVisitLink>
+          <LandingVisitLink className="landing-button landing-header-button" href={visitHref} sourceSurface="landing_header">{copy.visit}</LandingVisitLink>
         </nav>
       </header>
 
       <main>
         <section className="landing-hero landing-container">
           <div className="landing-hero-copy">
-            <p className="landing-eyebrow">A different way to see the museum</p>
-            <h1>See a painting.<br />Scan it.<br />Understand it.</h1>
-            <p className="landing-lede">Your AI companion for the world&apos;s museums. Point your camera at an artwork. ELYIO recognizes it, explains it, and gives you the story worth knowing — what it is, why it matters, and where to look next.</p>
+            <p className="landing-eyebrow">{copy.eyebrow}</p>
+            <h1>{copy.h1[0]}<br />{copy.h1[1]}<br />{copy.h1[2]}</h1>
+            <p className="landing-lede">{copy.lede}</p>
             <div className="landing-actions">
-              <LandingVisitLink className="landing-button" href={visitHref} sourceSurface="landing_hero">Begin your visit</LandingVisitLink>
-              <Link className="landing-text-link" href={guidesHref}>Explore museum guides →</Link>
+              <LandingVisitLink className="landing-button" href={visitHref} sourceSurface="landing_hero">{copy.visit}</LandingVisitLink>
+              <Link className="landing-text-link" href={guidesHref}>{copy.guides}</Link>
             </div>
-            <p className="landing-live">Live in Paris • Visitors exploring museums worldwide</p>
+            <p className="landing-live">{copy.live}</p>
           </div>
           <div className="landing-hero-visual">
             <Image src="/landing/elyio-museum-visitor.webp" alt="A visitor using ELYIO in a museum" fill priority sizes="(max-width: 900px) 100vw, 520px" />
@@ -180,13 +187,13 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
         <section className="landing-final">
           <div className="landing-container landing-final-inner">
             <div><h2>ELYIO</h2><p>Take ELYIO to your next museum. Point your camera at an artwork and start exploring — with a catalog match when we have one, and AI context when we don&apos;t.</p></div>
-            <div><LandingVisitLink className="landing-final-button" href={visitHref} sourceSurface="landing_footer">Begin your visit</LandingVisitLink><Link href={guidesHref}>See all museums →</Link></div>
+            <div><LandingVisitLink className="landing-final-button" href={visitHref} sourceSurface="landing_footer">{copy.visit}</LandingVisitLink><Link href={guidesHref}>{copy.guidesAll}</Link></div>
           </div>
           <div className="landing-container landing-final-meta"><span>© 2026 ELYIO • Premium cultural companion</span><span>Catalog when we know. AI when we don&apos;t.</span></div>
         </section>
       </main>
 
-      <footer className="landing-footer landing-container"><span>© 2026 ELYIO</span><nav><a href="#">Privacy</a><a href="#">Instagram</a></nav><p>Every museum becomes understandable the moment you walk in.</p></footer>
+      <footer className="landing-footer landing-container"><span>© 2026 ELYIO</span><nav><Link href={`/${locale}/privacy`} aria-label={copy.privacy}>{copy.privacy}</Link><a href="https://www.instagram.com/elyo_museum/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a></nav><p>{copy.footer}</p></footer>
     </div>
   );
 }
