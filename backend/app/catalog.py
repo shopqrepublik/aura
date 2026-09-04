@@ -207,6 +207,8 @@ def artwork_to_catalog_dict(
         "museum_id": artwork.museum_id,
         "artist": artwork.artist,
         "title": artwork.title_original,
+        "title_aliases": [artwork.title_complement] if artwork.title_complement else [],
+        "artist_aliases": [str(x) for x in (artwork.creator_labels or []) if x] if isinstance(artwork.creator_labels, list) else [],
         "year": artwork.year,
         "hall": artwork.hall or artwork.room,
         "inventory_number": artwork.inventory_number,

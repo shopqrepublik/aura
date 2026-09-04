@@ -402,7 +402,7 @@ def recognize_open(
         '"is_artwork_photo": true|false, "image_quality": "<good|partial|label_only|room_only|blank|unusable>", '
         '"non_artwork_reason": "<reason or null>", '
         '"object_category": "<painting|sculpture|antiquity|decorative art|drawing|object|unknown>", '
-        '"likely_artist": "<artist or null>", "likely_title": "<title or null>", '
+        '"likely_artist": "<artist or null>", "artist_aliases": ["conventional alternate artist names"], "likely_title": "<title or null>", "title_aliases": ["conventional alternate titles"], '
         '"period_guess": "<period/date clue or null>", "material_guess": "<material or null>", '
         '"depicted_subject": "<subject or null>", "inscriptions_visible": ["visible text", "..."], '
         '"dominant_visual_features": ["observable feature", "..."], '
@@ -504,7 +504,9 @@ def recognize_open(
     data.setdefault("image_quality", "unknown")
     data.setdefault("non_artwork_reason", None)
     data.setdefault("likely_artist", data.get("artist"))
+    data.setdefault("artist_aliases", [])
     data.setdefault("likely_title", data.get("title"))
+    data.setdefault("title_aliases", [])
     data.setdefault("artist", data.get("likely_artist"))
     data.setdefault("title", data.get("likely_title"))
     data.setdefault("object_category", data.get("object_type", "unknown"))
@@ -693,7 +695,9 @@ def _tokens(value: Optional[str]) -> set[str]:
 def _candidate_search_text(candidate: dict) -> str:
     parts = [
         candidate.get("title"),
+        *(candidate.get("title_aliases") or []),
         candidate.get("artist"),
+        *(candidate.get("artist_aliases") or []),
         candidate.get("year"),
         candidate.get("inventory_number"),
         candidate.get("department"),
@@ -745,6 +749,8 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
     ]
     visual_clues = [*visual_clues, *[x for x in extra_clues if x]]
     alt_candidates = vision.get("alternative_candidates") or []
+    model_title_aliases = [str(x) for x in (vision.get("title_aliases") or []) if x]
+    model_artist_aliases = [str(x) for x in (vision.get("artist_aliases") or []) if x]
 
     query_title = _normalize_for_matching(title or "")
     query_artist = _normalize_for_matching(artist or "")
@@ -777,14 +783,17 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
 
     scored: list[tuple[float, dict, dict]] = []
     for candidate in candidates:
-        candidate_title = _normalize_for_matching(candidate.get("title") or "")
-        candidate_artist = _normalize_for_matching(candidate.get("artist") or "")
+        candidate_title_variants = [_normalize_for_matching(candidate.get("title") or ""), *[_normalize_for_matching(x) for x in (candidate.get("title_aliases") or []) if x]]
+        candidate_title = candidate_title_variants[0]
+        candidate_artist_variants = [_normalize_for_matching(candidate.get("artist") or ""), *[_normalize_for_matching(x) for x in (candidate.get("artist_aliases") or []) if x]]
+        candidate_artist = candidate_artist_variants[0]
         search_text = _candidate_search_text(candidate)
         search_tokens = candidate_tokens.get(candidate["id"]) or _tokens(search_text)
 
         title_score = 0.0
+        title_queries = [query_title, *[_normalize_for_matching(x) for x in model_title_aliases]]
         if query_title and confidence_title >= 0.35:
-            title_score = max(fuzz.token_sort_ratio(query_title, candidate_title), fuzz.partial_ratio(query_title, candidate_title)) / 100
+            title_score = max((max(fuzz.token_sort_ratio(q, variant), fuzz.partial_ratio(q, variant)) / 100 for q in title_queries if q for variant in candidate_title_variants if variant), default=0.0)
         alt_title_score = 0.0
         for alt in alt_candidates:
             alt_title = _normalize_for_matching((alt or {}).get("title") or "")
@@ -793,8 +802,9 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
         title_score = max(title_score, alt_title_score * 0.92)
 
         artist_score = 0.0
+        artist_queries = [query_artist, *[_normalize_for_matching(x) for x in model_artist_aliases]]
         if query_artist and candidate_artist and confidence_artist >= 0.35:
-            artist_score = fuzz.token_sort_ratio(query_artist, candidate_artist) / 100
+            artist_score = max((fuzz.token_sort_ratio(q, variant) / 100 for q in artist_queries if q for variant in candidate_artist_variants if variant), default=0.0)
 
         clue_score = 0.0
         if clue_tokens:
@@ -844,7 +854,7 @@ def rank_catalog_candidates(vision: dict, candidates: List[dict], hall_hint: Opt
         # the weighted metadata score alone. This is deterministic catalog
         # reconciliation, not a threshold change: require both fields and a
         # strong artist agreement before promoting the score.
-        if query_title and query_artist and query_title == candidate_title and artist_score >= 0.75:
+        if query_title and query_artist and any(query_title == variant for variant in candidate_title_variants) and artist_score >= 0.75:
             score = max(score, 0.82 + priority_score)
         elif title_score >= 0.82 and not query_artist:
             score = max(score, 0.58 + priority_score)
