@@ -162,9 +162,12 @@ export type EventName =
   | "share_completed"
   | "pwa_install_cta_shown"
   | "pwa_install_cta_clicked"
+  | "pwa_install_prompt_shown"
+  | "pwa_install_started"
   | "pwa_install_prompt_accepted"
   | "pwa_install_prompt_dismissed"
   | "pwa_installed"
+  | "pwa_standalone_open"
   | "pwa_ios_instructions_shown"
   | "comparison_set_viewed"
   | "comparison_surprise_clicked";

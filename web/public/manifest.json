@@ -1,8 +1,8 @@
 {
-  "name": "ELYIO — Point. Discover. Understand.",
+  "name": "ELYIO",
   "short_name": "ELYIO",
   "description": "Point your camera at an artwork. ELYIO is your AI museum companion for discovering its story.",
-  "start_url": "/visit",
+  "start_url": "/en",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

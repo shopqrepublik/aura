@@ -90,7 +90,11 @@ export default function HomeScreen({
   preload(proxyImageUrl(HERO_IMAGE_URL), { as: "image", fetchPriority: "high" });
 
   const isReturning = state.visitStarted;
-  const shouldShowIosInstallHint = isIosSafari && !installed && !iosInstallDismissed;
+  // Installation promotion follows demonstrated value, never first-use entry.
+  // A completed recognition adds an artwork to seenArtworks; mission progress
+  // is also a valid returning-visitor signal.
+  const hasDemonstratedValue = seenArtworks.length > 0;
+  const shouldShowIosInstallHint = hasDemonstratedValue && isIosSafari && !installed && !iosInstallDismissed;
   const activeMuseumLocation = museumLocationLabel(activeMuseum);
   const activeMuseumExperience = tt(museumExperienceKey(activeMuseum), state.locale);
   const featuredMuseums = useMemo(() => {
@@ -349,7 +353,7 @@ export default function HomeScreen({
         </button>
       </div>
 
-      {(canPromptInstall || shouldShowIosInstallHint) && (
+      {(hasDemonstratedValue && (canPromptInstall || shouldShowIosInstallHint)) && (
         <div
           className="relative z-10 mt-3 mx-6 rounded-[16px] px-4 py-3 flex items-start gap-3"
           style={{

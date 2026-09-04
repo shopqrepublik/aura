@@ -37,6 +37,7 @@ export function usePwaInstall() {
   const shownRef = useRef(false);
 
   useEffect(() => {
+    if (isStandaloneDisplayMode()) track("pwa_standalone_open");
     const media = window.matchMedia?.("(display-mode: standalone)");
     const onDisplayModeChange = () => setInstalled(isStandaloneDisplayMode());
     media?.addEventListener?.("change", onDisplayModeChange);
@@ -47,7 +48,7 @@ export function usePwaInstall() {
       setInstallPrompt(event as BeforeInstallPromptEvent);
       if (!shownRef.current) {
         shownRef.current = true;
-        track("pwa_install_cta_shown");
+        track("pwa_install_prompt_shown");
       }
     };
 
@@ -70,7 +71,7 @@ export function usePwaInstall() {
 
   const promptInstall = useCallback(async () => {
     if (!installPrompt || installed) return;
-    track("pwa_install_cta_clicked");
+    track("pwa_install_started");
     trackGoogleEvent("pwa_install_prompt");
     await installPrompt.prompt();
     const choice = await installPrompt.userChoice;
