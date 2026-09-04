@@ -1945,6 +1945,11 @@ class RecognizeResponse(BaseModel):
     confidence: float
     alternatives: List[str] = []
     recognition_mode: Optional[str] = None  # VISION_READY | VISION_PLUS_ASSET
+    # Explicit provenance: catalog rows are grounded; AI results are useful
+    # identifications without an invented artwork ID.
+    result_source: Optional[str] = None  # catalog | ai
+    catalog_match_status: Optional[str] = None  # matched | not_matched | ambiguous | not_attempted
+    confidence_band: Optional[str] = None  # HIGH | MEDIUM | LOW
     vision: Optional[dict] = None
     top_candidates: List[dict] = []
     stage2_verifier: Optional[dict] = None
@@ -2386,7 +2391,10 @@ def recognize(
         response.recognition_attempt_id = attempt_id
         attempt.completed_at = datetime.now(timezone.utc)
         attempt.terminal_outcome = outcome
-        if outcome == "uncataloged_result":
+        if outcome == "ai_result":
+            attempt.engine_outcome = "AI_IDENTIFIED_CATALOG_NOT_MATCHED"
+            attempt.visitor_resolution = "GENERATED_RESULT"
+        elif outcome == "uncataloged_result":
             attempt.engine_outcome = "UNCATALOGED_IDENTIFIED"
             attempt.visitor_resolution = "GENERATED_RESULT"
         elif response.status == "matched":
@@ -2501,7 +2509,31 @@ def recognize(
                 recognition_attempt_id=attempt_id,
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
+            # Catalog reconciliation is enrichment, not the definition of
+            # recognition.  A structurally valid, high-confidence AI
+            # identification remains useful even when no catalog row matched.
+            ai_title = (recognized_but_not_cataloged or {}).get("title") if recognized_but_not_cataloged else None
+            ai_artist = (recognized_but_not_cataloged or {}).get("artist") if recognized_but_not_cataloged else None
+            ai_confidence = float((vision or {}).get("confidence", confidence) or confidence)
+            title_confidence = float((vision or {}).get("confidence_title", ai_confidence) or ai_confidence)
+            artist_confidence = float((vision or {}).get("confidence_artist", ai_confidence) or ai_confidence)
+            ai_high = bool(
+                recognized_but_not_cataloged
+                and ai_title
+                and ai_artist
+                and (ai_confidence >= 0.85 or (title_confidence >= 0.85 and artist_confidence >= 0.85))
+                and (vision or {}).get("recognized", True) is not False
+            )
+            if ai_high:
+                _log_recognition_event("recognition.response_ai_success", recognition_request_id=recognition_request_id, museum_context_present=bool(req.museum_id), identified_title_present=True, identified_artist_present=True, confidence_band="HIGH", catalog_match_status="not_matched", result_source="ai", http_status=200)
+                return finish(RecognizeResponse(status="matched", confidence=ai_confidence,
+                                          recognition_mode="ai_fallback", result_source="ai",
+                                          catalog_match_status="not_matched", confidence_band="HIGH",
+                                          recognized_but_not_cataloged=recognized_but_not_cataloged,
+                                          vision=vision, top_candidates=top_candidates,
+                                          stage2_verifier=stage2_verifier), "ai_result")
             return finish(RecognizeResponse(status="no_match", confidence=confidence,
+                                      result_source=None, catalog_match_status="not_matched",
                                       recognized_but_not_cataloged=recognized_but_not_cataloged,
                                       vision=vision, top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier), "uncataloged_result" if recognized_but_not_cataloged else "no_match")
@@ -2520,7 +2552,7 @@ def recognize(
                 latency_ms=round((time.perf_counter() - started) * 1000),
             )
             return finish(RecognizeResponse(status="matched", artwork_id=artwork_id, confidence=confidence,
-                                      recognition_mode=recognition_mode, vision=vision,
+                                      recognition_mode=recognition_mode, result_source="catalog", catalog_match_status="matched", confidence_band="HIGH", vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier), "success")
         elif confidence >= confidence_review:
@@ -2537,7 +2569,7 @@ def recognize(
             )
             return finish(RecognizeResponse(status="needs_confirmation", artwork_id=artwork_id,
                                       confidence=confidence, alternatives=alternatives,
-                                      recognition_mode=recognition_mode, vision=vision,
+                                      recognition_mode=recognition_mode, result_source="catalog", catalog_match_status="matched", confidence_band="MEDIUM", vision=vision,
                                       top_candidates=top_candidates,
                                       stage2_verifier=stage2_verifier), "success")
         else:

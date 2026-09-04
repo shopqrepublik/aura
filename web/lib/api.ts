@@ -36,6 +36,9 @@ export interface RecognizeResponse {
   confidence: number;
   alternatives: string[];
   recognition_mode?: string | null;
+  result_source?: "catalog" | "ai" | null;
+  catalog_match_status?: "matched" | "not_matched" | "ambiguous" | "not_attempted" | null;
+  confidence_band?: "HIGH" | "MEDIUM" | "LOW" | null;
   recognition_attempt_id?: string | null;
   vision?: Record<string, unknown> | null;
   top_candidates?: unknown[];
