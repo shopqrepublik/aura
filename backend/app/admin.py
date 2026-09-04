@@ -92,7 +92,7 @@ MEANINGFUL_CLIENT_EVENTS = {
     "museum_selected", "visit_started", "scan_attempt", "result_viewed", "artwork_viewed",
     "artwork_added", "favorite_added", "progress_viewed", "recap_viewed", "share_completed",
 }
-SUCCESSFUL_RECOGNITION_OUTCOMES = {"success", "uncataloged_result"}
+SUCCESSFUL_RECOGNITION_OUTCOMES = {"success", "uncataloged_result", "ai_result"}
 FAILED_RECOGNITION_OUTCOMES = {"no_match", "invalid_image", "timeout", "failed"}
 _event_rate_buckets: Dict[str, deque[float]] = defaultdict(deque)
 _event_rate_lock = threading.Lock()
