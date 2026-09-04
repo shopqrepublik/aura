@@ -95,7 +95,7 @@ for (let i = 0; i < 1000 && !founder; i += 1) founder = engine.resolveV22Set(con
 assert(founder && founder.count === 1 && founder.category === "easter_egg", "Founder must be appended outside math at ~1% eligibility");
 
 const coreReadiness = engine.catalogReadiness();
-assert(coreReadiness.ready === false && coreReadiness.eligibleCount === 6, "Wave 1 remains fail-closed until all mode/city readiness gates pass");
+assert(coreReadiness.ready === true && coreReadiness.eligibleCount === 15, "Wave 1 must satisfy the launch readiness matrix");
 
 const remoteItems = engine.COMPARISON_V22_REMOTE_IDS.map((id) => ref(id, "pop", ["normal"], ["global"], 100));
 const validPack = { version: "1.0", schema_version: "2.2", pack_id: "test-pack", expires_at: "2030-01-01", allowlist: true, source_required: true, comparisons: remoteItems };

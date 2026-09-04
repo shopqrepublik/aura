@@ -255,22 +255,22 @@
         "global"
       ],
       "rarity": 1,
-      "original_currency": "USD",
-      "original_price": "$1,200",
-      "calculation_price_eur": 1104,
+      "original_currency": "EUR",
+      "original_price": "1,479",
+      "calculation_price_eur": 1479,
       "source_name": "Apple France",
       "source_url": "https://www.apple.com/fr/newsroom/2024/09/apple-debuts-iphone-16-pro-iphone-16-pro-max/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "NEEDS_DECISION",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
-        "en": "iPhone 16 Pro Max",
-        "fr": null,
-        "zh-Hans": null
+        "en": "iPhone 16 Pro Max phones",
+        "fr": "iPhone 16 Pro Max",
+        "zh-Hans": "iPhone 16 Pro Max 手机"
       },
-      "source_price": "€1,479 launch price for iPhone 16 Pro Max; supplied $1,200 differs materially",
+      "source_price": "€1,479 Apple France launch retail price for iPhone 16 Pro Max",
       "punchlines": []
     },
     {
@@ -519,14 +519,14 @@
       ],
       "rarity": 1,
       "original_currency": "EUR",
-      "original_price": "€5.5",
-      "calculation_price_eur": 5.5,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "original_price": "6.95",
+      "calculation_price_eur": 6.95,
+      "source_name": "McDonald's France / representative 2026 menu research",
+      "source_url": "https://www.mcdonalds.fr/nos-produits/nos-burgers/big-mac",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "punchlines": [
         {
@@ -543,9 +543,10 @@
       ],
       "labels": {
         "en": "Big Macs",
-        "fr": null,
-        "zh-Hans": null
-      }
+        "fr": "Big Mac",
+        "zh-Hans": "巨无霸汉堡"
+      },
+      "source_price": "€6.95 representative Big Mac sandwich price observed in France in 2026; franchise pricing varies"
     },
     {
       "id": "croissant_paris",
@@ -564,14 +565,14 @@
       ],
       "rarity": 1,
       "original_currency": "EUR",
-      "original_price": "€1.8",
+      "original_price": "1.80",
       "calculation_price_eur": 1.8,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Brigat Paris",
+      "source_url": "https://brigat.paris/categorie-produit/viennoiseries/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "punchlines": [
         {
@@ -610,9 +611,10 @@
       ],
       "labels": {
         "en": "Paris croissants",
-        "fr": null,
-        "zh-Hans": null
-      }
+        "fr": "croissants parisiens",
+        "zh-Hans": "巴黎可颂"
+      },
+      "source_price": "€1.80 plain croissant at 6 Rue du Pas de la Mule, Paris 3e"
     },
     {
       "id": "specialty_coffee",
@@ -631,20 +633,21 @@
       ],
       "rarity": 1,
       "original_currency": "EUR",
-      "original_price": "€6",
+      "original_price": "6",
       "calculation_price_eur": 6,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "source_name": "Le Monde specialty-coffee market report",
+      "source_url": "https://www.lemonde.fr/economie/article/2024/11/03/les-neocafes-connaissent-un-essor-sans-precedent_6373936_3234.html",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
         "en": "Specialty coffees",
-        "fr": null,
-        "zh-Hans": null
+        "fr": "cafés de spécialité",
+        "zh-Hans": "精品咖啡"
       },
+      "source_price": "Around €6 for a specialty coffee drink in current Paris coffee shops",
       "punchlines": []
     },
     {
@@ -795,22 +798,22 @@
         "london"
       ],
       "rarity": 1,
-      "original_currency": "EUR",
-      "original_price": "£14",
-      "calculation_price_eur": 16.3,
-      "source_name": "Deliveroo UK",
-      "source_url": "https://deliveroo.co.uk/menu/London/london-bridge/",
+      "original_currency": "GBP",
+      "original_price": "8.50",
+      "calculation_price_eur": 9.8,
+      "source_name": "Labakery London via Deliveroo",
+      "source_url": "https://deliveroo.co.uk/menu/london/holland-park/labakery",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "NEEDS_DECISION",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
         "en": "London avocado toasts",
-        "fr": null,
-        "zh-Hans": null
+        "fr": "avocado toasts londoniens",
+        "zh-Hans": "伦敦牛油果吐司"
       },
-      "source_price": "Representative listed London avocado toast around £8.50; supplied £14 is venue-dependent",
+      "source_price": "£8.50 avocado on toast at Labakery, Holland Park",
       "punchlines": []
     },
     {
@@ -1039,21 +1042,21 @@
       ],
       "rarity": 0.9,
       "original_currency": "EUR",
-      "original_price": "€120",
-      "calculation_price_eur": 120,
-      "source_name": "Paris je t’aime / Moulin Rouge ticketing",
-      "source_url": "https://ticket.parisjetaime.com/spectacles-et-cabarets-c5/cabaret-moulin-rouge-spectacles-and-diners-spectacles-103",
+      "original_price": "110",
+      "calculation_price_eur": 110,
+      "source_name": "Moulin Rouge official reservations",
+      "source_url": "https://www.moulinrouge.fr/reservierung/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "NEEDS_DECISION",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
-        "en": "Moulin Rouge tickets",
-        "fr": null,
-        "zh-Hans": null
+        "en": "Moulin Rouge show tickets",
+        "fr": "billets pour le spectacle du Moulin Rouge",
+        "zh-Hans": "红磨坊演出票"
       },
-      "source_price": "€263+ dinner-show menus in 2026; supplied €120 show basis differs materially",
+      "source_price": "Show-only Féerie evening presentation from €110; performance/package prices vary",
       "punchlines": []
     },
     {
@@ -1105,7 +1108,7 @@
         "london"
       ],
       "rarity": 1,
-      "original_currency": "EUR",
+      "original_currency": "GBP",
       "original_price": "£80",
       "calculation_price_eur": 93,
       "source_name": "Transport for London",
@@ -1293,27 +1296,29 @@
       "base_price_original": "$250",
       "category": "city",
       "modes": [
-        "normal"
+        "normal",
+        "simple"
       ],
       "cities": [
         "newyork"
       ],
       "rarity": 1,
       "original_currency": "USD",
-      "original_price": "$250",
-      "calculation_price_eur": 230,
-      "source_name": "ELYIO Research / public market data",
-      "source_url": "",
+      "original_price": "130",
+      "calculation_price_eur": 120,
+      "source_name": "The Broadway League",
+      "source_url": "https://www.broadwayleague.com/press/press-releases/broadways-20252026-season-wraps-with-146-million-attendances-and-grosses-of-191-billion/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "REVIEW_REQUIRED",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
-        "en": "Broadway tickets",
-        "fr": null,
-        "zh-Hans": null
+        "en": "Broadway admissions",
+        "fr": "entrées à Broadway",
+        "zh-Hans": "百老汇门票"
       },
+      "source_price": "~$131 average paid admission = $1.91B gross / 14.577M attendance; fixed conversion gives €120",
       "punchlines": []
     },
     {
@@ -1625,22 +1630,22 @@
         "global"
       ],
       "rarity": 1,
-      "original_currency": "USD",
-      "original_price": "$500",
-      "calculation_price_eur": 460,
-      "source_name": "PlayStation Direct",
-      "source_url": "https://direct.playstation.com/en-us/hardware/ps5",
+      "original_currency": "EUR",
+      "original_price": "649.99",
+      "calculation_price_eur": 650,
+      "source_name": "PlayStation official blog",
+      "source_url": "https://blog.playstation.com/2026/03/27/new-price-changes-for-ps5-ps5-pro-and-playstation-portal-remote-player/",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "NEEDS_DECISION",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
-        "en": "PlayStation 5",
-        "fr": null,
-        "zh-Hans": null
+        "en": "PlayStation 5 consoles",
+        "fr": "consoles PlayStation 5",
+        "zh-Hans": "PlayStation 5 主机"
       },
-      "source_price": "$649 new PS5 (current listing); supplied $500 is below current new-console basis",
+      "source_price": "€649.99 standard PS5 European RRP effective 2 April 2026; calculation rounded to €650",
       "punchlines": []
     },
     {
@@ -1660,21 +1665,21 @@
       ],
       "rarity": 1,
       "original_currency": "EUR",
-      "original_price": "€400",
-      "calculation_price_eur": 400,
-      "source_name": "Disneyland Paris",
+      "original_price": "638",
+      "calculation_price_eur": 638,
+      "source_name": "Disneyland Paris official",
       "source_url": "https://www.disneylandparis.com/en-usd/faq/tickets-and-vacation-packages/buy-tickets-at-parks-entrance-ticket-counters",
       "verified_at": "2026-09-04",
       "valid_until": "2027-03-03",
       "review_interval_days": 180,
-      "status": "NEEDS_DECISION",
+      "status": "VERIFIED",
       "allow_remote_override": false,
       "labels": {
         "en": "Family trips to Disneyland Paris",
-        "fr": null,
-        "zh-Hans": null
+        "fr": "séjours en famille à Disneyland Paris",
+        "zh-Hans": "巴黎迪士尼家庭游"
       },
-      "source_price": "€638 for representative 2-adult/2-child one-day, two-park tickets; supplied €400 differs materially",
+      "source_price": "2 adults × €164 + 2 children × €155 = €638; one day, two parks, standard gate price",
       "punchlines": []
     },
     {

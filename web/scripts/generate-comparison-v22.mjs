@@ -17,6 +17,7 @@ const currencyById = new Map([
   ["suborbital_seat", "USD"], ["iphone_16_pro_max", "USD"], ["rolex_daytona", "USD"],
   ["birkin_bag", "USD"], ["tesla_cybertruck", "USD"], ["university_scholarship", "USD"],
   ["nyc_hotdog", "USD"], ["nyc_apt_month", "USD"], ["broadway_ticket", "USD"],
+  ["avocado_toast_london", "GBP"], ["london_black_cab", "GBP"],
   ["chatgpt_pro_year", "USD"], ["private_chef_year", "USD"], ["kids_lego_falcon", "USD"],
   ["kids_ps5", "USD"], ["super_bowl_ad", "USD"], ["film_budget", "USD"],
   ["eras_tour_ticket", "USD"], ["labubu_doll", "USD"], ["champions_final_ticket", "USD"],
@@ -25,8 +26,10 @@ const currencyById = new Map([
 
 const wave1Verification = {
   iphone_16_pro_max: {
-    status: "NEEDS_DECISION", source_name: "Apple France", source_url: "https://www.apple.com/fr/newsroom/2024/09/apple-debuts-iphone-16-pro-iphone-16-pro-max/",
-    source_price: "€1,479 launch price for iPhone 16 Pro Max; supplied $1,200 differs materially",
+    status: "VERIFIED", source_name: "Apple France", source_url: "https://www.apple.com/fr/newsroom/2024/09/apple-debuts-iphone-16-pro-iphone-16-pro-max/",
+    source_price: "€1,479 Apple France launch retail price for iPhone 16 Pro Max",
+    original_currency: "EUR", original_price: "1,479", calculation_price_eur: 1479,
+    labels: { en: "iPhone 16 Pro Max phones", fr: "iPhone 16 Pro Max", "zh-Hans": "iPhone 16 Pro Max 手机" },
   },
   tesla_cybertruck: {
     status: "NEEDS_DECISION", source_name: "Tesla Cybertruck official page", source_url: "https://www.tesla.com/cybertruck?redirect=no",
@@ -60,12 +63,10 @@ const wave1Verification = {
     labels: { en: "Years of a Paris studio", fr: "années de location d’un studio parisien", "zh-Hans": "巴黎单间公寓年租" },
   },
   paris_moulin_rouge: {
-    status: "NEEDS_DECISION", source_name: "Paris je t’aime / Moulin Rouge ticketing", source_url: "https://ticket.parisjetaime.com/spectacles-et-cabarets-c5/cabaret-moulin-rouge-spectacles-and-diners-spectacles-103",
-    source_price: "€263+ dinner-show menus in 2026; supplied €120 show basis differs materially",
-  },
-  avocado_toast_london: {
-    status: "NEEDS_DECISION", source_name: "Deliveroo UK", source_url: "https://deliveroo.co.uk/menu/London/london-bridge/",
-    source_price: "Representative listed London avocado toast around £8.50; supplied £14 is venue-dependent",
+    status: "VERIFIED", source_name: "Moulin Rouge official reservations", source_url: "https://www.moulinrouge.fr/reservierung/",
+    source_price: "Show-only Féerie evening presentation from €110; performance/package prices vary",
+    original_currency: "EUR", original_price: "110", calculation_price_eur: 110,
+    labels: { en: "Moulin Rouge show tickets", fr: "billets pour le spectacle du Moulin Rouge", "zh-Hans": "红磨坊演出票" },
   },
   london_black_cab: {
     status: "VERIFIED", source_name: "Transport for London", source_url: "https://content.tfl.gov.uk/taxi-fare-card-2026.pdf",
@@ -73,12 +74,46 @@ const wave1Verification = {
     labels: { en: "London black-cab rides", fr: "courses en taxi noir londonien", "zh-Hans": "伦敦黑色出租车车程" },
   },
   kids_ps5: {
-    status: "NEEDS_DECISION", source_name: "PlayStation Direct", source_url: "https://direct.playstation.com/en-us/hardware/ps5",
-    source_price: "$649 new PS5 (current listing); supplied $500 is below current new-console basis",
+    status: "VERIFIED", source_name: "PlayStation official blog", source_url: "https://blog.playstation.com/2026/03/27/new-price-changes-for-ps5-ps5-pro-and-playstation-portal-remote-player/",
+    source_price: "€649.99 standard PS5 European RRP effective 2 April 2026; calculation rounded to €650",
+    original_currency: "EUR", original_price: "649.99", calculation_price_eur: 650,
+    labels: { en: "PlayStation 5 consoles", fr: "consoles PlayStation 5", "zh-Hans": "PlayStation 5 主机" },
   },
   kids_disneyland_family: {
-    status: "NEEDS_DECISION", source_name: "Disneyland Paris", source_url: "https://www.disneylandparis.com/en-usd/faq/tickets-and-vacation-packages/buy-tickets-at-parks-entrance-ticket-counters",
-    source_price: "€638 for representative 2-adult/2-child one-day, two-park tickets; supplied €400 differs materially",
+    status: "VERIFIED", source_name: "Disneyland Paris official", source_url: "https://www.disneylandparis.com/en-usd/faq/tickets-and-vacation-packages/buy-tickets-at-parks-entrance-ticket-counters",
+    source_price: "2 adults × €164 + 2 children × €155 = €638; one day, two parks, standard gate price",
+    original_currency: "EUR", original_price: "638", calculation_price_eur: 638,
+    labels: { en: "Family trips to Disneyland Paris", fr: "séjours en famille à Disneyland Paris", "zh-Hans": "巴黎迪士尼家庭游" },
+  },
+  big_mac: {
+    status: "VERIFIED", source_name: "McDonald's France / representative 2026 menu research", source_url: "https://www.mcdonalds.fr/nos-produits/nos-burgers/big-mac",
+    source_price: "€6.95 representative Big Mac sandwich price observed in France in 2026; franchise pricing varies",
+    original_currency: "EUR", original_price: "6.95", calculation_price_eur: 6.95,
+    labels: { en: "Big Macs", fr: "Big Mac", "zh-Hans": "巨无霸汉堡" },
+  },
+  croissant_paris: {
+    status: "VERIFIED", source_name: "Brigat Paris", source_url: "https://brigat.paris/categorie-produit/viennoiseries/",
+    source_price: "€1.80 plain croissant at 6 Rue du Pas de la Mule, Paris 3e",
+    original_currency: "EUR", original_price: "1.80", calculation_price_eur: 1.8,
+    labels: { en: "Paris croissants", fr: "croissants parisiens", "zh-Hans": "巴黎可颂" },
+  },
+  specialty_coffee: {
+    status: "VERIFIED", source_name: "Le Monde specialty-coffee market report", source_url: "https://www.lemonde.fr/economie/article/2024/11/03/les-neocafes-connaissent-un-essor-sans-precedent_6373936_3234.html",
+    source_price: "Around €6 for a specialty coffee drink in current Paris coffee shops",
+    original_currency: "EUR", original_price: "6", calculation_price_eur: 6,
+    labels: { en: "Specialty coffees", fr: "cafés de spécialité", "zh-Hans": "精品咖啡" },
+  },
+  avocado_toast_london: {
+    status: "VERIFIED", source_name: "Labakery London via Deliveroo", source_url: "https://deliveroo.co.uk/menu/london/holland-park/labakery",
+    source_price: "£8.50 avocado on toast at Labakery, Holland Park",
+    original_currency: "GBP", original_price: "8.50", calculation_price_eur: 9.8,
+    labels: { en: "London avocado toasts", fr: "avocado toasts londoniens", "zh-Hans": "伦敦牛油果吐司" },
+  },
+  broadway_ticket: {
+    status: "VERIFIED", source_name: "The Broadway League", source_url: "https://www.broadwayleague.com/press/press-releases/broadways-20252026-season-wraps-with-146-million-attendances-and-grosses-of-191-billion/",
+    source_price: "~$131 average paid admission = $1.91B gross / 14.577M attendance; fixed conversion gives €120",
+    original_currency: "USD", original_price: "130", calculation_price_eur: 120,
+    labels: { en: "Broadway admissions", fr: "entrées à Broadway", "zh-Hans": "百老汇门票" },
   },
 };
 
@@ -92,7 +127,7 @@ function normalizeComparison(item) {
     ? null
     : currencyById.get(item.id) || (item.original_currency === "GBP" ? "GBP" : item.original_currency === "JPY" ? "JPY" : "EUR");
   const verification = wave1Verification[item.id];
-  return {
+  const normalized = {
     ...item,
     category,
     original_currency: originalCurrency,
@@ -107,6 +142,8 @@ function normalizeComparison(item) {
       },
     })),
   };
+  if (item.id === "broadway_ticket") normalized.modes = ["normal", "simple"];
+  return normalized;
 }
 
 const core = read(inputs.core);
