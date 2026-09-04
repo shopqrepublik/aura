@@ -1697,7 +1697,13 @@ def recognize_with_vision(
         # allowed to attach canonical identity.
         ordered: list[dict] = []
         metadata_first = metadata_ranked[0] if metadata_ranked else None
-        if metadata_first and float(metadata_first["score"]) >= fuzzy_threshold:
+        # In the global path metadata is retrieval evidence only.  Keep the
+        # best metadata hypothesis in the verifier shortlist even when its
+        # fuzzy score is below the institution threshold; otherwise a valid
+        # artwork with a different catalog naming convention is discarded
+        # before independent visual verification can run.  The final decision
+        # remains solely the existing verifier/confidence policy.
+        if metadata_first and (float(metadata_first["score"]) >= fuzzy_threshold or (not museum_id and GENERIC_VISUAL_RETRIEVAL_ENABLED)):
             ordered.append(metadata_first)
         for visual in visual_ranked:
             candidate = visual["candidate"]
@@ -1752,7 +1758,7 @@ def recognize_with_vision(
             ],
         }
 
-    if not match or match_score < fuzzy_threshold:
+    if not match or (match_score < fuzzy_threshold and not (not museum_id and GENERIC_VISUAL_RETRIEVAL_ENABLED)):
         if policy != "TOP_N_METADATA":
             return {  # fast path: recognized something, but nothing catalog-adjacent
                 "artwork_id": None,
