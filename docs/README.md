@@ -58,6 +58,11 @@ The current production application is ahead of `origin/main`. Production deploym
 3. [Metric definitions](analytics/METRIC_DEFINITIONS.md)
 4. [Admin Control Center](operations/ADMIN_CONTROL_CENTER.md)
 
+### Android V1
+
+1. [Canonical architecture and implementation roadmap](android/ANDROID_ARCHITECTURE.md) — audited at `b8046c8` on 2026-09-05; TWA selected with guest-first entry and no active service worker.
+2. [Current PWA status](engineering/PWA_STATUS.md) — supersedes historical caching descriptions.
+
 ### Global expansion
 
 1. [Executive global audit](ELYIO_GLOBAL_AUDIT_2026-08-23.md)
@@ -73,6 +78,7 @@ The current production application is ahead of `origin/main`. Production deploym
 |---|---|
 | Executive state | [ELYIO_GLOBAL_AUDIT_2026-08-23.md](ELYIO_GLOBAL_AUDIT_2026-08-23.md) |
 | Current architecture | [architecture/SYSTEM_OVERVIEW.md](architecture/SYSTEM_OVERVIEW.md) |
+| Android V1 | [android/ANDROID_ARCHITECTURE.md](android/ANDROID_ARCHITECTURE.md) |
 | Current/target data | [architecture/DATA_MODEL.md](architecture/DATA_MODEL.md) |
 | Recognition | [recognition/RECOGNITION_PIPELINE.md](recognition/RECOGNITION_PIPELINE.md) |
 | Value experience | [architecture/VALUE_EXPERIENCE.md](architecture/VALUE_EXPERIENCE.md) |

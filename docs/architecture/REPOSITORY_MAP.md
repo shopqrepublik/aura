@@ -14,7 +14,8 @@ Status: CURRENT.
 | `web/lib/api.ts` | Backend contracts and catalog response mapping | LIVE |
 | `web/lib/i18n.ts`, `types.ts` | Fixed three-locale UI/type contract | LIVE, global constraint |
 | `web/lib/seo-content.ts` | Explicit curated SEO museum/artwork surface | LIVE, static |
-| `web/sw-template.js`, `public/manifest.json` | PWA cache/install contract | LIVE |
+| `web/sw-template.js`, `web/public/manifest.json` | Recovery/unregister worker and install assets; no active caching worker | Source rechecked 2026-09-05; see [PWA status](../engineering/PWA_STATUS.md) |
+| `docs/android/ANDROID_ARCHITECTURE.md` | Canonical Android V1 architecture and acceptance roadmap | A1 documentation; no Android implementation yet |
 | `web/next.config.ts` | CSP, canonical redirect, noindex headers, image policy | LIVE/security-critical |
 | `backend/app/main.py` | FastAPI app, recognition/value/image/public/visit endpoints | LIVE, large monolith |
 | `backend/app/admin.py` | Event ingestion, admin auth and all metrics/control APIs | LIVE since 2026-08-21 |

@@ -23,6 +23,19 @@ const KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 const HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 export const GA_CONSENT_KEY = "elyio-google-consent";
+let consentOverride: GoogleConsentChoice | undefined;
+
+export function setAnalyticsConsent(choice: GoogleConsentChoice) {
+  consentOverride = choice;
+}
+
+export function analyticsConsent(): GoogleConsentChoice | undefined {
+  if (consentOverride) return consentOverride;
+  try {
+    const value = window.localStorage.getItem(GA_CONSENT_KEY);
+    return value === "granted" || value === "denied" ? value : undefined;
+  } catch { return undefined; }
+}
 
 export type GoogleConsentChoice = "granted" | "denied";
 export type GoogleEventName =
@@ -54,12 +67,7 @@ declare global {
 }
 
 function googleConsent(): GoogleConsentChoice | undefined {
-  try {
-    const value = window.localStorage.getItem(GA_CONSENT_KEY);
-    return value === "granted" || value === "denied" ? value : undefined;
-  } catch {
-    return undefined;
-  }
+  return analyticsConsent();
 }
 
 export function trackGoogleEvent(event: GoogleEventName, parameters: GoogleEventParameters = {}) {
@@ -351,6 +359,7 @@ export function trackSessionStartedOnce(properties?: Record<string, unknown>) {
 }
 
 export function track(event: EventName, properties?: Record<string, unknown>) {
+  if (analyticsConsent() !== "granted") return;
   ensureInit();
   if (typeof window === "undefined") return;
   let landing: Record<string, unknown> = {};

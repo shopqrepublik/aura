@@ -130,7 +130,15 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const goto = useCallback((screen: Screen) => setState((s) => persistVisitState({ ...s, screen, lastActivityAt: Date.now() })), []);
+  const goto = useCallback((screen: Screen) => {
+    if (typeof window !== "undefined") {
+      window.history.pushState({ ...(window.history.state || {}), elyioScreen: screen }, "", window.location.href);
+    }
+    setState((s) => persistVisitState({ ...s, screen, lastActivityAt: Date.now() }));
+  }, []);
+  const restoreScreen = useCallback((screen: Screen) => {
+    setState((s) => persistVisitState({ ...s, screen, lastActivityAt: Date.now() }));
+  }, []);
   const setLocale = useCallback((locale: Locale) => setState((s) => persistVisitState({ ...s, locale })), []);
   const setMode = useCallback((mode: Mode) => setState((s) => ({ ...s, mode })), []);
 
@@ -453,6 +461,7 @@ export function useElyioApp(options?: { directToScanner?: boolean; initialLocale
     seenArtworks,
     actions: {
       goto,
+      restoreScreen,
       setLocale,
       setMode,
       startVisit,
@@ -596,14 +605,33 @@ function persistVisitState(state: AppState): AppState {
       window.localStorage.removeItem(VISIT_STORAGE_KEY);
       return state;
     }
+    const storedState = {
+      ...state,
+      favorites: Array.from(state.favorites),
+      added: Array.from(state.added),
+      uncatalogedAdded: Array.from(state.uncatalogedAdded),
+    };
+    // A long visit can otherwise serialize one JPEG data URL per captured
+    // result into localStorage. Keep the current result and metadata, but
+    // remove older visitor captures once the browser record approaches a
+    // conservative 4 MB budget. Recognition itself still receives the full
+    // in-memory frame and retry remains available for the latest failure.
+    let encoded = JSON.stringify({ version: 1, state: storedState });
+    if (encoded.length > 4_000_000) {
+      for (const id of [...storedState.seen].reverse()) {
+        if (id === state.currentArtwork?.id) continue;
+        const artwork = storedState.catalogArtworks[id];
+        if (artwork?.imageSourceType === "VISITOR_CAPTURE") {
+          storedState.catalogArtworks = { ...storedState.catalogArtworks, [id]: { ...artwork, imageUrl: "" } };
+          encoded = JSON.stringify({ version: 1, state: storedState });
+          if (encoded.length <= 4_000_000) break;
+        }
+      }
+    }
+    if (encoded.length > 4_000_000) storedState.pendingRecognitionImageBase64 = null;
     const stored: StoredVisitState = {
       version: 1,
-      state: {
-        ...state,
-        favorites: Array.from(state.favorites),
-        added: Array.from(state.added),
-        uncatalogedAdded: Array.from(state.uncatalogedAdded),
-      },
+      state: storedState,
     };
     window.localStorage.setItem(VISIT_STORAGE_KEY, JSON.stringify(stored));
   } catch {

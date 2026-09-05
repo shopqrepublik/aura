@@ -128,6 +128,20 @@ export default function ElyioApp({
   const attributed = useRef(false);
 
   useEffect(() => {
+    if (!window.history.state?.elyioScreen) {
+      window.history.replaceState({ ...(window.history.state || {}), elyioScreen: state.screen }, "", window.location.href);
+    }
+    const onPopState = (event: PopStateEvent) => {
+      const screen = event.state?.elyioScreen;
+      if (screen === "home" || screen === "camera" || screen === "card" || screen === "progress" || screen === "recap") {
+        actions.restoreScreen(screen);
+      }
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [actions, state.screen]);
+
+  useEffect(() => {
     if (!directToScanner || state.visitStarted || startingVisit.current) return;
     startingVisit.current = true;
     void actions.startVisit(detection.museum?.id, detection.museum?.name, detection.museum?.city || detection.museum?.region || null);

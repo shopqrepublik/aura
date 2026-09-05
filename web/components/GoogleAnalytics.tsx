@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
   GA_CONSENT_KEY,
   GA_MEASUREMENT_ID,
+  setAnalyticsConsent,
   trackGoogleEvent,
   type GoogleConsentChoice,
 } from "@/lib/analytics";
@@ -171,7 +172,18 @@ export default function GoogleAnalytics() {
     };
   }, [enabled]);
 
-  if (!enabled || choice !== null) return null;
+  if (!enabled) return null;
+  // `choice` starts `undefined` on both server and first client render (it is
+  // only ever set from an effect, after mount) -- treat that the same as "no
+  // decision yet" and render nothing, matching the SSR output. Checking
+  // `!== null` here previously also matched `undefined` and called
+  // `localeFromPath()` (which reads `window.location`) during prerendering,
+  // crashing the Next.js static build with "window is not defined".
+  if (choice === undefined) return null;
+  if (choice !== null) {
+    const settingsLabel = localeFromPath() === "fr" ? "Paramètres de confidentialité" : localeFromPath() === "zh-hans" ? "隐私与分析设置" : "Privacy / Analytics settings";
+    return <button type="button" className="fixed bottom-3 right-3 z-50 rounded-full bg-black/70 px-3 py-2 text-xs text-white shadow" onClick={() => setChoice(null)}>{settingsLabel}</button>;
+  }
   const locale = typeof window === "undefined" ? "en" : localeFromPath();
   const copy = locale === "fr"
     ? { title: "Votre choix de confidentialité", body: "ELYIO souhaite utiliser Google Analytics pour comprendre les parcours de visite. Aucun contenu de caméra ni donnée personnelle n’est envoyé.", reject: "Refuser", accept: "Accepter" }
@@ -181,6 +193,7 @@ export default function GoogleAnalytics() {
 
   const choose = (next: GoogleConsentChoice) => {
     try { window.localStorage.setItem(GA_CONSENT_KEY, next); } catch { /* in-memory choice still applies */ }
+    setAnalyticsConsent(next);
     setChoice(next);
     updateConsent(next);
   };
