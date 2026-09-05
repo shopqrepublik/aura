@@ -42,6 +42,30 @@ Expected outputs are `android/app/build/outputs/apk/debug/app-debug.apk` and `an
 
 Verified on 2026-09-05: `assembleDebug`, `bundleRelease`, and `lint` pass. The debug APK is approximately 5.1 MB; the release AAB is approximately 1.0 MB and is signed with the local test/upload certificate. Physical-device camera and App Links verification remain open gates.
 
+## A2.5 device-test artifact (2026-09-06)
+
+The debug APK is the artifact used for device testing in A2.5, because the release keystore password (`ELYIO_RELEASE_STORE_PASSWORD`/`ELYIO_RELEASE_KEY_PASSWORD`) from the session that created `elyio-upload.keystore` was not persisted and was not available in this session; rebuilding `assembleRelease` (an installable release-signed APK, distinct from `bundleRelease`'s AAB) was not possible without it. This was an explicit, recorded decision rather than a silent fallback.
+
+Certificates verified directly from the built artifacts with `keytool -printcert -jarfile <file>` (no keystore password needed for this read-only check):
+
+| Artifact | SHA-256 | Role |
+|---|---|---|
+| `android/app/build/outputs/apk/debug/app-debug.apk` | `4C:74:24:48:38:34:6A:D3:F8:BF:6D:1A:A3:CC:DE:CA:64:0D:18:A4:6E:77:BB:4F:3A:6B:0D:47:F8:B3:06:C6` | DEVICE_TEST_CERT — Android debug key; used for the installable device-test APK. |
+| `android/app/build/outputs/bundle/release/app-release.aab` | `DD:4B:A3:82:02:06:B6:A5:0D:32:92:02:05:39:5F:DF:25:F7:8E:3B:7E:A1:D0:0E:22:0F:EE:75:A8:C3:1A:95` | UPLOAD_CERT — local `elyio-upload.keystore`; not currently installable as an APK in this session. |
+
+Production `ANDROID_ASSETLINKS_SHA256` (Vercel, `elyio` project) is set to both fingerprints above, comma-separated, so `https://www.elyio.co/.well-known/assetlinks.json` and `https://elyio.co/.well-known/assetlinks.json` list both. `PLAY_APP_SIGNING_CERT_SHA256` remains NOT AVAILABLE.
+
+### ADB install/launch (device-test APK)
+
+With a device connected and USB debugging enabled (`adb devices` shows it):
+
+```powershell
+adb install -r "D:\AURA\android\app\build\outputs\apk\debug\app-debug.apk"
+adb shell am start -n co.elyio.app/.LauncherActivity
+```
+
+Not run in this session: no physical Android device or emulator was attached to this machine.
+
 ## Signing
 
 Never commit keystores, private keys, passwords or `*.jks`/`*.keystore`. Debug uses the local Android debug key. Release references a local or CI-only keystore through Gradle properties/environment variables, for example `ELYIO_RELEASE_STORE_FILE`, `ELYIO_RELEASE_STORE_PASSWORD`, `ELYIO_RELEASE_KEY_ALIAS`, and `ELYIO_RELEASE_KEY_PASSWORD`. CI secrets must be supplied by the runner, not checked into this repository.

@@ -2,6 +2,8 @@
 
 Status: checklist prepared by A2; **NOT VERIFIED** until run on physical Android hardware. Record device model, Android version, browser/provider version, APK/AAB version, network and consent state for every case.
 
+A2.5 (2026-09-06) deployed and live-verified the web prerequisites this matrix depends on (Digital Asset Links on both `www.elyio.co` and `elyio.co`, consent alignment, PWA no-worker safety) — see `ANDROID_ARCHITECTURE.md`'s A2.5 deployment record. No row below was run on physical hardware in that session; `PHYSICAL_ANDROID_TEST = NOT VERIFIED` still applies. The device-test artifact is `android/app/build/outputs/apk/debug/app-debug.apk` (SHA-256 `4C:74:24:48:38:34:6A:D3:F8:BF:6D:1A:A3:CC:DE:CA:64:0D:18:A4:6E:77:BB:4F:3A:6B:0D:47:F8:B3:06:C6`, published in the live asset-links response above). Install with `adb install -r android\app\build\outputs\apk\debug\app-debug.apk`, launch with `adb shell am start -n co.elyio.app/.LauncherActivity`.
+
 | ID | Scenario | Expected |
 |---|---|---|
 | A | Cold launch | TWA opens `https://www.elyio.co/visit`; scanner-first; no login/location gate. |
