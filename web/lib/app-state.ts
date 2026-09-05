@@ -99,6 +99,26 @@ function eventId() {
 export function useElyioApp(options?: { directToScanner?: boolean; initialLocale?: Locale }) {
   const [state, setState] = useState<AppState>(() => ({
     ...initialState,
+    // `directToScanner` (from the route, identical on server and client --
+    // never read from localStorage here, which would reintroduce the
+    // hydration mismatch described below) starts the screen machine on
+    // "camera" instead of "home". Previously this stayed "home" until
+    // `startVisit` flipped `visitStarted`, and ElyioApp.tsx worked around
+    // that gap by rendering a *second*, separately-mounted <CameraScreen>
+    // outside the normal screen switch whenever `directToScanner &&
+    // !visitStarted`. The moment `startVisit`'s effect resolved (almost
+    // immediately, before getUserMedia's first stream even settled), that
+    // wrapper unmounted its CameraScreen and the real screen-switch mounted
+    // a brand new one in its place -- two separate getUserMedia
+    // acquisitions back to back for the same visit. iOS Safari does not
+    // reliably hand off the camera hardware that fast: the second stream's
+    // track can report live/enabled with correct `getSettings()` while the
+    // <video> element never actually decodes a visible frame, exactly the
+    // "blank blue placeholder over a technically-fine stream" symptom this
+    // fixes. Starting on "camera" directly means the *same* CameraScreen
+    // instance survives the visitStarted transition (see ElyioApp.tsx),
+    // so there is only ever one getUserMedia call on entry.
+    ...(options?.directToScanner ? { screen: "camera" as Screen } : {}),
     ...(options?.initialLocale ? { locale: options.initialLocale } : {}),
   }));
   // Recognition callbacks can outlive the render that created them (notably

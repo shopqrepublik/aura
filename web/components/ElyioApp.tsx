@@ -204,7 +204,19 @@ export default function ElyioApp({
     <main style={{ display: "contents" }}>
       <div className="fixed inset-0 flex items-center justify-center bg-[#111111] sm:p-6">
         <div className="relative w-full h-full sm:max-w-[430px] sm:h-[min(932px,100vh)] sm:rounded-[44px] sm:overflow-hidden bg-[#FAFAF9] sm:shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
-          {directToScanner && !state.visitStarted ? <CameraScreen state={{ ...state, screen: "camera" }} onCapture={actions.recognizeFrame} onGoProgress={() => actions.goto("progress")} onGoHome={() => actions.goto("home")} /> : screens}
+          {/* `useElyioApp` seeds `state.screen` to "camera" whenever
+              `directToScanner` is true, so `screens` below already renders
+              CameraScreen from the very first paint -- no separate
+              pre-visitStarted branch here. A second parallel <CameraScreen>
+              used to render in this slot while `!state.visitStarted`, then
+              get swapped for the "real" one the instant `startVisit`
+              flipped `visitStarted` (screen state unchanged), which meant
+              two separate getUserMedia acquisitions in quick succession for
+              one visit -- the root cause of the iOS Safari blank-preview
+              bug (stream/track reported live, video never painted a
+              frame). One CameraScreen instance now survives that
+              transition untouched. */}
+          {screens}
           {directToScanner && state.visitStarted && !state.museumId && detection.status === "manual-prompt" && detection.museums.length > 0 && <OptionalMuseumPicker locale={state.locale} museums={detection.museums} onSelect={(museum) => { actions.setMuseumContext(museum.id, museum.name, museum.city || museum.region || null); track("museum_selected", { museum_id: museum.id, source: "scanner_optional" }); }} />}
         </div>
       </div>

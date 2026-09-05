@@ -40,25 +40,50 @@ export default function CameraScreen({
     if (preview) return;
     let stream: MediaStream | null = null;
     let cancelled = false;
+    const video = videoRef.current;
 
-    navigator.mediaDevices
-      ?.getUserMedia({ video: { facingMode: "environment" } })
-      .then((s) => {
-        if (cancelled) {
-          s.getTracks().forEach((t) => t.stop());
+    async function acquire() {
+      if (!navigator.mediaDevices?.getUserMedia) {
+        setHasCamera(false);
+        return;
+      }
+      let s: MediaStream;
+      try {
+        // `{ ideal: "environment" }`, not a bare/exact value -- some
+        // devices/browsers throw OverconstrainedError for an exact rear-lens
+        // request even when a usable camera exists. Fall back to any
+        // camera rather than leaving the scanner permanently dead.
+        s = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: false });
+      } catch {
+        try {
+          s = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        } catch {
+          if (!cancelled) setHasCamera(false);
           return;
         }
-        stream = s;
-        // videoRef is safe to use unconditionally now — the <video> element
-        // is always mounted (see render below), never conditionally swapped
-        // in after this resolves, which used to leave the ref null here.
-        if (videoRef.current) {
-          videoRef.current.srcObject = s;
-          videoRef.current.play().catch(() => {});
-        }
-        setHasCamera(true);
-      })
-      .catch(() => setHasCamera(false));
+      }
+      if (cancelled) {
+        s.getTracks().forEach((t) => t.stop());
+        return;
+      }
+      stream = s;
+      // videoRef is safe to use unconditionally now — the <video> element
+      // is always mounted (see render below), never conditionally swapped
+      // in after this resolves, which used to leave the ref null here.
+      if (video) {
+        video.srcObject = s;
+        const tryPlay = () => video.play().catch(() => {});
+        tryPlay();
+        // Some mobile browsers (notably iOS Safari) can reject the first
+        // play() call made immediately after srcObject assignment, before
+        // the track has actually negotiated a frame size. Retrying once
+        // metadata is known is a normal recovery step, not a redesign.
+        video.addEventListener("loadedmetadata", tryPlay, { once: true });
+      }
+      setHasCamera(true);
+    }
+
+    void acquire();
 
     return () => {
       cancelled = true;
