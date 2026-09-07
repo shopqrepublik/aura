@@ -19,39 +19,39 @@ const features = [
 ] as const;
 
 const museums = [
-  ["Musée Carnavalet", "History of Paris"],
-  ["Musée de Cluny", "Medieval art and artifacts"],
-  ["Musée de l'Armée", "Military history at Les Invalides"],
-  ["Musée du quai Branly — Jacques Chirac", "Non-Western arts and cultures"],
-  ["Musée Guimet", "Asian art collection"],
-  ["Musée Picasso Paris", "Picasso's life and work"],
-  ["Musée Rodin", "Sculpture garden and studio"],
-  ["Petit Palais", "Fine arts from antiquity to the 1920s"],
+  ["Musée Carnavalet", "History of Paris", "musee-carnavalet"],
+  ["Musée de Cluny", "Medieval art and artifacts", "musee-de-cluny"],
+  ["Musée de l'Armée", "Military history at Les Invalides", "musee-de-l-armee"],
+  ["Musée du quai Branly — Jacques Chirac", "Non-Western arts and cultures", "musee-du-quai-branly-jacques-chirac"],
+  ["Musée Guimet", "Asian art collection", "musee-guimet"],
+  ["Musée Picasso Paris", "Picasso's life and work", "musee-picasso-paris"],
+  ["Musée Rodin", "Sculpture garden and studio", "musee-rodin"],
+  ["Petit Palais", "Fine arts from antiquity to the 1920s", "petit-palais"],
 ] as const;
 
 const usagePrimary = [
-  ["01", "PARIS", ["Musée du Louvre", "Musée d'Orsay", "Musée de l'Orangerie"]],
-  ["02", "LONDON", ["National Gallery", "Victoria and Albert Museum"]],
-  ["03", "NEW YORK", ["The Metropolitan Museum of Art"]],
-  ["04", "AMSTERDAM", ["Rijksmuseum"]],
-  ["05", "VIENNA", ["Kunsthistorisches Museum"]],
-  ["06", "LOS ANGELES", ["Getty"]],
+  ["01", "PARIS", [["Musée du Louvre", "musee-du-louvre"], ["Musée d'Orsay", "musee-d-orsay"], ["Musée de l'Orangerie", "musee-de-l-orangerie"]]],
+  ["02", "LONDON", [["National Gallery", "national-gallery-london"], ["Victoria and Albert Museum", "va-london"]]],
+  ["03", "NEW YORK", [["The Metropolitan Museum of Art", "the-met"]]],
+  ["04", "AMSTERDAM", [["Rijksmuseum", "rijksmuseum"]]],
+  ["05", "VIENNA", [["Kunsthistorisches Museum", "khm-vienna"]]],
+  ["06", "LOS ANGELES", [["Getty", "getty"]]],
 ] as const;
 
 const usageSecondary = [
-  ["BERLIN", "Gemäldegalerie, Staatliche Museen zu Berlin"],
-  ["MUNICH", "Alte Pinakothek"],
-  ["COPENHAGEN", "SMK — Statens Museum for Kunst"],
-  ["STOCKHOLM", "Nordiska Museet"],
-  ["PRINCETON", "Princeton University Art Museum"],
-  ["CLEVELAND", "Cleveland Museum of Art"],
-  ["WASHINGTON", "National Gallery of Art"],
-  ["NEW HAVEN", "Yale University Art Gallery"],
+  ["BERLIN", "Gemäldegalerie, Staatliche Museen zu Berlin", "gemaldegalerie-berlin"],
+  ["MUNICH", "Alte Pinakothek", "alte-pinakothek"],
+  ["COPENHAGEN", "SMK — Statens Museum for Kunst", "smk-copenhagen"],
+  ["STOCKHOLM", "Nordiska Museet", "nordiska-museet"],
+  ["PRINCETON", "Princeton University Art Museum", "princeton"],
+  ["CLEVELAND", "Cleveland Museum of Art", "cleveland"],
+  ["WASHINGTON", "National Gallery of Art", "nga-washington"],
+  ["NEW HAVEN", "Yale University Art Gallery", "yale-new-haven"],
 ] as const;
 
-const usageIndex: ReadonlyArray<readonly [string, string, readonly string[]]> = [
+const usageIndex: ReadonlyArray<readonly [string, string, ReadonlyArray<readonly [string, string]>]> = [
   ...usagePrimary,
-  ...usageSecondary.map(([city, name], index) => [String(index + 7).padStart(2, "0"), city, [name]] as const),
+  ...usageSecondary.map(([city, name, slug], index) => [String(index + 7).padStart(2, "0"), city, [[name, slug]]] as const),
 ];
 
 function localizedMuseumDescription(name: string, locale: "fr" | "zh-hans", fallback: string): string {
@@ -198,13 +198,13 @@ export default function LandingPage({ locale }: { locale: SeoLocale }) {
             <div className="landing-coverage-heading"><div><p className="landing-eyebrow">Museum coverage</p><h2>Curated where we know.<br />Useful wherever you go.</h2></div><p>ELYIO combines a growing catalog of museum knowledge with AI that stays useful beyond it.</p></div>
             <div className="landing-curated-label"><b>CURATED COVERAGE</b><span>3 LIVE IN PARIS · LONDON IN TESTING</span></div>
             <div className="landing-curated-primary">
-              <article><small>01 · PARIS</small><h3>Musée du Louvre</h3><span>LIVE</span><p>Curated catalog</p></article>
-              <article><small>02 · PARIS</small><h3>Musée d&apos;Orsay</h3><span>LIVE</span><p>Curated catalog</p></article>
-              <article><small>03 · PARIS</small><h3>Musée de l&apos;Orangerie</h3><span>LIVE</span><p>Curated catalog</p></article>
-              <article className="testing"><small>04 · LONDON</small><h3>National Gallery</h3><span>IN TESTING</span><p>Guide + AI fallback</p></article>
+              <article><small>01 · PARIS</small><h3><Link href={`/${locale}/museums/musee-du-louvre`}>Musée du Louvre</Link></h3><span>LIVE</span><p>Curated catalog</p></article>
+              <article><small>02 · PARIS</small><h3><Link href={`/${locale}/museums/musee-d-orsay`}>Musée d&apos;Orsay</Link></h3><span>LIVE</span><p>Curated catalog</p></article>
+              <article><small>03 · PARIS</small><h3><Link href={`/${locale}/museums/musee-de-l-orangerie`}>Musée de l&apos;Orangerie</Link></h3><span>LIVE</span><p>Curated catalog</p></article>
+              <article className="testing"><small>04 · LONDON</small><h3><Link href={`/${locale}/museums/national-gallery-london`}>National Gallery</Link></h3><span>IN TESTING</span><p>Guide + AI fallback</p></article>
             </div>
-            <div className="landing-paris-index"><p className="landing-index-label">More Paris guides</p><div>{museums.map(([name,body]) => <article key={name}><h3>{name}</h3><span>{body}</span></article>)}</div></div>
-            <div className="landing-global-index"><div className="landing-global-heading"><p className="landing-index-label">Also explored · beyond curated</p><div className="landing-usage-stats"><b>17 <small>MUSEUMS</small></b><b>14 <small>CITIES</small></b><b>8 <small>COUNTRIES</small></b></div><p>Usage footprint reflects museums where visitors have already used ELYIO. Curated catalog status is shown separately.</p></div><div className="landing-city-index">{usageIndex.map(([number,city,names]) => <article key={city}><b>{number} · {city}</b><span>{names.join(" · ")}</span></article>)}</div></div>
+            <div className="landing-paris-index"><p className="landing-index-label">More Paris guides</p><div>{museums.map(([name,body,slug]) => <article key={name}><h3><Link href={`/${locale}/museums/${slug}`}>{name}</Link></h3><span>{body}</span></article>)}</div></div>
+            <div className="landing-global-index"><div className="landing-global-heading"><p className="landing-index-label">Also explored · beyond curated</p><div className="landing-usage-stats"><b>17 <small>MUSEUMS</small></b><b>14 <small>CITIES</small></b><b>8 <small>COUNTRIES</small></b></div><p>Usage footprint reflects museums where visitors have already used ELYIO. Curated catalog status is shown separately.</p></div><div className="landing-city-index">{usageIndex.map(([number,city,names]) => <article key={city}><b>{number} · {city}</b><span>{names.map(([name,slug],i) => <span key={slug}>{i>0 && " · "}<Link href={`/${locale}/museums/${slug}`}>{name}</Link></span>)}</span></article>)}</div></div>
             <div className="landing-usage-note"><p>These aren&apos;t integrations. They&apos;re museums where visitors have already explored with ELYIO.</p><small>ELYIO is an independent visitor product and is not affiliated with or endorsed by the museums listed.</small></div>
           </div>
         </section>
@@ -240,7 +240,7 @@ function LocalizedLandingPage({ locale }: { locale: "fr" | "zh-hans" }) {
     <section className="landing-steps landing-container"><h2>{c.stepsTitle}</h2><div className="landing-step-grid">{c.steps.map(([n,t,b])=><article key={n}><strong>{n}</strong><h3>{t}</h3><p>{b}</p></article>)}</div></section>
     <section className="landing-experience landing-container"><div className="landing-experience-phone"><div className="landing-phone"><div className="landing-phone-island" /><div className="landing-phone-image"><div className="landing-result-location">Eugène Delacroix, 1830<br /><span>Musée du Louvre — Denon</span></div></div><div className="landing-tabs"><b>{c.story}</b><span>{c.details}</span><span>{c.value}</span></div><h3>La Liberté guidant le peuple</h3><p>{fr ? "Delacroix transforme un soulèvement en une allégorie toujours vivante." : "德拉克罗瓦把街头起义变成至今仍在流传的寓言。"}</p><p className="landing-why">✦ <b>{c.why}</b> {fr ? "La liberté comme action." : "自由是一种行动。"}</p><div className="landing-value-card"><small>{c.scale} <i>{c.notForSale}</i></small><b>{fr ? "Échelle de démonstration : 100 M€" : "示例尺度：1亿欧元"}</b>{comparisons.map(x=><span key={x.referenceId}>{x.icon} &nbsp;{x.shortSentence}</span>)}</div><div className="landing-scan-again">{c.scanAgain}</div></div></div><div className="landing-experience-copy"><h2>{c.expTitle[0]}<br />{c.expTitle[1]}</h2><p>{c.expBody}</p><div className="landing-feature-list">{c.features.map(([i,t,b])=><article key={t}><span>{i}</span><div><h3>{t}</h3><p>{b}</p></div></article>)}</div></div></section>
     <section className="landing-hybrid landing-container"><h2>{c.hybridTitle[0]}<br />{c.hybridTitle[1]}</h2><p>{c.hybridBody}</p><div className="landing-hybrid-grid"><article><small><i className="green" /> {c.catalog}</small><h3>{c.catalogTitle}</h3><ul><li>{fr ? "Louvre — peintures, sculptures et objets accompagnés" : "卢浮宫：绘画、雕塑与器物导览"}</li><li>{fr ? "Orsay, Orangerie — reconnaissance et secours IA" : "奥赛、橘园：识别与 AI 备用"}</li><li>{fr ? "Indices visuels, pas seulement du texte" : "视觉线索，而不只是文字"}</li></ul></article><article><small><i className="gold" /> {c.fallback}</small><h3>{c.fallbackTitle}</h3><p>{fr ? "Même hors catalogue, ELYIO explique ce que vous voyez, clairement signalé comme aperçu IA." : "即使作品不在目录中，ELYIO 也会解释你看到的内容，并清楚标注为 AI 视角。"}</p><div className="landing-note">{fr ? "Aucune donnée vendue, aucune sollicitation de galerie." : "不出售数据，不向画廊推销。"}</div></article></div></section>
-    <section className="landing-coverage"><div className="landing-container"><div className="landing-coverage-ticker"><span>{c.proof}</span><p>Louvre <i>·</i> The Met <i>·</i> Rijksmuseum <i>·</i> National Gallery <em>· +9</em></p></div><div className="landing-coverage-heading"><div><p className="landing-eyebrow">{c.coverage}</p><h2>{c.coverageTitle[0]}<br />{c.coverageTitle[1]}</h2></div><p>{c.coverageBody}</p></div><div className="landing-curated-label"><b>{fr ? "COUVERTURE CURATÉE" : "精选覆盖"}</b><span>{fr ? "3 EN DIRECT À PARIS · LONDRES EN TEST" : "巴黎 3 家已上线 · 伦敦测试中"}</span></div><div className="landing-curated-primary"><article><small>01 · PARIS</small><h3>Musée du Louvre</h3><span>{fr ? "EN DIRECT" : "已上线"}</span><p>{fr ? "Catalogue curaté" : "精选目录"}</p></article><article><small>02 · PARIS</small><h3>Musée d’Orsay</h3><span>{fr ? "EN DIRECT" : "已上线"}</span><p>{fr ? "Catalogue curaté" : "精选目录"}</p></article><article><small>03 · PARIS</small><h3>Musée de l’Orangerie</h3><span>{fr ? "EN DIRECT" : "已上线"}</span><p>{fr ? "Catalogue curaté" : "精选目录"}</p></article><article className="testing"><small>04 · LONDON</small><h3>National Gallery</h3><span>{fr ? "EN TEST" : "测试中"}</span><p>{fr ? "Guide + secours IA" : "指南 + AI 备用"}</p></article></div><div className="landing-paris-index"><p className="landing-index-label">{fr ? "Autres guides parisiens" : "更多巴黎指南"}</p><div>{museums.map(([name,body])=><article key={name}><h3>{name}</h3><span>{localizedMuseumDescription(name, locale, body)}</span></article>)}</div></div><div className="landing-global-index"><div className="landing-global-heading"><p className="landing-index-label">{fr ? "Également explorés · au-delà du catalogue" : "也曾探索 · 超越精选目录"}</p><div className="landing-usage-stats"><b>17 <small>{fr ? "MUSÉES" : "博物馆"}</small></b><b>14 <small>{fr ? "VILLES" : "城市"}</small></b><b>8 <small>{fr ? "PAYS" : "国家"}</small></b></div><p>{fr ? "Cette présence reflète les musées déjà explorés par des visiteurs avec ELYIO. Le statut du catalogue est indiqué séparément." : "这些足迹代表访客已经用 ELYIO 探索过的博物馆，精选目录状态另行标注。"}</p></div><div className="landing-city-index">{usageIndex.map(([number,city,names])=><article key={city}><b>{number} · {city}</b><span>{names.join(" · ")}</span></article>)}</div></div><div className="landing-usage-note"><p>{fr ? "Des musées déjà explorés avec ELYIO." : "这些博物馆已经有人用 ELYIO 探索过。"}</p><small>{fr ? "ELYIO est un produit indépendant, sans affiliation aux musées cités." : "ELYIO 是独立产品，与所列博物馆没有隶属或背书关系。"}</small></div></div></section>
+    <section className="landing-coverage"><div className="landing-container"><div className="landing-coverage-ticker"><span>{c.proof}</span><p>Louvre <i>·</i> The Met <i>·</i> Rijksmuseum <i>·</i> National Gallery <em>· +9</em></p></div><div className="landing-coverage-heading"><div><p className="landing-eyebrow">{c.coverage}</p><h2>{c.coverageTitle[0]}<br />{c.coverageTitle[1]}</h2></div><p>{c.coverageBody}</p></div><div className="landing-curated-label"><b>{fr ? "COUVERTURE CURATÉE" : "精选覆盖"}</b><span>{fr ? "3 EN DIRECT À PARIS · LONDRES EN TEST" : "巴黎 3 家已上线 · 伦敦测试中"}</span></div><div className="landing-curated-primary"><article><small>01 · PARIS</small><h3><Link href={`/${locale}/museums/musee-du-louvre`}>Musée du Louvre</Link></h3><span>{fr ? "EN DIRECT" : "已上线"}</span><p>{fr ? "Catalogue curaté" : "精选目录"}</p></article><article><small>02 · PARIS</small><h3><Link href={`/${locale}/museums/musee-d-orsay`}>Musée d’Orsay</Link></h3><span>{fr ? "EN DIRECT" : "已上线"}</span><p>{fr ? "Catalogue curaté" : "精选目录"}</p></article><article><small>03 · PARIS</small><h3><Link href={`/${locale}/museums/musee-de-l-orangerie`}>Musée de l’Orangerie</Link></h3><span>{fr ? "EN DIRECT" : "已上线"}</span><p>{fr ? "Catalogue curaté" : "精选目录"}</p></article><article className="testing"><small>04 · LONDON</small><h3><Link href={`/${locale}/museums/national-gallery-london`}>National Gallery</Link></h3><span>{fr ? "EN TEST" : "测试中"}</span><p>{fr ? "Guide + secours IA" : "指南 + AI 备用"}</p></article></div><div className="landing-paris-index"><p className="landing-index-label">{fr ? "Autres guides parisiens" : "更多巴黎指南"}</p><div>{museums.map(([name,body,slug])=><article key={name}><h3><Link href={`/${locale}/museums/${slug}`}>{name}</Link></h3><span>{localizedMuseumDescription(name, locale, body)}</span></article>)}</div></div><div className="landing-global-index"><div className="landing-global-heading"><p className="landing-index-label">{fr ? "Également explorés · au-delà du catalogue" : "也曾探索 · 超越精选目录"}</p><div className="landing-usage-stats"><b>17 <small>{fr ? "MUSÉES" : "博物馆"}</small></b><b>14 <small>{fr ? "VILLES" : "城市"}</small></b><b>8 <small>{fr ? "PAYS" : "国家"}</small></b></div><p>{fr ? "Cette présence reflète les musées déjà explorés par des visiteurs avec ELYIO. Le statut du catalogue est indiqué séparément." : "这些足迹代表访客已经用 ELYIO 探索过的博物馆，精选目录状态另行标注。"}</p></div><div className="landing-city-index">{usageIndex.map(([number,city,names])=><article key={city}><b>{number} · {city}</b><span>{names.map(([name,slug],i)=><span key={slug}>{i>0 && " · "}<Link href={`/${locale}/museums/${slug}`}>{name}</Link></span>)}</span></article>)}</div></div><div className="landing-usage-note"><p>{fr ? "Des musées déjà explorés avec ELYIO." : "这些博物馆已经有人用 ELYIO 探索过。"}</p><small>{fr ? "ELYIO est un produit indépendant, sans affiliation aux musées cités." : "ELYIO 是独立产品，与所列博物馆没有隶属或背书关系。"}</small></div></div></section>
   </main><section className="landing-final"><div className="landing-container landing-final-inner"><div><h2>ELYIO</h2><p>{c.finalBody}</p></div><div><LandingVisitLink className="landing-final-button" href={href} sourceSurface="landing_footer">{c.visit}</LandingVisitLink><Link href={guides}>{c.allMuseums}</Link></div></div></section><footer className="landing-footer landing-container"><span>© 2026 ELYIO</span><nav><Link href={`/${locale}/privacy`}>{c.privacy}</Link><a href="https://www.instagram.com/elyo_museum/" target="_blank" rel="noopener noreferrer">Instagram</a></nav><p>{c.footer}</p></footer></div>;
 }
 

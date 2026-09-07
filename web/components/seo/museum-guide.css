@@ -1,0 +1,129 @@
+/* ELYIO Museum Guide — premium editorial design system for the /museums
+   network (index + per-museum pages). Scoped with the `mg-` prefix to avoid
+   collision with the older, thinner `seo-*` classes still used by
+   /artworks/[slug] and the 9 legacy French museum pages that keep their
+   existing copy. Loads on top of seo-nav/seo-site tokens already defined in
+   globals.css (--font-editorial, warm cream/near-black palette). */
+
+.mg-main { max-width: 1160px; margin: 0 auto; padding: 0 24px 120px; }
+.mg-breadcrumbs { font-size: 13px; margin: 28px 0 0; color: #6c665e; }
+.mg-breadcrumbs a { color: #6c665e; }
+
+/* ---------- Hero ---------- */
+.mg-hero { position: relative; padding: clamp(56px, 10vw, 108px) 0 clamp(40px, 6vw, 64px); border-bottom: 1px solid #d8d0c3; overflow: hidden; }
+.mg-hero::before { content: ""; position: absolute; inset: 0; z-index: 0; opacity: .55; pointer-events: none; }
+.mg-hero-inner { position: relative; z-index: 1; max-width: 880px; }
+.mg-kicker { text-transform: uppercase; letter-spacing: .16em; font-size: 12px; color: #6c665e; display: flex; gap: 10px; align-items: center; }
+.mg-kicker .mg-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; display: inline-block; }
+.mg-hero h1 { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; font-size: clamp(38px, 6vw, 68px); line-height: 1.04; margin: 18px 0 20px; max-width: 22ch; }
+.mg-hero-subhead { font-size: clamp(17px, 1.6vw, 21px); line-height: 1.55; max-width: 620px; color: #3a362f; }
+.mg-hero-actions { margin-top: 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.mg-cta-primary { display: inline-flex; align-items: center; background: #181714; color: #fff; padding: 14px 26px; border-radius: 999px; font-size: 15px; letter-spacing: .01em; text-decoration: none; transition: transform .15s ease; }
+.mg-cta-primary:hover { transform: translateY(-1px); }
+.mg-cta-secondary { font-size: 14px; text-decoration: underline; color: #3a362f; }
+
+/* 8 hero variants — rotate accent color + gradient angle + alignment so 17
+   museum heroes don't read as one template stamped 17 times. */
+.mg-hero[data-variant="A"] { background: linear-gradient(160deg, #f3ecdd 0%, #f7f3ec 55%); }
+.mg-hero[data-variant="A"]::before { background: radial-gradient(circle at 85% 15%, #c9a24a 0%, transparent 42%); }
+.mg-hero[data-variant="B"] { background: linear-gradient(200deg, #eee6f0 0%, #f7f3ec 60%); }
+.mg-hero[data-variant="B"]::before { background: radial-gradient(circle at 10% 85%, #8f7aa8 0%, transparent 45%); }
+.mg-hero[data-variant="C"] { background: linear-gradient(135deg, #e7eee7 0%, #f7f3ec 58%); }
+.mg-hero[data-variant="C"]::before { background: radial-gradient(circle at 75% 80%, #6f9b7c 0%, transparent 45%); }
+.mg-hero[data-variant="D"] { background: linear-gradient(210deg, #f1e3df 0%, #f7f3ec 55%); }
+.mg-hero[data-variant="D"]::before { background: radial-gradient(circle at 90% 60%, #b1503a 0%, transparent 42%); }
+.mg-hero[data-variant="E"] { background: linear-gradient(150deg, #e6ebf0 0%, #f7f3ec 58%); }
+.mg-hero[data-variant="E"]::before { background: radial-gradient(circle at 15% 20%, #4d6f8c 0%, transparent 45%); }
+.mg-hero[data-variant="F"] { background: linear-gradient(190deg, #f3e9d6 0%, #f7f3ec 55%); }
+.mg-hero[data-variant="F"]::before { background: radial-gradient(circle at 80% 90%, #c17f2e 0%, transparent 42%); }
+.mg-hero[data-variant="G"] { background: linear-gradient(170deg, #e3ece9 0%, #f7f3ec 58%); }
+.mg-hero[data-variant="G"]::before { background: radial-gradient(circle at 20% 75%, #3f7d70 0%, transparent 45%); }
+.mg-hero[data-variant="H"] { background: linear-gradient(220deg, #efe4ea 0%, #f7f3ec 55%); }
+.mg-hero[data-variant="H"]::before { background: radial-gradient(circle at 85% 25%, #94435f 0%, transparent 42%); }
+
+/* ---------- Problem / visitor reality ---------- */
+.mg-problem { padding: clamp(48px, 7vw, 76px) 0; max-width: 760px; }
+.mg-problem p { font-size: 19px; line-height: 1.7; color: #2c2924; margin: 0 0 20px; }
+.mg-problem p:last-child { margin-bottom: 0; }
+
+/* ---------- What to see ---------- */
+.mg-section-heading { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(28px, 4vw, 40px); margin: 0 0 18px; }
+.mg-lede { font-size: 18px; line-height: 1.6; color: #3a362f; max-width: 700px; margin: 0 0 32px; }
+.mg-what-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: #d8d0c3; border: 1px solid #d8d0c3; margin-bottom: clamp(56px, 8vw, 88px); }
+.mg-what-item { background: #fbf8f2; padding: 30px 28px; }
+.mg-what-item h3 { font-family: var(--font-editorial), Georgia, serif; font-size: 22px; font-weight: 500; margin: 0 0 10px; }
+.mg-what-item p { font-size: 16px; line-height: 1.6; color: #514d47; margin: 0; }
+
+/* ---------- Masterpiece stories (alternating image/text) ---------- */
+.mg-masterpieces { margin-bottom: clamp(56px, 8vw, 88px); }
+.mg-masterpiece { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 56px); align-items: center; padding: clamp(36px, 5vw, 56px) 0; border-top: 1px solid #d8d0c3; }
+.mg-masterpiece:first-of-type { border-top: none; }
+.mg-masterpiece:nth-of-type(even) { direction: rtl; }
+.mg-masterpiece:nth-of-type(even) > * { direction: ltr; }
+.mg-masterpiece-image { position: relative; aspect-ratio: 4 / 5; background: #e3ddd0; overflow: hidden; }
+.mg-masterpiece-image img { object-fit: cover; }
+.mg-masterpiece-image-placeholder { display: flex; align-items: center; justify-content: center; height: 100%; font-family: var(--font-editorial), Georgia, serif; font-size: 15px; color: #8a8377; text-align: center; padding: 20px; }
+.mg-masterpiece-eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: 11px; color: #8a8377; margin: 0 0 8px; }
+.mg-masterpiece h3 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(24px, 3vw, 32px); margin: 0 0 12px; }
+.mg-masterpiece-hook { font-size: 18px; line-height: 1.55; color: #181714; margin: 0 0 14px; }
+.mg-masterpiece-context { font-size: 16px; line-height: 1.65; color: #514d47; margin: 0; }
+
+/* ---------- Explore / self-guided panel ---------- */
+.mg-explore { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 48px); padding: clamp(44px, 6vw, 72px) clamp(28px, 4vw, 48px); background: #22201c; color: #f7f3ec; margin-bottom: clamp(56px, 8vw, 88px); border-radius: 4px; }
+.mg-explore h3 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: 24px; margin: 0 0 12px; }
+.mg-explore p { font-size: 16px; line-height: 1.65; color: #d9d4c8; margin: 0; }
+
+/* ---------- Comparison ---------- */
+.mg-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; background: #d8d0c3; border: 1px solid #d8d0c3; margin-bottom: clamp(56px, 8vw, 88px); }
+.mg-comparison-col { background: #fbf8f2; padding: 28px; }
+.mg-comparison-col h4 { text-transform: uppercase; letter-spacing: .1em; font-size: 12px; color: #6c665e; margin: 0 0 16px; }
+.mg-comparison-col ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.mg-comparison-col li { font-size: 15px; line-height: 1.5; color: #2c2924; padding-left: 20px; position: relative; }
+.mg-comparison-col li::before { content: "—"; position: absolute; left: 0; color: #a89f8c; }
+.mg-comparison-col.mg-elyio { background: #f3ecdd; }
+.mg-comparison-col.mg-elyio li::before { content: "→"; color: #181714; }
+
+/* ---------- Practical notes ---------- */
+.mg-practical { border-left: 3px solid #181714; padding: 4px 0 4px 24px; margin-bottom: clamp(56px, 8vw, 88px); max-width: 760px; }
+.mg-practical p { font-size: 15px; line-height: 1.65; color: #514d47; margin: 0; }
+
+/* ---------- FAQ ---------- */
+.mg-faq { margin-bottom: clamp(56px, 8vw, 88px); }
+.mg-faq details { border-top: 1px solid #d8d0c3; padding: 20px 0; }
+.mg-faq details:last-of-type { border-bottom: 1px solid #d8d0c3; }
+.mg-faq summary { cursor: pointer; font-family: var(--font-editorial), Georgia, serif; font-size: 19px; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.mg-faq summary::-webkit-details-marker { display: none; }
+.mg-faq summary::after { content: "+"; font-size: 22px; color: #8a8377; flex-shrink: 0; }
+.mg-faq details[open] summary::after { content: "–"; }
+.mg-faq p { font-size: 16px; line-height: 1.65; color: #514d47; margin: 14px 0 0; max-width: 720px; }
+
+/* ---------- Final CTA ---------- */
+.mg-final-cta { text-align: center; padding: clamp(56px, 9vw, 96px) clamp(20px, 5vw, 60px); background: linear-gradient(160deg, #f3ecdd, #f7f3ec); border-radius: 4px; margin-bottom: 40px; }
+.mg-final-cta h2 { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; font-size: clamp(30px, 5vw, 48px); margin: 0 0 24px; max-width: 20ch; margin-inline: auto; }
+
+/* ---------- Disclosure ---------- */
+.mg-disclosure { font-size: 13px; color: #8a8377; text-align: center; margin: 0 0 60px; }
+
+/* ---------- Index page (grouped by city) ---------- */
+.mg-index-hero { padding: clamp(56px, 9vw, 96px) 0 clamp(32px, 5vw, 48px); }
+.mg-index-hero h1 { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; font-size: clamp(40px, 7vw, 76px); line-height: 1; margin: 16px 0 20px; }
+.mg-index-hero p { font-size: clamp(17px, 1.7vw, 21px); line-height: 1.55; max-width: 640px; color: #3a362f; }
+.mg-city-group { padding: 40px 0; border-top: 1px solid #d8d0c3; }
+.mg-city-group:first-of-type { border-top: none; }
+.mg-city-heading { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
+.mg-city-heading h2 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(24px, 3.2vw, 34px); margin: 0; }
+.mg-city-heading span { font-size: 13px; color: #8a8377; text-transform: uppercase; letter-spacing: .1em; }
+.mg-museum-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+.mg-museum-card { display: block; border: 1px solid #d8d0c3; background: #fbf8f2; padding: 26px 24px; text-decoration: none; color: inherit; transition: border-color .15s ease, transform .15s ease; }
+.mg-museum-card:hover { border-color: #181714; transform: translateY(-2px); }
+.mg-museum-card-eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; color: #8a8377; margin: 0 0 10px; }
+.mg-museum-card h3 { font-family: var(--font-editorial), Georgia, serif; font-size: 24px; font-weight: 500; margin: 0 0 10px; }
+.mg-museum-card p { font-size: 15px; line-height: 1.55; color: #514d47; margin: 0; }
+
+@media (max-width: 760px) {
+  .mg-what-grid { grid-template-columns: 1fr; }
+  .mg-masterpiece, .mg-masterpiece:nth-of-type(even) { grid-template-columns: 1fr; direction: ltr; }
+  .mg-explore, .mg-comparison { grid-template-columns: 1fr; }
+  .mg-museum-cards { grid-template-columns: 1fr; }
+  .mg-main { padding: 0 20px 90px; }
+}

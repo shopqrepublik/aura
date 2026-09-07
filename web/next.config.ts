@@ -39,7 +39,14 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [{ protocol: "https", hostname: "api.elyio.co", pathname: "/v1/image-proxy" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "api.elyio.co", pathname: "/v1/image-proxy" },
+      // Museum guide masterpiece imagery (web/lib/data/museums-v1.json) hotlinks
+      // verified public-domain works directly from Wikimedia Commons -- CSP's
+      // img-src already allows *.wikimedia.org (see comment above), this just
+      // lets next/image optimize the same, already-trusted host.
+      { protocol: "https", hostname: "upload.wikimedia.org" },
+    ],
     minimumCacheTTL: 31536000,
   },
   async headers() {

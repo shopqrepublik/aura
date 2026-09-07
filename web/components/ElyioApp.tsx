@@ -162,7 +162,10 @@ export default function ElyioApp({
     const query = new URLSearchParams(window.location.search);
     if (query.get("from") !== "organic" || attributed.current) return;
     attributed.current = true;
-    const attribution = { traffic_source: "organic", landing_page: query.get("landing") || "unknown", landing_locale: query.get("locale") || state.locale };
+    const landingPage = query.get("landing") || "unknown";
+    const museumSlugMatch = /^museum:(.+)$/.exec(landingPage);
+    const attribution: Record<string, string> = { traffic_source: "organic", landing_page: landingPage, landing_locale: query.get("locale") || state.locale };
+    if (museumSlugMatch) attribution.museum_slug = museumSlugMatch[1];
     try { window.sessionStorage.setItem("elyio-organic-landing", JSON.stringify(attribution)); } catch { /* storage is optional */ }
     track("seo_begin_visit", attribution);
   }, [state.locale]);
