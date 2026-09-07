@@ -18,9 +18,9 @@ const nav = { fr: "Musées", "zh-hans": "博物馆", en: "Museums" } as const;
 
 // Labels for the "more museums" sub-section
 const moreLabel = {
-  en: "More {city} Museums",
-  fr: "Autres musées {city}",
-  "zh-hans": "{city} 更多博物馆",
+  en: "More Paris museums",
+  fr: "Autres musées de Paris",
+  "zh-hans": "更多巴黎博物馆",
 };
 
 // Cities that get the "More" sub-treatment (cities with both V1 lead museums and legacy museums)
@@ -112,30 +112,26 @@ export default async function MuseumsPage({ params }: { params: Promise<{ locale
     }
   }
 
-  // Convert to ordered array. For cities in `moreCities`, split into lead + more sections.
+  // Convert to ordered array. For cities in `moreCities`, keep ONE section:
+  // one <h2> with the full count (Paris · 11), containing lead modules plus
+  // an internal "more" sub-divider. No second city heading is ever emitted.
   const renderGroups: Array<{
     city: string; museums: Array<{slug: string; href: string; name: string; country: string; blurb: string; status: string}>;
-    isMoreSubSection: boolean; parentCity?: string;
+    more?: { label: string; museums: Array<{slug: string; href: string; name: string; country: string; blurb: string; status: string}> };
   }> = [];
 
   for (const [city, museums] of cityMuseums) {
     if (moreCities.has(city) && museums.length > 3) {
-      // Lead section: first 3 museums (Louvre, Orsay, Orangerie)
-      const leadMuseums = museums.slice(0, 3);
-      renderGroups.push({ city, museums: leadMuseums, isMoreSubSection: false });
-      // More section: remaining museums
-      const moreMuseums = museums.slice(3);
-      const label = moreLabel[l].replace("{city}", city);
-      renderGroups.push({ city: label, museums: moreMuseums, isMoreSubSection: true, parentCity: city });
+      renderGroups.push({ city, museums: museums.slice(0, 3), more: { label: moreLabel[l], museums: museums.slice(3) } });
     } else {
-      renderGroups.push({ city, museums, isMoreSubSection: false });
+      renderGroups.push({ city, museums });
     }
   }
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: renderGroups.flatMap((g) => g.museums).map((card, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE_URL}${card.href}`, name: card.name })),
+    itemListElement: renderGroups.flatMap((g) => [...g.museums, ...(g.more ? g.more.museums : [])]).map((card, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE_URL}${card.href}`, name: card.name })),
   };
 
   return (
@@ -148,17 +144,19 @@ export default async function MuseumsPage({ params }: { params: Promise<{ locale
           <h1>{c.h1}</h1>
           <p>{c.lede}</p>
         </section>
-        {renderGroups.map((group) => (
+        {renderGroups.map((group) => {
+          const total = group.museums.length + (group.more ? group.more.museums.length : 0);
+          return (
           <section className="mg-city-group" key={group.city}>
             <div className="mg-city-heading">
               <h2>{group.city}</h2>
-              <span>{group.museums.length} {group.museums.length === 1 ? (l === "fr" ? "musée" : l === "zh-hans" ? "家博物馆" : "museum") : (l === "fr" ? "musées" : l === "zh-hans" ? "家博物馆" : "museums")}</span>
+              <span>{total} {total === 1 ? (l === "fr" ? "musée" : l === "zh-hans" ? "家博物馆" : "museum") : (l === "fr" ? "musées" : l === "zh-hans" ? "家博物馆" : "museums")}</span>
             </div>
-            <div className={`mg-city-layout${group.isMoreSubSection ? " mg-more-section" : ""}`}>
+            <div className="mg-city-layout">
               {group.museums.map((m, mi) => (
-                <Link key={m.slug} href={m.href} className={`mg-museum-module${!group.isMoreSubSection && mi === 0 ? " mg-lead" : ""}`}>
+                <Link key={m.slug} href={m.href} className={`mg-museum-module${mi === 0 ? " mg-lead" : ""}`}>
                   <div className="mg-module-inner">
-                    <p className="mg-module-country">{m.country}{!group.isMoreSubSection && m.status === "PRODUCTION_CATALOG" ? " · LIVE" : ""}</p>
+                    <p className="mg-module-country">{m.country}{m.status === "PRODUCTION_CATALOG" ? " · LIVE" : ""}</p>
                     <h3>{m.name}</h3>
                     <p className="mg-module-blurb">{m.blurb}</p>
                     <span className="mg-module-cta">{l === "fr" ? "Explorer →" : l === "zh-hans" ? "探索 →" : "Explore →"}</span>
@@ -166,8 +164,26 @@ export default async function MuseumsPage({ params }: { params: Promise<{ locale
                 </Link>
               ))}
             </div>
+            {group.more && (
+              <div className="mg-more-block">
+                <p className="mg-more-label">{group.more.label}</p>
+                <div className="mg-city-layout mg-more-section">
+                  {group.more.museums.map((m) => (
+                    <Link key={m.slug} href={m.href} className="mg-museum-module">
+                      <div className="mg-module-inner">
+                        <p className="mg-module-country">{m.country}</p>
+                        <h3>{m.name}</h3>
+                        <p className="mg-module-blurb">{m.blurb}</p>
+                        <span className="mg-module-cta">{l === "fr" ? "Explorer →" : l === "zh-hans" ? "探索 →" : "Explore →"}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
-        ))}
+          );
+        })}
       </main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
     </>
