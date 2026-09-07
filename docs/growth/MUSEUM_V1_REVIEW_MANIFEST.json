@@ -1,0 +1,714 @@
+{
+  "meta": {
+    "commit": "5ccedd6",
+    "deploy": "elyio-bza3sulj2-shopqrepublikeu-6943s-projects.vercel.app",
+    "totalUniqueMuseums": 26,
+    "detailPages": 78,
+    "indexPages": 3,
+    "totalAcquisitionPages": 81
+  },
+  "museums": [
+    {
+      "slug": "musee-du-louvre",
+      "status": "PRODUCTION_CATALOG",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-du-louvre",
+        "heroHeadline": "You could spend four days here. You probably have three hours.",
+        "metaTitle": "The Louvre, Paris — See Past the Crowd | ELYIO",
+        "metaDescription": "The Louvre holds 35,000 works across three wings. ELYIO's camera-first guide helps you find your own path beyond the Mona Lisa — point, identify, understand."
+      },
+      "fr": {
+        "url": "/fr/museums/musee-du-louvre",
+        "heroHeadline": "Vous pourriez y passer quatre jours. Vous avez sans doute trois heures.",
+        "metaTitle": "Le Louvre, Paris — Voir au-delà de la foule | ELYIO",
+        "metaDescription": "Le Louvre réunit 35 000 œuvres réparties sur trois ailes. Le guide caméra d'ELYIO vous aide à tracer votre propre chemin au-delà de la Joconde."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-du-louvre",
+        "heroHeadline": "你可能想待上四天，但通常只有三个小时。",
+        "metaTitle": "巴黎卢浮宫——绕开人群，看见更多 | ELYIO",
+        "metaDescription": "卢浮宫三翼共展出约3.5万件展品。ELYIO的镜头识别指南，帮你在《蒙娜丽莎》之外找到自己的参观路线——举起镜头，即刻识别，读懂故事。"
+      },
+      "heroVariant": "A",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Passes museum=dbId to /visit scanner"
+    },
+    {
+      "slug": "musee-d-orsay",
+      "status": "PRODUCTION_CATALOG",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-d-orsay",
+        "heroHeadline": "A railway station rebuilt for light",
+        "metaTitle": "Musée d'Orsay, Paris — Van Gogh, Manet & Degas Guide | ELYIO",
+        "metaDescription": "Explore the Musée d'Orsay's Impressionist masterpieces — Van Gogh, Manet, Degas, Renoir — and point your camera at curated works for instant context with ELYIO."
+      },
+      "fr": {
+        "url": "/fr/museums/musee-d-orsay",
+        "heroHeadline": "Une gare reconstruite pour la lumière",
+        "metaTitle": "Musée d'Orsay, Paris — Van Gogh, Manet, Degas | Guide ELYIO",
+        "metaDescription": "Van Gogh, Manet, Degas, Renoir : découvrez les chefs-d'œuvre du Musée d'Orsay et pointez votre appareil photo sur une sélection d'œuvres pour un contexte instantané avec ELYIO."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-d-orsay",
+        "heroHeadline": "一座为光而重生的火车站",
+        "metaTitle": "奥赛博物馆参观指南:梵高、马奈、德加 | ELYIO",
+        "metaDescription": "梵高、马奈、德加、雷诺阿——探索奥赛博物馆的印象派珍藏,用手机镜头对准精选作品,ELYIO 即时为你讲述背后的故事。"
+      },
+      "heroVariant": "B",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Passes museum=dbId to /visit scanner"
+    },
+    {
+      "slug": "musee-de-l-orangerie",
+      "status": "PRODUCTION_CATALOG",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-de-l-orangerie",
+        "heroHeadline": "Where Monet's Water Lilies Breathe",
+        "metaTitle": "Musée de l'Orangerie, Paris: Monet's Water Lilies | ELYIO",
+        "metaDescription": "Step into Monet's oval Water Lilies rooms and the Walter-Guillaume collection at the Musée de l'Orangerie. Point your camera with ELYIO for instant context on every canvas."
+      },
+      "fr": {
+        "url": "/fr/museums/musee-de-l-orangerie",
+        "heroHeadline": "Là où respirent les Nymphéas",
+        "metaTitle": "Musée de l'Orangerie, Paris : les Nymphéas de Monet | ELYIO",
+        "metaDescription": "Entrez dans les salles ovales des Nymphéas et découvrez la collection Walter-Guillaume au Musée de l'Orangerie. Avec ELYIO, pointez votre appareil photo pour identifier chaque œuvre instantanément."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-de-l-orangerie",
+        "heroHeadline": "莫奈的《睡莲》,在此静静呼吸",
+        "metaTitle": "巴黎橘园美术馆:莫奈《睡莲》与瓦尔特-吉尧姆收藏 | ELYIO",
+        "metaDescription": "走进橘园美术馆两间椭圆形展厅,感受莫奈《睡莲》的沉静光影,再到楼下探索瓦尔特-吉尧姆收藏的塞尚、雷诺阿、莫迪利亚尼与苏丁。用ELYIO对准画作拍照,即刻获取详尽解读。"
+      },
+      "heroVariant": "C",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Passes museum=dbId to /visit scanner"
+    },
+    {
+      "slug": "national-gallery-london",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "London",
+      "country": "United Kingdom",
+      "en": {
+        "url": "/en/museums/national-gallery-london",
+        "heroHeadline": "The National Gallery, London",
+        "metaTitle": "The National Gallery, London — Point, Discover, Wander | ELYIO",
+        "metaDescription": "Van Eyck, Turner, Van Gogh: London's National Gallery holds seven centuries of painting on Trafalgar Square. Explore it with ELYIO's camera-first AI guide."
+      },
+      "fr": {
+        "url": "/fr/museums/national-gallery-london",
+        "heroHeadline": "The National Gallery, Londres",
+        "metaTitle": "The National Gallery, Londres — Regarder, découvrir, flâner | ELYIO",
+        "metaDescription": "Van Eyck, Turner, Van Gogh : la National Gallery de Londres réunit sept siècles de peinture sur Trafalgar Square. Explorez-la avec le guide caméra d'ELYIO."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/national-gallery-london",
+        "heroHeadline": "伦敦国家美术馆",
+        "metaTitle": "伦敦国家美术馆——举起镜头，遇见七个世纪的绘画 | ELYIO",
+        "metaDescription": "凡·艾克、透纳、梵高——伦敦国家美术馆坐落于特拉法加广场，免费展出跨越七个世纪的欧洲绘画。用ELYIO的镜头识别功能，边走边看，边看边懂。"
+      },
+      "heroVariant": "D",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "va-london",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "London",
+      "country": "United Kingdom",
+      "en": {
+        "url": "/en/museums/va-london",
+        "heroHeadline": "Victoria and Albert Museum, London",
+        "metaTitle": "Victoria and Albert Museum, London — Point Your Camera at 5,000 Years of Design | ELYIO",
+        "metaDescription": "From the Ardabil Carpet to Tipu's Tiger and the plaster giants of the Cast Courts, the V&A is the world's design museum. Explore it with ELYIO's camera-first AI guide."
+      },
+      "fr": {
+        "url": "/fr/museums/va-london",
+        "heroHeadline": "Victoria and Albert Museum, Londres",
+        "metaTitle": "Victoria and Albert Museum, Londres — 5 000 ans de design à portée de caméra | ELYIO",
+        "metaDescription": "Du tapis d'Ardabil au tigre mécanique de Tipu, en passant par les moulages géants des Cast Courts : le V&A est LE musée du design. Explorez-le avec le guide caméra d'ELYIO."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/va-london",
+        "heroHeadline": "伦敦维多利亚与阿尔伯特博物馆",
+        "metaTitle": "伦敦维多利亚与阿尔伯特博物馆——用镜头打开五千年设计史 | ELYIO",
+        "metaDescription": "从阿尔达比勒地毯到蒂普之虎，再到石膏庭院里的巨型雕像复制品——V&A是世界级的设计博物馆。用ELYIO的镜头识别功能，边走边看，边看边懂。"
+      },
+      "heroVariant": "E",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "the-met",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "New York",
+      "country": "United States",
+      "en": {
+        "url": "/en/museums/the-met",
+        "heroHeadline": "Two Million Square Feet of Art History. One Camera.",
+        "metaTitle": "The Metropolitan Museum of Art Guide | ELYIO Camera Recognition",
+        "metaDescription": "Two million square feet, five thousand years of art. Point your camera at The Met's galleries and let ELYIO's AI recognition tell you what you're looking at."
+      },
+      "fr": {
+        "url": "/fr/museums/the-met",
+        "heroHeadline": "Cinq mille ans d'art. Un seul geste : pointer.",
+        "metaTitle": "Le Metropolitan Museum of Art — Guide ELYIO | Reconnaissance par caméra",
+        "metaDescription": "Deux millions de pieds carrés, cinq mille ans d'art. Pointez votre appareil dans les salles du Met et laissez l'IA d'ELYIO vous dire ce que vous regardez."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/the-met",
+        "heroHeadline": "五千年艺术史,只需举起相机",
+        "metaTitle": "大都会艺术博物馆参观指南 | ELYIO 拍照识别艺术品",
+        "metaDescription": "两百万平方英尺,五千年艺术史。在大都会博物馆的展厅里举起手机,让ELYIO的AI识别为你揭晓眼前之物。"
+      },
+      "heroVariant": "F",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "rijksmuseum",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "en": {
+        "url": "/en/museums/rijksmuseum",
+        "heroHeadline": "The Rijksmuseum, Read Through Your Camera",
+        "metaTitle": "Rijksmuseum, Amsterdam — See the Dutch Golden Age Through ELYIO's Camera | ELYIO",
+        "metaDescription": "Point your phone at Rembrandt's The Night Watch or Vermeer's The Milkmaid inside the Rijksmuseum and let ELYIO's AI recognition surface what it can identify. No queue, no leaflet — just your camera."
+      },
+      "fr": {
+        "url": "/fr/museums/rijksmuseum",
+        "heroHeadline": "Le Rijksmuseum, lu à travers votre appareil photo",
+        "metaTitle": "Rijksmuseum, Amsterdam — Le Siècle d'or hollandais à travers votre appareil photo | ELYIO",
+        "metaDescription": "Pointez votre téléphone vers La Ronde de nuit de Rembrandt ou La Laitière de Vermeer au Rijksmuseum, et laissez la reconnaissance IA d'ELYIO vous dire ce qu'elle identifie. Sans file d'attente, sans dépliant."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/rijksmuseum",
+        "heroHeadline": "用镜头,重新读懂荷兰国立博物馆",
+        "metaTitle": "荷兰国立博物馆(阿姆斯特丹)——用镜头看懂荷兰黄金时代 | ELYIO",
+        "metaDescription": "把手机对准伦勃朗的《夜巡》或维米尔的《倒牛奶的女仆》,ELYIO 的 AI 识别会告诉你它能认出的内容——无需排队讲解,无需纸质导览。"
+      },
+      "heroVariant": "G",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "khm-vienna",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Vienna",
+      "country": "Austria",
+      "en": {
+        "url": "/en/museums/khm-vienna",
+        "heroHeadline": "Four Centuries of Habsburg Collecting. One Camera to Read It.",
+        "metaTitle": "Kunsthistorisches Museum, Vienna | Recognize Art with ELYIO",
+        "metaDescription": "Raise your phone inside Vienna's Kunsthistorisches Museum and let ELYIO's camera AI identify Bruegel, Vermeer, and the Habsburgs' Old Masters as you go — no fixed route required."
+      },
+      "fr": {
+        "url": "/fr/museums/khm-vienna",
+        "heroHeadline": "Quatre siècles de collection habsbourgeoise. Un seul geste pour les lire.",
+        "metaTitle": "Musée d'Histoire de l'Art de Vienne | Reconnaissance d'œuvres avec ELYIO",
+        "metaDescription": "Levez votre téléphone dans le Kunsthistorisches Museum de Vienne : l'IA d'ELYIO reconnaît Bruegel, Vermeer et les maîtres anciens des Habsbourg, sans parcours imposé."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/khm-vienna",
+        "heroHeadline": "哈布斯堡四百年收藏，一次举起手机就能读懂",
+        "metaTitle": "维也纳艺术史博物馆 | 用 ELYIO 识别馆内名作",
+        "metaDescription": "在维也纳艺术史博物馆举起手机，让 ELYIO 的相机识别技术逐幅告诉你能认出的勃鲁盖尔、维米尔与哈布斯堡珍藏的古典画作，无需固定路线。"
+      },
+      "heroVariant": "H",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "smk-copenhagen",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Copenhagen",
+      "country": "Denmark",
+      "en": {
+        "url": "/en/museums/smk-copenhagen",
+        "heroHeadline": "Denmark's National Gallery, Read by Light",
+        "metaTitle": "Statens Museum for Kunst (SMK) Guide | ELYIO Camera Recognition — Copenhagen",
+        "metaDescription": "Point your camera at Denmark's national gallery. ELYIO's AI recognition identifies Golden Age masterpieces by Eckersberg, Købke and Hammershøi, plus the museum's Matisse room — no ticket-booth guessing games."
+      },
+      "fr": {
+        "url": "/fr/museums/smk-copenhagen",
+        "heroHeadline": "Le musée national danois, lu à la lumière",
+        "metaTitle": "Statens Museum for Kunst (SMK) : guide de visite | Reconnaissance par caméra ELYIO — Copenhague",
+        "metaDescription": "Pointez votre téléphone vers une toile du musée national danois. L'IA d'ELYIO identifie les chefs-d'œuvre de l'Âge d'or danois — Eckersberg, Købke, Hammershøi — ainsi que la salle Matisse, sans jeu de piste ni numéros à suivre."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/smk-copenhagen",
+        "heroHeadline": "丹麦国家美术馆:用光线阅读的历史",
+        "metaTitle": "丹麦国家美术馆(SMK)参观指南 | ELYIO 拍照识别 — 哥本哈根",
+        "metaDescription": "把手机镜头对准丹麦国家美术馆的画作。ELYIO 的人工智能识别系统能辨认埃克斯伯格、柯普克、哈默修依等丹麦黄金时代大师之作,以及马蒂斯展厅的珍藏——无需按图索骥,也无需猜测编号。"
+      },
+      "heroVariant": "A",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "nordiska-museet",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Stockholm",
+      "country": "Sweden",
+      "en": {
+        "url": "/en/museums/nordiska-museet",
+        "heroHeadline": "Five Centuries of Nordic Life, One Grand Hall",
+        "metaTitle": "Nordiska museet, Stockholm — Explore with ELYIO's Camera",
+        "metaDescription": "Sweden's largest museum of cultural history, on Stockholm's Djurgården: folk costume, bridal crowns, a 1940s flat, and Sámi Arctic collections. Point your camera with ELYIO to see what it recognizes."
+      },
+      "fr": {
+        "url": "/fr/museums/nordiska-museet",
+        "heroHeadline": "Cinq siècles de vie nordique sous une seule grande nef",
+        "metaTitle": "Nordiska museet, Stockholm — visite à l'appareil photo avec ELYIO",
+        "metaDescription": "Le plus grand musée d'histoire culturelle de Suède, sur l'île de Djurgården à Stockholm : costumes traditionnels, couronnes de mariée, appartement des années 1940, collections sámi. Pointez votre appareil avec ELYIO."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/nordiska-museet",
+        "heroHeadline": "一座大厅,五百年的北欧日常",
+        "metaTitle": "北欧博物馆(斯德哥尔摩)— 用ELYIO的镜头探索北欧生活",
+        "metaDescription": "瑞典最大的文化历史博物馆,坐落于斯德哥尔摩动物园岛,馆藏民族服饰、婚礼银冠、1940年代公寓与萨米北极文化收藏。用ELYIO对准展品,看AI目前能识别出什么。"
+      },
+      "heroVariant": "B",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "princeton",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Princeton",
+      "country": "United States",
+      "en": {
+        "url": "/en/museums/princeton",
+        "heroHeadline": "The University Museum America Just Rediscovered",
+        "metaTitle": "Princeton University Art Museum: Ancient to Contemporary, Free | ELYIO",
+        "metaDescription": "Princeton University Art Museum reopened in 2025 in a striking new building — free admission, Roman Antioch mosaics to Basquiat, and one of the great university photography collections. Point your camera with ELYIO to see what its AI recognition can identify."
+      },
+      "fr": {
+        "url": "/fr/museums/princeton",
+        "heroHeadline": "Le musée universitaire que l'Amérique redécouvre",
+        "metaTitle": "Princeton University Art Museum : de l'Antiquité à Basquiat, gratuit | ELYIO",
+        "metaDescription": "Réouvert en 2025 dans un tout nouveau bâtiment, le musée d'art de Princeton conjugue mosaïques romaines d'Antioche, chefs-d'œuvre américains et l'une des plus belles collections de photographie universitaire du pays. Avec ELYIO, pointez votre appareil photo pour découvrir ce que son IA reconnaît."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/princeton",
+        "heroHeadline": "美国正在重新发现的大学博物馆",
+        "metaTitle": "普林斯顿大学艺术博物馆:免费畅览古今艺术 | ELYIO",
+        "metaDescription": "普林斯顿大学艺术博物馆已于2025年在全新建筑中重新开放——从古罗马安条克镶嵌画到巴斯奇亚,还有全美高校中数一数二的摄影收藏,参观完全免费。用ELYIO对准展品拍照,即可查看其AI识别结果。"
+      },
+      "heroVariant": "C",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "cleveland",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Cleveland",
+      "country": "United States",
+      "en": {
+        "url": "/en/museums/cleveland",
+        "heroHeadline": "The Free Museum America Keeps Underrating",
+        "metaTitle": "Cleveland Museum of Art: What to See | ELYIO Camera Guide",
+        "metaDescription": "Free, encyclopedic, and criminally underrated: a guide to the Cleveland Museum of Art's Rodin, Caravaggio, and van Gogh. Point your camera and let ELYIO's AI recognition tell you what you're looking at."
+      },
+      "fr": {
+        "url": "/fr/museums/cleveland",
+        "heroHeadline": "Le musée gratuit que l'Amérique sous-estime",
+        "metaTitle": "Cleveland Museum of Art : que voir | Guide caméra ELYIO",
+        "metaDescription": "Gratuit, encyclopédique et injustement méconnu : Rodin, Caravage, van Gogh au Cleveland Museum of Art. Pointez votre appareil photo, la reconnaissance IA d'ELYIO identifie ce qu'elle peut."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/cleveland",
+        "heroHeadline": "一座被严重低估的免费博物馆",
+        "metaTitle": "克利夫兰艺术博物馆看什么 | ELYIO 相机导览",
+        "metaDescription": "免费、百科全书式却常被忽视：罗丹、卡拉瓦乔、梵高都在克利夫兰艺术博物馆。打开镜头，ELYIO 的AI识别功能会尽力告诉你眼前是什么作品。"
+      },
+      "heroVariant": "D",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "nga-washington",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Washington, DC",
+      "country": "United States",
+      "en": {
+        "url": "/en/museums/nga-washington",
+        "heroHeadline": "The National Gallery of Art, Washington, D.C.",
+        "metaTitle": "National Gallery of Art, Washington — Point, Discover, Wander | ELYIO",
+        "metaDescription": "Free admission, two buildings, one Leonardo. Point your camera at the National Gallery of Art's collection and let ELYIO's AI recognition tell you what you're looking at."
+      },
+      "fr": {
+        "url": "/fr/museums/nga-washington",
+        "heroHeadline": "La National Gallery of Art, Washington",
+        "metaTitle": "National Gallery of Art, Washington — Regarder, découvrir, flâner | ELYIO",
+        "metaDescription": "Entrée gratuite, deux bâtiments, un seul Léonard de Vinci. Pointez votre appareil vers les collections de la National Gallery of Art et laissez l'IA d'ELYIO vous dire ce que vous regardez."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/nga-washington",
+        "heroHeadline": "华盛顿国家美术馆",
+        "metaTitle": "华盛顿国家美术馆参观指南 | ELYIO 拍照识别艺术品",
+        "metaDescription": "免费参观，两栋建筑，一幅达·芬奇。举起手机对准华盛顿国家美术馆的藏品，让ELYIO的AI识别为你揭晓眼前之物。"
+      },
+      "heroVariant": "C",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "getty",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Los Angeles",
+      "country": "United States",
+      "en": {
+        "url": "/en/museums/getty",
+        "heroHeadline": "A Hill Above Los Angeles, Built Entirely Around Looking.",
+        "metaTitle": "The Getty Center Guide | ELYIO Camera Recognition",
+        "metaDescription": "A hilltop campus of travertine, gardens, and old masters above Los Angeles. Point your camera at the Getty Center's art and let ELYIO's AI recognition tell you what it identifies."
+      },
+      "fr": {
+        "url": "/fr/museums/getty",
+        "heroHeadline": "Une colline au-dessus de Los Angeles, pensée pour le regard.",
+        "metaTitle": "Le Getty Center — Guide ELYIO | Reconnaissance par caméra",
+        "metaDescription": "Un campus sur les hauteurs de Los Angeles, entre travertin, jardins et maîtres anciens. Pointez votre appareil sur les œuvres du Getty Center et laissez l'IA d'ELYIO vous dire ce qu'elle reconnaît."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/getty",
+        "heroHeadline": "洛杉矶山丘之上,一切都为了让人驻足观看",
+        "metaTitle": "盖蒂中心参观指南 | ELYIO 拍照识别艺术品",
+        "metaDescription": "洛杉矶山丘之上,石灰华、花园与欧洲古典大师的聚集地。在盖蒂中心举起手机,让ELYIO的AI识别为你揭晓眼前之物。"
+      },
+      "heroVariant": "H",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "gemaldegalerie-berlin",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Berlin",
+      "country": "Germany",
+      "en": {
+        "url": "/en/museums/gemaldegalerie-berlin",
+        "heroHeadline": "Berlin's Best-Kept Secret in Old Master Painting",
+        "metaTitle": "Gemäldegalerie Berlin: Dürer, Vermeer & Rembrandt with ELYIO",
+        "metaDescription": "Point your camera at Old Masters in Berlin's Gemäldegalerie — Dürer portraits, Vermeer's The Wine Glass, Bruegel's Netherlandish Proverbs — and let ELYIO's AI recognition tell you what it can, artwork by artwork."
+      },
+      "fr": {
+        "url": "/fr/museums/gemaldegalerie-berlin",
+        "heroHeadline": "Le secret le mieux gardé de Berlin en peinture ancienne",
+        "metaTitle": "Gemäldegalerie de Berlin : Dürer, Vermeer et Rembrandt avec ELYIO",
+        "metaDescription": "Pointez votre appareil photo sur les maîtres anciens de la Gemäldegalerie de Berlin — portraits de Dürer, Le Verre de vin de Vermeer, Les Proverbes flamands de Bruegel — et laissez la reconnaissance IA d'ELYIO vous révéler ce qu'elle peut identifier, œuvre par œuvre."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/gemaldegalerie-berlin",
+        "heroHeadline": "柏林最被低估的古典绘画殿堂",
+        "metaTitle": "柏林画廊：与ELYIO一起探索杜勒、维米尔与伦勃朗",
+        "metaDescription": "把镜头对准柏林画廊里的欧洲古典绘画大师——杜勒的肖像、维米尔的《一杯酒》、勃鲁盖尔的《尼德兰谚语》——让ELYIO的AI识别技术逐幅呈现它能提供的信息。"
+      },
+      "heroVariant": "G",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "alte-pinakothek",
+      "status": "CONTROLLED_PREVIEW",
+      "city": "Munich",
+      "country": "Germany",
+      "en": {
+        "url": "/en/museums/alte-pinakothek",
+        "heroHeadline": "The Gallery That Taught Europe How to Look at Paintings",
+        "metaTitle": "Alte Pinakothek Munich: Dürer, Rubens & the Old Masters | ELYIO",
+        "metaDescription": "Inside Munich's grand Old Master gallery — Dürer's Christ-like self-portrait, Rubens's six-metre Last Judgement, and 800 canvases from the Bavarian royal collection. Point your camera; ELYIO's AI identifies what it recognizes."
+      },
+      "fr": {
+        "url": "/fr/museums/alte-pinakothek",
+        "heroHeadline": "La galerie qui a appris à l'Europe à regarder la peinture",
+        "metaTitle": "Alte Pinakothek Munich : Dürer, Rubens et les maîtres anciens | ELYIO",
+        "metaDescription": "Dans la grande galerie munichoise des maîtres anciens — l'autoportrait christique de Dürer, le Jugement dernier de Rubens haut de six mètres, et 800 toiles issues de la collection royale bavaroise. Pointez votre appareil photo : l'IA d'ELYIO identifie ce qu'elle reconnaît."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/alte-pinakothek",
+        "heroHeadline": "教会欧洲如何“看画”的美术馆",
+        "metaTitle": "慕尼黑古典绘画陈列馆:丢勒、鲁本斯与古典大师 | ELYIO",
+        "metaDescription": "走进慕尼黑最宏伟的古典绘画殿堂——丢勒近乎基督形象的自画像、鲁本斯高逾六米的《最后的审判》,以及八百余幅源自巴伐利亚王室收藏的画作。举起相机,ELYIO 的人工智能会识别它能识别的作品。"
+      },
+      "heroVariant": "H",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "yale-new-haven",
+      "status": "NO_INSTITUTION_RECORD",
+      "city": "New Haven",
+      "country": "United States",
+      "en": {
+        "url": "/en/museums/yale-new-haven",
+        "heroHeadline": "New Haven's Free Encyclopedic Art Museum, From Babylon to Basquiat",
+        "metaTitle": "Yale University Art Gallery, New Haven: A Free-Admission Visitor Guide | ELYIO",
+        "metaDescription": "Plan a visit to the Yale University Art Gallery, the oldest university art museum in the Americas. Free admission, six millennia of art in New Haven, and a camera-first way to explore with ELYIO."
+      },
+      "fr": {
+        "url": "/fr/museums/yale-new-haven",
+        "heroHeadline": "Le musée universitaire gratuit de New Haven, de Babylone à Basquiat",
+        "metaTitle": "Yale University Art Gallery, New Haven : guide de visite gratuite | ELYIO",
+        "metaDescription": "Le plus ancien musée d'art universitaire des Amériques se trouve à New Haven : entrée gratuite, six millénaires d'art, et une façon de visiter caméra en main avec ELYIO."
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/yale-new-haven",
+        "heroHeadline": "纽黑文的免费百科式美术馆，从巴比伦到巴斯奎特",
+        "metaTitle": "耶鲁大学美术馆参观指南（纽黑文）：永久免费入场 | ELYIO",
+        "metaDescription": "耶鲁大学美术馆是美洲历史最悠久的大学美术馆，位于纽黑文，永久免费开放，馆藏跨越六千年艺术史。搭配ELYIO的摄像头识别功能，开启属于自己的观展方式。"
+      },
+      "heroVariant": "A",
+      "imagerySource": "Wikimedia Commons (public domain) where verified, NEEDS_VERIFICATION where unconfirmed",
+      "ctaTargetBehavior": "Generic /visit?landing=museum:slug (no institution id)"
+    },
+    {
+      "slug": "musee-carnavalet",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-carnavalet",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-carnavalet",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-carnavalet",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "musee-de-cluny",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-de-cluny",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-de-cluny",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-de-cluny",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "musee-de-l-armee",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-de-l-armee",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-de-l-armee",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-de-l-armee",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "musee-du-quai-branly-jacques-chirac",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-du-quai-branly-jacques-chirac",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-du-quai-branly-jacques-chirac",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-du-quai-branly-jacques-chirac",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "musee-guimet",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-guimet",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-guimet",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-guimet",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "musee-picasso-paris",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-picasso-paris",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-picasso-paris",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-picasso-paris",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "musee-rodin",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/musee-rodin",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/musee-rodin",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/musee-rodin",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "petit-palais",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/petit-palais",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/petit-palais",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/petit-palais",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    },
+    {
+      "slug": "chateau-de-versailles",
+      "status": "LEGACY_CURATED",
+      "city": "Paris",
+      "country": "France",
+      "en": {
+        "url": "/en/museums/chateau-de-versailles",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "fr": {
+        "url": "/fr/museums/chateau-de-versailles",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "zh-hans": {
+        "url": "/zh-hans/museums/chateau-de-versailles",
+        "heroHeadline": "N/A",
+        "metaTitle": "N/A",
+        "metaDescription": "N/A"
+      },
+      "heroVariant": "A",
+      "imagerySource": "N/A",
+      "ctaTargetBehavior": "Generic /visit scanner"
+    }
+  ]
+}
