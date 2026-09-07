@@ -147,9 +147,9 @@ function V1MuseumPage({ v1, locale: l, t }: { v1: NonNullable<ReturnType<typeof 
 
 <section className="mg-masterpieces">
            <h2 className="mg-section-heading">{t.masterpieces}</h2>
-           {content.masterpieces.slice(0, 5).map((mp, i) => (
+           {content.masterpieces.map((mp, i) => (
              <article className="mg-masterpiece" key={i}>
-               <MuseumMasterpieceImage src={mp.imageCommonsUrl} alt={mp.imageAlt} title={mp.title} artist={mp.artist} />
+               <MuseumMasterpieceImage src={mp.imageLocal} alt={mp.imageAlt} width={mp.imageWidth} height={mp.imageHeight} attribution={mp.imageAttribution} />
                <div>
                  <p className="mg-masterpiece-eyebrow">{mp.artist} · {mp.year}</p>
                  <h3>{mp.title}</h3>

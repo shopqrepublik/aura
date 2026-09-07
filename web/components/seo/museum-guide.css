@@ -61,12 +61,12 @@
 .mg-masterpiece:first-of-type { border-top: none; }
 .mg-masterpiece:nth-of-type(even) { direction: rtl; }
 .mg-masterpiece:nth-of-type(even) > * { direction: ltr; }
-.mg-masterpiece-image { position: relative; aspect-ratio: 4 / 5; background: #e3ddd0; overflow: hidden; }
-.mg-masterpiece-image img { object-fit: cover; width: 100%; height: 100%; }
-/* Text-led composition for when no image is available */
-.mg-masterpiece-textled { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 280px; background: linear-gradient(160deg, #f3ecdd, #e8e0d2); padding: 40px 28px; text-align: center; border: 1px solid #d8d0c3; }
-.mg-masterpiece-textled-title { font-family: var(--font-editorial), Georgia, serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; color: #181714; line-height: 1.1; margin-bottom: 12px; }
-.mg-masterpiece-textled-artist { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #8a8377; }
+.mg-masterpiece-media { position: relative; margin: 0; overflow: hidden; background: #e3ddd0; min-height: 240px; }
+.mg-masterpiece-media img { display: block; }
+.mg-masterpiece-media[data-empty="true"] { display: none; }
+/* Emergency reflow: if the media block is gone, the story reads single-column. */
+.mg-masterpiece:has(.mg-masterpiece-media[data-empty="true"]) { grid-template-columns: 1fr; }
+.mg-credit { font-size: 12px; line-height: 1.5; color: #8a8377; padding: 8px 2px 0; }
 .mg-masterpiece-eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: 11px; color: #8a8377; margin: 0 0 8px; }
 .mg-masterpiece h3 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(24px, 3vw, 32px); margin: 0 0 12px; }
 .mg-masterpiece-hook { font-size: 18px; line-height: 1.55; color: #181714; margin: 0 0 14px; }

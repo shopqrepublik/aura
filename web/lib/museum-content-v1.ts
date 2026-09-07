@@ -13,6 +13,11 @@ export type MuseumMasterpiece = {
   imageCommonsUrl: string | null;
   imageAlt: string;
   imageConfidence: "VERIFIED" | "LIKELY" | "NEEDS_VERIFICATION";
+  imageLocal: string | null;
+  imageLicense: string | null;
+  imageAttribution: string | null;
+  imageWidth: number | null;
+  imageHeight: number | null;
 };
 export type MuseumFaqItem = { q: string; a: string };
 
