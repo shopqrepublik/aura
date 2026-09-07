@@ -5,6 +5,7 @@
    existing copy. Loads on top of seo-nav/seo-site tokens already defined in
    globals.css (--font-editorial, warm cream/near-black palette). */
 
+/* ---------- Base ---------- */
 .mg-main { max-width: 1160px; margin: 0 auto; padding: 0 24px 120px; }
 .mg-breadcrumbs { font-size: 13px; margin: 28px 0 0; color: #6c665e; }
 .mg-breadcrumbs a { color: #6c665e; }
@@ -61,8 +62,11 @@
 .mg-masterpiece:nth-of-type(even) { direction: rtl; }
 .mg-masterpiece:nth-of-type(even) > * { direction: ltr; }
 .mg-masterpiece-image { position: relative; aspect-ratio: 4 / 5; background: #e3ddd0; overflow: hidden; }
-.mg-masterpiece-image img { object-fit: cover; }
-.mg-masterpiece-image-placeholder { display: flex; align-items: center; justify-content: center; height: 100%; font-family: var(--font-editorial), Georgia, serif; font-size: 15px; color: #8a8377; text-align: center; padding: 20px; }
+.mg-masterpiece-image img { object-fit: cover; width: 100%; height: 100%; }
+/* Text-led composition for when no image is available */
+.mg-masterpiece-textled { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; min-height: 280px; background: linear-gradient(160deg, #f3ecdd, #e8e0d2); padding: 40px 28px; text-align: center; border: 1px solid #d8d0c3; }
+.mg-masterpiece-textled-title { font-family: var(--font-editorial), Georgia, serif; font-size: clamp(24px, 3vw, 36px); font-weight: 400; color: #181714; line-height: 1.1; margin-bottom: 12px; }
+.mg-masterpiece-textled-artist { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: #8a8377; }
 .mg-masterpiece-eyebrow { text-transform: uppercase; letter-spacing: .13em; font-size: 11px; color: #8a8377; margin: 0 0 8px; }
 .mg-masterpiece h3 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(24px, 3vw, 32px); margin: 0 0 12px; }
 .mg-masterpiece-hook { font-size: 18px; line-height: 1.55; color: #181714; margin: 0 0 14px; }
@@ -104,26 +108,78 @@
 /* ---------- Disclosure ---------- */
 .mg-disclosure { font-size: 13px; color: #8a8377; text-align: center; margin: 0 0 60px; }
 
-/* ---------- Index page (grouped by city) ---------- */
-.mg-index-hero { padding: clamp(56px, 9vw, 96px) 0 clamp(32px, 5vw, 48px); }
-.mg-index-hero h1 { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; font-size: clamp(40px, 7vw, 76px); line-height: 1; margin: 16px 0 20px; }
-.mg-index-hero p { font-size: clamp(17px, 1.7vw, 21px); line-height: 1.55; max-width: 640px; color: #3a362f; }
-.mg-city-group { padding: 40px 0; border-top: 1px solid #d8d0c3; }
-.mg-city-group:first-of-type { border-top: none; }
-.mg-city-heading { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
-.mg-city-heading h2 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(24px, 3.2vw, 34px); margin: 0; }
-.mg-city-heading span { font-size: 13px; color: #8a8377; text-transform: uppercase; letter-spacing: .1em; }
-.mg-museum-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
-.mg-museum-card { display: block; border: 1px solid #d8d0c3; background: #fbf8f2; padding: 26px 24px; text-decoration: none; color: inherit; transition: border-color .15s ease, transform .15s ease; }
-.mg-museum-card:hover { border-color: #181714; transform: translateY(-2px); }
-.mg-museum-card-eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: 11px; color: #8a8377; margin: 0 0 10px; }
-.mg-museum-card h3 { font-family: var(--font-editorial), Georgia, serif; font-size: 24px; font-weight: 500; margin: 0 0 10px; }
-.mg-museum-card p { font-size: 15px; line-height: 1.55; color: #514d47; margin: 0; }
+/* ---------- Related museums ---------- */
+.mg-related { margin-bottom: clamp(56px, 8vw, 88px); }
+.mg-related h2 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(28px, 4vw, 36px); margin: 0 0 24px; }
+.mg-related-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+.mg-related-link { display: inline-flex; align-items: center; padding: 10px 20px; border: 1px solid #d8d0c3; border-radius: 999px; font-size: 14px; color: #3a362f; text-decoration: none; transition: all .15s ease; font-family: var(--font-editorial), Georgia, serif; }
+.mg-related-link:hover { border-color: #181714; background: #f3ecdd; }
 
+/* ============================ */
+/* INDEX PAGE — PREMIUM EDITORIAL MUSEUM ATLAS */
+/* ============================ */
+.mg-index-hero { padding: clamp(56px, 9vw, 96px) 0 clamp(32px, 5vw, 48px); }
+.mg-index-hero h1 { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; font-size: clamp(48px, 9vw, 96px); line-height: 0.95; margin: 16px 0 20px; }
+.mg-index-hero p { font-size: clamp(17px, 1.7vw, 21px); line-height: 1.55; max-width: 640px; color: #3a362f; }
+
+/* City groups with editorial rhythm */
+.mg-city-group { padding: clamp(48px, 0, 64px) 0; border-top: 1px solid #d8d0c3; }
+.mg-city-group:first-of-type { border-top: none; }
+.mg-city-heading { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+.mg-city-heading h2 { font-family: var(--font-editorial), Georgia, serif; font-weight: 500; font-size: clamp(28px, 3.6vw, 40px); margin: 0; }
+.mg-city-heading span { font-size: 13px; color: #8a8377; text-transform: uppercase; letter-spacing: .1em; }
+
+/* Editorial atlas layout — lead module + supporting modules */
+.mg-city-layout { display: flex; flex-direction: column; gap: 0; }
+.mg-museum-module { display: block; text-decoration: none; color: inherit; border: 1px solid transparent; transition: border-color .2s ease; }
+.mg-museum-module:first-child { border-top: none; }
+.mg-museum-module:hover { border-color: #181714; }
+.mg-module-inner { padding: clamp(20px, 3vw, 36px) clamp(20px, 4vw, 40px); border-top: 1px solid #d8d0c3; }
+.mg-museum-module:first-child .mg-module-inner { border-top: none; }
+
+/* Lead module — large, editorial emphasis */
+.mg-museum-module.mg-lead { background: #f7f3ec; border-left: 4px solid #181714; }
+.mg-museum-module.mg-lead .mg-module-inner { padding: clamp(36px, 5vw, 56px) clamp(28px, 5vw, 56px); }
+.mg-museum-module.mg-lead h3 { font-family: var(--font-editorial), Georgia, serif; font-weight: 400; font-size: clamp(32px, 5vw, 52px); margin: 0 0 12px; line-height: 1.05; }
+.mg-museum-module.mg-lead .mg-module-blurb { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; color: #3a362f; max-width: 520px; }
+.mg-museum-module.mg-lead .mg-module-country { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: #181714; margin-bottom: 14px; }
+.mg-museum-module.mg-lead .mg-module-cta { display: inline-block; margin-top: 18px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #6c665e; }
+
+/* Supporting modules — smaller, quieter */
+.mg-museum-module:not(.mg-lead) h3 { font-family: var(--font-editorial), Georgia, serif; font-size: clamp(22px, 2.8vw, 30px); font-weight: 500; margin: 0 0 8px; }
+.mg-museum-module:not(.mg-lead) .mg-module-blurb { font-size: 15px; line-height: 1.55; color: #514d47; margin: 0 0 6px; }
+.mg-museum-module:not(.mg-lead) .mg-module-country { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #8a8377; margin-bottom: 8px; }
+.mg-museum-module:not(.mg-lead) .mg-module-cta { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #8a8377; }
+.mg-museum-module:not(.mg-lead) .mg-module-inner { padding: 20px 24px; }
+
+/* Archetype-specific index treatments */
+.mg-archetype-iconic .mg-city-heading h2 { font-size: clamp(36px, 4.5vw, 48px); }
+.mg-archetype-intimate .mg-city-heading h2 { font-size: clamp(28px, 3.5vw, 38px); }
+.mg-archetype-encyclopedic .mg-city-heading h2 { font-size: clamp(32px, 4vw, 44px); }
+.mg-archetype-design .mg-city-heading h2 { font-size: clamp(28px, 3.5vw, 38px); }
+.mg-archetype-regional .mg-city-heading h2 { font-size: clamp(28px, 3.5vw, 38px); }
+
+/* Live badge for PRODUCTION_CATALOG */
+.mg-live-badge { display: inline-block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #6f9b7c; background: #e7eee7; padding: 2px 8px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+
+/* ============================ */
+/* RESPONSIVE */
+/* ============================ */
 @media (max-width: 760px) {
   .mg-what-grid { grid-template-columns: 1fr; }
   .mg-masterpiece, .mg-masterpiece:nth-of-type(even) { grid-template-columns: 1fr; direction: ltr; }
   .mg-explore, .mg-comparison { grid-template-columns: 1fr; }
-  .mg-museum-cards { grid-template-columns: 1fr; }
-  .mg-main { padding: 0 20px 90px; }
+  .mg-index-hero h1 { font-size: clamp(40px, 12vw, 64px); }
+  .mg-museum-module.mg-lead .mg-module-inner { padding: 28px 20px; }
+  .mg-museum-module.mg-lead h3 { font-size: clamp(28px, 8vw, 42px); }
+  .mg-related-grid { flex-direction: column; gap: 8px; }
+  .mg-related-link { width: 100%; text-align: center; justify-content: center; }
+  .mg-main { padding: 0 16px 80px; }
+}
+
+@media (max-width: 390px) {
+  .mg-index-hero h1 { font-size: clamp(36px, 12vw, 52px); line-height: 0.95; }
+  .mg-museum-module:not(.mg-lead) h3 { font-size: clamp(20px, 6vw, 26px); }
+  .mg-city-heading { flex-direction: column; gap: 4px; }
+  .mg-module-inner { padding: 16px 16px; }
 }

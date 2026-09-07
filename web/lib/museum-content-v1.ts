@@ -1,6 +1,6 @@
 import raw from "@/lib/data/museums-v1.json";
 
-export type MuseumStatus = "PRODUCTION_CATALOG" | "CONTROLLED_PREVIEW" | "NO_INSTITUTION_RECORD";
+export type MuseumStatus = "PRODUCTION_CATALOG" | "CONTROLLED_PREVIEW" | "NO_INSTITUTION_RECORD" | "LEGACY_CURATED";
 export type V1Locale = "en" | "fr" | "zh-hans";
 
 export type MuseumWhatToSeeItem = { name: string; blurb: string };

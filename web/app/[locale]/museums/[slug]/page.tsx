@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "@/components/seo/SeoLink";
 import { notFound } from "next/navigation";
 import SeoNav from "@/components/seo/SeoNav";
 import "@/components/seo/museum-guide.css";
 import { LOCALES, SITE_URL, alternatesFor, artworks, museums as legacyMuseums, museumBySlug as legacyMuseumBySlug, type SeoLocale } from "@/lib/seo-content";
 import { museumsV1, museumV1BySlug, museumVisitHref, type V1Locale } from "@/lib/museum-content-v1";
+import MuseumMasterpieceImage from "@/components/seo/MuseumMasterpieceImage";
 
 type ChromeCopy = { museums: string; howToApproach: string; whatToSee: string; masterpieces: string; explore: string; selfGuided: string; comparison: string; practical: string; faq: string; supportedStories: string; disclosure: string; traditional: string; withElyio: string };
 const chrome: Record<SeoLocale, ChromeCopy> = {
@@ -13,6 +13,53 @@ const chrome: Record<SeoLocale, ChromeCopy> = {
   fr: { museums: "Musées", howToApproach: "Comment organiser la visite", whatToSee: "À voir", masterpieces: "Œuvres racontées", explore: "Explorer avec ELYIO", selfGuided: "Visite libre", comparison: "Audioguide traditionnel vs. ELYIO", practical: "Bon à savoir", faq: "Questions fréquentes", supportedStories: "Œuvres accompagnées", disclosure: "ELYIO est un outil indépendant pour les visiteurs et n'est ni affilié, ni approuvé, ni parrainé par le musée.", traditional: "Audioguide traditionnel", withElyio: "Avec ELYIO" },
   "zh-hans": { museums: "博物馆", howToApproach: "如何规划参观", whatToSee: "重点作品", masterpieces: "作品故事", explore: "如何用ELYIO探索", selfGuided: "自由行参观", comparison: "传统语音导览 vs. ELYIO", practical: "实用提示", faq: "常见问题", supportedStories: "ELYIO 支持的作品", disclosure: "ELYIO 是独立的访客工具，与博物馆没有官方合作、认可或赞助关系。", traditional: "传统语音导览", withElyio: "使用 ELYIO" },
 } as const;
+
+function getArchetype(slug: string): string {
+  const iconic = ["musee-du-louvre", "rijksmuseum", "national-gallery-london"];
+  const intimate = ["musee-de-l-orangerie"];
+  const encyclopedic = ["the-met", "khm-vienna"];
+  const design = ["va-london", "nordiska-museet"];
+  const regional = ["princeton", "yale-new-haven", "cleveland"];
+  if (iconic.includes(slug)) return "iconic";
+  if (intimate.includes(slug)) return "intimate";
+  if (encyclopedic.includes(slug)) return "encyclopedic";
+  if (design.includes(slug)) return "design";
+  if (regional.includes(slug)) return "regional";
+  return "standard";
+}
+
+function getRelatedMuseums(slug: string, locale: SeoLocale): Array<{slug: string; name: string}> {
+  const relatedSlugs: Record<string, string[]> = {
+    "musee-du-louvre": ["musee-d-orsay", "musee-de-l-orangerie", "musee-rodin"],
+    "musee-d-orsay": ["musee-du-louvre", "musee-de-l-orangerie", "musee-guimet"],
+    "musee-de-l-orangerie": ["musee-du-louvre", "musee-d-orsay", "musee-rodin"],
+    "national-gallery-london": ["va-london", "chateau-de-versailles", "musee-de-cluny"],
+    "va-london": ["national-gallery-london", "rijksmuseum", "the-met"],
+    "the-met": ["national-gallery-london", "rijksmuseum", "gemaldegalerie-berlin"],
+    rijksmuseum: ["the-met", "national-gallery-london", "musee-du-louvre"],
+    "khm-vienna": ["the-met", "alte-pinakothek", "gemaldegalerie-berlin"],
+    "smk-copenhagen": ["nordiska-museet", "musee-de-l-orangerie"],
+    "nordiska-museet": ["smk-copenhagen", "va-london"],
+    princeton: ["yale-new-haven", "cleveland", "nga-washington"],
+    cleveland: ["princeton", "yale-new-haven", "getty"],
+    "nga-washington": ["cleveland", "princeton", "getty"],
+    getty: ["cleveland", "nga-washington", "the-met"],
+    "gemaldegalerie-berlin": ["the-met", "khm-vienna", "alte-pinakothek"],
+    "alte-pinakothek": ["khm-vienna", "gemaldegalerie-berlin", "musee-de-l-orangerie"],
+    "yale-new-haven": ["princeton", "cleveland", "nga-washington"],
+    "musee-carnavalet": ["musee-de-cluny", "musee-de-l-armee", "musee-du-quai-branly-jacques-chirac"],
+    "musee-de-cluny": ["musee-carnavalet", "musee-de-l-armee", "musee-du-louvre"],
+    "musee-de-l-armee": ["musee-de-cluny", "musee-du-quai-branly-jacques-chirac", "musee-rodin"],
+    "musee-du-quai-branly-jacques-chirac": ["musee-guimet", "musee-de-l-armee", "musee-carnavalet"],
+    "musee-guimet": ["musee-du-quai-branly-jacques-chirac", "musee-de-cluny"],
+  };
+  const slugMap = new Map(museumsV1.map(m => [m.slug, m]));
+  const matchedSlugs = relatedSlugs[slug] || ["musee-du-louvre"];
+  return matchedSlugs.map(s => {
+    const m = slugMap.get(s);
+    return { slug: s, name: m ? m.name[locale] : s };
+  });
+}
 
 export function generateStaticParams() {
   const v1Slugs = museumsV1.map((m) => m.slug);
@@ -67,10 +114,11 @@ function V1MuseumPage({ v1, locale: l, t }: { v1: NonNullable<ReturnType<typeof 
       { "@type": "FAQPage", mainEntity: content.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
     ],
   };
+  const archetype = getArchetype(v1.slug);
   return (
     <>
       <SeoNav locale={l} path={`/museums/${v1.slug}`} />
-      <main className="mg-main">
+      <main className={`mg-main mg-archetype-${archetype}`}>
         <nav className="mg-breadcrumbs"><Link href={`/${l}`}>ELYIO</Link> / <Link href={`/${l}/museums`}>{t.museums}</Link> / {v1.name[v]}</nav>
         <section className="mg-hero" data-variant={v1.artDirection.layoutVariant}>
           <div className="mg-hero-inner">
@@ -97,26 +145,20 @@ function V1MuseumPage({ v1, locale: l, t }: { v1: NonNullable<ReturnType<typeof 
           </div>
         </section>
 
-        <section className="mg-masterpieces">
-          <h2 className="mg-section-heading">{t.masterpieces}</h2>
-          {content.masterpieces.map((mp, i) => (
-            <article className="mg-masterpiece" key={i}>
-              <div className="mg-masterpiece-image">
-                {mp.imageCommonsUrl ? (
-                  <Image src={mp.imageCommonsUrl} alt={mp.imageAlt} fill sizes="(max-width: 760px) calc(100vw - 40px), 420px" style={{ objectFit: "cover" }} />
-                ) : (
-                  <div className="mg-masterpiece-image-placeholder">{mp.title}<br />{mp.artist}</div>
-                )}
-              </div>
-              <div>
-                <p className="mg-masterpiece-eyebrow">{mp.artist} · {mp.year}</p>
-                <h3>{mp.title}</h3>
-                <p className="mg-masterpiece-hook">{mp.hook}</p>
-                <p className="mg-masterpiece-context">{mp.context}</p>
-              </div>
-            </article>
-          ))}
-        </section>
+<section className="mg-masterpieces">
+           <h2 className="mg-section-heading">{t.masterpieces}</h2>
+           {content.masterpieces.slice(0, 5).map((mp, i) => (
+             <article className="mg-masterpiece" key={i}>
+               <MuseumMasterpieceImage src={mp.imageCommonsUrl} alt={mp.imageAlt} title={mp.title} artist={mp.artist} />
+               <div>
+                 <p className="mg-masterpiece-eyebrow">{mp.artist} · {mp.year}</p>
+                 <h3>{mp.title}</h3>
+                 <p className="mg-masterpiece-hook">{mp.hook}</p>
+                 <p className="mg-masterpiece-context">{mp.context}</p>
+               </div>
+             </article>
+           ))}
+         </section>
 
         <section className="mg-explore">
           <div><h3>{t.explore}</h3><p>{content.howToExplore}</p></div>
@@ -137,9 +179,18 @@ function V1MuseumPage({ v1, locale: l, t }: { v1: NonNullable<ReturnType<typeof 
 
         <section className="mg-faq">
           <h2 className="mg-section-heading">{t.faq}</h2>
-          {content.faq.map((f, i) => (
-            <details key={i}><summary>{f.q}</summary><p>{f.a}</p></details>
-          ))}
+{content.faq.map((f, i) => (
+             <details key={i}><summary>{f.q}</summary><p>{f.a}</p></details>
+           ))}
+         </section>
+
+        <section className="mg-related">
+          <h2 className="mg-section-heading">Continue exploring {v1.city}</h2>
+          <div className="mg-related-grid">
+            {getRelatedMuseums(v1.slug, l).map(({ slug, name }) => (
+              <Link key={slug} className="mg-related-link" href={`/${l}/museums/${slug}`}>{name}</Link>
+            ))}
+          </div>
         </section>
 
         <section className="mg-final-cta">
